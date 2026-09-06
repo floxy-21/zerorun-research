@@ -1,0 +1,680 @@
+{
+  "arms": {
+    "direct": {
+      "exit_code": 1,
+      "instrumented": false,
+      "runner": "independent-docker-plain-pytest",
+      "stderr_tail": "",
+      "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.39s ===================\n",
+      "wall_ms": 3166.3468099977763
+    },
+    "fast": {
+      "cache_key": "1b21a945a98bb099f76094b6f54e6ec6a7c6ceefa3fb69e718359e9256a6ea8f",
+      "execution_ms": 3511.291,
+      "exit_code": 1,
+      "phase_ms": {
+        "cache_lookup": 1.51,
+        "docker_execution": 3513.992,
+        "environment": 0.015,
+        "event_append": 16.467,
+        "fingerprint_final": 391.383,
+        "fingerprint_initial": 383.678,
+        "lock_acquire": 1.825,
+        "runtime_inspect_initial": 171.465,
+        "snapshot_cleanup": 42.026,
+        "snapshot_prepare": 1970.298
+      },
+      "reason": "fresh hermetic task failed; no reusable result was stored",
+      "request_wall_ms": 7026.164615999733,
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_FAILED",
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.49s ===================\n",
+      "task": "pytest-fast",
+      "verified": false,
+      "wall_ms": 7009.598
+    },
+    "snapshot": {
+      "cache_key": "08ce2a9eae7fabfb8c4281f5a22c86f7786e93cc10b0f5e23da500e066ffd789",
+      "execution_ms": 2966.29,
+      "exit_code": 1,
+      "phase_ms": {
+        "cache_lookup": 1.157,
+        "docker_execution": 2969.582,
+        "environment": 0.022,
+        "event_append": 6.66,
+        "fingerprint_final": 252.997,
+        "fingerprint_initial": 413.309,
+        "lock_acquire": 2.275,
+        "runtime_inspect_initial": 170.724,
+        "snapshot_cleanup": 28.034,
+        "snapshot_prepare": 1891.057
+      },
+      "reason": "fresh hermetic task failed; no reusable result was stored",
+      "request_wall_ms": 5767.83882699965,
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_FAILED",
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.39s ===================\n",
+      "task": "pytest-snapshot",
+      "verified": false,
+      "wall_ms": 5760.715
+    },
+    "testmon": {
+      "capture": {
+        "all_nodes_non_failing": false,
+        "complete_per_node_outcomes": true,
+        "exit_code": 1,
+        "failing_nodeids": [
+          "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure"
+        ],
+        "nodeid_sha256": "8e51d98e122b4cdf5a102685010a9969d2346ec15de30558f922b95a5ff4946f",
+        "nodeids": [
+          "colorama/tests/ansi_test.py::AnsiTest::testBackAttributes",
+          "colorama/tests/ansi_test.py::AnsiTest::testForeAttributes",
+          "colorama/tests/ansi_test.py::AnsiTest::testStyleAttributes",
+          "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "failed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "cleanup_confirmed": true,
+      "container_id": "c46ec15cbd3e47e45ba20942cf46151eed34093536bf15a33698143824b8d5c8",
+      "create_argv": [
+        "/usr/bin/docker",
+        "create",
+        "--name",
+        "zerorun-controlled-comparison-827b9f225152581925e43bf99eb23cb0",
+        "--pull",
+        "never",
+        "--platform",
+        "linux/amd64",
+        "--cap-drop",
+        "ALL",
+        "--security-opt",
+        "no-new-privileges",
+        "--pids-limit",
+        "512",
+        "--memory",
+        "2g",
+        "--cpus",
+        "2",
+        "--network",
+        "none",
+        "--read-only",
+        "--tmpfs",
+        "/tmp:rw,nosuid,nodev,size=512m",
+        "--tmpfs",
+        "/workspace/.zerorun:rw,nosuid,nodev,noexec,size=1m",
+        "--mount",
+        "type=bind,src=/dev/null,dst=/workspace/.git,readonly",
+        "--mount",
+        "type=bind,src=/home/floxy/zerorun-sqj-20260906-1000/workloads/.zerorun-generalization-trajectory-92-0cd02e528834371553626de7,dst=/workspace,readonly",
+        "--workdir",
+        "/workspace",
+        "--mount",
+        "type=bind,src=/home/floxy/zerorun-sqj-20260906-1000/results/comparison-final-1/testmon-runtime,dst=/comparator,readonly",
+        "--mount",
+        "type=bind,src=/home/floxy/zerorun-sqj-20260906-1000/results/comparison-final-1/colorama/trajectory-2/testmon-state,dst=/testmon-state",
+        "--mount",
+        "type=bind,src=/home/floxy/zerorun-sqj-20260906-1000/results/comparison-final-1/colorama/support,dst=/support,readonly",
+        "--mount",
+        "type=bind,src=/home/floxy/zerorun-sqj-20260906-1000/results/comparison-final-1/colorama/trajectory-2/request-3/testmon-outcomes.json,dst=/capture.json",
+        "--env",
+        "HOME=/tmp",
+        "--env",
+        "LANG=C",
+        "--env",
+        "LC_ALL=C",
+        "--env",
+        "PYTEST_DISABLE_PLUGIN_AUTOLOAD=1",
+        "--env",
+        "PYTHONDONTWRITEBYTECODE=1",
+        "--env",
+        "PYTHONHASHSEED=0",
+        "--env",
+        "PYTHONPATH=/support:/workspace/src:/workspace:/workspace/.zerorun-env/site-packages:/comparator/site",
+        "--env",
+        "PYTHONPYCACHEPREFIX=/tmp/zerorun-pycache",
+        "--env",
+        "TESTMON_DATAFILE=/testmon-state/.testmondata",
+        "--env",
+        "TZ=UTC",
+        "--env",
+        "ZERORUN_BENCHMARK_SHADOW_OUTPUT=/capture.json",
+        "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+        "/usr/local/bin/python",
+        "-m",
+        "pytest",
+        "-o",
+        "cache_dir=/tmp/testmon-pytest-cache",
+        "-p",
+        "benchmark_shadow_plugin",
+        "-p",
+        "testmon.pytest_testmon",
+        "--testmon",
+        "colorama/tests/ansi_test.py",
+        "colorama/tests/ansitowin32_test.py",
+        "colorama/tests/initialise_test.py",
+        "colorama/tests/isatty_test.py",
+        "colorama/tests/winterm_test.py"
+      ],
+      "exit_code": 1,
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\ncachedir: /tmp/testmon-pytest-cache\ntestmon: changed files: colorama/tests/ansi_test.py, unchanged files: 46, environment: default\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items / 49 deselected / 4 selected\n\ncolorama/tests/ansi_test.py ...F                                         [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n================== 1 failed, 3 passed, 49 deselected in 1.87s ==================\n",
+      "terminal_state": {
+        "Dead": false,
+        "Error": "",
+        "ExitCode": 1,
+        "FinishedAt": "2026-09-06T12:23:23.955826355Z",
+        "OOMKilled": false,
+        "Paused": false,
+        "Pid": 0,
+        "Restarting": false,
+        "Running": false,
+        "StartedAt": "2026-09-06T12:23:19.587046187Z",
+        "Status": "exited"
+      },
+      "wall_ms": 5469.281919002242
+    }
+  },
+  "cache_behavior_expected": true,
+  "index": 3,
+  "label": "failing-test-added",
+  "oracle": {
+    "capture": {
+      "all_nodes_non_failing": false,
+      "complete_per_node_outcomes": true,
+      "exit_code": 1,
+      "failing_nodeids": [
+        "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure"
+      ],
+      "nodeid_sha256": "7fc6d5684918165234ab6130329fd6038f943a36ec8d28c7e9c10d4d990541b5",
+      "nodeids": [
+        "colorama/tests/ansi_test.py::AnsiTest::testBackAttributes",
+        "colorama/tests/ansi_test.py::AnsiTest::testForeAttributes",
+        "colorama/tests/ansi_test.py::AnsiTest::testStyleAttributes",
+        "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesContext",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesWrite",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testIsAProxy",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testProxyNoContextManager",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_closed_stream",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_detached_stream",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testCallWin32UsesLookup",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testExtractParams",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testInit",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsFalseOffWindows",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsTrueOnWindows",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertCallsWin32WithParamsAndCommand",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertSkipsEmptySnippets",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertStripsAllValidAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertWritesPlainText",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAutoresets",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteDoesNotStripAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteStripsAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_native_windows_ansi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_osc_codes",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_reset_all_shouldnt_raise_on_closed_orig_stdout",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_closed_orig_stdout",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_missing_closed_attr",
+        "colorama/tests/initialise_test.py::InitTest::testAtexitRegisteredOnlyOnce",
+        "colorama/tests/initialise_test.py::InitTest::testAutoResetChangeable",
+        "colorama/tests/initialise_test.py::InitTest::testAutoResetPassedOn",
+        "colorama/tests/initialise_test.py::InitTest::testInitAutoresetOnWrapsOnAllPlatforms",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapIfNone",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnEmulatedWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnNonWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapOffDoesntWrapOnWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapOffIncompatibleWithAutoresetOn",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapsOnWindows",
+        "colorama/tests/initialise_test.py::JustFixWindowsConsoleTest::testJustFixWindowsConsole",
+        "colorama/tests/isatty_test.py::IsattyTest::test_TTY",
+        "colorama/tests/isatty_test.py::IsattyTest::test_nonTTY",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharm",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNonTTYOverride",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNoneOverride",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmStreamWrapped",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmTTYOverride",
+        "colorama/tests/winterm_test.py::WinTermTest::testBack",
+        "colorama/tests/winterm_test.py::WinTermTest::testFore",
+        "colorama/tests/winterm_test.py::WinTermTest::testGetAttrs",
+        "colorama/tests/winterm_test.py::WinTermTest::testInit",
+        "colorama/tests/winterm_test.py::WinTermTest::testResetAll",
+        "colorama/tests/winterm_test.py::WinTermTest::testSetConsole",
+        "colorama/tests/winterm_test.py::WinTermTest::testSetConsoleOnStderr",
+        "colorama/tests/winterm_test.py::WinTermTest::testStyle"
+      ],
+      "outcomes": [
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "failed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        }
+      ],
+      "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+    },
+    "exit_code": 1,
+    "instrumented": true,
+    "runner": "independent-docker-plain-pytest",
+    "stderr_tail": "",
+    "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.54s ===================\n",
+    "wall_ms": 3933.961023001757
+  },
+  "order": [
+    "testmon",
+    "fast",
+    "snapshot",
+    "direct"
+  ],
+  "source_file_sha256": "5cfb2f81563e8045657da972b39975a9643e41fa6c706a6027c0e7cfdf835b1c",
+  "testmon_comparison": {
+    "claimed_node_ids": [
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testCallWin32UsesLookup",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testExtractParams",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testInit",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsFalseOffWindows",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsTrueOnWindows",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertCallsWin32WithParamsAndCommand",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertSkipsEmptySnippets",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertStripsAllValidAnsi",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertWritesPlainText",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAutoresets",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteDoesNotStripAnsi",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteStripsAnsi",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_native_windows_ansi",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_osc_codes",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_reset_all_shouldnt_raise_on_closed_orig_stdout",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_closed_orig_stdout",
+      "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_missing_closed_attr",
+      "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesContext",
+      "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesWrite",
+      "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testIsAProxy",
+      "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testProxyNoContextManager",
+      "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_closed_stream",
+      "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_detached_stream",
+      "colorama/tests/initialise_test.py::JustFixWindowsConsoleTest::testJustFixWindowsConsole",
+      "colorama/tests/isatty_test.py::IsattyTest::test_TTY",
+      "colorama/tests/isatty_test.py::IsattyTest::test_nonTTY",
+      "colorama/tests/isatty_test.py::IsattyTest::test_withPycharm",
+      "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNonTTYOverride",
+      "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNoneOverride",
+      "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmStreamWrapped",
+      "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmTTYOverride",
+      "colorama/tests/winterm_test.py::WinTermTest::testInit",
+      "colorama/tests/winterm_test.py::WinTermTest::testResetAll",
+      "colorama/tests/winterm_test.py::WinTermTest::testSetConsole",
+      "colorama/tests/winterm_test.py::WinTermTest::testSetConsoleOnStderr"
+    ],
+    "complete_reconstruction_matches": false,
+    "mismatched_or_absent_node_ids": [],
+    "prior_passed_omitted_nodes": 35,
+    "selected_node_ids": [
+      "colorama/tests/ansi_test.py::AnsiTest::testBackAttributes",
+      "colorama/tests/ansi_test.py::AnsiTest::testForeAttributes",
+      "colorama/tests/ansi_test.py::AnsiTest::testStyleAttributes",
+      "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure"
+    ],
+    "selected_nodes": 4,
+    "selector_is_not_a_fresh_full_oracle": true,
+    "uncovered_node_ids": [
+      "colorama/tests/initialise_test.py::InitTest::testAtexitRegisteredOnlyOnce",
+      "colorama/tests/initialise_test.py::InitTest::testAutoResetChangeable",
+      "colorama/tests/initialise_test.py::InitTest::testAutoResetPassedOn",
+      "colorama/tests/initialise_test.py::InitTest::testInitAutoresetOnWrapsOnAllPlatforms",
+      "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapIfNone",
+      "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnEmulatedWindows",
+      "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnNonWindows",
+      "colorama/tests/initialise_test.py::InitTest::testInitWrapOffDoesntWrapOnWindows",
+      "colorama/tests/initialise_test.py::InitTest::testInitWrapOffIncompatibleWithAutoresetOn",
+      "colorama/tests/initialise_test.py::InitTest::testInitWrapsOnWindows",
+      "colorama/tests/winterm_test.py::WinTermTest::testBack",
+      "colorama/tests/winterm_test.py::WinTermTest::testFore",
+      "colorama/tests/winterm_test.py::WinTermTest::testGetAttrs",
+      "colorama/tests/winterm_test.py::WinTermTest::testStyle"
+    ]
+  },
+  "trajectory": 2,
+  "whole_task_exit_agreement": true,
+  "workload": "colorama"
+}

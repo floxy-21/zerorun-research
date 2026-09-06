@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools==84.0.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zerorun"
+version = "0.5.1"
+description = "Conservative deterministic test-result reuse for AI coding tools"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE.txt", "Licence.txt", "THIRD_PARTY_NOTICES.md"]
+authors = [{name = "Jishan Kapoor"}]
+dependencies = []
+
+[project.scripts]
+zerorun = "zerorun.cli:main"
+zerorun-pytest-prepare = "zerorun.pytest_prepare_cli:main"
+zerorun-pytest-review = "zerorun.pytest_review_cli:review_main"
+zerorun-pytest-activate = "zerorun.pytest_review_cli:activate_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["zerorun*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests", "research/sqj/strengthening/tests"]

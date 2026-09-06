@@ -1,0 +1,328 @@
+﻿2026-09-06T12:14:19.4161134Z Current runner version: '2.337.0'
+2026-09-06T12:14:19.4186901Z ##[group]Runner Image Provisioner
+2026-09-06T12:14:19.4187761Z Hosted Compute Agent
+2026-09-06T12:14:19.4188337Z Version: 20260828.587
+2026-09-06T12:14:19.4189097Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-06T12:14:19.4189836Z Build Date: 2026-08-28T16:44:25Z
+2026-09-06T12:14:19.4190599Z Worker ID: {acb4e7d6-f720-41ba-9757-6ba5e30305b6}
+2026-09-06T12:14:19.4191302Z Azure Region: eastus
+2026-09-06T12:14:19.4191844Z ##[endgroup]
+2026-09-06T12:14:19.4193533Z ##[group]Operating System
+2026-09-06T12:14:19.4194172Z Ubuntu
+2026-09-06T12:14:19.4195239Z 24.04.4
+2026-09-06T12:14:19.4195799Z LTS
+2026-09-06T12:14:19.4196312Z ##[endgroup]
+2026-09-06T12:14:19.4196946Z ##[group]Runner Image
+2026-09-06T12:14:19.4197589Z Image: ubuntu-24.04
+2026-09-06T12:14:19.4198193Z Version: 20260831.293.1
+2026-09-06T12:14:19.4199433Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260831.293/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-06T12:14:19.4201468Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260831.293
+2026-09-06T12:14:19.4202477Z ##[endgroup]
+2026-09-06T12:14:19.4203594Z ##[group]GITHUB_TOKEN Permissions
+2026-09-06T12:14:19.4205970Z Contents: read
+2026-09-06T12:14:19.4206673Z Metadata: read
+2026-09-06T12:14:19.4207247Z ##[endgroup]
+2026-09-06T12:14:19.4209365Z Secret source: Actions
+2026-09-06T12:14:19.4210890Z Prepare workflow directory
+2026-09-06T12:14:19.4703760Z Prepare all required actions
+2026-09-06T12:14:19.4778184Z Getting action download info
+2026-09-06T12:14:19.7823390Z Download action repository 'actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd' (SHA:de0fac2e4500dabe0009e67214ff5f5447ce83dd)
+2026-09-06T12:14:19.9190782Z Download action repository 'actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405' (SHA:a309ff8b426b58ec0e2a45f0f869d46889d02405)
+2026-09-06T12:14:20.1405211Z Complete job name: regression-python-3.13
+2026-09-06T12:14:20.2157158Z ##[group]Run actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd
+2026-09-06T12:14:20.2158530Z with:
+2026-09-06T12:14:20.2158984Z   persist-credentials: false
+2026-09-06T12:14:20.2159529Z   repository: floxy-21/zerorun-mvp
+2026-09-06T12:14:20.2163214Z   token: ***
+2026-09-06T12:14:20.2163652Z   ssh-strict: true
+2026-09-06T12:14:20.2164097Z   ssh-user: git
+2026-09-06T12:14:20.2164966Z   clean: true
+2026-09-06T12:14:20.2165474Z   sparse-checkout-cone-mode: true
+2026-09-06T12:14:20.2166006Z   fetch-depth: 1
+2026-09-06T12:14:20.2166444Z   fetch-tags: false
+2026-09-06T12:14:20.2166886Z   show-progress: true
+2026-09-06T12:14:20.2167330Z   lfs: false
+2026-09-06T12:14:20.2167756Z   submodules: false
+2026-09-06T12:14:20.2168212Z   set-safe-directory: true
+2026-09-06T12:14:20.2169007Z env:
+2026-09-06T12:14:20.2169438Z   CODEX_NPM_VERSION: 0.153.3
+2026-09-06T12:14:20.2170536Z   CODEX_NPM_INTEGRITY: sha512-SwQns+YIXvaXV4a6RUd9twgTPJkkfZpuTNEkTtIkwBnfw6fpT61+d6gU1WHZxK6vWFNqJCBoJEP69FIAsoPduA==
+2026-09-06T12:14:20.2172197Z   CODEX_LINUX_X64_NPM_INTEGRITY: sha512-CyLvuM9Ij7sQuNtnHrzHtF+DtNISaauZZakyhy+MoFS1XxKTGv3FN4/qh6c94YZtLStZ7aUmfYQz59V3PV4zng==
+2026-09-06T12:14:20.2173700Z   GENERALIZATION_RUNTIME_LOCK_SHA256: a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c
+2026-09-06T12:14:20.2175294Z   GENERALIZATION_RUNTIME_IMAGE: docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef
+2026-09-06T12:14:20.2176407Z   GENERALIZATION_RUNTIME_IMPLEMENTATION: CPython
+2026-09-06T12:14:20.2177060Z   GENERALIZATION_RUNTIME_PYTHON_VERSION: 3.12.14
+2026-09-06T12:14:20.2177642Z ##[endgroup]
+2026-09-06T12:14:20.3442287Z Syncing repository: floxy-21/zerorun-mvp
+2026-09-06T12:14:20.3446084Z ##[group]Getting Git version info
+2026-09-06T12:14:20.3448201Z Working directory is '/home/runner/work/zerorun-mvp/zerorun-mvp'
+2026-09-06T12:14:20.3465628Z [command]/usr/bin/git version
+2026-09-06T12:14:20.3525971Z git version 2.55.0
+2026-09-06T12:14:20.3589709Z ##[endgroup]
+2026-09-06T12:14:20.3618643Z Temporarily overriding HOME='/home/runner/work/_temp/1a713922-66cc-4c94-b9e3-8ad9c0b21450' before making global git config changes
+2026-09-06T12:14:20.3623397Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-06T12:14:20.3625832Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/zerorun-mvp/zerorun-mvp
+2026-09-06T12:14:20.3696693Z Deleting the contents of '/home/runner/work/zerorun-mvp/zerorun-mvp'
+2026-09-06T12:14:20.3698949Z ##[group]Initializing the repository
+2026-09-06T12:14:20.3700371Z [command]/usr/bin/git init /home/runner/work/zerorun-mvp/zerorun-mvp
+2026-09-06T12:14:20.3840372Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-06T12:14:20.3988281Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-06T12:14:20.3997655Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-06T12:14:20.3999604Z hint: call:
+2026-09-06T12:14:20.4000505Z hint:
+2026-09-06T12:14:20.4001512Z hint: 	git config --global init.defaultBranch <name>
+2026-09-06T12:14:20.4002679Z hint:
+2026-09-06T12:14:20.4003851Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-06T12:14:20.4005856Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-06T12:14:20.4007247Z hint:
+2026-09-06T12:14:20.4008082Z hint: 	git branch -m <name>
+2026-09-06T12:14:20.4009038Z hint:
+2026-09-06T12:14:20.4010223Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-06T12:14:20.4012368Z Initialized empty Git repository in /home/runner/work/zerorun-mvp/zerorun-mvp/.git/
+2026-09-06T12:14:20.4015988Z [command]/usr/bin/git remote add origin https://github.com/floxy-21/zerorun-mvp
+2026-09-06T12:14:20.4022520Z ##[endgroup]
+2026-09-06T12:14:20.4024062Z ##[group]Disabling automatic garbage collection
+2026-09-06T12:14:20.4045719Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-06T12:14:20.5480848Z ##[endgroup]
+2026-09-06T12:14:20.5482390Z ##[group]Setting up auth
+2026-09-06T12:14:20.5483537Z Removing SSH command configuration
+2026-09-06T12:14:20.5485958Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-06T12:14:20.5491040Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-06T12:14:20.5497730Z Removing HTTP extra header
+2026-09-06T12:14:20.5499587Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-06T12:14:20.5505444Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-06T12:14:20.5512260Z Removing includeIf entries pointing to credentials config files
+2026-09-06T12:14:20.5514149Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-06T12:14:20.5518271Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-06T12:14:20.5749809Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-06T12:14:20.5817214Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git.path /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:20.5886949Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:20.5947082Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:20.5976497Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:20.6012000Z ##[endgroup]
+2026-09-06T12:14:20.6013652Z ##[group]Fetching the repository
+2026-09-06T12:14:20.6023032Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +86f42289c2f59a74b1f642f0b20d1a26b3d55e57:refs/remotes/origin/main
+2026-09-06T12:14:21.1937189Z From https://github.com/floxy-21/zerorun-mvp
+2026-09-06T12:14:21.1939668Z  * [new ref]         86f42289c2f59a74b1f642f0b20d1a26b3d55e57 -> origin/main
+2026-09-06T12:14:21.1946973Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-06T12:14:21.1983089Z   origin/main
+2026-09-06T12:14:21.2015108Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-06T12:14:21.2065741Z 86f42289c2f59a74b1f642f0b20d1a26b3d55e57
+2026-09-06T12:14:21.2100831Z ##[endgroup]
+2026-09-06T12:14:21.2102554Z ##[group]Determining the checkout info
+2026-09-06T12:14:21.2104380Z ##[endgroup]
+2026-09-06T12:14:21.2105855Z [command]/usr/bin/git sparse-checkout disable
+2026-09-06T12:14:21.2136318Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-06T12:14:21.2169769Z ##[group]Checking out the ref
+2026-09-06T12:14:21.2173937Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-06T12:14:21.2681956Z Switched to a new branch 'main'
+2026-09-06T12:14:21.2692135Z branch 'main' set up to track 'origin/main'.
+2026-09-06T12:14:21.2706211Z ##[endgroup]
+2026-09-06T12:14:21.2755633Z [command]/usr/bin/git log -1 --format=%H
+2026-09-06T12:14:21.2795009Z 86f42289c2f59a74b1f642f0b20d1a26b3d55e57
+2026-09-06T12:14:21.2804333Z ##[group]Removing auth
+2026-09-06T12:14:21.2805937Z Removing SSH command configuration
+2026-09-06T12:14:21.2808147Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-06T12:14:21.2857756Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-06T12:14:21.3108930Z Removing HTTP extra header
+2026-09-06T12:14:21.3113605Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-06T12:14:21.3155576Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-06T12:14:21.3402665Z Removing includeIf entries pointing to credentials config files
+2026-09-06T12:14:21.3406661Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-06T12:14:21.3440169Z includeif.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git.path
+2026-09-06T12:14:21.3442776Z includeif.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git/worktrees/*.path
+2026-09-06T12:14:21.3453320Z includeif.gitdir:/github/workspace/.git.path
+2026-09-06T12:14:21.3459830Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-06T12:14:21.3464971Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git.path
+2026-09-06T12:14:21.3486133Z /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3501114Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git.path /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3543563Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git/worktrees/*.path
+2026-09-06T12:14:21.3585884Z /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3614147Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/zerorun-mvp/zerorun-mvp/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3642692Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-06T12:14:21.3690765Z /github/runner_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3707310Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3749128Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-06T12:14:21.3776069Z /github/runner_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3788421Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config
+2026-09-06T12:14:21.3829457Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-06T12:14:21.4085075Z Removing credentials config '/home/runner/work/_temp/git-credentials-9b8f4c8b-b86a-4012-bc4d-6f600d33b13d.config'
+2026-09-06T12:14:21.4100328Z ##[endgroup]
+2026-09-06T12:14:21.4536607Z ##[group]Run actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405
+2026-09-06T12:14:21.4538197Z with:
+2026-09-06T12:14:21.4538745Z   python-version: 3.13
+2026-09-06T12:14:21.4539267Z   check-latest: false
+2026-09-06T12:14:21.4547742Z   token: ***
+2026-09-06T12:14:21.4548570Z   update-environment: true
+2026-09-06T12:14:21.4549536Z   allow-prereleases: false
+2026-09-06T12:14:21.4550109Z   freethreaded: false
+2026-09-06T12:14:21.4550829Z env:
+2026-09-06T12:14:21.4551600Z   CODEX_NPM_VERSION: 0.153.3
+2026-09-06T12:14:21.4553860Z   CODEX_NPM_INTEGRITY: sha512-SwQns+YIXvaXV4a6RUd9twgTPJkkfZpuTNEkTtIkwBnfw6fpT61+d6gU1WHZxK6vWFNqJCBoJEP69FIAsoPduA==
+2026-09-06T12:14:21.4557384Z   CODEX_LINUX_X64_NPM_INTEGRITY: sha512-CyLvuM9Ij7sQuNtnHrzHtF+DtNISaauZZakyhy+MoFS1XxKTGv3FN4/qh6c94YZtLStZ7aUmfYQz59V3PV4zng==
+2026-09-06T12:14:21.4560784Z   GENERALIZATION_RUNTIME_LOCK_SHA256: a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c
+2026-09-06T12:14:21.4563625Z   GENERALIZATION_RUNTIME_IMAGE: docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef
+2026-09-06T12:14:21.4566309Z   GENERALIZATION_RUNTIME_IMPLEMENTATION: CPython
+2026-09-06T12:14:21.4567327Z   GENERALIZATION_RUNTIME_PYTHON_VERSION: 3.12.14
+2026-09-06T12:14:21.4568530Z ##[endgroup]
+2026-09-06T12:14:21.6241346Z ##[group]Installed versions
+2026-09-06T12:14:21.6350556Z Successfully set up CPython (3.13.15)
+2026-09-06T12:14:21.6352829Z ##[endgroup]
+2026-09-06T12:14:21.6610979Z ##[group]Run python -m pip install \
+2026-09-06T12:14:21.6612157Z [36;1mpython -m pip install \[0m
+2026-09-06T12:14:21.6613143Z [36;1m  --require-hashes \[0m
+2026-09-06T12:14:21.6614784Z [36;1m  --requirement ci/release-bootstrap-requirements.txt[0m
+2026-09-06T12:14:21.6616202Z [36;1mpython -m pip install \[0m
+2026-09-06T12:14:21.6617163Z [36;1m  --require-hashes \[0m
+2026-09-06T12:14:21.6618265Z [36;1m  --requirement ci/release-test-requirements.txt[0m
+2026-09-06T12:14:21.6620132Z [36;1mpython -m pip install --no-build-isolation --no-deps .[0m
+2026-09-06T12:14:21.6802001Z shell: /usr/bin/bash -e {0}
+2026-09-06T12:14:21.6802986Z env:
+2026-09-06T12:14:21.6803733Z   CODEX_NPM_VERSION: 0.153.3
+2026-09-06T12:14:21.6806261Z   CODEX_NPM_INTEGRITY: sha512-SwQns+YIXvaXV4a6RUd9twgTPJkkfZpuTNEkTtIkwBnfw6fpT61+d6gU1WHZxK6vWFNqJCBoJEP69FIAsoPduA==
+2026-09-06T12:14:21.6810157Z   CODEX_LINUX_X64_NPM_INTEGRITY: sha512-CyLvuM9Ij7sQuNtnHrzHtF+DtNISaauZZakyhy+MoFS1XxKTGv3FN4/qh6c94YZtLStZ7aUmfYQz59V3PV4zng==
+2026-09-06T12:14:21.6813534Z   GENERALIZATION_RUNTIME_LOCK_SHA256: a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c
+2026-09-06T12:14:21.6817434Z   GENERALIZATION_RUNTIME_IMAGE: docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef
+2026-09-06T12:14:21.6819854Z   GENERALIZATION_RUNTIME_IMPLEMENTATION: CPython
+2026-09-06T12:14:21.6820854Z   GENERALIZATION_RUNTIME_PYTHON_VERSION: 3.12.14
+2026-09-06T12:14:21.6822270Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:21.6823949Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+2026-09-06T12:14:21.6825832Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:21.6827350Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:21.6828866Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:21.6830438Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+2026-09-06T12:14:21.6831768Z ##[endgroup]
+2026-09-06T12:14:24.0986970Z Requirement already satisfied: pip==26.2.1 in /opt/hostedtoolcache/Python/3.13.15/x64/lib/python3.13/site-packages (from -r ci/release-bootstrap-requirements.txt (line 4)) (26.2.1)
+2026-09-06T12:14:24.1580834Z Collecting packaging==26.3 (from -r ci/release-bootstrap-requirements.txt (line 6))
+2026-09-06T12:14:24.2091229Z   Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-09-06T12:14:24.3266854Z Collecting setuptools==84.0.0 (from -r ci/release-bootstrap-requirements.txt (line 8))
+2026-09-06T12:14:24.3307133Z   Downloading setuptools-84.0.0-py3-none-any.whl (818 kB)
+2026-09-06T12:14:24.3432561Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.2/818.2 kB 83.2 MB/s  0:00:00
+2026-09-06T12:14:24.3652526Z Collecting wheel==0.48.0 (from -r ci/release-bootstrap-requirements.txt (line 10))
+2026-09-06T12:14:24.3694357Z   Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+2026-09-06T12:14:24.4856237Z Installing collected packages: setuptools, packaging, wheel
+2026-09-06T12:14:25.0895656Z 
+2026-09-06T12:14:25.0897057Z Successfully installed packaging-26.3 setuptools-84.0.0 wheel-0.48.0
+2026-09-06T12:14:25.4744721Z Ignoring colorama: markers 'sys_platform == "win32"' don't match your environment
+2026-09-06T12:14:25.4746464Z Ignoring exceptiongroup: markers 'python_version < "3.11"' don't match your environment
+2026-09-06T12:14:25.4749575Z Ignoring tomli: markers 'python_version < "3.11"' don't match your environment
+2026-09-06T12:14:25.4752279Z Ignoring typing-extensions: markers 'python_version < "3.13"' don't match your environment
+2026-09-06T12:14:25.5415853Z Collecting attrs==26.1.0 (from -r ci/release-test-requirements.txt (line 4))
+2026-09-06T12:14:25.5920134Z   Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+2026-09-06T12:14:25.6253975Z Collecting iniconfig==2.3.0 (from -r ci/release-test-requirements.txt (line 10))
+2026-09-06T12:14:25.6289077Z   Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+2026-09-06T12:14:25.6539740Z Collecting jsonschema==4.26.0 (from -r ci/release-test-requirements.txt (line 12))
+2026-09-06T12:14:25.6572940Z   Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+2026-09-06T12:14:25.6737862Z Collecting jsonschema-specifications==2025.9.1 (from -r ci/release-test-requirements.txt (line 14))
+2026-09-06T12:14:25.6772457Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+2026-09-06T12:14:25.6818532Z Requirement already satisfied: packaging==26.3 in /opt/hostedtoolcache/Python/3.13.15/x64/lib/python3.13/site-packages (from -r ci/release-test-requirements.txt (line 16)) (26.3)
+2026-09-06T12:14:25.6904310Z Collecting pluggy==1.6.0 (from -r ci/release-test-requirements.txt (line 18))
+2026-09-06T12:14:25.6937355Z   Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+2026-09-06T12:14:25.7132724Z Collecting Pygments==2.21.0 (from -r ci/release-test-requirements.txt (line 20))
+2026-09-06T12:14:25.7169965Z   Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-09-06T12:14:25.7435653Z      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 47.2 MB/s  0:00:00
+2026-09-06T12:14:25.7809222Z Collecting pytest==9.1.1 (from -r ci/release-test-requirements.txt (line 22))
+2026-09-06T12:14:25.7856318Z   Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+2026-09-06T12:14:25.8222117Z Collecting referencing==0.37.0 (from -r ci/release-test-requirements.txt (line 24))
+2026-09-06T12:14:25.8248004Z   Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+2026-09-06T12:14:26.0821783Z Collecting rpds-py==0.30.0 (from -r ci/release-test-requirements.txt (line 26))
+2026-09-06T12:14:26.0860795Z   Downloading rpds_py-0.30.0-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (394 kB)
+2026-09-06T12:14:26.1288478Z Installing collected packages: rpds-py, Pygments, pluggy, iniconfig, attrs, referencing, pytest, jsonschema-specifications, jsonschema
+2026-09-06T12:14:27.3167077Z 
+2026-09-06T12:14:27.3206530Z Successfully installed Pygments-2.21.0 attrs-26.1.0 iniconfig-2.3.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 pluggy-1.6.0 pytest-9.1.1 referencing-0.37.0 rpds-py-0.30.0
+2026-09-06T12:14:27.7019523Z Processing ./.
+2026-09-06T12:14:27.7032917Z   Preparing metadata (pyproject.toml): started
+2026-09-06T12:14:27.9901759Z   Preparing metadata (pyproject.toml): finished with status 'done'
+2026-09-06T12:14:27.9931848Z Building wheels for collected packages: zerorun
+2026-09-06T12:14:27.9941314Z   Building wheel for zerorun (pyproject.toml): started
+2026-09-06T12:14:28.2795621Z   Building wheel for zerorun (pyproject.toml): finished with status 'done'
+2026-09-06T12:14:28.2806814Z   Created wheel for zerorun: filename=zerorun-0.5.1-py3-none-any.whl size=241205 sha256=0ebf5aec06e54a596d8518c2ea28264236d80b90cad464e90082cd52078894d9
+2026-09-06T12:14:28.2809072Z   Stored in directory: /tmp/pip-ephem-wheel-cache-21_cydzb/wheels/fc/30/ad/446e29c0989a6644f0db5cda798f3f19ab7c3b9028e5bdc453
+2026-09-06T12:14:28.2842060Z Successfully built zerorun
+2026-09-06T12:14:28.2950766Z Installing collected packages: zerorun
+2026-09-06T12:14:28.4865812Z Successfully installed zerorun-0.5.1
+2026-09-06T12:14:28.5381527Z ##[group]Run python -m compileall -q zerorun tests
+2026-09-06T12:14:28.5381946Z [36;1mpython -m compileall -q zerorun tests[0m
+2026-09-06T12:14:28.5420632Z shell: /usr/bin/bash -e {0}
+2026-09-06T12:14:28.5420879Z env:
+2026-09-06T12:14:28.5421080Z   CODEX_NPM_VERSION: 0.153.3
+2026-09-06T12:14:28.5421723Z   CODEX_NPM_INTEGRITY: sha512-SwQns+YIXvaXV4a6RUd9twgTPJkkfZpuTNEkTtIkwBnfw6fpT61+d6gU1WHZxK6vWFNqJCBoJEP69FIAsoPduA==
+2026-09-06T12:14:28.5422772Z   CODEX_LINUX_X64_NPM_INTEGRITY: sha512-CyLvuM9Ij7sQuNtnHrzHtF+DtNISaauZZakyhy+MoFS1XxKTGv3FN4/qh6c94YZtLStZ7aUmfYQz59V3PV4zng==
+2026-09-06T12:14:28.5423659Z   GENERALIZATION_RUNTIME_LOCK_SHA256: a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c
+2026-09-06T12:14:28.5424677Z   GENERALIZATION_RUNTIME_IMAGE: docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef
+2026-09-06T12:14:28.5425369Z   GENERALIZATION_RUNTIME_IMPLEMENTATION: CPython
+2026-09-06T12:14:28.5425772Z   GENERALIZATION_RUNTIME_PYTHON_VERSION: 3.12.14
+2026-09-06T12:14:28.5426186Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:28.5426689Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+2026-09-06T12:14:28.5427169Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:28.5427599Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:28.5428035Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:28.5428470Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+2026-09-06T12:14:28.5428835Z ##[endgroup]
+2026-09-06T12:14:29.1800142Z ##[group]Run python -m pytest -q
+2026-09-06T12:14:29.1800484Z [36;1mpython -m pytest -q[0m
+2026-09-06T12:14:29.1837904Z shell: /usr/bin/bash -e {0}
+2026-09-06T12:14:29.1838159Z env:
+2026-09-06T12:14:29.1838361Z   CODEX_NPM_VERSION: 0.153.3
+2026-09-06T12:14:29.1838972Z   CODEX_NPM_INTEGRITY: sha512-SwQns+YIXvaXV4a6RUd9twgTPJkkfZpuTNEkTtIkwBnfw6fpT61+d6gU1WHZxK6vWFNqJCBoJEP69FIAsoPduA==
+2026-09-06T12:14:29.1839951Z   CODEX_LINUX_X64_NPM_INTEGRITY: sha512-CyLvuM9Ij7sQuNtnHrzHtF+DtNISaauZZakyhy+MoFS1XxKTGv3FN4/qh6c94YZtLStZ7aUmfYQz59V3PV4zng==
+2026-09-06T12:14:29.1840936Z   GENERALIZATION_RUNTIME_LOCK_SHA256: a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c
+2026-09-06T12:14:29.1841709Z   GENERALIZATION_RUNTIME_IMAGE: docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef
+2026-09-06T12:14:29.1842307Z   GENERALIZATION_RUNTIME_IMPLEMENTATION: CPython
+2026-09-06T12:14:29.1842621Z   GENERALIZATION_RUNTIME_PYTHON_VERSION: 3.12.14
+2026-09-06T12:14:29.1843061Z   pythonLocation: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:29.1843483Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib/pkgconfig
+2026-09-06T12:14:29.1843893Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:29.1844262Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:29.1844983Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.13.15/x64
+2026-09-06T12:14:29.1845369Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.13.15/x64/lib
+2026-09-06T12:14:29.1845691Z ##[endgroup]
+2026-09-06T12:14:34.3789107Z ............................................................. [  3%]
+2026-09-06T12:14:36.4163634Z ........................................................................ [  8%]
+2026-09-06T12:14:37.0247398Z ........................................................................ [ 12%]
+2026-09-06T12:14:44.3204866Z ........................................................................ [ 16%]
+2026-09-06T12:14:48.1072648Z ................s...s........................................... [ 20%]
+2026-09-06T12:14:48.4817534Z ........................................................................ [ 25%]
+2026-09-06T12:14:51.2246607Z ........................................................................ [ 29%]
+2026-09-06T12:14:52.3697602Z ........................................................................ [ 33%]
+2026-09-06T12:14:52.6715293Z ........................................................................ [ 38%]
+2026-09-06T12:15:05.2204773Z ..........................................s............................. [ 42%]
+2026-09-06T12:15:07.2492027Z ........................................................................ [ 46%]
+2026-09-06T12:15:07.3432996Z ........................................................................ [ 51%]
+2026-09-06T12:15:07.5888749Z ........................................................................ [ 55%]
+2026-09-06T12:15:27.6652443Z ...........................................................sssss........ [ 60%]
+2026-09-06T12:15:47.5107587Z ........................................................................ [ 64%]
+2026-09-06T12:15:53.9973323Z ........................................................................ [ 68%]
+2026-09-06T12:16:16.4194787Z ........................................................................ [ 73%]
+2026-09-06T12:16:33.9463402Z ........................................................................ [ 77%]
+2026-09-06T12:21:03.1696096Z ........................................................................ [ 81%]
+2026-09-06T12:21:27.5728879Z ........................................................................ [ 86%]
+2026-09-06T12:21:40.1947357Z ........................................................................ [ 90%]
+2026-09-06T12:21:40.3764091Z ........................................................................ [ 94%]
+2026-09-06T12:21:42.0458181Z ........................................................................ [ 99%]
+2026-09-06T12:21:42.2409034Z ...........                                                              [100%]
+2026-09-06T12:21:42.2410053Z =============================== warnings summary ===============================
+2026-09-06T12:21:42.2411463Z tests/test_symbol_content_cache.py::test_forked_child_reinitializes_cache_lock_and_state
+2026-09-06T12:21:42.2413241Z   /home/runner/work/zerorun-mvp/zerorun-mvp/tests/test_symbol_content_cache.py:231: DeprecationWarning: This process (pid=2176) is multi-threaded, use of fork() may lead to deadlocks in the child.
+2026-09-06T12:21:42.2415620Z     child_pid = os.fork()
+2026-09-06T12:21:42.2416033Z 
+2026-09-06T12:21:42.2416551Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-09-06T12:21:42.2417505Z 1640 passed, 8 skipped, 1 warning, 19 subtests passed in 432.52s (0:07:12)
+2026-09-06T12:21:42.4478075Z Post job cleanup.
+2026-09-06T12:21:42.6514153Z Post job cleanup.
+2026-09-06T12:21:42.8035069Z [command]/usr/bin/git version
+2026-09-06T12:21:42.8101097Z git version 2.55.0
+2026-09-06T12:21:42.8245982Z Temporarily overriding HOME='/home/runner/work/_temp/d66d8572-878c-4f3d-b959-f420b583a1f7' before making global git config changes
+2026-09-06T12:21:42.8275203Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-06T12:21:42.8285406Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/zerorun-mvp/zerorun-mvp
+2026-09-06T12:21:42.8320215Z Removing SSH command configuration
+2026-09-06T12:21:42.8355143Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-06T12:21:42.8455927Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-06T12:21:42.9165231Z Removing HTTP extra header
+2026-09-06T12:21:42.9177002Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-06T12:21:42.9296833Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-06T12:21:43.0029272Z Removing includeIf entries pointing to credentials config files
+2026-09-06T12:21:43.0030559Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-06T12:21:43.0106052Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-06T12:21:43.0645259Z Cleaning up orphan processes
+

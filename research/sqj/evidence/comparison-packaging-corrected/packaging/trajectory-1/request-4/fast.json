@@ -1,0 +1,27 @@
+{
+  "cache_key": "e1b916832e6d6074bb458c6a0dcf04464759f0f0a2d86e4c82d1f082c4d102f9",
+  "execution_ms": 3822.399,
+  "exit_code": 1,
+  "phase_ms": {
+    "cache_lookup": 1.207,
+    "docker_execution": 3825.691,
+    "environment": 0.026,
+    "event_append": 17.193,
+    "fingerprint_final": 354.701,
+    "fingerprint_initial": 465.381,
+    "lock_acquire": 1.806,
+    "runtime_inspect_initial": 174.41,
+    "snapshot_cleanup": 35.753,
+    "snapshot_prepare": 2309.685
+  },
+  "reason": "fresh hermetic task failed; no reusable result was stored",
+  "request_wall_ms": 7785.988020001241,
+  "restored_outputs": [],
+  "saved_ms": 0.0,
+  "status": "MISS_FAILED",
+  "stderr": "",
+  "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nsysconfig platform: linux-x86_64\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 239 items\n\ntests/test_tags.py ..................................................... [ 22%]\n........................................................................ [ 52%]\n........................................................................ [ 82%]\n.........................................F                               [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\n\ntests/test_tags.py:2208: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_tags.py::test_zerorun_controlled_added_failure - AssertionE...\n======================== 1 failed, 238 passed in 0.99s =========================\n",
+  "task": "pytest-fast",
+  "verified": false,
+  "wall_ms": 7768.697
+}

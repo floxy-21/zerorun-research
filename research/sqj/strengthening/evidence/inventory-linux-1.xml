@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="3" skipped="0" tests="35" time="2.304" timestamp="2026-09-06T20:48:29.171593+00:00" hostname="ZeroRun"><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_exact_repeat" time="0.042" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_content_change_and_exact_restoration[src/module.py]" time="0.073" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_content_change_and_exact_restoration[src/helper.py]" time="0.065" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_content_change_and_exact_restoration[tests/conftest.py]" time="0.071" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_content_change_and_exact_restoration[tests/test_module.py]" time="0.082" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_content_change_and_exact_restoration[pytest.ini]" time="0.072" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_content_change_and_exact_restoration[data/fixture.txt]" time="0.076" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_directory_membership_and_restoration[add-file]" time="0.064" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_directory_membership_and_restoration[delete-file]" time="0.038" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_directory_membership_and_restoration[rename-file]" time="0.077" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_directory_membership_and_restoration[add-empty-directory]" time="0.076" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_command_argument_change[arguments0]" time="0.049" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_command_argument_change[arguments1]" time="0.061" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_command_argument_change[arguments2]" time="0.043" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_posix_file_directory_and_root_modes[src/module.py]" time="0.081" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_posix_file_directory_and_root_modes[src]" time="0.030"><failure message="research.sqj.strengthening.inventory_oracle.InventoryRefusal: missing or unreadable input: helper.py">path = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_1/project/src/helper.py')
+
+    def _details(path: Path) -&gt; os.stat_result:
+        try:
+&gt;           result = path.lstat()
+
+research/sqj/strengthening/inventory_oracle.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/pathlib.py:1222: in lstat
+    return self.stat(follow_symlinks=False)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_1/project/src/helper.py')
+follow_symlinks = False
+
+    def stat(self, *, follow_symlinks=True):
+        """
+        Return the result of the stat() system call on this path, like
+        os.stat() does.
+        """
+&gt;       return self._accessor.stat(self, follow_symlinks=follow_symlinks)
+E       PermissionError: [Errno 13] Permission denied: '/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_1/project/src/helper.py'
+
+/usr/lib/python3.10/pathlib.py:1097: PermissionError
+
+The above exception was the direct cause of the following exception:
+
+project = (Manifest(root=PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directo...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', platform='linux/amd64', result_only=True, closure_reviewed=True, input_symbols=()))
+relative = 'src'
+
+    @pytest.mark.parametrize("relative", ("src/module.py", "src", "."))
+    def test_posix_file_directory_and_root_modes(project, relative):
+        if os.name != "posix":
+            pytest.skip("POSIX file/directory permission semantics require a POSIX host")
+        manifest, _ = project
+        path = manifest.root / relative
+        mode = stat.S_IMODE(path.stat().st_mode)
+        before = pair(project)
+        try:
+            path.chmod(mode ^ stat.S_IXUSR)
+&gt;           changed(before, pair(project))
+
+research/sqj/strengthening/tests/test_inventory_oracle.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+research/sqj/strengthening/tests/test_inventory_oracle.py:56: in pair
+    independent = inventory_digest(manifest.root, task.inputs, command=task.command,
+research/sqj/strengthening/inventory_oracle.py:156: in inventory_digest
+    inventory = explicit_inventory(*args, **kwargs)
+research/sqj/strengthening/inventory_oracle.py:139: in explicit_inventory
+    visit(root.joinpath(*parts))
+research/sqj/strengthening/inventory_oracle.py:104: in visit
+    visit(child)
+research/sqj/strengthening/inventory_oracle.py:96: in visit
+    before = _details(path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_1/project/src/helper.py')
+
+    def _details(path: Path) -&gt; os.stat_result:
+        try:
+            result = path.lstat()
+        except OSError as exc:
+&gt;           raise InventoryRefusal(f"missing or unreadable input: {path.name}") from exc
+E           research.sqj.strengthening.inventory_oracle.InventoryRefusal: missing or unreadable input: helper.py
+
+research/sqj/strengthening/inventory_oracle.py:43: InventoryRefusal</failure></testcase><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_posix_file_directory_and_root_modes[.]" time="0.031"><failure message="research.sqj.strengthening.inventory_oracle.InventoryRefusal: missing or unreadable input: data">path = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_2/project/data')
+
+    def _details(path: Path) -&gt; os.stat_result:
+        try:
+&gt;           result = path.lstat()
+
+research/sqj/strengthening/inventory_oracle.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/pathlib.py:1222: in lstat
+    return self.stat(follow_symlinks=False)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_2/project/data')
+follow_symlinks = False
+
+    def stat(self, *, follow_symlinks=True):
+        """
+        Return the result of the stat() system call on this path, like
+        os.stat() does.
+        """
+&gt;       return self._accessor.stat(self, follow_symlinks=follow_symlinks)
+E       PermissionError: [Errno 13] Permission denied: '/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_2/project/data'
+
+/usr/lib/python3.10/pathlib.py:1097: PermissionError
+
+The above exception was the direct cause of the following exception:
+
+project = (Manifest(root=PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directo...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', platform='linux/amd64', result_only=True, closure_reviewed=True, input_symbols=()))
+relative = '.'
+
+    @pytest.mark.parametrize("relative", ("src/module.py", "src", "."))
+    def test_posix_file_directory_and_root_modes(project, relative):
+        if os.name != "posix":
+            pytest.skip("POSIX file/directory permission semantics require a POSIX host")
+        manifest, _ = project
+        path = manifest.root / relative
+        mode = stat.S_IMODE(path.stat().st_mode)
+        before = pair(project)
+        try:
+            path.chmod(mode ^ stat.S_IXUSR)
+&gt;           changed(before, pair(project))
+
+research/sqj/strengthening/tests/test_inventory_oracle.py:135: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+research/sqj/strengthening/tests/test_inventory_oracle.py:56: in pair
+    independent = inventory_digest(manifest.root, task.inputs, command=task.command,
+research/sqj/strengthening/inventory_oracle.py:156: in inventory_digest
+    inventory = explicit_inventory(*args, **kwargs)
+research/sqj/strengthening/inventory_oracle.py:139: in explicit_inventory
+    visit(root.joinpath(*parts))
+research/sqj/strengthening/inventory_oracle.py:96: in visit
+    before = _details(path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_posix_file_directory_and_2/project/data')
+
+    def _details(path: Path) -&gt; os.stat_result:
+        try:
+            result = path.lstat()
+        except OSError as exc:
+&gt;           raise InventoryRefusal(f"missing or unreadable input: {path.name}") from exc
+E           research.sqj.strengthening.inventory_oracle.InventoryRefusal: missing or unreadable input: data
+
+research/sqj/strengthening/inventory_oracle.py:43: InventoryRefusal</failure></testcase><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_implicit_parent_mode" time="0.031"><failure message="research.sqj.strengthening.inventory_oracle.InventoryRefusal: missing or unreadable input: helper.py">path = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_implicit_parent_mode0/project/src/helper.py')
+
+    def _details(path: Path) -&gt; os.stat_result:
+        try:
+&gt;           result = path.lstat()
+
+research/sqj/strengthening/inventory_oracle.py:41: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/lib/python3.10/pathlib.py:1222: in lstat
+    return self.stat(follow_symlinks=False)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_implicit_parent_mode0/project/src/helper.py')
+follow_symlinks = False
+
+    def stat(self, *, follow_symlinks=True):
+        """
+        Return the result of the stat() system call on this path, like
+        os.stat() does.
+        """
+&gt;       return self._accessor.stat(self, follow_symlinks=follow_symlinks)
+E       PermissionError: [Errno 13] Permission denied: '/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_implicit_parent_mode0/project/src/helper.py'
+
+/usr/lib/python3.10/pathlib.py:1097: PermissionError
+
+The above exception was the direct cause of the following exception:
+
+project = (Manifest(root=PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_implicit_parent_mo...aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', platform='linux/amd64', result_only=True, closure_reviewed=True, input_symbols=()))
+
+    def test_implicit_parent_mode(project):
+        if os.name != "posix":
+            pytest.skip("POSIX directory permission semantics require a POSIX host")
+        manifest, original = project
+        task = replace(original, inputs=tuple(FILES))
+        before = pair(project, task=task)
+        parent = manifest.root / "src"
+        mode = stat.S_IMODE(parent.stat().st_mode)
+        try:
+            parent.chmod(mode ^ stat.S_IXUSR)
+&gt;           changed(before, pair(project, task=task))
+
+research/sqj/strengthening/tests/test_inventory_oracle.py:151: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+research/sqj/strengthening/tests/test_inventory_oracle.py:56: in pair
+    independent = inventory_digest(manifest.root, task.inputs, command=task.command,
+research/sqj/strengthening/inventory_oracle.py:156: in inventory_digest
+    inventory = explicit_inventory(*args, **kwargs)
+research/sqj/strengthening/inventory_oracle.py:139: in explicit_inventory
+    visit(root.joinpath(*parts))
+research/sqj/strengthening/inventory_oracle.py:96: in visit
+    before = _details(path)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+path = PosixPath('/home/floxy/zerorun-sqj-20260906-1000/results/inventory-linux-1-temp/test_implicit_parent_mode0/project/src/helper.py')
+
+    def _details(path: Path) -&gt; os.stat_result:
+        try:
+            result = path.lstat()
+        except OSError as exc:
+&gt;           raise InventoryRefusal(f"missing or unreadable input: {path.name}") from exc
+E           research.sqj.strengthening.inventory_oracle.InventoryRefusal: missing or unreadable input: helper.py
+
+research/sqj/strengthening/inventory_oracle.py:43: InventoryRefusal</failure></testcase><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_mtime_only_is_ignored_under_normalized_metadata_contract[src/module.py]" time="0.049" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_mtime_only_is_ignored_under_normalized_metadata_contract[src]" time="0.035" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_mtime_only_is_ignored_under_normalized_metadata_contract[.]" time="0.050" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_missing_literal_input_refused_by_both[missing.py]" time="0.016" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_missing_literal_input_refused_by_both[absent/nested.py]" time="0.013" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_symlink_input_refused_by_both[False]" time="0.020" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_symlink_input_refused_by_both[True]" time="0.023" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_supplied_runtime_identity_change" time="0.045" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_supplied_environment_identity_change" time="0.046" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_declaration_order_and_duplicate_inputs_do_not_change_material" time="0.060" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_undeclared_new_top_level_file_is_not_a_completeness_claim" time="0.061" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_oracle_explicit_scope_refusals[src/*.py]" time="0.006" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_oracle_explicit_scope_refusals[../outside]" time="0.006" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_oracle_explicit_scope_refusals[/absolute]" time="0.006" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_oracle_explicit_scope_refusals[src/../data]" time="0.007" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_oracle_explicit_scope_refusals[.git]" time="0.006" /><testcase classname="research.sqj.strengthening.tests.test_inventory_oracle" name="test_oracle_explicit_scope_refusals[.zerorun]" time="0.007" /></testsuite></testsuites>

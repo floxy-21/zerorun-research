@@ -1,0 +1,553 @@
+{
+  "schema": "zerorun-controlled-rejoin-feasibility-v1",
+  "status": "inert reviewed candidate; no trace command executed; source reconstruction and controlled replay not yet performed",
+  "case_selection": {
+    "type": "purposive post-observation feasibility case",
+    "row_index": 51126,
+    "reason": "Observed successful exact-command repeat spanning explicitly inverse structured source edits; selected after inspecting the fixed observational cohort, not a representative or preregistered performance sample."
+  },
+  "source_evidence": {
+    "trajectory_dataset": "nebius/SWE-rebench-openhands-trajectories",
+    "dataset_url": "https://huggingface.co/datasets/nebius/SWE-rebench-openhands-trajectories",
+    "dataset_license": "CC-BY-4.0",
+    "observed_dataset_revision": "35455389ab51bf5e2306bfd436ef72d0f98bf882",
+    "raw_response_path": "research/sqj/strengthening/evidence/trace-cohort-2/rows/row-51126.json",
+    "raw_response_sha256": "16a0438ab2bc234587dc50129320fbb64063b7c90927fcb501f39eeea0c434ae",
+    "raw_response_bytes": 232234,
+    "instance_id": "joke2k__django-environ-322",
+    "trajectory_id": "chatcmpl-d33409b14293b343444452f076b4b570",
+    "repo": "joke2k/django-environ",
+    "source_commit_in_raw_trajectory": false,
+    "raw_api_snapshot_caveat": "The downloaded raw response is hash-bound; the endpoint is not claimed to resolve an immutable Hugging Face revision.",
+    "observation_hash_encoding": "UTF-8 encoding of the exact decoded tool-message content; distinct from raw response byte hash"
+  },
+  "paired_metadata_request": {
+    "dataset": "nebius/SWE-rebench",
+    "config": "default",
+    "split": "test",
+    "instance_id": "joke2k__django-environ-322",
+    "url": "https://datasets-server.huggingface.co/filter?dataset=nebius%2FSWE-rebench&config=default&split=test&where=%22instance_id%22%3D%27joke2k__django-environ-322%27&offset=0&length=1",
+    "fields_needed": [
+      "base_commit",
+      "environment_setup_commit",
+      "requirements",
+      "install_config",
+      "docker_image",
+      "license_name"
+    ],
+    "status": "not fetched by this audit; parent may acquire",
+    "constraint": "Do not substitute repository HEAD for the task base commit; preserve repository license and dataset attribution."
+  },
+  "index_convention": "Zero-based index among assistant tool calls flattened in trajectory order; call 15 is think and omitted from the inert call list below. All calls 0 through 30 except that non-executing think are included.",
+  "initial_state_prerequisites": [
+    "Obtain paired metadata and exact base commit. Treat initial environment as unknown until reconstructed; a workspace directory's version suffix is not a commit.",
+    "Review pinned environ import and search_url_config implementation, tests/test_search.py, tests/fixtures.py, tests/conftest.py, setup.py, and tox.ini before authorizing any execution.",
+    "Reconstruct all recorded pre-seed source operations 19, 21, 22, and 24 exactly, requiring unique old-string matches and preserving the created root file; do not reconstruct from only the final model patch.",
+    "No explicit prior shell file writes, network setup, dependency installation, environment export, or file deletion appear among calls 0 through 25. Python imports and tests may still create bytecode, pytest/Hypothesis state or other filesystem changes; this is not an unchanged-full-filesystem finding.",
+    "Do not execute inert command strings via eval, shell interpolation, or an unrestricted replay engine. A separately reviewed bounded runner must use allowlisted argv, controlled work directory, pinned dependencies and network restriction."
+  ],
+  "recorded_environment": {
+    "python": "3.9.21",
+    "pytest": "8.3.4",
+    "pluggy": "1.5.0",
+    "rootdir": "/workspace/joke2k__django-environ__0.6",
+    "configfile": "tox.ini",
+    "plugins": [
+      "cov-6.0.0",
+      "randomly-3.16.0",
+      "hypothesis-6.123.1",
+      "asyncio-0.25.0",
+      "bdd-8.1.0",
+      "xdist-3.6.1",
+      "benchmark-5.1.0",
+      "requests-mock-1.12.1",
+      "mock-3.14.0"
+    ],
+    "runtime_state_paths": [
+      ".pytest_cache",
+      ".hypothesis/examples",
+      "possible __pycache__ files"
+    ],
+    "seed_call_randomly_seed": 3336908494,
+    "repeat_call_randomly_seed": 3728264389,
+    "output_equality": false,
+    "output_equality_explanation": "Recorded random seeds, test order and duration differ. The original full OpenHands observations are not equal. A minimal-plugin or newer-Python experiment must be labeled a controlled reconstruction with its deviations disclosed."
+  },
+  "prior_recorded_source_mutations": [
+    {
+      "index": 19,
+      "call_id": "chatcmpl-tool-65e878c813fd47ab8724ce91f140d5b6",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/test_reproduce_issue.py",
+        "command": "create",
+        "file_text": "#!/usr/bin/env python3\n\"\"\"\nReproduction script for elasticsearch7 support issue.\n\"\"\"\n\nfrom environ import Env\n\ndef test_elasticsearch7_not_supported():\n    \"\"\"Test that elasticsearch7 is currently not supported.\"\"\"\n    try:\n        result = Env.search_url_config('elasticsearch7://127.0.0.1:9200/index')\n        print(\"ERROR: elasticsearch7 should not be supported yet, but got:\", result)\n        return False\n    except Exception as e:\n        print(\"EXPECTED: elasticsearch7 not supported - Error:\", str(e))\n        return True\n\ndef test_expected_elasticsearch7_behavior():\n    \"\"\"Test what elasticsearch7 should produce when supported.\"\"\"\n    expected_engine = 'haystack.backends.elasticsearch7_backend.Elasticsearch7SearchEngine'\n    \n    # This should work after our fix\n    try:\n        timeout = 360\n        url = 'elasticsearch7://127.0.0.1:9200/index?TIMEOUT={}'.format(timeout)\n        result = Env.search_url_config(url)\n        \n        print(\"elasticsearch7 parsing result:\", result)\n        \n        success = (\n            result['ENGINE'] == expected_engine and\n            'INDEX_NAME' in result.keys() and\n            result['INDEX_NAME'] == 'index' and\n            'TIMEOUT' in result.keys() and\n            result['TIMEOUT'] == timeout and\n            'PATH' not in result\n        )\n        \n        if success:\n            print(\"SUCCESS: elasticsearch7 parsing works correctly!\")\n            return True\n        else:\n            print(\"FAILURE: elasticsearch7 parsing incorrect\")\n            return False\n            \n    except Exception as e:\n        print(\"EXPECTED FAILURE (before fix): elasticsearch7 parsing failed - Error:\", str(e))\n        return False\n\nif __name__ == \"__main__\":\n    print(\"=== Testing Current State ===\")\n    test_elasticsearch7_not_supported()\n    \n    print(\"\\n=== Testing Expected Behavior ===\") \n    test_expected_elasticsearch7_behavior()"
+      },
+      "observation_sha256": "2d29baa4ded70728d3a051fcfad970d4742575d82a1cba4316c48f0c584b3d5f",
+      "observation_summary_lines": [
+        "File created successfully at: /workspace/joke2k__django-environ__0.6/test_reproduce_issue.py"
+      ]
+    },
+    {
+      "index": 21,
+      "call_id": "chatcmpl-tool-92634582542b43be9c27ef1165b9a9e6",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/environ/environ.py",
+        "command": "str_replace",
+        "old_str": "    ELASTICSEARCH_FAMILY = ['elasticsearch' + x for x in ['', '2', '5']]",
+        "new_str": "    ELASTICSEARCH_FAMILY = ['elasticsearch' + x for x in ['', '2', '5', '7']]"
+      },
+      "observation_sha256": "fdee2b14ca568af2d35cd9241ded6859b8d2173d6b3a0d0565c7e1e33e081112",
+      "observation_summary_lines": [
+        "The file /workspace/joke2k__django-environ__0.6/environ/environ.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/joke2k__django-environ__0.6/environ/environ.py:"
+      ]
+    },
+    {
+      "index": 22,
+      "call_id": "chatcmpl-tool-f7be7db9b49449e1ab0fe982a9219ba4",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/environ/environ.py",
+        "old_str": "    SEARCH_SCHEMES = {\n        \"elasticsearch\": \"haystack.backends.elasticsearch_backend.\"\n                         \"ElasticsearchSearchEngine\",\n        \"elasticsearch2\": \"haystack.backends.elasticsearch2_backend.\"\n                          \"Elasticsearch2SearchEngine\",\n        \"elasticsearch5\": \"haystack.backends.elasticsearch5_backend.\"\n                          \"Elasticsearch5SearchEngine\",\n        \"solr\": \"haystack.backends.solr_backend.SolrEngine\",\n        \"whoosh\": \"haystack.backends.whoosh_backend.WhooshEngine\",\n        \"xapian\": \"haystack.backends.xapian_backend.XapianEngine\",\n        \"simple\": \"haystack.backends.simple_backend.SimpleEngine\",\n    }",
+        "new_str": "    SEARCH_SCHEMES = {\n        \"elasticsearch\": \"haystack.backends.elasticsearch_backend.\"\n                         \"ElasticsearchSearchEngine\",\n        \"elasticsearch2\": \"haystack.backends.elasticsearch2_backend.\"\n                          \"Elasticsearch2SearchEngine\",\n        \"elasticsearch5\": \"haystack.backends.elasticsearch5_backend.\"\n                          \"Elasticsearch5SearchEngine\",\n        \"elasticsearch7\": \"haystack.backends.elasticsearch7_backend.\"\n                          \"Elasticsearch7SearchEngine\",\n        \"solr\": \"haystack.backends.solr_backend.SolrEngine\",\n        \"whoosh\": \"haystack.backends.whoosh_backend.WhooshEngine\",\n        \"xapian\": \"haystack.backends.xapian_backend.XapianEngine\",\n        \"simple\": \"haystack.backends.simple_backend.SimpleEngine\",\n    }",
+        "command": "str_replace"
+      },
+      "observation_sha256": "394e0ac7ce70990beb282c83df8617943b21f85fe0b081a4de66ca066cbb6d90",
+      "observation_summary_lines": [
+        "The file /workspace/joke2k__django-environ__0.6/environ/environ.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/joke2k__django-environ__0.6/environ/environ.py:"
+      ]
+    },
+    {
+      "index": 24,
+      "call_id": "chatcmpl-tool-e6b8dd427f2544d48ea3f99a8b2eb0a5",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/test_reproduce_issue.py",
+        "new_str": "#!/usr/bin/env python3\n\"\"\"\nReproduction script for elasticsearch7 support issue.\n\"\"\"\n\nfrom environ import Env\n\ndef test_elasticsearch7_now_supported():\n    \"\"\"Test that elasticsearch7 is now supported.\"\"\"\n    try:\n        result = Env.search_url_config('elasticsearch7://127.0.0.1:9200/index')\n        expected_engine = 'haystack.backends.elasticsearch7_backend.Elasticsearch7SearchEngine'\n        \n        if (result['ENGINE'] == expected_engine and \n            result['INDEX_NAME'] == 'index' and\n            result['URL'] == 'http://127.0.0.1:9200'):\n            print(\"SUCCESS: elasticsearch7 is now properly supported!\")\n            print(\"Result:\", result)\n            return True\n        else:\n            print(\"ERROR: elasticsearch7 parsing incorrect:\", result)\n            return False\n    except Exception as e:\n        print(\"ERROR: elasticsearch7 should be supported now, but got error:\", str(e))\n        return False\n\ndef test_elasticsearch7_with_parameters():\n    \"\"\"Test elasticsearch7 with additional parameters.\"\"\"\n    expected_engine = 'haystack.backends.elasticsearch7_backend.Elasticsearch7SearchEngine'\n    \n    # This should work after our fix\n    try:\n        timeout = 360\n        url = 'elasticsearch7://127.0.0.1:9200/index?TIMEOUT={}'.format(timeout)\n        result = Env.search_url_config(url)\n        \n        print(\"elasticsearch7 parsing result:\", result)\n        \n        success = (\n            result['ENGINE'] == expected_engine and\n            'INDEX_NAME' in result.keys() and\n            result['INDEX_NAME'] == 'index' and\n            'TIMEOUT' in result.keys() and\n            result['TIMEOUT'] == timeout and\n            'PATH' not in result\n        )\n        \n        if success:\n            print(\"SUCCESS: elasticsearch7 parsing with parameters works correctly!\")\n            return True\n        else:\n            print(\"FAILURE: elasticsearch7 parsing with parameters incorrect\")\n            return False\n            \n    except Exception as e:\n        print(\"ERROR: elasticsearch7 parsing with parameters failed:\", str(e))\n        return False\n\nif __name__ == \"__main__\":\n    print(\"=== Testing elasticsearch7 Support ===\")\n    test_elasticsearch7_now_supported()\n    \n    print(\"\\n=== Testing elasticsearch7 with Parameters ===\") \n    test_elasticsearch7_with_parameters()",
+        "old_str": "#!/usr/bin/env python3\n\"\"\"\nReproduction script for elasticsearch7 support issue.\n\"\"\"\n\nfrom environ import Env\n\ndef test_elasticsearch7_not_supported():\n    \"\"\"Test that elasticsearch7 is currently not supported.\"\"\"\n    try:\n        result = Env.search_url_config('elasticsearch7://127.0.0.1:9200/index')\n        print(\"ERROR: elasticsearch7 should not be supported yet, but got:\", result)\n        return False\n    except Exception as e:\n        print(\"EXPECTED: elasticsearch7 not supported - Error:\", str(e))\n        return True\n\ndef test_expected_elasticsearch7_behavior():\n    \"\"\"Test what elasticsearch7 should produce when supported.\"\"\"\n    expected_engine = 'haystack.backends.elasticsearch7_backend.Elasticsearch7SearchEngine'\n    \n    # This should work after our fix\n    try:\n        timeout = 360\n        url = 'elasticsearch7://127.0.0.1:9200/index?TIMEOUT={}'.format(timeout)\n        result = Env.search_url_config(url)\n        \n        print(\"elasticsearch7 parsing result:\", result)\n        \n        success = (\n            result['ENGINE'] == expected_engine and\n            'INDEX_NAME' in result.keys() and\n            result['INDEX_NAME'] == 'index' and\n            'TIMEOUT' in result.keys() and\n            result['TIMEOUT'] == timeout and\n            'PATH' not in result\n        )\n        \n        if success:\n            print(\"SUCCESS: elasticsearch7 parsing works correctly!\")\n            return True\n        else:\n            print(\"FAILURE: elasticsearch7 parsing incorrect\")\n            return False\n            \n    except Exception as e:\n        print(\"EXPECTED FAILURE (before fix): elasticsearch7 parsing failed - Error:\", str(e))\n        return False\n\nif __name__ == \"__main__\":\n    print(\"=== Testing Current State ===\")\n    test_elasticsearch7_not_supported()\n    \n    print(\"\\n=== Testing Expected Behavior ===\") \n    test_expected_elasticsearch7_behavior()",
+        "command": "str_replace"
+      },
+      "observation_sha256": "dab6fa359f50fa7beb1a08a36f52a143c37da63ae59d7dcffb8eb58de837616f",
+      "observation_summary_lines": [
+        "The file /workspace/joke2k__django-environ__0.6/test_reproduce_issue.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/joke2k__django-environ__0.6/test_reproduce_issue.py:"
+      ]
+    }
+  ],
+  "prior_non_mutation_tool_calls": [
+    {
+      "index": 0,
+      "call_id": "chatcmpl-tool-8599888e90544f22a0fcf8c2acff588d",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "command": "view",
+        "path": "/workspace"
+      },
+      "observation_sha256": "70cc09d79c0d576aff7e1fd4bd99dcb989b428c7038769e367b0e6215f9b9e6d",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 1,
+      "call_id": "chatcmpl-tool-167159f481604a87a0a96ba1a9debb20",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6",
+        "command": "view"
+      },
+      "observation_sha256": "2745f7cf74b806ed7e13726d158623206ab3d1bc4a72df4e4791e395076aed16",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 2,
+      "call_id": "chatcmpl-tool-7412d28fe0634a0eb4bcd631c0738cf0",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/README.rst",
+        "command": "view"
+      },
+      "observation_sha256": "de27acf6921c76e89f705569843fcb321c103b885e1aec947879e9f53a9d9f12",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 3,
+      "call_id": "chatcmpl-tool-279c1f700568489dbe8396dbd6143064",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/tests/test_search.py",
+        "command": "view"
+      },
+      "observation_sha256": "c23b34cf5834917baec2be60ca8ff39f53dee28c62768347c5079b6973b0db57",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 4,
+      "call_id": "chatcmpl-tool-6f8223e860714be3b7f75df3a0a7c031",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/tests/fixtures.py",
+        "command": "view"
+      },
+      "observation_sha256": "2f10a9af5293e73390e1504ba83f701c2ae6f192553ef415f63ab29321912c62",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 5,
+      "call_id": "chatcmpl-tool-ffd6341eff0547a49a70b080a8513218",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/tests/conftest.py",
+        "command": "view"
+      },
+      "observation_sha256": "54b6fd9946b71348c3496f135cf7cd129690b1f1b566fc4b8290eab782bec4d8",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 6,
+      "call_id": "chatcmpl-tool-3f0cb04528ac42819d21ba3d1f995327",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && pwd"
+      },
+      "observation_sha256": "c074cbd948dbfc0fa546c0673ae86f317adfe01ff2f3ffa0e98d9988b5e05a6d",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 7,
+      "call_id": "chatcmpl-tool-230c22ffbdf543a789819235757391e7",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/setup.py",
+        "command": "view"
+      },
+      "observation_sha256": "83c17f0c3132874920d6c911aae24481211ae92be51d0a73b62af6509382cd1f",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 8,
+      "call_id": "chatcmpl-tool-132bfa34bb2743ab8c9f193dd22e8268",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python -m pytest tests/test_search.py -v"
+      },
+      "observation_sha256": "7534e9ad95680c95e101e7da61351f5aa221c64ffa172c133fada2692985107c",
+      "observation_summary_lines": [
+        "platform linux -- Python 3.9.21, pytest-8.3.4, pluggy-1.5.0 -- /opt/conda/envs/testbed/bin/python",
+        "Using --randomly-seed=1256294119",
+        "14 passed in 0.57s",
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 9,
+      "call_id": "chatcmpl-tool-30372109249c46ce959dc1469b993d4c",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python -c \"\nimport pytest\nfrom environ import Env\n\n# Test elasticsearch7 parsing - this should fail currently\ntry:\n    result = Env.search_url_config('elasticsearch7://127.0.0.1:9200/index')\n    print('Success:', result)\nexcept Exception as e:\n    print('Error:', e)\n\""
+      },
+      "observation_sha256": "3c3920b08064062923d3dc2198c967cc6585a0a62a2142d84f30e8dd27dd917e",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 10,
+      "call_id": "chatcmpl-tool-d9edadd77d7e4121813a0a191080fe42",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && find . -name \"*.py\" -exec grep -l \"search.*url\\|elasticsearch\" {} \\;"
+      },
+      "observation_sha256": "75c9405a9ad464e4390eaa97d6b10a16b61816f80b0b68ae69a57da2d209d94a",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 11,
+      "call_id": "chatcmpl-tool-97ae989bb3044f89be691aff8e1fe251",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && grep -n \"elasticsearch\" environ/environ.py"
+      },
+      "observation_sha256": "62e3d79a304f312e503dd96e674bff348fbecd077a46428a92d22164a1063d66",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 12,
+      "call_id": "chatcmpl-tool-db7c5b401ebc4732992b31872c8a0af2",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && grep -n -A5 -B5 \"search.*url\\|SEARCH.*URL\" environ/environ.py"
+      },
+      "observation_sha256": "534c979327955264e1c86f0ce0abe2f730b90bed0280db08ac2245b9236959ce",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 13,
+      "call_id": "chatcmpl-tool-040eb5cfd32a419aa03c6b9c00b7c0b2",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/environ/environ.py",
+        "command": "view",
+        "view_range": [
+          80,
+          90
+        ]
+      },
+      "observation_sha256": "c22370877c2dc898ec5f8566295db43e2dab575c603daa44e940328a82126c9c",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 14,
+      "call_id": "chatcmpl-tool-8d4c892544ff4a74a0a7cd195b52c73f",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/environ/environ.py",
+        "command": "view",
+        "view_range": [
+          144,
+          160
+        ]
+      },
+      "observation_sha256": "02d11b874b5954fd93ae0dfbf2c13682c718a553851c05587e2f290b3a229365",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 16,
+      "call_id": "chatcmpl-tool-dba8877cc5cd42ae96b612b81f650cda",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && grep -n \"ELASTICSEARCH_FAMILY\" environ/environ.py"
+      },
+      "observation_sha256": "28696de8b1f6d658907a405255a7dfb4efddd2b446914e086e5718e1121c747b",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 17,
+      "call_id": "chatcmpl-tool-51ae837b124f423a9179e5ea992e70ce",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/environ/environ.py",
+        "command": "view",
+        "view_range": [
+          670,
+          695
+        ]
+      },
+      "observation_sha256": "ea8380700ce3309d6d28383273966cc26b4665262f67a14ae80b2dd699f65838",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 18,
+      "call_id": "chatcmpl-tool-304661d4147144e09ce7fd67acc85cf9",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/tests/test_search.py",
+        "command": "view",
+        "view_range": [
+          35,
+          58
+        ]
+      },
+      "observation_sha256": "675130ac1d8d3126f0defefbd5ffa1e3bb8394f209e4352982fba5bec74af155",
+      "observation_summary_lines": []
+    },
+    {
+      "index": 20,
+      "call_id": "chatcmpl-tool-5c523fa997e94573a25c9fe1ca755237",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python test_reproduce_issue.py"
+      },
+      "observation_sha256": "e9f4559a679a472fd3d483f60e1ecbda9db0e2ac86e69fcb6243a609665ce0d6",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 23,
+      "call_id": "chatcmpl-tool-83fb3972786a472e9fee31c4f4fefa8a",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python test_reproduce_issue.py"
+      },
+      "observation_sha256": "db00f8ea74dfe171927c43386bfda00878e031de05ac99c674b428efcfc1021f",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 25,
+      "call_id": "chatcmpl-tool-16de7144f94f4a5c9109083a70068dc1",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python test_reproduce_issue.py"
+      },
+      "observation_sha256": "2310900e98bfc1a90d34e18d41b8d5d208638452584157bd091dee104afa60af",
+      "observation_summary_lines": [
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    }
+  ],
+  "reviewed_generated_script": {
+    "path": "/workspace/joke2k__django-environ__0.6/test_reproduce_issue.py",
+    "create_call_index": 19,
+    "replace_call_index": 24,
+    "whole_file_replacement_matches_creation": true,
+    "manual_review": "Both full versions import Env, call search_url_config with URL strings, compare dictionary/scalar values, print, catch exceptions and return booleans. Neither version explicitly opens/writes files, spawns processes or initiates network operations. URL literals are used as parse input/expected data. The imported package and Python runtime effects still require separate review.",
+    "unchanged_by_recorded_editor_calls_between_seed_and_repeat": true
+  },
+  "segment": [
+    {
+      "index": 26,
+      "call_id": "chatcmpl-tool-4b424f0bb797433cb850e16d59345593",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python -m pytest tests/test_search.py -v"
+      },
+      "observation_sha256": "406c8505c40c84f1b65ec4151c86276457df319b267e1231cbae8a3a2f9ed9d9",
+      "observation_summary_lines": [
+        "platform linux -- Python 3.9.21, pytest-8.3.4, pluggy-1.5.0 -- /opt/conda/envs/testbed/bin/python",
+        "Using --randomly-seed=3336908494",
+        "14 passed in 0.10s",
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    },
+    {
+      "index": 27,
+      "call_id": "chatcmpl-tool-7e52eb0d941d45d9afaae671b5f3b380",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/tests/test_search.py",
+        "old_str": "@pytest.mark.parametrize(\n    'url,engine',\n    [\n        ('elasticsearch://127.0.0.1:9200/index',\n         'elasticsearch_backend.ElasticsearchSearchEngine'),\n        ('elasticsearch2://127.0.0.1:9200/index',\n         'elasticsearch2_backend.Elasticsearch2SearchEngine'),\n        ('elasticsearch5://127.0.0.1:9200/index',\n         'elasticsearch5_backend.Elasticsearch5SearchEngine'),\n    ]\n)",
+        "new_str": "@pytest.mark.parametrize(\n    'url,engine',\n    [\n        ('elasticsearch://127.0.0.1:9200/index',\n         'elasticsearch_backend.ElasticsearchSearchEngine'),\n        ('elasticsearch2://127.0.0.1:9200/index',\n         'elasticsearch2_backend.Elasticsearch2SearchEngine'),\n        ('elasticsearch5://127.0.0.1:9200/index',\n         'elasticsearch5_backend.Elasticsearch5SearchEngine'),\n        ('elasticsearch7://127.0.0.1:9200/index',\n         'elasticsearch7_backend.Elasticsearch7SearchEngine'),\n    ]\n)",
+        "command": "str_replace"
+      },
+      "observation_sha256": "618a74205502da834616ce322cf5b1dcf9e418558019f543214664b442c352e8",
+      "observation_summary_lines": [
+        "The file /workspace/joke2k__django-environ__0.6/tests/test_search.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/joke2k__django-environ__0.6/tests/test_search.py:"
+      ]
+    },
+    {
+      "index": 28,
+      "call_id": "chatcmpl-tool-ff17901152e346d2a981ea4fd63f57e3",
+      "tool": "str_replace_editor",
+      "arguments": {
+        "path": "/workspace/joke2k__django-environ__0.6/tests/test_search.py",
+        "new_str": "@pytest.mark.parametrize(\n    'url,engine',\n    [\n        ('elasticsearch://127.0.0.1:9200/index',\n         'elasticsearch_backend.ElasticsearchSearchEngine'),\n        ('elasticsearch2://127.0.0.1:9200/index',\n         'elasticsearch2_backend.Elasticsearch2SearchEngine'),\n        ('elasticsearch5://127.0.0.1:9200/index',\n         'elasticsearch5_backend.Elasticsearch5SearchEngine'),\n    ]\n)",
+        "old_str": "@pytest.mark.parametrize(\n    'url,engine',\n    [\n        ('elasticsearch://127.0.0.1:9200/index',\n         'elasticsearch_backend.ElasticsearchSearchEngine'),\n        ('elasticsearch2://127.0.0.1:9200/index',\n         'elasticsearch2_backend.Elasticsearch2SearchEngine'),\n        ('elasticsearch5://127.0.0.1:9200/index',\n         'elasticsearch5_backend.Elasticsearch5SearchEngine'),\n        ('elasticsearch7://127.0.0.1:9200/index',\n         'elasticsearch7_backend.Elasticsearch7SearchEngine'),\n    ]\n)",
+        "command": "str_replace"
+      },
+      "observation_sha256": "f24f065d6ffa591c4fdcd86a92291aa906e4c5646725c9deac8b0a0c2b79ee69",
+      "observation_summary_lines": [
+        "The file /workspace/joke2k__django-environ__0.6/tests/test_search.py has been edited. Here's the result of running `cat -n` on a snippet of /workspace/joke2k__django-environ__0.6/tests/test_search.py:"
+      ]
+    },
+    {
+      "index": 29,
+      "call_id": "chatcmpl-tool-e37d0f62c84941a185f51c28d360b28b",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python -m pytest tests/ -k \"elasticsearch7\" -v"
+      },
+      "observation_sha256": "3d081c5b181a64b63006ad137c4a982ed5e6b7015dffafd8cdc96683881a8651",
+      "observation_summary_lines": [
+        "platform linux -- Python 3.9.21, pytest-8.3.4, pluggy-1.5.0 -- /opt/conda/envs/testbed/bin/python",
+        "Using --randomly-seed=3049361582",
+        "234 deselected in 0.17s",
+        "[The command completed with exit code 5.]",
+        "[Command finished with exit code 5]"
+      ]
+    },
+    {
+      "index": 30,
+      "call_id": "chatcmpl-tool-5d4a1c897a2b4716a83b82c6d8d8c9b2",
+      "tool": "execute_bash",
+      "arguments": {
+        "command": "cd /workspace/joke2k__django-environ__0.6 && python -m pytest tests/test_search.py -v"
+      },
+      "observation_sha256": "3869a4c7cf8ea17c04579b04c51bd854dfc9973f8737fe9e4f6b0a88265bc0b7",
+      "observation_summary_lines": [
+        "platform linux -- Python 3.9.21, pytest-8.3.4, pluggy-1.5.0 -- /opt/conda/envs/testbed/bin/python",
+        "Using --randomly-seed=3728264389",
+        "14 passed in 0.09s",
+        "[The command completed with exit code 0.]",
+        "[Command finished with exit code 0]"
+      ]
+    }
+  ],
+  "segment_checks": {
+    "exact_command_repeat": true,
+    "same_editor_path": true,
+    "inverse_old_equals_new": true,
+    "inverse_new_equals_old": true,
+    "editor_observations_report_success": true,
+    "all_intervening_tool_indices": [
+      27,
+      28,
+      29
+    ],
+    "other_recorded_intervening_calls": [],
+    "seed_observed_exit_code": 0,
+    "seed_observed_pass_count": 14,
+    "intervening_collection_observed_exit_code": 5,
+    "intervening_collection_deselected": 234,
+    "repeat_observed_exit_code": 0,
+    "repeat_observed_pass_count": 14,
+    "whole_filesystem_rejoin_established": false,
+    "cache_hit_established": false
+  },
+  "proposed_controlled_experiment": {
+    "purpose": "Determine whether this recorded source-restoration pattern permits validated result-only reuse in a pinned environment, and measure overhead on this small case. Do not claim representative AI workload speedup.",
+    "preconditions": [
+      "Hash the complete declared source-file manifest before the seed and before the restored repeat, explicitly including the created root reproduction script and test/config files. Verify both file contents and path sets.",
+      "Bound/exclude runtime-generated state only under an explicit hermetic test contract, not by interpreting unseen effects as harmless. Independently snapshot runtime effects if claiming broader state equality.",
+      "Keep the recorded source edit and exact inverse, the distinct collection request, and exit code 5. The nonzero collection result must execute freshly and must not be stored as successful reuse.",
+      "Freeze commands/argv, interpreter/dependencies, permitted environment and test order policy. Clearly list any adaptation from the original plugin-rich Python 3.9 environment.",
+      "Compare returned exit status and test verdicts to fresh runs; record raw stdout differences separately. Success count alone is not output equivalence.",
+      "Stop or report unsupported if dependency acquisition, base-state reconstruction, source-manifest equality or stable test verdicts fail within the bounded pilot; do not silently omit state paths or lower the predicate."
+    ],
+    "arms": [
+      {
+        "name": "fresh execution",
+        "meaning": "Execute each reviewed test request in the controlled sequence without reuse; reference result-only oracle."
+      },
+      {
+        "name": "history-keyed reference policy",
+        "meaning": "If implemented, explicitly define a simple full-history key as a reference mechanism only. Do not call it a reproduction of TVCache or claim a measured win over TVCache unless its actual implementation and snapshot policy are evaluated."
+      },
+      {
+        "name": "ZeroRun content-state reuse",
+        "meaning": "Only admit reuse if the actual configured source/environment/command identity matches and existing verification policy accepts the result. Record cache decisions and total overhead; do not infer a hit merely from the observed inverse edit."
+      }
+    ],
+    "outcomes": [
+      "source-manifest equality before seed and restored repeat",
+      "correct fresh execution of exit-5 collection request",
+      "fresh-versus-reuse result verdict equality",
+      "actual reused execution count",
+      "cold/warm end-to-end time and cache overhead",
+      "raw stdout equality or explicit inequality",
+      "all unsupported/failed reconstruction conditions"
+    ],
+    "claim_limit": "One purposively selected real-agent-derived controlled case can establish a mechanism demonstration, not prevalence, broad speedup, autonomous-agent outcome preservation, commercial reliability or acceptance probability."
+  }
+}

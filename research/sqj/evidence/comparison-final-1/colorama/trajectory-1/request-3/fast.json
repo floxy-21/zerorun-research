@@ -1,0 +1,27 @@
+{
+  "cache_key": "1b21a945a98bb099f76094b6f54e6ec6a7c6ceefa3fb69e718359e9256a6ea8f",
+  "execution_ms": 3891.048,
+  "exit_code": 1,
+  "phase_ms": {
+    "cache_lookup": 1.49,
+    "docker_execution": 3893.429,
+    "environment": 0.027,
+    "event_append": 11.108,
+    "fingerprint_final": 367.871,
+    "fingerprint_initial": 428.775,
+    "lock_acquire": 2.279,
+    "runtime_inspect_initial": 174.652,
+    "snapshot_cleanup": 34.857,
+    "snapshot_prepare": 1948.304
+  },
+  "reason": "fresh hermetic task failed; no reusable result was stored",
+  "request_wall_ms": 7425.834787001804,
+  "restored_outputs": [],
+  "saved_ms": 0.0,
+  "status": "MISS_FAILED",
+  "stderr": "",
+  "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.98s ===================\n",
+  "task": "pytest-fast",
+  "verified": false,
+  "wall_ms": 7414.606
+}

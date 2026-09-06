@@ -1,0 +1,27 @@
+{
+  "cache_key": "3fce0c7f48ff72abe30fd1f27f78c3c820ffe6287db2963ab0eb29e7327837cc",
+  "execution_ms": 115375.653,
+  "exit_code": 1,
+  "phase_ms": {
+    "cache_lookup": 1.088,
+    "docker_execution": 115379.064,
+    "environment": 0.202,
+    "event_append": 17.643,
+    "fingerprint_final": 304.947,
+    "fingerprint_initial": 386.861,
+    "lock_acquire": 2.186,
+    "runtime_inspect_initial": 121.806,
+    "snapshot_cleanup": 36.847,
+    "snapshot_prepare": 1934.426
+  },
+  "reason": "fresh hermetic task failed; no reusable result was stored",
+  "request_wall_ms": 118747.91261800056,
+  "restored_outputs": [],
+  "saved_ms": 0.0,
+  "status": "MISS_FAILED",
+  "stderr": "",
+  "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 598 items\n\ntests/test_more.py ..................................................... [  8%]\n........................................................................ [ 20%]\n........................................................................ [ 32%]\n........................................................................ [ 44%]\n........................................................................ [ 57%]\n........................................................................ [ 69%]\n........................................................................ [ 81%]\n........................................................................ [ 93%]\n........................................F                                [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ntests/test_more.py:7166: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_more.py::test_zerorun_controlled_added_failure - AssertionE...\n================== 1 failed, 597 passed in 112.08s (0:01:52) ===================\n",
+  "task": "pytest-fast",
+  "verified": false,
+  "wall_ms": 118730.101
+}
