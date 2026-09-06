@@ -1,0 +1,109 @@
+{
+  "acceptance_probability_estimated": false,
+  "archives": {
+    "reviewer_archive": {
+      "bytes": 19538637,
+      "members": 2763,
+      "path": "output/submission/ZeroRun_SoftwareX_reviewer.zip",
+      "sha256": "65e6d65ec401641582ed0c60421e3c8c3e62475a25fcfd4c93ec3933443469b4",
+      "verified": true
+    },
+    "source_archive": {
+      "bytes": 32757,
+      "members": 7,
+      "path": "output/submission/SoftwareX_source.zip",
+      "sha256": "ec31fd8e941c413a531c76d058c617e4cf7d1c80a0c496320e015ef671d1e434",
+      "verified": true
+    }
+  },
+  "article_type": "Original Software Publication",
+  "author": "Jishan Kapoor",
+  "author_actions_remaining": [
+    "Read and approve manuscript and evidence",
+    "Confirm originality and no concurrent submission",
+    "Complete publisher competing-interest and actual contribution declarations",
+    "Supply any required private address information",
+    "Upload files and approve the publisher-generated review PDF"
+  ],
+  "author_upload_texts_sha256": {
+    "research/softwarex/COVER_LETTER.txt": "afe36efd042953a35ff4a614ade0124db3f216b4db2b9a249f5ea302d166fc52",
+    "research/softwarex/HIGHLIGHTS.txt": "1bb250c6cb758a13db9f85267a505c615e501251b69805c99bf4ec00b6d708b9",
+    "research/softwarex/REPRODUCIBILITY.md": "bf24673974f8caa85f6ab5d4ad71cf8686ad41bf76b9c9460151ae1b5a861250",
+    "research/softwarex/SUBMISSION_CHECKLIST.md": "9d8451b8664d0bbb88c04433387554d4bb6bd1b7cc88ccbdb8432f5b0c696407",
+    "research/softwarex/UPLOAD_GUIDE.md": "840f867596d84964f8ca672aff395ba3edb226d22d9ee087d7031bcbd02d3192"
+  },
+  "commercial_performance_gates_passed": false,
+  "created_utc": "2026-09-06T23:12:16.706443+00:00",
+  "journal": "SoftwareX",
+  "journal_submitted": false,
+  "manifest_scope": "Checked enclosing stage before adding this readiness file; the later public manifest includes this receipt, avoiding a self-hash cycle.",
+  "paper_evidence_sha256": "cff6e771d5c39b53fb09364e420a09e540c96a4cdb1e311c7c06fdccc08e724c",
+  "payment_made": false,
+  "pdf": {
+    "path": "output/pdf/zerorun-softwarex.pdf",
+    "review_receipt_sha256": "0a20ece6127369cc425838da97d1664998bb9b201d7f36d4721af34a9975faba",
+    "sha256": "5b3506fab443b78e08eb989fbe6eb555dd236604fbb32b86a3ffa56f6204f297"
+  },
+  "public_code_and_evidence": {
+    "anonymous_verification_url": "https://github.com/floxy-21/zerorun-research/tree/67ee27ea02d83bd00f1ee4c65b0ed224a884799c",
+    "branch": "main",
+    "code_commit": "67ee27ea02d83bd00f1ee4c65b0ed224a884799c",
+    "final_manuscript_added_in_later_submission_snapshot": true,
+    "journal_submitted": false,
+    "payment_made": false,
+    "private_history_published": false,
+    "public_verified": true,
+    "release_manifest_sha256": "d8fe56dbfa422a68688926cf48c8a65adcdbf7a13a53f2367af4e26dbae154b5",
+    "repository_url": "https://github.com/floxy-21/zerorun-research",
+    "schema": "zerorun.softwarex-public-code-release.v1",
+    "source_and_raw_evidence_published": true,
+    "verified_utc": "2026-09-06T23:02:00Z"
+  },
+  "replication": {
+    "completed": true,
+    "fresh_agreements": 168,
+    "optimized_hits": 96,
+    "planned_requests": 168
+  },
+  "runtime_core_commit": "86f42289c2f59a74b1f642f0b20d1a26b3d55e57",
+  "schema": "zerorun.softwarex-final-readiness.v1",
+  "selected_public_tests": {
+    "additional_passing_subtests": 8,
+    "passed": 465,
+    "skipped": 21
+  },
+  "state_case": {
+    "autonomous_agent_evaluation": false,
+    "completed": true,
+    "optimized_hits": 1,
+    "requests": 4
+  },
+  "status": "COMPLETE_PACKAGE_REQUIRES_AUTHOR_APPROVAL_AND_PORTAL_UPLOAD",
+  "targeted_public_test_amendments": [
+    {
+      "archive_scope": "This final closeout receipt accompanies the previously sealed reviewer archive in the enclosing public submission snapshot. The tested file bytes equal those already sealed in that archive.",
+      "command": "python -B -m pytest research/sqj/strengthening/tests/test_analyze_replication.py -q -p no:cacheprovider --basetemp C:/Users/floxy/zerorun-softwarex-final-retest-1 --junitxml <retained XML>",
+      "completed": true,
+      "current_bytes": 18065,
+      "current_sha256": "d82c7f402f617e1a17596a7fc8da2b06b505cab2c1b71880e181a55937502817",
+      "junit": {
+        "errors": 0,
+        "failures": 0,
+        "path": "research/softwarex/evidence/public-test-amendment-v1.xml",
+        "sha256": "61d09c22f1e4d203f9034e39bd10de02654a45e65fd7fe8d3d7e7447b3681bb8",
+        "skipped": 0,
+        "tests": 34
+      },
+      "original_sha256": "ef365758b2bceaf921a8326059f4d951e7621c563cd4bb701eeedab4fad65ad2",
+      "path": "research/sqj/strengthening/tests/test_analyze_replication.py",
+      "platform": "Windows, CPython 3.14",
+      "reason": "The original 465-pass receipt remains unchanged and historical. One research-test fixture file was subsequently corrected from assumed 60-second Docker control calls to the frozen helper's actual 30-second calls. Final readiness detected its changed hash and refused completion. This exact file was then rerun from the clean public src-layout stage: 34 tests passed, with identical pre/post source hashes. All other original 53 tested files, including every runtime file, remain exact; this is a targeted retest, not a new 465-test execution.",
+      "runtime_changed": false,
+      "schema": "zerorun.softwarex-public-test-amendment.v1",
+      "source_sha256_after_execution": "d82c7f402f617e1a17596a7fc8da2b06b505cab2c1b71880e181a55937502817",
+      "source_sha256_before_execution": "d82c7f402f617e1a17596a7fc8da2b06b505cab2c1b71880e181a55937502817"
+    }
+  ],
+  "title": "ZeroRun: Reproducible test-result reuse for AI coding tools",
+  "validated_pre_readiness_manifest_sha256": "040ded8519fd3b67dd9cf526b59dacddd79e20a8f56d7741c95a522643a441ce"
+}

@@ -14,11 +14,11 @@ The journal charges an article publishing charge if the manuscript is accepted; 
 ## Required package
 
 - [x] The manuscript is prepared as **Original Software Publication**, not Software Update, and preserves the five template sections: Motivation and significance; Software description; Illustrative examples; Impact; Conclusions. The author must select this category in the submission system.
-- [ ] Use the official editable template. For LaTeX, include the review PDF and a complete compiling source archive with bibliography, figures, and required style files; PDF alone is insufficient.
-- [ ] Count no more than 4,000 words, including abstract, prose, captions, and footnotes, excluding title, author information, references, and metadata tables. Use no more than six figures. The template prefers six main-text pages while prioritizing word count.
-- [ ] Keep the abstract at most 250 words; approximately 100 words is consistent with the template. Include 1–7 keywords.
+- [x] Official editable LaTeX template/class used; the reviewed PDF and all six flat compilation inputs are complete. The artifact builder requires their exact QA hashes before creating the source archive; PDF alone is insufficient.
+- [x] Final conservative entire-PDF count is 3,413 words, including even metadata and references; the permitted manuscript count is therefore below 4,000. One editable figure. The reviewed preprint has 12 pages; the template's main-text page preference is distinguished from its controlling word limit.
+- [x] Abstract has 113 words and five keywords; the maximum is 250 words and 1–7 keywords.
 - [x] `HIGHLIGHTS.txt` is a separate editable file with four highlights, each below 85 characters including spaces; final readiness checks the actual text. A graphical abstract is not required for this package.
-- [ ] Include all source figures, editable tables, captions, cited supplements, and a data-availability statement. Check reference-to-citation correspondence and primary-source accuracy.
+- [x] Figure and tables are editable LaTeX, with captions and a data-availability statement. All ten cited keys resolve to the compiled bibliography; primary references were checked. All twelve PDF pages were visually reviewed (`generated/pdf-review.json`).
 
 Sources: [current guide](https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors), [official LaTeX template](https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.tex), [official Word template](https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.docx).
 
@@ -37,17 +37,17 @@ Keep the template's C1–C8 labels and fill these values from the released artif
 | C7 documentation | Verified public installation, API, operator-review, limitations, and reproduction documentation links. |
 | C8 support | kapoorjishan2@gmail.com. |
 
-- [ ] Public repository has the required `README.md`, `LICENSE.txt`, and `src/` source layout. The template spells the license file `Licence.txt` while the guide specifies `LICENSE.txt`; preserve the guide's exact filename and provide an alias if needed, without inconsistent license texts.
+- [x] Public repository has `README.md`, `LICENSE.txt`, `src/`, and an identical `Licence.txt` alias; exact files are inventoried by the public-release manifest.
 - [x] Clean Windows wheel installation and CLI inspection passed; all 36 installed runtime files match the frozen source, with no third-party runtime Python dependencies (`generated/public-install-smoke.json`). Selected public-layout tests separately passed 465 primary cases, with 21 platform skips and eight passing subtests (`generated/public-release-tests.json`). These checks do not claim a fresh Linux/Docker re-execution from the final manuscript snapshot or an autonomous Codex task.
-- [ ] Do not require private credentials, a private image, external cache authority created by the agent, or unavailable local paths for the reviewer example. Explicit human operator review remains required where the runtime contract requires it.
-- [ ] Retain third-party notices. Public OpenHands trajectory data remains CC-BY-4.0, with attribution, observed dataset revision, raw hashes, and excluded/failed rows preserved; it is not relicensed as MIT.
-- [ ] Cite and link a deposited evidence artifact and its version. Verify public artifact bytes against the local manifest before stating availability.
+- [x] Recorded-data validation and documented laboratory examples do not require private GitHub credentials or distributed private keys. All four offline evidence validators passed from the clean public stage. Normal production integration still requires explicit external operator review.
+- [x] Third-party notices, CC-BY-4.0 trajectory attribution, observed dataset revision, raw hashes, and excluded/failed rows are retained; third-party data is not relicensed as MIT.
+- [x] The public source/evidence snapshot is commit `67ee27ea02d83bd00f1ee4c65b0ed224a884799c`, anonymously verified; the manuscript links this immutable snapshot. The later final-readiness receipt identifies the separate completed submission archives and review PDF.
 
 ## Evidence and contribution checks
 
 - [x] Trace-summary validator reruns the frozen analyzer and reconciles main and pilot separately. Main: 128 selected, 122 analyzable episodes; 109 repositories and 126 issues among selected rows. Six excluded episodes remain explicit.
 - [x] Main exact-command repetitions are not described as safe hits: all 120 pairs have intervening barriers (112 include reported editor mutation; eight have other unmeasured effects). Pilot results are not pooled into the main sample.
-- [ ] Report controlled execution timing only for its tested contract and environment, including unfavorable results and all preselected orders. Do not infer end-to-end AI latency, token savings, task success, or commercial demand from these timings.
+- [x] Controlled timing is limited to its tested contract, with all 24 completed planned blocks, unfavorable outcomes, separately retained interrupted costs, explicit post-crash recovery, and missing setup measurements. No end-to-end AI latency, token, task-success, or demand claims are inferred.
 - [x] Explain the usable software contribution: explicit eligibility review, configured deterministic execution, conservative reuse decisions, and auditable evidence. The manuscript distinguishes these from existing caching algorithms and general-purpose function-call middleware.
 - [x] Reproducible examples cover fresh execution, unchanged reuse, input invalidation, repeated failure and restoration, with separate refusal-boundary tests. The independently reconciled real-agent-derived controlled case (`agent-state-rejoin-v3`) records four actual requests and one hit, with 14/15/0/14 fresh-node outcomes and explicit counterfactual/runtime limits. A failed collection exits 5 and is not mislabeled as a safety refusal. The original seven-state example and separate inventory/refusal evidence remain distinct.
 - [x] State that whole-task cache hits do not reproduce historical stdout/stderr. An AI client requiring a fresh transcript needs execution; cached success alone does not establish equivalent agent behavior.

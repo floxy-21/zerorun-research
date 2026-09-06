@@ -1,0 +1,23 @@
+{
+  "schema": "zerorun.softwarex-public-test-amendment.v1",
+  "completed": true,
+  "path": "research/sqj/strengthening/tests/test_analyze_replication.py",
+  "original_sha256": "ef365758b2bceaf921a8326059f4d951e7621c563cd4bb701eeedab4fad65ad2",
+  "current_sha256": "d82c7f402f617e1a17596a7fc8da2b06b505cab2c1b71880e181a55937502817",
+  "current_bytes": 18065,
+  "source_sha256_before_execution": "d82c7f402f617e1a17596a7fc8da2b06b505cab2c1b71880e181a55937502817",
+  "source_sha256_after_execution": "d82c7f402f617e1a17596a7fc8da2b06b505cab2c1b71880e181a55937502817",
+  "junit": {
+    "path": "research/softwarex/evidence/public-test-amendment-v1.xml",
+    "sha256": "61d09c22f1e4d203f9034e39bd10de02654a45e65fd7fe8d3d7e7447b3681bb8",
+    "tests": 34,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "reason": "The original 465-pass receipt remains unchanged and historical. One research-test fixture file was subsequently corrected from assumed 60-second Docker control calls to the frozen helper's actual 30-second calls. Final readiness detected its changed hash and refused completion. This exact file was then rerun from the clean public src-layout stage: 34 tests passed, with identical pre/post source hashes. All other original 53 tested files, including every runtime file, remain exact; this is a targeted retest, not a new 465-test execution.",
+  "command": "python -B -m pytest research/sqj/strengthening/tests/test_analyze_replication.py -q -p no:cacheprovider --basetemp C:/Users/floxy/zerorun-softwarex-final-retest-1 --junitxml <retained XML>",
+  "platform": "Windows, CPython 3.14",
+  "runtime_changed": false,
+  "archive_scope": "This final closeout receipt accompanies the previously sealed reviewer archive in the enclosing public submission snapshot. The tested file bytes equal those already sealed in that archive."
+}

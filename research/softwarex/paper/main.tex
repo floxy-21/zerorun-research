@@ -16,7 +16,7 @@
 \cortext[cor1]{Corresponding author.}
 \address{Independent researcher, Toronto, Canada}
 \begin{abstract}
-AI coding tools repeatedly invoke tests, but command repetition alone does not establish reusable evidence. ZeroRun is open-source research software for returning an explicitly identified previous success of a deterministic, result-only test command. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids unnecessary source staging. We provide source-bound experiments, an independent input-inventory oracle, and a descriptive audit of public OpenHands trajectories. @@ABSTRACT_RESULT@@ The package enables reproducible investigation of validation overhead and reuse boundaries; it does not establish autonomous-agent acceleration or reproduce cached test output.
+AI coding tools repeatedly invoke tests, but command repetition alone does not establish reusable evidence. ZeroRun is open-source research software for returning an explicitly identified previous success of a deterministic, result-only test command. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids unnecessary source staging. We provide source-bound experiments, an independent input-inventory oracle, and a descriptive audit of public OpenHands trajectories. The four-target study, completed through an explicit post-crash recovery, reconciles 168 fresh comparisons and 96 reused successes. The package enables reproducible investigation of validation overhead and reuse boundaries; it does not establish autonomous-agent acceleration or reproduce cached test output.
 \end{abstract}
 \begin{keyword}
 AI coding tools \sep test-result reuse \sep research software \sep reproducibility \sep software testing
@@ -34,7 +34,7 @@ AI coding tools \sep test-result reuse \sep research software \sep reproducibili
 \hline
 C1 & Current code version & ZeroRun 0.5.1; research release 2026-09-06 \\
 \hline
-C2 & Permanent GitHub link to code/repository used for this code version & \href{https://github.com/floxy-21/zerorun-research/tree/@@PUBLIC_COMMIT@@}{\texttt{floxy-21/zerorun-research}}; linked immutable source/evidence snapshot \\
+C2 & Permanent GitHub link to code/repository used for this code version & \href{https://github.com/floxy-21/zerorun-research/tree/67ee27ea02d83bd00f1ee4c65b0ed224a884799c}{\texttt{floxy-21/zerorun-research}}; linked immutable source/evidence snapshot \\
 \hline
 C3 & Legal Code License & MIT (ZeroRun code); third-party licenses retained; trajectory data CC-BY-4.0 \\
 \hline
@@ -44,7 +44,7 @@ C5 & Software code languages, tools, and services used & Python; pytest; Docker;
 \hline
 C6 & Compilation requirements, operating environments \& dependencies & Python $\geq$3.10; no core Python dependencies. Whole-task reuse: Linux/amd64 and Docker. Experiments: digest-pinned Python 3.12 container and frozen dependencies. \\
 \hline
-C7 & If available Link to developer documentation/manual & \href{https://github.com/floxy-21/zerorun-research/blob/@@PUBLIC_COMMIT@@/README.md}{Version-pinned README: installation, interfaces, reproduction, and limitations} \\
+C7 & If available Link to developer documentation/manual & \href{https://github.com/floxy-21/zerorun-research/blob/67ee27ea02d83bd00f1ee4c65b0ed224a884799c/README.md}{Version-pinned README: installation, interfaces, reproduction, and limitations} \\
 \hline
 C8 & Support email for questions & \href{mailto:kapoorjishan2@gmail.com}{kapoorjishan2@gmail.com} \\
 \hline
@@ -130,7 +130,25 @@ We also provide a read-only analysis of the public SWE-rebench OpenHands traject
 
 Of the 128 selected episodes, 122 had the required action/observation pairing; six were excluded for unmatched execution records, not replaced. The valid set spans 104 repositories and 120 issues. It contains 745 supported direct pytest invocations and 120 exact-command repeat pairs. All repeats have intervening barriers: 112 contain a reported editor mutation and eight contain other unmeasured effects. These are observations about recorded actions, not 120 cache hits. The parser excludes compound-shell commands from the direct-command category and preserves clipped outputs and missing exit markers.
 
-This example makes a practical distinction visible: repeated command text is an inadequate cache key for source-editing agents. Even an apparent restoration requires independent source and environment reconstruction. @@STATE_REJOIN@@
+This example makes a practical distinction visible: repeated command text is an inadequate cache key for source-editing agents. Even an apparent restoration requires independent source and environment reconstruction. A purposively selected django-environ episode provides a positive, bounded mechanism example. We reconstructed its recorded source edits, added a fresh check at the intermediate edited state, and ran four controlled requests (Table~\ref{tab:state-rejoin}). After the inverse edit, the complete declared source/runtime identity and original target's cache key rejoined; the restored request returned one explicitly identified reused success, agreeing with an independent fresh 14-test outcome. The intervening collection command selected no tests and exited 5; it remained a fresh failure, not a reusable success.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{llrr}
+\toprule
+Controlled request & Actual response & Exit & Fresh nodes \\
+\midrule
+Seed target & \code{MISS\_EXECUTED} & 0 & 14 \\
+Edited target (extra check) & \code{MISS\_EXECUTED} & 0 & 15 \\
+Restored collection & \code{MISS\_FAILED} & 5 & 0 \\
+Restored target & \code{HIT\_REUSED} & 0 & 14 \\
+\bottomrule
+\end{tabular}
+\caption{One source-restoration case. The 15-test request is additional counterfactual instrumentation, not a test call made by the recorded agent. Every row includes a separate fresh full-target oracle.}
+\label{tab:state-rejoin}
+\end{table}
+
+This standalone case ran after the timing VM interruption, with independently checked source bindings. Retained failed attempts exposed a missing Git-fixture marker; a separately versioned producer initialized local metadata while preserving the baseline's masking guard. The successful run uses Python 3.12.14 and pytest 9.1.1, not the recorded Python 3.9 environment. It demonstrates this content-restoration mechanism, not historical output replay, unchanged autonomous-agent behavior, or population-wide benefit.
 
 \section{Impact}
 \subsection{Reproducible validation and measured cost}
@@ -138,11 +156,11 @@ The software supports experiments on how much work validation itself consumes, w
 
 The evaluation kit supports a concrete adoption decision: first qualify the result-only contract, then check agreement and failure behavior, and finally compare the full request sequence with direct execution, including available setup cost. Fast individual hits are insufficient if checking and miss costs erase their benefit. The supplied ablation isolates the staging change; it is not a head-to-head evaluation against another caching system.
 
-The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. @@ORIGINAL_RESULTS@@ These results are retained, including large lifecycle delays and their order sensitivity.
+The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. Two reversed-order seven-request sequences per library yielded 70 fresh-result agreements and 40 optimized-arm whole-task hits. The original mean conditional hit latency reduction against the ablation was 67.3--71.0\%. Complete-sequence direct/optimized ratios were 0.85--2.09. For more-itertools, optimized execution was 16.6\% slower overall than snapshot-first reuse, despite faster hits. These results are retained, including large lifecycle delays and their order sensitivity.
 
 To examine timing stability, a prospectively recorded extension used six independently initialized blocks on each of the four previously observed short subjects, covering every ordering of direct pytest, snapshot-first reuse, and optimized reuse. The seven request states were unchanged. All arms used the same 900-second test-execution bound and container resource limits. Docker control phases in the direct/oracle helpers used 30-second limits, whereas product inspection and cleanup used 60-second limits; complete invocation timings include these different lifecycle paths. Timings cover complete helper/API invocations; host telemetry and receipt writing are outside every timed boundary. Dependency preparation and block setup are separately retained. This is a replication on seen subjects, not a new holdout or a replacement for more-itertools.
 
-@@REPLICATION_RESULT@@
+Across 24 completed planned blocks, all 168 requests agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. Table~\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No completed block or outlying invocation within those blocks is dropped; interrupted-attempt costs are reported separately. The complete-block record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension. A VirtualBox host assertion aborted the VM after 21 complete blocks and part of Packaging block four. A separately recorded amendment reran only the unfinished preselected blocks four through six from independent initial states, using the unchanged frozen driver. The original protocol, partial invocation files, zero-byte crash remnants, failed recovery preflight, and surviving timings remain available. This is recovered coverage of the plan, not uninterrupted completion of its original no-retry protocol. Packaging's unflushed original environment-setup total is unavailable; its setup-inclusive ratio is therefore not reported. The interrupted attempt adds 1 complete request, 1 partially recorded request, and an unflushed invocation-only directory with no outcomes. Its surviving arm costs are retained separately; including those costs changes Packaging's direct/optimized ratio to 1.029.
 
 \begin{table}[htbp]
 \centering\small
@@ -150,7 +168,10 @@ To examine timing stability, a prospectively recorded extension used six indepen
 \toprule
 Subject & $D/F$ & $D/F$ + setup & Block range & Hit saving (\%) \\
 \midrule
-@@REPLICATION_ROWS@@
+click & 1.05 & 1.05 & 0.89--1.64 & 68.1 \\
+pycparser & 0.89 & 0.91 & 0.78--1.04 & 68.8 \\
+colorama & 1.01 & 1.01 & 0.98--1.11 & 67.6 \\
+packaging & 1.04 & --- & 0.88--1.32 & 70.8 \\
 \bottomrule
 \end{tabular}
 \caption{Complete replicated sequence cost versus conditional hit benefit. $D/F$ is summed direct time divided by summed optimized time; above one favors reuse. Setup-inclusive ratios allocate common dependency preparation and each block's materialization to both arms. Block range retains all six complete sequences. Hit saving compares median optimized and snapshot-first hit latency, not end-to-end agent time.}

@@ -70,6 +70,41 @@ def check_artifacts(release, evidence):
     return artifacts, pdf
 
 
+def check_targeted_test_amendment(release, original):
+    """Accept one independently retested harness correction, never runtime drift."""
+    allowed = "research/sqj/strengthening/tests/test_analyze_replication.py"
+    require(original["path"] == allowed, "only the explicitly named research test can be amended")
+    relative = "research/softwarex/evidence/public-test-amendment-v1.json"
+    receipt = read(ROOT / relative)
+    matching_public_file(release, relative, ROOT / relative)
+    require(receipt["schema"] == "zerorun.softwarex-public-test-amendment.v1"
+            and receipt["completed"] is True and receipt["path"] == allowed,
+            "unexpected targeted-test amendment")
+    require(isinstance(receipt.get("reason"), str) and receipt["reason"].strip(), "amendment explanation absent")
+    require(receipt["original_sha256"] == original["sha256"], "amendment does not bind the historical tested source")
+    current = read_regular(release / allowed)
+    require(type(receipt["current_bytes"]) is int and receipt["current_bytes"] == len(current)
+            and receipt["current_sha256"] == hashlib.sha256(current).hexdigest()
+            and receipt["current_sha256"] != original["sha256"], "amended source hash/size mismatch")
+    junit = receipt["junit"]
+    require(junit["path"] == "research/softwarex/evidence/public-test-amendment-v1.xml", "unexpected amendment JUnit path")
+    require(all(type(junit[key]) is int for key in ("tests", "failures", "errors", "skipped"))
+            and junit["tests"] > 0 and junit["failures"] == junit["errors"] == junit["skipped"] == 0,
+            "targeted amendment is not a complete passing test run")
+    raw = read_regular(release / junit["path"])
+    matching_public_file(release, junit["path"], ROOT / junit["path"])
+    require(hashlib.sha256(raw).hexdigest() == junit["sha256"], "amendment JUnit hash differs")
+    root = ET.fromstring(raw)
+    suites = [root] if root.tag == "testsuite" else root.findall(".//testsuite")
+    require(suites, "amendment JUnit suites absent")
+    counts = {key: sum(int(suite.attrib[key]) for suite in suites) for key in ("tests", "failures", "errors", "skipped")}
+    require(counts == {key: junit[key] for key in counts}, "amendment JUnit counts differ")
+    require(sum(len(suite.findall("testcase")) for suite in suites) == counts["tests"]
+            and not root.findall(".//failure") and not root.findall(".//error") and not root.findall(".//skipped"),
+            "amendment JUnit test cases are incomplete or failing")
+    return receipt
+
+
 def check_test_and_install_bindings(release):
     install = read(HERE / "generated/public-install-smoke.json")
     tests = read(HERE / "generated/public-release-tests.json")
@@ -86,11 +121,12 @@ def check_test_and_install_bindings(release):
     checked = tests["tested_code"]
     require(isinstance(checked, list) and checked and len({row["path"] for row in checked}) == len(checked),
             "missing or duplicate tested-code inventory")
+    amendments = []
     for row in checked:
         member_name(row["path"])
         raw = read_regular(release / row["path"])
-        require(len(raw) == row["bytes"] and hashlib.sha256(raw).hexdigest() == row["sha256"],
-                "public tested source changed: " + row["path"])
+        if len(raw) != row["bytes"] or hashlib.sha256(raw).hexdigest() != row["sha256"]:
+            amendments.append(check_targeted_test_amendment(release, row))
     final_tests = tests["runs"][-1]
     require(final_tests["pytest_failed"] == 0 and final_tests["errors"] == 0
             and final_tests["pytest_passed"] > 0, "public-layout tests not passing")
@@ -109,7 +145,7 @@ def check_test_and_install_bindings(release):
                 == run["pytest_passed"] + run["subtests_passed"], "JUnit/receipt counts differ")
     for name in ("public-install-smoke.json", "public-release-tests.json"):
         matching_public_file(release, "research/softwarex/generated/" + name, HERE / "generated" / name)
-    return install, final_tests
+    return install, dict(final_tests, targeted_test_amendments=amendments)
 
 
 def build(release):
@@ -149,6 +185,7 @@ def build(release):
         "archives": {key: artifacts[key] for key in ("source_archive", "reviewer_archive")},
         "author_upload_texts_sha256": files,
         "selected_public_tests": {"passed": final_tests["pytest_passed"], "skipped": final_tests["pytest_skipped"], "additional_passing_subtests": final_tests["subtests_passed"]},
+        "targeted_public_test_amendments": final_tests.get("targeted_test_amendments", []),
         "replication": {"completed": True, "planned_requests": planned["requests"],
                         "fresh_agreements": replication["counts"]["fresh_agreements"], "optimized_hits": replication["counts"]["optimized_hits"]},
         "state_case": {"completed": True, "requests": state["requests"], "optimized_hits": state["optimized_hits"], "autonomous_agent_evaluation": False},

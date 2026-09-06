@@ -106,3 +106,54 @@ def test_junit_count_disagreement_is_not_a_passing_receipt(install_fixture):
     put_json(path, value)
     with pytest.raises(ValueError, match="JUnit/receipt counts"):
         readiness.check_test_and_install_bindings(install_fixture["release"])
+
+
+@pytest.fixture
+def targeted_amendment(fixture, monkeypatch):
+    monkeypatch.setattr(readiness, "ROOT", fixture["root"])
+    relative = "research/sqj/strengthening/tests/test_analyze_replication.py"
+    old, current = b"# original fixture\n", b"# corrected exact timeout fixture\n"
+    junit_path = "research/softwarex/evidence/public-test-amendment-v1.xml"
+    junit = b'<testsuites><testsuite tests="1" failures="0" errors="0" skipped="0"><testcase name="fixture"/></testsuite></testsuites>'
+    receipt = {"schema": "zerorun.softwarex-public-test-amendment.v1", "completed": True,
+               "path": relative, "original_sha256": artifacts.digest(old), "current_sha256": artifacts.digest(current),
+               "current_bytes": len(current), "reason": "Exact source timeout fixture correction; runtime unchanged",
+               "junit": {"path": junit_path, "sha256": artifacts.digest(junit), "tests": 1, "failures": 0, "errors": 0, "skipped": 0}}
+    fixture["public"].update({relative: current, junit_path: junit})
+    put(fixture["root"] / junit_path, junit)
+    receipt_path = "research/softwarex/evidence/public-test-amendment-v1.json"
+    put_json(fixture["root"] / receipt_path, receipt)
+    fixture["public"][receipt_path] = (fixture["root"] / receipt_path).read_bytes()
+    refresh_release(fixture["release"], fixture["public"])
+    return fixture, {"path": relative, "sha256": artifacts.digest(old), "bytes": len(old)}, receipt
+
+
+def test_exact_named_research_test_amendment_passes(targeted_amendment):
+    context, original, expected = targeted_amendment
+    assert readiness.check_targeted_test_amendment(context["release"], original) == expected
+
+
+@pytest.mark.parametrize("mode", ["runtime-path", "other-test", "stale-original", "stale-current", "failed-xml", "wrong-count"])
+def test_targeted_amendment_never_waives_other_source_or_failure(targeted_amendment, mode):
+    context, original, receipt = targeted_amendment
+    if mode == "runtime-path":
+        original["path"] = "src/zerorun/core.py"
+    elif mode == "other-test":
+        original["path"] = "tests/test_hermetic.py"
+    elif mode == "stale-original":
+        original["sha256"] = "0" * 64
+    elif mode == "stale-current":
+        put(context["release"] / original["path"], b"Further untested source change")
+    else:
+        if mode == "failed-xml":
+            raw = b'<testsuites><testsuite tests="1" failures="0" errors="0" skipped="0"><testcase name="fixture"><failure/></testcase></testsuite></testsuites>'
+            receipt["junit"]["sha256"] = artifacts.digest(raw)
+            put(context["root"] / receipt["junit"]["path"], raw)
+            put(context["release"] / receipt["junit"]["path"], raw)
+        else:
+            receipt["junit"]["tests"] = 2
+        name = "research/softwarex/evidence/public-test-amendment-v1.json"
+        put_json(context["root"] / name, receipt)
+        put_json(context["release"] / name, receipt)
+    with pytest.raises(ValueError):
+        readiness.check_targeted_test_amendment(context["release"], original)
