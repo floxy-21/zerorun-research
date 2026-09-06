@@ -1,0 +1,790 @@
+{
+  "arms": {
+    "direct": {
+      "completed": true,
+      "docker_subprocess_phases": [
+        {
+          "ended_utc": "2026-09-06T21:41:26.837021+00:00",
+          "exit_code": 0,
+          "phase": "container ls",
+          "started_utc": "2026-09-06T21:41:26.660104+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 176.8813320013578
+        },
+        {
+          "ended_utc": "2026-09-06T21:41:27.374333+00:00",
+          "exit_code": 0,
+          "phase": "create",
+          "started_utc": "2026-09-06T21:41:26.837669+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 536.6328860036447
+        },
+        {
+          "ended_utc": "2026-09-06T21:41:27.549831+00:00",
+          "exit_code": 0,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T21:41:27.374404+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 175.40789899794618
+        },
+        {
+          "ended_utc": "2026-09-06T21:41:33.314928+00:00",
+          "exit_code": 1,
+          "phase": "start",
+          "started_utc": "2026-09-06T21:41:27.550051+00:00",
+          "timeout_seconds": 900,
+          "wall_ms": 5764.802236000833
+        },
+        {
+          "ended_utc": "2026-09-06T21:41:33.493819+00:00",
+          "exit_code": 0,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T21:41:33.314991+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 178.8075439981185
+        },
+        {
+          "ended_utc": "2026-09-06T21:41:33.771371+00:00",
+          "exit_code": 0,
+          "phase": "container rm",
+          "started_utc": "2026-09-06T21:41:33.493978+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 277.3713790011243
+        },
+        {
+          "ended_utc": "2026-09-06T21:41:33.953015+00:00",
+          "exit_code": 1,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T21:41:33.771418+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 181.58232000132557
+        }
+      ],
+      "ended_utc": "2026-09-06T21:41:33.953276+00:00",
+      "exit_code": 1,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.228515625,
+          1.3291015625,
+          1.259765625
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          175732 kB\nMemAvailable:    1857084 kB\nBuffers:          420836 kB\nCached:          1344284 kB\nSwapCached:            0 kB\nActive:          1233388 kB\nInactive:         742876 kB\nActive(anon):       4368 kB\nInactive(anon):   239488 kB\nActive(file):    1229020 kB\nInactive(file):   503388 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                52 kB\nWriteback:             0 kB\nAnonPages:        238768 kB\nMapped:           234856 kB\nShmem:             23636 kB\nKReclaimable:     138208 kB\nSlab:             192116 kB\nSReclaimable:     138208 kB\nSUnreclaim:        53908 kB\nKernelStack:        3760 kB\nPageTables:         4384 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140920 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35148 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=4.28 avg60=5.12 avg300=4.60 total=1318164437\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.83 avg60=1.24 avg300=1.46 total=184892595\nfull avg10=0.50 avg60=0.87 avg300=1.07 total=144558184\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  936223 2623 844969 26220755 43151 0 50650 0 0 0\ncpu0 209552 292 162268 5387235 9703 0 7042 0 0 0\ncpu1 236751 1861 167810 5313155 10442 0 6839 0 0 0\ncpu2 253692 184 166190 5326684 10764 0 6692 0 0 0\ncpu3 212517 209 165464 5363954 10113 0 7729 0 0 0\ncpu4 23709 77 183235 4829725 2128 0 22346 0 0 0\nintr 91910974 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28496 48982 0 656124 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153856649\nbtime 1788671060\nprocesses 231588\nprocs_running 1\nprocs_blocked 0\nsoftirq 37552360 5 16344954 12589 55975 613757 0 440 13239264 0 7285376\n",
+        "utc": "2026-09-06T21:41:33.953293+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.2705078125,
+          1.3408203125,
+          1.2626953125
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          179116 kB\nMemAvailable:    1860452 kB\nBuffers:          420752 kB\nCached:          1344004 kB\nSwapCached:            0 kB\nActive:          1233312 kB\nInactive:         743596 kB\nActive(anon):       4364 kB\nInactive(anon):   240340 kB\nActive(file):    1228948 kB\nInactive(file):   503256 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               204 kB\nWriteback:             0 kB\nAnonPages:        239656 kB\nMapped:           234912 kB\nShmem:             23636 kB\nKReclaimable:     138396 kB\nSlab:             192292 kB\nSReclaimable:     138396 kB\nSUnreclaim:        53896 kB\nKernelStack:        3696 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140920 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35132 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.27 avg60=5.07 avg300=4.58 total=1317633623\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.85 avg60=1.27 avg300=1.47 total=184787017\nfull avg10=0.47 avg60=0.89 avg300=1.07 total=144485597\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  935794 2623 844686 26218278 43123 0 50600 0 0 0\ncpu0 209535 292 162220 5386653 9693 0 7033 0 0 0\ncpu1 236725 1861 167750 5312577 10437 0 6834 0 0 0\ncpu2 253674 184 166136 5326079 10760 0 6689 0 0 0\ncpu3 212154 209 165405 5363704 10104 0 7722 0 0 0\ncpu4 23705 77 183173 4829263 2126 0 22320 0 0 0\nintr 91897329 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28493 48978 0 655792 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153844642\nbtime 1788671060\nprocesses 231448\nprocs_running 1\nprocs_blocked 0\nsoftirq 37544587 5 16342885 12586 55971 613448 0 440 13237146 0 7282106\n",
+        "utc": "2026-09-06T21:41:26.651410+00:00"
+      },
+      "instrumented": false,
+      "request_wall_ms": 7301.018226004089,
+      "runner": "independent-docker-plain-pytest",
+      "started_utc": "2026-09-06T21:41:26.651381+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 62 items\n\ntests/test_c_parser.py ................................................. [ 79%]\n............F                                                            [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ntests/test_c_parser.py:3794: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_c_parser.py::test_zerorun_controlled_added_failure - Assert...\n========================= 1 failed, 61 passed in 0.82s =========================\n",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "wall_ms": 7115.676492998318
+    },
+    "fast": {
+      "cache_key": "8b170f216229eba8a05873082b6dbff4e971418eb96b1d30892ea6cdac5f9716",
+      "completed": true,
+      "docker_subprocess_phases": [],
+      "ended_utc": "2026-09-06T21:42:01.983135+00:00",
+      "execution_ms": 6021.3,
+      "exit_code": 1,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.20751953125,
+          1.3173828125,
+          1.25830078125
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          162824 kB\nMemAvailable:    1845036 kB\nBuffers:          421044 kB\nCached:          1344564 kB\nSwapCached:            0 kB\nActive:          1233704 kB\nInactive:         743384 kB\nActive(anon):       4364 kB\nInactive(anon):   239668 kB\nActive(file):    1229340 kB\nInactive(file):   503716 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               204 kB\nWriteback:             0 kB\nAnonPages:        238984 kB\nMapped:           235060 kB\nShmem:             23636 kB\nKReclaimable:     138420 kB\nSlab:             192360 kB\nSReclaimable:     138420 kB\nSUnreclaim:        53940 kB\nKernelStack:        3648 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35116 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=2.31 avg60=3.98 avg300=4.36 total=1318718404\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.75 avg60=1.05 avg300=1.39 total=185118138\nfull avg10=0.52 avg60=0.71 avg300=1.00 total=144728934\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  938343 2623 845698 26230918 43207 0 50725 0 0 0\ncpu0 209824 292 162394 5389506 9712 0 7051 0 0 0\ncpu1 236796 1861 167890 5315683 10453 0 6847 0 0 0\ncpu2 254473 184 166346 5328377 10772 0 6700 0 0 0\ncpu3 213522 209 165729 5365300 10138 0 7742 0 0 0\ncpu4 23727 77 183338 4832049 2130 0 22384 0 0 0\nintr 91949093 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28515 48996 0 656858 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153889076\nbtime 1788671060\nprocesses 231852\nprocs_running 1\nprocs_blocked 0\nsoftirq 37582533 5 16354498 12596 55989 614419 0 440 13246292 0 7298294\n",
+        "utc": "2026-09-06T21:42:01.983159+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.26708984375,
+          1.33447265625,
+          1.2626953125
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          172884 kB\nMemAvailable:    1854860 kB\nBuffers:          420932 kB\nCached:          1344504 kB\nSwapCached:            0 kB\nActive:          1233600 kB\nInactive:         743316 kB\nActive(anon):       4364 kB\nInactive(anon):   239668 kB\nActive(file):    1229236 kB\nInactive(file):   503648 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               204 kB\nWriteback:             0 kB\nAnonPages:        238984 kB\nMapped:           235040 kB\nShmem:             23636 kB\nKReclaimable:     138356 kB\nSlab:             192324 kB\nSReclaimable:     138356 kB\nSUnreclaim:        53968 kB\nKernelStack:        3648 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35100 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=2.07 avg60=4.42 avg300=4.47 total=1318366497\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.55 avg60=1.10 avg300=1.42 total=184978875\nfull avg10=0.29 avg60=0.75 avg300=1.03 total=144623162\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  937303 2623 845303 26225916 43172 0 50674 0 0 0\ncpu0 209655 292 162321 5388418 9707 0 7045 0 0 0\ncpu1 236768 1861 167842 5314468 10443 0 6840 0 0 0\ncpu2 254106 184 166235 5327550 10769 0 6694 0 0 0\ncpu3 213061 209 165626 5364561 10122 0 7734 0 0 0\ncpu4 23712 77 183277 4830917 2129 0 22358 0 0 0\nintr 91930084 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28507 48989 0 656502 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153872138\nbtime 1788671060\nprocesses 231716\nprocs_running 1\nprocs_blocked 0\nsoftirq 37567176 5 16349746 12592 55982 614090 0 440 13242664 0 7291657\n",
+        "utc": "2026-09-06T21:41:48.071907+00:00"
+      },
+      "phase_ms": {
+        "cache_lookup": 2.193,
+        "docker_execution": 6027.57,
+        "environment": 0.025,
+        "event_append": 21.122,
+        "fingerprint_final": 828.36,
+        "fingerprint_initial": 973.213,
+        "lock_acquire": 3.731,
+        "runtime_inspect_initial": 277.59,
+        "snapshot_cleanup": 76.033,
+        "snapshot_prepare": 4929.239
+      },
+      "reason": "fresh hermetic task failed; no reusable result was stored",
+      "request_wall_ms": 13909.839781998016,
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "started_utc": "2026-09-06T21:41:48.071887+00:00",
+      "status": "MISS_FAILED",
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 62 items\n\ntests/test_c_parser.py ................................................. [ 79%]\n............F                                                            [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ntests/test_c_parser.py:3794: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_c_parser.py::test_zerorun_controlled_added_failure - Assert...\n========================= 1 failed, 61 passed in 0.91s =========================\n",
+      "task": "replication-pycparser-6-fast",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "verified": false,
+      "wall_ms": 13888.432
+    },
+    "snapshot": {
+      "cache_key": "09f36532ac87e99dd23b2080c0a0b7c3410ffbd9445fcfe39f42002785dc5f68",
+      "completed": true,
+      "docker_subprocess_phases": [],
+      "ended_utc": "2026-09-06T21:41:48.069952+00:00",
+      "execution_ms": 5817.117,
+      "exit_code": 1,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.26708984375,
+          1.33447265625,
+          1.2626953125
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          172884 kB\nMemAvailable:    1854860 kB\nBuffers:          420932 kB\nCached:          1344504 kB\nSwapCached:            0 kB\nActive:          1233600 kB\nInactive:         743316 kB\nActive(anon):       4364 kB\nInactive(anon):   239668 kB\nActive(file):    1229236 kB\nInactive(file):   503648 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               204 kB\nWriteback:             0 kB\nAnonPages:        238984 kB\nMapped:           235040 kB\nShmem:             23636 kB\nKReclaimable:     138356 kB\nSlab:             192324 kB\nSReclaimable:     138356 kB\nSUnreclaim:        53968 kB\nKernelStack:        3648 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35100 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=2.07 avg60=4.42 avg300=4.47 total=1318366497\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.55 avg60=1.10 avg300=1.42 total=184978875\nfull avg10=0.29 avg60=0.75 avg300=1.03 total=144623162\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  937303 2623 845303 26225915 43172 0 50674 0 0 0\ncpu0 209655 292 162321 5388418 9707 0 7045 0 0 0\ncpu1 236768 1861 167842 5314467 10443 0 6840 0 0 0\ncpu2 254106 184 166235 5327550 10769 0 6694 0 0 0\ncpu3 213061 209 165626 5364561 10122 0 7734 0 0 0\ncpu4 23712 77 183277 4830917 2129 0 22358 0 0 0\nintr 91930084 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28507 48989 0 656502 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153872137\nbtime 1788671060\nprocesses 231716\nprocs_running 2\nprocs_blocked 0\nsoftirq 37567176 5 16349746 12592 55982 614090 0 440 13242664 0 7291657\n",
+        "utc": "2026-09-06T21:41:48.069980+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.228515625,
+          1.3291015625,
+          1.259765625
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          175732 kB\nMemAvailable:    1857084 kB\nBuffers:          420836 kB\nCached:          1344284 kB\nSwapCached:            0 kB\nActive:          1233388 kB\nInactive:         742876 kB\nActive(anon):       4368 kB\nInactive(anon):   239488 kB\nActive(file):    1229020 kB\nInactive(file):   503388 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                52 kB\nWriteback:             0 kB\nAnonPages:        238768 kB\nMapped:           234856 kB\nShmem:             23636 kB\nKReclaimable:     138208 kB\nSlab:             192116 kB\nSReclaimable:     138208 kB\nSUnreclaim:        53908 kB\nKernelStack:        3760 kB\nPageTables:         4384 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140920 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35148 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=4.28 avg60=5.12 avg300=4.60 total=1318164437\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.83 avg60=1.24 avg300=1.46 total=184892595\nfull avg10=0.50 avg60=0.87 avg300=1.07 total=144558184\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  936223 2623 844969 26220755 43151 0 50650 0 0 0\ncpu0 209552 292 162268 5387235 9703 0 7042 0 0 0\ncpu1 236751 1861 167810 5313155 10442 0 6839 0 0 0\ncpu2 253692 184 166190 5326684 10764 0 6692 0 0 0\ncpu3 212517 209 165464 5363954 10113 0 7729 0 0 0\ncpu4 23709 77 183235 4829725 2128 0 22346 0 0 0\nintr 91910974 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28496 48982 0 656124 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153856649\nbtime 1788671060\nprocesses 231588\nprocs_running 1\nprocs_blocked 0\nsoftirq 37552360 5 16344954 12589 55975 613757 0 440 13239264 0 7285376\n",
+        "utc": "2026-09-06T21:41:33.954344+00:00"
+      },
+      "phase_ms": {
+        "cache_lookup": 3.166,
+        "docker_execution": 5826.635,
+        "environment": 0.023,
+        "event_append": 12.536,
+        "fingerprint_final": 740.392,
+        "fingerprint_initial": 1007.663,
+        "lock_acquire": 4.149,
+        "runtime_inspect_initial": 280.096,
+        "snapshot_cleanup": 67.168,
+        "snapshot_prepare": 6140.232
+      },
+      "reason": "fresh hermetic task failed; no reusable result was stored",
+      "request_wall_ms": 14115.361099000438,
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "started_utc": "2026-09-06T21:41:33.954330+00:00",
+      "status": "MISS_FAILED",
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 62 items\n\ntests/test_c_parser.py ................................................. [ 79%]\n............F                                                            [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ntests/test_c_parser.py:3794: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_c_parser.py::test_zerorun_controlled_added_failure - Assert...\n========================= 1 failed, 61 passed in 1.15s =========================\n",
+      "task": "replication-pycparser-6-snapshot",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "verified": false,
+      "wall_ms": 14102.23
+    }
+  },
+  "cache_behavior_expected": true,
+  "index": 3,
+  "label": "failing-test-added",
+  "oracle": {
+    "capture": {
+      "all_nodes_non_failing": false,
+      "complete_per_node_outcomes": true,
+      "exit_code": 1,
+      "failing_nodeids": [
+        "tests/test_c_parser.py::test_zerorun_controlled_added_failure"
+      ],
+      "nodeid_sha256": "75eac906df8179b18aee23ad91df2501af980f68a493c6077eca58d468be1d0f",
+      "nodeids": [
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_FileAST",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_alignas_with_typedef_in_struct",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_alignof",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_anonymous_struct_union",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_atomic_specifier",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_compound_literals",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_compound_statement",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_coords",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_decl_inits",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_decl_named_inits",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_duplicate_typedef",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_empty_toplevel_decl",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_enums",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_forloop_coord",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_func_decls_with_array_dim_qualifiers",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_function_definitions",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_initial_semi",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_inline_specifier",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_int128",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_invalid_multiple_types_error",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_invalid_typedef_storage_qual_error",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_line_directive_update_in_errors",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_multi_decls",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_nested_decls",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_noreturn_specifier",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_offsetof",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_parenthesized_compounds",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_pragma",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_pragmacomp_or_statement",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_qualifiers_storage_specifiers",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_simple_decls",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_sizeof",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_static_assert",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_bitfields",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_empty",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_enum",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_members_namespace",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_union",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_with_extra_semis_inside",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_with_initial_semi",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_tags_namespace",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_typedef",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_unified_string_literals",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_unified_wstring_literals",
+        "tests/test_c_parser.py::TestCParser_fundamentals::test_vla",
+        "tests/test_c_parser.py::TestUnmatchedRbrace::test_unmatched_rbrace_raises_parse_error",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_empty_statements",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_expressions",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_for_statement",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_statements",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_switch_statement",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_whole_file",
+        "tests/test_c_parser.py::TestCParser_whole_code::test_whole_file_with_stdio",
+        "tests/test_c_parser.py::TestCParser_typenames::test_ambiguous_parameters",
+        "tests/test_c_parser.py::TestCParser_typenames::test_case_empty_statement",
+        "tests/test_c_parser.py::TestCParser_typenames::test_innerscope_reuse_typedef_name",
+        "tests/test_c_parser.py::TestCParser_typenames::test_innerscope_typedef",
+        "tests/test_c_parser.py::TestCParser_typenames::test_label_empty_statement",
+        "tests/test_c_parser.py::TestCParser_typenames::test_nested_function_decls",
+        "tests/test_c_parser.py::TestCParser_typenames::test_parameter_reuse_typedef_name",
+        "tests/test_c_parser.py::TestCParser_typenames::test_samescope_reuse_name",
+        "tests/test_c_parser.py::test_zerorun_controlled_added_failure"
+      ],
+      "outcomes": [
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "failed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        }
+      ],
+      "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+    },
+    "completed": true,
+    "docker_subprocess_phases": [
+      {
+        "ended_utc": "2026-09-06T21:42:02.124458+00:00",
+        "exit_code": 0,
+        "phase": "container ls",
+        "started_utc": "2026-09-06T21:42:01.994775+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 129.64421800279524
+      },
+      {
+        "ended_utc": "2026-09-06T21:42:02.557397+00:00",
+        "exit_code": 0,
+        "phase": "create",
+        "started_utc": "2026-09-06T21:42:02.125665+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 431.69963500258746
+      },
+      {
+        "ended_utc": "2026-09-06T21:42:02.683364+00:00",
+        "exit_code": 0,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T21:42:02.557492+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 125.84858299669577
+      },
+      {
+        "ended_utc": "2026-09-06T21:42:07.611609+00:00",
+        "exit_code": 1,
+        "phase": "start",
+        "started_utc": "2026-09-06T21:42:02.683532+00:00",
+        "timeout_seconds": 900,
+        "wall_ms": 4928.048397996463
+      },
+      {
+        "ended_utc": "2026-09-06T21:42:07.738723+00:00",
+        "exit_code": 0,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T21:42:07.611668+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 127.03645500005223
+      },
+      {
+        "ended_utc": "2026-09-06T21:42:07.966619+00:00",
+        "exit_code": 0,
+        "phase": "container rm",
+        "started_utc": "2026-09-06T21:42:07.738819+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 227.7832120016683
+      },
+      {
+        "ended_utc": "2026-09-06T21:42:08.093727+00:00",
+        "exit_code": 1,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T21:42:07.966664+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 127.04918900271878
+      }
+    ],
+    "ended_utc": "2026-09-06T21:42:08.094644+00:00",
+    "exit_code": 1,
+    "host_after": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        1.1904296875,
+        1.31201171875,
+        1.2568359375
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          173628 kB\nMemAvailable:    1855932 kB\nBuffers:          421152 kB\nCached:          1344592 kB\nSwapCached:            0 kB\nActive:          1233712 kB\nInactive:         743312 kB\nActive(anon):       4364 kB\nInactive(anon):   239616 kB\nActive(file):    1229348 kB\nInactive(file):   503696 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                48 kB\nWriteback:             4 kB\nAnonPages:        239088 kB\nMapped:           235052 kB\nShmem:             23636 kB\nKReclaimable:     138524 kB\nSlab:             192488 kB\nSReclaimable:     138524 kB\nSUnreclaim:        53964 kB\nKernelStack:        3680 kB\nPageTables:         4408 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35100 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=2.76 avg60=3.94 avg300=4.35 total=1319003817\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=0.92 avg60=1.07 avg300=1.39 total=185258232\nfull avg10=0.67 avg60=0.73 avg300=1.00 total=144839460\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+      "stat": "cpu  938764 2623 845918 26233000 43239 0 50760 0 0 0\ncpu0 210096 292 162439 5389742 9724 0 7059 0 0 0\ncpu1 236914 1861 167953 5316053 10465 0 6855 0 0 0\ncpu2 254485 184 166374 5328888 10775 0 6701 0 0 0\ncpu3 213534 209 165766 5365819 10142 0 7743 0 0 0\ncpu4 23733 77 183384 4832496 2130 0 22400 0 0 0\nintr 91961039 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28516 48999 0 657172 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153901808\nbtime 1788671060\nprocesses 231992\nprocs_running 1\nprocs_blocked 0\nsoftirq 37590313 5 16356630 12598 55992 614706 0 440 13248336 0 7301606\n",
+      "utc": "2026-09-06T21:42:08.094664+00:00"
+    },
+    "host_before": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        1.20751953125,
+        1.3173828125,
+        1.25830078125
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          162824 kB\nMemAvailable:    1845036 kB\nBuffers:          421044 kB\nCached:          1344564 kB\nSwapCached:            0 kB\nActive:          1233704 kB\nInactive:         743384 kB\nActive(anon):       4364 kB\nInactive(anon):   239668 kB\nActive(file):    1229340 kB\nInactive(file):   503716 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               204 kB\nWriteback:             0 kB\nAnonPages:        238984 kB\nMapped:           235060 kB\nShmem:             23636 kB\nKReclaimable:     138420 kB\nSlab:             192360 kB\nSReclaimable:     138420 kB\nSUnreclaim:        53940 kB\nKernelStack:        3648 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35116 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=2.31 avg60=3.98 avg300=4.36 total=1318718404\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=0.75 avg60=1.05 avg300=1.39 total=185118138\nfull avg10=0.52 avg60=0.71 avg300=1.00 total=144728934\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+      "stat": "cpu  938344 2623 845698 26230918 43207 0 50725 0 0 0\ncpu0 209824 292 162394 5389506 9712 0 7051 0 0 0\ncpu1 236796 1861 167890 5315683 10453 0 6847 0 0 0\ncpu2 254473 184 166346 5328378 10772 0 6700 0 0 0\ncpu3 213522 209 165729 5365301 10138 0 7742 0 0 0\ncpu4 23727 77 183338 4832049 2130 0 22384 0 0 0\nintr 91949098 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28515 48996 0 656858 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 153889082\nbtime 1788671060\nprocesses 231852\nprocs_running 1\nprocs_blocked 0\nsoftirq 37582568 5 16354499 12596 55989 614419 0 440 13246294 0 7298326\n",
+      "utc": "2026-09-06T21:42:01.985354+00:00"
+    },
+    "instrumented": true,
+    "request_wall_ms": 6108.602587002679,
+    "runner": "independent-docker-plain-pytest",
+    "started_utc": "2026-09-06T21:42:01.985331+00:00",
+    "stderr_tail": "",
+    "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 62 items\n\ntests/test_c_parser.py ................................................. [ 79%]\n............F                                                            [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ntests/test_c_parser.py:3794: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_c_parser.py::test_zerorun_controlled_added_failure - Assert...\n========================= 1 failed, 61 passed in 0.86s =========================\n",
+    "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+    "wall_ms": 5968.33659800177
+  },
+  "order": [
+    "direct",
+    "snapshot",
+    "fast"
+  ],
+  "source_file_sha256": "c619310be782e789d5e8996d6de4a37513bcda0a86254200067756ce06e491d4",
+  "trajectory": 6,
+  "whole_task_exit_agreement": true,
+  "workload": "pycparser"
+}

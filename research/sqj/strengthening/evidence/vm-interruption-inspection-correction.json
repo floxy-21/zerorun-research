@@ -1,0 +1,10 @@
+{
+  "schema": "zerorun.interruption-inspection-correction.v1",
+  "corrects": "vm-interruption-20260906.json",
+  "scope": "Post-crash directory presence is not equivalent to a complete parseable request record.",
+  "completed_original_block_summaries": 21,
+  "interrupted_block": "packaging/trajectory-4",
+  "zero_byte_files": ["request-1/observation.json", "request-1/fresh.json", "request-2/invocation.json"],
+  "correction": "Only request 0 has a complete set of parseable request records. Request 1 has surviving timed-arm files but its observation and fresh invocation receipt are empty. Request 2 has only an empty invocation file. The earlier directory listing labeled request 1 complete based on file names; that is withdrawn. Independent analysis must use actual validated bytes, not that preliminary directory description.",
+  "first_recovery_preflight": "Refused the empty observation JSON before creating a recovery output directory or running tests. Its driver log and original runner version are retained. The corrected recovery planner preserves and explicitly classifies zero-byte records as unavailable, never as passing or failed outcomes."
+}

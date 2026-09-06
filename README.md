@@ -38,13 +38,15 @@ To run the included unit tests, install pytest in the same environment and use a
 
 ```sh
 .venv/bin/python -m pip install pytest==9.0.2
-.venv/bin/python -B -m pytest tests research/sqj/strengthening/tests -q --basetemp=/tmp/zerorun-research-tests-unique
+.venv/bin/python -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp=/tmp/zerorun-research-tests-unique
 # Windows PowerShell, with a new name on every run:
 # .venv\Scripts\python.exe -m pip install pytest==9.0.2
-# .venv\Scripts\python.exe -B -m pytest tests research/sqj/strengthening/tests -q --basetemp="$env:TEMP/zerorun-research-tests-unique"
+# .venv\Scripts\python.exe -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp="$env:TEMP/zerorun-research-tests-unique"
 ```
 
 The temporary directory **must be outside every Git checkout**, on every platform. Some trust tests intentionally create incomplete `.git` fixtures; Git must not discover an ancestor repository. The first staging test attempt used a nested development-repository directory and exposed this harness constraint; its [failure report](research/softwarex/evidence/public-release-tests-1.xml) is retained separately from the corrected-location run. On Windows, use a fresh absolute path under a non-repository temporary directory. POSIX permission checks require a non-root Linux user and are explicitly skipped when the platform cannot express the tested behavior. The included tests are a selected research/runtime set, not a claim that every development-repository test is included.
+
+The `research/softwarex/tests` directory additionally checks publication evidence bindings and archive construction. Its bounded test records, including prior failed attempts and their environment explanations, are retained under `research/softwarex/evidence` and `research/softwarex/generated`; these later publication checks are separate from the earlier 465-pass public-layout regression run.
 
 `research/sqj/REEXECUTION.md` documents fresh container experiments separately. Those procedures acquire pinned public dependencies and execute upstream test code, require a suitable isolated laboratory, and create **new** evidence; they are not needed to inspect the recorded data. Preserve the original evidence when rerunning. Balanced short-subject replication is described in `research/sqj/strengthening/PROTOCOL.md`; any subsequently included state-rejoin experiment is a separately labeled bounded example, not a replay of the sampled AI cohort.
 
@@ -63,6 +65,14 @@ The controlled experiments measure complete request costs and compare fresh outc
 The separate public AI-trace cohort contains 128 selected episodes and 122 analyzable episodes, with six exclusions retained. All 120 exact-command repeat pairs have intervening barriers. These observations motivate explicit state validation; they are **not measured cache hits, AI speedups, or demonstrated reuse eligibility**. The ten-episode parser pilot and the first rate-limited acquisition attempt remain separate and preserved.
 
 There are no measured external users, commercial deployments, or established market-demand results in this release. Its contribution is a reusable tool and evaluation artifact with explicit limitations, not a new general caching algorithm or a claim of journal acceptance.
+
+## Submission archive provenance
+
+The final submission files, when present under `output/submission/`, are assembled in two stages. First, the checked code/evidence/manuscript inventory is frozen and used to build `SoftwareX_source.zip` and `ZeroRun_SoftwareX_reviewer.zip`. Each archive contains its own exact member inventory; the reviewer archive also preserves the **pre-archive** `PUBLIC_RELEASE_MANIFEST.json`. The artifact-build receipt identifies the input inventory and the resulting archive hashes.
+
+Second, the public release is refreshed to include those completed archives and their receipt. Its newer root manifest hashes the archive bytes, so its hash intentionally differs from the earlier manifest sealed inside the reviewer archive. The reviewer archive does not contain itself, the subsequent enclosing manifest, or the later artifact receipt. This acyclic binding permits independent verification without a circular self-hash. Initial-publication and final-readiness receipts describe their own observed stage; they do not establish author approval or journal acceptance.
+
+The author-facing cover letter, highlights, declaration checklist, and final manuscript must still be reviewed and approved by Jishan Kapoor. Artifact preparation does not submit the paper, select a publisher agreement, or authorize a payment.
 
 ## License and attribution
 

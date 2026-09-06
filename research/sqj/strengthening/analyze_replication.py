@@ -40,6 +40,14 @@ def same(actual, expected, message):
     require(canonical(actual) == canonical(expected), message)
 
 
+def receipt_label(path, sqj, input_root):
+    """Stable artifact labels also support evidence outside the source tree."""
+    resolved = path.resolve()
+    if resolved.is_relative_to(sqj.resolve()):
+        return "research/sqj/" + resolved.relative_to(sqj.resolve()).as_posix()
+    return "external-evidence/" + resolved.relative_to(input_root.resolve()).as_posix()
+
+
 def expected_schedule():
     def rank(namespace, values):
         return hashlib.sha256("\0".join((SEED, namespace, *values)).encode()).hexdigest()
@@ -143,7 +151,9 @@ def validate_timing(receipt, arm):
             duration = numeric(phase["wall_ms"])
             total += duration
             by_phase[phase["phase"]] += duration
-            same(phase["timeout_seconds"], 900 if phase["phase"] == "start" else 60, "phase timeout differs")
+            # The hash-bound plain helper uses 30-second Docker control calls;
+            # 900 seconds applies only to its attached test execution.
+            same(phase["timeout_seconds"], 900 if phase["phase"] == "start" else 30, "phase timeout differs")
             require(type(phase["exit_code"]) is int and "error_type" not in phase, "failed subprocess hidden in successful arm")
         require(total <= outer + 0.1, "lifecycle phase sum exceeds outer request clock")
         same(phases[3]["exit_code"], receipt["exit_code"], "docker start and pytest exit differ")
@@ -298,11 +308,12 @@ def inspect_workload(directory, item, scheduled, protocol, sqj=SQJ):
                             validate_timing(receipt, "oracle" if arm == "fresh" else arm)
                         else:
                             numeric(receipt["request_wall_ms"])
-                        partial_receipts.append({"path": str(receipt_path), "sha256": digest(receipt_path),
+                        receipt_reference = receipt_label(receipt_path, sqj, directory.parent)
+                        partial_receipts.append({"path": receipt_reference, "sha256": digest(receipt_path),
                             "arm": "oracle" if arm == "fresh" else arm, "completed": receipt["completed"],
                             "request_wall_ms": receipt["request_wall_ms"], "error_type": receipt.get("error_type")})
                         if receipt.get("completed") is False:
-                            errors.append({"path": str(receipt_path), "receipt": receipt})
+                            errors.append({"path": receipt_reference, "receipt": receipt})
                 continue
             row = read_json(request / "observation.json")
             same(row["index"], index, "observation directory/index mismatch")
@@ -332,7 +343,7 @@ def inspect_workload(directory, item, scheduled, protocol, sqj=SQJ):
                 require(complete, "block falsely claims completion")
             else:
                 require(block_receipt["completed"] is False and block_receipt.get("retry_attempted") is False, "invalid failed block/retry receipt")
-                errors.append({"path": str(destination / "block-summary.json"), "receipt": block_receipt})
+                errors.append({"path": receipt_label(destination / "block-summary.json", sqj, directory.parent), "receipt": block_receipt})
             receipts.append(block_receipt)
         else:
             missing.append(destination.name + "/block-summary.json")
@@ -439,7 +450,7 @@ def analyze(directory, engine_archive, sqj=SQJ):
         if failure_path.exists():
             failure = read_json(failure_path)
             require(failure["completed"] is False and failure["retry_attempted"] is False and failure["workload"] == item[0], "invalid workload failure receipt")
-            workload_failures.append({"path": str(failure_path), "receipt": failure})
+            workload_failures.append({"path": receipt_label(failure_path, sqj, directory), "receipt": failure})
             require(not result["completed"], "completed workload also has a failure receipt")
         results.append(result)
     completed = campaign is not None and all(row["completed"] for row in results) and not workload_failures

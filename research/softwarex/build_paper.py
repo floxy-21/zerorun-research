@@ -17,6 +17,7 @@ from research.sqj.build_submission import engineering_evidence
 from research.sqj.analyze_current_revision import analyze as revision_analysis
 from research.sqj.strengthening.validate_traces import build_summary as trace_analysis
 from research.sqj.strengthening.analyze_replication import analyze as replication_analysis
+from research.sqj.strengthening.analyze_recovered_replication import analyze as recovered_replication_analysis
 from research.sqj.strengthening.analyze_state_rejoin import analyze as state_analysis
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -96,16 +97,26 @@ def build(preview=False):
         require(publication and publication["public_verified"] is True and publication["repository_url"] == PUBLIC, "verified public release required")
         commit = publication["code_commit"]
         require(re.fullmatch(r"[0-9a-f]{40}", commit), "invalid pinned public source commit")
-        replication = replication_analysis(EVIDENCE / "short-randomized-replication-v1", SQJ / "source-final")
+        recovered = (EVIDENCE / "short-randomized-recovery-v1").is_dir()
+        require(recovered, "this final manuscript requires the explicit retained recovery evidence")
+        replication = (recovered_replication_analysis(EVIDENCE / "short-randomized-replication-v1",
+            EVIDENCE / "short-randomized-recovery-v1", SQJ / "source-final") if recovered else
+            replication_analysis(EVIDENCE / "short-randomized-replication-v1", SQJ / "source-final"))
         require(replication["completed"], "incomplete replication cannot become final paper")
         compact = replication["paper_summary"]["subjects"]
-        abstract = "The balanced replication reconciles 168 fresh comparisons and 96 reused successes across four fixed library targets."
+        abstract = "The four-target study, completed through an explicit post-crash recovery, reconciles 168 fresh comparisons and 96 reused successes."
         result = (
-            "All 168 planned requests (24 complete blocks) agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. "
-            "Table~\\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No block or outlying invocation is dropped. "
-            "The raw record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension.")
-        table = "\n".join(
-            f"{r['workload']} & {r['direct_to_fast_ratio']:.2f} & {r['setup_inclusive_direct_to_fast_ratio']:.2f} & {r['block_direct_to_fast_range'][0]:.2f}--{r['block_direct_to_fast_range'][1]:.2f} & {r['median_hit_latency_reduction_percent_vs_snapshot']:.1f} \\\\" for r in compact)
+            "Across 24 completed planned blocks, all 168 requests agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. "
+            "Table~\\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No completed block or outlying invocation within those blocks is dropped; interrupted-attempt costs are reported separately. "
+            "The complete-block record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension. "
+            "A VirtualBox host assertion aborted the VM after 21 complete blocks and part of Packaging block four. A separately recorded amendment reran only the unfinished preselected blocks four through six from independent initial states, using the unchanged frozen driver. The original protocol, partial invocation files, zero-byte crash remnants, failed recovery preflight, and surviving timings remain available. This is recovered coverage of the plan, not uninterrupted completion of its original no-retry protocol. Packaging's unflushed original environment-setup total is unavailable; its setup-inclusive ratio is therefore not reported. "
+            f"The interrupted attempt adds {replication['additional_interrupted_complete_requests']} complete request, {replication['additional_incomplete_requests']} partially recorded request, and an unflushed invocation-only directory with no outcomes. Its surviving arm costs are retained separately; including those costs changes Packaging's direct/optimized ratio to {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}.")
+        table_rows = []
+        for r in compact:
+            setup = r['setup_inclusive_direct_to_fast_ratio']
+            setup_text = "---" if setup is None else f"{setup:.2f}"
+            table_rows.append(f"{r['workload']} & {r['direct_to_fast_ratio']:.2f} & {setup_text} & {r['block_direct_to_fast_range'][0]:.2f}--{r['block_direct_to_fast_range'][1]:.2f} & {r['median_hit_latency_reduction_percent_vs_snapshot']:.1f} \\\\")
+        table = "\n".join(table_rows)
     state_text = "An exact inverse-edit candidate is documented separately as a reconstruction plan; it is not counted as an observed cache hit."
     state_binding = None
     state_path = HERE / "paper/state-rejoin.tex"
@@ -114,7 +125,9 @@ def build(preview=False):
         review = load(HERE / "generated/state-rejoin-review.json")
         require(review["text_sha256"] == digest(state_path) and review["verified"] is True, "state reconstruction review mismatch")
         analysis_path = EVIDENCE / "state-rejoin-analysis-v1.json"
-        verified_state = state_analysis(EVIDENCE / "agent-state-rejoin-v1", evidence=EVIDENCE,
+        case_directory = review.get("case_directory", "agent-state-rejoin-v1")
+        require(case_directory in {"agent-state-rejoin-v1", "agent-state-rejoin-v2", "agent-state-rejoin-v3"}, "unsupported state case directory")
+        verified_state = state_analysis(EVIDENCE / case_directory, evidence=EVIDENCE,
             replication_directory=EVIDENCE / "short-randomized-replication-v1", engine_archive=SQJ / "source-final")
         require(verified_state["completed"] is True and verified_state == load(analysis_path), "state analysis incomplete or stale")
         require(review["analysis_sha256"] == digest(analysis_path), "state review analysis binding differs")

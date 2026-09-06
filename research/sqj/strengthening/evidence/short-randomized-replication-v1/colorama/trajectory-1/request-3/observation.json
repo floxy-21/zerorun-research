@@ -1,0 +1,727 @@
+{
+  "arms": {
+    "direct": {
+      "completed": true,
+      "docker_subprocess_phases": [
+        {
+          "ended_utc": "2026-09-06T21:45:45.186357+00:00",
+          "exit_code": 0,
+          "phase": "container ls",
+          "started_utc": "2026-09-06T21:45:45.057593+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 128.7304249999579
+        },
+        {
+          "ended_utc": "2026-09-06T21:45:45.775197+00:00",
+          "exit_code": 0,
+          "phase": "create",
+          "started_utc": "2026-09-06T21:45:45.187161+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 587.9818309986149
+        },
+        {
+          "ended_utc": "2026-09-06T21:45:45.907023+00:00",
+          "exit_code": 0,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T21:45:45.775277+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 131.7305570046301
+        },
+        {
+          "ended_utc": "2026-09-06T21:45:50.637041+00:00",
+          "exit_code": 1,
+          "phase": "start",
+          "started_utc": "2026-09-06T21:45:45.907122+00:00",
+          "timeout_seconds": 900,
+          "wall_ms": 4729.9029839996365
+        },
+        {
+          "ended_utc": "2026-09-06T21:45:50.759496+00:00",
+          "exit_code": 0,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T21:45:50.637080+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 122.40022100013448
+        },
+        {
+          "ended_utc": "2026-09-06T21:45:50.931771+00:00",
+          "exit_code": 0,
+          "phase": "container rm",
+          "started_utc": "2026-09-06T21:45:50.759601+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 172.11985199537594
+        },
+        {
+          "ended_utc": "2026-09-06T21:45:51.004794+00:00",
+          "exit_code": 1,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T21:45:50.931810+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 72.9723609983921
+        }
+      ],
+      "ended_utc": "2026-09-06T21:45:51.004935+00:00",
+      "exit_code": 1,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.109375,
+          1.2314453125,
+          1.2421875
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          161352 kB\nMemAvailable:    1853268 kB\nBuffers:          426720 kB\nCached:          1348592 kB\nSwapCached:            0 kB\nActive:          1238856 kB\nInactive:         746684 kB\nActive(anon):       4364 kB\nInactive(anon):   238564 kB\nActive(file):    1234492 kB\nInactive(file):   508120 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                48 kB\nWriteback:             0 kB\nAnonPages:        237776 kB\nMapped:           235576 kB\nShmem:             23636 kB\nKReclaimable:     138568 kB\nSlab:             192620 kB\nSReclaimable:     138568 kB\nSUnreclaim:        54052 kB\nKernelStack:        3704 kB\nPageTables:         4368 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35100 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.24 avg60=5.09 avg300=4.95 total=1330057580\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=1.09 avg60=1.11 avg300=1.29 total=188562258\nfull avg10=0.72 avg60=0.79 avg300=0.94 total=147378041\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  951334 2623 852775 26311951 44096 0 51954 0 0 0\ncpu0 212984 292 163808 5406060 9922 0 7222 0 0 0\ncpu1 239827 1861 169372 5332287 10685 0 7010 0 0 0\ncpu2 258558 184 167782 5344163 10946 0 6829 0 0 0\ncpu3 215824 209 167074 5382857 10348 0 7888 0 0 0\ncpu4 24140 77 184737 4846582 2194 0 23004 0 0 0\nintr 92299782 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28626 49331 0 666758 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154210744\nbtime 1788671060\nprocesses 235097\nprocs_running 1\nprocs_blocked 0\nsoftirq 37821431 5 16422515 12664 56505 623653 0 440 13306170 0 7399479\n",
+        "utc": "2026-09-06T21:45:51.004944+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.119140625,
+          1.23583984375,
+          1.24365234375
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          158832 kB\nMemAvailable:    1850728 kB\nBuffers:          426632 kB\nCached:          1348596 kB\nSwapCached:            0 kB\nActive:          1238772 kB\nInactive:         746220 kB\nActive(anon):       4360 kB\nInactive(anon):   238104 kB\nActive(file):    1234412 kB\nInactive(file):   508116 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               200 kB\nWriteback:             8 kB\nAnonPages:        237416 kB\nMapped:           235612 kB\nShmem:             23636 kB\nKReclaimable:     138632 kB\nSlab:             192624 kB\nSReclaimable:     138632 kB\nSUnreclaim:        53992 kB\nKernelStack:        3680 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35116 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.14 avg60=5.25 avg300=4.98 total=1329809517\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.99 avg60=1.09 avg300=1.29 total=188463619\nfull avg10=0.55 avg60=0.77 avg300=0.94 total=147304587\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  950920 2623 852557 26309922 44076 0 51914 0 0 0\ncpu0 212618 292 163760 5405915 9917 0 7218 0 0 0\ncpu1 239817 1861 169331 5331803 10682 0 7004 0 0 0\ncpu2 258544 184 167741 5343670 10944 0 6824 0 0 0\ncpu3 215810 209 167042 5382372 10342 0 7883 0 0 0\ncpu4 24130 77 184681 4846160 2188 0 22982 0 0 0\nintr 92287858 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28624 49328 0 666430 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154198350\nbtime 1788671060\nprocesses 234956\nprocs_running 2\nprocs_blocked 0\nsoftirq 37813688 5 16420433 12662 56502 623357 0 440 13304137 0 7396152\n",
+        "utc": "2026-09-06T21:45:45.051931+00:00"
+      },
+      "instrumented": false,
+      "request_wall_ms": 5951.557583997783,
+      "runner": "independent-docker-plain-pytest",
+      "started_utc": "2026-09-06T21:45:45.051902+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.63s ===================\n",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "wall_ms": 5818.07091999508
+    },
+    "fast": {
+      "cache_key": "775bda4a52242b7d83e7fcb1d2f5b6156a0ce1ace55c2cd366d819eada60acee",
+      "completed": true,
+      "docker_subprocess_phases": [],
+      "ended_utc": "2026-09-06T21:45:34.068900+00:00",
+      "execution_ms": 6254.929,
+      "exit_code": 1,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          0.95068359375,
+          1.20947265625,
+          1.2353515625
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          166592 kB\nMemAvailable:    1858684 kB\nBuffers:          426540 kB\nCached:          1348704 kB\nSwapCached:            0 kB\nActive:          1238820 kB\nInactive:         745340 kB\nActive(anon):       4360 kB\nInactive(anon):   237256 kB\nActive(file):    1234460 kB\nInactive(file):   508084 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               352 kB\nWriteback:             0 kB\nAnonPages:        236568 kB\nMapped:           235552 kB\nShmem:             23636 kB\nKReclaimable:     138812 kB\nSlab:             192812 kB\nSReclaimable:     138812 kB\nSUnreclaim:        54000 kB\nKernelStack:        3680 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35116 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=4.11 avg60=5.85 avg300=5.09 total=1329505298\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.66 avg60=1.11 avg300=1.31 total=188346511\nfull avg10=0.43 avg60=0.83 avg300=0.96 total=147223189\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  950103 2623 852214 26306023 44048 0 51872 0 0 0\ncpu0 212488 292 163692 5405069 9911 0 7215 0 0 0\ncpu1 239168 1861 169185 5331560 10678 0 7001 0 0 0\ncpu2 258533 184 167704 5342714 10938 0 6821 0 0 0\ncpu3 215792 209 166999 5381393 10334 0 7876 0 0 0\ncpu4 24121 77 184633 4845286 2185 0 22958 0 0 0\nintr 92271203 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28617 49322 0 666084 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154183700\nbtime 1788671060\nprocesses 234826\nprocs_running 1\nprocs_blocked 0\nsoftirq 37801644 5 16416703 12659 56496 623032 0 440 13301290 0 7391019\n",
+        "utc": "2026-09-06T21:45:34.068926+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.0234375,
+          1.23828125,
+          1.2451171875
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          171264 kB\nMemAvailable:    1863164 kB\nBuffers:          426416 kB\nCached:          1348568 kB\nSwapCached:            0 kB\nActive:          1238560 kB\nInactive:         745220 kB\nActive(anon):       4400 kB\nInactive(anon):   237188 kB\nActive(file):    1234160 kB\nInactive(file):   508032 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               112 kB\nWriteback:             0 kB\nAnonPages:        236488 kB\nMapped:           235560 kB\nShmem:             23728 kB\nKReclaimable:     138972 kB\nSlab:             192876 kB\nSReclaimable:     138972 kB\nSUnreclaim:        53904 kB\nKernelStack:        3736 kB\nPageTables:         4392 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35148 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=8.29 avg60=6.56 avg300=5.19 total=1329216007\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.99 avg60=1.25 avg300=1.34 total=188251171\nfull avg10=0.65 avg60=0.94 avg300=0.99 total=147148672\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  949510 2623 851934 26301926 44021 0 51830 0 0 0\ncpu0 212475 292 163645 5404061 9905 0 7210 0 0 0\ncpu1 239112 1861 169125 5330597 10671 0 7000 0 0 0\ncpu2 258058 184 167632 5342180 10932 0 6815 0 0 0\ncpu3 215755 209 166954 5380382 10330 0 7873 0 0 0\ncpu4 24108 77 184576 4844704 2181 0 22932 0 0 0\nintr 92254971 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28611 49317 0 665730 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154168841\nbtime 1788671060\nprocesses 234686\nprocs_running 1\nprocs_blocked 0\nsoftirq 37792108 5 16414020 12656 56491 622708 0 440 13298927 0 7386861\n",
+        "utc": "2026-09-06T21:45:22.638575+00:00"
+      },
+      "phase_ms": {
+        "cache_lookup": 1.433,
+        "docker_execution": 6260.318,
+        "environment": 0.019,
+        "event_append": 20.554,
+        "fingerprint_final": 443.281,
+        "fingerprint_initial": 721.456,
+        "lock_acquire": 2.689,
+        "runtime_inspect_initial": 233.484,
+        "snapshot_cleanup": 57.553,
+        "snapshot_prepare": 3139.925
+      },
+      "reason": "fresh hermetic task failed; no reusable result was stored",
+      "request_wall_ms": 11429.461835999973,
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "started_utc": "2026-09-06T21:45:22.638532+00:00",
+      "status": "MISS_FAILED",
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 1.08s ===================\n",
+      "task": "replication-colorama-1-fast",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "verified": false,
+      "wall_ms": 11408.727
+    },
+    "snapshot": {
+      "cache_key": "3003c61fc0dd3f689823f199bda5bcf80840050442b4575525cbefee2a79d654",
+      "completed": true,
+      "docker_subprocess_phases": [],
+      "ended_utc": "2026-09-06T21:45:45.050704+00:00",
+      "execution_ms": 5471.038,
+      "exit_code": 1,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.119140625,
+          1.23583984375,
+          1.24365234375
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          158832 kB\nMemAvailable:    1850728 kB\nBuffers:          426632 kB\nCached:          1348596 kB\nSwapCached:            0 kB\nActive:          1238772 kB\nInactive:         746220 kB\nActive(anon):       4360 kB\nInactive(anon):   238104 kB\nActive(file):    1234412 kB\nInactive(file):   508116 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               200 kB\nWriteback:             8 kB\nAnonPages:        237416 kB\nMapped:           235612 kB\nShmem:             23636 kB\nKReclaimable:     138632 kB\nSlab:             192624 kB\nSReclaimable:     138632 kB\nSUnreclaim:        53992 kB\nKernelStack:        3680 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35116 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.14 avg60=5.25 avg300=4.98 total=1329809517\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.99 avg60=1.09 avg300=1.29 total=188463619\nfull avg10=0.55 avg60=0.77 avg300=0.94 total=147304587\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  950920 2623 852557 26309921 44076 0 51914 0 0 0\ncpu0 212617 292 163760 5405915 9917 0 7218 0 0 0\ncpu1 239817 1861 169331 5331803 10682 0 7004 0 0 0\ncpu2 258544 184 167741 5343670 10944 0 6824 0 0 0\ncpu3 215810 209 167042 5382371 10342 0 7883 0 0 0\ncpu4 24130 77 184681 4846160 2188 0 22982 0 0 0\nintr 92287855 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28624 49328 0 666430 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154198350\nbtime 1788671060\nprocesses 234956\nprocs_running 1\nprocs_blocked 0\nsoftirq 37813686 5 16420432 12662 56502 623357 0 440 13304137 0 7396151\n",
+        "utc": "2026-09-06T21:45:45.050723+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          0.95068359375,
+          1.20947265625,
+          1.2353515625
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          166592 kB\nMemAvailable:    1858684 kB\nBuffers:          426540 kB\nCached:          1348704 kB\nSwapCached:            0 kB\nActive:          1238820 kB\nInactive:         745340 kB\nActive(anon):       4360 kB\nInactive(anon):   237256 kB\nActive(file):    1234460 kB\nInactive(file):   508084 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               352 kB\nWriteback:             0 kB\nAnonPages:        236568 kB\nMapped:           235552 kB\nShmem:             23636 kB\nKReclaimable:     138812 kB\nSlab:             192812 kB\nSReclaimable:     138812 kB\nSUnreclaim:        54000 kB\nKernelStack:        3680 kB\nPageTables:         4348 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35116 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=4.11 avg60=5.85 avg300=5.09 total=1329505298\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.66 avg60=1.11 avg300=1.31 total=188346511\nfull avg10=0.43 avg60=0.83 avg300=0.96 total=147223189\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  950103 2623 852214 26306024 44048 0 51872 0 0 0\ncpu0 212488 292 163692 5405069 9911 0 7215 0 0 0\ncpu1 239168 1861 169185 5331560 10678 0 7001 0 0 0\ncpu2 258533 184 167704 5342715 10938 0 6821 0 0 0\ncpu3 215792 209 166999 5381393 10334 0 7876 0 0 0\ncpu4 24121 77 184633 4845286 2185 0 22958 0 0 0\nintr 92271203 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28617 49322 0 666084 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154183700\nbtime 1788671060\nprocesses 234826\nprocs_running 1\nprocs_blocked 0\nsoftirq 37801644 5 16416703 12659 56496 623032 0 440 13301290 0 7391019\n",
+        "utc": "2026-09-06T21:45:34.070298+00:00"
+      },
+      "phase_ms": {
+        "cache_lookup": 1.49,
+        "docker_execution": 5476.234,
+        "environment": 0.027,
+        "event_append": 22.988,
+        "fingerprint_final": 765.93,
+        "fingerprint_initial": 721.41,
+        "lock_acquire": 4.326,
+        "runtime_inspect_initial": 274.517,
+        "snapshot_cleanup": 83.531,
+        "snapshot_prepare": 3564.494
+      },
+      "reason": "fresh hermetic task failed; no reusable result was stored",
+      "request_wall_ms": 10979.884464999486,
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "started_utc": "2026-09-06T21:45:34.070276+00:00",
+      "status": "MISS_FAILED",
+      "stderr": "",
+      "stdout": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.77s ===================\n",
+      "task": "replication-colorama-1-snapshot",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "verified": false,
+      "wall_ms": 10955.976
+    }
+  },
+  "cache_behavior_expected": true,
+  "index": 3,
+  "label": "failing-test-added",
+  "oracle": {
+    "capture": {
+      "all_nodes_non_failing": false,
+      "complete_per_node_outcomes": true,
+      "exit_code": 1,
+      "failing_nodeids": [
+        "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure"
+      ],
+      "nodeid_sha256": "7fc6d5684918165234ab6130329fd6038f943a36ec8d28c7e9c10d4d990541b5",
+      "nodeids": [
+        "colorama/tests/ansi_test.py::AnsiTest::testBackAttributes",
+        "colorama/tests/ansi_test.py::AnsiTest::testForeAttributes",
+        "colorama/tests/ansi_test.py::AnsiTest::testStyleAttributes",
+        "colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesContext",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesWrite",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testIsAProxy",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testProxyNoContextManager",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_closed_stream",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_detached_stream",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testCallWin32UsesLookup",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testExtractParams",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testInit",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsFalseOffWindows",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsTrueOnWindows",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertCallsWin32WithParamsAndCommand",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertSkipsEmptySnippets",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertStripsAllValidAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertWritesPlainText",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAutoresets",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteDoesNotStripAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteStripsAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_native_windows_ansi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_osc_codes",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_reset_all_shouldnt_raise_on_closed_orig_stdout",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_closed_orig_stdout",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_missing_closed_attr",
+        "colorama/tests/initialise_test.py::InitTest::testAtexitRegisteredOnlyOnce",
+        "colorama/tests/initialise_test.py::InitTest::testAutoResetChangeable",
+        "colorama/tests/initialise_test.py::InitTest::testAutoResetPassedOn",
+        "colorama/tests/initialise_test.py::InitTest::testInitAutoresetOnWrapsOnAllPlatforms",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapIfNone",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnEmulatedWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnNonWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapOffDoesntWrapOnWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapOffIncompatibleWithAutoresetOn",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapsOnWindows",
+        "colorama/tests/initialise_test.py::JustFixWindowsConsoleTest::testJustFixWindowsConsole",
+        "colorama/tests/isatty_test.py::IsattyTest::test_TTY",
+        "colorama/tests/isatty_test.py::IsattyTest::test_nonTTY",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharm",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNonTTYOverride",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNoneOverride",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmStreamWrapped",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmTTYOverride",
+        "colorama/tests/winterm_test.py::WinTermTest::testBack",
+        "colorama/tests/winterm_test.py::WinTermTest::testFore",
+        "colorama/tests/winterm_test.py::WinTermTest::testGetAttrs",
+        "colorama/tests/winterm_test.py::WinTermTest::testInit",
+        "colorama/tests/winterm_test.py::WinTermTest::testResetAll",
+        "colorama/tests/winterm_test.py::WinTermTest::testSetConsole",
+        "colorama/tests/winterm_test.py::WinTermTest::testSetConsoleOnStderr",
+        "colorama/tests/winterm_test.py::WinTermTest::testStyle"
+      ],
+      "outcomes": [
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "failed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        }
+      ],
+      "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+    },
+    "completed": true,
+    "docker_subprocess_phases": [
+      {
+        "ended_utc": "2026-09-06T21:45:51.086477+00:00",
+        "exit_code": 0,
+        "phase": "container ls",
+        "started_utc": "2026-09-06T21:45:51.011775+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 74.66758500231663
+      },
+      {
+        "ended_utc": "2026-09-06T21:45:51.520278+00:00",
+        "exit_code": 0,
+        "phase": "create",
+        "started_utc": "2026-09-06T21:45:51.087054+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 433.2091370015405
+      },
+      {
+        "ended_utc": "2026-09-06T21:45:51.643098+00:00",
+        "exit_code": 0,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T21:45:51.520342+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 122.74276200332679
+      },
+      {
+        "ended_utc": "2026-09-06T21:45:56.822035+00:00",
+        "exit_code": 1,
+        "phase": "start",
+        "started_utc": "2026-09-06T21:45:51.643206+00:00",
+        "timeout_seconds": 900,
+        "wall_ms": 5178.811770994798
+      },
+      {
+        "ended_utc": "2026-09-06T21:45:56.948514+00:00",
+        "exit_code": 0,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T21:45:56.822080+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 126.41863199678482
+      },
+      {
+        "ended_utc": "2026-09-06T21:45:57.175739+00:00",
+        "exit_code": 0,
+        "phase": "container rm",
+        "started_utc": "2026-09-06T21:45:56.948624+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 227.093387999048
+      },
+      {
+        "ended_utc": "2026-09-06T21:45:57.358067+00:00",
+        "exit_code": 1,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T21:45:57.175887+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 182.0505050054635
+      }
+    ],
+    "ended_utc": "2026-09-06T21:45:57.359300+00:00",
+    "exit_code": 1,
+    "host_after": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        1.1005859375,
+        1.2275390625,
+        1.24072265625
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          164068 kB\nMemAvailable:    1856292 kB\nBuffers:          426820 kB\nCached:          1348624 kB\nSwapCached:            0 kB\nActive:          1238956 kB\nInactive:         747068 kB\nActive(anon):       4356 kB\nInactive(anon):   238924 kB\nActive(file):    1234600 kB\nInactive(file):   508144 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                 4 kB\nWriteback:             0 kB\nAnonPages:        238212 kB\nMapped:           235688 kB\nShmem:             23636 kB\nKReclaimable:     138744 kB\nSlab:             192824 kB\nSReclaimable:     138744 kB\nSUnreclaim:        54080 kB\nKernelStack:        3720 kB\nPageTables:         4284 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140920 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35164 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=3.35 avg60=4.95 avg300=4.93 total=1330336045\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=1.38 avg60=1.17 avg300=1.30 total=188713682\nfull avg10=0.70 avg60=0.78 avg300=0.93 total=147454758\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+      "stat": "cpu  951784 2623 853000 26314133 44119 0 51991 0 0 0\ncpu0 212995 292 163843 5406602 9923 0 7225 0 0 0\ncpu1 240152 1861 169429 5332488 10692 0 7014 0 0 0\ncpu2 258567 184 167826 5344695 10951 0 6832 0 0 0\ncpu3 215917 209 167116 5383301 10355 0 7892 0 0 0\ncpu4 24151 77 184784 4847044 2196 0 23026 0 0 0\nintr 92311422 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28629 49336 0 667081 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154223566\nbtime 1788671060\nprocesses 235242\nprocs_running 1\nprocs_blocked 0\nsoftirq 37828701 5 16424475 12666 56510 623939 0 440 13308175 0 7402491\n",
+      "utc": "2026-09-06T21:45:57.359325+00:00"
+    },
+    "host_before": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        1.109375,
+        1.2314453125,
+        1.2421875
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          161352 kB\nMemAvailable:    1853268 kB\nBuffers:          426720 kB\nCached:          1348592 kB\nSwapCached:            0 kB\nActive:          1238856 kB\nInactive:         746684 kB\nActive(anon):       4364 kB\nInactive(anon):   238564 kB\nActive(file):    1234492 kB\nInactive(file):   508120 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                48 kB\nWriteback:             0 kB\nAnonPages:        237776 kB\nMapped:           235576 kB\nShmem:             23636 kB\nKReclaimable:     138568 kB\nSlab:             192620 kB\nSReclaimable:     138568 kB\nSUnreclaim:        54052 kB\nKernelStack:        3704 kB\nPageTables:         4368 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1140904 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35100 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=3.24 avg60=5.09 avg300=4.95 total=1330057580\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=1.09 avg60=1.11 avg300=1.29 total=188562258\nfull avg10=0.72 avg60=0.79 avg300=0.94 total=147378041\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+      "stat": "cpu  951334 2623 852775 26311952 44096 0 51954 0 0 0\ncpu0 212984 292 163808 5406060 9922 0 7222 0 0 0\ncpu1 239827 1861 169372 5332287 10685 0 7010 0 0 0\ncpu2 258558 184 167782 5344164 10946 0 6829 0 0 0\ncpu3 215824 209 167074 5382857 10348 0 7888 0 0 0\ncpu4 24140 77 184737 4846582 2194 0 23004 0 0 0\nintr 92299782 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 28626 49331 0 666758 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 154210744\nbtime 1788671060\nprocesses 235097\nprocs_running 1\nprocs_blocked 0\nsoftirq 37821431 5 16422515 12664 56505 623653 0 440 13306170 0 7399479\n",
+      "utc": "2026-09-06T21:45:51.006371+00:00"
+    },
+    "instrumented": true,
+    "request_wall_ms": 6352.382658995339,
+    "runner": "independent-docker-plain-pytest",
+    "started_utc": "2026-09-06T21:45:51.006347+00:00",
+    "stderr_tail": "",
+    "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 53 items\n\ncolorama/tests/ansi_test.py ...F                                         [  7%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\ncolorama/tests/ansi_test.py:80: AssertionError\n=========================== short test summary info ============================\nFAILED colorama/tests/ansi_test.py::test_zerorun_controlled_added_failure - A...\n=================== 1 failed, 38 passed, 14 skipped in 0.94s ===================\n",
+    "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+    "wall_ms": 6271.262247006234
+  },
+  "order": [
+    "fast",
+    "snapshot",
+    "direct"
+  ],
+  "source_file_sha256": "5cfb2f81563e8045657da972b39975a9643e41fa6c706a6027c0e7cfdf835b1c",
+  "trajectory": 1,
+  "whole_task_exit_agreement": true,
+  "workload": "colorama"
+}

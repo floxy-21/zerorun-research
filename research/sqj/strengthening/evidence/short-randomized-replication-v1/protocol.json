@@ -1,0 +1,782 @@
+{
+  "cache_authentication_private_fixture_only": true,
+  "cache_isolation": "independent worktree/store per block; different task names and action keys per ZeroRun arm",
+  "correctness_policy": "fresh full-target capture after each complete three-arm request; stop workload on any material mismatch",
+  "docker_resource_args": [
+    "--cpus",
+    "2",
+    "--memory",
+    "2g",
+    "--memory-swap",
+    "2g",
+    "--pids-limit",
+    "512"
+  ],
+  "engine_identity": {
+    "engine_python_source": {
+      "file_count": 36,
+      "files": [
+        {
+          "path": "zerorun/__init__.py",
+          "sha256": "5227fb2b505f9a0f36fd3cfa4482bc07d1dab373cbd36a84f3c36967ebf9a1b2",
+          "size": 55
+        },
+        {
+          "path": "zerorun/__main__.py",
+          "sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7",
+          "size": 79
+        },
+        {
+          "path": "zerorun/api.py",
+          "sha256": "49e7a5a35333ed2c5ae7b695491f307ad21619cbafcd523b773a04d84518ea25",
+          "size": 2482
+        },
+        {
+          "path": "zerorun/bounded_json.py",
+          "sha256": "8dd6eb67ec59ce01462ea34902f697ba6eebb980dfccad18c8cafaed4472fd80",
+          "size": 6454
+        },
+        {
+          "path": "zerorun/cli.py",
+          "sha256": "7d8a6f52bf4c97394eb9400f8dc593d7d25cc1119347e3e4898395155807730a",
+          "size": 17782
+        },
+        {
+          "path": "zerorun/codex.py",
+          "sha256": "594a0266a5ecb4bc696df2fc3cf3a1947d6868c10a0a3164aa87622549780965",
+          "size": 30087
+        },
+        {
+          "path": "zerorun/fingerprint.py",
+          "sha256": "cf061b689fc209a989ad1221f36bfa4ce8a53c52280e4ad9bf186fc1d849e9b7",
+          "size": 51742
+        },
+        {
+          "path": "zerorun/hermetic.py",
+          "sha256": "cc4d14a97681b8a4e1de1369ff23f5b25c34fbbf62189e827d0df4578a5b0c07",
+          "size": 20263
+        },
+        {
+          "path": "zerorun/hermetic_batch.py",
+          "sha256": "b7bdce8db63ca12126f92119549c7920754544e2f2f50739e7ea725f14d3cb12",
+          "size": 2694
+        },
+        {
+          "path": "zerorun/hermetic_batch_key.py",
+          "sha256": "2c9a564a619c268fb967565ec49f08d7f8953f8da9d0cedc1f9bdb3909c9bd78",
+          "size": 8358
+        },
+        {
+          "path": "zerorun/hermetic_key.py",
+          "sha256": "7fe609e89b66a0bea967ef3f166fac0e9ccbcbd1dac672799c31b02a0928a5d3",
+          "size": 35404
+        },
+        {
+          "path": "zerorun/hermetic_store.py",
+          "sha256": "8e5f5334a0302a22234d19be22bbf3da82f7b8bc3cd6416c1c80c82302755739",
+          "size": 17294
+        },
+        {
+          "path": "zerorun/manifest.py",
+          "sha256": "a40e2ce72198e1e119a786861f5957fb59d86b8b53f5f7213d488a5214025da1",
+          "size": 10530
+        },
+        {
+          "path": "zerorun/mcp.py",
+          "sha256": "3d7b9386843b2c817b04fda082b20f2cb2843b9e09c8872caaf1ff1ad6545266",
+          "size": 47636
+        },
+        {
+          "path": "zerorun/model.py",
+          "sha256": "0ff7ac3239b3436fb78b2085a0e6bf0553f27dee33ec5dc1535858396f578695",
+          "size": 8275
+        },
+        {
+          "path": "zerorun/normalization.py",
+          "sha256": "c7518fa7fff0287c5ff0ac6bdcc4f75759183d1f44da3d50ff368b7e7e673962",
+          "size": 3217
+        },
+        {
+          "path": "zerorun/oci.py",
+          "sha256": "d608d28d194dad329b6718ccf79473098d208df5e123f19829f37432de64b6e6",
+          "size": 61609
+        },
+        {
+          "path": "zerorun/path_safety.py",
+          "sha256": "07f11077b505152f24d79ecbf908bb9883f209a06b4b227b557aa5b3e8e19109",
+          "size": 7726
+        },
+        {
+          "path": "zerorun/pilot.py",
+          "sha256": "ebd3e4622891c32d55f6753a4c0bf973bd8a286c84447bf48a60a9fd336daa76",
+          "size": 6231
+        },
+        {
+          "path": "zerorun/pytest_closure.py",
+          "sha256": "14aabecfcfbc24947d40535c3d7970026c4e26a563a9120840dbc4d4113c0346",
+          "size": 69333
+        },
+        {
+          "path": "zerorun/pytest_collection_contract.py",
+          "sha256": "e652240cdcd73fd4567478087cbec598fefda14994031ac202e2717c69a8e021",
+          "size": 8997
+        },
+        {
+          "path": "zerorun/pytest_node_cache.py",
+          "sha256": "0bd273fc77268586bad3d4fb3d87a310e2c0252ce9d797d888cba5239c281757",
+          "size": 16994
+        },
+        {
+          "path": "zerorun/pytest_node_identity.py",
+          "sha256": "45a503c42fecfdd9603e41ab29e39d4779463d1f507bd5bcc0b19f96792b399f",
+          "size": 10360
+        },
+        {
+          "path": "zerorun/pytest_node_key.py",
+          "sha256": "ca0b8940e837bbac76dd60c283bb657a242643f56b8db3daa95981c7378a4556",
+          "size": 15628
+        },
+        {
+          "path": "zerorun/pytest_prepare_cli.py",
+          "sha256": "c656d0e5cd437ab5ba5f62f983adbdec5457abc5e5bb36d36850a19f97f5efb3",
+          "size": 6748
+        },
+        {
+          "path": "zerorun/pytest_profile.py",
+          "sha256": "6e755838617c1cb033ad757d3060fa564b12779cfb3adde366b5da806dab01ba",
+          "size": 33008
+        },
+        {
+          "path": "zerorun/pytest_qualify.py",
+          "sha256": "2745eac2537671046a3fdc5ed6671ff559cc8cdb9e5a97afebe71d46af9f51fc",
+          "size": 206424
+        },
+        {
+          "path": "zerorun/pytest_review.py",
+          "sha256": "300708149c2376bc1d1e911c458bbecf543f1ea6edb799703db702be86ea4f4f",
+          "size": 12961
+        },
+        {
+          "path": "zerorun/pytest_review_cli.py",
+          "sha256": "0a83fc5a5c1349c84aa18a156989c942f1f83a0c062d168825bf3afb5b3fa2e0",
+          "size": 4088
+        },
+        {
+          "path": "zerorun/pytest_runtime.py",
+          "sha256": "d99cb9003ff882c82165c604551249700a2ce534732477f896f3f95148c6063f",
+          "size": 171558
+        },
+        {
+          "path": "zerorun/pytest_setup.py",
+          "sha256": "75c8be7400acd00cc2c56f1f2ef2241431b4c7328fb25477f8dd1999e5b3bc0e",
+          "size": 25805
+        },
+        {
+          "path": "zerorun/runner.py",
+          "sha256": "23def0d55da654e3d80a278f5ad7072e1bc55643e8476b1e1c33e732ada761b3",
+          "size": 25831
+        },
+        {
+          "path": "zerorun/source_uncertainty.py",
+          "sha256": "af4d4095fad81b7922f8b54a9e804ae6d2294fb1862bf07e83a60eb4084a9d6c",
+          "size": 1236
+        },
+        {
+          "path": "zerorun/store.py",
+          "sha256": "22e3e94f4f3b2c3fbe10aefa1ee248995ee2ed6f81230b56611b34cbed49399e",
+          "size": 36013
+        },
+        {
+          "path": "zerorun/trust.py",
+          "sha256": "9b5c1663bb436907e80369382cde1a1eb1ce17d3c4512482eaa6309eff4c08e6",
+          "size": 34615
+        },
+        {
+          "path": "zerorun/workspace.py",
+          "sha256": "8af4ffb642c81e74036a3215a117703feda2c7cfa93e060e9af8eaa29361e3e4",
+          "size": 19179
+        }
+      ],
+      "schema": "zerorun.engine-python-source-identity.v1",
+      "sha256": "2105cd4c5f5da9d55740cafe2cac24f041bbda5eef3eec9d9a7ddac82e6ef8e5",
+      "total_bytes": 1036696
+    },
+    "engine_version": "0.5.1",
+    "git": {
+      "commit": "21cecc7fc52f55f3e9f1d4e1f3f9f70a65f0d3bb",
+      "engine_python_sources_dirty": true,
+      "trial_tool_dirty": true
+    },
+    "identity_sha256": "fb187abfa5500196d948a566646dcdab6b213d375c68a31ec7e1d9f742692d72",
+    "schema": "zerorun.product-generalization-source-identity.v1",
+    "trial_tool": {
+      "path": "tools/product_generalization_benchmark.py",
+      "sha256": "96588c65ee674597e4c459651345b9e89ac92cbdc0c85baaa3de4f57f6a44359",
+      "size": 212857
+    }
+  },
+  "environment": {
+    "host": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        0.10302734375,
+        0.02685546875,
+        0.00537109375
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          339360 kB\nMemAvailable:    1883508 kB\nBuffers:          354364 kB\nCached:          1276956 kB\nSwapCached:            0 kB\nActive:          1114424 kB\nInactive:         687120 kB\nActive(anon):       4360 kB\nInactive(anon):   198540 kB\nActive(file):    1110064 kB\nInactive(file):   488580 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               132 kB\nWriteback:             0 kB\nAnonPages:        197824 kB\nMapped:           225356 kB\nShmem:             23612 kB\nKReclaimable:     134768 kB\nSlab:             188028 kB\nSReclaimable:     134768 kB\nSUnreclaim:        53260 kB\nKernelStack:        3584 kB\nPageTables:         4272 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1128320 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       34940 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=0.00 avg60=0.02 avg300=0.00 total=1208070099\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=0.02 avg60=0.08 avg300=0.02 total=143326782\nfull avg10=0.00 avg60=0.01 avg300=0.00 total=112057507\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1576200\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1531242\n",
+      "stat": "cpu  787061 2623 771240 25334438 33049 0 38483 0 0 0\ncpu0 175366 292 147266 5204692 7384 0 5462 0 0 0\ncpu1 203808 1861 153046 5129849 7783 0 5169 0 0 0\ncpu2 213971 184 150801 5150218 8255 0 5052 0 0 0\ncpu3 174562 209 150534 5184593 7936 0 6203 0 0 0\ncpu4 19353 77 169592 4665085 1690 0 16596 0 0 0\nintr 88041745 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 26980 47063 0 544870 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 150210407\nbtime 1788671048\nprocesses 196095\nprocs_running 1\nprocs_blocked 0\nsoftirq 34990143 5 15609042 11887 53707 509273 0 433 12593757 0 6212039\n",
+      "utc": "2026-09-06T20:59:40.099240+00:00"
+    },
+    "platform": "Linux-5.15.0-190-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12 (main, Jul 15 2026, 23:40:17) [GCC 11.4.0]"
+  },
+  "execution_timeout_seconds": 900,
+  "expected_fresh_oracles": 168,
+  "expected_hit_requests_per_cache_arm": 96,
+  "expected_nonhit_requests_per_cache_arm": 72,
+  "expected_requests": 168,
+  "expected_timed_arm_invocations": 504,
+  "expected_trajectories": 24,
+  "frozen_recovery_producer_sha256": "2fb6b23f5bae6e2f1f2f8681bc9f492be704f43d56f69c20c6c17ad95d9aa2d9",
+  "frozen_utc": "2026-09-06T20:59:39.971846+00:00",
+  "more_itertools": "original five-subject evidence retained; new long-subject diagnostic outside this driver",
+  "operator_authority_allowed": false,
+  "operator_review_claimed": false,
+  "producer_sha256": "eaa420f858dc07349a42ae6be36aba795ba9d57387d5be795e6e3552f5ca0a4a",
+  "protected_source_identity": {
+    "files": [
+      {
+        "bytes": 55,
+        "path": "engine/zerorun/__init__.py",
+        "sha256": "5227fb2b505f9a0f36fd3cfa4482bc07d1dab373cbd36a84f3c36967ebf9a1b2"
+      },
+      {
+        "bytes": 79,
+        "path": "engine/zerorun/__main__.py",
+        "sha256": "307299fda7b77d22c64cb51430ec75e5f59d78e9c948786afb3b2544fe45e4b7"
+      },
+      {
+        "bytes": 2482,
+        "path": "engine/zerorun/api.py",
+        "sha256": "49e7a5a35333ed2c5ae7b695491f307ad21619cbafcd523b773a04d84518ea25"
+      },
+      {
+        "bytes": 6454,
+        "path": "engine/zerorun/bounded_json.py",
+        "sha256": "8dd6eb67ec59ce01462ea34902f697ba6eebb980dfccad18c8cafaed4472fd80"
+      },
+      {
+        "bytes": 17782,
+        "path": "engine/zerorun/cli.py",
+        "sha256": "7d8a6f52bf4c97394eb9400f8dc593d7d25cc1119347e3e4898395155807730a"
+      },
+      {
+        "bytes": 30087,
+        "path": "engine/zerorun/codex.py",
+        "sha256": "594a0266a5ecb4bc696df2fc3cf3a1947d6868c10a0a3164aa87622549780965"
+      },
+      {
+        "bytes": 51742,
+        "path": "engine/zerorun/fingerprint.py",
+        "sha256": "cf061b689fc209a989ad1221f36bfa4ce8a53c52280e4ad9bf186fc1d849e9b7"
+      },
+      {
+        "bytes": 20263,
+        "path": "engine/zerorun/hermetic.py",
+        "sha256": "cc4d14a97681b8a4e1de1369ff23f5b25c34fbbf62189e827d0df4578a5b0c07"
+      },
+      {
+        "bytes": 2694,
+        "path": "engine/zerorun/hermetic_batch.py",
+        "sha256": "b7bdce8db63ca12126f92119549c7920754544e2f2f50739e7ea725f14d3cb12"
+      },
+      {
+        "bytes": 8358,
+        "path": "engine/zerorun/hermetic_batch_key.py",
+        "sha256": "2c9a564a619c268fb967565ec49f08d7f8953f8da9d0cedc1f9bdb3909c9bd78"
+      },
+      {
+        "bytes": 35404,
+        "path": "engine/zerorun/hermetic_key.py",
+        "sha256": "7fe609e89b66a0bea967ef3f166fac0e9ccbcbd1dac672799c31b02a0928a5d3"
+      },
+      {
+        "bytes": 17294,
+        "path": "engine/zerorun/hermetic_store.py",
+        "sha256": "8e5f5334a0302a22234d19be22bbf3da82f7b8bc3cd6416c1c80c82302755739"
+      },
+      {
+        "bytes": 10530,
+        "path": "engine/zerorun/manifest.py",
+        "sha256": "a40e2ce72198e1e119a786861f5957fb59d86b8b53f5f7213d488a5214025da1"
+      },
+      {
+        "bytes": 47636,
+        "path": "engine/zerorun/mcp.py",
+        "sha256": "3d7b9386843b2c817b04fda082b20f2cb2843b9e09c8872caaf1ff1ad6545266"
+      },
+      {
+        "bytes": 8275,
+        "path": "engine/zerorun/model.py",
+        "sha256": "0ff7ac3239b3436fb78b2085a0e6bf0553f27dee33ec5dc1535858396f578695"
+      },
+      {
+        "bytes": 3217,
+        "path": "engine/zerorun/normalization.py",
+        "sha256": "c7518fa7fff0287c5ff0ac6bdcc4f75759183d1f44da3d50ff368b7e7e673962"
+      },
+      {
+        "bytes": 61609,
+        "path": "engine/zerorun/oci.py",
+        "sha256": "d608d28d194dad329b6718ccf79473098d208df5e123f19829f37432de64b6e6"
+      },
+      {
+        "bytes": 7726,
+        "path": "engine/zerorun/path_safety.py",
+        "sha256": "07f11077b505152f24d79ecbf908bb9883f209a06b4b227b557aa5b3e8e19109"
+      },
+      {
+        "bytes": 6231,
+        "path": "engine/zerorun/pilot.py",
+        "sha256": "ebd3e4622891c32d55f6753a4c0bf973bd8a286c84447bf48a60a9fd336daa76"
+      },
+      {
+        "bytes": 69333,
+        "path": "engine/zerorun/pytest_closure.py",
+        "sha256": "14aabecfcfbc24947d40535c3d7970026c4e26a563a9120840dbc4d4113c0346"
+      },
+      {
+        "bytes": 8997,
+        "path": "engine/zerorun/pytest_collection_contract.py",
+        "sha256": "e652240cdcd73fd4567478087cbec598fefda14994031ac202e2717c69a8e021"
+      },
+      {
+        "bytes": 16994,
+        "path": "engine/zerorun/pytest_node_cache.py",
+        "sha256": "0bd273fc77268586bad3d4fb3d87a310e2c0252ce9d797d888cba5239c281757"
+      },
+      {
+        "bytes": 10360,
+        "path": "engine/zerorun/pytest_node_identity.py",
+        "sha256": "45a503c42fecfdd9603e41ab29e39d4779463d1f507bd5bcc0b19f96792b399f"
+      },
+      {
+        "bytes": 15628,
+        "path": "engine/zerorun/pytest_node_key.py",
+        "sha256": "ca0b8940e837bbac76dd60c283bb657a242643f56b8db3daa95981c7378a4556"
+      },
+      {
+        "bytes": 6748,
+        "path": "engine/zerorun/pytest_prepare_cli.py",
+        "sha256": "c656d0e5cd437ab5ba5f62f983adbdec5457abc5e5bb36d36850a19f97f5efb3"
+      },
+      {
+        "bytes": 33008,
+        "path": "engine/zerorun/pytest_profile.py",
+        "sha256": "6e755838617c1cb033ad757d3060fa564b12779cfb3adde366b5da806dab01ba"
+      },
+      {
+        "bytes": 206424,
+        "path": "engine/zerorun/pytest_qualify.py",
+        "sha256": "2745eac2537671046a3fdc5ed6671ff559cc8cdb9e5a97afebe71d46af9f51fc"
+      },
+      {
+        "bytes": 12961,
+        "path": "engine/zerorun/pytest_review.py",
+        "sha256": "300708149c2376bc1d1e911c458bbecf543f1ea6edb799703db702be86ea4f4f"
+      },
+      {
+        "bytes": 4088,
+        "path": "engine/zerorun/pytest_review_cli.py",
+        "sha256": "0a83fc5a5c1349c84aa18a156989c942f1f83a0c062d168825bf3afb5b3fa2e0"
+      },
+      {
+        "bytes": 171558,
+        "path": "engine/zerorun/pytest_runtime.py",
+        "sha256": "d99cb9003ff882c82165c604551249700a2ce534732477f896f3f95148c6063f"
+      },
+      {
+        "bytes": 25805,
+        "path": "engine/zerorun/pytest_setup.py",
+        "sha256": "75c8be7400acd00cc2c56f1f2ef2241431b4c7328fb25477f8dd1999e5b3bc0e"
+      },
+      {
+        "bytes": 25831,
+        "path": "engine/zerorun/runner.py",
+        "sha256": "23def0d55da654e3d80a278f5ad7072e1bc55643e8476b1e1c33e732ada761b3"
+      },
+      {
+        "bytes": 1236,
+        "path": "engine/zerorun/source_uncertainty.py",
+        "sha256": "af4d4095fad81b7922f8b54a9e804ae6d2294fb1862bf07e83a60eb4084a9d6c"
+      },
+      {
+        "bytes": 36013,
+        "path": "engine/zerorun/store.py",
+        "sha256": "22e3e94f4f3b2c3fbe10aefa1ee248995ee2ed6f81230b56611b34cbed49399e"
+      },
+      {
+        "bytes": 34615,
+        "path": "engine/zerorun/trust.py",
+        "sha256": "9b5c1663bb436907e80369382cde1a1eb1ce17d3c4512482eaa6309eff4c08e6"
+      },
+      {
+        "bytes": 19179,
+        "path": "engine/zerorun/workspace.py",
+        "sha256": "8af4ffb642c81e74036a3215a117703feda2c7cfa93e060e9af8eaa29361e3e4"
+      },
+      {
+        "bytes": 212857,
+        "path": "engine/tools/product_generalization_benchmark.py",
+        "sha256": "96588c65ee674597e4c459651345b9e89ac92cbdc0c85baaa3de4f57f6a44359"
+      },
+      {
+        "bytes": 21173,
+        "path": "sqj/producers/controlled_comparison-recovery.py",
+        "sha256": "2fb6b23f5bae6e2f1f2f8681bc9f492be704f43d56f69c20c6c17ad95d9aa2d9"
+      },
+      {
+        "bytes": 19374,
+        "path": "sqj/producers/controlled_comparison-v3.py",
+        "sha256": "adb251da3210277909a8e49b109a22ca949866a14a12519122a708dfae08f00d"
+      },
+      {
+        "bytes": 19854,
+        "path": "sqj/run_controlled_comparison.py",
+        "sha256": "f51cc77a9c0cdef4757244ad3de56f9501081122113bf76ad17872751c746252"
+      },
+      {
+        "bytes": 7446,
+        "path": "sqj/run_frozen_campaign.py",
+        "sha256": "0a60499ae0c8c47c70217a550dcf0c202631b7262b42d35e838764d92b96d8e4"
+      }
+    ],
+    "sha256": "0c913fb91f9b5cf8287f3f55dad4a26a97dab097f6bdf787353ac5e4e65a0887"
+  },
+  "request_states": [
+    {
+      "expected_cache_status": "MISS_EXECUTED",
+      "expected_exit_code": 0,
+      "index": 0,
+      "label": "seed",
+      "source_state": "original"
+    },
+    {
+      "expected_cache_status": "HIT_REUSED",
+      "expected_exit_code": 0,
+      "index": 1,
+      "label": "repeat-1",
+      "source_state": "original"
+    },
+    {
+      "expected_cache_status": "HIT_REUSED",
+      "expected_exit_code": 0,
+      "index": 2,
+      "label": "repeat-2",
+      "source_state": "original"
+    },
+    {
+      "expected_cache_status": "MISS_FAILED",
+      "expected_exit_code": 1,
+      "index": 3,
+      "label": "failing-test-added",
+      "source_state": "added-failure"
+    },
+    {
+      "expected_cache_status": "MISS_FAILED",
+      "expected_exit_code": 1,
+      "index": 4,
+      "label": "failure-repeated",
+      "source_state": "added-failure"
+    },
+    {
+      "expected_cache_status": "HIT_REUSED",
+      "expected_exit_code": 0,
+      "index": 5,
+      "label": "restored",
+      "source_state": "original"
+    },
+    {
+      "expected_cache_status": "HIT_REUSED",
+      "expected_exit_code": 0,
+      "index": 6,
+      "label": "repeat-restored",
+      "source_state": "original"
+    }
+  ],
+  "retry_policy": "none; preserve any failed block and stop that workload",
+  "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+  "schedule": [
+    {
+      "trajectories": [
+        {
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "trajectory": 1
+        },
+        {
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "trajectory": 2
+        },
+        {
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "trajectory": 3
+        },
+        {
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "trajectory": 4
+        },
+        {
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "trajectory": 5
+        },
+        {
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "trajectory": 6
+        }
+      ],
+      "workload": "click"
+    },
+    {
+      "trajectories": [
+        {
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "trajectory": 1
+        },
+        {
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "trajectory": 2
+        },
+        {
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "trajectory": 3
+        },
+        {
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "trajectory": 4
+        },
+        {
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "trajectory": 5
+        },
+        {
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "trajectory": 6
+        }
+      ],
+      "workload": "pycparser"
+    },
+    {
+      "trajectories": [
+        {
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "trajectory": 1
+        },
+        {
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "trajectory": 2
+        },
+        {
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "trajectory": 3
+        },
+        {
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "trajectory": 4
+        },
+        {
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "trajectory": 5
+        },
+        {
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "trajectory": 6
+        }
+      ],
+      "workload": "colorama"
+    },
+    {
+      "trajectories": [
+        {
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "trajectory": 1
+        },
+        {
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "trajectory": 2
+        },
+        {
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "trajectory": 3
+        },
+        {
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "trajectory": 4
+        },
+        {
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "trajectory": 5
+        },
+        {
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "trajectory": 6
+        }
+      ],
+      "workload": "packaging"
+    }
+  ],
+  "schema": "zerorun.randomized-short-replication.v1",
+  "scope": "four already-observed short subjects; not an unseen holdout or five-subject replacement",
+  "seed": "zerorun-short-replication-v1",
+  "shuffle_algorithm": "ascending SHA256 of NUL-separated seed/namespace/values",
+  "testmon_in_this_replication": false,
+  "timing_policy": "complete outer call for every arm; existing product phases; observed direct/oracle subprocess phases; telemetry outside timed boundary",
+  "warmups_removed": 0,
+  "workloads": [
+    [
+      "click",
+      "pallets/click",
+      "36baa15ff831b939a22bc527cd76ce653ef6f66d",
+      "new-unseen",
+      [
+        "tests/test_arguments.py"
+      ],
+      []
+    ],
+    [
+      "pycparser",
+      "eliben/pycparser",
+      "10d17757e282d8af5426d6df4d55eb394042b550",
+      "old-regression",
+      [
+        "tests/test_c_parser.py"
+      ],
+      []
+    ],
+    [
+      "colorama",
+      "tartley/colorama",
+      "841634ed2a0da5d5ac2d867db533da8131266cb2",
+      "old-regression",
+      [
+        "colorama/tests/ansi_test.py",
+        "colorama/tests/ansitowin32_test.py",
+        "colorama/tests/initialise_test.py",
+        "colorama/tests/isatty_test.py",
+        "colorama/tests/winterm_test.py"
+      ],
+      []
+    ],
+    [
+      "packaging",
+      "pypa/packaging",
+      "10590c194edb33c82f84a127883d6097c56b7840",
+      "old-regression",
+      [
+        "tests/test_tags.py"
+      ],
+      [
+        "pretend"
+      ]
+    ]
+  ]
+}

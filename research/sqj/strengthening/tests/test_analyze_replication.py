@@ -39,7 +39,7 @@ def arm_receipt(arm, index, position, *, workload=0, trajectory=1):
     if arm in ("direct", "oracle"):
         row["docker_subprocess_phases"] = [{"phase": name, "started_utc": stamp(start + .01 + i * .02),
             "ended_utc": stamp(start + .02 + i * .02), "wall_ms": 10.0,
-            "timeout_seconds": 900 if name == "start" else 60,
+            "timeout_seconds": 900 if name == "start" else 30,
             "exit_code": code if name == "start" else 1 if i == 6 else 0}
             for i, name in enumerate(analysis.PHASE_ORDER)]
     else:

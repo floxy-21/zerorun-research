@@ -16,6 +16,7 @@ The final package is organized as follows:
 - `COVER_LETTER.md` and `HIGHLIGHTS.md`: separate submission texts.
 - `REPRODUCIBILITY.md`: installation, offline checks, and separate fresh-execution instructions.
 - `SUBMISSION_CHECKLIST.md`: verified preparation checks and author-controlled declarations.
+- `UPLOAD_GUIDE.md`: exact upload files and the remaining author-controlled portal steps.
 
 The final generated receipts under `generated/` identify exact publication commits, file hashes, independent checks, and PDF review. Paths listed here describe the package layout; the final readiness receipt is authoritative for completed files.
 

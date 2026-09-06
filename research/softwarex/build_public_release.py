@@ -35,18 +35,27 @@ SQJ_FILES = ("analyze_campaign.py", "analyze_comparison.py", "analyze_current_re
 STRENGTHENING_FILES = ("collect_traces.py", "trace_analysis.py", "validate_traces.py",
     "inventory_oracle.py", "randomized_replication.py", "analyze_replication.py", "export_evidence.py",
     "PROTOCOL.md", "TRACE_FEASIBILITY.md")
-OPTIONAL_STRENGTHENING = ("state_rejoin.py", "run_bound_state_rejoin.py", "analyze_state_rejoin.py", "STATE_REJOIN_PROTOCOL.md", "STATE_REJOIN.md")
+OPTIONAL_STRENGTHENING = ("state_rejoin.py", "run_bound_state_rejoin.py", "analyze_state_rejoin.py", "STATE_REJOIN_PROTOCOL.md", "STATE_REJOIN.md",
+    "run_replication_recovery.py", "run_replication_recovery_preflight_v1.py", "analyze_recovered_replication.py",
+    "run_recovered_state_rejoin.py", "export_recovered_evidence.py", "state_rejoin_v2.py", "run_recovered_state_rejoin_v2.py",
+    "ANALYSIS_CORRECTIONS.md", "analyze_replication_pre_real_validation_v1.py")
 SQJ_EVIDENCE_DIRS = ("campaign-1", "comparison-final-1", "comparison-packaging-corrected",
     "comparison-packaging-final", "comparison-more-whole-task", "linux-regression-final",
     "readonly-hit-linux", "cleanup-and-venv-linux", "github-86f4228")
 PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILITY.md",
-    "HIGHLIGHTS.md", "CODE_METADATA.md", "DATA_AVAILABILITY.md", "THIRD_PARTY_NOTICES.md",
-    "README.md", "COVER_LETTER.md", "SUBMISSION_CHECKLIST.md",
+    "HIGHLIGHTS.md", "HIGHLIGHTS.txt", "CODE_METADATA.md", "DATA_AVAILABILITY.md", "THIRD_PARTY_NOTICES.md",
+    "README.md", "UPLOAD_GUIDE.md", "COVER_LETTER.md", "COVER_LETTER.txt", "SUBMISSION_CHECKLIST.md",
+    "MANUSCRIPT_CLAIM_AUDIT.md", "RELATED_WORK_AUDIT.md",
     "paper/main.tex", "paper/main.bbl", "paper/submission.tex.in", "paper/references.bib", "paper/elsarticle.cls", "paper/elsarticle-num.bst",
     "paper/STYLE_SOURCE_NOTICE.txt", "paper/state-rejoin.tex", "generated/state-rejoin-review.json",
-    "generated/paper-evidence.json", "generated/pdf-review.json", "build_paper.py", "build_submission_artifacts.py",
+    "generated/paper-evidence.json", "generated/pdf-review.json", "build_paper.py", "build_submission_artifacts.py", "build_readiness.py",
     "base-references.bib", "dataset-reference.bib", "paper/dataset-reference.bib", "related-work-additions.bib",
-    "generated/public-install-smoke.json", "generated/public-release-tests.json", "generated/public-release.json")
+    "generated/public-install-smoke.json", "generated/public-release-tests.json", "generated/public-release.json",
+    "generated/initial-publication.json", "generated/artifact-build.json", "generated/final-readiness.json",
+    "generated/artifact-builder-unit-v2.xml", "generated/artifact-builder-unit-v3.xml",
+    "generated/artifact-builder-sandbox-diagnostic-v1.xml", "generated/artifact-builder-test-attempts.md",
+    "generated/readiness-bindings-unit-v1.xml")
+SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
 BLOCKED = {".git", "__pycache__", ".pytest_cache", ".venv", ".zerorun-env", "node_modules", "workspace", "workspaces",
     "private-cache-authentication-NOT-FOR-PUBLICATION", "pytest-temp", "testmon-runtime", "testmon-state",
     ".zerorun", "authorities", "authority", "private", ".codex", ".agents"}
@@ -248,10 +257,29 @@ def collect(paper_files=()):
     for name in PAPER_OPTIONAL_FILES:
         if (ROOT / "research/softwarex" / name).is_file():
             local("research/softwarex/" + name)
+    publication_tests = ROOT / "research/softwarex/tests"
+    if publication_tests.is_dir():
+        for path in entries(publication_tests, {".py"}):
+            local(path.relative_to(ROOT).as_posix())
+    publication_evidence = ROOT / "research/softwarex/evidence"
+    if publication_evidence.is_dir():
+        for path in entries(publication_evidence, {".json", ".xml", ".log"}):
+            local(path.relative_to(ROOT).as_posix())
+    # These archives are absent during the checked pre-archive stage. A later
+    # refresh can inventory their completed bytes without changing the older
+    # manifest sealed inside the reviewer archive or creating a self-reference.
+    for name in SUBMISSION_ARCHIVES:
+        if (ROOT / name).is_file():
+            local(name)
     for number in (1, 2):
         source = f"tmp/softwarex-public-tests-{number}.xml"
         if (ROOT / source).is_file():
-            local(source, f"research/softwarex/evidence/public-release-tests-{number}.xml")
+            target = f"research/softwarex/evidence/public-release-tests-{number}.xml"
+            if target in payloads:
+                require(payloads[target] == read_local(ROOT / source),
+                        "authoritative public test report differs from retained original: " + target)
+            else:
+                local(source, target)
     for name in paper_files:
         safe_name(name)
         require((name.startswith("research/softwarex/") or name == "output/pdf/zerorun-softwarex.pdf")
@@ -266,6 +294,7 @@ def collect(paper_files=()):
         "runtime_modified": False, "packaging_adaptations": ["src layout", "author metadata", "license filenames", "research README", "five selected-test file-path references"],
         "public_repository_destination": "https://github.com/floxy-21/zerorun-research",
         "publication_performed_by_builder": False, "excluded_directory_names": sorted(BLOCKED),
+        "archive_binding": "Submission archives, when present, seal an earlier checked pre-archive inventory. This enclosing manifest hashes completed archives; the reviewer archive does not include itself or this later manifest.",
         "files": [{"path": name, "bytes": len(raw), "sha256": digest(raw), "origin": origins[name]}
                   for name, raw in sorted(payloads.items())]}
     payloads[MANIFEST] = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode()
@@ -332,6 +361,12 @@ def self_test():
     """Tiny structural tests, retaining their generated fixtures for inspection."""
     root = Path(tempfile.mkdtemp(prefix="softwarex-builder-tests-", dir=ROOT / "tmp"))
     checks = 0
+    require(len(SUBMISSION_ARCHIVES) == len(set(SUBMISSION_ARCHIVES)) == 2 and
+            all(name.startswith("output/submission/") and name.endswith(".zip")
+                for name in SUBMISSION_ARCHIVES), "unexpected submission archive allowlist")
+    for name in SUBMISSION_ARCHIVES:
+        safe_name(name)
+    checks += 1
     for name in ("../bad", "/absolute", "x\\y", "x:stream", "private/key", "a/.git/config", "workspace/data", ".zerorun-env/key"):
         try:
             safe_name(name)

@@ -21,6 +21,9 @@ HERE = Path(__file__).resolve().parent
 BASE = "31c8f98343bd871d51c5bf6d73c3573c6cbde72e"
 RUNNER_SHA = "70732ee170c789ddcf8e66b8d8ecb2f147ec1a5c3e294d5b8d0e8d2ba6449db1"
 WRAPPER_SHA = "8d9b689619293df2e015eeb34cf585063a1a6e0287f86bdeda11e913f6a329f0"
+RECOVERED_WRAPPER_SHA = "9d02589a02debcbba181ec9abe0a92bedd8eb3b524a1726021d8c0ed8100ea65"
+RUNNER_V2_SHA = "270d9a3708e190ad7f4230b954e976beb48c46030297c959f9b92685e6900e17"
+RECOVERED_WRAPPER_V2_SHA = "0d9cce4249c9115d24931aa1b6b869b0b3153dae56babfda8395e599ae87be18"
 BINDINGS = {
     "django-environ-31c8f983-source.tar.gz": "6264853af7ab12c7265be9b10115007fe4977de9b1636c1d86875ca1a0654425",
     "django-environ-metadata-response-v1.json": "b70d84f366c70456c2c8aeedd1ba675b70b71270b7237282709f90924f02d828",
@@ -173,7 +176,22 @@ def validate_case(case, evidence=HERE / "evidence"):
     require(not (case / "failure.json").exists(), "runner failure receipt retained; case cannot pass")
     same(digest(HERE / "state_rejoin.py"), RUNNER_SHA, "frozen case producer changed")
     invocation = read_json(case / "invocation.json")
-    for key, expected in {"producer_sha256": RUNNER_SHA, "execute": True, "purposive_case": True, "full_agent_replay": False}.items():
+    v2 = invocation.get("producer_sha256") == RUNNER_V2_SHA
+    runner_sha = RUNNER_V2_SHA if v2 else RUNNER_SHA
+    if v2:
+        same(digest(HERE / "state_rejoin_v2.py"), RUNNER_V2_SHA, "frozen corrected case producer changed")
+        fixture = read_json(case / "git-fixture.json")
+        for key, expected in {"schema": "zerorun.state-rejoin-git-fixture.v1", "exit_code": 0,
+            "canonical_root_exit_code": 0, "templates_disabled": True, "network_used": False,
+            "history_reproduced": False, "ordinary_git_directory": True,
+            "git_metadata_excluded_from_task_inputs": True,
+            "git_metadata_masked_by_existing_container_contract": True}.items():
+            same(fixture[key], expected, "Git fixture contract differs: " + key)
+        command = fixture["command"]
+        require(len(command) == 5 and command[1:4] == ["init", "--template=", "--initial-branch=main"], "Git fixture command differs")
+        same(fixture["canonical_root"], command[4], "Git fixture root differs")
+    exclusions = {".zerorun", ".zerorun.json"} | ({".git"} if v2 else set())
+    for key, expected in {"producer_sha256": runner_sha, "execute": True, "purposive_case": True, "full_agent_replay": False}.items():
         same(invocation[key], expected, "invocation policy differs: " + key)
     same(read_json(case / "reconstruction.json"), expected_reconstruction, "reconstruction differs from independently applied recorded source edits")
     summary = read_json(case / "summary.json")
@@ -222,9 +240,9 @@ def validate_case(case, evidence=HERE / "evidence"):
         same(row["history_reference_key"], sha(canonical({"prior_event_ids": history, "command": targets}).encode()), "history reference does not match recorded event IDs")
         same(row["history_reference_is_not_tvcache"], True, "history reference mislabeled")
         source = expected_reconstruction["changed_source" if i == 1 else "seed_source"]
-        expected_source = identity(source["records"] + runtime_rows, {".zerorun", ".zerorun.json"})
+        expected_source = identity(source["records"] + runtime_rows, exclusions)
         for key in ("source_before", "source_after"):
-            validate_identity(row[key], {".zerorun", ".zerorun.json"})
+            validate_identity(row[key], exclusions)
             same(row[key], expected_source, "materialized source/runtime changed or omitted")
         for key, value in {"source_unchanged_by_execution": True, "expected_verdict_observed": True,
                            "expected_exit_code": CODES[i], "expected_nodes": COUNTS[i]}.items():
@@ -267,7 +285,8 @@ def validate_case(case, evidence=HERE / "evidence"):
             "source_rejoin_verified": True, "materialized_runtime_sha256": runtime["sha256"],
             "summary_sha256": digest(case / "summary.json"), "original_environment_reproduced": False,
             "autonomous_agent_evaluated": False, "tvcache_compared": False, "population_speedup_claimed": False,
-            "counterfactual_request_retained": True}
+            "counterfactual_request_retained": True,
+            "git_fixture_correction": v2, "case_producer_sha256": runner_sha}
 
 
 def compact_table(rows):
@@ -282,10 +301,14 @@ def file_record(path, label):
 
 
 def validate_wrapper(directory, replication_directory, engine_archive=HERE.parent / "source-final", evidence=HERE / "evidence"):
-    require(replication_directory is not None, "completed replication directory required")
+    require(replication_directory is not None, "original replication directory required")
     protocol, completion = read_json(directory / "protocol.json"), read_json(directory / "completion.json")
-    same(protocol["schema"], "zerorun.bound-state-rejoin.protocol.v1", "wrong wrapper protocol")
-    same(completion["schema"], "zerorun.bound-state-rejoin.completion.v1", "wrong wrapper completion")
+    v2 = protocol["schema"] == "zerorun.recovered-state-rejoin.protocol.v2"
+    recovered = v2 or protocol["schema"] == "zerorun.recovered-state-rejoin.protocol.v1"
+    schema_name = "recovered" if recovered else "bound"
+    schema_version = "v2" if v2 else "v1"
+    same(protocol["schema"], "zerorun." + schema_name + "-state-rejoin.protocol." + schema_version, "wrong wrapper protocol")
+    same(completion["schema"], "zerorun." + schema_name + "-state-rejoin.completion." + schema_version, "wrong wrapper completion")
     same(completion["protocol_sha256"], digest(directory / "protocol.json"), "wrapper protocol hash differs")
     same(protocol["preflight_errors"], [], "wrapper preflight failed")
     same(completion["postflight_errors"], [], "wrapper postflight failed")
@@ -294,16 +317,24 @@ def validate_wrapper(directory, replication_directory, engine_archive=HERE.paren
     same(completion["completed"], True, "wrapper incomplete")
     check_keys = {"runner_hash_expected", "replication_helper_hash_expected", "recovery_helper_hash_expected", "replication_completed",
                   "protected_matches_replication", "core_matches_replication", "engine_matches_replication"}
+    if recovered:
+        check_keys.remove("replication_completed")
+        check_keys.update({"original_protocol_bound", "interruption_provenance_bound"})
     same(protocol["checks"], {k: True for k in check_keys}, "wrapper preflight checks changed")
     after_keys = {"protected_source_unchanged", "core_source_unchanged", "engine_identity_unchanged", "helper_files_unchanged",
                   "wrapper_unchanged", "runner_unchanged", "evidence_files_unchanged", "case_completed", "no_operator_authority"}
+    if recovered:
+        after_keys.add("interruption_receipt_unchanged")
     same(completion["checks"], {k: True for k in after_keys}, "wrapper completion checks failed")
-    for name, filename in (("runner", "state_rejoin.py"), ("wrapper", "run_bound_state_rejoin.py")):
+    wrapper_name = "run_recovered_state_rejoin_v2.py" if v2 else "run_recovered_state_rejoin.py" if recovered else "run_bound_state_rejoin.py"
+    runner_name = "state_rejoin_v2.py" if v2 else "state_rejoin.py"
+    runner_sha = RUNNER_V2_SHA if v2 else RUNNER_SHA
+    for name, filename in (("runner", runner_name), ("wrapper", wrapper_name)):
         record = file_record(HERE / filename, "strengthening/" + filename)
         same(protocol[name], record, "bound producer bytes differ")
         same(completion[name + "_after"], record, "producer changed during case")
-    same(protocol["runner"]["sha256"], RUNNER_SHA, "unrecognized frozen runner")
-    same(protocol["wrapper"]["sha256"], WRAPPER_SHA, "unrecognized frozen wrapper")
+    same(protocol["runner"]["sha256"], runner_sha, "unrecognized frozen runner")
+    same(protocol["wrapper"]["sha256"], RECOVERED_WRAPPER_V2_SHA if v2 else RECOVERED_WRAPPER_SHA if recovered else WRAPPER_SHA, "unrecognized frozen wrapper")
     helpers = [(HERE / "randomized_replication.py", "strengthening/randomized_replication.py"),
                (HERE.parent / "producers/controlled_comparison-recovery.py", "sqj/producers/controlled_comparison-recovery.py"),
                (engine_archive / "tools/product_generalization_benchmark.py", "engine/tools/product_generalization_benchmark.py"),
@@ -318,23 +349,43 @@ def validate_wrapper(directory, replication_directory, engine_archive=HERE.paren
         same(row["sha256"], BINDINGS[row["path"]], "evidence not frozen candidate")
     same(completion["evidence_files_after"], recorded_evidence, "evidence changed during case")
     previous = read_json(replication_directory / "protocol.json")
-    previous_completion = read_json(replication_directory / "campaign-summary.json")
+    prior_summary_path = replication_directory / "campaign-summary.json"
+    previous_completion = read_json(prior_summary_path) if prior_summary_path.exists() else None
     analyze_replication.validate_protocol(previous, engine_archive)
     for field, filename in (("protocol_file", "protocol.json"), ("completion_file", "campaign-summary.json")):
         row = protocol["replication"][field]
+        if recovered and field == "completion_file" and previous_completion is None:
+            same(row, None, "absent original completion was manufactured")
+            require(not (directory / "original-campaign-summary.json").exists(), "unexpected copied original completion")
+            continue
         same(row["sha256"], digest(replication_directory / filename), "prior replication receipt bytes differ")
         same(row["bytes"], (replication_directory / filename).stat().st_size, "prior replication receipt size differs")
-    same(previous_completion["schema"], "zerorun.randomized-short-replication-summary.v1", "wrong prior completion schema")
-    for field, value in {"completed": True, "protected_source_unchanged": True, "operator_authority_receipts_created": False}.items():
-        same(previous_completion[field], value, "prior replication incomplete or source changed")
+    if previous_completion is not None:
+        same(previous_completion["schema"], "zerorun.randomized-short-replication-summary.v1", "wrong prior completion schema")
+    if not recovered:
+        require(previous_completion is not None, "prior completed campaign missing")
+        for field, value in {"completed": True, "protected_source_unchanged": True, "operator_authority_receipts_created": False}.items():
+            same(previous_completion[field], value, "prior replication incomplete or source changed")
+    else:
+        same(protocol["replication_status_claim"], "original campaign not certified complete; standalone case after interruption", "recovery scope differs")
+        same(protocol["replication"]["completion_present"], previous_completion is not None, "retained original summary presence differs")
+        if previous_completion is not None:
+            same(digest(directory / "original-campaign-summary.json"), digest(prior_summary_path), "copied original summary differs")
+        interruption = read_json(directory / "interruption.json")
+        same(interruption["schema"], "zerorun.vm-interruption.v1", "unrecognized interruption receipt")
+        same(interruption["replication_protocol_sha256"], digest(replication_directory / "protocol.json"), "interruption references another campaign")
+        require(all(isinstance(interruption.get(k), str) and interruption[k].strip() for k in ("description", "recovery_action")), "missing interruption description")
+        same(protocol["interruption_file"], file_record(directory / "interruption.json", "interruption.json"), "interruption receipt hash differs")
     protected = previous["protected_source_identity"]
     core_files = [r for r in protected["files"] if r["path"].startswith("engine/")]
     core = {"files": core_files, "sha256": sha(canonical(core_files).encode())}
     for key, expected in (("protected_source", protected), ("core_protected", core), ("engine_identity", previous["engine_identity"])):
         same(protocol[key + "_before"], expected, "state case uses different replication source")
         same(completion[key + "_after"], expected, "state case source changed")
-    same(previous_completion["protected_source_after"], protected, "prior source changed")
-    for key, expected in (("protected_source_identity", protected), ("core_protected_identity", core), ("engine_identity", previous["engine_identity"]), ("completed", True)):
+    if not recovered:
+        same(previous_completion["protected_source_after"], protected, "prior source changed")
+    prior_completed = previous_completion is not None and previous_completion.get("completed") is True
+    for key, expected in (("protected_source_identity", protected), ("core_protected_identity", core), ("engine_identity", previous["engine_identity"]), ("completed", prior_completed if recovered else True)):
         same(protocol["replication"][key], expected, "embedded prior replication differs")
     invocation = protocol["invocation"]
     same(invocation["child_directory"], "case", "unexpected child directory")
@@ -346,11 +397,16 @@ def validate_wrapper(directory, replication_directory, engine_archive=HERE.paren
     started = timestamp(protocol["created_utc"])
     child_started = timestamp(read_json(directory / "case/invocation.json")["utc"])
     ended = timestamp(completion["completed_utc"])
-    require(timestamp(previous_completion["completed_utc"]) <= started <= child_started <= ended, "protocol/campaign/runner chronology differs")
+    prior_time = timestamp(interruption["observed_utc"]) if recovered else timestamp(previous_completion["completed_utc"])
+    require(prior_time <= started <= child_started <= ended, "protocol/campaign/runner chronology differs")
+    if recovered:
+        require(timestamp(previous["frozen_utc"]) <= prior_time, "interruption predates frozen campaign")
     same(completion["case_summary_file"], file_record(directory / "case/summary.json", "case/summary.json"), "case summary hash differs")
     return {"protocol_sha256": digest(directory / "protocol.json"), "completion_sha256": digest(directory / "completion.json"),
             "replication_protocol_sha256": digest(replication_directory / "protocol.json"), "protected_source_verified": True,
-            "runner_sha256": RUNNER_SHA, "wrapper_sha256": protocol["wrapper"]["sha256"]}
+            "runner_sha256": runner_sha, "wrapper_sha256": protocol["wrapper"]["sha256"],
+            "execution_context": "standalone-after-vm-interruption" if recovered else "after-completed-replication",
+            "original_campaign_certified_complete_by_case": not recovered}
 
 
 def analyze(directory, *, evidence=HERE / "evidence", replication_directory=None,
@@ -362,6 +418,8 @@ def analyze(directory, *, evidence=HERE / "evidence", replication_directory=None
     try:
         provenance = wrapper_validator(directory) if wrapper_validator else validate_wrapper(directory, replication_directory, engine_archive, evidence)
         detail = validate_case(directory / "case", evidence)
+        if not wrapper_validator:
+            same(detail["case_producer_sha256"], provenance["runner_sha256"], "case producer differs from bound wrapper runner")
     except (ValueError, OSError, KeyError, TypeError) as error:
         errors.append({"error_type": type(error).__name__, "error": str(error)})
     result = {"schema": "zerorun.independent-state-rejoin-analysis.v1", "completed": not errors and detail is not None,

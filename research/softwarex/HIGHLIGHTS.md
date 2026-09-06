@@ -1,4 +1,4 @@
-- ZeroRun exposes conservative test-result reuse through CLI and MCP interfaces.
-- Independent inventory checks exercise input-change and refusal boundaries.
-- Controlled experiments retain fresh checks, failures, and restoration costs.
-- Public AI traces distinguish repeated commands from validated reuse.
+- ZeroRun distinguishes reused test status from fresh execution for AI coding tools.
+- Eligible whole-file hits avoid staging without relaxing input checks.
+- Fresh oracles and full-sequence costs make reuse decisions inspectable.
+- Public AI traces distinguish command repetition from validated reuse.

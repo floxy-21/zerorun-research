@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/home/floxy/zerorun-sqj-20260906-1000/engine/research/sqj/strengthening/run_replication_recovery.py", line 144, in <module>
+    raise SystemExit(main())
+  File "/home/floxy/zerorun-sqj-20260906-1000/engine/research/sqj/strengthening/run_replication_recovery.py", line 93, in main
+    planned = plan_recovery(original, previous)
+  File "/home/floxy/zerorun-sqj-20260906-1000/engine/research/sqj/strengthening/run_replication_recovery.py", line 60, in plan_recovery
+    row = json.loads(observation.read_text())
+  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.10/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)

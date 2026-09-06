@@ -1,0 +1,91 @@
+{
+  "tasks": {
+    "rejoin-collection": {
+      "cache_streams": false,
+      "cacheable": true,
+      "closure_reviewed": true,
+      "command": [
+        "sh",
+        ".zerorun-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/",
+        "-k",
+        "elasticsearch7",
+        "-v"
+      ],
+      "env": [],
+      "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+      "inputs": [
+        ".github",
+        ".gitignore",
+        ".readthedocs.yml",
+        ".zerorun-env",
+        "AUTHORS.rst",
+        "BACKERS.rst",
+        "CHANGELOG.rst",
+        "CONTRIBUTING.rst",
+        "LICENSE.txt",
+        "MANIFEST.in",
+        "README.rst",
+        "SECURITY.rst",
+        "docs",
+        "environ",
+        "setup.cfg",
+        "setup.py",
+        "test_reproduce_issue.py",
+        "tests",
+        "tox.ini"
+      ],
+      "outputs": [],
+      "platform": "linux/amd64",
+      "result_only": true,
+      "unsafe_effects": []
+    },
+    "rejoin-target": {
+      "cache_streams": false,
+      "cacheable": true,
+      "closure_reviewed": true,
+      "command": [
+        "sh",
+        ".zerorun-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_search.py",
+        "-v"
+      ],
+      "env": [],
+      "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+      "inputs": [
+        ".github",
+        ".gitignore",
+        ".readthedocs.yml",
+        ".zerorun-env",
+        "AUTHORS.rst",
+        "BACKERS.rst",
+        "CHANGELOG.rst",
+        "CONTRIBUTING.rst",
+        "LICENSE.txt",
+        "MANIFEST.in",
+        "README.rst",
+        "SECURITY.rst",
+        "docs",
+        "environ",
+        "setup.cfg",
+        "setup.py",
+        "test_reproduce_issue.py",
+        "tests",
+        "tox.ini"
+      ],
+      "outputs": [],
+      "platform": "linux/amd64",
+      "result_only": true,
+      "unsafe_effects": []
+    }
+  },
+  "version": 2
+}

@@ -1,0 +1,87 @@
+{
+  "acceptance_probability_estimated": false,
+  "autonomous_agent_evaluated": false,
+  "case_producer_sha256": "270d9a3708e190ad7f4230b954e976beb48c46030297c959f9b92685e6900e17",
+  "compact_table_markdown": "| Request | Observed status | Exit | Fresh test nodes |\n|---|---|---:|---:|\n| seed-26 | MISS_EXECUTED | 0 | 14 |\n| changed-27-counterfactual-oracle | MISS_EXECUTED | 0 | 15 |\n| restored-collection-29 | MISS_FAILED | 5 | 0 |\n| restored-repeat-30 | HIT_REUSED | 0 | 14 |",
+  "completed": true,
+  "counterfactual_request_retained": true,
+  "errors": [],
+  "expected_requests": 4,
+  "fresh_outcomes": [
+    14,
+    15,
+    0,
+    14
+  ],
+  "git_fixture_correction": true,
+  "materialized_runtime_sha256": "7222642076e656f7c83348417f367e02858b002a2f835a733f81bd641f62cdd5",
+  "optimized_hits": 1,
+  "original_environment_reproduced": false,
+  "population_speedup_claimed": false,
+  "provenance": {
+    "completion_sha256": "d72fcb3c6aea436501c8f3cb1e5dd0ef9b16df8d55191d672e4c27d7e0f2ad22",
+    "execution_context": "standalone-after-vm-interruption",
+    "original_campaign_certified_complete_by_case": false,
+    "protected_source_verified": true,
+    "protocol_sha256": "da2007185087448e9eecf8b6abd9bf02aee21653f7d5755caeb2296a7f9c887b",
+    "replication_protocol_sha256": "6bcadb632a509bf12ba49449f069585a5836c795e761e66f875da4c24d7081ec",
+    "runner_sha256": "270d9a3708e190ad7f4230b954e976beb48c46030297c959f9b92685e6900e17",
+    "wrapper_sha256": "0d9cce4249c9115d24931aa1b6b869b0b3153dae56babfda8395e599ae87be18"
+  },
+  "requests": 4,
+  "rows": [
+    {
+      "action_key": "a3969a8a727d769488d99d3ca636161c0dc18307e98d12e6de763c436bc71d41",
+      "actual_status": "MISS_EXECUTED",
+      "counterfactual_instrumentation": false,
+      "exit_code": 0,
+      "fresh_nodes": 14,
+      "fresh_oracle_wall_ms": 5178.474397999935,
+      "product_wall_ms": 9793.569084999945,
+      "raw_output_equivalence_claimed": false,
+      "request": "seed-26",
+      "source_sha256": "140b4688d578558859dda34d87d9593297784c8401e0716fa6df0f827e13b1e5"
+    },
+    {
+      "action_key": "42f534b97a4150fbf9653416bf5ced1de9982806ee793dbcd9dfc5fd46fb3a01",
+      "actual_status": "MISS_EXECUTED",
+      "counterfactual_instrumentation": true,
+      "exit_code": 0,
+      "fresh_nodes": 15,
+      "fresh_oracle_wall_ms": 6208.288634999917,
+      "product_wall_ms": 7648.036316000116,
+      "raw_output_equivalence_claimed": false,
+      "request": "changed-27-counterfactual-oracle",
+      "source_sha256": "25b2499430989ba1dc51b8d0889a7a6ce2c04876af9acfeb98d380eebc077df2"
+    },
+    {
+      "action_key": "ea386d8d42d918a47083b509410324ecb9df21e7bcb7357b612d7e801fc4b53d",
+      "actual_status": "MISS_FAILED",
+      "counterfactual_instrumentation": false,
+      "exit_code": 5,
+      "fresh_nodes": 0,
+      "fresh_oracle_wall_ms": 3660.3116750000027,
+      "product_wall_ms": 7871.192838999832,
+      "raw_output_equivalence_claimed": false,
+      "request": "restored-collection-29",
+      "source_sha256": "140b4688d578558859dda34d87d9593297784c8401e0716fa6df0f827e13b1e5"
+    },
+    {
+      "action_key": "a3969a8a727d769488d99d3ca636161c0dc18307e98d12e6de763c436bc71d41",
+      "actual_status": "HIT_REUSED",
+      "counterfactual_instrumentation": false,
+      "exit_code": 0,
+      "fresh_nodes": 14,
+      "fresh_oracle_wall_ms": 3697.4490150000747,
+      "product_wall_ms": 1151.4248260000386,
+      "raw_output_equivalence_claimed": false,
+      "request": "restored-repeat-30",
+      "source_sha256": "140b4688d578558859dda34d87d9593297784c8401e0716fa6df0f827e13b1e5"
+    }
+  ],
+  "schema": "zerorun.independent-state-rejoin-analysis.v1",
+  "selection": "one purposive real-agent-derived controlled case",
+  "source_rejoin_verified": true,
+  "summary_sha256": "b3a606a5420f666af1741aa4c9e478303f9a8680f39a567ad3a130a63c248925",
+  "tvcache_compared": false
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="9" time="1.183" timestamp="2026-09-06T18:58:48.863362-04:00" hostname="floxy"><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[negative]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[bool]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[phase-sum]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[phase-timeout]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[phase-order]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[phase-interval]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_invalid_clock_or_lifecycle_cannot_be_used[helper-over-outer]" time="0.001" /><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_failed_cleanup_block_retains_costs_and_error_without_headline" time="0.347"><failure message="ValueError: 'C:\\Users\\floxy\\AppData\\Local\\Temp\\zerorun-portability-20260906\\test_failed_cleanup_block_reta0\\packaging\\trajectory-6\\block-summary.json' is not in the subpath of 'C:\\Users\\floxy\\OneDrive\\Documents\\ChatGPT\\Startup\\research\\sqj'">subject = (WindowsPath('C:/Users/floxy/AppData/Local/Temp/zerorun-portability-20260906/test_failed_cleanup_block_reta0'), {'sche...eam': 'pypa/packaging', 'commit': '10590c194edb33c82f84a127883d6097c56b7840', 'targets': ('tests/test_tags.py',), ...})
+
+    def test_failed_cleanup_block_retains_costs_and_error_without_headline(subject):
+        path, protocol, item, scheduled, raw = subject
+        failure = {**raw["blocks"][-1], "completed": False, "error_type": "RuntimeError",
+                   "error": "mock cleanup failure", "retry_attempted": False}
+        raw["blocks"][-1] = failure
+        raw["completed"] = False
+        write(path / item[0] / "trajectory-6/block-summary.json", failure)
+        write(path / item[0] / "summary.json", raw)
+&gt;       result = analysis.inspect_workload(path / item[0], item, scheduled, protocol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\sqj\strengthening\tests\test_analyze_replication.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\sqj\strengthening\analyze_replication.py:338: in inspect_workload
+    errors.append({"path": "research/sqj/" + (destination / "block-summary.json").resolve().relative_to(sqj.resolve()).as_posix(), "receipt": block_receipt})
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/floxy/AppData/Local/Temp/zerorun-portability-20260906/test_failed_cleanup_block_reta0/packaging/trajectory-6/block-summary.json')
+other = WindowsPath('C:/Users/floxy/OneDrive/Documents/ChatGPT/Startup/research/sqj')
+walk_up = False
+
+    def relative_to(self, other, *, walk_up=False):
+        """Return the relative path to another path identified by the passed
+        arguments.  If the operation is not possible (because this is not
+        related to the other path), raise ValueError.
+    
+        The *walk_up* parameter controls whether `..` may be used to resolve
+        the path.
+        """
+        if not hasattr(other, 'with_segments'):
+            other = self.with_segments(other)
+        for step, path in enumerate(chain([other], other.parents)):
+            if path == self or path in self.parents:
+                break
+            elif not walk_up:
+&gt;               raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+E               ValueError: 'C:\\Users\\floxy\\AppData\\Local\\Temp\\zerorun-portability-20260906\\test_failed_cleanup_block_reta0\\packaging\\trajectory-6\\block-summary.json' is not in the subpath of 'C:\\Users\\floxy\\OneDrive\\Documents\\ChatGPT\\Startup\\research\\sqj'
+
+C:\Python314\Lib\pathlib\__init__.py:490: ValueError</failure></testcase><testcase classname="research.sqj.strengthening.tests.test_analyze_replication" name="test_partial_request_costs_are_preserved_not_turned_into_zero" time="0.406"><failure message="ValueError: 'C:\\Users\\floxy\\AppData\\Local\\Temp\\zerorun-portability-20260906\\test_partial_request_costs_are0\\packaging\\trajectory-6\\request-6\\direct.json' is not in the subpath of 'C:\\Users\\floxy\\OneDrive\\Documents\\ChatGPT\\Startup\\research\\sqj'">subject = (WindowsPath('C:/Users/floxy/AppData/Local/Temp/zerorun-portability-20260906/test_partial_request_costs_are0'), {'sche...eam': 'pypa/packaging', 'commit': '10590c194edb33c82f84a127883d6097c56b7840', 'targets': ('tests/test_tags.py',), ...})
+
+    def test_partial_request_costs_are_preserved_not_turned_into_zero(subject):
+        path, protocol, item, scheduled, raw = subject
+        request = path / item[0] / "trajectory-6/request-6"
+        (request / "observation.json").unlink()
+        raw["rows"].pop()
+        failure = {**raw["blocks"][-1], "completed": False, "requests": 6,
+            "error_type": "OSError", "error": "mock receipt-write failure", "retry_attempted": False}
+        raw["blocks"][-1] = failure
+        raw["completed"] = False
+        write(path / item[0] / "trajectory-6/block-summary.json", failure)
+        write(path / item[0] / "summary.json", raw)
+&gt;       result = analysis.inspect_workload(path / item[0], item, scheduled, protocol)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\sqj\strengthening\tests\test_analyze_replication.py:328: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\sqj\strengthening\analyze_replication.py:303: in inspect_workload
+    receipt_reference = "research/sqj/" + receipt_path.resolve().relative_to(sqj.resolve()).as_posix()
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/floxy/AppData/Local/Temp/zerorun-portability-20260906/test_partial_request_costs_are0/packaging/trajectory-6/request-6/direct.json')
+other = WindowsPath('C:/Users/floxy/OneDrive/Documents/ChatGPT/Startup/research/sqj')
+walk_up = False
+
+    def relative_to(self, other, *, walk_up=False):
+        """Return the relative path to another path identified by the passed
+        arguments.  If the operation is not possible (because this is not
+        related to the other path), raise ValueError.
+    
+        The *walk_up* parameter controls whether `..` may be used to resolve
+        the path.
+        """
+        if not hasattr(other, 'with_segments'):
+            other = self.with_segments(other)
+        for step, path in enumerate(chain([other], other.parents)):
+            if path == self or path in self.parents:
+                break
+            elif not walk_up:
+&gt;               raise ValueError(f"{str(self)!r} is not in the subpath of {str(other)!r}")
+E               ValueError: 'C:\\Users\\floxy\\AppData\\Local\\Temp\\zerorun-portability-20260906\\test_partial_request_costs_are0\\packaging\\trajectory-6\\request-6\\direct.json' is not in the subpath of 'C:\\Users\\floxy\\OneDrive\\Documents\\ChatGPT\\Startup\\research\\sqj'
+
+C:\Python314\Lib\pathlib\__init__.py:490: ValueError</failure></testcase></testsuite></testsuites>

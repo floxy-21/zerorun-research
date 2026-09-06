@@ -1,0 +1,19 @@
+A purposively selected django-environ episode provides a positive, bounded mechanism example. We reconstructed its recorded source edits, added a fresh check at the intermediate edited state, and ran four controlled requests (Table~\ref{tab:state-rejoin}). After the inverse edit, the complete declared source/runtime identity and original target's cache key rejoined; the restored request returned one explicitly identified reused success, agreeing with an independent fresh 14-test outcome. The intervening collection command selected no tests and exited 5; it remained a fresh failure, not a reusable success.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{llrr}
+\toprule
+Controlled request & Actual response & Exit & Fresh nodes \\
+\midrule
+Seed target & \code{MISS\_EXECUTED} & 0 & 14 \\
+Edited target (extra check) & \code{MISS\_EXECUTED} & 0 & 15 \\
+Restored collection & \code{MISS\_FAILED} & 5 & 0 \\
+Restored target & \code{HIT\_REUSED} & 0 & 14 \\
+\bottomrule
+\end{tabular}
+\caption{One source-restoration case. The 15-test request is additional counterfactual instrumentation, not a test call made by the recorded agent. Every row includes a separate fresh full-target oracle.}
+\label{tab:state-rejoin}
+\end{table}
+
+This standalone case ran after the timing VM interruption, with independently checked source bindings. Retained failed attempts exposed a missing Git-fixture marker; a separately versioned producer initialized local metadata while preserving the baseline's masking guard. The successful run uses Python 3.12.14 and pytest 9.1.1, not the recorded Python 3.9 environment. It demonstrates this content-restoration mechanism, not historical output replay, unchanged autonomous-agent behavior, or population-wide benefit.

@@ -21,16 +21,17 @@ The public release uses `src/zerorun` for packaging. The frozen original experim
 
 ## 2. Check recorded evidence without executing agent commands
 
-Run from the release root using its environment:
+Run from the completed submission snapshot or extracted reviewer archive using its environment. Offline analysis requires Python 3.11 or later, or the optional `tomli` parser on Python 3.10. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The four raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
 
 ```sh
 .venv/bin/python -m research.sqj.strengthening.validate_traces --check
 .venv/bin/python -m research.sqj.analyze_comparison --check
-.venv/bin/python -m research.sqj.strengthening.analyze_replication \
-  --directory research/sqj/strengthening/evidence/short-randomized-replication-v1 \
+.venv/bin/python -m research.sqj.strengthening.analyze_recovered_replication \
+  --original research/sqj/strengthening/evidence/short-randomized-replication-v1 \
+  --recovery research/sqj/strengthening/evidence/short-randomized-recovery-v1 \
   --output research/sqj/strengthening/evidence/replication-analysis-v1.json --check
 .venv/bin/python -m research.sqj.strengthening.analyze_state_rejoin \
-  --directory research/sqj/strengthening/evidence/agent-state-rejoin-v1 \
+  --directory research/sqj/strengthening/evidence/agent-state-rejoin-v3 \
   --replication-directory research/sqj/strengthening/evidence/short-randomized-replication-v1 \
   --output research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json --check
 .venv/bin/python -m research.softwarex.build_paper --check
@@ -60,14 +61,21 @@ For the balanced four-short-subject extension, prepare the isolated `study_dir/e
 
 The driver freezes four subjects, six order-balanced blocks each, seven request states per block, and complete invocation clocks before execution. It stops the affected workload on a material disagreement and retains the failure. Do not run a regression workload concurrently inside the timed VM. Setup is kept outside request clocks and reported separately, not erased.
 
-The small django-environ state-restoration case has its own source archive and `research/sqj/strengthening/STATE_REJOIN.md`. Its original recorded environment is **not** reproduced: the controlled case uses the existing Python 3.12.14 / pytest 9.1.1 locked runtime. The intermediate 15-test check is extra counterfactual instrumentation, not an observed agent action. A successful case is a result-only mechanism demonstration, not an autonomous-agent benchmark, historical-output replay, or TVCache comparison.
+The supplied run suffered a VirtualBox host assertion after 21 complete blocks and part of Packaging block four. `run_replication_recovery.py` records a separate post-interruption amendment and restarts only preselected unfinished blocks four through six. Its initial preflight failed while reading a zero-byte crash remnant; that failed log and original recovery helper are retained. The corrected planner preserves empty records as unavailable, not passing, and the independent `analyze_recovered_replication.py` reconciles the original and new attempts without modifying either. Completed-block ratios, additional interrupted-attempt costs, and missing invocation records remain separate. Packaging's original environment-layer setup total was never flushed, so its setup-inclusive ratio is unavailable. This is not uninterrupted fulfillment of the original no-retry protocol; a new reproduction should not manufacture the same host crash.
+
+The small django-environ state-restoration case has its own source archive and `research/sqj/strengthening/STATE_REJOIN.md`. Its original recorded environment is **not** reproduced: the controlled case uses the existing Python 3.12.14 / pytest 9.1.1 locked runtime. The intermediate 15-test check is extra counterfactual instrumentation, not an observed agent action. A successful case is a result-only mechanism demonstration, not an autonomous-agent benchmark, historical-output replay, or TVCache comparison. The post-interruption wrapper binds the original prospective protocol and unchanged runtime source, without pretending the original campaign completed.
+
+All three state-case attempts are retained separately. `agent-state-rejoin-v1` refused a nine-fractional-digit timestamp during preflight, before invoking any test. The subsequent interruption receipt uses Python-3.10-compatible microsecond precision; it does not overwrite the original receipt. `agent-state-rejoin-v2` then encountered the existing baseline guard requiring ordinary Git metadata in the reconstructed fixture. The final case directory is `agent-state-rejoin-v3`, produced by the separately versioned `state_rejoin_v2.py` and `run_recovered_state_rejoin_v2.py`.
+
+The fixture correction initializes a new ordinary local Git directory with templates disabled, no network access, no inherited Git configuration, and a checked canonical root. It does not reconstruct historical commits or change workload source, expected outcomes, cache eligibility, or the runtime's safety guard. The pre-existing container contract masks Git metadata; the corrected runner explicitly excludes this fixture metadata from source-identity comparisons alongside runtime bookkeeping. The retained `case/git-fixture.json` records these checks, and the independent analyzer requires this exact correction rather than accepting any arbitrary exclusion. Earlier failures are not described as successful requests.
 
 Never export an entire live study directory. The extension exporter explicitly allows only the named studies and excludes private cache keys, workspaces, engine state, and installed dependencies:
 
 ```sh
-"$study_dir/venv/bin/python" -m research.sqj.strengthening.export_evidence \
+"$study_dir/venv/bin/python" -m research.sqj.strengthening.export_recovered_evidence \
   --results "$study_dir" --output "$study_dir/extension-export.tar.gz" \
-  --select short-randomized-replication-v1
+  --select short-randomized-replication-v1 short-randomized-recovery-v1 \
+    agent-state-rejoin-v1 agent-state-rejoin-v2 agent-state-rejoin-v3
 ```
 
 The existing `research.sqj.import_public_evidence` verifies the archive inventory and every file hash before importing; it refuses to overwrite differing evidence. Fresh re-execution has a new Git context and new timestamps. Keep these truthful instead of editing them to imitate the original run.

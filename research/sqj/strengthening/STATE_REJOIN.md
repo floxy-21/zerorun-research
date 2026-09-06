@@ -125,7 +125,78 @@ The analysis output is create-only; add --check to verify an existing saved
 analysis without replacing it. Fresh runs keep their truthful new Git
 context and timestamps; they do not impersonate the original campaign.
 
-### Fast offline checks and mechanism development
+### Recorded post-interruption execution route
+
+The original timing VM was interrupted before its campaign could be certified
+complete. The separately named `run_recovered_state_rejoin.py` wrapper allows
+the unchanged four-request state case to run as a **standalone,
+source-bound post-interruption case**. It does not create or claim an original
+completed timing campaign. The old completed-campaign wrapper remains
+unchanged, and a clean new reproduction may still use that route above.
+
+The new wrapper accepts the same engine, evidence, original protocol and
+output arguments, plus `--interruption-receipt PATH`. The supplied JSON must
+record schema `zerorun.vm-interruption.v1`, the exact original
+`replication_protocol_sha256`, the actual `observed_utc`, a factual
+`description`, and the actual `recovery_action`. It is copied byte-for-byte
+into the case export. Do not invent or backdate such a receipt to bypass a
+failed timing campaign. Original completion presence and contents are
+recorded as observed; absence remains absence.
+
+This wrapper freezes its own source, the unchanged state runner, the original
+prospective timing protocol, all four helper files, engine/core identities,
+and the candidate's source/data hashes before executing any case request.
+The independent analyzer recognizes the different schema, checks the
+interruption's hash and chronology, requires the same before/after source
+bindings and all four full fresh outcomes, and labels the resulting evidence
+`standalone-after-vm-interruption`. Source binding does not certify timing
+campaign completion. Neither route runs concurrently with timed VM work.
+
+Offline validation of the new binding and existing strict case checks passed
+55 tests, retained in `evidence/recovered-state-binding-unit-v1.xml`. These
+are fixture-based binding tests, not 55 real agent episodes or execution
+measurements.
+
+The first execution exposed a fixture defect: the downloaded source archive
+has no Git metadata, but the independent plain-pytest baseline intentionally
+requires an ordinary Git marker so it can mask that metadata in its
+container. The failed case is retained, not recoded as successful. Separate
+`state_rejoin_v2.py` and `run_recovered_state_rejoin_v2.py` files correct only
+this laboratory setup: after unchanged source reconstruction they initialize
+a real local Git repository with templates disabled, record the operation,
+and explicitly exclude `.git` as engine-control state. Both execution paths
+continue to mask Git metadata under their existing contracts. No original
+Git history is claimed or reconstructed, and the baseline guard is unchanged.
+The old producers remain byte-identical. The correction's independent
+analyzer verifies the pinned new producer, Git-fixture receipt, explicit
+exclusion and all original four-request outcomes. Its combined offline
+suite passes 71 tests (`evidence/state-git-fixture-unit-v1.xml`), including a
+real local Git initialization exercised against the unchanged masking guard;
+those tests are not a substitute for the separately exported VM result.
+
+### Verified execution result
+
+The corrected VM case is retained as `evidence/agent-state-rejoin-v3`, not
+renamed to conceal prior attempts. Its outer completion is dated
+2026-09-06T22:54:32.324387+00:00. Independent raw reconciliation passes and is
+saved in `evidence/state-rejoin-analysis-v1.json`: four requests, one reused
+success, complete fresh-node counts 14, 15, 0, 14, and exit codes 0, 0, 5, 0.
+Actual statuses are `MISS_EXECUTED`, `MISS_EXECUTED`, `MISS_FAILED`, and
+`HIT_REUSED`. The seed/restored declared source-runtime identity and target
+cache key are equal; the changed state and collection target have different
+keys. Source, helper, runner, wrapper and engine bindings remain unchanged
+through the successful run; no operator authority was created.
+
+The successful case remains standalone after the VM interruption, not a
+certification that the interrupted timing campaign completed. The 15-node
+intermediate check is counterfactual instrumentation, and the original
+recorded environment and agent behavior were not reproduced. Prior failed
+attempts stay separate. To verify the saved result, use the analyzer command
+above with directory `research/sqj/strengthening/evidence/agent-state-rejoin-v3`,
+output `research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json`, and
+the `--check` flag, retaining the matching original replication directory.
+
+### Offline checks and unbound mechanism development
 
 Reading supplied source-only receipts or running the independent analyzer on
 already supplied results does not require Docker, a new timing campaign,
@@ -137,8 +208,9 @@ use --check only when that saved analysis already exists.
 
 The direct state_rejoin runner's --execute-reviewed-lab option is reserved
 for separately labeled mechanism-development runs. Such a standalone run
-without the completed replication and external binding wrapper is **not**
-the source-bound campaign used for manuscript provenance.
+without either documented external binding wrapper is **not** a
+source-bound case used for manuscript provenance. The recovered wrapper's
+standalone case must not be relabeled as a completed-campaign run.
 
 The established dependency-layer helper may acquire hash-locked wheels.
 The image is never pulled by the case. No production source file or user

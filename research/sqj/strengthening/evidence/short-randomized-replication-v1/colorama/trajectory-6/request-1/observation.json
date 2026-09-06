@@ -1,0 +1,717 @@
+{
+  "arms": {
+    "direct": {
+      "completed": true,
+      "docker_subprocess_phases": [
+        {
+          "ended_utc": "2026-09-06T22:02:45.287159+00:00",
+          "exit_code": 0,
+          "phase": "container ls",
+          "started_utc": "2026-09-06T22:02:45.161695+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 125.4236500026309
+        },
+        {
+          "ended_utc": "2026-09-06T22:02:45.773535+00:00",
+          "exit_code": 0,
+          "phase": "create",
+          "started_utc": "2026-09-06T22:02:45.288695+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 484.80672299774596
+        },
+        {
+          "ended_utc": "2026-09-06T22:02:45.949051+00:00",
+          "exit_code": 0,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T22:02:45.773617+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 175.40643399843248
+        },
+        {
+          "ended_utc": "2026-09-06T22:02:52.142750+00:00",
+          "exit_code": 0,
+          "phase": "start",
+          "started_utc": "2026-09-06T22:02:45.949164+00:00",
+          "timeout_seconds": 900,
+          "wall_ms": 6193.566807000025
+        },
+        {
+          "ended_utc": "2026-09-06T22:02:52.319298+00:00",
+          "exit_code": 0,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T22:02:52.142808+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 176.47089800448157
+        },
+        {
+          "ended_utc": "2026-09-06T22:02:52.549829+00:00",
+          "exit_code": 0,
+          "phase": "container rm",
+          "started_utc": "2026-09-06T22:02:52.319415+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 230.391075994703
+        },
+        {
+          "ended_utc": "2026-09-06T22:02:52.676929+00:00",
+          "exit_code": 1,
+          "phase": "container inspect",
+          "started_utc": "2026-09-06T22:02:52.549882+00:00",
+          "timeout_seconds": 30,
+          "wall_ms": 127.02711200108752
+        }
+      ],
+      "ended_utc": "2026-09-06T22:02:52.677187+00:00",
+      "exit_code": 0,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.35107421875,
+          1.46630859375,
+          1.4267578125
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          124692 kB\nMemAvailable:    1852956 kB\nBuffers:          454100 kB\nCached:          1356292 kB\nSwapCached:            0 kB\nActive:          1266484 kB\nInactive:         756972 kB\nActive(anon):       4420 kB\nInactive(anon):   241408 kB\nActive(file):    1262064 kB\nInactive(file):   515564 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               256 kB\nWriteback:             0 kB\nAnonPages:        240700 kB\nMapped:           237680 kB\nShmem:             23700 kB\nKReclaimable:     139900 kB\nSlab:             194416 kB\nSReclaimable:     139900 kB\nSUnreclaim:        54516 kB\nKernelStack:        3768 kB\nPageTables:         4464 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35132 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.01 avg60=3.59 avg300=4.02 total=1374377622\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=1.04 avg60=1.87 avg300=1.65 total=207171484\nfull avg10=0.76 avg60=1.44 avg300=1.20 total=161740565\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  1013268 2623 884996 26668256 48614 0 57726 0 0 0\ncpu0 228074 292 170183 5478872 10800 0 7874 0 0 0\ncpu1 251372 1861 175510 5408000 11805 0 7784 0 0 0\ncpu2 275142 184 174521 5414736 12041 0 7596 0 0 0\ncpu3 232980 209 173950 5452425 11541 0 8620 0 0 0\ncpu4 25699 77 190831 4914222 2425 0 25850 0 0 0\nintr 93855147 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29203 50011 0 712041 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155652112\nbtime 1788671060\nprocesses 249500\nprocs_running 1\nprocs_blocked 0\nsoftirq 38900579 5 16731518 12950 57189 665501 0 444 13581596 0 7851376\n",
+        "utc": "2026-09-06T22:02:52.677202+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.3818359375,
+          1.474609375,
+          1.42919921875
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          124948 kB\nMemAvailable:    1852868 kB\nBuffers:          453976 kB\nCached:          1356120 kB\nSwapCached:            0 kB\nActive:          1266312 kB\nInactive:         756480 kB\nActive(anon):       4372 kB\nInactive(anon):   241024 kB\nActive(file):    1261940 kB\nInactive(file):   515456 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                60 kB\nWriteback:            12 kB\nAnonPages:        240288 kB\nMapped:           237760 kB\nShmem:             23636 kB\nKReclaimable:     139788 kB\nSlab:             194184 kB\nSReclaimable:     139788 kB\nSUnreclaim:        54396 kB\nKernelStack:        3728 kB\nPageTables:         4392 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144180 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35132 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.72 avg60=3.70 avg300=4.05 total=1374099817\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=1.23 avg60=1.96 avg300=1.67 total=207043002\nfull avg10=0.95 avg60=1.52 avg300=1.21 total=161661112\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  1012727 2623 884757 26665704 48585 0 57680 0 0 0\ncpu0 228062 292 170146 5478263 10796 0 7869 0 0 0\ncpu1 251312 1861 175459 5407413 11801 0 7782 0 0 0\ncpu2 274704 184 174464 5414544 12037 0 7586 0 0 0\ncpu3 232956 209 173906 5451817 11524 0 8614 0 0 0\ncpu4 25691 77 190780 4913666 2424 0 25827 0 0 0\nintr 93841450 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29198 50007 0 711715 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155638605\nbtime 1788671060\nprocesses 249357\nprocs_running 1\nprocs_blocked 0\nsoftirq 38891298 5 16728911 12947 57185 665197 0 444 13579169 0 7847440\n",
+        "utc": "2026-09-06T22:02:45.154924+00:00"
+      },
+      "instrumented": false,
+      "request_wall_ms": 7521.680962003302,
+      "runner": "independent-docker-plain-pytest",
+      "started_utc": "2026-09-06T22:02:45.154894+00:00",
+      "stderr_tail": "",
+      "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 52 items\n\ncolorama/tests/ansi_test.py ...                                          [  5%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n======================== 38 passed, 14 skipped in 1.24s ========================\n",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "wall_ms": 7388.724211006775
+    },
+    "fast": {
+      "cache_key": "aa84648ba427b000aabab9fbfc4fc85ac951bad48b4eb1840fcb697bbe5d5245",
+      "completed": true,
+      "docker_subprocess_phases": [],
+      "ended_utc": "2026-09-06T22:02:55.041946+00:00",
+      "execution_ms": 7032.586,
+      "exit_code": 0,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.32275390625,
+          1.45849609375,
+          1.42431640625
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          126252 kB\nMemAvailable:    1854508 kB\nBuffers:          454104 kB\nCached:          1356220 kB\nSwapCached:            0 kB\nActive:          1266432 kB\nInactive:         757056 kB\nActive(anon):       4368 kB\nInactive(anon):   241500 kB\nActive(file):    1262064 kB\nInactive(file):   515556 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                76 kB\nWriteback:             0 kB\nAnonPages:        240820 kB\nMapped:           237780 kB\nShmem:             23636 kB\nKReclaimable:     139900 kB\nSlab:             194412 kB\nSReclaimable:     139900 kB\nSUnreclaim:        54512 kB\nKernelStack:        3664 kB\nPageTables:         4356 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35084 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.06 avg60=3.58 avg300=4.01 total=1374421631\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.99 avg60=1.81 avg300=1.64 total=207175328\nfull avg10=0.66 avg60=1.38 avg300=1.19 total=161744312\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  1013446 2623 885057 26669129 48615 0 57727 0 0 0\ncpu0 228077 292 170188 5479092 10800 0 7874 0 0 0\ncpu1 251537 1861 175547 5408027 11805 0 7784 0 0 0\ncpu2 275144 184 174526 5414952 12041 0 7596 0 0 0\ncpu3 232983 209 173957 5452636 11542 0 8620 0 0 0\ncpu4 25704 77 190837 4914420 2425 0 25850 0 0 0\nintr 93857929 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29204 50012 0 712046 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155654400\nbtime 1788671060\nprocesses 249527\nprocs_running 1\nprocs_blocked 0\nsoftirq 38902784 5 16732259 12950 57190 665506 0 444 13582164 0 7852266\n",
+        "utc": "2026-09-06T22:02:55.041966+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.35107421875,
+          1.46630859375,
+          1.4267578125
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          124692 kB\nMemAvailable:    1852956 kB\nBuffers:          454100 kB\nCached:          1356292 kB\nSwapCached:            0 kB\nActive:          1266484 kB\nInactive:         756972 kB\nActive(anon):       4420 kB\nInactive(anon):   241408 kB\nActive(file):    1262064 kB\nInactive(file):   515564 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               256 kB\nWriteback:             0 kB\nAnonPages:        240700 kB\nMapped:           237680 kB\nShmem:             23700 kB\nKReclaimable:     139900 kB\nSlab:             194416 kB\nSReclaimable:     139900 kB\nSUnreclaim:        54516 kB\nKernelStack:        3768 kB\nPageTables:         4464 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35132 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.01 avg60=3.59 avg300=4.02 total=1374377622\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=1.04 avg60=1.87 avg300=1.65 total=207171484\nfull avg10=0.76 avg60=1.44 avg300=1.20 total=161740565\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  1013269 2623 884996 26668257 48614 0 57726 0 0 0\ncpu0 228074 292 170183 5478872 10800 0 7874 0 0 0\ncpu1 251372 1861 175510 5408000 11805 0 7784 0 0 0\ncpu2 275142 184 174521 5414736 12041 0 7596 0 0 0\ncpu3 232980 209 173950 5452425 11541 0 8620 0 0 0\ncpu4 25699 77 190831 4914222 2425 0 25850 0 0 0\nintr 93855150 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29203 50011 0 712041 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155652112\nbtime 1788671060\nprocesses 249500\nprocs_running 1\nprocs_blocked 0\nsoftirq 38900581 5 16731519 12950 57189 665501 0 444 13581596 0 7851377\n",
+        "utc": "2026-09-06T22:02:52.679154+00:00"
+      },
+      "phase_ms": {
+        "cache_lookup": 144.473,
+        "environment": 0.047,
+        "event_append": 18.985,
+        "fingerprint_final": 919.766,
+        "fingerprint_initial": 873.831,
+        "lock_acquire": 7.686,
+        "readonly_hit_path": 2340.899,
+        "runtime_inspect_initial": 335.494,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "request_wall_ms": 2361.008554995351,
+      "restored_outputs": [],
+      "saved_ms": 4691.685,
+      "started_utc": "2026-09-06T22:02:52.679125+00:00",
+      "status": "HIT_REUSED",
+      "stderr": "",
+      "stdout": "",
+      "task": "replication-colorama-6-fast",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "verified": false,
+      "wall_ms": 2340.902
+    },
+    "snapshot": {
+      "cache_key": "1007deba48e695a8010bb85fa55ad73778f37529194af02f501abec9bc726d6f",
+      "completed": true,
+      "docker_subprocess_phases": [],
+      "ended_utc": "2026-09-06T22:03:01.642717+00:00",
+      "execution_ms": 8071.132,
+      "exit_code": 0,
+      "host_after": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.45751953125,
+          1.484375,
+          1.43310546875
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          123372 kB\nMemAvailable:    1851972 kB\nBuffers:          454112 kB\nCached:          1356356 kB\nSwapCached:            0 kB\nActive:          1266568 kB\nInactive:         757072 kB\nActive(anon):       4368 kB\nInactive(anon):   241508 kB\nActive(file):    1262200 kB\nInactive(file):   515564 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               464 kB\nWriteback:             0 kB\nAnonPages:        240836 kB\nMapped:           237780 kB\nShmem:             23636 kB\nKReclaimable:     140100 kB\nSlab:             194756 kB\nSReclaimable:     140100 kB\nSUnreclaim:        54656 kB\nKernelStack:        3672 kB\nPageTables:         4428 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35084 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=1.86 avg60=3.27 avg300=3.94 total=1374466568\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.54 avg60=1.64 avg300=1.61 total=207179678\nfull avg10=0.36 avg60=1.25 avg300=1.16 total=161748550\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  1013956 2623 885212 26671618 48617 0 57730 0 0 0\ncpu0 228079 292 170193 5479730 10800 0 7874 0 0 0\ncpu1 252032 1861 175673 5408055 11805 0 7784 0 0 0\ncpu2 275152 184 174534 5415584 12041 0 7596 0 0 0\ncpu3 232987 209 173966 5453248 11544 0 8622 0 0 0\ncpu4 25705 77 190844 4914999 2425 0 25851 0 0 0\nintr 93863797 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29210 50015 0 712073 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155658023\nbtime 1788671060\nprocesses 249553\nprocs_running 1\nprocs_blocked 0\nsoftirq 38908346 5 16734197 12951 57193 665530 0 444 13583320 0 7854706\n",
+        "utc": "2026-09-06T22:03:01.642742+00:00"
+      },
+      "host_before": {
+        "cpu_count": 5,
+        "load_average_1_5_15": [
+          1.32275390625,
+          1.45849609375,
+          1.42431640625
+        ],
+        "meminfo": "MemTotal:        2456464 kB\nMemFree:          126252 kB\nMemAvailable:    1854508 kB\nBuffers:          454104 kB\nCached:          1356220 kB\nSwapCached:            0 kB\nActive:          1266432 kB\nInactive:         757056 kB\nActive(anon):       4368 kB\nInactive(anon):   241500 kB\nActive(file):    1262064 kB\nInactive(file):   515556 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                76 kB\nWriteback:             0 kB\nAnonPages:        240820 kB\nMapped:           237780 kB\nShmem:             23636 kB\nKReclaimable:     139900 kB\nSlab:             194412 kB\nSReclaimable:     139900 kB\nSUnreclaim:        54512 kB\nKernelStack:        3664 kB\nPageTables:         4356 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35084 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+        "pid": 196091,
+        "pressure/cpu": "some avg10=3.06 avg60=3.58 avg300=4.01 total=1374421631\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+        "pressure/io": "some avg10=0.99 avg60=1.81 avg300=1.64 total=207175328\nfull avg10=0.66 avg60=1.38 avg300=1.19 total=161744312\n",
+        "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+        "stat": "cpu  1013446 2623 885057 26669129 48615 0 57727 0 0 0\ncpu0 228077 292 170188 5479092 10800 0 7874 0 0 0\ncpu1 251537 1861 175547 5408027 11805 0 7784 0 0 0\ncpu2 275144 184 174526 5414952 12041 0 7596 0 0 0\ncpu3 232983 209 173957 5452636 11542 0 8620 0 0 0\ncpu4 25704 77 190837 4914420 2425 0 25850 0 0 0\nintr 93857929 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29204 50012 0 712046 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155654400\nbtime 1788671060\nprocesses 249527\nprocs_running 1\nprocs_blocked 0\nsoftirq 38902784 5 16732259 12950 57190 665506 0 444 13582164 0 7852266\n",
+        "utc": "2026-09-06T22:02:55.043014+00:00"
+      },
+      "phase_ms": {
+        "cache_lookup": 133.072,
+        "environment": 0.039,
+        "event_append": 26.525,
+        "fingerprint_final": 604.017,
+        "fingerprint_initial": 923.425,
+        "lock_acquire": 3.858,
+        "runtime_inspect_initial": 332.197,
+        "snapshot_cleanup": 90.287,
+        "snapshot_prepare": 4448.388
+      },
+      "reason": "exact reviewed source closure and pinned runtime identity matched",
+      "request_wall_ms": 6599.3320109992055,
+      "restored_outputs": [],
+      "saved_ms": 1498.859,
+      "started_utc": "2026-09-06T22:02:55.042996+00:00",
+      "status": "HIT_REUSED",
+      "stderr": "",
+      "stdout": "",
+      "task": "replication-colorama-6-snapshot",
+      "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+      "verified": false,
+      "wall_ms": 6572.273
+    }
+  },
+  "cache_behavior_expected": true,
+  "index": 1,
+  "label": "repeat-1",
+  "oracle": {
+    "capture": {
+      "all_nodes_non_failing": true,
+      "complete_per_node_outcomes": true,
+      "exit_code": 0,
+      "failing_nodeids": [],
+      "nodeid_sha256": "6e26c473abdbfb09fc976c3bf6a058bd1cffa6bcf726a6e82e548d9818591d6b",
+      "nodeids": [
+        "colorama/tests/ansi_test.py::AnsiTest::testBackAttributes",
+        "colorama/tests/ansi_test.py::AnsiTest::testForeAttributes",
+        "colorama/tests/ansi_test.py::AnsiTest::testStyleAttributes",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesContext",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testDelegatesWrite",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testIsAProxy",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::testProxyNoContextManager",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_closed_stream",
+        "colorama/tests/ansitowin32_test.py::StreamWrapperTest::test_closed_shouldnt_raise_on_detached_stream",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testCallWin32UsesLookup",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testExtractParams",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testInit",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsFalseOffWindows",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testStripIsTrueOnWindows",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertCallsWin32WithParamsAndCommand",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertSkipsEmptySnippets",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertStripsAllValidAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAndConvertWritesPlainText",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteAutoresets",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteDoesNotStripAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::testWriteStripsAnsi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_native_windows_ansi",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_osc_codes",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_reset_all_shouldnt_raise_on_closed_orig_stdout",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_closed_orig_stdout",
+        "colorama/tests/ansitowin32_test.py::AnsiToWin32Test::test_wrap_shouldnt_raise_on_missing_closed_attr",
+        "colorama/tests/initialise_test.py::InitTest::testAtexitRegisteredOnlyOnce",
+        "colorama/tests/initialise_test.py::InitTest::testAutoResetChangeable",
+        "colorama/tests/initialise_test.py::InitTest::testAutoResetPassedOn",
+        "colorama/tests/initialise_test.py::InitTest::testInitAutoresetOnWrapsOnAllPlatforms",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapIfNone",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnEmulatedWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitDoesntWrapOnNonWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapOffDoesntWrapOnWindows",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapOffIncompatibleWithAutoresetOn",
+        "colorama/tests/initialise_test.py::InitTest::testInitWrapsOnWindows",
+        "colorama/tests/initialise_test.py::JustFixWindowsConsoleTest::testJustFixWindowsConsole",
+        "colorama/tests/isatty_test.py::IsattyTest::test_TTY",
+        "colorama/tests/isatty_test.py::IsattyTest::test_nonTTY",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharm",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNonTTYOverride",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmNoneOverride",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmStreamWrapped",
+        "colorama/tests/isatty_test.py::IsattyTest::test_withPycharmTTYOverride",
+        "colorama/tests/winterm_test.py::WinTermTest::testBack",
+        "colorama/tests/winterm_test.py::WinTermTest::testFore",
+        "colorama/tests/winterm_test.py::WinTermTest::testGetAttrs",
+        "colorama/tests/winterm_test.py::WinTermTest::testInit",
+        "colorama/tests/winterm_test.py::WinTermTest::testResetAll",
+        "colorama/tests/winterm_test.py::WinTermTest::testSetConsole",
+        "colorama/tests/winterm_test.py::WinTermTest::testSetConsoleOnStderr",
+        "colorama/tests/winterm_test.py::WinTermTest::testStyle"
+      ],
+      "outcomes": [
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "passed",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        },
+        {
+          "call": "skipped",
+          "setup": "passed",
+          "teardown": "passed",
+          "wasxfail": false
+        }
+      ],
+      "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+    },
+    "completed": true,
+    "docker_subprocess_phases": [
+      {
+        "ended_utc": "2026-09-06T22:03:01.834057+00:00",
+        "exit_code": 0,
+        "phase": "container ls",
+        "started_utc": "2026-09-06T22:03:01.651867+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 182.15329499798827
+      },
+      {
+        "ended_utc": "2026-09-06T22:03:02.272198+00:00",
+        "exit_code": 0,
+        "phase": "create",
+        "started_utc": "2026-09-06T22:03:01.835181+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 436.990745998628
+      },
+      {
+        "ended_utc": "2026-09-06T22:03:02.402324+00:00",
+        "exit_code": 0,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T22:03:02.272298+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 130.00192400068045
+      },
+      {
+        "ended_utc": "2026-09-06T22:03:07.705239+00:00",
+        "exit_code": 0,
+        "phase": "start",
+        "started_utc": "2026-09-06T22:03:02.402426+00:00",
+        "timeout_seconds": 900,
+        "wall_ms": 5302.793564005697
+      },
+      {
+        "ended_utc": "2026-09-06T22:03:07.883151+00:00",
+        "exit_code": 0,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T22:03:07.705302+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 177.82094400172355
+      },
+      {
+        "ended_utc": "2026-09-06T22:03:08.163684+00:00",
+        "exit_code": 0,
+        "phase": "container rm",
+        "started_utc": "2026-09-06T22:03:07.883308+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 280.34699900308624
+      },
+      {
+        "ended_utc": "2026-09-06T22:03:08.297493+00:00",
+        "exit_code": 1,
+        "phase": "container inspect",
+        "started_utc": "2026-09-06T22:03:08.164209+00:00",
+        "timeout_seconds": 30,
+        "wall_ms": 133.24714500049595
+      }
+    ],
+    "ended_utc": "2026-09-06T22:03:08.298330+00:00",
+    "exit_code": 0,
+    "host_after": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        1.42041015625,
+        1.47607421875,
+        1.4306640625
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          121832 kB\nMemAvailable:    1850192 kB\nBuffers:          454232 kB\nCached:          1356240 kB\nSwapCached:            0 kB\nActive:          1266564 kB\nInactive:         757000 kB\nActive(anon):       4368 kB\nInactive(anon):   241424 kB\nActive(file):    1262196 kB\nInactive(file):   515576 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                68 kB\nWriteback:             0 kB\nAnonPages:        240768 kB\nMapped:           237776 kB\nShmem:             23636 kB\nKReclaimable:     139852 kB\nSlab:             194508 kB\nSReclaimable:     139852 kB\nSUnreclaim:        54656 kB\nKernelStack:        3720 kB\nPageTables:         4368 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35100 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=1.89 avg60=3.17 avg300=3.91 total=1374729736\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=0.54 avg60=1.54 avg300=1.59 total=207282574\nfull avg10=0.32 avg60=1.16 avg300=1.15 total=161819655\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+      "stat": "cpu  1014421 2623 885442 26673858 48647 0 57770 0 0 0\ncpu0 228493 292 170259 5479874 10804 0 7878 0 0 0\ncpu1 252046 1861 175714 5408598 11811 0 7793 0 0 0\ncpu2 275170 184 174570 5416109 12049 0 7601 0 0 0\ncpu3 232998 209 174011 5453786 11556 0 8627 0 0 0\ncpu4 25713 77 190887 4915489 2426 0 25870 0 0 0\nintr 93876350 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29216 50018 0 712392 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155670627\nbtime 1788671060\nprocesses 249693\nprocs_running 1\nprocs_blocked 0\nsoftirq 38916925 5 16736571 12953 57196 665811 0 444 13585543 0 7858402\n",
+      "utc": "2026-09-06T22:03:08.298417+00:00"
+    },
+    "host_before": {
+      "cpu_count": 5,
+      "load_average_1_5_15": [
+        1.45751953125,
+        1.484375,
+        1.43310546875
+      ],
+      "meminfo": "MemTotal:        2456464 kB\nMemFree:          123372 kB\nMemAvailable:    1851972 kB\nBuffers:          454112 kB\nCached:          1356356 kB\nSwapCached:            0 kB\nActive:          1266568 kB\nInactive:         757072 kB\nActive(anon):       4368 kB\nInactive(anon):   241508 kB\nActive(file):    1262200 kB\nInactive(file):   515564 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               464 kB\nWriteback:             0 kB\nAnonPages:        240836 kB\nMapped:           237780 kB\nShmem:             23636 kB\nKReclaimable:     140100 kB\nSlab:             194756 kB\nSReclaimable:     140100 kB\nSUnreclaim:        54656 kB\nKernelStack:        3672 kB\nPageTables:         4428 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1144164 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       35084 kB\nVmallocChunk:          0 kB\nPercpu:             6168 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      283584 kB\nDirectMap2M:     2271232 kB\n",
+      "pid": 196091,
+      "pressure/cpu": "some avg10=1.86 avg60=3.27 avg300=3.94 total=1374466568\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "pressure/io": "some avg10=0.54 avg60=1.64 avg300=1.61 total=207179678\nfull avg10=0.36 avg60=1.25 avg300=1.16 total=161748550\n",
+      "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=1728447\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=1679346\n",
+      "stat": "cpu  1013957 2623 885212 26671619 48617 0 57730 0 0 0\ncpu0 228079 292 170193 5479730 10800 0 7874 0 0 0\ncpu1 252033 1861 175673 5408055 11805 0 7784 0 0 0\ncpu2 275152 184 174534 5415584 12041 0 7596 0 0 0\ncpu3 232987 209 173966 5453248 11544 0 8622 0 0 0\ncpu4 25705 77 190844 4914999 2425 0 25851 0 0 0\nintr 93863800 56 33 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 29210 50015 0 712073 22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 155658025\nbtime 1788671060\nprocesses 249553\nprocs_running 1\nprocs_blocked 0\nsoftirq 38908350 5 16734199 12951 57193 665530 0 444 13583322 0 7854706\n",
+      "utc": "2026-09-06T22:03:01.645256+00:00"
+    },
+    "instrumented": true,
+    "request_wall_ms": 6652.216335001867,
+    "runner": "independent-docker-plain-pytest",
+    "started_utc": "2026-09-06T22:03:01.645224+00:00",
+    "stderr_tail": "",
+    "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 52 items\n\ncolorama/tests/ansi_test.py ...                                          [  5%]\ncolorama/tests/ansitowin32_test.py .......................               [ 50%]\ncolorama/tests/initialise_test.py ssssssssss.                            [ 71%]\ncolorama/tests/isatty_test.py .......                                    [ 84%]\ncolorama/tests/winterm_test.py sss....s                                  [100%]\n\n======================== 38 passed, 14 skipped in 0.87s ========================\n",
+    "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+    "wall_ms": 6462.618589997874
+  },
+  "order": [
+    "direct",
+    "fast",
+    "snapshot"
+  ],
+  "source_file_sha256": "15e5620eb50834865caf9d393c0c6f5380235f3d5ab048802ecf465cc87045a1",
+  "trajectory": 6,
+  "whole_task_exit_agreement": true,
+  "workload": "colorama"
+}

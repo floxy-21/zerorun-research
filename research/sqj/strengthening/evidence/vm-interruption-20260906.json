@@ -1,0 +1,30 @@
+{
+  "schema": "zerorun.vm-infrastructure-interruption.v1",
+  "observed_aborted_utc": "2026-09-06T22:19:01.186000000Z",
+  "machine_state_observed": "aborted",
+  "hypervisor": "Oracle VirtualBox, Windows host",
+  "reported_error": "VCPU0: Guru Meditation -225 (VERR_INTERNAL_ERROR)",
+  "assertion_function": "nemHCWinCopyStateToHyperV, NEMR3Native-win-x86.cpp:2841",
+  "preserved_full_host_log_sha256": "5d77b313d65d54ba201e0c2de3ea17b7cb5d752ceff83fb3376043f82d45bf48",
+  "full_log_distribution": "Full host diagnostic retained locally, not redistributed because it contains unrelated host/device metadata. Exact relevant error and its hash are retained here.",
+  "recovery": {
+    "initial_restart": "Headless restart, unchanged VM configuration",
+    "subsequent_saved_utc": "2026-09-06T22:22:50.117000000Z",
+    "subsequent_saved_reason_recorded": "VBoxHeadless WM_ENDSESSION; saved state, not a second reported assertion failure",
+    "resumed_running_utc": "2026-09-06T22:24:39.881000000Z",
+    "virtual_cpus": 5,
+    "memory_mib": 2495,
+    "runtime_or_benchmark_thresholds_changed": false
+  },
+  "surviving_observations_inspected_utc": "2026-09-06T22:27:00Z",
+  "completed_block_summaries": {"click": 6, "pycparser": 6, "colorama": 6, "packaging": 3},
+  "packaging_interrupted_block": {
+    "block": 4,
+    "complete_request_directories": [0, 1],
+    "request_with_invocation_only": 2,
+    "block_summary_present": false,
+    "original_workload_summary_present": false
+  },
+  "preservation_policy": "Original prospective protocol and all surviving partial and complete data remain unchanged. Any continuation uses separately labeled recovery output and must retain the interrupted attempt; no original campaign-completed receipt is invented.",
+  "interpretation": "Infrastructure interruption, not evidence that a test passed or failed; surviving outcomes require independent validation."
+}

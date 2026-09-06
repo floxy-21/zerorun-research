@@ -1,0 +1,1779 @@
+{
+  "capture": {
+    "all_nodes_non_failing": true,
+    "complete_per_node_outcomes": true,
+    "exit_code": 0,
+    "failing_nodeids": [],
+    "nodeid_sha256": "20430be25741929773684ed827393de4d8e5c435a2bcc6e008f951c573a4edb6",
+    "nodeids": [
+      "tests/test_tags.py::TestTag::test_lowercasing",
+      "tests/test_tags.py::TestTag::test_equality",
+      "tests/test_tags.py::TestTag::test_equality_fails_with_non_tag",
+      "tests/test_tags.py::TestTag::test_hashing",
+      "tests/test_tags.py::TestTag::test_hash_equality",
+      "tests/test_tags.py::TestTag::test_str",
+      "tests/test_tags.py::TestTag::test_repr",
+      "tests/test_tags.py::TestTag::test_attribute_access",
+      "tests/test_tags.py::TestParseTag::test_simple",
+      "tests/test_tags.py::TestParseTag::test_multi_interpreter",
+      "tests/test_tags.py::TestParseTag::test_multi_platform",
+      "tests/test_tags.py::TestParseTag::test_limit_allows_exact_number_of_tags",
+      "tests/test_tags.py::TestParseTag::test_limit_raises_when_exceeded",
+      "tests/test_tags.py::TestParseTag::test_limit_counts_cartesian_product_entries",
+      "tests/test_tags.py::TestParseTag::test_limit_rejects_negative_value",
+      "tests/test_tags.py::TestParseTag::test_limit_can_be_combined_with_validate_order",
+      "tests/test_tags.py::TestParseTag::test_unsorted_interpreter_parses_by_default",
+      "tests/test_tags.py::TestParseTag::test_unsorted_interpreter_raises_with_validate",
+      "tests/test_tags.py::TestParseTag::test_unsorted_platform_parses_by_default",
+      "tests/test_tags.py::TestParseTag::test_unsorted_platform_raises_with_validate",
+      "tests/test_tags.py::TestParseTag::test_sorted_multi_interpreter_valid",
+      "tests/test_tags.py::TestParseTag::test_empty_component_raises[-none-any]",
+      "tests/test_tags.py::TestParseTag::test_empty_component_raises[py3--any]",
+      "tests/test_tags.py::TestParseTag::test_empty_component_raises[py3-none-]",
+      "tests/test_tags.py::TestParseTag::test_empty_component_raises[py3.-none-any]",
+      "tests/test_tags.py::TestParseTag::test_empty_component_raises[py3-none-any.]",
+      "tests/test_tags.py::TestParseTag::test_empty_component_raises[--]",
+      "tests/test_tags.py::TestParseTag::test_invalid_interpreter_raises[2-none-any]",
+      "tests/test_tags.py::TestParseTag::test_invalid_interpreter_raises[2.7.6-none-any]",
+      "tests/test_tags.py::TestParseTag::test_invalid_interpreter_raises[py3.2-none-any]",
+      "tests/test_tags.py::TestParseTag::test_invalid_interpreter_raises[py+3-none-any]",
+      "tests/test_tags.py::TestParseTag::test_identifier_interpreter_is_valid[sillywalk]",
+      "tests/test_tags.py::TestParseTag::test_identifier_interpreter_is_valid[graalpy311]",
+      "tests/test_tags.py::TestParseTag::test_identifier_interpreter_is_valid[_custom]",
+      "tests/test_tags.py::TestParseTag::test_invalid_component_count_raises[py3-none]",
+      "tests/test_tags.py::TestParseTag::test_invalid_component_count_raises[py3-none-any-extra]",
+      "tests/test_tags.py::TestInterpreterName::test_sys_implementation_name",
+      "tests/test_tags.py::TestInterpreterName::test_interpreter_short_names",
+      "tests/test_tags.py::TestInterpreterVersion::test_warn",
+      "tests/test_tags.py::TestInterpreterVersion::test_python_version_nodot",
+      "tests/test_tags.py::TestInterpreterVersion::test_sys_version_info[version_info0-12]",
+      "tests/test_tags.py::TestInterpreterVersion::test_sys_version_info[version_info1-112]",
+      "tests/test_tags.py::TestInterpreterVersion::test_sys_version_info[version_info2-112]",
+      "tests/test_tags.py::TestInterpreterVersion::test_sys_version_info[version_info3-1112]",
+      "tests/test_tags.py::TestInterpreterVersion::test_sys_version_info[version_info4-12]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_architectures[i386-True-i386]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_architectures[ppc-True-ppc]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_architectures[x86_64-False-x86_64]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_architectures[x86_64-True-i386]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_architectures[ppc64-False-ppc64]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_architectures[ppc64-True-ppc]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version0-x86_64-expected0]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version1-x86_64-expected1]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version2-x86_64-expected2]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version3-i386-expected3]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version4-i386-expected4]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version5-intel-expected5]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version6-intel-expected6]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version7-intel-expected7]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version8-i386-expected8]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version9-ppc64-expected9]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version10-ppc64-expected10]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version11-ppc64-expected11]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version12-ppc64-expected12]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version13-ppc-expected13]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version14-ppc-expected14]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version15-ppc-expected15]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version16-ppc-expected16]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version17-riscv-expected17]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version18-x86_64-expected18]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version19-arm64-expected19]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version20-arm64-expected20]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_binary_formats[version21-arm64-expected21]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_version_detection",
+      "tests/test_tags.py::TestMacOSPlatforms::test_version_detection_10_15",
+      "tests/test_tags.py::TestMacOSPlatforms::test_version_detection_compatibility",
+      "tests/test_tags.py::TestMacOSPlatforms::test_arch_detection[x86_64]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_arch_detection[i386]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_mac_platforms",
+      "tests/test_tags.py::TestMacOSPlatforms::test_macos_11[11-0]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_macos_11[11-3]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_macos_11[12-0]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_macos_11[12-3]",
+      "tests/test_tags.py::TestMacOSPlatforms::test_no_mac_ver_when_both_args_given",
+      "tests/test_tags.py::TestIOSPlatforms::test_version_detection",
+      "tests/test_tags.py::TestIOSPlatforms::test_multiarch_detection",
+      "tests/test_tags.py::TestIOSPlatforms::test_ios_platforms",
+      "tests/test_tags.py::TestAndroidPlatforms::test_non_android",
+      "tests/test_tags.py::TestAndroidPlatforms::test_detection",
+      "tests/test_tags.py::TestAndroidPlatforms::test_api_level",
+      "tests/test_tags.py::TestAndroidPlatforms::test_abi",
+      "tests/test_tags.py::TestManylinuxPlatform::test_get_config_var_does_not_log",
+      "tests/test_tags.py::TestManylinuxPlatform::test_get_config_var_does_log",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_32_64bit_on_64bit_os[linux-x86_64-False-expected0]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_32_64bit_on_64bit_os[linux-x86_64-True-expected1]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_32_64bit_on_64bit_os[linux-aarch64-False-expected2]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_32_64bit_on_64bit_os[linux-aarch64-True-expected3]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux_unsupported",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux1",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2010",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2014",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2014_armhf_abi[armv7l-armv7l]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2014_armhf_abi[armv8l-armv8l]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2014_armhf_abi[aarch64-armv8l]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2014_i386_abi",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux_glibc3",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[cross-armv7l-armv7l-musl_version0]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[cross-aarch64-armv8l-musl_version1]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[cross-i386-i386-musl_version2]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[cross-x86_64-i686-musl_version3]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[native-armv7l-armv7l-musl_version0]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[native-aarch64-armv8l-musl_version1]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[native-i386-i386-musl_version2]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_musllinux[native-x86_64-i686-musl_version3]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_manylinux2014_armv6l",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_not_manylinux_abi[x86_64-x32-i686]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_platforms_not_manylinux_abi[armv7l-armel-armv7l]",
+      "tests/test_tags.py::TestManylinuxPlatform::test_linux_not_linux",
+      "tests/test_tags.py::test_platform_tags[Darwin-mac_platforms]",
+      "tests/test_tags.py::test_platform_tags[iOS-ios_platforms]",
+      "tests/test_tags.py::test_platform_tags[Android-android_platforms]",
+      "tests/test_tags.py::test_platform_tags[Linux-_linux_platforms]",
+      "tests/test_tags.py::test_platform_tags[Generic-_generic_platforms]",
+      "tests/test_tags.py::test_platform_tags_space",
+      "tests/test_tags.py::TestCPythonABI::test_debug[1-False-True]",
+      "tests/test_tags.py::TestCPythonABI::test_debug[0-False-False]",
+      "tests/test_tags.py::TestCPythonABI::test_debug[None-True-True]",
+      "tests/test_tags.py::TestCPythonABI::test_debug_file_extension",
+      "tests/test_tags.py::TestCPythonABI::test__debug_cp38[True-expected0]",
+      "tests/test_tags.py::TestCPythonABI::test__debug_cp38[False-expected1]",
+      "tests/test_tags.py::TestCPythonABI::test_pymalloc[1-version0-True]",
+      "tests/test_tags.py::TestCPythonABI::test_pymalloc[0-version1-False]",
+      "tests/test_tags.py::TestCPythonABI::test_pymalloc[None-version2-True]",
+      "tests/test_tags.py::TestCPythonABI::test_pymalloc[1-version3-False]",
+      "tests/test_tags.py::TestCPythonABI::test_wide_unicode[4-1114111-version0-True]",
+      "tests/test_tags.py::TestCPythonABI::test_wide_unicode[2-65535-version1-False]",
+      "tests/test_tags.py::TestCPythonABI::test_wide_unicode[None-1114111-version2-True]",
+      "tests/test_tags.py::TestCPythonABI::test_wide_unicode[None-65535-version3-False]",
+      "tests/test_tags.py::TestCPythonABI::test_wide_unicode[4-1114111-version4-False]",
+      "tests/test_tags.py::TestCPythonTags::test_iterator_returned",
+      "tests/test_tags.py::TestCPythonTags::test_all_args",
+      "tests/test_tags.py::TestCPythonTags::test_no_abi3t_in_non_threaded_interpreter",
+      "tests/test_tags.py::TestCPythonTags::test_no_abi3_in_threaded_interpreter",
+      "tests/test_tags.py::TestCPythonTags::test_python_version_defaults",
+      "tests/test_tags.py::TestCPythonTags::test_abi_defaults",
+      "tests/test_tags.py::TestCPythonTags::test_abi_defaults_needs_underscore",
+      "tests/test_tags.py::TestCPythonTags::test_platforms_defaults",
+      "tests/test_tags.py::TestCPythonTags::test_platforms_defaults_needs_underscore",
+      "tests/test_tags.py::TestCPythonTags::test_empty_platforms",
+      "tests/test_tags.py::TestCPythonTags::test_platform_name_space_normalization",
+      "tests/test_tags.py::TestCPythonTags::test_major_only_python_version",
+      "tests/test_tags.py::TestCPythonTags::test_major_only_python_version_with_default_abis",
+      "tests/test_tags.py::TestCPythonTags::test_skip_redundant_abis[abis0]",
+      "tests/test_tags.py::TestCPythonTags::test_skip_redundant_abis[abis1]",
+      "tests/test_tags.py::TestCPythonTags::test_skip_redundant_abis[abis2]",
+      "tests/test_tags.py::TestCPythonTags::test_abi3_python33",
+      "tests/test_tags.py::TestCPythonTags::test_no_excess_abi3_python32",
+      "tests/test_tags.py::TestCPythonTags::test_no_abi3_python31",
+      "tests/test_tags.py::TestCPythonTags::test_no_abi3_python27",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_macos",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_linux_cpython",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_jp",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_graal",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_disable_gil",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_none",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_error[invalid]",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_error[]",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_error[None]",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_cpython_missing_version[.cpython.so]",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_cpython_missing_version[.cpython-.so]",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_linux_pypy",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_old_windows",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_windows",
+      "tests/test_tags.py::TestGenericTags::test__generic_abi_agree",
+      "tests/test_tags.py::TestGenericTags::test_generic_platforms",
+      "tests/test_tags.py::TestGenericTags::test_generic_platforms_space",
+      "tests/test_tags.py::TestGenericTags::test_iterator_returned",
+      "tests/test_tags.py::TestGenericTags::test_all_args",
+      "tests/test_tags.py::TestGenericTags::test_abi_unspecified[abi0]",
+      "tests/test_tags.py::TestGenericTags::test_abi_unspecified[abi1]",
+      "tests/test_tags.py::TestGenericTags::test_interpreter_default",
+      "tests/test_tags.py::TestGenericTags::test_abis_default",
+      "tests/test_tags.py::TestGenericTags::test_platforms_default",
+      "tests/test_tags.py::TestGenericTags::test_empty_platforms",
+      "tests/test_tags.py::TestPurePythonTags::test_python_version",
+      "tests/test_tags.py::TestPurePythonTags::test_major_only_python_version",
+      "tests/test_tags.py::TestPurePythonTags::test_empty_python_version",
+      "tests/test_tags.py::TestPurePythonTags::test_default_python_version",
+      "tests/test_tags.py::TestPurePythonTags::test_does_not_query_platforms",
+      "tests/test_tags.py::TestCompatibleTags::test_all_args",
+      "tests/test_tags.py::TestCompatibleTags::test_empty_platforms",
+      "tests/test_tags.py::TestCompatibleTags::test_all_args_needs_underscore",
+      "tests/test_tags.py::TestCompatibleTags::test_major_only_python_version",
+      "tests/test_tags.py::TestCompatibleTags::test_default_python_version",
+      "tests/test_tags.py::TestCompatibleTags::test_default_python_version_needs_underscore",
+      "tests/test_tags.py::TestCompatibleTags::test_default_interpreter",
+      "tests/test_tags.py::TestCompatibleTags::test_default_platforms",
+      "tests/test_tags.py::TestSysTags::test_interpreter_name[CPython-cp]",
+      "tests/test_tags.py::TestSysTags::test_interpreter_name[PyPy-pp]",
+      "tests/test_tags.py::TestSysTags::test_interpreter_name[Jython-jy]",
+      "tests/test_tags.py::TestSysTags::test_interpreter_name[IronPython-ip]",
+      "tests/test_tags.py::TestSysTags::test_iterator",
+      "tests/test_tags.py::TestSysTags::test_mac_cpython",
+      "tests/test_tags.py::TestSysTags::test_windows_cpython",
+      "tests/test_tags.py::TestSysTags::test_linux_cpython",
+      "tests/test_tags.py::TestSysTags::test_generic",
+      "tests/test_tags.py::TestSysTags::test_warn_forwarded_to_generic_tags",
+      "tests/test_tags.py::TestSysTags::test_linux_platforms_manylinux2014_armv6l",
+      "tests/test_tags.py::TestSysTags::test_skip_manylinux_2014",
+      "tests/test_tags.py::TestSysTags::test_linux_platforms_not_manylinux_abi[x86_64-x32-i686]",
+      "tests/test_tags.py::TestSysTags::test_linux_platforms_not_manylinux_abi[armv7l-armel-armv7l]",
+      "tests/test_tags.py::TestSysTags::test_linux_use_manylinux_compatible[x86_64-2-20-False]",
+      "tests/test_tags.py::TestSysTags::test_linux_use_manylinux_compatible[s390x-2-22-True]",
+      "tests/test_tags.py::TestSysTags::test_linux_use_manylinux_compatible_none",
+      "tests/test_tags.py::TestSysTags::test_pypy_first_none_any_tag",
+      "tests/test_tags.py::TestSysTags::test_cpython_first_none_any_tag",
+      "tests/test_tags.py::TestSysTags::test_emscripten",
+      "tests/test_tags.py::TestSysTags::test_pyemscripten",
+      "tests/test_tags.py::TestBitness::test_32bit_interpreter[9223372036854775807-8-False]",
+      "tests/test_tags.py::TestBitness::test_32bit_interpreter[2147483647-4-True]",
+      "tests/test_tags.py::TestBitness::test_32bit_interpreter[2147483647-8-False]",
+      "tests/test_tags.py::test_pickle",
+      "tests/test_tags.py::test_pickle_tag_roundtrip[py3-none-any]",
+      "tests/test_tags.py::test_pickle_tag_roundtrip[cp39-cp39-linux_x86_64]",
+      "tests/test_tags.py::test_pickle_tag_roundtrip[cp312-cp312-win_amd64]",
+      "tests/test_tags.py::test_pickle_tag_roundtrip[pp310-pypy310_pp73-manylinux_2_17_x86_64]",
+      "tests/test_tags.py::test_pickle_tag_setstate_rejects_invalid_state",
+      "tests/test_tags.py::test_pickle_tag_old_format_loads",
+      "tests/test_tags.py::test_pickle_tag_26_0_format_loads",
+      "tests/test_tags.py::test_pickle_tag_25_0_format_loads",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported0-things0-expected0]",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported1-things1-expected1]",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported2-things2-expected2]",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported3-things3-expected3]",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported4-things4-expected4]",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported5-things5-expected5]",
+      "tests/test_tags.py::test_create_compatible_tags_selector[supported6-things6-expected6]",
+      "tests/test_tags.py::test_interpreter_abi"
+    ],
+    "outcomes": [
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      },
+      {
+        "call": "passed",
+        "setup": "passed",
+        "teardown": "passed",
+        "wasxfail": false
+      }
+    ],
+    "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+  },
+  "completed": true,
+  "docker_subprocess_phases": [
+    {
+      "ended_utc": "2026-09-06T22:41:11.238844+00:00",
+      "exit_code": 0,
+      "phase": "container ls",
+      "started_utc": "2026-09-06T22:41:11.113529+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 125.28913999994984
+    },
+    {
+      "ended_utc": "2026-09-06T22:41:11.706858+00:00",
+      "exit_code": 0,
+      "phase": "create",
+      "started_utc": "2026-09-06T22:41:11.240147+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 466.68750799994996
+    },
+    {
+      "ended_utc": "2026-09-06T22:41:11.785824+00:00",
+      "exit_code": 0,
+      "phase": "container inspect",
+      "started_utc": "2026-09-06T22:41:11.706924+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 78.8834909999423
+    },
+    {
+      "ended_utc": "2026-09-06T22:41:15.948180+00:00",
+      "exit_code": 0,
+      "phase": "start",
+      "started_utc": "2026-09-06T22:41:11.785916+00:00",
+      "timeout_seconds": 900,
+      "wall_ms": 4162.248507000186
+    },
+    {
+      "ended_utc": "2026-09-06T22:41:16.022875+00:00",
+      "exit_code": 0,
+      "phase": "container inspect",
+      "started_utc": "2026-09-06T22:41:15.948209+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 74.65559099978236
+    },
+    {
+      "ended_utc": "2026-09-06T22:41:16.197842+00:00",
+      "exit_code": 0,
+      "phase": "container rm",
+      "started_utc": "2026-09-06T22:41:16.022963+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 174.86566999991737
+    },
+    {
+      "ended_utc": "2026-09-06T22:41:16.275692+00:00",
+      "exit_code": 1,
+      "phase": "container inspect",
+      "started_utc": "2026-09-06T22:41:16.197875+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 77.80708199993569
+    }
+  ],
+  "ended_utc": "2026-09-06T22:41:16.276992+00:00",
+  "exit_code": 0,
+  "host_after": {
+    "cpu_count": 5,
+    "load_average_1_5_15": [
+      2.08056640625,
+      1.3720703125,
+      0.7294921875
+    ],
+    "meminfo": "MemTotal:        2456468 kB\nMemFree:         1336476 kB\nMemAvailable:    1928972 kB\nBuffers:           64096 kB\nCached:           668148 kB\nSwapCached:            0 kB\nActive:           249836 kB\nInactive:         664400 kB\nActive(anon):       3172 kB\nInactive(anon):   208168 kB\nActive(file):     246664 kB\nInactive(file):   456232 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               132 kB\nWriteback:            16 kB\nAnonPages:        209504 kB\nMapped:           273792 kB\nShmem:             20280 kB\nKReclaimable:      45100 kB\nSlab:              91092 kB\nSReclaimable:      45100 kB\nSUnreclaim:        45992 kB\nKernelStack:        3688 kB\nPageTables:         4132 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1084172 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       34904 kB\nVmallocChunk:          0 kB\nPercpu:             4008 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      199616 kB\nDirectMap2M:     2355200 kB\n",
+    "pid": 2019,
+    "pressure/cpu": "some avg10=13.71 avg60=6.72 avg300=5.49 total=35592639\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "pressure/io": "some avg10=0.49 avg60=1.02 avg300=1.19 total=15080560\nfull avg10=0.32 avg60=0.78 avg300=0.94 total=11803736\n",
+    "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "stat": "cpu  25567 0 21401 430500 3255 0 3660 0 0 0\ncpu0 4743 0 4018 89644 656 0 444 0 0 0\ncpu1 7669 0 4474 84759 987 0 548 0 0 0\ncpu2 4957 0 3745 85864 590 0 608 0 0 0\ncpu3 6867 0 4632 84561 780 0 799 0 0 0\ncpu4 1330 0 4530 85670 241 0 1261 0 0 0\nintr 1173322 88 9 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 228 2442 0 38475 49 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 1063692\nbtime 1788733426\nprocesses 9729\nprocs_running 1\nprocs_blocked 0\nsoftirq 682999 11 199768 251 3073 39149 0 106 184968 0 255673\n",
+    "utc": "2026-09-06T22:41:16.277003+00:00"
+  },
+  "host_before": {
+    "cpu_count": 5,
+    "load_average_1_5_15": [
+      2.1748046875,
+      1.37841796875,
+      0.72802734375
+    ],
+    "meminfo": "MemTotal:        2456468 kB\nMemFree:         1331828 kB\nMemAvailable:    1924060 kB\nBuffers:           63932 kB\nCached:           668036 kB\nSwapCached:            0 kB\nActive:           249620 kB\nInactive:         665900 kB\nActive(anon):       3152 kB\nInactive(anon):   209728 kB\nActive(file):     246468 kB\nInactive(file):   456172 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               116 kB\nWriteback:             0 kB\nAnonPages:        211220 kB\nMapped:           274036 kB\nShmem:             20248 kB\nKReclaimable:      45084 kB\nSlab:              90940 kB\nSReclaimable:      45084 kB\nSUnreclaim:        45856 kB\nKernelStack:        3592 kB\nPageTables:         4056 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1084188 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       34872 kB\nVmallocChunk:          0 kB\nPercpu:             4008 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      199616 kB\nDirectMap2M:     2355200 kB\n",
+    "pid": 2019,
+    "pressure/cpu": "some avg10=5.08 avg60=5.19 avg300=5.17 total=34613042\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "pressure/io": "some avg10=0.63 avg60=1.09 avg300=1.21 total=15008896\nfull avg10=0.32 avg60=0.83 avg300=0.96 total=11754710\n",
+    "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "stat": "cpu  25461 0 21210 428639 3234 0 3634 0 0 0\ncpu0 4732 0 3979 89213 655 0 440 0 0 0\ncpu1 7658 0 4434 84344 978 0 541 0 0 0\ncpu2 4946 0 3711 85444 587 0 604 0 0 0\ncpu3 6815 0 4595 84174 772 0 794 0 0 0\ncpu4 1308 0 4488 85463 240 0 1253 0 0 0\nintr 1162266 88 9 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 228 2439 0 38141 49 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 1049783\nbtime 1788733426\nprocesses 9583\nprocs_running 1\nprocs_blocked 0\nsoftirq 678444 11 198768 249 3070 38857 0 106 183569 0 253814\n",
+    "utc": "2026-09-06T22:41:11.108020+00:00"
+  },
+  "instrumented": true,
+  "request_wall_ms": 5168.297293000023,
+  "runner": "independent-docker-plain-pytest",
+  "started_utc": "2026-09-06T22:41:11.107993+00:00",
+  "stderr_tail": "",
+  "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nsysconfig platform: linux-x86_64\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 238 items\n\ntests/test_tags.py ..................................................... [ 22%]\n........................................................................ [ 52%]\n........................................................................ [ 82%]\n.........................................                                [100%]\n\n============================= 238 passed in 1.10s ==============================\n",
+  "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+  "wall_ms": 5035.834633999912
+}

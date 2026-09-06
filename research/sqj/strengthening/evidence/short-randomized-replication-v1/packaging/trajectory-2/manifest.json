@@ -1,0 +1,89 @@
+{
+  "tasks": {
+    "replication-packaging-2-fast": {
+      "cache_streams": false,
+      "cacheable": true,
+      "closure_reviewed": true,
+      "command": [
+        "sh",
+        ".zerorun-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_tags.py"
+      ],
+      "env": [],
+      "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+      "inputs": [
+        ".github",
+        ".gitignore",
+        ".pre-commit-config.yaml",
+        ".readthedocs.yml",
+        ".zerorun-env",
+        "CHANGELOG.rst",
+        "CONTRIBUTING.rst",
+        "LICENSE",
+        "LICENSE.APACHE",
+        "LICENSE.BSD",
+        "README.rst",
+        "SECURITY.md",
+        "asv.conf.json",
+        "benchmarks",
+        "docs",
+        "noxfile.py",
+        "pyproject.toml",
+        "src",
+        "tasks",
+        "tests"
+      ],
+      "outputs": [],
+      "platform": "linux/amd64",
+      "result_only": true,
+      "unsafe_effects": []
+    },
+    "replication-packaging-2-snapshot": {
+      "cache_streams": false,
+      "cacheable": true,
+      "closure_reviewed": true,
+      "command": [
+        "sh",
+        ".zerorun-env/bin/python",
+        "-m",
+        "pytest",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_tags.py"
+      ],
+      "env": [],
+      "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+      "inputs": [
+        ".github",
+        ".gitignore",
+        ".pre-commit-config.yaml",
+        ".readthedocs.yml",
+        ".zerorun-env",
+        "CHANGELOG.rst",
+        "CONTRIBUTING.rst",
+        "LICENSE",
+        "LICENSE.APACHE",
+        "LICENSE.BSD",
+        "README.rst",
+        "SECURITY.md",
+        "asv.conf.json",
+        "benchmarks",
+        "docs",
+        "noxfile.py",
+        "pyproject.toml",
+        "src",
+        "tasks",
+        "tests"
+      ],
+      "outputs": [],
+      "platform": "linux/amd64",
+      "result_only": true,
+      "unsafe_effects": []
+    }
+  },
+  "version": 2
+}

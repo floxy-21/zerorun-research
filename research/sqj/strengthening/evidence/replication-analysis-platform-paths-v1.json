@@ -1,0 +1,4411 @@
+{
+  "additional_incomplete_requests": 1,
+  "additional_interrupted_complete_requests": 1,
+  "completed": true,
+  "counts": {
+    "complete_blocks": 24,
+    "expected_cache_behaviors": 168,
+    "fresh_agreements": 168,
+    "fresh_node_observations": 19368,
+    "observed_complete_requests": 168,
+    "optimized_hits": 96
+  },
+  "interrupted_attempts": [
+    {
+      "completed": false,
+      "direct_to_fast_ratio": null,
+      "environment_setup_ms": 5798.016044005635,
+      "observed_totals_ms": {
+        "direct": 6977.1081209983095,
+        "fast": 13744.049987995822,
+        "oracle": 7861.153400997864,
+        "snapshot": 14773.435242001142
+      },
+      "order": [
+        "fast",
+        "snapshot",
+        "direct"
+      ],
+      "partial_arm_receipts": [
+        {
+          "arm": "direct",
+          "completed": true,
+          "error_type": null,
+          "path": "research\\sqj\\strengthening\\evidence\\short-randomized-replication-v1\\packaging\\trajectory-4\\request-1\\direct.json",
+          "request_wall_ms": 6719.350115003181,
+          "sha256": "e35bfd6ffc28df5bb0a5cfd28f1890fcba72241bb9b098041bbfc2166a619ef9"
+        },
+        {
+          "arm": "snapshot",
+          "completed": true,
+          "error_type": null,
+          "path": "research\\sqj\\strengthening\\evidence\\short-randomized-replication-v1\\packaging\\trajectory-4\\request-1\\snapshot.json",
+          "request_wall_ms": 6593.096017000789,
+          "sha256": "7bcbe2878742c11548840a753ed313c28788cf8bcf2dab237c97ec4d83401b4b"
+        },
+        {
+          "arm": "fast",
+          "completed": true,
+          "error_type": null,
+          "path": "research\\sqj\\strengthening\\evidence\\short-randomized-replication-v1\\packaging\\trajectory-4\\request-1\\fast.json",
+          "request_wall_ms": 2162.8461820000666,
+          "sha256": "fb9a9f4915cc910ebc4e4adac1ae961082c95c3deeb2bdd7fd288ceeb2a13e17"
+        }
+      ],
+      "partial_request_outer_totals_ms": {
+        "direct": 6719.350115003181,
+        "fast": 2162.8461820000666,
+        "oracle": 0,
+        "snapshot": 6593.096017000789
+      },
+      "partial_requests": [
+        "request-1"
+      ],
+      "policy": "retained outside completed-block estimator; measured costs included in all-attempt cost sensitivity",
+      "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+      "product_phase_totals_ms_not_additive": {
+        "fast": {
+          "cache_lookup": 3.365,
+          "cache_publish": 88.126,
+          "docker_execution": 6978.261,
+          "environment": 0.03,
+          "event_append": 23.938,
+          "fingerprint_final": 907.346,
+          "fingerprint_initial": 948.462,
+          "lock_acquire": 4.844,
+          "runtime_inspect_initial": 283.68,
+          "snapshot_cleanup": 100.928,
+          "snapshot_prepare": 3407.301
+        },
+        "snapshot": {
+          "cache_lookup": 1.336,
+          "cache_publish": 96.238,
+          "docker_execution": 7051.238,
+          "environment": 0.03,
+          "event_append": 20.408,
+          "fingerprint_final": 884.179,
+          "fingerprint_initial": 984.061,
+          "lock_acquire": 3.394,
+          "runtime_inspect_initial": 337.466,
+          "snapshot_cleanup": 96.888,
+          "snapshot_prepare": 5229.702
+        }
+      },
+      "requests_observed": 1,
+      "snapshot_to_fast_ratio": null,
+      "subprocess_phase_totals_ms": {
+        "direct": {
+          "container inspect": 435.91114100127015,
+          "container ls": 71.28160499996739,
+          "container rm": 278.8772260028054,
+          "create": 489.12012400251115,
+          "start": 5698.193744996388
+        },
+        "oracle": {
+          "container inspect": 534.674101996643,
+          "container ls": 130.2517229996738,
+          "container rm": 224.45219699875452,
+          "create": 549.9829380059964,
+          "start": 6409.59273599583
+        }
+      },
+      "trajectory": 4,
+      "warm_hit_median_ms": {
+        "direct": null,
+        "fast": null,
+        "snapshot": null
+      },
+      "workload": "packaging"
+    }
+  ],
+  "original_analysis": {
+    "campaign_summary_sha256": null,
+    "completed": false,
+    "counts": {
+      "complete_blocks": 21,
+      "expected_cache_behaviors": 148,
+      "fresh_agreements": 148,
+      "fresh_node_observations": 14602,
+      "observed_complete_requests": 148,
+      "optimized_hits": 84
+    },
+    "missing_campaign_summary": true,
+    "original_outlier_diagnostics": {
+      "colorama": {
+        "aggregate_direct_to_fast": 1.5623559143475587,
+        "leave_one_paired_request_out_diagnostic_only": 0.8921124564047616,
+        "single_direct_observation_fraction": 0.43959250273125305,
+        "summary_path": "research/sqj/evidence/comparison-final-1/colorama/summary.json",
+        "summary_sha256": "174bd00409a923e547e6e357edb9bfce79a41f9f456e8b3d3a1ea6ecce883fdf"
+      },
+      "interpretation": "Elapsed time outside pytest's printed summary is not localized or identified as CPU time; no outlier is excluded.",
+      "more_itertools": {
+        "fast_minus_snapshot_seconds": 101.76545946400802,
+        "single_request_fraction_of_gap": 0.9544118652395914,
+        "summary_path": "research/sqj/evidence/comparison-more-whole-task/more-itertools/summary.json",
+        "summary_sha256": "395c53564ffae9df5de97e7590ff66107931db5193220b5d8cecb0f2efc9d4e5"
+      },
+      "observations": [
+        {
+          "arm": "direct",
+          "outer_or_original_helper_seconds": 35.236962898001366,
+          "outside_pytest_reported_seconds": 34.76696289800137,
+          "path": "research/sqj/evidence/comparison-final-1/colorama/trajectory-1/request-6/observation.json",
+          "pytest_reported_seconds": 0.47,
+          "sha256": "aa66de98c9f8913f38b146ce30f674f915c3699e83bb40b871741e1826dc4b31"
+        },
+        {
+          "arm": "oracle",
+          "outer_or_original_helper_seconds": 51.13523243900272,
+          "outside_pytest_reported_seconds": 50.63523243900272,
+          "path": "research/sqj/evidence/comparison-final-1/pycparser/trajectory-1/request-4/observation.json",
+          "pytest_reported_seconds": 0.5,
+          "sha256": "81654f35df8d51bb948fbd98aa4c146c9ea61de08429dab4970ba10a1a28bc63"
+        },
+        {
+          "arm": "oracle",
+          "outer_or_original_helper_seconds": 166.74958949600114,
+          "outside_pytest_reported_seconds": 165.81958949600113,
+          "path": "research/sqj/evidence/comparison-final-1/click/trajectory-1/request-6/observation.json",
+          "pytest_reported_seconds": 0.93,
+          "sha256": "360a71b21029e759e7934e733187ba3d079f9e0aa98af17d61ee8ab6ce7f2e79"
+        },
+        {
+          "arm": "direct",
+          "outer_or_original_helper_seconds": 115.34573371700026,
+          "outside_pytest_reported_seconds": 3.3957337170002546,
+          "path": "research/sqj/evidence/comparison-more-whole-task/more-itertools/trajectory-1/request-0/observation.json",
+          "pytest_reported_seconds": 111.95,
+          "sha256": "95d9c5e618a4004659afcc390ed19aa61336978cadedd3a6fb3205cb5c7efa80"
+        },
+        {
+          "arm": "direct",
+          "outer_or_original_helper_seconds": 25.916645544995845,
+          "outside_pytest_reported_seconds": 3.1866455449958444,
+          "path": "research/sqj/evidence/comparison-more-whole-task/more-itertools/trajectory-2/request-2/observation.json",
+          "pytest_reported_seconds": 22.73,
+          "sha256": "151c947e471e0797867b7deabb0cbdb60053e1d2bd571450507aa81c8ff4ac78"
+        },
+        {
+          "arm": "snapshot",
+          "outer_or_original_helper_seconds": 29.383697979996214,
+          "outside_pytest_reported_seconds": 6.033697979996212,
+          "path": "research/sqj/evidence/comparison-more-whole-task/more-itertools/trajectory-2/request-3/observation.json",
+          "pytest_reported_seconds": 23.35,
+          "sha256": "bb2618c1e59f197c8446fcc4a0a6d19a7ded7fb38e48243f248195580fb9a294"
+        }
+      ],
+      "original_observations_removed": 0
+    },
+    "paper_summary": {
+      "all_planned_requests_reconciled": false,
+      "denominator": "four previously observed short subjects, six seven-request blocks each",
+      "interpretation": "Conditional hit latency and complete sequence cost are separate; all original and newly observed negative results remain.",
+      "subjects": [
+        {
+          "block_direct_to_fast_range": [
+            0.8895556250996659,
+            1.6369967338404774
+          ],
+          "complete_blocks_of_six": 6,
+          "completed": true,
+          "direct_to_fast_ratio": 1.0540611958091444,
+          "fresh_agreements": 42,
+          "median_hit_latency_reduction_percent_vs_snapshot": 68.12684731825954,
+          "requests_of_42": 42,
+          "setup_inclusive_direct_to_fast_ratio": 1.046609770348163,
+          "warm_hit_median_ms": {
+            "direct": 6504.688963999797,
+            "fast": 1876.3217449995864,
+            "snapshot": 5886.840764498629
+          },
+          "workload": "click"
+        },
+        {
+          "block_direct_to_fast_range": [
+            0.7845204245712454,
+            1.0416357271660646
+          ],
+          "complete_blocks_of_six": 6,
+          "completed": true,
+          "direct_to_fast_ratio": 0.8903191049364653,
+          "fresh_agreements": 42,
+          "median_hit_latency_reduction_percent_vs_snapshot": 68.84676240381752,
+          "requests_of_42": 42,
+          "setup_inclusive_direct_to_fast_ratio": 0.9057808323245344,
+          "warm_hit_median_ms": {
+            "direct": 6902.268987501884,
+            "fast": 2357.6965690008365,
+            "snapshot": 7568.062746999203
+          },
+          "workload": "pycparser"
+        },
+        {
+          "block_direct_to_fast_range": [
+            0.9763045832687239,
+            1.1054747626274242
+          ],
+          "complete_blocks_of_six": 6,
+          "completed": true,
+          "direct_to_fast_ratio": 1.0141969612913346,
+          "fresh_agreements": 42,
+          "median_hit_latency_reduction_percent_vs_snapshot": 67.56169426111552,
+          "requests_of_42": 42,
+          "setup_inclusive_direct_to_fast_ratio": 1.012004637348191,
+          "warm_hit_median_ms": {
+            "direct": 6863.755883499834,
+            "fast": 1998.6373565006943,
+            "snapshot": 6161.349401503685
+          },
+          "workload": "colorama"
+        },
+        {
+          "block_direct_to_fast_range": null,
+          "complete_blocks_of_six": 3,
+          "completed": false,
+          "direct_to_fast_ratio": null,
+          "fresh_agreements": 22,
+          "median_hit_latency_reduction_percent_vs_snapshot": null,
+          "requests_of_42": 22,
+          "setup_inclusive_direct_to_fast_ratio": null,
+          "warm_hit_median_ms": null,
+          "workload": "packaging"
+        }
+      ]
+    },
+    "planned": {
+      "blocks": 24,
+      "fresh_oracles": 168,
+      "requests": 168,
+      "subjects": 4,
+      "timed_arms": 504
+    },
+    "producer_sha256": "eaa420f858dc07349a42ae6be36aba795ba9d57387d5be795e6e3552f5ca0a4a",
+    "protocol_sha256": "6bcadb632a509bf12ba49449f069585a5836c795e761e66f875da4c24d7081ec",
+    "schema": "zerorun.randomized-short-replication-analysis.v1",
+    "scope": "Seen short-subject replication, not a new holdout or replacement of original five-subject data.",
+    "source_hashes_verified": true,
+    "subjects": [
+      {
+        "blocks": [
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9410804820162747,
+            "environment_setup_ms": 6948.317462003615,
+            "observed_totals_ms": {
+              "direct": 47607.94580599759,
+              "fast": 50588.60184199875,
+              "oracle": 44427.71113500203,
+              "snapshot": 67591.71326698561
+            },
+            "order": [
+              "snapshot",
+              "direct",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 608.1780000000001,
+                "cache_publish": 90.532,
+                "docker_execution": 19275.191,
+                "environment": 0.242,
+                "event_append": 136.69,
+                "fingerprint_final": 5539.973000000001,
+                "fingerprint_initial": 5963.7919999999995,
+                "lock_acquire": 26.04,
+                "readonly_hit_path": 8325.582999999999,
+                "runtime_inspect_initial": 1888.746,
+                "snapshot_cleanup": 239.55999999999997,
+                "snapshot_prepare": 13193.587
+              },
+              "snapshot": {
+                "cache_lookup": 528.9399999999999,
+                "cache_publish": 102.99,
+                "docker_execution": 19874.644,
+                "environment": 0.198,
+                "event_append": 135.807,
+                "fingerprint_final": 5005.595,
+                "fingerprint_initial": 6582.929999999999,
+                "lock_acquire": 26.621999999999996,
+                "runtime_inspect_initial": 1649.745,
+                "snapshot_cleanup": 512.865,
+                "snapshot_prepare": 32779.05100000001
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3361055812155465,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3082.6674979980453,
+                "container ls": 832.3323750082636,
+                "container rm": 1636.1516839970136,
+                "create": 3081.560915998125,
+                "start": 38915.12889400474
+              },
+              "oracle": {
+                "container inspect": 2313.963782005885,
+                "container ls": 822.6420979917748,
+                "container rm": 1298.8180690081208,
+                "create": 2860.272170000826,
+                "start": 37066.9516239941
+              }
+            },
+            "trajectory": 1,
+            "warm_hit_median_ms": {
+              "direct": 6782.494726499863,
+              "fast": 2025.0293129975034,
+              "snapshot": 6724.067933497281
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 1.6369967338404774,
+            "environment_setup_ms": 3165.0519290051307,
+            "observed_totals_ms": {
+              "direct": 70306.96331699437,
+              "fast": 42948.74990498647,
+              "oracle": 37340.4205179977,
+              "snapshot": 52883.01987200248
+            },
+            "order": [
+              "snapshot",
+              "fast",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 509.925,
+                "cache_publish": 67.766,
+                "docker_execution": 17554.474000000002,
+                "environment": 0.208,
+                "event_append": 110.22800000000001,
+                "fingerprint_final": 4475.4130000000005,
+                "fingerprint_initial": 4438.605,
+                "lock_acquire": 19.235,
+                "readonly_hit_path": 5709.900000000001,
+                "runtime_inspect_initial": 1377.4160000000002,
+                "snapshot_cleanup": 234.977,
+                "snapshot_prepare": 11253.861
+              },
+              "snapshot": {
+                "cache_lookup": 467.87800000000004,
+                "cache_publish": 57.35,
+                "docker_execution": 18207.436999999998,
+                "environment": 0.182,
+                "event_append": 105.599,
+                "fingerprint_final": 3863.99,
+                "fingerprint_initial": 4961.595,
+                "lock_acquire": 26.242,
+                "runtime_inspect_initial": 1542.731,
+                "snapshot_cleanup": 352.93600000000004,
+                "snapshot_prepare": 22977.365
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.2313052181726623,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2707.318298991595,
+                "container ls": 771.3405510075972,
+                "container rm": 1338.3529630009434,
+                "create": 31128.906437996193,
+                "start": 34315.9290360054
+              },
+              "oracle": {
+                "container inspect": 2244.0175079900655,
+                "container ls": 884.3634420045419,
+                "container rm": 1124.2964569828473,
+                "create": 3163.899129991478,
+                "start": 29856.948343986005
+              }
+            },
+            "trajectory": 2,
+            "warm_hit_median_ms": {
+              "direct": 6321.484602500277,
+              "fast": 1493.8329460019304,
+              "snapshot": 5095.432736499788
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.908885875993443,
+            "environment_setup_ms": 5497.921433001466,
+            "observed_totals_ms": {
+              "direct": 41980.15971700079,
+              "fast": 46188.592897997296,
+              "oracle": 42942.23797700397,
+              "snapshot": 59360.22734200378
+            },
+            "order": [
+              "direct",
+              "fast",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 573.436,
+                "cache_publish": 98.841,
+                "docker_execution": 18558.537,
+                "environment": 0.191,
+                "event_append": 128.518,
+                "fingerprint_final": 5340.5869999999995,
+                "fingerprint_initial": 4813.178,
+                "lock_acquire": 24.344,
+                "readonly_hit_path": 7505.242,
+                "runtime_inspect_initial": 1803.719,
+                "snapshot_cleanup": 305.5,
+                "snapshot_prepare": 11641.802
+              },
+              "snapshot": {
+                "cache_lookup": 450.074,
+                "cache_publish": 37.658,
+                "docker_execution": 18269.674,
+                "environment": 0.27399999999999997,
+                "event_append": 102.42599999999999,
+                "fingerprint_final": 4672.392,
+                "fingerprint_initial": 5791.258,
+                "lock_acquire": 20.102,
+                "runtime_inspect_initial": 1709.9189999999999,
+                "snapshot_cleanup": 358.398,
+                "snapshot_prepare": 27609.812
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.2851707232799812,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2874.8243960217224,
+                "container ls": 783.0896240047878,
+                "container rm": 1512.6150359938038,
+                "create": 2979.6773540074355,
+                "start": 33779.98448198923
+              },
+              "oracle": {
+                "container inspect": 2667.418067037943,
+                "container ls": 676.6752200055635,
+                "container rm": 1220.9556469970266,
+                "create": 2734.6428130040294,
+                "start": 35587.396702008846
+              }
+            },
+            "trajectory": 3,
+            "warm_hit_median_ms": {
+              "direct": 6019.567311999708,
+              "fast": 1966.3448604987934,
+              "snapshot": 5254.205862500385
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 1.0314037428868694,
+            "environment_setup_ms": 5099.875216001237,
+            "observed_totals_ms": {
+              "direct": 39788.82457099826,
+              "fast": 38577.35134800896,
+              "oracle": 38307.53936200199,
+              "snapshot": 58078.07523498195
+            },
+            "order": [
+              "fast",
+              "direct",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 499.239,
+                "cache_publish": 35.556,
+                "docker_execution": 14700.884999999998,
+                "environment": 0.15600000000000003,
+                "event_append": 165.51599999999996,
+                "fingerprint_final": 4469.052,
+                "fingerprint_initial": 4357.686,
+                "lock_acquire": 23.723,
+                "readonly_hit_path": 5986.706,
+                "runtime_inspect_initial": 1395.9350000000002,
+                "snapshot_cleanup": 132.63500000000002,
+                "snapshot_prepare": 9989.11
+              },
+              "snapshot": {
+                "cache_lookup": 424.586,
+                "cache_publish": 79.909,
+                "docker_execution": 15426.467999999999,
+                "environment": 0.921,
+                "event_append": 115.565,
+                "fingerprint_final": 4767.628000000001,
+                "fingerprint_initial": 6065.536000000001,
+                "lock_acquire": 22.477,
+                "runtime_inspect_initial": 1449.283,
+                "snapshot_cleanup": 431.972,
+                "snapshot_prepare": 28890.835000000003
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.5054967022244634,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2588.1806039906223,
+                "container ls": 748.7798130023293,
+                "container rm": 1228.0490759949316,
+                "create": 2679.714491008781,
+                "start": 32464.532124984544
+              },
+              "oracle": {
+                "container inspect": 2030.8852400194155,
+                "container ls": 1070.1350520030246,
+                "container rm": 966.1020040002768,
+                "create": 2729.3553989802604,
+                "start": 31450.51479600079
+              }
+            },
+            "trajectory": 4,
+            "warm_hit_median_ms": {
+              "direct": 6514.144034998026,
+              "fast": 1637.5963015016168,
+              "snapshot": 6014.804832499067
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.8895556250996659,
+            "environment_setup_ms": 5376.350325997919,
+            "observed_totals_ms": {
+              "direct": 39070.888793008635,
+              "fast": 43921.805101992504,
+              "oracle": 47755.75364699762,
+              "snapshot": 54263.44217298902
+            },
+            "order": [
+              "direct",
+              "snapshot",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 475.711,
+                "cache_publish": 90.693,
+                "docker_execution": 17127.479,
+                "environment": 0.176,
+                "event_append": 113.55300000000001,
+                "fingerprint_final": 4798.302,
+                "fingerprint_initial": 4984.419999999999,
+                "lock_acquire": 19.686,
+                "readonly_hit_path": 7589.71,
+                "runtime_inspect_initial": 1636.147,
+                "snapshot_cleanup": 172.611,
+                "snapshot_prepare": 11463.811000000002
+              },
+              "snapshot": {
+                "cache_lookup": 522.914,
+                "cache_publish": 80.472,
+                "docker_execution": 14418.055,
+                "environment": 0.356,
+                "event_append": 123.394,
+                "fingerprint_final": 4872.597,
+                "fingerprint_initial": 5201.476,
+                "lock_acquire": 27.567,
+                "runtime_inspect_initial": 1592.9390000000003,
+                "snapshot_cleanup": 466.20500000000004,
+                "snapshot_prepare": 26598.417
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.235455647758142,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2367.8021480009193,
+                "container ls": 816.628069995204,
+                "container rm": 1174.5690030074911,
+                "create": 3076.6468310030177,
+                "start": 31569.91627899697
+              },
+              "oracle": {
+                "container inspect": 3154.2386949877255,
+                "container ls": 621.6322910040617,
+                "container rm": 1670.1212889965973,
+                "create": 2937.1366879931884,
+                "start": 39313.25605899474
+              }
+            },
+            "trajectory": 5,
+            "warm_hit_median_ms": {
+              "direct": 5309.495253502973,
+              "fast": 2174.537890998181,
+              "snapshot": 5676.72194449915
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9645182433682346,
+            "environment_setup_ms": 5598.716717999196,
+            "observed_totals_ms": {
+              "direct": 48643.62057100516,
+              "fast": 50433.07465199905,
+              "oracle": 48508.82935199479,
+              "snapshot": 67165.23480600881
+            },
+            "order": [
+              "fast",
+              "snapshot",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 551.458,
+                "cache_publish": 47.203,
+                "docker_execution": 19992.77,
+                "environment": 0.17900000000000002,
+                "event_append": 140.039,
+                "fingerprint_final": 5359.398,
+                "fingerprint_initial": 5269.005,
+                "lock_acquire": 25.907,
+                "readonly_hit_path": 8003.181999999999,
+                "runtime_inspect_initial": 1884.0149999999999,
+                "snapshot_cleanup": 235.252,
+                "snapshot_prepare": 13628.652
+              },
+              "snapshot": {
+                "cache_lookup": 684.9830000000001,
+                "cache_publish": 47.152,
+                "docker_execution": 19747.366,
+                "environment": 0.22199999999999998,
+                "event_append": 116.63400000000001,
+                "fingerprint_final": 5114.910999999999,
+                "fingerprint_initial": 6323.1050000000005,
+                "lock_acquire": 29.611,
+                "runtime_inspect_initial": 1717.336,
+                "snapshot_cleanup": 464.599,
+                "snapshot_prepare": 32537.874
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3317695831449081,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2865.436285988835,
+                "container ls": 666.6978880020906,
+                "container rm": 1370.2941450173967,
+                "create": 3269.457399001112,
+                "start": 40431.02836000617
+              },
+              "oracle": {
+                "container inspect": 2749.500253019505,
+                "container ls": 884.9463939914131,
+                "container rm": 1241.4069450023817,
+                "create": 2840.855078015011,
+                "start": 40703.69405300153
+              }
+            },
+            "trajectory": 6,
+            "warm_hit_median_ms": {
+              "direct": 6991.271239501657,
+              "fast": 1961.5632794993871,
+              "snapshot": 6986.7851525013975
+            }
+          }
+        ],
+        "complete_blocks": 6,
+        "completed": true,
+        "errors": [],
+        "expected_cache_behaviors": 42,
+        "fresh_agreements": 42,
+        "fresh_node_observations": 4590,
+        "headline_performance": {
+          "all_six_blocks_included": true,
+          "block_direct_to_fast_spread": {
+            "maximum": 1.6369967338404774,
+            "mean": 1.062073450534161,
+            "median": 0.9527993626922546,
+            "minimum": 0.8895556250996659,
+            "n": 6,
+            "sample_standard_deviation": 0.28595893502989456
+          },
+          "block_snapshot_to_fast_spread": {
+            "maximum": 1.5054967022244634,
+            "mean": 1.320883909299284,
+            "median": 1.3084701532124448,
+            "minimum": 1.2313052181726623,
+            "n": 6,
+            "sample_standard_deviation": 0.1010245929783284
+          },
+          "common_environment_setup_ms": 43589.4032030119,
+          "direct_to_fast_ratio": 1.0540611958091444,
+          "leave_one_block_out_influence": [
+            {
+              "direct_to_fast_ratio": 1.0797987889669436,
+              "trajectory_removed_for_diagnostic_only": 1
+            },
+            {
+              "direct_to_fast_ratio": 0.9450697926838,
+              "trajectory_removed_for_diagnostic_only": 2
+            },
+            {
+              "direct_to_fast_ratio": 1.0836697801560997,
+              "trajectory_removed_for_diagnostic_only": 3
+            },
+            {
+              "direct_to_fast_ratio": 1.0577952245331026,
+              "trajectory_removed_for_diagnostic_only": 4
+            },
+            {
+              "direct_to_fast_ratio": 1.0856494456118306,
+              "trajectory_removed_for_diagnostic_only": 5
+            },
+            {
+              "direct_to_fast_ratio": 1.0743826013693678,
+              "trajectory_removed_for_diagnostic_only": 6
+            }
+          ],
+          "observations_removed": 0,
+          "setup_inclusive_direct_to_fast_ratio": 1.046609770348163,
+          "snapshot_to_fast_ratio": 1.3179201823327236,
+          "totals_ms": {
+            "direct": 287398.4027750048,
+            "fast": 272658.17574698303,
+            "oracle": 259282.4919909981,
+            "snapshot": 359341.71269497165
+          },
+          "warm_hit_median_ms": {
+            "direct": 6504.688963999797,
+            "fast": 1876.3217449995864,
+            "snapshot": 5886.840764498629
+          }
+        },
+        "missing": [],
+        "observed_complete_requests": 42,
+        "optimized_hits": 24,
+        "planned_blocks": 6,
+        "workload": "click"
+      },
+      {
+        "blocks": [
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9144551161932003,
+            "environment_setup_ms": 5745.656558996416,
+            "observed_totals_ms": {
+              "direct": 44902.66041900031,
+              "fast": 49103.18683100195,
+              "oracle": 43761.933278008655,
+              "snapshot": 70276.97934699972
+            },
+            "order": [
+              "fast",
+              "direct",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 720.925,
+                "cache_publish": 93.034,
+                "docker_execution": 16653.391,
+                "environment": 0.48,
+                "event_append": 117.383,
+                "fingerprint_final": 5833.717000000001,
+                "fingerprint_initial": 6426.664,
+                "lock_acquire": 27.685000000000002,
+                "readonly_hit_path": 9716.019,
+                "runtime_inspect_initial": 2303.557,
+                "snapshot_cleanup": 199.509,
+                "snapshot_prepare": 12713.542
+              },
+              "snapshot": {
+                "cache_lookup": 736.434,
+                "cache_publish": 46.225,
+                "docker_execution": 14453.693,
+                "environment": 0.23099999999999998,
+                "event_append": 148.637,
+                "fingerprint_final": 6905.6539999999995,
+                "fingerprint_initial": 6692.341,
+                "lock_acquire": 33.329,
+                "runtime_inspect_initial": 1974.7580000000003,
+                "snapshot_cleanup": 784.705,
+                "snapshot_prepare": 37840.022000000004
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.431210149126806,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 4015.943188001984,
+                "container ls": 712.8903889824869,
+                "container rm": 1917.9559519980103,
+                "create": 2850.7207260045107,
+                "start": 35333.89560600335
+              },
+              "oracle": {
+                "container inspect": 2757.8289070079336,
+                "container ls": 1220.896927996364,
+                "container rm": 1424.4409079910838,
+                "create": 4029.752099995676,
+                "start": 34249.556034992565
+              }
+            },
+            "trajectory": 1,
+            "warm_hit_median_ms": {
+              "direct": 7267.529122000269,
+              "fast": 2086.63647800131,
+              "snapshot": 9369.493107500602
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9159671216815213,
+            "environment_setup_ms": 6671.348300995305,
+            "observed_totals_ms": {
+              "direct": 47165.40636400896,
+              "fast": 51492.466538999,
+              "oracle": 45398.275471008674,
+              "snapshot": 68156.82847500284
+            },
+            "order": [
+              "snapshot",
+              "fast",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 531.2539999999999,
+                "cache_publish": 65.743,
+                "docker_execution": 17959.38,
+                "environment": 0.21400000000000002,
+                "event_append": 144.076,
+                "fingerprint_final": 5976.83,
+                "fingerprint_initial": 5761.8,
+                "lock_acquire": 26.318,
+                "readonly_hit_path": 8271.225999999999,
+                "runtime_inspect_initial": 1813.504,
+                "snapshot_cleanup": 289.57399999999996,
+                "snapshot_prepare": 14967.557999999997
+              },
+              "snapshot": {
+                "cache_lookup": 545.5649999999999,
+                "cache_publish": 97.896,
+                "docker_execution": 18003.734,
+                "environment": 0.34800000000000003,
+                "event_append": 138.29999999999998,
+                "fingerprint_final": 6102.089,
+                "fingerprint_initial": 6558.9,
+                "lock_acquire": 29.919,
+                "runtime_inspect_initial": 1982.7379999999998,
+                "snapshot_cleanup": 643.3090000000001,
+                "snapshot_prepare": 33605.93
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3236271838596565,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3291.749637988687,
+                "container ls": 649.3749870060128,
+                "container rm": 1835.8428770006867,
+                "create": 3577.654568005528,
+                "start": 37757.474350997654
+              },
+              "oracle": {
+                "container inspect": 3019.7424789876095,
+                "container ls": 995.6538379992708,
+                "container rm": 1501.2413139847922,
+                "create": 3557.982896003523,
+                "start": 36239.24051999347
+              }
+            },
+            "trajectory": 2,
+            "warm_hit_median_ms": {
+              "direct": 6823.253679001937,
+              "fast": 1984.2183049986488,
+              "snapshot": 6400.669386002846
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 1.0416357271660646,
+            "environment_setup_ms": 5010.790339001687,
+            "observed_totals_ms": {
+              "direct": 53605.25127900473,
+              "fast": 51462.569765004446,
+              "oracle": 47874.54329600587,
+              "snapshot": 68307.18281801092
+            },
+            "order": [
+              "snapshot",
+              "direct",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 468.056,
+                "cache_publish": 89.253,
+                "docker_execution": 17218.182999999997,
+                "environment": 0.8420000000000002,
+                "event_append": 129.26299999999998,
+                "fingerprint_final": 4455.105,
+                "fingerprint_initial": 7000.150000000001,
+                "lock_acquire": 31.864999999999995,
+                "readonly_hit_path": 6584.3240000000005,
+                "runtime_inspect_initial": 1986.306,
+                "snapshot_cleanup": 218.12199999999999,
+                "snapshot_prepare": 15974.671000000002
+              },
+              "snapshot": {
+                "cache_lookup": 815.264,
+                "cache_publish": 46.927,
+                "docker_execution": 19972.055,
+                "environment": 0.198,
+                "event_append": 133.04199999999997,
+                "fingerprint_final": 5958.530000000001,
+                "fingerprint_initial": 6935.368999999999,
+                "lock_acquire": 41.388999999999996,
+                "runtime_inspect_initial": 1879.135,
+                "snapshot_cleanup": 518.431,
+                "snapshot_prepare": 31500.517000000007
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3273177598772212,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3156.4305650026654,
+                "container ls": 836.1360589915421,
+                "container rm": 1777.649127994664,
+                "create": 3178.2143950040336,
+                "start": 44601.02201500558
+              },
+              "oracle": {
+                "container inspect": 2892.6899249927374,
+                "container ls": 804.0040410051006,
+                "container rm": 1816.5882980101742,
+                "create": 2779.442366991134,
+                "start": 39517.54996598902
+              }
+            },
+            "trajectory": 3,
+            "warm_hit_median_ms": {
+              "direct": 7075.230274502246,
+              "fast": 1460.9477605008578,
+              "snapshot": 7143.968373500684
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.8680773641466769,
+            "environment_setup_ms": 5554.807546999655,
+            "observed_totals_ms": {
+              "direct": 49122.817289986415,
+              "fast": 56588.06382801413,
+              "oracle": 54674.23275198962,
+              "snapshot": 81422.17779700877
+            },
+            "order": [
+              "fast",
+              "snapshot",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 623.885,
+                "cache_publish": 131.177,
+                "docker_execution": 18206.775,
+                "environment": 0.778,
+                "event_append": 172.529,
+                "fingerprint_final": 6459.64,
+                "fingerprint_initial": 7780.137,
+                "lock_acquire": 27.564000000000004,
+                "readonly_hit_path": 9464.245,
+                "runtime_inspect_initial": 2446.909,
+                "snapshot_cleanup": 339.877,
+                "snapshot_prepare": 16562.242
+              },
+              "snapshot": {
+                "cache_lookup": 695.462,
+                "cache_publish": 83.906,
+                "docker_execution": 25747.376,
+                "environment": 0.212,
+                "event_append": 165.383,
+                "fingerprint_final": 7305.603,
+                "fingerprint_initial": 9018.939999999999,
+                "lock_acquire": 36.088,
+                "runtime_inspect_initial": 2334.964,
+                "snapshot_cleanup": 696.7429999999999,
+                "snapshot_prepare": 34846.96
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.4388578136278347,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2953.2723360025557,
+                "container ls": 1033.2549519953318,
+                "container rm": 1578.019825006777,
+                "create": 3923.196324001765,
+                "start": 39558.70275199413
+              },
+              "oracle": {
+                "container inspect": 2952.9180220124545,
+                "container ls": 1061.2329120049253,
+                "container rm": 1510.602252004901,
+                "create": 3729.211092002515,
+                "start": 45332.61558699451
+              }
+            },
+            "trajectory": 4,
+            "warm_hit_median_ms": {
+              "direct": 7035.285416499391,
+              "fast": 2437.822669504385,
+              "snapshot": 8092.871761502465
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.7845204245712454,
+            "environment_setup_ms": 8124.362704002124,
+            "observed_totals_ms": {
+              "direct": 41412.28569800296,
+              "fast": 52786.75277400907,
+              "oracle": 49828.79927299655,
+              "snapshot": 72639.00769299653
+            },
+            "order": [
+              "direct",
+              "fast",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 761.438,
+                "cache_publish": 53.392,
+                "docker_execution": 16774.239999999998,
+                "environment": 0.258,
+                "event_append": 149.022,
+                "fingerprint_final": 5519.297,
+                "fingerprint_initial": 6706.597999999999,
+                "lock_acquire": 25.573999999999998,
+                "readonly_hit_path": 9314.610999999999,
+                "runtime_inspect_initial": 2064.411,
+                "snapshot_cleanup": 286.466,
+                "snapshot_prepare": 16831.996
+              },
+              "snapshot": {
+                "cache_lookup": 692.3969999999999,
+                "cache_publish": 84.504,
+                "docker_execution": 17658.697,
+                "environment": 0.20099999999999998,
+                "event_append": 136.244,
+                "fingerprint_final": 5731.3589999999995,
+                "fingerprint_initial": 7344.956999999999,
+                "lock_acquire": 27.542,
+                "runtime_inspect_initial": 1927.9569999999999,
+                "snapshot_cleanup": 572.438,
+                "snapshot_prepare": 38027.291
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3760840338859075,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2647.2283549956046,
+                "container ls": 925.997146005102,
+                "container rm": 1394.0111120027723,
+                "create": 3560.2320120087825,
+                "start": 32818.200164998416
+              },
+              "oracle": {
+                "container inspect": 3229.7021899939864,
+                "container ls": 937.2113799981889,
+                "container rm": 1719.9709549968247,
+                "create": 3140.337097007432,
+                "start": 40720.76287999516
+              }
+            },
+            "trajectory": 5,
+            "warm_hit_median_ms": {
+              "direct": 5752.919636997831,
+              "fast": 2357.6965690008365,
+              "snapshot": 7861.0563409965835
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.8359319972002924,
+            "environment_setup_ms": 9893.956149004225,
+            "observed_totals_ms": {
+              "direct": 53020.351817998744,
+              "fast": 63426.63278301916,
+              "oracle": 54937.558648998674,
+              "snapshot": 80188.454232004
+            },
+            "order": [
+              "direct",
+              "snapshot",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 671.887,
+                "cache_publish": 111.759,
+                "docker_execution": 23434.156000000003,
+                "environment": 0.236,
+                "event_append": 168.387,
+                "fingerprint_final": 7337.9929999999995,
+                "fingerprint_initial": 6757.263999999999,
+                "lock_acquire": 26.035,
+                "readonly_hit_path": 10459.757,
+                "runtime_inspect_initial": 2533.524,
+                "snapshot_cleanup": 279.94,
+                "snapshot_prepare": 17404.459
+              },
+              "snapshot": {
+                "cache_lookup": 862.629,
+                "cache_publish": 100.527,
+                "docker_execution": 21006.253,
+                "environment": 0.20799999999999996,
+                "event_append": 138.749,
+                "fingerprint_final": 6728.717000000001,
+                "fingerprint_initial": 8679.173,
+                "lock_acquire": 28.293,
+                "runtime_inspect_initial": 2398.625,
+                "snapshot_cleanup": 606.314,
+                "snapshot_prepare": 39191.246
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.2642710280132101,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3423.327962984331,
+                "container ls": 1211.2855940067675,
+                "container rm": 1745.3808339996613,
+                "create": 4417.204684992612,
+                "start": 41993.671901007474
+              },
+              "oracle": {
+                "container inspect": 4561.267584991583,
+                "container ls": 1161.7891960122506,
+                "container rm": 2464.450913001201,
+                "create": 4193.38292399334,
+                "start": 42458.466619995306
+              }
+            },
+            "trajectory": 6,
+            "warm_hit_median_ms": {
+              "direct": 7905.576494998968,
+              "fast": 2574.525817501126,
+              "snapshot": 8202.374532003887
+            }
+          }
+        ],
+        "complete_blocks": 6,
+        "completed": true,
+        "errors": [],
+        "expected_cache_behaviors": 42,
+        "fresh_agreements": 42,
+        "fresh_node_observations": 2574,
+        "headline_performance": {
+          "all_six_blocks_included": true,
+          "block_direct_to_fast_spread": {
+            "maximum": 1.0416357271660646,
+            "mean": 0.8934312918265002,
+            "median": 0.8912662401699386,
+            "minimum": 0.7845204245712454,
+            "n": 6,
+            "sample_standard_deviation": 0.08800566687455112
+          },
+          "block_snapshot_to_fast_spread": {
+            "maximum": 1.4388578136278347,
+            "mean": 1.3602279947317726,
+            "median": 1.3517008968815643,
+            "minimum": 1.2642710280132101,
+            "n": 6,
+            "sample_standard_deviation": 0.06797495276401568
+          },
+          "common_environment_setup_ms": 53310.72031100484,
+          "direct_to_fast_ratio": 0.8903191049364653,
+          "leave_one_block_out_influence": [
+            {
+              "direct_to_fast_ratio": 0.8860212728577991,
+              "trajectory_removed_for_diagnostic_only": 1
+            },
+            {
+              "direct_to_fast_ratio": 0.8854879488389484,
+              "trajectory_removed_for_diagnostic_only": 2
+            },
+            {
+              "direct_to_fast_ratio": 0.8618362053386862,
+              "trajectory_removed_for_diagnostic_only": 3
+            },
+            {
+              "direct_to_fast_ratio": 0.8950106824522341,
+              "trajectory_removed_for_diagnostic_only": 4
+            },
+            {
+              "direct_to_fast_ratio": 0.9108458401568181,
+              "trajectory_removed_for_diagnostic_only": 5
+            },
+            {
+              "direct_to_fast_ratio": 0.9035140366634674,
+              "trajectory_removed_for_diagnostic_only": 6
+            }
+          ],
+          "observations_removed": 0,
+          "setup_inclusive_direct_to_fast_ratio": 0.9057808323245344,
+          "snapshot_to_fast_ratio": 1.357480375883862,
+          "totals_ms": {
+            "direct": 289228.7728680021,
+            "fast": 324859.67252004775,
+            "oracle": 296475.34271900804,
+            "snapshot": 440990.6303620228
+          },
+          "warm_hit_median_ms": {
+            "direct": 6902.268987501884,
+            "fast": 2357.6965690008365,
+            "snapshot": 7568.062746999203
+          }
+        },
+        "missing": [],
+        "observed_complete_requests": 42,
+        "optimized_hits": 24,
+        "planned_blocks": 6,
+        "workload": "pycparser"
+      },
+      {
+        "blocks": [
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 1.0653553120101742,
+            "environment_setup_ms": 5429.879335002624,
+            "observed_totals_ms": {
+              "direct": 44755.13862499065,
+              "fast": 42009.58883899875,
+              "oracle": 44483.95878199517,
+              "snapshot": 56927.81835200003
+            },
+            "order": [
+              "fast",
+              "snapshot",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 596.544,
+                "cache_publish": 94.411,
+                "docker_execution": 18971.114999999998,
+                "environment": 0.221,
+                "event_append": 137.29600000000002,
+                "fingerprint_final": 4899.484,
+                "fingerprint_initial": 4877.308000000001,
+                "lock_acquire": 27.059,
+                "readonly_hit_path": 8040.607,
+                "runtime_inspect_initial": 1984.4930000000002,
+                "snapshot_cleanup": 220.936,
+                "snapshot_prepare": 7971.644
+              },
+              "snapshot": {
+                "cache_lookup": 420.125,
+                "cache_publish": 83.401,
+                "docker_execution": 17248.011,
+                "environment": 0.196,
+                "event_append": 126.28300000000002,
+                "fingerprint_final": 4028.0329999999994,
+                "fingerprint_initial": 4680.346,
+                "lock_acquire": 34.702,
+                "runtime_inspect_initial": 1706.31,
+                "snapshot_cleanup": 419.016,
+                "snapshot_prepare": 27798.036
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3551148660410655,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2941.1323120293673,
+                "container ls": 831.4945890160743,
+                "container rm": 1443.2986620013253,
+                "create": 3442.398482002318,
+                "start": 36063.013526007126
+              },
+              "oracle": {
+                "container inspect": 2933.9637070006575,
+                "container ls": 727.3631230127648,
+                "container rm": 1664.3824339989806,
+                "create": 2980.3854139972827,
+                "start": 36121.30980899383
+              }
+            },
+            "trajectory": 1,
+            "warm_hit_median_ms": {
+              "direct": 6785.54436649938,
+              "fast": 2019.615735502157,
+              "snapshot": 5674.325795000186
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9763045832687239,
+            "environment_setup_ms": 7315.446835003968,
+            "observed_totals_ms": {
+              "direct": 48608.901600993704,
+              "fast": 49788.66476099938,
+              "oracle": 47748.56460100273,
+              "snapshot": 74395.06177201838
+            },
+            "order": [
+              "direct",
+              "snapshot",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 565.313,
+                "cache_publish": 80.877,
+                "docker_execution": 19168.716,
+                "environment": 0.211,
+                "event_append": 154.151,
+                "fingerprint_final": 5099.328,
+                "fingerprint_initial": 4909.342000000001,
+                "lock_acquire": 22.173,
+                "readonly_hit_path": 8062.098,
+                "runtime_inspect_initial": 2178.5589999999997,
+                "snapshot_cleanup": 229.872,
+                "snapshot_prepare": 13339.3
+              },
+              "snapshot": {
+                "cache_lookup": 885.902,
+                "cache_publish": 101.022,
+                "docker_execution": 21792.009,
+                "environment": 0.24800000000000003,
+                "event_append": 200.92399999999998,
+                "fingerprint_final": 6513.840000000001,
+                "fingerprint_initial": 8847.336,
+                "lock_acquire": 47.232,
+                "runtime_inspect_initial": 2856.241,
+                "snapshot_cleanup": 742.597,
+                "snapshot_prepare": 31901.520000000004
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.4942168489381495,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3380.7128429907607,
+                "container ls": 949.6142810021411,
+                "container rm": 1770.3301709989319,
+                "create": 3414.76388299634,
+                "start": 39030.20445499715
+              },
+              "oracle": {
+                "container inspect": 3136.557907004317,
+                "container ls": 892.7053180086659,
+                "container rm": 1515.1784170084284,
+                "create": 4028.340335986286,
+                "start": 38102.123578995815
+              }
+            },
+            "trajectory": 2,
+            "warm_hit_median_ms": {
+              "direct": 7315.875118001713,
+              "fast": 2043.1565814978967,
+              "snapshot": 6340.48727800473
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9874356609053968,
+            "environment_setup_ms": 6092.480821003846,
+            "observed_totals_ms": {
+              "direct": 49909.9880940048,
+              "fast": 50545.05328300729,
+              "oracle": 55719.70940101164,
+              "snapshot": 59664.75131100742
+            },
+            "order": [
+              "fast",
+              "direct",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 601.8020000000001,
+                "cache_publish": 79.529,
+                "docker_execution": 19204.455,
+                "environment": 0.497,
+                "event_append": 147.059,
+                "fingerprint_final": 6892.259,
+                "fingerprint_initial": 6615.9439999999995,
+                "lock_acquire": 25.293,
+                "readonly_hit_path": 11255.038,
+                "runtime_inspect_initial": 2809.7479999999996,
+                "snapshot_cleanup": 225.672,
+                "snapshot_prepare": 10802.987
+              },
+              "snapshot": {
+                "cache_lookup": 448.42699999999996,
+                "cache_publish": 80.88,
+                "docker_execution": 17241.933,
+                "environment": 0.21900000000000003,
+                "event_append": 145.196,
+                "fingerprint_final": 4313.054999999999,
+                "fingerprint_initial": 5072.533,
+                "lock_acquire": 27.641000000000005,
+                "runtime_inspect_initial": 2029.2469999999998,
+                "snapshot_cleanup": 473.181,
+                "snapshot_prepare": 29395.246
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.1804271127569683,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3226.810027983447,
+                "container ls": 1261.1275289818877,
+                "container rm": 1606.9283920005546,
+                "create": 3509.7606940107653,
+                "start": 40254.20776201645
+              },
+              "oracle": {
+                "container inspect": 3779.4522070034873,
+                "container ls": 927.9645520000486,
+                "container rm": 2314.4224520074204,
+                "create": 3713.1207669954165,
+                "start": 44920.906342005765
+              }
+            },
+            "trajectory": 3,
+            "warm_hit_median_ms": {
+              "direct": 6380.8053434986505,
+              "fast": 1919.173206002597,
+              "snapshot": 6059.254267496726
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9763733928840962,
+            "environment_setup_ms": 6516.54183199571,
+            "observed_totals_ms": {
+              "direct": 46359.52771600569,
+              "fast": 47481.350939997355,
+              "oracle": 45276.20418999868,
+              "snapshot": 58877.42085100035
+            },
+            "order": [
+              "snapshot",
+              "direct",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 536.1469999999999,
+                "cache_publish": 88.488,
+                "docker_execution": 18348.322,
+                "environment": 0.188,
+                "event_append": 149.332,
+                "fingerprint_final": 5023.289000000001,
+                "fingerprint_initial": 4888.028,
+                "lock_acquire": 25.628999999999998,
+                "readonly_hit_path": 7673.083,
+                "runtime_inspect_initial": 1964.6850000000002,
+                "snapshot_cleanup": 262.773,
+                "snapshot_prepare": 12517.538
+              },
+              "snapshot": {
+                "cache_lookup": 570.711,
+                "cache_publish": 91.832,
+                "docker_execution": 17869.466,
+                "environment": 0.293,
+                "event_append": 144.17600000000002,
+                "fingerprint_final": 5095.607,
+                "fingerprint_initial": 6039.622,
+                "lock_acquire": 31.043000000000003,
+                "runtime_inspect_initial": 2392.058,
+                "snapshot_cleanup": 629.407,
+                "snapshot_prepare": 25600.534000000003
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.2400114926259012,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3154.6862019822584,
+                "container ls": 985.9624109958531,
+                "container rm": 1609.3280680070166,
+                "create": 3393.4808219928527,
+                "start": 37160.692823003046
+              },
+              "oracle": {
+                "container inspect": 2688.3893819976947,
+                "container ls": 934.5488340040902,
+                "container rm": 1353.7115169965546,
+                "create": 3732.8706920015975,
+                "start": 36509.58441000694
+              }
+            },
+            "trajectory": 4,
+            "warm_hit_median_ms": {
+              "direct": 6947.550235003291,
+              "fast": 1973.457932999736,
+              "snapshot": 5631.232022496988
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 1.1054747626274242,
+            "environment_setup_ms": 7207.617269996263,
+            "observed_totals_ms": {
+              "direct": 48544.80864598736,
+              "fast": 43913.08629299601,
+              "oracle": 50020.47092200519,
+              "snapshot": 61560.48577399633
+            },
+            "order": [
+              "snapshot",
+              "fast",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 628.1400000000001,
+                "cache_publish": 104.872,
+                "docker_execution": 15588.499,
+                "environment": 0.191,
+                "event_append": 130.028,
+                "fingerprint_final": 4911.341,
+                "fingerprint_initial": 5514.744,
+                "lock_acquire": 29.604,
+                "readonly_hit_path": 9081.220000000001,
+                "runtime_inspect_initial": 2097.109,
+                "snapshot_cleanup": 147.623,
+                "snapshot_prepare": 11642.448
+              },
+              "snapshot": {
+                "cache_lookup": 695.9369999999999,
+                "cache_publish": 92.775,
+                "docker_execution": 17069.051,
+                "environment": 0.244,
+                "event_append": 147.466,
+                "fingerprint_final": 5608.268,
+                "fingerprint_initial": 6872.751,
+                "lock_acquire": 26.526999999999997,
+                "runtime_inspect_initial": 2699.0060000000003,
+                "snapshot_cleanup": 597.268,
+                "snapshot_prepare": 27331.437
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.4018710815098192,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3284.78152299067,
+                "container ls": 883.2400839964976,
+                "container rm": 1835.158082016278,
+                "create": 3797.4959220009623,
+                "start": 38690.76428900735
+              },
+              "oracle": {
+                "container inspect": 3092.4539999759872,
+                "container ls": 958.9976000061142,
+                "container rm": 1596.0365820137667,
+                "create": 4069.4451819945243,
+                "start": 40229.84636401088
+              }
+            },
+            "trajectory": 5,
+            "warm_hit_median_ms": {
+              "direct": 6967.503810497874,
+              "fast": 2094.1871630020614,
+              "snapshot": 5743.2874714977515
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.9914410739425842,
+            "environment_setup_ms": 7772.504132000904,
+            "observed_totals_ms": {
+              "direct": 48895.01986999676,
+              "fast": 49317.12146598875,
+              "oracle": 49128.368144003616,
+              "snapshot": 64851.983772990934
+            },
+            "order": [
+              "direct",
+              "fast",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 535.481,
+                "cache_publish": 93.282,
+                "docker_execution": 18764.531,
+                "environment": 0.252,
+                "event_append": 148.92399999999998,
+                "fingerprint_final": 5097.571,
+                "fingerprint_initial": 5650.536,
+                "lock_acquire": 33.35,
+                "readonly_hit_path": 7447.553,
+                "runtime_inspect_initial": 1931.602,
+                "snapshot_cleanup": 179.44,
+                "snapshot_prepare": 12514.242999999999
+              },
+              "snapshot": {
+                "cache_lookup": 602.857,
+                "cache_publish": 98.905,
+                "docker_execution": 21020.09,
+                "environment": 0.595,
+                "event_append": 153.144,
+                "fingerprint_final": 5321.6669999999995,
+                "fingerprint_initial": 5998.438,
+                "lock_acquire": 33.663000000000004,
+                "runtime_inspect_initial": 1870.0209999999997,
+                "snapshot_cleanup": 509.768,
+                "snapshot_prepare": 28869.524000000005
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.3149993723318931,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 3100.921592027589,
+                "container ls": 963.7897140055429,
+                "container rm": 1736.1374440151849,
+                "create": 3311.033006000798,
+                "start": 39728.889748002985
+              },
+              "oracle": {
+                "container inspect": 2846.831368995481,
+                "container ls": 1043.6189830070361,
+                "container rm": 1707.575870997971,
+                "create": 4728.505898005096,
+                "start": 38737.319010004285
+              }
+            },
+            "trajectory": 6,
+            "warm_hit_median_ms": {
+              "direct": 6603.524348498468,
+              "fast": 1873.8343914992583,
+              "snapshot": 6641.403781999543
+            }
+          }
+        ],
+        "complete_blocks": 6,
+        "completed": true,
+        "errors": [],
+        "expected_cache_behaviors": 42,
+        "fresh_agreements": 42,
+        "fresh_node_observations": 2196,
+        "headline_performance": {
+          "all_six_blocks_included": true,
+          "block_direct_to_fast_spread": {
+            "maximum": 1.1054747626274242,
+            "mean": 1.0170641309397332,
+            "median": 0.9894383674239905,
+            "minimum": 0.9763045832687239,
+            "n": 6,
+            "sample_standard_deviation": 0.05477215011464699
+          },
+          "block_snapshot_to_fast_spread": {
+            "maximum": 1.4942168489381495,
+            "mean": 1.3311067957006328,
+            "median": 1.3350571191864793,
+            "minimum": 1.1804271127569683,
+            "n": 6,
+            "sample_standard_deviation": 0.11265081556434575
+          },
+          "common_environment_setup_ms": 51692.35363300686,
+          "direct_to_fast_ratio": 1.0141969612913346,
+          "leave_one_block_out_influence": [
+            {
+              "direct_to_fast_ratio": 1.0052810376589822,
+              "trajectory_removed_for_diagnostic_only": 1
+            },
+            {
+              "direct_to_fast_ratio": 1.0222847635521202,
+              "trajectory_removed_for_diagnostic_only": 2
+            },
+            {
+              "direct_to_fast_ratio": 1.0200145710539301,
+              "trajectory_removed_for_diagnostic_only": 3
+            },
+            {
+              "direct_to_fast_ratio": 1.0218205437983767,
+              "trajectory_removed_for_diagnostic_only": 4
+            },
+            {
+              "direct_to_fast_ratio": 0.9974358165903796,
+              "trajectory_removed_for_diagnostic_only": 5
+            },
+            {
+              "direct_to_fast_ratio": 1.0189983033453922,
+              "trajectory_removed_for_diagnostic_only": 6
+            }
+          ],
+          "observations_removed": 0,
+          "setup_inclusive_direct_to_fast_ratio": 1.012004637348191,
+          "snapshot_to_fast_ratio": 1.329344828817379,
+          "totals_ms": {
+            "direct": 287073.38455197896,
+            "fast": 283054.86558198754,
+            "oracle": 292377.276040017,
+            "snapshot": 376277.52183301345
+          },
+          "warm_hit_median_ms": {
+            "direct": 6863.755883499834,
+            "fast": 1998.6373565006943,
+            "snapshot": 6161.349401503685
+          }
+        },
+        "missing": [],
+        "observed_complete_requests": 42,
+        "optimized_hits": 24,
+        "planned_blocks": 6,
+        "workload": "colorama"
+      },
+      {
+        "blocks": [
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.8849056861075966,
+            "environment_setup_ms": 6876.805210995371,
+            "observed_totals_ms": {
+              "direct": 48840.83591200033,
+              "fast": 55193.26712300244,
+              "oracle": 50029.684927991184,
+              "snapshot": 69457.06080099626
+            },
+            "order": [
+              "snapshot",
+              "fast",
+              "direct"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 623.127,
+                "cache_publish": 74.519,
+                "docker_execution": 21941.448,
+                "environment": 0.42,
+                "event_append": 151.491,
+                "fingerprint_final": 5348.062,
+                "fingerprint_initial": 5997.163,
+                "lock_acquire": 30.148,
+                "readonly_hit_path": 8054.92,
+                "runtime_inspect_initial": 1848.8999999999999,
+                "snapshot_cleanup": 210.434,
+                "snapshot_prepare": 15158.613000000001
+              },
+              "snapshot": {
+                "cache_lookup": 618.6970000000001,
+                "cache_publish": 103.526,
+                "docker_execution": 23422.402000000002,
+                "environment": 0.20099999999999998,
+                "event_append": 132.92000000000002,
+                "fingerprint_final": 5755.542,
+                "fingerprint_initial": 6672.46,
+                "lock_acquire": 40.32300000000001,
+                "runtime_inspect_initial": 1880.4350000000002,
+                "snapshot_cleanup": 583.0210000000001,
+                "snapshot_prepare": 29781.316999999995
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.2584335811505025,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2828.7361719994806,
+                "container ls": 823.768200003542,
+                "container rm": 1491.071391996229,
+                "create": 3176.806872987072,
+                "start": 40467.784949993074
+              },
+              "oracle": {
+                "container inspect": 2934.372004980105,
+                "container ls": 885.9461280080723,
+                "container rm": 1562.7873769990401,
+                "create": 3487.831420992734,
+                "start": 41071.31346699316
+              }
+            },
+            "trajectory": 1,
+            "warm_hit_median_ms": {
+              "direct": 7114.763347501139,
+              "fast": 1980.540808501246,
+              "snapshot": 6261.618125001405
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 1.1079768965548873,
+            "environment_setup_ms": 6839.899096004956,
+            "observed_totals_ms": {
+              "direct": 62103.60735000722,
+              "fast": 56051.355892988795,
+              "oracle": 55553.85574599495,
+              "snapshot": 70412.72314998787
+            },
+            "order": [
+              "direct",
+              "snapshot",
+              "fast"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 615.742,
+                "cache_publish": 92.961,
+                "docker_execution": 21684.522,
+                "environment": 0.22,
+                "event_append": 153.73100000000002,
+                "fingerprint_final": 5918.14,
+                "fingerprint_initial": 6108.287,
+                "lock_acquire": 33.794000000000004,
+                "readonly_hit_path": 8433.169,
+                "runtime_inspect_initial": 1925.685,
+                "snapshot_cleanup": 284.001,
+                "snapshot_prepare": 15533.416000000001
+              },
+              "snapshot": {
+                "cache_lookup": 646.5840000000001,
+                "cache_publish": 93.95,
+                "docker_execution": 21157.222,
+                "environment": 0.196,
+                "event_append": 145.472,
+                "fingerprint_final": 5756.896,
+                "fingerprint_initial": 6921.401,
+                "lock_acquire": 44.915,
+                "runtime_inspect_initial": 1844.6880000000003,
+                "snapshot_cleanup": 567.894,
+                "snapshot_prepare": 32819.397
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.2562180169988622,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2795.600284000102,
+                "container ls": 958.387466998829,
+                "container rm": 1513.162294999347,
+                "create": 3518.1217469871626,
+                "start": 53256.422284997825
+              },
+              "oracle": {
+                "container inspect": 3363.0481330037583,
+                "container ls": 989.7984920098679,
+                "container rm": 1942.9060839975136,
+                "create": 3403.862389997812,
+                "start": 45765.601064013026
+              }
+            },
+            "trajectory": 2,
+            "warm_hit_median_ms": {
+              "direct": 8128.200128001481,
+              "fast": 2155.1447339988954,
+              "snapshot": 6539.16036100054
+            }
+          },
+          {
+            "completed": true,
+            "direct_to_fast_ratio": 0.8791750530827083,
+            "environment_setup_ms": 12363.050227999338,
+            "observed_totals_ms": {
+              "direct": 51117.000733996974,
+              "fast": 58142.005457004416,
+              "oracle": 50682.014497993805,
+              "snapshot": 68876.84131399146
+            },
+            "order": [
+              "fast",
+              "direct",
+              "snapshot"
+            ],
+            "partial_arm_receipts": [],
+            "partial_request_outer_totals_ms": {
+              "direct": 0,
+              "fast": 0,
+              "oracle": 0,
+              "snapshot": 0
+            },
+            "partial_requests": [],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 590.3820000000001,
+                "cache_publish": 102.239,
+                "docker_execution": 21500.203999999998,
+                "environment": 0.319,
+                "event_append": 141.101,
+                "fingerprint_final": 5926.158,
+                "fingerprint_initial": 5529.517000000001,
+                "lock_acquire": 37.07,
+                "readonly_hit_path": 6944.681,
+                "runtime_inspect_initial": 1947.1560000000002,
+                "snapshot_cleanup": 304.089,
+                "snapshot_prepare": 18054.313000000002
+              },
+              "snapshot": {
+                "cache_lookup": 440.53200000000004,
+                "cache_publish": 59.092,
+                "docker_execution": 18794.075,
+                "environment": 0.232,
+                "event_append": 146.064,
+                "fingerprint_final": 5176.159,
+                "fingerprint_initial": 6164.087,
+                "lock_acquire": 26.213,
+                "runtime_inspect_initial": 1761.718,
+                "snapshot_cleanup": 474.969,
+                "snapshot_prepare": 35383.477
+              }
+            },
+            "requests_observed": 7,
+            "snapshot_to_fast_ratio": 1.1846313310421563,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 2570.7210630134796,
+                "container ls": 827.2258290089667,
+                "container rm": 1450.4880099993898,
+                "create": 2974.942890003149,
+                "start": 43227.29100401193
+              },
+              "oracle": {
+                "container inspect": 2365.8872520099976,
+                "container ls": 844.6105219918536,
+                "container rm": 1222.603154987155,
+                "create": 3219.2066420029732,
+                "start": 42950.946342985844
+              }
+            },
+            "trajectory": 3,
+            "warm_hit_median_ms": {
+              "direct": 7489.027086499846,
+              "fast": 1634.0241220023017,
+              "snapshot": 6605.707169495872
+            }
+          },
+          {
+            "completed": false,
+            "direct_to_fast_ratio": null,
+            "environment_setup_ms": 5798.016044005635,
+            "observed_totals_ms": {
+              "direct": 6977.1081209983095,
+              "fast": 13744.049987995822,
+              "oracle": 7861.153400997864,
+              "snapshot": 14773.435242001142
+            },
+            "order": [
+              "fast",
+              "snapshot",
+              "direct"
+            ],
+            "partial_arm_receipts": [
+              {
+                "arm": "direct",
+                "completed": true,
+                "error_type": null,
+                "path": "research\\sqj\\strengthening\\evidence\\short-randomized-replication-v1\\packaging\\trajectory-4\\request-1\\direct.json",
+                "request_wall_ms": 6719.350115003181,
+                "sha256": "e35bfd6ffc28df5bb0a5cfd28f1890fcba72241bb9b098041bbfc2166a619ef9"
+              },
+              {
+                "arm": "snapshot",
+                "completed": true,
+                "error_type": null,
+                "path": "research\\sqj\\strengthening\\evidence\\short-randomized-replication-v1\\packaging\\trajectory-4\\request-1\\snapshot.json",
+                "request_wall_ms": 6593.096017000789,
+                "sha256": "7bcbe2878742c11548840a753ed313c28788cf8bcf2dab237c97ec4d83401b4b"
+              },
+              {
+                "arm": "fast",
+                "completed": true,
+                "error_type": null,
+                "path": "research\\sqj\\strengthening\\evidence\\short-randomized-replication-v1\\packaging\\trajectory-4\\request-1\\fast.json",
+                "request_wall_ms": 2162.8461820000666,
+                "sha256": "fb9a9f4915cc910ebc4e4adac1ae961082c95c3deeb2bdd7fd288ceeb2a13e17"
+              }
+            ],
+            "partial_request_outer_totals_ms": {
+              "direct": 6719.350115003181,
+              "fast": 2162.8461820000666,
+              "oracle": 0,
+              "snapshot": 6593.096017000789
+            },
+            "partial_requests": [
+              "request-1"
+            ],
+            "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+            "product_phase_totals_ms_not_additive": {
+              "fast": {
+                "cache_lookup": 3.365,
+                "cache_publish": 88.126,
+                "docker_execution": 6978.261,
+                "environment": 0.03,
+                "event_append": 23.938,
+                "fingerprint_final": 907.346,
+                "fingerprint_initial": 948.462,
+                "lock_acquire": 4.844,
+                "runtime_inspect_initial": 283.68,
+                "snapshot_cleanup": 100.928,
+                "snapshot_prepare": 3407.301
+              },
+              "snapshot": {
+                "cache_lookup": 1.336,
+                "cache_publish": 96.238,
+                "docker_execution": 7051.238,
+                "environment": 0.03,
+                "event_append": 20.408,
+                "fingerprint_final": 884.179,
+                "fingerprint_initial": 984.061,
+                "lock_acquire": 3.394,
+                "runtime_inspect_initial": 337.466,
+                "snapshot_cleanup": 96.888,
+                "snapshot_prepare": 5229.702
+              }
+            },
+            "requests_observed": 1,
+            "snapshot_to_fast_ratio": null,
+            "subprocess_phase_totals_ms": {
+              "direct": {
+                "container inspect": 435.91114100127015,
+                "container ls": 71.28160499996739,
+                "container rm": 278.8772260028054,
+                "create": 489.12012400251115,
+                "start": 5698.193744996388
+              },
+              "oracle": {
+                "container inspect": 534.674101996643,
+                "container ls": 130.2517229996738,
+                "container rm": 224.45219699875452,
+                "create": 549.9829380059964,
+                "start": 6409.59273599583
+              }
+            },
+            "trajectory": 4,
+            "warm_hit_median_ms": {
+              "direct": null,
+              "fast": null,
+              "snapshot": null
+            }
+          }
+        ],
+        "complete_blocks": 3,
+        "completed": false,
+        "errors": [],
+        "expected_cache_behaviors": 22,
+        "fresh_agreements": 22,
+        "fresh_node_observations": 5242,
+        "headline_performance": null,
+        "missing": [
+          "trajectory-4/block-summary.json",
+          "trajectory-5",
+          "trajectory-6",
+          "summary.json"
+        ],
+        "observed_complete_requests": 22,
+        "optimized_hits": 12,
+        "planned_blocks": 6,
+        "workload": "packaging"
+      }
+    ],
+    "uncertainty": "Per-subject complete-block spread and leave-one-block influence; no nested-node or population confidence claim.",
+    "workload_failures": []
+  },
+  "original_protocol_sha256": "6bcadb632a509bf12ba49449f069585a5836c795e761e66f875da4c24d7081ec",
+  "paper_summary": {
+    "all_planned_requests_reconciled": true,
+    "denominator": "24 completed planned blocks, with post-crash restarted block explicitly identified; additional interrupted observations retained separately",
+    "interpretation": "Post-observation infrastructure recovery amendment, not uninterrupted fulfillment of original no-retry protocol. No population inference.",
+    "subjects": [
+      {
+        "block_direct_to_fast_range": [
+          0.8895556250996659,
+          1.6369967338404774
+        ],
+        "complete_blocks_of_six": 6,
+        "completed": true,
+        "direct_to_fast_ratio": 1.0540611958091444,
+        "fresh_agreements": 42,
+        "median_hit_latency_reduction_percent_vs_snapshot": 68.12684731825954,
+        "requests_of_42": 42,
+        "setup_inclusive_direct_to_fast_ratio": 1.046609770348163,
+        "warm_hit_median_ms": {
+          "direct": 6504.688963999797,
+          "fast": 1876.3217449995864,
+          "snapshot": 5886.840764498629
+        },
+        "workload": "click"
+      },
+      {
+        "block_direct_to_fast_range": [
+          0.7845204245712454,
+          1.0416357271660646
+        ],
+        "complete_blocks_of_six": 6,
+        "completed": true,
+        "direct_to_fast_ratio": 0.8903191049364653,
+        "fresh_agreements": 42,
+        "median_hit_latency_reduction_percent_vs_snapshot": 68.84676240381752,
+        "requests_of_42": 42,
+        "setup_inclusive_direct_to_fast_ratio": 0.9057808323245344,
+        "warm_hit_median_ms": {
+          "direct": 6902.268987501884,
+          "fast": 2357.6965690008365,
+          "snapshot": 7568.062746999203
+        },
+        "workload": "pycparser"
+      },
+      {
+        "block_direct_to_fast_range": [
+          0.9763045832687239,
+          1.1054747626274242
+        ],
+        "complete_blocks_of_six": 6,
+        "completed": true,
+        "direct_to_fast_ratio": 1.0141969612913346,
+        "fresh_agreements": 42,
+        "median_hit_latency_reduction_percent_vs_snapshot": 67.56169426111552,
+        "requests_of_42": 42,
+        "setup_inclusive_direct_to_fast_ratio": 1.012004637348191,
+        "warm_hit_median_ms": {
+          "direct": 6863.755883499834,
+          "fast": 1998.6373565006943,
+          "snapshot": 6161.349401503685
+        },
+        "workload": "colorama"
+      },
+      {
+        "block_direct_to_fast_range": [
+          0.8791750530827083,
+          1.3244225833595722
+        ],
+        "complete_blocks_of_six": 6,
+        "completed": true,
+        "direct_to_fast_ratio": 1.0382342765067152,
+        "fresh_agreements": 42,
+        "median_hit_latency_reduction_percent_vs_snapshot": 70.82286033154837,
+        "requests_of_42": 42,
+        "setup_inclusive_direct_to_fast_ratio": null,
+        "warm_hit_median_ms": {
+          "direct": 7164.010288000043,
+          "fast": 1747.0828040013657,
+          "snapshot": 5987.84810250072
+        },
+        "workload": "packaging"
+      }
+    ]
+  },
+  "recovery_completion_sha256": "5e7276cfe9acbf55cb0e6aff14e8651433cc6ab88b768bbdfbb0b11155f85dd3",
+  "recovery_protocol_sha256": "7eea714d987ae1923c5c526b49a9363f0c37d2ea2fca3c0ab86b66dda1f08eae",
+  "schema": "zerorun.short-replication-recovered-analysis.v1",
+  "source_hashes_verified": true,
+  "subjects": [
+    {
+      "additional_interrupted_attempt_measured_totals_ms": {
+        "direct": 0,
+        "fast": 0,
+        "oracle": 0,
+        "snapshot": 0
+      },
+      "all_recorded_attempt_direct_to_fast_ratio": 1.0540611958091444,
+      "block_direct_to_fast_range": [
+        0.8895556250996659,
+        1.6369967338404774
+      ],
+      "blocks": [
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9410804820162747,
+          "environment_setup_ms": 6948.317462003615,
+          "observed_totals_ms": {
+            "direct": 47607.94580599759,
+            "fast": 50588.60184199875,
+            "oracle": 44427.71113500203,
+            "snapshot": 67591.71326698561
+          },
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 608.1780000000001,
+              "cache_publish": 90.532,
+              "docker_execution": 19275.191,
+              "environment": 0.242,
+              "event_append": 136.69,
+              "fingerprint_final": 5539.973000000001,
+              "fingerprint_initial": 5963.7919999999995,
+              "lock_acquire": 26.04,
+              "readonly_hit_path": 8325.582999999999,
+              "runtime_inspect_initial": 1888.746,
+              "snapshot_cleanup": 239.55999999999997,
+              "snapshot_prepare": 13193.587
+            },
+            "snapshot": {
+              "cache_lookup": 528.9399999999999,
+              "cache_publish": 102.99,
+              "docker_execution": 19874.644,
+              "environment": 0.198,
+              "event_append": 135.807,
+              "fingerprint_final": 5005.595,
+              "fingerprint_initial": 6582.929999999999,
+              "lock_acquire": 26.621999999999996,
+              "runtime_inspect_initial": 1649.745,
+              "snapshot_cleanup": 512.865,
+              "snapshot_prepare": 32779.05100000001
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3361055812155465,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3082.6674979980453,
+              "container ls": 832.3323750082636,
+              "container rm": 1636.1516839970136,
+              "create": 3081.560915998125,
+              "start": 38915.12889400474
+            },
+            "oracle": {
+              "container inspect": 2313.963782005885,
+              "container ls": 822.6420979917748,
+              "container rm": 1298.8180690081208,
+              "create": 2860.272170000826,
+              "start": 37066.9516239941
+            }
+          },
+          "trajectory": 1,
+          "warm_hit_median_ms": {
+            "direct": 6782.494726499863,
+            "fast": 2025.0293129975034,
+            "snapshot": 6724.067933497281
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.6369967338404774,
+          "environment_setup_ms": 3165.0519290051307,
+          "observed_totals_ms": {
+            "direct": 70306.96331699437,
+            "fast": 42948.74990498647,
+            "oracle": 37340.4205179977,
+            "snapshot": 52883.01987200248
+          },
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 509.925,
+              "cache_publish": 67.766,
+              "docker_execution": 17554.474000000002,
+              "environment": 0.208,
+              "event_append": 110.22800000000001,
+              "fingerprint_final": 4475.4130000000005,
+              "fingerprint_initial": 4438.605,
+              "lock_acquire": 19.235,
+              "readonly_hit_path": 5709.900000000001,
+              "runtime_inspect_initial": 1377.4160000000002,
+              "snapshot_cleanup": 234.977,
+              "snapshot_prepare": 11253.861
+            },
+            "snapshot": {
+              "cache_lookup": 467.87800000000004,
+              "cache_publish": 57.35,
+              "docker_execution": 18207.436999999998,
+              "environment": 0.182,
+              "event_append": 105.599,
+              "fingerprint_final": 3863.99,
+              "fingerprint_initial": 4961.595,
+              "lock_acquire": 26.242,
+              "runtime_inspect_initial": 1542.731,
+              "snapshot_cleanup": 352.93600000000004,
+              "snapshot_prepare": 22977.365
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2313052181726623,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2707.318298991595,
+              "container ls": 771.3405510075972,
+              "container rm": 1338.3529630009434,
+              "create": 31128.906437996193,
+              "start": 34315.9290360054
+            },
+            "oracle": {
+              "container inspect": 2244.0175079900655,
+              "container ls": 884.3634420045419,
+              "container rm": 1124.2964569828473,
+              "create": 3163.899129991478,
+              "start": 29856.948343986005
+            }
+          },
+          "trajectory": 2,
+          "warm_hit_median_ms": {
+            "direct": 6321.484602500277,
+            "fast": 1493.8329460019304,
+            "snapshot": 5095.432736499788
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.908885875993443,
+          "environment_setup_ms": 5497.921433001466,
+          "observed_totals_ms": {
+            "direct": 41980.15971700079,
+            "fast": 46188.592897997296,
+            "oracle": 42942.23797700397,
+            "snapshot": 59360.22734200378
+          },
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 573.436,
+              "cache_publish": 98.841,
+              "docker_execution": 18558.537,
+              "environment": 0.191,
+              "event_append": 128.518,
+              "fingerprint_final": 5340.5869999999995,
+              "fingerprint_initial": 4813.178,
+              "lock_acquire": 24.344,
+              "readonly_hit_path": 7505.242,
+              "runtime_inspect_initial": 1803.719,
+              "snapshot_cleanup": 305.5,
+              "snapshot_prepare": 11641.802
+            },
+            "snapshot": {
+              "cache_lookup": 450.074,
+              "cache_publish": 37.658,
+              "docker_execution": 18269.674,
+              "environment": 0.27399999999999997,
+              "event_append": 102.42599999999999,
+              "fingerprint_final": 4672.392,
+              "fingerprint_initial": 5791.258,
+              "lock_acquire": 20.102,
+              "runtime_inspect_initial": 1709.9189999999999,
+              "snapshot_cleanup": 358.398,
+              "snapshot_prepare": 27609.812
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2851707232799812,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2874.8243960217224,
+              "container ls": 783.0896240047878,
+              "container rm": 1512.6150359938038,
+              "create": 2979.6773540074355,
+              "start": 33779.98448198923
+            },
+            "oracle": {
+              "container inspect": 2667.418067037943,
+              "container ls": 676.6752200055635,
+              "container rm": 1220.9556469970266,
+              "create": 2734.6428130040294,
+              "start": 35587.396702008846
+            }
+          },
+          "trajectory": 3,
+          "warm_hit_median_ms": {
+            "direct": 6019.567311999708,
+            "fast": 1966.3448604987934,
+            "snapshot": 5254.205862500385
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.0314037428868694,
+          "environment_setup_ms": 5099.875216001237,
+          "observed_totals_ms": {
+            "direct": 39788.82457099826,
+            "fast": 38577.35134800896,
+            "oracle": 38307.53936200199,
+            "snapshot": 58078.07523498195
+          },
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 499.239,
+              "cache_publish": 35.556,
+              "docker_execution": 14700.884999999998,
+              "environment": 0.15600000000000003,
+              "event_append": 165.51599999999996,
+              "fingerprint_final": 4469.052,
+              "fingerprint_initial": 4357.686,
+              "lock_acquire": 23.723,
+              "readonly_hit_path": 5986.706,
+              "runtime_inspect_initial": 1395.9350000000002,
+              "snapshot_cleanup": 132.63500000000002,
+              "snapshot_prepare": 9989.11
+            },
+            "snapshot": {
+              "cache_lookup": 424.586,
+              "cache_publish": 79.909,
+              "docker_execution": 15426.467999999999,
+              "environment": 0.921,
+              "event_append": 115.565,
+              "fingerprint_final": 4767.628000000001,
+              "fingerprint_initial": 6065.536000000001,
+              "lock_acquire": 22.477,
+              "runtime_inspect_initial": 1449.283,
+              "snapshot_cleanup": 431.972,
+              "snapshot_prepare": 28890.835000000003
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.5054967022244634,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2588.1806039906223,
+              "container ls": 748.7798130023293,
+              "container rm": 1228.0490759949316,
+              "create": 2679.714491008781,
+              "start": 32464.532124984544
+            },
+            "oracle": {
+              "container inspect": 2030.8852400194155,
+              "container ls": 1070.1350520030246,
+              "container rm": 966.1020040002768,
+              "create": 2729.3553989802604,
+              "start": 31450.51479600079
+            }
+          },
+          "trajectory": 4,
+          "warm_hit_median_ms": {
+            "direct": 6514.144034998026,
+            "fast": 1637.5963015016168,
+            "snapshot": 6014.804832499067
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.8895556250996659,
+          "environment_setup_ms": 5376.350325997919,
+          "observed_totals_ms": {
+            "direct": 39070.888793008635,
+            "fast": 43921.805101992504,
+            "oracle": 47755.75364699762,
+            "snapshot": 54263.44217298902
+          },
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 475.711,
+              "cache_publish": 90.693,
+              "docker_execution": 17127.479,
+              "environment": 0.176,
+              "event_append": 113.55300000000001,
+              "fingerprint_final": 4798.302,
+              "fingerprint_initial": 4984.419999999999,
+              "lock_acquire": 19.686,
+              "readonly_hit_path": 7589.71,
+              "runtime_inspect_initial": 1636.147,
+              "snapshot_cleanup": 172.611,
+              "snapshot_prepare": 11463.811000000002
+            },
+            "snapshot": {
+              "cache_lookup": 522.914,
+              "cache_publish": 80.472,
+              "docker_execution": 14418.055,
+              "environment": 0.356,
+              "event_append": 123.394,
+              "fingerprint_final": 4872.597,
+              "fingerprint_initial": 5201.476,
+              "lock_acquire": 27.567,
+              "runtime_inspect_initial": 1592.9390000000003,
+              "snapshot_cleanup": 466.20500000000004,
+              "snapshot_prepare": 26598.417
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.235455647758142,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2367.8021480009193,
+              "container ls": 816.628069995204,
+              "container rm": 1174.5690030074911,
+              "create": 3076.6468310030177,
+              "start": 31569.91627899697
+            },
+            "oracle": {
+              "container inspect": 3154.2386949877255,
+              "container ls": 621.6322910040617,
+              "container rm": 1670.1212889965973,
+              "create": 2937.1366879931884,
+              "start": 39313.25605899474
+            }
+          },
+          "trajectory": 5,
+          "warm_hit_median_ms": {
+            "direct": 5309.495253502973,
+            "fast": 2174.537890998181,
+            "snapshot": 5676.72194449915
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9645182433682346,
+          "environment_setup_ms": 5598.716717999196,
+          "observed_totals_ms": {
+            "direct": 48643.62057100516,
+            "fast": 50433.07465199905,
+            "oracle": 48508.82935199479,
+            "snapshot": 67165.23480600881
+          },
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 551.458,
+              "cache_publish": 47.203,
+              "docker_execution": 19992.77,
+              "environment": 0.17900000000000002,
+              "event_append": 140.039,
+              "fingerprint_final": 5359.398,
+              "fingerprint_initial": 5269.005,
+              "lock_acquire": 25.907,
+              "readonly_hit_path": 8003.181999999999,
+              "runtime_inspect_initial": 1884.0149999999999,
+              "snapshot_cleanup": 235.252,
+              "snapshot_prepare": 13628.652
+            },
+            "snapshot": {
+              "cache_lookup": 684.9830000000001,
+              "cache_publish": 47.152,
+              "docker_execution": 19747.366,
+              "environment": 0.22199999999999998,
+              "event_append": 116.63400000000001,
+              "fingerprint_final": 5114.910999999999,
+              "fingerprint_initial": 6323.1050000000005,
+              "lock_acquire": 29.611,
+              "runtime_inspect_initial": 1717.336,
+              "snapshot_cleanup": 464.599,
+              "snapshot_prepare": 32537.874
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3317695831449081,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2865.436285988835,
+              "container ls": 666.6978880020906,
+              "container rm": 1370.2941450173967,
+              "create": 3269.457399001112,
+              "start": 40431.02836000617
+            },
+            "oracle": {
+              "container inspect": 2749.500253019505,
+              "container ls": 884.9463939914131,
+              "container rm": 1241.4069450023817,
+              "create": 2840.855078015011,
+              "start": 40703.69405300153
+            }
+          },
+          "trajectory": 6,
+          "warm_hit_median_ms": {
+            "direct": 6991.271239501657,
+            "fast": 1961.5632794993871,
+            "snapshot": 6986.7851525013975
+          }
+        }
+      ],
+      "complete_blocks_of_six": 6,
+      "completed": true,
+      "completed_block_totals_ms": {
+        "direct": 287398.4027750048,
+        "fast": 272658.17574698303,
+        "oracle": 259282.4919909981,
+        "snapshot": 359341.71269497165
+      },
+      "direct_to_fast_ratio": 1.0540611958091444,
+      "fresh_agreements": 42,
+      "median_hit_latency_reduction_percent_vs_snapshot": 68.12684731825954,
+      "requests_of_42": 42,
+      "setup_inclusive_direct_to_fast_ratio": 1.046609770348163,
+      "setup_inclusive_unavailable_reason": null,
+      "warm_hit_median_ms": {
+        "direct": 6504.688963999797,
+        "fast": 1876.3217449995864,
+        "snapshot": 5886.840764498629
+      },
+      "workload": "click"
+    },
+    {
+      "additional_interrupted_attempt_measured_totals_ms": {
+        "direct": 0,
+        "fast": 0,
+        "oracle": 0,
+        "snapshot": 0
+      },
+      "all_recorded_attempt_direct_to_fast_ratio": 0.8903191049364653,
+      "block_direct_to_fast_range": [
+        0.7845204245712454,
+        1.0416357271660646
+      ],
+      "blocks": [
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9144551161932003,
+          "environment_setup_ms": 5745.656558996416,
+          "observed_totals_ms": {
+            "direct": 44902.66041900031,
+            "fast": 49103.18683100195,
+            "oracle": 43761.933278008655,
+            "snapshot": 70276.97934699972
+          },
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 720.925,
+              "cache_publish": 93.034,
+              "docker_execution": 16653.391,
+              "environment": 0.48,
+              "event_append": 117.383,
+              "fingerprint_final": 5833.717000000001,
+              "fingerprint_initial": 6426.664,
+              "lock_acquire": 27.685000000000002,
+              "readonly_hit_path": 9716.019,
+              "runtime_inspect_initial": 2303.557,
+              "snapshot_cleanup": 199.509,
+              "snapshot_prepare": 12713.542
+            },
+            "snapshot": {
+              "cache_lookup": 736.434,
+              "cache_publish": 46.225,
+              "docker_execution": 14453.693,
+              "environment": 0.23099999999999998,
+              "event_append": 148.637,
+              "fingerprint_final": 6905.6539999999995,
+              "fingerprint_initial": 6692.341,
+              "lock_acquire": 33.329,
+              "runtime_inspect_initial": 1974.7580000000003,
+              "snapshot_cleanup": 784.705,
+              "snapshot_prepare": 37840.022000000004
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.431210149126806,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 4015.943188001984,
+              "container ls": 712.8903889824869,
+              "container rm": 1917.9559519980103,
+              "create": 2850.7207260045107,
+              "start": 35333.89560600335
+            },
+            "oracle": {
+              "container inspect": 2757.8289070079336,
+              "container ls": 1220.896927996364,
+              "container rm": 1424.4409079910838,
+              "create": 4029.752099995676,
+              "start": 34249.556034992565
+            }
+          },
+          "trajectory": 1,
+          "warm_hit_median_ms": {
+            "direct": 7267.529122000269,
+            "fast": 2086.63647800131,
+            "snapshot": 9369.493107500602
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9159671216815213,
+          "environment_setup_ms": 6671.348300995305,
+          "observed_totals_ms": {
+            "direct": 47165.40636400896,
+            "fast": 51492.466538999,
+            "oracle": 45398.275471008674,
+            "snapshot": 68156.82847500284
+          },
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 531.2539999999999,
+              "cache_publish": 65.743,
+              "docker_execution": 17959.38,
+              "environment": 0.21400000000000002,
+              "event_append": 144.076,
+              "fingerprint_final": 5976.83,
+              "fingerprint_initial": 5761.8,
+              "lock_acquire": 26.318,
+              "readonly_hit_path": 8271.225999999999,
+              "runtime_inspect_initial": 1813.504,
+              "snapshot_cleanup": 289.57399999999996,
+              "snapshot_prepare": 14967.557999999997
+            },
+            "snapshot": {
+              "cache_lookup": 545.5649999999999,
+              "cache_publish": 97.896,
+              "docker_execution": 18003.734,
+              "environment": 0.34800000000000003,
+              "event_append": 138.29999999999998,
+              "fingerprint_final": 6102.089,
+              "fingerprint_initial": 6558.9,
+              "lock_acquire": 29.919,
+              "runtime_inspect_initial": 1982.7379999999998,
+              "snapshot_cleanup": 643.3090000000001,
+              "snapshot_prepare": 33605.93
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3236271838596565,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3291.749637988687,
+              "container ls": 649.3749870060128,
+              "container rm": 1835.8428770006867,
+              "create": 3577.654568005528,
+              "start": 37757.474350997654
+            },
+            "oracle": {
+              "container inspect": 3019.7424789876095,
+              "container ls": 995.6538379992708,
+              "container rm": 1501.2413139847922,
+              "create": 3557.982896003523,
+              "start": 36239.24051999347
+            }
+          },
+          "trajectory": 2,
+          "warm_hit_median_ms": {
+            "direct": 6823.253679001937,
+            "fast": 1984.2183049986488,
+            "snapshot": 6400.669386002846
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.0416357271660646,
+          "environment_setup_ms": 5010.790339001687,
+          "observed_totals_ms": {
+            "direct": 53605.25127900473,
+            "fast": 51462.569765004446,
+            "oracle": 47874.54329600587,
+            "snapshot": 68307.18281801092
+          },
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 468.056,
+              "cache_publish": 89.253,
+              "docker_execution": 17218.182999999997,
+              "environment": 0.8420000000000002,
+              "event_append": 129.26299999999998,
+              "fingerprint_final": 4455.105,
+              "fingerprint_initial": 7000.150000000001,
+              "lock_acquire": 31.864999999999995,
+              "readonly_hit_path": 6584.3240000000005,
+              "runtime_inspect_initial": 1986.306,
+              "snapshot_cleanup": 218.12199999999999,
+              "snapshot_prepare": 15974.671000000002
+            },
+            "snapshot": {
+              "cache_lookup": 815.264,
+              "cache_publish": 46.927,
+              "docker_execution": 19972.055,
+              "environment": 0.198,
+              "event_append": 133.04199999999997,
+              "fingerprint_final": 5958.530000000001,
+              "fingerprint_initial": 6935.368999999999,
+              "lock_acquire": 41.388999999999996,
+              "runtime_inspect_initial": 1879.135,
+              "snapshot_cleanup": 518.431,
+              "snapshot_prepare": 31500.517000000007
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3273177598772212,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3156.4305650026654,
+              "container ls": 836.1360589915421,
+              "container rm": 1777.649127994664,
+              "create": 3178.2143950040336,
+              "start": 44601.02201500558
+            },
+            "oracle": {
+              "container inspect": 2892.6899249927374,
+              "container ls": 804.0040410051006,
+              "container rm": 1816.5882980101742,
+              "create": 2779.442366991134,
+              "start": 39517.54996598902
+            }
+          },
+          "trajectory": 3,
+          "warm_hit_median_ms": {
+            "direct": 7075.230274502246,
+            "fast": 1460.9477605008578,
+            "snapshot": 7143.968373500684
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.8680773641466769,
+          "environment_setup_ms": 5554.807546999655,
+          "observed_totals_ms": {
+            "direct": 49122.817289986415,
+            "fast": 56588.06382801413,
+            "oracle": 54674.23275198962,
+            "snapshot": 81422.17779700877
+          },
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 623.885,
+              "cache_publish": 131.177,
+              "docker_execution": 18206.775,
+              "environment": 0.778,
+              "event_append": 172.529,
+              "fingerprint_final": 6459.64,
+              "fingerprint_initial": 7780.137,
+              "lock_acquire": 27.564000000000004,
+              "readonly_hit_path": 9464.245,
+              "runtime_inspect_initial": 2446.909,
+              "snapshot_cleanup": 339.877,
+              "snapshot_prepare": 16562.242
+            },
+            "snapshot": {
+              "cache_lookup": 695.462,
+              "cache_publish": 83.906,
+              "docker_execution": 25747.376,
+              "environment": 0.212,
+              "event_append": 165.383,
+              "fingerprint_final": 7305.603,
+              "fingerprint_initial": 9018.939999999999,
+              "lock_acquire": 36.088,
+              "runtime_inspect_initial": 2334.964,
+              "snapshot_cleanup": 696.7429999999999,
+              "snapshot_prepare": 34846.96
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.4388578136278347,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2953.2723360025557,
+              "container ls": 1033.2549519953318,
+              "container rm": 1578.019825006777,
+              "create": 3923.196324001765,
+              "start": 39558.70275199413
+            },
+            "oracle": {
+              "container inspect": 2952.9180220124545,
+              "container ls": 1061.2329120049253,
+              "container rm": 1510.602252004901,
+              "create": 3729.211092002515,
+              "start": 45332.61558699451
+            }
+          },
+          "trajectory": 4,
+          "warm_hit_median_ms": {
+            "direct": 7035.285416499391,
+            "fast": 2437.822669504385,
+            "snapshot": 8092.871761502465
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.7845204245712454,
+          "environment_setup_ms": 8124.362704002124,
+          "observed_totals_ms": {
+            "direct": 41412.28569800296,
+            "fast": 52786.75277400907,
+            "oracle": 49828.79927299655,
+            "snapshot": 72639.00769299653
+          },
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 761.438,
+              "cache_publish": 53.392,
+              "docker_execution": 16774.239999999998,
+              "environment": 0.258,
+              "event_append": 149.022,
+              "fingerprint_final": 5519.297,
+              "fingerprint_initial": 6706.597999999999,
+              "lock_acquire": 25.573999999999998,
+              "readonly_hit_path": 9314.610999999999,
+              "runtime_inspect_initial": 2064.411,
+              "snapshot_cleanup": 286.466,
+              "snapshot_prepare": 16831.996
+            },
+            "snapshot": {
+              "cache_lookup": 692.3969999999999,
+              "cache_publish": 84.504,
+              "docker_execution": 17658.697,
+              "environment": 0.20099999999999998,
+              "event_append": 136.244,
+              "fingerprint_final": 5731.3589999999995,
+              "fingerprint_initial": 7344.956999999999,
+              "lock_acquire": 27.542,
+              "runtime_inspect_initial": 1927.9569999999999,
+              "snapshot_cleanup": 572.438,
+              "snapshot_prepare": 38027.291
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3760840338859075,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2647.2283549956046,
+              "container ls": 925.997146005102,
+              "container rm": 1394.0111120027723,
+              "create": 3560.2320120087825,
+              "start": 32818.200164998416
+            },
+            "oracle": {
+              "container inspect": 3229.7021899939864,
+              "container ls": 937.2113799981889,
+              "container rm": 1719.9709549968247,
+              "create": 3140.337097007432,
+              "start": 40720.76287999516
+            }
+          },
+          "trajectory": 5,
+          "warm_hit_median_ms": {
+            "direct": 5752.919636997831,
+            "fast": 2357.6965690008365,
+            "snapshot": 7861.0563409965835
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.8359319972002924,
+          "environment_setup_ms": 9893.956149004225,
+          "observed_totals_ms": {
+            "direct": 53020.351817998744,
+            "fast": 63426.63278301916,
+            "oracle": 54937.558648998674,
+            "snapshot": 80188.454232004
+          },
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 671.887,
+              "cache_publish": 111.759,
+              "docker_execution": 23434.156000000003,
+              "environment": 0.236,
+              "event_append": 168.387,
+              "fingerprint_final": 7337.9929999999995,
+              "fingerprint_initial": 6757.263999999999,
+              "lock_acquire": 26.035,
+              "readonly_hit_path": 10459.757,
+              "runtime_inspect_initial": 2533.524,
+              "snapshot_cleanup": 279.94,
+              "snapshot_prepare": 17404.459
+            },
+            "snapshot": {
+              "cache_lookup": 862.629,
+              "cache_publish": 100.527,
+              "docker_execution": 21006.253,
+              "environment": 0.20799999999999996,
+              "event_append": 138.749,
+              "fingerprint_final": 6728.717000000001,
+              "fingerprint_initial": 8679.173,
+              "lock_acquire": 28.293,
+              "runtime_inspect_initial": 2398.625,
+              "snapshot_cleanup": 606.314,
+              "snapshot_prepare": 39191.246
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2642710280132101,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3423.327962984331,
+              "container ls": 1211.2855940067675,
+              "container rm": 1745.3808339996613,
+              "create": 4417.204684992612,
+              "start": 41993.671901007474
+            },
+            "oracle": {
+              "container inspect": 4561.267584991583,
+              "container ls": 1161.7891960122506,
+              "container rm": 2464.450913001201,
+              "create": 4193.38292399334,
+              "start": 42458.466619995306
+            }
+          },
+          "trajectory": 6,
+          "warm_hit_median_ms": {
+            "direct": 7905.576494998968,
+            "fast": 2574.525817501126,
+            "snapshot": 8202.374532003887
+          }
+        }
+      ],
+      "complete_blocks_of_six": 6,
+      "completed": true,
+      "completed_block_totals_ms": {
+        "direct": 289228.7728680021,
+        "fast": 324859.67252004775,
+        "oracle": 296475.34271900804,
+        "snapshot": 440990.6303620228
+      },
+      "direct_to_fast_ratio": 0.8903191049364653,
+      "fresh_agreements": 42,
+      "median_hit_latency_reduction_percent_vs_snapshot": 68.84676240381752,
+      "requests_of_42": 42,
+      "setup_inclusive_direct_to_fast_ratio": 0.9057808323245344,
+      "setup_inclusive_unavailable_reason": null,
+      "warm_hit_median_ms": {
+        "direct": 6902.268987501884,
+        "fast": 2357.6965690008365,
+        "snapshot": 7568.062746999203
+      },
+      "workload": "pycparser"
+    },
+    {
+      "additional_interrupted_attempt_measured_totals_ms": {
+        "direct": 0,
+        "fast": 0,
+        "oracle": 0,
+        "snapshot": 0
+      },
+      "all_recorded_attempt_direct_to_fast_ratio": 1.0141969612913346,
+      "block_direct_to_fast_range": [
+        0.9763045832687239,
+        1.1054747626274242
+      ],
+      "blocks": [
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.0653553120101742,
+          "environment_setup_ms": 5429.879335002624,
+          "observed_totals_ms": {
+            "direct": 44755.13862499065,
+            "fast": 42009.58883899875,
+            "oracle": 44483.95878199517,
+            "snapshot": 56927.81835200003
+          },
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 596.544,
+              "cache_publish": 94.411,
+              "docker_execution": 18971.114999999998,
+              "environment": 0.221,
+              "event_append": 137.29600000000002,
+              "fingerprint_final": 4899.484,
+              "fingerprint_initial": 4877.308000000001,
+              "lock_acquire": 27.059,
+              "readonly_hit_path": 8040.607,
+              "runtime_inspect_initial": 1984.4930000000002,
+              "snapshot_cleanup": 220.936,
+              "snapshot_prepare": 7971.644
+            },
+            "snapshot": {
+              "cache_lookup": 420.125,
+              "cache_publish": 83.401,
+              "docker_execution": 17248.011,
+              "environment": 0.196,
+              "event_append": 126.28300000000002,
+              "fingerprint_final": 4028.0329999999994,
+              "fingerprint_initial": 4680.346,
+              "lock_acquire": 34.702,
+              "runtime_inspect_initial": 1706.31,
+              "snapshot_cleanup": 419.016,
+              "snapshot_prepare": 27798.036
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3551148660410655,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2941.1323120293673,
+              "container ls": 831.4945890160743,
+              "container rm": 1443.2986620013253,
+              "create": 3442.398482002318,
+              "start": 36063.013526007126
+            },
+            "oracle": {
+              "container inspect": 2933.9637070006575,
+              "container ls": 727.3631230127648,
+              "container rm": 1664.3824339989806,
+              "create": 2980.3854139972827,
+              "start": 36121.30980899383
+            }
+          },
+          "trajectory": 1,
+          "warm_hit_median_ms": {
+            "direct": 6785.54436649938,
+            "fast": 2019.615735502157,
+            "snapshot": 5674.325795000186
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9763045832687239,
+          "environment_setup_ms": 7315.446835003968,
+          "observed_totals_ms": {
+            "direct": 48608.901600993704,
+            "fast": 49788.66476099938,
+            "oracle": 47748.56460100273,
+            "snapshot": 74395.06177201838
+          },
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 565.313,
+              "cache_publish": 80.877,
+              "docker_execution": 19168.716,
+              "environment": 0.211,
+              "event_append": 154.151,
+              "fingerprint_final": 5099.328,
+              "fingerprint_initial": 4909.342000000001,
+              "lock_acquire": 22.173,
+              "readonly_hit_path": 8062.098,
+              "runtime_inspect_initial": 2178.5589999999997,
+              "snapshot_cleanup": 229.872,
+              "snapshot_prepare": 13339.3
+            },
+            "snapshot": {
+              "cache_lookup": 885.902,
+              "cache_publish": 101.022,
+              "docker_execution": 21792.009,
+              "environment": 0.24800000000000003,
+              "event_append": 200.92399999999998,
+              "fingerprint_final": 6513.840000000001,
+              "fingerprint_initial": 8847.336,
+              "lock_acquire": 47.232,
+              "runtime_inspect_initial": 2856.241,
+              "snapshot_cleanup": 742.597,
+              "snapshot_prepare": 31901.520000000004
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.4942168489381495,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3380.7128429907607,
+              "container ls": 949.6142810021411,
+              "container rm": 1770.3301709989319,
+              "create": 3414.76388299634,
+              "start": 39030.20445499715
+            },
+            "oracle": {
+              "container inspect": 3136.557907004317,
+              "container ls": 892.7053180086659,
+              "container rm": 1515.1784170084284,
+              "create": 4028.340335986286,
+              "start": 38102.123578995815
+            }
+          },
+          "trajectory": 2,
+          "warm_hit_median_ms": {
+            "direct": 7315.875118001713,
+            "fast": 2043.1565814978967,
+            "snapshot": 6340.48727800473
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9874356609053968,
+          "environment_setup_ms": 6092.480821003846,
+          "observed_totals_ms": {
+            "direct": 49909.9880940048,
+            "fast": 50545.05328300729,
+            "oracle": 55719.70940101164,
+            "snapshot": 59664.75131100742
+          },
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 601.8020000000001,
+              "cache_publish": 79.529,
+              "docker_execution": 19204.455,
+              "environment": 0.497,
+              "event_append": 147.059,
+              "fingerprint_final": 6892.259,
+              "fingerprint_initial": 6615.9439999999995,
+              "lock_acquire": 25.293,
+              "readonly_hit_path": 11255.038,
+              "runtime_inspect_initial": 2809.7479999999996,
+              "snapshot_cleanup": 225.672,
+              "snapshot_prepare": 10802.987
+            },
+            "snapshot": {
+              "cache_lookup": 448.42699999999996,
+              "cache_publish": 80.88,
+              "docker_execution": 17241.933,
+              "environment": 0.21900000000000003,
+              "event_append": 145.196,
+              "fingerprint_final": 4313.054999999999,
+              "fingerprint_initial": 5072.533,
+              "lock_acquire": 27.641000000000005,
+              "runtime_inspect_initial": 2029.2469999999998,
+              "snapshot_cleanup": 473.181,
+              "snapshot_prepare": 29395.246
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.1804271127569683,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3226.810027983447,
+              "container ls": 1261.1275289818877,
+              "container rm": 1606.9283920005546,
+              "create": 3509.7606940107653,
+              "start": 40254.20776201645
+            },
+            "oracle": {
+              "container inspect": 3779.4522070034873,
+              "container ls": 927.9645520000486,
+              "container rm": 2314.4224520074204,
+              "create": 3713.1207669954165,
+              "start": 44920.906342005765
+            }
+          },
+          "trajectory": 3,
+          "warm_hit_median_ms": {
+            "direct": 6380.8053434986505,
+            "fast": 1919.173206002597,
+            "snapshot": 6059.254267496726
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9763733928840962,
+          "environment_setup_ms": 6516.54183199571,
+          "observed_totals_ms": {
+            "direct": 46359.52771600569,
+            "fast": 47481.350939997355,
+            "oracle": 45276.20418999868,
+            "snapshot": 58877.42085100035
+          },
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 536.1469999999999,
+              "cache_publish": 88.488,
+              "docker_execution": 18348.322,
+              "environment": 0.188,
+              "event_append": 149.332,
+              "fingerprint_final": 5023.289000000001,
+              "fingerprint_initial": 4888.028,
+              "lock_acquire": 25.628999999999998,
+              "readonly_hit_path": 7673.083,
+              "runtime_inspect_initial": 1964.6850000000002,
+              "snapshot_cleanup": 262.773,
+              "snapshot_prepare": 12517.538
+            },
+            "snapshot": {
+              "cache_lookup": 570.711,
+              "cache_publish": 91.832,
+              "docker_execution": 17869.466,
+              "environment": 0.293,
+              "event_append": 144.17600000000002,
+              "fingerprint_final": 5095.607,
+              "fingerprint_initial": 6039.622,
+              "lock_acquire": 31.043000000000003,
+              "runtime_inspect_initial": 2392.058,
+              "snapshot_cleanup": 629.407,
+              "snapshot_prepare": 25600.534000000003
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2400114926259012,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3154.6862019822584,
+              "container ls": 985.9624109958531,
+              "container rm": 1609.3280680070166,
+              "create": 3393.4808219928527,
+              "start": 37160.692823003046
+            },
+            "oracle": {
+              "container inspect": 2688.3893819976947,
+              "container ls": 934.5488340040902,
+              "container rm": 1353.7115169965546,
+              "create": 3732.8706920015975,
+              "start": 36509.58441000694
+            }
+          },
+          "trajectory": 4,
+          "warm_hit_median_ms": {
+            "direct": 6947.550235003291,
+            "fast": 1973.457932999736,
+            "snapshot": 5631.232022496988
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.1054747626274242,
+          "environment_setup_ms": 7207.617269996263,
+          "observed_totals_ms": {
+            "direct": 48544.80864598736,
+            "fast": 43913.08629299601,
+            "oracle": 50020.47092200519,
+            "snapshot": 61560.48577399633
+          },
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 628.1400000000001,
+              "cache_publish": 104.872,
+              "docker_execution": 15588.499,
+              "environment": 0.191,
+              "event_append": 130.028,
+              "fingerprint_final": 4911.341,
+              "fingerprint_initial": 5514.744,
+              "lock_acquire": 29.604,
+              "readonly_hit_path": 9081.220000000001,
+              "runtime_inspect_initial": 2097.109,
+              "snapshot_cleanup": 147.623,
+              "snapshot_prepare": 11642.448
+            },
+            "snapshot": {
+              "cache_lookup": 695.9369999999999,
+              "cache_publish": 92.775,
+              "docker_execution": 17069.051,
+              "environment": 0.244,
+              "event_append": 147.466,
+              "fingerprint_final": 5608.268,
+              "fingerprint_initial": 6872.751,
+              "lock_acquire": 26.526999999999997,
+              "runtime_inspect_initial": 2699.0060000000003,
+              "snapshot_cleanup": 597.268,
+              "snapshot_prepare": 27331.437
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.4018710815098192,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3284.78152299067,
+              "container ls": 883.2400839964976,
+              "container rm": 1835.158082016278,
+              "create": 3797.4959220009623,
+              "start": 38690.76428900735
+            },
+            "oracle": {
+              "container inspect": 3092.4539999759872,
+              "container ls": 958.9976000061142,
+              "container rm": 1596.0365820137667,
+              "create": 4069.4451819945243,
+              "start": 40229.84636401088
+            }
+          },
+          "trajectory": 5,
+          "warm_hit_median_ms": {
+            "direct": 6967.503810497874,
+            "fast": 2094.1871630020614,
+            "snapshot": 5743.2874714977515
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.9914410739425842,
+          "environment_setup_ms": 7772.504132000904,
+          "observed_totals_ms": {
+            "direct": 48895.01986999676,
+            "fast": 49317.12146598875,
+            "oracle": 49128.368144003616,
+            "snapshot": 64851.983772990934
+          },
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 535.481,
+              "cache_publish": 93.282,
+              "docker_execution": 18764.531,
+              "environment": 0.252,
+              "event_append": 148.92399999999998,
+              "fingerprint_final": 5097.571,
+              "fingerprint_initial": 5650.536,
+              "lock_acquire": 33.35,
+              "readonly_hit_path": 7447.553,
+              "runtime_inspect_initial": 1931.602,
+              "snapshot_cleanup": 179.44,
+              "snapshot_prepare": 12514.242999999999
+            },
+            "snapshot": {
+              "cache_lookup": 602.857,
+              "cache_publish": 98.905,
+              "docker_execution": 21020.09,
+              "environment": 0.595,
+              "event_append": 153.144,
+              "fingerprint_final": 5321.6669999999995,
+              "fingerprint_initial": 5998.438,
+              "lock_acquire": 33.663000000000004,
+              "runtime_inspect_initial": 1870.0209999999997,
+              "snapshot_cleanup": 509.768,
+              "snapshot_prepare": 28869.524000000005
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.3149993723318931,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 3100.921592027589,
+              "container ls": 963.7897140055429,
+              "container rm": 1736.1374440151849,
+              "create": 3311.033006000798,
+              "start": 39728.889748002985
+            },
+            "oracle": {
+              "container inspect": 2846.831368995481,
+              "container ls": 1043.6189830070361,
+              "container rm": 1707.575870997971,
+              "create": 4728.505898005096,
+              "start": 38737.319010004285
+            }
+          },
+          "trajectory": 6,
+          "warm_hit_median_ms": {
+            "direct": 6603.524348498468,
+            "fast": 1873.8343914992583,
+            "snapshot": 6641.403781999543
+          }
+        }
+      ],
+      "complete_blocks_of_six": 6,
+      "completed": true,
+      "completed_block_totals_ms": {
+        "direct": 287073.38455197896,
+        "fast": 283054.86558198754,
+        "oracle": 292377.276040017,
+        "snapshot": 376277.52183301345
+      },
+      "direct_to_fast_ratio": 1.0141969612913346,
+      "fresh_agreements": 42,
+      "median_hit_latency_reduction_percent_vs_snapshot": 67.56169426111552,
+      "requests_of_42": 42,
+      "setup_inclusive_direct_to_fast_ratio": 1.012004637348191,
+      "setup_inclusive_unavailable_reason": null,
+      "warm_hit_median_ms": {
+        "direct": 6863.755883499834,
+        "fast": 1998.6373565006943,
+        "snapshot": 6161.349401503685
+      },
+      "workload": "colorama"
+    },
+    {
+      "additional_interrupted_attempt_measured_totals_ms": {
+        "direct": 13696.45823600149,
+        "fast": 15906.896169995889,
+        "oracle": 7861.153400997864,
+        "snapshot": 21366.53125900193
+      },
+      "all_recorded_attempt_direct_to_fast_ratio": 1.0290130357704148,
+      "block_direct_to_fast_range": [
+        0.8791750530827083,
+        1.3244225833595722
+      ],
+      "blocks": [
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.8849056861075966,
+          "environment_setup_ms": 6876.805210995371,
+          "observed_totals_ms": {
+            "direct": 48840.83591200033,
+            "fast": 55193.26712300244,
+            "oracle": 50029.684927991184,
+            "snapshot": 69457.06080099626
+          },
+          "order": [
+            "snapshot",
+            "fast",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 623.127,
+              "cache_publish": 74.519,
+              "docker_execution": 21941.448,
+              "environment": 0.42,
+              "event_append": 151.491,
+              "fingerprint_final": 5348.062,
+              "fingerprint_initial": 5997.163,
+              "lock_acquire": 30.148,
+              "readonly_hit_path": 8054.92,
+              "runtime_inspect_initial": 1848.8999999999999,
+              "snapshot_cleanup": 210.434,
+              "snapshot_prepare": 15158.613000000001
+            },
+            "snapshot": {
+              "cache_lookup": 618.6970000000001,
+              "cache_publish": 103.526,
+              "docker_execution": 23422.402000000002,
+              "environment": 0.20099999999999998,
+              "event_append": 132.92000000000002,
+              "fingerprint_final": 5755.542,
+              "fingerprint_initial": 6672.46,
+              "lock_acquire": 40.32300000000001,
+              "runtime_inspect_initial": 1880.4350000000002,
+              "snapshot_cleanup": 583.0210000000001,
+              "snapshot_prepare": 29781.316999999995
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2584335811505025,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2828.7361719994806,
+              "container ls": 823.768200003542,
+              "container rm": 1491.071391996229,
+              "create": 3176.806872987072,
+              "start": 40467.784949993074
+            },
+            "oracle": {
+              "container inspect": 2934.372004980105,
+              "container ls": 885.9461280080723,
+              "container rm": 1562.7873769990401,
+              "create": 3487.831420992734,
+              "start": 41071.31346699316
+            }
+          },
+          "trajectory": 1,
+          "warm_hit_median_ms": {
+            "direct": 7114.763347501139,
+            "fast": 1980.540808501246,
+            "snapshot": 6261.618125001405
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.1079768965548873,
+          "environment_setup_ms": 6839.899096004956,
+          "observed_totals_ms": {
+            "direct": 62103.60735000722,
+            "fast": 56051.355892988795,
+            "oracle": 55553.85574599495,
+            "snapshot": 70412.72314998787
+          },
+          "order": [
+            "direct",
+            "snapshot",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 615.742,
+              "cache_publish": 92.961,
+              "docker_execution": 21684.522,
+              "environment": 0.22,
+              "event_append": 153.73100000000002,
+              "fingerprint_final": 5918.14,
+              "fingerprint_initial": 6108.287,
+              "lock_acquire": 33.794000000000004,
+              "readonly_hit_path": 8433.169,
+              "runtime_inspect_initial": 1925.685,
+              "snapshot_cleanup": 284.001,
+              "snapshot_prepare": 15533.416000000001
+            },
+            "snapshot": {
+              "cache_lookup": 646.5840000000001,
+              "cache_publish": 93.95,
+              "docker_execution": 21157.222,
+              "environment": 0.196,
+              "event_append": 145.472,
+              "fingerprint_final": 5756.896,
+              "fingerprint_initial": 6921.401,
+              "lock_acquire": 44.915,
+              "runtime_inspect_initial": 1844.6880000000003,
+              "snapshot_cleanup": 567.894,
+              "snapshot_prepare": 32819.397
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2562180169988622,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2795.600284000102,
+              "container ls": 958.387466998829,
+              "container rm": 1513.162294999347,
+              "create": 3518.1217469871626,
+              "start": 53256.422284997825
+            },
+            "oracle": {
+              "container inspect": 3363.0481330037583,
+              "container ls": 989.7984920098679,
+              "container rm": 1942.9060839975136,
+              "create": 3403.862389997812,
+              "start": 45765.601064013026
+            }
+          },
+          "trajectory": 2,
+          "warm_hit_median_ms": {
+            "direct": 8128.200128001481,
+            "fast": 2155.1447339988954,
+            "snapshot": 6539.16036100054
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 0.8791750530827083,
+          "environment_setup_ms": 12363.050227999338,
+          "observed_totals_ms": {
+            "direct": 51117.000733996974,
+            "fast": 58142.005457004416,
+            "oracle": 50682.014497993805,
+            "snapshot": 68876.84131399146
+          },
+          "order": [
+            "fast",
+            "direct",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 590.3820000000001,
+              "cache_publish": 102.239,
+              "docker_execution": 21500.203999999998,
+              "environment": 0.319,
+              "event_append": 141.101,
+              "fingerprint_final": 5926.158,
+              "fingerprint_initial": 5529.517000000001,
+              "lock_acquire": 37.07,
+              "readonly_hit_path": 6944.681,
+              "runtime_inspect_initial": 1947.1560000000002,
+              "snapshot_cleanup": 304.089,
+              "snapshot_prepare": 18054.313000000002
+            },
+            "snapshot": {
+              "cache_lookup": 440.53200000000004,
+              "cache_publish": 59.092,
+              "docker_execution": 18794.075,
+              "environment": 0.232,
+              "event_append": 146.064,
+              "fingerprint_final": 5176.159,
+              "fingerprint_initial": 6164.087,
+              "lock_acquire": 26.213,
+              "runtime_inspect_initial": 1761.718,
+              "snapshot_cleanup": 474.969,
+              "snapshot_prepare": 35383.477
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.1846313310421563,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2570.7210630134796,
+              "container ls": 827.2258290089667,
+              "container rm": 1450.4880099993898,
+              "create": 2974.942890003149,
+              "start": 43227.29100401193
+            },
+            "oracle": {
+              "container inspect": 2365.8872520099976,
+              "container ls": 844.6105219918536,
+              "container rm": 1222.603154987155,
+              "create": 3219.2066420029732,
+              "start": 42950.946342985844
+            }
+          },
+          "trajectory": 3,
+          "warm_hit_median_ms": {
+            "direct": 7489.027086499846,
+            "fast": 1634.0241220023017,
+            "snapshot": 6605.707169495872
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.0916033759388066,
+          "environment_setup_ms": 5953.999230999898,
+          "observed_totals_ms": {
+            "direct": 47770.48162799997,
+            "fast": 43761.75695400002,
+            "oracle": 44436.74731199996,
+            "snapshot": 56340.84458300026
+          },
+          "order": [
+            "fast",
+            "snapshot",
+            "direct"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 433.18399999999997,
+              "cache_publish": 51.666,
+              "docker_execution": 18506.346,
+              "environment": 0.264,
+              "event_append": 104.202,
+              "fingerprint_final": 4203.554,
+              "fingerprint_initial": 3938.0820000000003,
+              "lock_acquire": 19.626,
+              "readonly_hit_path": 5959.536,
+              "runtime_inspect_initial": 1667.109,
+              "snapshot_cleanup": 194.748,
+              "snapshot_prepare": 11066.414999999999
+            },
+            "snapshot": {
+              "cache_lookup": 481.73300000000006,
+              "cache_publish": 79.65,
+              "docker_execution": 18788.943,
+              "environment": 0.217,
+              "event_append": 115.13300000000001,
+              "fingerprint_final": 4772.128,
+              "fingerprint_initial": 4906.9349999999995,
+              "lock_acquire": 24.896,
+              "runtime_inspect_initial": 1597.413,
+              "snapshot_cleanup": 505.38800000000003,
+              "snapshot_prepare": 24785.452
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.2874447578104027,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2950.2236799997945,
+              "container ls": 767.9883760000621,
+              "container rm": 1607.6178339999387,
+              "create": 3127.6521339998453,
+              "start": 39275.193729999955
+            },
+            "oracle": {
+              "container inspect": 2704.003565999983,
+              "container ls": 988.4177820000559,
+              "container rm": 1440.3455010000243,
+              "create": 3038.386705999983,
+              "start": 36188.4785000002
+            }
+          },
+          "trajectory": 4,
+          "warm_hit_median_ms": {
+            "direct": 7224.692054499997,
+            "fast": 1528.0415144999893,
+            "snapshot": 5773.512320500004
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.0780688149775075,
+          "environment_setup_ms": 5970.71262299994,
+          "observed_totals_ms": {
+            "direct": 45770.81365999982,
+            "fast": 42456.300585000005,
+            "oracle": 40548.09619100001,
+            "snapshot": 55349.336416999904
+          },
+          "order": [
+            "direct",
+            "fast",
+            "snapshot"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 387.07400000000007,
+              "cache_publish": 77.945,
+              "docker_execution": 17845.036,
+              "environment": 0.194,
+              "event_append": 133.76500000000001,
+              "fingerprint_final": 3890.4739999999997,
+              "fingerprint_initial": 4486.403,
+              "lock_acquire": 23.541999999999998,
+              "readonly_hit_path": 5476.625,
+              "runtime_inspect_initial": 1880.891,
+              "snapshot_cleanup": 207.31599999999997,
+              "snapshot_prepare": 10163.329
+            },
+            "snapshot": {
+              "cache_lookup": 308.91999999999996,
+              "cache_publish": 83.732,
+              "docker_execution": 18590.425,
+              "environment": 0.27499999999999997,
+              "event_append": 90.638,
+              "fingerprint_final": 3431.724,
+              "fingerprint_initial": 4779.414000000001,
+              "lock_acquire": 28.379,
+              "runtime_inspect_initial": 1698.9080000000001,
+              "snapshot_cleanup": 353.234,
+              "snapshot_prepare": 25657.687
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.303677797037151,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2964.230880999594,
+              "container ls": 818.5670190000565,
+              "container rm": 1565.9584609999229,
+              "create": 3285.7933650000177,
+              "start": 37085.91355399995
+            },
+            "oracle": {
+              "container inspect": 2429.482749000158,
+              "container ls": 681.8246469999849,
+              "container rm": 1278.4666140000809,
+              "create": 2422.4036669999123,
+              "start": 33683.377029999974
+            }
+          },
+          "trajectory": 5,
+          "warm_hit_median_ms": {
+            "direct": 6682.870677499977,
+            "fast": 1451.832603000014,
+            "snapshot": 5099.700553999981
+          }
+        },
+        {
+          "completed": true,
+          "direct_to_fast_ratio": 1.3244225833595722,
+          "environment_setup_ms": 4697.331822000024,
+          "observed_totals_ms": {
+            "direct": 45235.86320000015,
+            "fast": 34155.15845800019,
+            "oracle": 42538.332937000065,
+            "snapshot": 54638.22822999975
+          },
+          "order": [
+            "snapshot",
+            "direct",
+            "fast"
+          ],
+          "partial_arm_receipts": [],
+          "partial_request_outer_totals_ms": {
+            "direct": 0,
+            "fast": 0,
+            "oracle": 0,
+            "snapshot": 0
+          },
+          "partial_requests": [],
+          "product_phase_note": "Nested product aggregates are not a disjoint wall-time partition.",
+          "product_phase_totals_ms_not_additive": {
+            "fast": {
+              "cache_lookup": 470.544,
+              "cache_publish": 43.859,
+              "docker_execution": 11837.294000000002,
+              "environment": 0.4570000000000001,
+              "event_append": 103.914,
+              "fingerprint_final": 3108.0060000000003,
+              "fingerprint_initial": 3972.0810000000006,
+              "lock_acquire": 17.944000000000003,
+              "readonly_hit_path": 6176.937,
+              "runtime_inspect_initial": 2014.122,
+              "snapshot_cleanup": 95.19200000000001,
+              "snapshot_prepare": 9422.247
+            },
+            "snapshot": {
+              "cache_lookup": 467.097,
+              "cache_publish": 81.029,
+              "docker_execution": 16993.614,
+              "environment": 0.162,
+              "event_append": 142.909,
+              "fingerprint_final": 4627.787,
+              "fingerprint_initial": 4186.771,
+              "lock_acquire": 18.877000000000002,
+              "runtime_inspect_initial": 1720.915,
+              "snapshot_cleanup": 454.9150000000001,
+              "snapshot_prepare": 25501.478999999996
+            }
+          },
+          "requests_observed": 7,
+          "snapshot_to_fast_ratio": 1.5997064776375471,
+          "subprocess_phase_totals_ms": {
+            "direct": {
+              "container inspect": 2572.132105000037,
+              "container ls": 670.6710719995499,
+              "container rm": 1453.5912029996325,
+              "create": 2222.6728189999676,
+              "start": 38277.58141000004
+            },
+            "oracle": {
+              "container inspect": 2306.132844999979,
+              "container ls": 685.1600009995309,
+              "container rm": 1525.3566620000356,
+              "create": 2701.1173489996736,
+              "start": 35266.11868199996
+            }
+          },
+          "trajectory": 6,
+          "warm_hit_median_ms": {
+            "direct": 6758.382207500063,
+            "fast": 1488.2050459999618,
+            "snapshot": 5074.102806499979
+          }
+        }
+      ],
+      "complete_blocks_of_six": 6,
+      "completed": true,
+      "completed_block_totals_ms": {
+        "direct": 300838.60248400446,
+        "fast": 289759.8444699959,
+        "oracle": 283788.73161198,
+        "snapshot": 375075.0344949755
+      },
+      "direct_to_fast_ratio": 1.0382342765067152,
+      "fresh_agreements": 42,
+      "median_hit_latency_reduction_percent_vs_snapshot": 70.82286033154837,
+      "requests_of_42": 42,
+      "setup_inclusive_direct_to_fast_ratio": null,
+      "setup_inclusive_unavailable_reason": "Original workload-level dependency setup receipt was not flushed before host crash; no fabricated setup duration.",
+      "warm_hit_median_ms": {
+        "direct": 7164.010288000043,
+        "fast": 1747.0828040013657,
+        "snapshot": 5987.84810250072
+      },
+      "workload": "packaging"
+    }
+  ],
+  "unflushed_invocation_only_directories": [
+    "packaging/trajectory-4/request-2"
+  ],
+  "uninterrupted_original_campaign": false,
+  "unmeasured_interruption_cost": "Active work without a completed timing receipt and VM recovery wall time are not reconstructed; all-attempt ratios cover recorded request costs only.",
+  "unparseable_zero_byte_receipts": [
+    {
+      "bytes": 0,
+      "classification": "zero-byte crash-flush; no inferable result or duration",
+      "path": "packaging/trajectory-4/request-1/fresh.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "classification": "zero-byte crash-flush; no inferable result or duration",
+      "path": "packaging/trajectory-4/request-1/observation.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "classification": "zero-byte crash-flush; no inferable result or duration",
+      "path": "packaging/trajectory-4/request-2/invocation.json",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

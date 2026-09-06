@@ -1,0 +1,101 @@
+{
+  "completed": true,
+  "docker_subprocess_phases": [
+    {
+      "ended_utc": "2026-09-06T22:42:01.960512+00:00",
+      "exit_code": 0,
+      "phase": "container ls",
+      "started_utc": "2026-09-06T22:42:01.836420+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 123.99994399993375
+    },
+    {
+      "ended_utc": "2026-09-06T22:42:02.343313+00:00",
+      "exit_code": 0,
+      "phase": "create",
+      "started_utc": "2026-09-06T22:42:01.961308+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 381.981302999975
+    },
+    {
+      "ended_utc": "2026-09-06T22:42:02.470863+00:00",
+      "exit_code": 0,
+      "phase": "container inspect",
+      "started_utc": "2026-09-06T22:42:02.343386+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 127.4559030000546
+    },
+    {
+      "ended_utc": "2026-09-06T22:42:07.930653+00:00",
+      "exit_code": 1,
+      "phase": "start",
+      "started_utc": "2026-09-06T22:42:02.471043+00:00",
+      "timeout_seconds": 900,
+      "wall_ms": 5459.583178000003
+    },
+    {
+      "ended_utc": "2026-09-06T22:42:08.111973+00:00",
+      "exit_code": 0,
+      "phase": "container inspect",
+      "started_utc": "2026-09-06T22:42:07.930699+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 181.26292599981753
+    },
+    {
+      "ended_utc": "2026-09-06T22:42:08.335691+00:00",
+      "exit_code": 0,
+      "phase": "container rm",
+      "started_utc": "2026-09-06T22:42:08.112028+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 223.6469859999488
+    },
+    {
+      "ended_utc": "2026-09-06T22:42:08.575583+00:00",
+      "exit_code": 1,
+      "phase": "container inspect",
+      "started_utc": "2026-09-06T22:42:08.335781+00:00",
+      "timeout_seconds": 30,
+      "wall_ms": 239.77389200013022
+    }
+  ],
+  "ended_utc": "2026-09-06T22:42:08.575893+00:00",
+  "exit_code": 1,
+  "host_after": {
+    "cpu_count": 5,
+    "load_average_1_5_15": [
+      1.46923828125,
+      1.31005859375,
+      0.74609375
+    ],
+    "meminfo": "MemTotal:        2456468 kB\nMemFree:         1333768 kB\nMemAvailable:    1927708 kB\nBuffers:           65060 kB\nCached:           668664 kB\nSwapCached:            0 kB\nActive:           250912 kB\nInactive:         666840 kB\nActive(anon):       3164 kB\nInactive(anon):   210200 kB\nActive(file):     247748 kB\nInactive(file):   456640 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:                52 kB\nWriteback:             0 kB\nAnonPages:        211680 kB\nMapped:           274224 kB\nShmem:             20272 kB\nKReclaimable:      45004 kB\nSlab:              90828 kB\nSReclaimable:      45004 kB\nSUnreclaim:        45824 kB\nKernelStack:        3624 kB\nPageTables:         4048 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1084212 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       34904 kB\nVmallocChunk:          0 kB\nPercpu:             4008 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      199616 kB\nDirectMap2M:     2355200 kB\n",
+    "pid": 2019,
+    "pressure/cpu": "some avg10=3.07 avg60=4.71 avg300=5.14 total=37529551\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "pressure/io": "some avg10=0.68 avg60=0.86 avg300=1.12 total=15653900\nfull avg10=0.45 avg60=0.58 avg300=0.85 total=12225085\n",
+    "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "stat": "cpu  28028 0 23041 448944 3422 0 3878 0 0 0\ncpu0 4856 0 4296 94056 694 0 485 0 0 0\ncpu1 7824 0 4760 89157 1029 0 585 0 0 0\ncpu2 5714 0 4048 89280 644 0 666 0 0 0\ncpu3 8216 0 5067 87077 805 0 832 0 0 0\ncpu4 1415 0 4870 89373 247 0 1309 0 0 0\nintr 1263627 88 9 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 233 2488 0 40411 49 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 1158089\nbtime 1788733426\nprocesses 10573\nprocs_running 1\nprocs_blocked 0\nsoftirq 730968 11 212457 267 3119 40943 0 108 197732 0 276331\n",
+    "utc": "2026-09-06T22:42:08.575925+00:00"
+  },
+  "host_before": {
+    "cpu_count": 5,
+    "load_average_1_5_15": [
+      1.46728515625,
+      1.3037109375,
+      0.73779296875
+    ],
+    "meminfo": "MemTotal:        2456468 kB\nMemFree:         1336160 kB\nMemAvailable:    1930220 kB\nBuffers:           64920 kB\nCached:           668716 kB\nSwapCached:            0 kB\nActive:           250808 kB\nInactive:         667612 kB\nActive(anon):       3164 kB\nInactive(anon):   210956 kB\nActive(file):     247644 kB\nInactive(file):   456656 kB\nUnevictable:       27652 kB\nMlocked:           27652 kB\nSwapTotal:             0 kB\nSwapFree:              0 kB\nDirty:               196 kB\nWriteback:             0 kB\nAnonPages:        212436 kB\nMapped:           274228 kB\nShmem:             20272 kB\nKReclaimable:      45420 kB\nSlab:              91208 kB\nSReclaimable:      45420 kB\nSUnreclaim:        45788 kB\nKernelStack:        3600 kB\nPageTables:         4048 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     1228232 kB\nCommitted_AS:    1084212 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       34904 kB\nVmallocChunk:          0 kB\nPercpu:             4008 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      199616 kB\nDirectMap2M:     2355200 kB\n",
+    "pid": 2019,
+    "pressure/cpu": "some avg10=3.17 avg60=4.89 avg300=5.18 total=37227643\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "pressure/io": "some avg10=0.80 avg60=0.89 avg300=1.13 total=15533066\nfull avg10=0.39 avg60=0.57 avg300=0.86 total=12136529\n",
+    "pressure/memory": "some avg10=0.00 avg60=0.00 avg300=0.00 total=0\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "stat": "cpu  27639 0 22748 446685 3390 0 3843 0 0 0\ncpu0 4842 0 4232 93522 689 0 482 0 0 0\ncpu1 7812 0 4701 88618 1020 0 572 0 0 0\ncpu2 5372 0 3987 89148 631 0 659 0 0 0\ncpu3 8202 0 5018 86544 802 0 826 0 0 0\ncpu4 1410 0 4808 88851 247 0 1303 0 0 0\nintr 1249640 88 9 0 0 0 0 0 0 0 0 0 0 158 0 0 0 0 0 232 2484 0 40100 49 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0\nctxt 1142098\nbtime 1788733426\nprocesses 10433\nprocs_running 1\nprocs_blocked 0\nsoftirq 723370 11 210410 264 3115 40653 0 108 195555 0 273254\n",
+    "utc": "2026-09-06T22:42:01.829590+00:00"
+  },
+  "instrumented": false,
+  "request_wall_ms": 6744.489983999983,
+  "runner": "independent-docker-plain-pytest",
+  "started_utc": "2026-09-06T22:42:01.829573+00:00",
+  "stderr_tail": "",
+  "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nsysconfig platform: linux-x86_64\nrootdir: /workspace\nconfigfile: pyproject.toml\ncollected 239 items\n\ntests/test_tags.py ..................................................... [ 22%]\n........................................................................ [ 52%]\n........................................................................ [ 82%]\n.........................................F                               [100%]\n\n=================================== FAILURES ===================================\n____________________ test_zerorun_controlled_added_failure _____________________\n\n    def test_zerorun_controlled_added_failure():\n>       assert False, 'controlled full-target failure'\nE       AssertionError: controlled full-target failure\nE       assert False\n\n\ntests/test_tags.py:2208: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_tags.py::test_zerorun_controlled_added_failure - AssertionE...\n======================== 1 failed, 238 passed in 1.46s =========================\n",
+  "timing_boundary": "complete helper/API call; telemetry and receipt writes excluded",
+  "wall_ms": 6614.69804699982
+}
