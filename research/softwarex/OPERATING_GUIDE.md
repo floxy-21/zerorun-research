@@ -151,7 +151,11 @@ Replace each path with the reviewed local value. The authority directory must be
 
 **Managed-initialization limitation:** the frozen ZeroRun 0.5.1 `init --codex` registration checker deliberately rejects nonempty `env` or `env_vars`. The custom setting above is therefore an operator-managed MCP route, not a correction implemented by managed initialization. Rerunning `init --codex` can report a conflict; do not remove the necessary authority setting merely to make that checker green. Check readiness through the actual MCP `doctor` result instead. Do not put the override into task `env`, forward arbitrary host variables, copy authority keys into a checkout, or let the AI agent authorize itself.
 
-The recorded [live Codex trial](evidence/live-client-v1/receipt.json) stopped after one doctor call: the tool reported `UNTRUSTED`, and an extra agent commentary message also violated the fixed completion-marker rule. It was not retried. The separate [non-model diagnostic](evidence/live-client-v1/non-model-diagnostic.json) passed five fresh STDIO-server checks: missing-variable refusal, explicit-path readiness, `MISS_EXECUTED`, `HIT_REUSED`, and `VERIFY_MATCH`. It retained matching 36-file installed/source identities and cleaned up its synthetic fixture and authority. This demonstrates the server-side configuration behavior on that fixture; **it does not establish a corrected Codex lifecycle, model compliance, production reliability, or an AI speedup**.
+The original [V1 Codex trial](evidence/live-client-v1/receipt.json) stopped after one doctor call: the tool reported `UNTRUSTED`, and extra agent commentary violated that trial's fixed completion-marker rule. Its separate [non-model diagnostic](evidence/live-client-v1/non-model-diagnostic.json) passed five STDIO checks, but did not itself establish a model-backed lifecycle. Both records remain unchanged. Later prospective trials separately exposed client-side approval refusal (V2) and an unsupported model-generated argument after a successful four-turn lifecycle (V3). The final API-guided demonstration passed two model-selected actions, two separate fresh oracle checks, and six no-tool interpretation cases. Read [all application results and their exact denominators](APPLICATION_RESULTS.md); these bounded synthetic observations establish neither production reliability nor an AI workflow speedup.
+
+### Keep client permission separate from server authority
+
+A valid ZeroRun authority receipt does not override the client's tool-approval policy. A client may refuse a call before the server receives it; that refusal is not a failed test or a cache result. In the recorded V3 and guided experiments, the operator explicitly approved the invocation-local setting `mcp_servers.zerorun.tools.run_tests.approval_mode="approve"` **only for the original isolated synthetic fixture**. The global tool policy, read-only Codex sandbox, disabled unrelated tools, and server's exact-byte authority checks were unchanged. No global configuration was relaxed, and no real repository was authorized. This experimental approval is not a general deployment recommendation or permission to repeat that change elsewhere.
 
 Example MCP **argument objects** for the reviewed task, not observed responses:
 
@@ -165,7 +169,7 @@ Pass this object to `run_tests`. For fresh verification, call the same tool with
 {"task": "tests", "verify": true}
 ```
 
-There is no `force` argument in the MCP `run_tests` schema. Use `verify: true` for a fresh configured-task check, or the client's ordinary explicitly approved testing workflow when requirements exceed the result-only interface. Observation-only MCP does not execute arbitrary repository commands on the host. The direct CLI `observe` command is an operator-only path, not an MCP fallback.
+There is no `force` argument in the MCP `run_tests` schema. Only `task`, `root`, and `verify` are accepted; omitted `verify` means `false`. The compact [client API card](CLIENT_API_CARD.md) explains these inputs and the result-only boundary. Use `verify: true` for a fresh configured-task check, or the client's ordinary explicitly approved testing workflow when requirements exceed the interface. Observation-only MCP does not execute arbitrary repository commands on the host. The direct CLI `observe` command is an operator-only path, not an MCP fallback.
 
 ### The seven shipped tools
 
@@ -231,7 +235,11 @@ Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the
 
 ## Inspect or reproduce the bounded integration experiments
 
-Offline inspection needs no Codex account or model credits. Run the release's `research.softwarex.build_extension_evidence --check` procedure in the [release README](../../README.md); it validates archived evidence without replaying agent commands. Read the [original live protocol](LIVE_CLIENT_PROTOCOL.md), [pre-model support amendment](LIVE_CLIENT_AMENDMENT_1.md), and [separate non-model diagnostic protocol](NON_MODEL_DIAGNOSTIC_PROTOCOL.md) before any new experiment. The original failed trial and later diagnostic are separate records, not repeated attempts at the same success claim.
+Offline inspection needs no Codex account or model credits. From the release root, run `python -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. These validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
+
+### Historical V1 and its non-model diagnostic only
+
+The following pinned-clone instructions apply **only to V1 and its separate diagnostic**, not to V2, V3, or the guided demonstration. Read the [original live protocol](LIVE_CLIENT_PROTOCOL.md), [pre-model support amendment](LIVE_CLIENT_AMENDMENT_1.md), and [non-model diagnostic protocol](NON_MODEL_DIAGNOSTIC_PROTOCOL.md) first. Their original records remain separate and unchanged.
 
 For a fresh reproduction, use a **separate clean clone** of [the public repository](https://github.com/floxy-21/zerorun-research) pinned to commit `681907860dc2ab9df70034f82a0025463d1fdec4`, not the current release's moving `main`. Its `PUBLIC_RELEASE_MANIFEST.json` SHA-256 must be `76bded3e8312517594c3977fa311c1cc4e3060bd7c7a390f34b5055f2cc632dc`. Install that pinned clone into an external Linux Python environment using the installation procedure above. The Linux/amd64 image specified in the protocols must already be present; these experiments do not pull it.
 
@@ -248,6 +256,14 @@ The original model-backed experiment additionally requires the reviewer's **own 
 
 The non-model helper needs no Codex process, account, or login. Its help lists the installed launcher/Python, pinned source, original live-receipt, and new output-file arguments. It requires an explicit `--approve-synthetic-formative-authority` acknowledgement and accepts no caller-selected test repository or authority directory. That acknowledgement applies only to its newly created, original built-in fixture. Read the diagnostic protocol before granting it. Record one new attempt in an existing external evidence directory, stop on a failure, and keep the raw result. A passing non-model diagnostic is still not a model-backed reproduction.
 
+### Later V2, V3, and API-guided demonstration
+
+These use a distinct immutable public source, `ebf2884df12573d63f45813200e0675288d12096`, whose manifest SHA-256 is `f7a01e6a16f32022ce686a4a213e073c83a8f77de82df0c9df357c9c31ab6564`. Their exact adapters, source inventories, installed runtime, original client installer receipt, and prior failed receipts are separately bound. Do not substitute the current enclosing release manifest for this historical experimental manifest.
+
+Read [V2](live_client_v2/PROTOCOL.md), [V3](live_client_v3/PROTOCOL.md), and the [guided protocol](guided_client_v1/PROTOCOL.md) before considering new execution. Each runner's `--help` describes its explicit consent and identity arguments. Use a separate external adapter directory and new evidence paths, preserving the required frozen helper hierarchy; do not patch a frozen source or change its expected hashes. Model execution requires the operator's own authorized account and the applicable fixture-only decisions. The API card was frozen before the guided trial and supplied as neutral interface documentation, not as expected answers. That trial does not establish a causal benefit from the card.
+
+For first use without model credentials or historical client installer artifacts, prefer the [account-free quickstart](QUICKSTART_LAB.md). Its literal public-guide replay passed from a clean public clone, using a new installation and five actual STDIO stages. It is an internal reproduction, not an external developer study.
+
 ## Resource limits, troubleshooting, and support
 
 Execution uses network-disabled containers with a read-only source view, 2 CPUs, 2 GiB memory with no additional swap, 512 PIDs, a 900-second execution limit, bounded output capture, and bounded cleanup. Docker acquisition/inspection/cleanup have separate limits; a complete request is not guaranteed to finish within 900 seconds. The operator controls the Docker daemon and its credentials. These controls do not establish deterministic behavior or eliminate every host race.
@@ -257,6 +273,8 @@ Execution uses network-disabled containers with a read-only source view, 2 CPUs,
 | Missing manifest or observation-only mode | Review and configure a supported task; do not self-authorize a generated candidate. |
 | Authority missing or digest changed | Re-read the exact file, complete the review, independently hash, and obtain a separate operator decision. |
 | CLI authority exists but MCP remains `UNTRUSTED` | Check whether both processes resolve the same external authority directory; review the operator-managed configuration above before assuming new authorization is needed. |
+| Client requires approval before sending a tool call | Stop and obtain the operator's scoped decision. Do not treat client refusal as server execution or silently relax global approval policy. |
+| Unexpected `run_tests` argument | Consult the [API card](CLIENT_API_CARD.md); only `task`, `root`, and `verify` are allowed. Preserve the failed response rather than treating it as validation. |
 | Missing image | Ask the operator to acquire the reviewed exact runtime; do not let a normal execution call pull a different one. |
 | Launcher or skill conflict | Inspect executable resolution and existing client/skill configuration. Initialization intentionally does not overwrite it. |
 | Missing input, link, unsupported platform, or unsafe effect | Correct the actual scope/setup or execute through a separately approved fresh workflow; do not weaken the declaration to obtain a hit. |

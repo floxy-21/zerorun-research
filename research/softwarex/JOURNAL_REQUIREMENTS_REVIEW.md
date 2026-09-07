@@ -10,10 +10,40 @@ below identify the inspected state rather than certify a later release.
 The live [Original Software Publication LaTeX template](https://legacyfileshare.elsevier.com/promis_misc/softwarex-osp-template.tex)
 was fetched and byte-matched to `template/softwarex-osp-template.tex`:
 SHA-256 `2b18dfd14aa3893bc4e82a90caa19337bb1ce76f1fae5ea2c0eaa7e3563b8649`.
-Its copyright year is 2026. The [main author guide](https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors)
-did not load in this fresh check; it must not be represented as fully reverified.
+Its copyright year is 2026. The initial web-tool retrieval of the
+[main author guide](https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors)
+failed; the subsequent complete browser verification is recorded below.
 Uncontrolled copies of older templates are not substitutes for the current
 official template.
+
+### Browser verification addendum — 7 September 2026 (UTC)
+
+The coordinating agent subsequently read the complete official author guide in
+the in-app browser. The earlier web-tool failure is historical, not a remaining
+access blocker. The [verified guide](https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors)
+specifies:
+
+- 4,000 words, excluding title, authors, affiliations, references and metadata
+  tables, but including abstract, running text, captions and footnotes; at most
+  six figures.
+- Abstract at most 250 words and one to seven keywords; the software template's
+  approximately 100-word abstract remains the more specific drafting target.
+- Three to five highlights, at most 85 characters each, in a separate editable
+  file; highlights and graphical abstracts are encouraged. Text graphics may
+  be embedded in LaTeX.
+- Public code with README, `LICENSE.txt` and a `src` directory; preserve the
+  prescribed software-template format. The template additionally names
+  `Licence.txt`, which the package supplies as an identical alias.
+- Research-data Option C: deposit, cite and link the research data. Bind the
+  actual public raw evidence and explicit data reference, not a proposed deposit.
+- Complete the declarations tool and upload its Word output. Supply the
+  corresponding author's full postal address.
+- Upload the PDF as Manuscript and the complete LaTeX ZIP under Zip files.
+
+The package already supplies reviewed Word highlights. The final data citation
+and immutable links must match the released evidence. The author's declaration
+form, actual contribution confirmation and full private postal address remain
+author-controlled; Toronto, Canada alone is not a complete postal address.
 
 | Current template check | Inspected package / required final action |
 | --- | --- |
@@ -54,9 +84,10 @@ requested by this review.
 3. **Provide a portal-compatible highlights file.** All five inspected highlights
    are within 85 characters. Publisher-wide guidance specifies three to five
    bullets and a Word document at final-files stage. Retain the editable text
-   source and add a matching `HIGHLIGHTS.docx`, or verify a journal-specific
-   portal allowance before relying on `.txt` alone. This is a file-format check,
-   not a reason to undertake another experiment.
+   source and a matching `HIGHLIGHTS.docx`. This gap was closed by the separately
+   reviewed Word artifact in `generated/highlights-docx-review.json`; the guide
+   also accepts a separate editable highlights file. This is a file-format
+   check, not a reason to undertake another experiment.
    [Elsevier highlights guidance](https://www.elsevier.com/en-gb/researcher/author/tools-and-resources/highlights)
 
 4. **Bind the final usable release.** Verify anonymous access, immutable C2,
@@ -100,11 +131,12 @@ These are not waived by a completed technical package:
   disclosures and submitted files, and confirms actual intellectual contribution.
 - Confirm originality, material-distribution permissions and no simultaneous
   journal consideration.
-- Complete the publisher's competing-interest form. Existing manuscript text
+- Complete the publisher's declarations tool and upload its Word output.
+  Existing manuscript text
   discloses ZeroRun development and potential commercialization; do not replace
   it with an unsupported declaration of no interests.
-- Confirm actual CRediT roles and provide any additional postal details privately
-  if the portal requests them. Known author details are Jishan Kapoor,
+- Confirm actual CRediT roles and provide the required full postal address
+  privately. Known author details are Jishan Kapoor,
   Independent researcher, Toronto, Canada; kapoorjishan2@gmail.com; no external
   funding.
 - Review the portal-generated PDF before submitting. Submission, publishing

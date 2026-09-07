@@ -48,6 +48,7 @@ Run these from the repository root with the installed environment's Python. Use 
 "$study_env/bin/python" -B -m research.sqj.analyze_comparison --check
 "$study_env/bin/python" -B -m research.softwarex.analyze_operating_region --check
 "$study_env/bin/python" -B -m research.softwarex.build_extension_evidence --check
+"$study_env/bin/python" -B -m research.softwarex.build_application_evidence --check
 # Windows PowerShell uses the corresponding form:
 # & $studyPython -B -m research.softwarex.build_extension_evidence --check
 ```
@@ -64,7 +65,11 @@ To run the included unit tests, install pytest in the same environment and use a
 
 The temporary directory **must be outside every Git checkout**, on every platform. Some trust tests intentionally create incomplete `.git` fixtures; Git must not discover an ancestor repository. The first staging test attempt used a nested development-repository directory and exposed this harness constraint; its [failure report](research/softwarex/evidence/public-release-tests-1.xml) is retained separately from the corrected-location run. On Windows, use a fresh absolute path under a non-repository temporary directory. POSIX permission checks require a non-root Linux user and are explicitly skipped when the platform cannot express the tested behavior. The included tests are a selected research/runtime set, not a claim that every development-repository test is included.
 
-The `research/softwarex/tests` directory additionally checks publication evidence bindings and archive construction. Its bounded test records, including prior failed attempts and their environment explanations, are retained under `research/softwarex/evidence` and `research/softwarex/generated`; these later publication checks are separate from the earlier 465-pass public-layout regression run.
+The `research/softwarex/tests` directory additionally checks publication evidence bindings and archive construction. Its bounded test records, including prior failed attempts and their environment explanations, are retained under `research/softwarex/evidence` and `research/softwarex/generated`; these later publication checks are separate from the earlier 465-pass public-layout regression run. The frozen client receipt validators have separate offline tests:
+
+```sh
+"$study_env/bin/python" -B -m pytest research/softwarex/live_client_v2/test_validation.py research/softwarex/live_client_v3/test_validation.py research/softwarex/guided_client_v1/test_validation.py --import-mode=importlib -q --basetemp=/tmp/zerorun-client-validator-tests-unique
+```
 
 `research/sqj/REEXECUTION.md` documents fresh container experiments separately. Those procedures acquire pinned public dependencies and execute upstream test code, require a suitable isolated laboratory, and create **new** evidence; they are not needed to inspect the recorded data. Preserve the original evidence when rerunning. Balanced short-subject replication is described in `research/sqj/strengthening/PROTOCOL.md`; any subsequently included state-rejoin experiment is a separately labeled bounded example, not a replay of the sampled AI cohort.
 
@@ -74,6 +79,7 @@ The `research/softwarex/tests` directory additionally checks publication evidenc
 - Reuse requires complete declared inputs, a deterministic execution contract, and the required external operator review/authorization. Generated candidates, repository files, and observation receipts are not authorization. Do not let an AI agent approve its own cache eligibility.
 - Unknown, unsupported, changed, failed, or uncertain requests must remain fresh execution or refusal/bypass according to the API contract. Failure is not published as a successful reusable result.
 - The [MCP tool and response reference](research/softwarex/OPERATING_GUIDE.md#the-seven-shipped-tools) distinguishes actual `HIT_REUSED` results from fresh execution and errors. In particular, `mode: "reuse"` is not evidence of a hit. Client compatibility checks are not evidence of improved AI task completion, token savings, or production reliability.
+- The compact [client API card](research/softwarex/CLIENT_API_CARD.md) documents the only accepted `run_tests` arguments and fresh-validation semantics. Client tool permission and ZeroRun's external authority are separate checks. The experiment's invocation-local approval covered only its isolated synthetic fixture, not real repositories or global client settings.
 - Never apply the laboratory's disposable cache-authentication fixtures to a production repository. Public artifacts contain neither those keys nor production authority receipts.
 
 ## What the evidence establishes
@@ -81,6 +87,10 @@ The `research/softwarex/tests` directory additionally checks publication evidenc
 The controlled experiments measure complete request costs and compare fresh outcomes under their stated contract, including failure and restoration requests. The independent inventory tests examine input-key boundaries; they are not a proof that arbitrary programs are deterministic.
 
 The separate public AI-trace cohort contains 128 selected episodes and 122 analyzable episodes, with six exclusions retained. All 120 exact-command repeat pairs have intervening barriers. These observations motivate explicit state validation; they are **not measured cache hits, AI speedups, or demonstrated reuse eligibility**. The ten-episode parser pilot and the first rate-limited acquisition attempt remain separate and preserved.
+
+The [application-results ledger](research/softwarex/APPLICATION_RESULTS.md) preserves three earlier adverse client trials and the successful bounded API-guided demonstration. V3 completed four actual model lifecycle turns and two fresh oracle checks before an unsupported argument stopped its next turn. The guided treatment separately passed two model-selected actions, two fresh oracles, and six no-tool interpretation cases. These are synthetic interface demonstrations, not eight autonomous coding tasks, population accuracy, or a causal evaluation of the documentation.
+
+The literal [public quickstart](research/softwarex/QUICKSTART_LAB.md) passed from a fresh public clone with no intervention: seven installation commands and five actual STDIO stages, with all 36 runtime files bound. The [raw installation](research/softwarex/evidence/quickstart-public-v1/install.json) and [server check](research/softwarex/evidence/quickstart-public-v1/check.json) are separate from model evidence and are internal reproduction, not external user validation. The original fine-grained 5x/50% product gates remain unmet; they are not claims made by this SoftwareX manuscript.
 
 There are no measured external users, commercial deployments, or established market-demand results in this release. Its contribution is a reusable tool and evaluation artifact with explicit limitations, not a new general caching algorithm or a claim of journal acceptance.
 

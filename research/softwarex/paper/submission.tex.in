@@ -16,7 +16,7 @@
 \cortext[cor1]{Corresponding author.}
 \address{Independent researcher, Toronto, Canada}
 \begin{abstract}
-ZeroRun is open-source software for reusing the identified successful status of a deterministic test command in AI coding-tool integrations. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids source staging. The release includes fresh-result comparisons, an independent input-boundary oracle, a descriptive audit of public agent trajectories, and runnable client examples. @@ABSTRACT_RESULT@@ A controlled Codex lifecycle distinguished reused status from fresh validation. The software enables investigation of validation cost and reuse boundaries; it does not replay cached output or establish autonomous-agent acceleration.
+ZeroRun is open-source software for reusing the identified successful status of a deterministic test command in AI coding-tool integrations. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids source staging. The release includes fresh-result comparisons, an independent input-boundary oracle, a descriptive audit of public agent trajectories, and runnable client examples. @@ABSTRACT_RESULT@@ On one synthetic fixture, a controlled Codex lifecycle distinguished reused status from fresh validation. The software enables investigation of validation cost and reuse boundaries; it does not replay cached output or establish autonomous-agent acceleration.
 \end{abstract}
 \begin{keyword}
 AI coding tools \sep test-result reuse \sep research software \sep reproducibility \sep software testing
@@ -69,7 +69,7 @@ The contribution combines a repository-bound status interface, a hit path that a
 System & Reuse basis & Returned information / execution state \\
 \midrule
 Bazel \cite{bazelremotecache} & Build-action hashes with declared inputs and outputs & Action metadata, output files, stdout and stderr. \\
-ToolCaching \cite{zhai2026toolcaching} & Tool name and serialized arguments; feature/TTL-based admission & Tool results and metadata; command-type requests excluded. \\
+ToolCaching \cite{zhai2026toolcaching} & Tool name and serialized arguments; feature/TTL-based admission & Tool results and metadata; requests classified as COMMAND excluded. \\
 TVCache \cite{kumar2026tvcache} & Tool-call prefixes; optional state-preserving annotations & Tool values; selective sandbox snapshots support continued rollout execution. \\
 ZeroRun & Reviewed local test inputs, command and runtime identity & Identified earlier success; no historical transcript or restored output artifacts. \\
 \bottomrule
@@ -80,7 +80,7 @@ ZeroRun & Reviewed local test inputs, command and runtime identity & Identified 
 
 \section{Software description}
 \subsection{Architecture and execution contract}
-The Python package separates manifest validation, input fingerprinting, result storage, isolated execution, and interfaces. A version-2 whole-task manifest identifies a command, declared input paths, environment policy, and digest-pinned Linux/amd64 container. Its supported cache contract requires a result-only computation, no output artifacts, and no cached stdout or stderr. The input closure and determinism are operator assumptions, not facts inferred from passing tests.
+Figure~\ref{fig:architecture} shows the package's manifest validation, input fingerprinting, result storage, isolated execution, and interfaces. A version-2 whole-task manifest identifies a command, declared input paths, environment policy, and digest-pinned Linux/amd64 container. Its supported cache contract requires a result-only computation, no output artifacts, and no cached stdout or stderr. The input closure and determinism are operator assumptions, not facts inferred from passing tests.
 
 \begin{figure}[htbp]
 \centering
@@ -144,7 +144,7 @@ These commands inspect eligibility, request execution/reuse, and verify a stored
 \subsection{Client decisions and integration evidence}
 The reference consumer checks response consistency, \code{status}, \code{exit\_code}, and tool/protocol errors: \code{mode=reuse} alone is not success. It labels previous success explicitly, routes fresh failures to diagnostics, and requests fresh execution when required; it does not authorize tasks or execute its recommended fallback.
 
-@@CLIENT_EVIDENCE@@
+The model-backed examples use one deterministic two-file synthetic fixture, not issue-resolution tasks. @@CLIENT_EVIDENCE@@
 
 All model calls used the CLI's default model; the transcripts do not identify the backing model. These are observations of the recorded client configuration, not a model-population accuracy estimate. The operating guide separates laboratory examples from operator-approved application use.
 
@@ -161,7 +161,7 @@ Researchers can change a target or input boundary while preserving fresh-oracle 
 
 Codex assisted software, experiment and analysis implementation and manuscript preparation. Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached outcomes for their reference. These are automated cross-checks, not independent human replication.
 
-Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient. The supplied snapshot-first ablation isolates staging; it is not an independent competing cache.
+Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient.
 
 The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. @@ORIGINAL_RESULTS@@ These results are retained, including large lifecycle delays and their order sensitivity.
 
@@ -199,7 +199,7 @@ No external users, production deployments, or third-party publications using Zer
 ZeroRun provides reusable software for explicitly identified test-status reuse in AI coding-tool integrations. Its whole-file hit path removes execution staging when no code will run, while retaining full identity checks and the existing fresh path. The public package combines runnable examples, fresh-oracle comparisons, independent boundary checks, and a real-trajectory observation tool. The results support conditional utility and expose overhead and applicability limits. The release is a research and integration artifact, not evidence of universal AI acceleration.
 
 \section*{Data and software availability}
-Code, raw evidence, analysis scripts, and reproduction instructions are provided at \url{https://github.com/floxy-21/zerorun-research}. Table 1 pins the release used by the article; the source-binding manifest connects it to runtime revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}. Public trajectory responses are redistributed with CC-BY-4.0 notices and unmodified source attribution. Private cache-authentication fixture keys and operator authority are not distributed.
+Code, research data and reproduction instructions are deposited in the public ZeroRun repository \cite{kapoor2026zerorunartifact}. Table 1 pins the release; its manifest binds runtime revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}. Supplementary material 1, \code{ZeroRun\_SoftwareX\_reviewer.zip}, contains the inventoried software, raw evidence and analysis tools; its README explains installation and reproduction. Public trajectory responses retain CC-BY-4.0 notices and source attribution. Private cache-authentication keys and operator authority are excluded.
 
 \section*{Funding}
 This research received no specific grant from funding agencies in the public, commercial, or not-for-profit sectors.

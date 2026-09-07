@@ -29,7 +29,12 @@ def sample(tmp_path, monkeypatch):
     write(live_path.with_suffix(".freeze.json"), live["freeze"])
     live_v3_path = tmp_path / application.LIVE_V3
     write(live_v3_path, {**live, "original_v2_reclassified": False})
+    monkeypatch.setattr(application, "LIVE_V3_SHA256", hashlib.sha256(live_v3_path.read_bytes()).hexdigest())
     write(live_v3_path.with_suffix(".freeze.json"), live["freeze"])
+    guided_path = tmp_path / application.GUIDED
+    write(guided_path, {"freeze": live["freeze"], "real_repository_authorized": False,
+                        "runtime_modified": False, "prior_trials_reclassified": False})
+    write(guided_path.with_suffix(".freeze.json"), live["freeze"])
     write(tmp_path / application.INSTALL, {"artificial": "installation"})
     write(tmp_path / application.QUICKSTART, {"artificial": "quickstart"})
     write(tmp_path / application.PUBLIC_INSTALL, {"artificial": "public installation"})
@@ -39,7 +44,8 @@ def sample(tmp_path, monkeypatch):
     monkeypatch.setattr(validation, "validate_receipt", lambda *a, **kw: deepcopy(summary))
     actual_import = application.importlib.import_module
     monkeypatch.setattr(application.importlib, "import_module", lambda name: validation
-                        if name == "research.softwarex.live_client_v3.validation" else actual_import(name))
+                        if name in {"research.softwarex.live_client_v3.validation",
+                                    "research.softwarex.guided_client_v1.validation"} else actual_import(name))
     monkeypatch.setattr(quickstart_check, "validate_installation_receipt", lambda *a: {"passed": True, "source_commit": "a" * 40}, raising=False)
     monkeypatch.setattr(quickstart_check, "validate_saved_receipt", lambda *a: {"passed": True, "source_commit": "a" * 40}, raising=False)
     monkeypatch.setattr(application, "source_inputs", lambda *a: [{"path": "artificial", "bytes": 0, "sha256": "a" * 64}])
@@ -53,6 +59,7 @@ def test_reconciled_failure_is_not_relabelled_success(sample):
     assert result["model_backed_application"]["all_planned_checks_pass"] is False
     assert result["model_backed_application"]["live_turns_passed"] == 0
     assert result["model_backed_application_v3"]["all_planned_checks_pass"] is False
+    assert result["guided_model_application"]["all_planned_checks_pass"] is False
     assert result["original_live_trial"]["preserved_without_reclassification"] is True
     assert result["interpretation"]["model_and_quickstart_installations_are_distinct"] is True
     assert result["interpretation"]["independent_human_users"] == 0
@@ -88,6 +95,24 @@ def test_public_quickstart_must_have_matching_installation(sample, monkeypatch):
     root, _, _, _ = sample
     monkeypatch.setattr(quickstart_check, "validate_saved_receipt", lambda *a: {"passed": True, "source_commit": "b" * 40})
     with pytest.raises(ValueError, match="commits differ"):
+        application.build(root)
+
+
+@pytest.mark.parametrize("field", ["real_repository_authorized", "runtime_modified", "prior_trials_reclassified"])
+def test_guided_cannot_expand_scope_or_reclassify_trials(sample, field):
+    root, _, _, _ = sample
+    path = root / application.GUIDED
+    value = json.loads(path.read_text())
+    value[field] = True
+    write(path, value)
+    with pytest.raises(ValueError, match="guided scope"):
+        application.build(root)
+
+
+def test_guided_external_freeze_cannot_differ(sample):
+    root, _, _, _ = sample
+    write((root / application.GUIDED).with_suffix(".freeze.json"), {"changed": True})
+    with pytest.raises(ValueError, match="guided external"):
         application.build(root)
 
 

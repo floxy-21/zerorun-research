@@ -1,7 +1,10 @@
 """Artificial publication-test receipts; no model or subprocess execution."""
 from copy import deepcopy
 import hashlib
+from io import BytesIO
 import json
+from pathlib import Path
+import zipfile
 
 import pytest
 
@@ -212,3 +215,166 @@ def test_application_validator_failure_is_not_replaced_with_saved_summary(applic
     monkeypatch.setattr(readiness.application_builder, "build", invalid)
     with pytest.raises(ValueError, match="raw application receipt failed"):
         readiness.check_application_evidence(application["release"], application["paper"])
+
+
+def save_highlights_review(context, *, public=True):
+    raw = json.dumps(context["review"]).encode()
+    put(context["root"] / context["relative"], raw)
+    if public:
+        put(context["release"] / context["relative"], raw)
+
+
+@pytest.fixture
+def word_highlights(tmp_path, monkeypatch):
+    """Copy the reviewed artifact into isolated fixtures; never run a renderer."""
+    source_root = Path(readiness.__file__).resolve().parents[2]
+    root, release = tmp_path / "word-source", tmp_path / "word-public"
+    relative = "research/softwarex/generated/highlights-docx-review.json"
+    review = json.loads((source_root / relative).read_bytes())
+    for directory in (root, release):
+        for path in [relative, review["artifact"], review["source"], review["builder"]]:
+            put(directory / path, (source_root / path).read_bytes())
+    monkeypatch.setattr(readiness, "ROOT", root)
+    return {"root": root, "release": release, "relative": relative, "review": review}
+
+
+def test_word_highlights_rechecks_actual_structure_without_renderer(word_highlights, monkeypatch):
+    import subprocess
+    def no_execution(*args, **kwargs):
+        raise AssertionError("readiness must not create or render a Word document")
+    monkeypatch.setattr(subprocess, "run", no_execution)
+    monkeypatch.setattr(subprocess, "Popen", no_execution)
+    monkeypatch.setattr(readiness.highlights_builder, "create", no_execution)
+    original = readiness.highlights_builder.validate_docx
+    calls = []
+    def actual_check(artifact, source):
+        calls.append((artifact, source))
+        return original(artifact, source)
+    monkeypatch.setattr(readiness.highlights_builder, "validate_docx", actual_check)
+    result = readiness.check_word_highlights(word_highlights["release"])
+    review, root = word_highlights["review"], word_highlights["root"]
+    assert calls == [(root / review["artifact"], root / review["source"])]
+    assert result["artifact_sha256"] == review["artifact_sha256"]
+    assert result["structural_validation"]["highlight_character_counts"] == [82, 69, 71, 69, 83]
+    assert result["renderer_executed_for_readiness"] is False
+    assert result["public_files_bound"] == 4
+    assert not (root / "tmp").exists()  # Local PNGs/renderers are not prerequisites.
+    assert not (root / "research/softwarex/generated/final-readiness.json").exists()
+
+
+@pytest.mark.parametrize("key", ["artifact", "builder", "source"])
+@pytest.mark.parametrize("location", ["local", "public"])
+def test_word_highlights_rejects_source_artifact_and_builder_drift(word_highlights, key, location):
+    directory = word_highlights["root"] if location == "local" else word_highlights["release"]
+    path = directory / word_highlights["review"][key]
+    put(path, path.read_bytes() + b"changed bytes")
+    with pytest.raises(ValueError):
+        readiness.check_word_highlights(word_highlights["release"])
+
+
+@pytest.mark.parametrize("mode", [
+    "schema", "artifact-path", "builder-path", "source-path", "artifact-size", "boolean-size",
+    "author", "character-counts", "structure-false", "structure-number", "extra-structure",
+    "uninspected", "external-review", "other-reviewer", "page-count", "boolean-page-count",
+    "page-size", "missing-review-outcome", "missing-image-hash", "missing-pdf-hash",
+    "outside-image", "public-image-claim", "nonlocal-intermediates", "public-review-drift",
+])
+def test_word_highlights_rejects_incomplete_or_rebound_review(word_highlights, mode):
+    review = word_highlights["review"]
+    visual = review["visual_review"]
+    if mode == "schema":
+        review["schema"] = "unreviewed"
+    elif mode.endswith("-path"):
+        review[mode.removesuffix("-path")] = "../outside"
+    elif mode == "artifact-size":
+        review["artifact_bytes"] += 1
+    elif mode == "boolean-size":
+        review["artifact_bytes"] = True
+    elif mode == "author":
+        review["author"] = "Changed author"
+    elif mode == "character-counts":
+        review["unchanged_highlight_character_counts"][0] += 1
+    elif mode == "structure-false":
+        review["structural_validation"]["passed"] = False
+    elif mode == "structure-number":
+        review["structural_validation"]["true_word_bullets"] = 1
+    elif mode == "extra-structure":
+        review["structural_validation"]["unsupported_check"] = True
+    elif mode == "uninspected":
+        visual["all_rendered_pages_inspected"] = False
+    elif mode == "external-review":
+        visual["independent_human_review"] = True
+    elif mode == "other-reviewer":
+        visual["performed_by"] = "external_developers"
+    elif mode == "page-count":
+        visual["page_count"] = 2
+    elif mode == "boolean-page-count":
+        visual["page_count"] = True
+    elif mode == "page-size":
+        visual["page_size_points"] = [595, 842]
+    elif mode == "missing-review-outcome":
+        visual["outcome"] = ""
+    elif mode == "missing-image-hash":
+        visual.pop("page_png_sha256")
+    elif mode == "missing-pdf-hash":
+        visual["intermediate_pdf_sha256"] = "not a hash"
+    elif mode == "outside-image":
+        visual["page_png"] = "../outside/page-1.png"
+    elif mode == "public-image-claim":
+        visual["page_png"] = "research/softwarex/page-1.png"
+    elif mode == "nonlocal-intermediates":
+        visual["intermediates_are_local_qa_only"] = False
+    else:
+        visual["outcome"] = "Changed only in local review"
+    save_highlights_review(word_highlights, public=mode != "public-review-drift")
+    with pytest.raises(ValueError):
+        readiness.check_word_highlights(word_highlights["release"])
+
+
+@pytest.mark.parametrize("mode", ["paragraph-text", "author", "word-bullets", "title-border"])
+def test_word_highlights_does_not_trust_positive_review_flags(word_highlights, mode):
+    review = word_highlights["review"]
+    original = (word_highlights["root"] / review["artifact"]).read_bytes()
+    rewritten = BytesIO()
+    with zipfile.ZipFile(BytesIO(original)) as source, zipfile.ZipFile(rewritten, "w") as changed:
+        for item in source.infolist():
+            raw = source.read(item.filename)
+            if mode == "paragraph-text" and item.filename == "word/document.xml":
+                raw = raw.replace(b"ZeroRun distinguishes", b"Altered distinguishes")
+            elif mode == "author" and item.filename == "docProps/core.xml":
+                raw = raw.replace(b"Jishan Kapoor", b"Changed author")
+            elif mode == "word-bullets" and item.filename == "word/numbering.xml":
+                raw = raw.replace(b'w:numFmt w:val="bullet"', b'w:numFmt w:val="decimal"')
+            elif mode == "title-border" and item.filename == "word/styles.xml":
+                title_start = raw.index(b'w:styleId="Title"')
+                raw = raw[:title_start] + raw[title_start:].replace(
+                    b"<w:pPr>", b'<w:pPr><w:pBdr><w:bottom w:val="single"/></w:pBdr>', 1)
+            changed.writestr(item, raw)
+    raw = rewritten.getvalue()
+    assert raw != original
+    review["artifact_bytes"] = len(raw)
+    review["artifact_sha256"] = hashlib.sha256(raw).hexdigest()
+    for directory in (word_highlights["root"], word_highlights["release"]):
+        put(directory / review["artifact"], raw)
+    save_highlights_review(word_highlights)
+    with pytest.raises(ValueError):
+        readiness.check_word_highlights(word_highlights["release"])
+
+
+def test_word_highlights_loaded_validator_must_match_reviewed_builder(word_highlights):
+    review = word_highlights["review"]
+    raw = (word_highlights["root"] / review["builder"]).read_bytes() + b"\n# drift\n"
+    review["builder_sha256"] = hashlib.sha256(raw).hexdigest()
+    for directory in (word_highlights["root"], word_highlights["release"]):
+        put(directory / review["builder"], raw)
+    save_highlights_review(word_highlights)
+    with pytest.raises(ValueError, match="loaded Word highlights validator differs"):
+        readiness.check_word_highlights(word_highlights["release"])
+
+
+def test_word_highlights_validator_failure_propagates(word_highlights, monkeypatch):
+    def invalid(*args):
+        raise ValueError("actual Word artifact validation failed")
+    monkeypatch.setattr(readiness.highlights_builder, "validate_docx", invalid)
+    with pytest.raises(ValueError, match="actual Word artifact validation failed"):
+        readiness.check_word_highlights(word_highlights["release"])

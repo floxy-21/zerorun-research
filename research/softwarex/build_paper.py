@@ -98,6 +98,13 @@ def application_text(evidence):
             and v3["interpretation_cases_completed"] == 0
             and v3["all_planned_checks_pass"] is False,
             "third client trial narrative differs")
+    guided = evidence["guided_model_application"]
+    require(guided["all_planned_checks_pass"] is True
+            and guided["live_decision_turns_completed"] == guided["live_decision_turns_passed"] == 2
+            and guided["interpretation_cases_completed"] == guided["interpretation_cases_passed"] == 6
+            and guided["fresh_oracle_calls"] == 2 and guided["fresh_oracles_pass"] is True
+            and guided["non_model_setup_tool_calls"] == 2,
+            "guided client narrative differs")
     installation = evidence["public_guide_installation"]["validation"]
     quickstart = evidence["public_guide_quickstart"]["validation"]
     require(installation["passed"] is True and quickstart["passed"] is True
@@ -115,6 +122,12 @@ def application_text(evidence):
         "Thus the core lifecycle passed, not the entire trial. "
         "The sparse input-parameter description motivated a separately recorded documented-use example; "
         "it does not establish the cause of the model error. "
+        "That prospectively frozen demonstration supplied one neutral API card to both decision prompts. "
+        "After non-model readiness and seeding, the model selected normal reuse for a status-only need and fresh "
+        "verification for a fresh-evidence need; both decisions and two independent fresh checks passed. "
+        "Six fixed no-tool interpretation cases also passed, including fresh failure, refusal, and rejecting a hit "
+        "when fresh diagnostics were required. All eight model turns are retained, without retries. "
+        "This documents bounded use, not a causal documentation effect or population accuracy. "
         "An account-free laboratory guide additionally exercises missing-authority refusal, authorized readiness, "
         "fresh success, reuse and verification through the actual server. After an external-adapter check, "
         "a clean public clone and new external installation reproduced the published procedure with 36 matching runtime modules. "
@@ -283,7 +296,7 @@ def build(preview=False):
     sections = re.findall(r"\\section\{([^}]+)\}", document)
     require(sections == ["Motivation and significance", "Software description", "Illustrative examples", "Impact", "Conclusions"], "SoftwareX mandatory sections changed")
     abstract_text = document.split("\\begin{abstract}")[1].split("\\end{abstract}")[0]
-    require(len(abstract_text.split()) <= 250, "abstract exceeds guide limit")
+    require(len(abstract_text.split()) <= 150, "abstract exceeds local short-abstract bound; template requests approximately 100 words")
     refs = bibliography(document)
     summary = {"schema": "zerorun.softwarex-paper.v1", "preview": preview, "public_release": publication,
         "template_sha256": digest(source), "main_tex_sha256": hashlib.sha256(document.encode()).hexdigest(),

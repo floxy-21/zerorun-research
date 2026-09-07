@@ -22,7 +22,7 @@ The public release uses `src/zerorun` for packaging. The frozen original experim
 
 ## 2. Check recorded evidence without executing agent commands
 
-Run from the completed submission snapshot or extracted reviewer archive using its environment. Offline analysis requires Python 3.11 or later, or the optional `tomli` parser on Python 3.10. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The four raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
+Run from the completed submission snapshot or extracted reviewer archive using its environment. Offline analysis requires Python 3.11 or later, or the optional `tomli` parser on Python 3.10. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
 
 ```sh
 "$study_env/bin/python" -m research.sqj.strengthening.validate_traces --check
@@ -37,6 +37,7 @@ Run from the completed submission snapshot or extracted reviewer archive using i
   --output research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json --check
 "$study_env/bin/python" -m research.softwarex.analyze_operating_region --check
 "$study_env/bin/python" -m research.softwarex.build_extension_evidence --check
+"$study_env/bin/python" -m research.softwarex.build_application_evidence --check
 "$study_env/bin/python" -m research.softwarex.build_paper --check
 ```
 
@@ -83,13 +84,13 @@ Never export an entire live study directory. The extension exporter explicitly a
 
 The existing `research.sqj.import_public_evidence` verifies the archive inventory and every file hash before importing; it refuses to overwrite differing evidence. Fresh re-execution has a new Git context and new timestamps. Keep these truthful instead of editing them to imitate the original run.
 
-## Bounded client extension and configuration diagnostic
+## Historical V1 client extension and configuration diagnostic
 
 `generated/extension-evidence-v1.json` independently reconciles the scripted
 consumer, installed-server refusal/readiness checks, actual Codex receipt,
 separate configuration diagnostic, and operating-region calculation. It binds
 raw requests and responses, unchanged source identities, and retained failures.
-The two new `--check` commands above require no model credentials or Docker.
+The offline `--check` commands require no model credentials or Docker.
 
 The recorded Codex trial stopped after its first doctor call: the MCP process
 did not find matching external authority, and an extra commentary message also
@@ -110,6 +111,18 @@ new timestamps and output paths, never rewrites the archived evidence.
 the 57.14% hit fraction is imposed by constructed sequences, not an observed AI
 workflow frequency. Subject and block crossovers preserve within-category
 composition; deployment/review cost and application-level benefits are unmeasured.
+
+## Later client application and public first-use evidence
+
+[Application results](APPLICATION_RESULTS.md) gives the complete attempt ledger, including V1, V2, V3, and the separately frozen guided treatment. The [V2 protocol](live_client_v2/PROTOCOL.md) led to one passing doctor turn followed by a client-side approval refusal. Under the separately approved [V3 protocol](live_client_v3/PROTOCOL.md), four actual model lifecycle turns and two separate fresh oracles passed; the fifth model turn supplied an unsupported argument and the trial stopped. Neither full plan is relabeled as successful.
+
+The [guided protocol](guided_client_v1/PROTOCOL.md) used the exact frozen [API card](CLIENT_API_CARD.md), two non-model setup tool calls plus discovery, two actual model-selected `run_tests` calls, two separate fresh container oracles, and six no-tool model interpretation cases. All its planned checks passed. The two controlled adverse interpretation inputs remain synthetic, and the fresh seed remains non-model setup; these are not eight real coding tasks. Its raw [receipt](evidence/guided-client-v1/receipt.json), prospective freeze, and unmodified event log are retained alongside all earlier trials.
+
+V1 and its diagnostic use source `681907860dc2ab9df70034f82a0025463d1fdec4`. V2, V3, and the guided treatment instead pin `ebf2884df12573d63f45813200e0675288d12096`, with its own manifest and unchanged 36-file runtime inventory. The [operating guide](OPERATING_GUIDE.md#inspect-or-reproduce-the-bounded-integration-experiments) keeps their reproduction instructions separate. Later public artifact commits do not rewrite those experimental identities. V3/guided tool preauthorization was invocation-local, explicitly operator-approved for the original isolated fixture, and did not change global approval settings, the read-only sandbox, unrelated-tool restrictions, real-repository authority, or runtime source.
+
+The [account-free public quickstart](QUICKSTART_LAB.md) was also replayed literally from clean public commit `860675c041c5190dcbae0892d64c8ba82b257bb8` without intervention: seven recorded installation commands passed in 18.645573 seconds, then five actual STDIO stages passed in 11.340818 seconds. Those clocks exclude cloning, Docker setup, and researcher preparation. The [installation receipt](evidence/quickstart-public-v1/install.json) and [server receipt](evidence/quickstart-public-v1/check.json) bind all 36 runtime files. This installation is distinct from the model experiment's installed environment; both contain the same frozen runtime. It is an internal reproduction, not five independent developers or a user study.
+
+`python -m research.softwarex.build_application_evidence --check` recomputes [application-evidence-v1.json](generated/application-evidence-v1.json) from raw records and frozen validators. It checks the earlier adverse trials, guided denominators, source/receipt identities, and both laboratory and literal-public-guide installation records. No model is invoked. Successful fixed cases do not establish population accuracy, causal improvement from documentation, autonomous workflow speedup, or commercial adoption.
 
 ## Build the article
 

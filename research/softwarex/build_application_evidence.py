@@ -15,7 +15,9 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
 LIVE = "research/softwarex/evidence/application-client-v2/receipt.json"
 LIVE_V3 = "research/softwarex/evidence/application-client-v3/receipt.json"
+GUIDED = "research/softwarex/evidence/guided-client-v1/receipt.json"
 LIVE_V2_SHA256 = "007eb8344bf468b28b28cf7e7b9508dc335eaaa6bb30f40bce30b0ef046eec08"
+LIVE_V3_SHA256 = "642bb00b576f878ea474a9caa972a77087b5163e3734d77caea892a5dc826b94"
 INSTALL = "research/softwarex/evidence/quickstart-lab-v1/install.json"
 QUICKSTART = "research/softwarex/evidence/quickstart-lab-v1/check.json"
 PUBLIC_INSTALL = "research/softwarex/evidence/quickstart-public-v1/install.json"
@@ -38,7 +40,8 @@ def source_inputs(root=ROOT):
     from research.softwarex.build_submission_artifacts import read_regular
 
     root = Path(root)
-    paths = {ORIGINAL, LIVE, LIVE_V3, INSTALL, QUICKSTART, PUBLIC_INSTALL, PUBLIC_QUICKSTART,
+    paths = {ORIGINAL, LIVE, LIVE_V3, GUIDED, INSTALL, QUICKSTART, PUBLIC_INSTALL, PUBLIC_QUICKSTART,
+             "research/softwarex/CLIENT_API_CARD.md",
              "research/softwarex/build_application_evidence.py",
              "research/softwarex/quickstart_check.py", "research/softwarex/QUICKSTART_LAB.md",
              "research/softwarex/tests/test_application_evidence.py",
@@ -51,6 +54,13 @@ def source_inputs(root=ROOT):
                 paths.add(path.relative_to(root).as_posix())
         for suffix in (".freeze.json", ".started.json", ".events.log"):
             paths.add("research/softwarex/evidence/application-client-" + version + "/receipt" + suffix)
+    guided_directory = root / "research/softwarex/guided_client_v1"
+    require(guided_directory.is_dir() and not guided_directory.is_symlink(), "missing regular guided source directory")
+    for path in guided_directory.iterdir():
+        if path.suffix in {".py", ".md"}:
+            paths.add(path.relative_to(root).as_posix())
+    for suffix in (".freeze.json", ".started.json", ".events.log"):
+        paths.add("research/softwarex/evidence/guided-client-v1/receipt" + suffix)
     rows = []
     for relative in sorted(paths):
         raw = read_regular(root / relative)
@@ -87,8 +97,19 @@ def build(root=ROOT):
     require(sha(root / ORIGINAL) == ORIGINAL_SHA256,
             "original adverse live experiment changed")
     require(sha(root / LIVE) == LIVE_V2_SHA256, "second adverse live experiment changed")
+    require(sha(root / LIVE_V3) == LIVE_V3_SHA256, "third adverse live experiment changed")
     live = reconcile_live(root, LIVE, "v2")
     live_v3 = reconcile_live(root, LIVE_V3, "v3")
+    guided_validation = importlib.import_module("research.softwarex.guided_client_v1.validation")
+    guided_path = root / GUIDED
+    guided_record = guided_validation.strict_json(guided_path.read_bytes())
+    guided = guided_validation.validate_receipt(guided_path, directory=root / "research/softwarex/guided_client_v1")
+    guided_freeze = guided_path.with_suffix(".freeze.json")
+    require(guided_validation.strict_json(guided_freeze.read_bytes()) == guided_record["freeze"],
+            "guided external and embedded freeze differ")
+    require(all(guided_record[key] is False for key in
+                ("real_repository_authorized", "runtime_modified", "prior_trials_reclassified")),
+            "guided scope or earlier trial classification changed")
     installation = quickstart_check.validate_installation_receipt(root, root / INSTALL)
     quickstart = quickstart_check.validate_saved_receipt(root, root / QUICKSTART)
     public_installation = quickstart_check.validate_installation_receipt(root, root / PUBLIC_INSTALL)
@@ -105,6 +126,9 @@ def build(root=ROOT):
                                 "preserved_without_reclassification": True},
         "model_backed_application": live,
         "model_backed_application_v3": live_v3,
+        "guided_model_application": {"path": GUIDED, "sha256": sha(guided_path),
+                                      "freeze_path": guided_freeze.relative_to(root).as_posix(),
+                                      "freeze_sha256": sha(guided_freeze), **guided},
         "clean_installation": {"path": INSTALL, "sha256": sha(root / INSTALL),
                                "validation": installation},
         "account_free_quickstart": {"path": QUICKSTART, "sha256": sha(root / QUICKSTART),

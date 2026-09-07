@@ -2,6 +2,8 @@
 
 Reviewed the complete `research/softwarex/paper/submission.tex.in` on 6 September 2026, including declarations and metadata. Replication, state-rejoin and public-commit placeholders were unresolved at review time. This report does not certify those future substitutions or publication availability. No manuscript, runtime, frozen producer or VM was changed by this audit.
 
+The initial review and its time-specific pending items are retained below as an audit trail, not presented as the current submission checklist. The application-evidence follow-up at the end records the later observed outcomes separately; final artifact status belongs to `generated/final-readiness.json`.
+
 ## Required corrections before finalization
 
 1. **Name the correct more-itertools comparator.** The sentence saying it "remained slower overall with caching" is misleading. Direct cost was 1,492.510316 s, snapshot-first 611.771878 s and optimized 713.537338 s. Therefore direct/optimized is **2.091706**, while optimized is **16.634544% slower than snapshot-first**. Suggested wording: "For more-itertools, optimized reuse remained 16.6% slower than snapshot-first over complete sequences despite faster eligible hits." This is the material numerical/interpretive defect found in the fixed prose.
@@ -62,3 +64,21 @@ The final export reconciliation must complete these checks before numbers enter 
 | Final document | No placeholders, matching bibliography, pinned accessible release, matching `paper-evidence.json`, fewer than 4,000 counted words | Artifact and evidence completion, not an acceptance probability. |
 
 The final state paragraph is admitted after independent validation of the actual `agent-state-rejoin-v3` evidence: four requests, one reused success, and fresh node counts 14/15/0/14. `generated/state-rejoin-review.json` binds the text and exact analysis. The paragraph distinguishes the modern pinned experimental environment from the recorded Python 3.9 environment and explicitly states that transcript equivalence and autonomous-agent outcome preservation were not evaluated. The timing study and state case are not pooled.
+
+## Application-evidence follow-up: 7 September 2026 UTC
+
+The later evidence addresses the original request for a concrete model-backed use example without converting it into a population or productivity study. The [application-results ledger](APPLICATION_RESULTS.md) links the frozen protocols, raw records, API card, and exact source identities. `python -m research.softwarex.build_application_evidence --check` independently reconciles the following separate outcomes:
+
+| Record | Supported result | Required qualification |
+|---|---|---|
+| V1 | One doctor turn reported missing authority; the original completion-message rule also failed. | No lifecycle or test execution; retain unchanged. |
+| V2 | Doctor passed; the second call was refused by the client approval policy before a server result. | The model's conservative final refusal is not a passing execution or completed lifecycle. |
+| V3 | Four core model turns and two separate fresh oracles passed; the fifth turn used an unsupported argument and stopped. | Core lifecycle passed, full prospective plan failed; zero completed successful decision cases. |
+| API-guided demonstration | Two model-selected actions, two fresh oracles, and six no-tool interpretation cases passed; setup comprised two non-model tool calls plus discovery. | Fixed synthetic cases, not eight real tasks or a causal demonstration that documentation improved the model. |
+| Literal public quickstart | Clean public clone, seven installation commands, and five actual STDIO stages passed without intervention; 36 runtime files matched. | Researcher-run reproduction, no model and no independent human participants; installation and server clocks exclude cloning, Docker setup, and preparation. |
+
+Permitted manuscript strengthening is a concrete, documented application: the guided model distinguished acceptable prior success from a demand for fresh validation, selected the corresponding tool behavior, and interpreted the fixed result/error cases under the stated contract. The API card contains allowed inputs and semantics, not scenario-specific gold answers. Fresh failing-test evidence must remain distinguishable from protocol refusal. Prior adverse trials cannot disappear from the narrative or supplement.
+
+Runtime source is unchanged. Invocation-local client preauthorization was separately approved only for the original synthetic fixture; no global policy or real-repository authority was relaxed. V1's source pin remains distinct from V2/V3/guided source `ebf2884df12573d63f45813200e0675288d12096` and the later literal-public-guide commit. Keep those identities and the model/non-model denominators separate in all exports.
+
+Still unsupported: autonomous task completion benefit, workflow or token savings, general model reliability, external adoption, commercial demand, or numerical acceptance odds. The original fine-grained 5x/50% gates remain unmet and unchanged, and are not SoftwareX manuscript performance claims. This follow-up is an evidence/claim reconciliation, not a new page-by-page PDF review.
