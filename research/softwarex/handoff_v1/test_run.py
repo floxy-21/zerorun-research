@@ -208,3 +208,15 @@ def test_empty_or_incomplete_oracle_refused():
 def test_no_mcp_authorization_calls_in_module():
     text = Path(h.__file__).read_text()
     assert "authorize(" not in text and "prepare_pytest(" not in text and "activate_reviewed" not in text
+
+
+def test_exact_historical_runtime_not_just_self_consistent_manifest():
+    receipt = Path(h.__file__).parents[3] / "research/softwarex/generated/public-release-tests.json"
+    rows = [r for r in h.strict(receipt.read_bytes())["tested_code"] if r["path"].startswith("src/zerorun/")]
+    assert len(h.validate_runtime_rows(rows)) == 36
+    altered = copy.deepcopy(rows)
+    altered[0]["sha256"] = "f" * 64
+    with pytest.raises(ValueError, match="exact original"):
+        h.validate_runtime_rows(altered)
+    with pytest.raises(ValueError, match="denominator"):
+        h.validate_runtime_rows(rows + rows[:1])

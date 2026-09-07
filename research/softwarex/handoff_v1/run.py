@@ -24,6 +24,9 @@ HERE = Path(__file__).resolve().parent
 IMAGE = "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef"
 CORE = "86f42289c2f59a74b1f642f0b20d1a26b3d55e57"
 HELPER_SHA = "96588c65ee674597e4c459651345b9e89ac92cbdc0c85baaa3de4f57f6a44359"
+# Original public-release-tests.json (SHA d05061d43480c42d994c3cba9308337a7ad5e1031b73558ec96c0d47e5ce63e5),
+# sorted canonical projection of its exact 36 src/zerorun runtime rows.
+RUNTIME_ROWS_SHA = "01352a1e63f0a6eaad4a7d3daa8b03181def064c364e791a3ab0b0449266dd41"
 SEED = "zerorun-public-issue-handoff-v1"
 STATE = {".git", ".zerorun", ".zerorun.json"}
 RESERVED = STATE | {".zerorun-env", "authorities", "private-cache-authentication-NOT-FOR-PUBLICATION"}
@@ -316,12 +319,19 @@ def operation(output, name, function):
     return row
 
 
+def validate_runtime_rows(rows):
+    projected = sorted(({k: r[k] for k in ("path", "bytes", "sha256")} for r in rows), key=lambda r: r["path"])
+    require(len(projected) == len({r["path"] for r in projected}) == 36, "runtime inventory denominator")
+    require(sha(encoded(projected)) == RUNTIME_ROWS_SHA, "runtime is not the exact original 0.5.1 public source")
+    return projected
+
+
 def load_engine(engine):
     manifest_raw = ordinary(engine / "PUBLIC_RELEASE_MANIFEST.json", 8 * 1024 * 1024)
     manifest = strict(manifest_raw)
     require(manifest["frozen_core_commit"] == CORE, "unexpected runtime core")
     rows = [r for r in manifest["files"] if r["path"].startswith("src/zerorun/") and r["path"].endswith(".py")]
-    require(len(rows) == len({r["path"] for r in rows}) == 36, "runtime inventory denominator")
+    validate_runtime_rows(rows)
     for row in rows:
         bound(engine, {k: row[k] for k in ("path", "bytes", "sha256")})
     helper = engine / "tools/product_generalization_benchmark.py"
