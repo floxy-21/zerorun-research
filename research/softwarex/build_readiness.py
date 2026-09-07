@@ -10,6 +10,7 @@ import xml.etree.ElementTree as ET
 
 from research.softwarex.build_paper import build as build_paper
 from research.softwarex.build_public_release import inspect, HISTORICAL_RUNTIME_PREFIX, CURRENT_CORE, CURRENT_VERSION
+from research.softwarex.build_public_release import REVIEWER_ASSET, external_archive_identity, external_artifacts
 from research.softwarex import build_submission_artifacts as artifacts_builder
 from research.softwarex import build_application_evidence as application_builder
 from research.softwarex import build_highlights as highlights_builder
@@ -19,7 +20,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-five-hour-final-v1"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-five-hour-final-v2"
 CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.2-v5/receipt.json"
 CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-052-v1"
 HOSTED_CI_RECEIPT = "research/softwarex/evidence/hosted-ci-20260907/receipt.json"
@@ -40,6 +41,10 @@ def sha(path):
 
 def matching_public_file(release, relative, local):
     member_name(relative)
+    if relative == REVIEWER_ASSET:
+        require(external_archive_identity(release / relative) == external_archive_identity(local),
+                "public release reviewer archive differs")
+        return
     require(read_regular(release / relative) == read_regular(local), "public release file differs: " + relative)
 
 
@@ -88,6 +93,12 @@ def check_artifacts(release, evidence):
         actual = verify(ROOT / relative)
         require(actual == artifacts[key], "archive no longer matches verified build")
         matching_public_file(release, relative, ROOT / relative)
+        if relative == REVIEWER_ASSET:
+            declared = external_artifacts(read(release / "PUBLIC_RELEASE_MANIFEST.json"))
+            if declared:  # Historical pre-externalization fixtures remain readable.
+                require({name: declared[0][name] for name in ("path", "bytes", "sha256")} ==
+                        {name: actual[name] for name in ("path", "bytes", "sha256")},
+                        "external reviewer declaration differs from fully verified archive")
     pdf = ROOT / "output/pdf/zerorun-softwarex.pdf"
     qa = read(HERE / "generated/pdf-review.json")
     require(qa["pdf_sha256"] == sha(pdf) == artifacts["pdf_sha256"], "reviewed PDF changed")
@@ -437,6 +448,8 @@ def build(release):
     require(3 <= len(highlights) <= 5 and all(0 < len(line) <= 85 for line in highlights), "highlight limits not met")
     word_highlights = check_word_highlights(release)
     has_current_runtime = release_manifest.get("current_version") == CURRENT_VERSION
+    require(not has_current_runtime or len(external_artifacts(release_manifest)) == 1,
+            "current complete package requires its hash-bound external reviewer ZIP declaration")
     install, final_tests = check_test_and_install_bindings(
         release, historical_runtime_prefix=HISTORICAL_RUNTIME_PREFIX if has_current_runtime else None)
     current_runtime = check_current_runtime_bindings(release) if has_current_runtime else None
@@ -469,6 +482,7 @@ def build(release):
         "paper_evidence_sha256": sha(HERE / "generated/paper-evidence.json"),
         "pdf": {"path": pdf.relative_to(ROOT).as_posix(), "sha256": sha(pdf), "review_receipt_sha256": sha(HERE / "generated/pdf-review.json")},
         "archives": {key: artifacts[key] for key in ("source_archive", "reviewer_archive")},
+        "external_artifacts": external_artifacts(release_manifest),
         "author_upload_texts_sha256": files,
         "word_highlights": word_highlights,
         "selected_public_tests": {"version": "0.5.1", "scope": "Historical selected public-package tests, bound to preserved historical runtime bytes.",

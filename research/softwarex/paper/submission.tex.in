@@ -61,7 +61,7 @@ ZeroRun exposes the previous successful exit status of a deterministic test comm
 
 Regression-test selection avoids tests considered unaffected by a change \cite{rothermel1997safe,yoo2012regression}. Existing build and LLM-tool caches already address result reuse (Table~\ref{tab:contracts}); eidos provides adjacent LLM function-integration software \cite{aldanamartin2025eidos}. LabChain combines hash-based intermediate-result reuse with modular scientific pipelines and JSON configuration \cite{couto2026labchain}. ZeroRun instead exposes an earlier test-status decision under an operator-qualified execution identity. Neither content hashing nor attaching a cache to an AI interface is a new algorithm here.
 
-The contribution is an inspectable validation handoff: a repository-bound status interface, a hit path that avoids source staging, and an executable evaluation kit linking declared input boundaries, independent fresh outcomes, and full request cost. Its unit is an operator-qualified, result-only test task. Integrators can separately inspect agreement, eligibility, and practical cost without treating a cache hit as a fresh transcript.
+The contribution is an inspectable validation handoff for operator-qualified, result-only test tasks: a repository-bound status interface, a hit path that avoids source staging, and an executable evaluation kit linking declared input boundaries, independent fresh outcomes, and full request cost.
 
 \begin{table}[htbp]
 \centering\small
@@ -140,19 +140,27 @@ zerorun --manifest .zerorun.json --json explain tests
 zerorun --manifest .zerorun.json --json run tests
 zerorun --manifest .zerorun.json --json run tests --verify
 \end{verbatim}
-These commands inspect eligibility, request execution/reuse, and verify a stored result through fresh execution, respectively. The target must already exist in a reviewed manifest. The operator guide supplies the corresponding manifest and external authorization procedure; the commands do not establish input completeness. The account-free quickstart creates a disposable laboratory target and retains the full response JSON.
+These commands inspect eligibility, request execution/reuse, and verify through fresh execution. The operator guide supplies the reviewed-manifest and authorization procedure; the commands do not establish input completeness. The quickstart creates a disposable target and retains response JSON.
 
 \subsection{Client decisions and integration evidence}
 The reference consumer checks response consistency, \code{status}, \code{exit\_code}, and tool/protocol errors: \code{mode=reuse} alone is not success. It labels previous success explicitly, routes fresh failures to diagnostics, and requests fresh execution when required; it does not authorize tasks or execute its recommended fallback.
 
-For the same configured task, the MCP \code{run\_tests} argument objects are \code{\{"task":"tests"\}} for ordinary reuse eligibility and \code{\{"task":"tests","verify":true\}} for fresh verification. The server is bound to the target repository and receives the operator's external authority location. Requesting reuse does not imply that the response is a hit.
+For the same configured task, MCP \code{run\_tests} takes the following arguments for ordinary reuse eligibility and fresh verification, respectively:
+\begin{verbatim}
+{"task":"tests"}
+{"task":"tests","verify":true}
+\end{verbatim}
+The server is bound to the target repository and receives the operator's external authority location. Requesting reuse does not imply that the response is a hit.
 
 The following client-decision trials use one deterministic two-file synthetic fixture, separately from the issue-fix producer below. @@CLIENT_EVIDENCE@@
+These installation timings describe the historical 0.5.1 guide. Separate source-bound receipts verify the current 0.5.2 public installation and five-stage server workflow.
 
 These synthetic trials used the CLI's default model without an identified backing model. They describe the recorded client configuration, not a model-population accuracy estimate. The operating guide separates laboratory examples from operator-approved application use.
 
 \subsection{Issue-state validation handoffs}
+\begingroup\setlength{\tabcolsep}{4pt}
 @@HANDOFF_EVIDENCE@@
+\endgroup
 The image main is a budget-limited partial cohort: both complete cases are from pycparser, and unsupported or unexecuted selections do not contribute zero-cost observations.
 
 \subsection{Real AI-workflow observations}
@@ -167,8 +175,6 @@ This example makes a practical distinction visible: repeated command text is an 
 Researchers can change a target or input boundary while preserving fresh-oracle comparisons and explicit denominators. The kit retains raw invocations, source hashes, fixed manifests, failures, setup receipts, and analysis scripts, making qualification behavior and unfavorable costs inspectable.
 
 Codex assisted software, experiment and analysis implementation and manuscript preparation. Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached outcomes for their reference. These are automated cross-checks, not independent human replication.
-
-Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient.
 
 The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. @@ORIGINAL_RESULTS@@ These results are retained, including large lifecycle delays and their order sensitivity.
 
@@ -193,17 +199,17 @@ Subject & $D/F$ & $D/F$ + setup & Block range & Hit saving (\%) \\
 
 An independent standard-library input-inventory oracle checks boundary changes without importing ZeroRun's fingerprint implementation. Linux validation covers 32 production/oracle comparisons and six explicit oracle-scope refusals. Cases include same-size content changes with restored modification time, helper/configuration/data edits, additions, deletion, renaming, directory modes, restoration, command and environment changes, missing inputs, and symlinks. A new \emph{undeclared} top-level file changes neither declared identity: the test documents this limitation rather than claiming automatic closure discovery. These checks establish implementation behavior within the tested boundary, not universal determinism.
 
-The engineering record retains source-bound Python 3.10--3.14 CI checks, Windows regressions and selected public-package tests, with separate counts and platform skips. A 100-repository CLI/skill/MCP exercise returned 99 passes and one safe refusal; it did not execute 100 upstream suites or autonomous tasks. A five-library revision evaluation recorded 200 fresh comparisons but no accepted fine-grained node reuse. Its product performance gates remain unmet. These evaluations are not pooled into a reliability percentage.
+The engineering record retains historical source-bound Python 3.10--3.14 CI checks, Windows regressions and selected public-package tests, with separate counts and platform skips. A 100-repository CLI/skill/MCP exercise returned 99 passes and one safe refusal; it did not execute 100 upstream suites or autonomous tasks. A five-library revision evaluation recorded 200 fresh comparisons but no accepted fine-grained node reuse. Its product performance gates remain unmet. These evaluations are not pooled into a reliability percentage.
 
 \subsection{Scope, reuse, and limitations}
-For an integrator, the benefit is a small Python package with a result contract and review boundary that can be inspected before enabling reuse. For a researcher, the benefit is an executable evaluation kit linking an interface response to exact implementation bytes, fresh outcomes, and full invocation cost. The public MIT release permits adaptation and commercial reuse of ZeroRun-owned code; third-party data and software keep their own licenses.
+Integrators can inspect the result contract and review boundary before enabling reuse; researchers can audit responses against implementation bytes, fresh outcomes, and full cost. The MIT release permits adaptation and commercial reuse of ZeroRun-owned code; third-party licenses remain separate.
 
 The evidence does not establish the prevalence of reusable tasks, population-wide speedup, model-token savings, improved patch quality, user productivity, or commercial demand. The trajectory audit is descriptive and resource-bounded; repository and issue clustering is reported. Its zero barrier-free pairs do not prove zero state-restoration opportunities, but they prevent interpreting repetition as measured eligibility. The controlled library targets are convenience workloads on one constrained VM, and original and replicated observations are not statistically independent datasets. The VM shared a Windows host with publication and validation tooling; host activity outside the VM was not fully isolated. Complete-block spreads and influential observations are reported without treating thousands of nested test nodes as independent samples.
 
 No external users, production deployments, or third-party publications using ZeroRun are claimed. Model sessions and controlled downstream handoffs are reported separately. The prevalence of reusable states, generalization across clients and models, and end-to-end workflow benefit remain unmeasured.
 
 \section{Conclusions}
-ZeroRun provides reusable software for explicitly identified test-status reuse in AI coding-tool integrations. Its whole-file hit path removes execution staging when no code will run, while retaining full identity checks and the existing fresh path. The public package combines runnable examples, fresh-oracle comparisons, independent boundary checks, and a real-trajectory observation tool. The results support conditional utility and expose overhead and applicability limits. The release is a research and integration artifact, not evidence of universal AI acceleration.
+ZeroRun exposes identified test-status reuse to AI coding tools. Its whole-file hit path avoids staging while retaining identity checks and fresh execution. Runnable examples, fresh-oracle comparisons, boundary checks, and trajectory observations support conditional utility while exposing overhead and applicability limits. The release does not establish universal AI acceleration.
 
 \section*{Data and software availability}
 Code, research data and reproduction instructions are deposited in the public ZeroRun repository \cite{kapoor2026zerorunartifact}. Table 1 pins the submitted distribution. Its manifest separately retains the historical 0.5.1 study runtime at revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}; the 0.5.2 distribution changes version metadata and MCP discovery descriptions, with separate source and installation checks. Historical timings are not relabeled as a 0.5.2 replication. Supplementary material 1, \code{ZeroRun\_SoftwareX\_reviewer.zip}, contains inventoried software, raw evidence and analysis tools. Public trajectory responses retain CC-BY-4.0 notices and source attribution. Private cache-authentication keys and operator authority are excluded.

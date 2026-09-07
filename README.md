@@ -12,7 +12,7 @@ ZeroRun can reuse a prior successful **result** for explicitly configured determ
 
 ## Submission package
 
-The submission artifacts, when included in the checked snapshot, are the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence](output/submission/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for the exact checked version/hashes and remaining author-controlled steps. Completion requires a receipt bound to the actual current distribution; a retained 0.5.1 receipt or the existence of an archive is not sufficient. The manuscript's immutable code/evidence pointer is intentionally distinct from the later submission snapshot. No journal submission or payment is performed by publishing these files.
+The submission artifacts, when included in the checked snapshot, are the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence release asset](https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). The complete reviewer ZIP exceeds GitHub's repository-file limit and is distributed as a release asset; its exact size and SHA-256 are recorded in the public manifest and artifact receipt. Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for the exact checked version/hashes and remaining author-controlled steps. Completion requires a receipt bound to the actual current distribution; a retained 0.5.1 receipt or the existence of an archive is not sufficient. The manuscript's immutable code/evidence pointer is intentionally distinct from the later submission snapshot. No journal submission or payment is performed by publishing these files.
 
 ## Install
 
@@ -45,7 +45,14 @@ The package has no third-party Python runtime dependency; building uses setuptoo
 
 Run these from the repository root with the installed environment's Python. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**; this is separate from the runtime and laboratory quickstart's Python 3.10+ requirement. The older float-aggregation behavior is not byte-identical to the archived canonical analysis. The versioned reproduction check also reconciles one unordered crash-file inventory without changing measurements or permitting numeric tolerances. See [the portability record](research/softwarex/evidence/analysis-portability-v1/README.md).
 
-**Verify the complete submission snapshot first**, before generating any new test evidence. The offline verifier checks the public file manifest, submission archives and evidence reconciliations, then verifies that the snapshot is unchanged. It does not execute recorded agent commands or rerun repository experiments:
+**Verify the complete submission snapshot first**, before generating any new test evidence. First download the separately distributed reviewer ZIP once, from the repository root:
+
+```sh
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip
+# Windows PowerShell uses curl.exe with the same arguments.
+```
+
+The source ZIP is already in Git. The reviewer ZIP is a declared external asset, ignored by Git and accepted only at its recorded path with the exact recorded bytes. A missing or altered reviewer ZIP fails complete verification. After this download, the offline verifier checks the public file manifest, both submission archives and evidence reconciliations, then verifies that the snapshot is unchanged. It does not execute recorded agent commands or rerun repository experiments:
 
 ```sh
 "$study_env/bin/python" -B -m research.softwarex.verify_submission

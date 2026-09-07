@@ -63,7 +63,7 @@ numeric tolerance and changes neither raw evidence, frozen analyzers nor gates.
 
 - [x] Trace-summary validator reruns the frozen analyzer and reconciles main and pilot separately. Main: 128 selected, 122 analyzable episodes; 109 repositories and 126 issues among selected rows. Six excluded episodes remain explicit.
 - [x] Main exact-command repetitions are not described as safe hits: all 120 pairs have intervening barriers (112 include reported editor mutation; eight have other unmeasured effects). Pilot results are not pooled into the main sample.
-- [x] Controlled timing is limited to its tested contract, with all 24 completed planned blocks, unfavorable outcomes, separately retained interrupted costs, explicit post-crash recovery, and missing setup measurements. No end-to-end AI latency, token, task-success, or demand claims are inferred.
+- [x] The earlier balanced four-library replication completed all 24 planned blocks under its tested contract, retaining unfavorable outcomes, interrupted costs, explicit post-crash recovery, and missing setup measurements. This is separate from the later image-handoff main cohort, which completed 2 of 24 selected cases. No end-to-end AI latency, token, task-success, or demand claims are inferred.
 - [x] Explain the usable software contribution: explicit eligibility review, configured deterministic execution, conservative reuse decisions, and auditable evidence. The manuscript distinguishes these from existing caching algorithms and general-purpose function-call middleware.
 - [x] Reproducible examples cover fresh execution, unchanged reuse, input invalidation, repeated failure and restoration, with separate refusal-boundary tests. The independently reconciled real-agent-derived controlled case (`agent-state-rejoin-v3`) records four actual requests and one hit, with 14/15/0/14 fresh-node outcomes and explicit counterfactual/runtime limits. A failed collection exits 5 and is not mislabeled as a safety refusal. The original seven-state example and separate inventory/refusal evidence remain distinct.
 - [x] State that whole-task cache hits do not reproduce historical stdout/stderr. An AI client requiring a fresh transcript needs execution; cached success alone does not establish equivalent agent behavior.
@@ -76,7 +76,8 @@ The journal's reviewer form weighs potential research impact, working installati
 Scripted consumer cases, installed-server checks, non-model diagnostics and
 model-backed trials remain separate evidence classes; they are not pooled into
 an agent success rate. The operator-managed trust-path route and its conflict
-with the frozen managed initializer are documented. The runtime is unchanged.
+with the frozen managed initializer are documented. Version 0.5.2 changes version
+metadata and MCP discovery descriptions; execution and reuse logic are unchanged.
 
 - V1 stopped at an unauthorized doctor result, with an additional exact-message
   protocol issue. A later non-model trust-path diagnostic did not relabel it.

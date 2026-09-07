@@ -1,0 +1,31 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-9.1.1, pluggy-1.6.0 -- /home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python
+rootdir: /tmp/zerorun-full-product-qul8r8pf/checkout
+configfile: pyproject.toml
+collecting ... collected 62 items
+
+tests/test_release_prerequisites.py::test_release_reader_rejects_in_place_mutation[truncate] PASSED [  1%]
+tests/test_release_prerequisites.py::test_release_reader_rejects_in_place_mutation[grow] PASSED [  3%]
+tests/test_release_prerequisites.py::test_release_reader_rejects_in_place_mutation[rewrite] PASSED [  4%]
+tests/test_release_prerequisites.py::test_exact_candidate_and_both_gate_receipts_pass FAILED [  6%]
+
+=================================== FAILURES ===================================
+_______________ test_exact_candidate_and_both_gate_receipts_pass _______________
+tests/test_release_prerequisites.py:978: in test_exact_candidate_and_both_gate_receipts_pass
+    result = _validate(_fixtures(tmp_path))
+tests/test_release_prerequisites.py:965: in _validate
+    return release.validate(
+tools/validate_release_prerequisites.py:2706: in validate
+    performance_summary = _validate_performance(
+tools/validate_release_prerequisites.py:1888: in _validate_performance
+    _validate_performance_workload(
+tools/validate_release_prerequisites.py:1826: in _validate_performance_workload
+    _validate_source_identity(
+tools/validate_release_prerequisites.py:635: in _validate_source_identity
+    raise PrerequisiteError(f"{label} source attestation is malformed")
+E   tools.validate_release_prerequisites.PrerequisiteError: packaging source attestation is malformed
+- generated xml file: /home/floxy/zerorun-five-hour-20260907/full-product-diagnostic-20260907/tests.xml -
+=========================== short test summary info ============================
+FAILED tests/test_release_prerequisites.py::test_exact_candidate_and_both_gate_receipts_pass - tools.validate_release_prerequisites.PrerequisiteError: packaging source attestation is malformed
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+========================= 1 failed, 3 passed in 2.81s ==========================

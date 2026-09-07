@@ -1,0 +1,23 @@
+{
+  "command": [
+    "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+    "-B",
+    "-c",
+    "import pathlib,sys;root=pathlib.Path(sys.argv[1]).resolve();sys.path.insert(0,str(root));import zerorun,pytest;assert pathlib.Path(zerorun.__file__).resolve()==root/'zerorun/__init__.py';raise SystemExit(pytest.main(sys.argv[2:]))",
+    "/tmp/zerorun-fixture-amendment-xpqyiw1a/checkout",
+    "tests/test_release_prerequisites.py",
+    "-q",
+    "--tb=short",
+    "--durations=10",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=/tmp/zerorun-fixture-amendment-xpqyiw1a/pytest",
+    "--junitxml=/home/floxy/zerorun-five-hour-20260907/full-product-fixture-amendment-20260907/tests.xml"
+  ],
+  "cwd": "/tmp/zerorun-fixture-amendment-xpqyiw1a/checkout",
+  "error": null,
+  "label": "affected_module",
+  "returncode": null,
+  "started_utc": "2026-09-07T06:29:28.895881+00:00",
+  "timeout_seconds": 240
+}

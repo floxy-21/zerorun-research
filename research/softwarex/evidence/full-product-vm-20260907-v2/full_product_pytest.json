@@ -1,0 +1,36 @@
+{
+  "command": [
+    "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+    "-B",
+    "-c",
+    "import pathlib,sys;root=pathlib.Path(sys.argv[1]).resolve();sys.path.insert(0,str(root));import zerorun,pytest;assert pathlib.Path(zerorun.__file__).resolve()==root/'zerorun/__init__.py';raise SystemExit(pytest.main(sys.argv[2:]))",
+    "/tmp/zerorun-full-product-qul8r8pf/checkout",
+    "tests",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=/tmp/zerorun-full-product-qul8r8pf/pytest",
+    "--junitxml=/home/floxy/zerorun-five-hour-20260907/full-product-vm-20260907-v2/tests.xml"
+  ],
+  "completed_utc": "2026-09-07T06:23:55.294549+00:00",
+  "cwd": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+  "error": {
+    "message": "full_product_pytest exceeded its fixed timeout",
+    "type": "TimeoutExpired"
+  },
+  "label": "full_product_pytest",
+  "outer_seconds": 1200.1872316460012,
+  "returncode": null,
+  "started_utc": "2026-09-07T06:03:55.106551+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "full_product_pytest.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 1467,
+    "path": "full_product_pytest.stdout.txt",
+    "sha256": "41e2ff5a4cde77fc6b1b2d7acfd3fb917828ed8d298c0360db434dd8b0b40b50"
+  },
+  "timeout_seconds": 1200
+}

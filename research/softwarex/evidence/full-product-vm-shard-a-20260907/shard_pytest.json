@@ -1,0 +1,34 @@
+{
+  "command": [
+    "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+    "-B",
+    "-c",
+    "import importlib.util,pathlib,sys;root=pathlib.Path(sys.argv[1]).resolve();sys.path.insert(0,str(root));import zerorun,pytest;assert pathlib.Path(zerorun.__file__).resolve()==root/'zerorun/__init__.py';spec=importlib.util.spec_from_file_location('shard_node_recorder',sys.argv[2]);plugin=importlib.util.module_from_spec(spec);spec.loader.exec_module(plugin);raise SystemExit(pytest.main(sys.argv[3:],plugins=[plugin]))",
+    "/tmp/zerorun-full-product-b17jd5it/checkout",
+    "/tmp/zerorun-full-product-b17jd5it/shard_node_recorder.py",
+    "tests/test_research_confirmatory.py",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=/tmp/zerorun-full-product-b17jd5it/pytest",
+    "--junitxml=/home/floxy/zerorun-five-hour-20260907/full-product-vm-shard-a-20260907/tests.xml"
+  ],
+  "completed_utc": "2026-09-07T06:45:10.534450+00:00",
+  "cwd": "/tmp/zerorun-full-product-b17jd5it/checkout",
+  "error": null,
+  "label": "shard_pytest",
+  "outer_seconds": 707.8272742429999,
+  "returncode": 0,
+  "started_utc": "2026-09-07T06:33:22.706967+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "shard_pytest.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 111,
+    "path": "shard_pytest.stdout.txt",
+    "sha256": "1aad323d3b4f5582b71f364f2eefb502d73e01ec169848fc6e0325fe9a3b9164"
+  },
+  "timeout_seconds": 2100
+}

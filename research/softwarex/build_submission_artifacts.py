@@ -266,6 +266,7 @@ def build(release):
     checked = inspect(release)
     require(not PRIOR_ARTIFACTS.intersection(row["path"] for row in checked["files"]),
             "input release already contains submission artifacts or an old completion receipt")
+    require(not checked.get("external_artifacts"), "pre-archive input must not declare an earlier external reviewer artifact")
     evidence_raw = read_regular(HERE / "generated/paper-evidence.json")
     evidence = strict_json(evidence_raw)
     require(evidence["preview"] is False and evidence["replication"]["completed"] is True, "final reconciled paper required")

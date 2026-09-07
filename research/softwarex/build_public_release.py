@@ -29,6 +29,15 @@ CURRENT_VERSION = "0.5.2"
 HISTORICAL_RUNTIME_PREFIX = "research/softwarex/historical_runtime_0_5_1"
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
+REVIEWER_ASSET = "output/submission/ZeroRun_SoftwareX_reviewer.zip"
+REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip"
+MAX_EXTERNAL_ARCHIVE_BYTES = 600 * 1024 * 1024
+VM_REGRESSION_EVIDENCE_DIRS = (
+    "full-product-vm-20260907", "full-product-vm-20260907-v2",
+    "full-product-diagnostic-20260907", "full-product-fixture-amendment-20260907",
+    "full-product-vm-shard-a-20260907", "full-product-vm-shard-b-20260907",
+)
+VM_REGRESSION_JSONL = {"collected-nodes.jsonl", "test-reports.jsonl"}
 CORE_TESTS = ("conftest.py", "test_hermetic.py", "test_mcp.py", "test_manifest_safety.py",
     "test_fingerprint_safety.py", "test_path_safety.py", "test_runner_safety.py", "test_trust.py",
     "test_security_json_boundaries.py", "test_cache_trust_session.py", "test_codex_integration.py")
@@ -110,6 +119,45 @@ def require(condition, message):
 
 def digest(raw):
     return hashlib.sha256(raw).hexdigest()
+
+
+def external_archive_identity(path):
+    """Hash a whole external ZIP without relaxing the ZIP reader's member limits."""
+    path = Path(path)
+    before = path.lstat()
+    require(stat.S_ISREG(before.st_mode) and not path.is_symlink()
+            and not getattr(before, "st_file_attributes", 0) & 0x400,
+            "nonregular external reviewer archive")
+    require(0 < before.st_size <= MAX_EXTERNAL_ARCHIVE_BYTES, "external reviewer archive size bound exceeded")
+    hashed = hashlib.sha256()
+    with path.open("rb") as source:
+        for block in iter(lambda: source.read(1024 * 1024), b""):
+            hashed.update(block)
+    after = path.lstat()
+    require((before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns) ==
+            (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns),
+            "external reviewer archive changed while hashing")
+    return {"bytes": before.st_size, "sha256": hashed.hexdigest()}
+
+
+def external_artifacts(manifest):
+    """Only the single named immutable-release reviewer ZIP can be external."""
+    rows = manifest.get("external_artifacts", [])
+    require(isinstance(rows, list) and len(rows) <= 1, "unexpected external artifact inventory")
+    for row in rows:
+        require(isinstance(row, dict) and set(row) == {"path", "bytes", "sha256", "url"}
+                and row["path"] == REVIEWER_ASSET and row["url"] == REVIEWER_ASSET_URL
+                and type(row["bytes"]) is int and 0 < row["bytes"] <= MAX_EXTERNAL_ARCHIVE_BYTES
+                and isinstance(row["sha256"], str) and re.fullmatch(r"[0-9a-f]{64}", row["sha256"]),
+                "external reviewer artifact declaration differs")
+    require(not {row["path"] for row in rows}.intersection(row["path"] for row in manifest["files"]),
+            "external artifact is also a tracked payload")
+    return rows
+
+
+def missing_external_message(row):
+    return ("Required reviewer ZIP is missing. Download " + row["url"] + " to " + row["path"]
+            + " before offline verification; expected SHA256 " + row["sha256"] + ". This checker never downloads assets.")
 
 
 def safe_name(name):
@@ -216,8 +264,48 @@ def archive_source(commit, paths, root=None):
          "archive", "--format=tar", commit, *paths], cwd=ROOT if root is None else root)
 
 
+def vm_regression_text_inputs():
+    """Preserve named regression outputs without broadening private text traversal."""
+    selected = {}
+    pattern = re.compile(r"[A-Za-z0-9_.-]+\.(stdout|stderr)\.txt")
+
+    def stream_references(value):
+        if isinstance(value, dict):
+            for key, row in value.items():
+                if key in {"stdout", "stderr"} and isinstance(row, dict) and "path" in row:
+                    require(isinstance(row["path"], str) and pattern.fullmatch(row["path"])
+                            and row["path"].endswith("." + key + ".txt"),
+                            "VM regression stream path escapes its named record directory")
+                    yield row
+                yield from stream_references(row)
+        elif isinstance(value, list):
+            for row in value:
+                yield from stream_references(row)
+
+    for name in VM_REGRESSION_EVIDENCE_DIRS:
+        directory = ROOT / "research/softwarex/evidence" / name
+        if not directory.exists():
+            continue
+        require(directory.is_dir() and not directory.is_symlink(), "VM regression record directory is linked")
+        # Only direct, explicitly named capture/report files are eligible. Never
+        # descend into a checkout, client home, build environment or authority.
+        for path in directory.iterdir():
+            if pattern.fullmatch(path.name) or path.name in VM_REGRESSION_JSONL:
+                raw = read_local(path)
+                relative = path.relative_to(ROOT).as_posix()
+                selected[relative] = {"path": relative, "bytes": len(raw), "sha256": digest(raw)}
+        for record in directory.glob("*.json"):
+            for row in stream_references(json.loads(read_local(record))):
+                relative = (directory / row["path"]).relative_to(ROOT).as_posix()
+                actual = selected.get(relative)
+                require(actual is not None and type(row.get("bytes")) is int
+                        and actual["bytes"] == row["bytes"] and actual["sha256"] == row.get("sha256"),
+                        "VM regression receipt has missing or changed raw stream: " + relative)
+    return [selected[name] for name in sorted(selected)]
+
+
 def collect(paper_files=(), current_core=None):
-    payloads, origins = {}, {}
+    payloads, origins, external = {}, {}, []
 
     def add(name, raw, origin):
         safe_name(name)
@@ -299,7 +387,7 @@ def collect(paper_files=(), current_core=None):
     local("research/softwarex/build_public_release.py")
     add("pyproject.toml", pyproject(current_version), "generated src-layout packaging; runtime uses the identified commit exported with explicitly recorded Git text-newline conversion")
     add(".gitattributes", b"* -text\n", "preserve evidence and frozen source bytes across checkouts")
-    add(".gitignore", b"__pycache__/\n*.py[cod]\n.pytest_cache/\n.venv/\nbuild/\ndist/\n*.egg-info/\n", "generated build-only exclusions")
+    add(".gitignore", b"__pycache__/\n*.py[cod]\n.pytest_cache/\n.venv/\nbuild/\ndist/\n*.egg-info/\n/" + REVIEWER_ASSET.encode() + b"\n", "generated build exclusions and exact externally downloaded reviewer ZIP")
     add("THIRD_PARTY_NOTICES.md", (
         "# License boundaries\n\nZeroRun-owned source and research code use the MIT license in LICENSE.txt. "
         "Licence.txt contains identical bytes for the journal template's alternate spelling.\n\n"
@@ -383,6 +471,11 @@ def collect(paper_files=(), current_core=None):
                     "dependency-starter", "context", "registry-store", "client-home", "codex-home"}
         for path in entries(publication_evidence, {".json", ".xml", ".log", ".py", ".md"}, excluded):
             local(path.relative_to(ROOT).as_posix())
+    for row in vm_regression_text_inputs():
+        raw = read_local(ROOT / row["path"])
+        require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
+                "VM regression output changed during release assembly")
+        add(row["path"], raw, "workspace:retained-vm-regression-output:" + row["path"])
     for relative, row in selected_acquisition_archives():
         raw = read_local(ROOT / relative)
         require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
@@ -404,7 +497,10 @@ def collect(paper_files=(), current_core=None):
     # manifest sealed inside the reviewer archive or creating a self-reference.
     for name in SUBMISSION_ARCHIVES:
         if (ROOT / name).is_file():
-            local(name)
+            if name == REVIEWER_ASSET:
+                external.append({"path": name, **external_archive_identity(ROOT / name), "url": REVIEWER_ASSET_URL})
+            else:
+                local(name)
     for number in (1, 2):
         source = f"tmp/softwarex-public-tests-{number}.xml"
         if (ROOT / source).is_file():
@@ -439,6 +535,7 @@ def collect(paper_files=(), current_core=None):
         "packaging_adaptations": ["src layout", "author metadata", "license filenames", "research README", "five selected-test file-path references"],
         "public_repository_destination": "https://github.com/floxy-21/zerorun-research",
         "publication_performed_by_builder": False, "excluded_directory_names": sorted(BLOCKED),
+        "external_artifacts": external,
         "archive_binding": "Submission archives, when present, seal an earlier checked pre-archive inventory. This enclosing manifest hashes completed archives; the reviewer archive does not include itself or this later manifest.",
         "files": [{"path": name, "bytes": len(raw), "sha256": digest(raw), "origin": origins[name]}
                   for name, raw in sorted(payloads.items())]}
@@ -446,10 +543,11 @@ def collect(paper_files=(), current_core=None):
     return payloads, manifest
 
 
-def inspect(directory):
+def inspect(directory, *, require_external=False):
     require(directory.is_dir() and not directory.is_symlink(), "release directory absent or linked")
     manifest = json.loads((directory / MANIFEST).read_bytes())
     expected = {row["path"]: row for row in manifest["files"]}
+    external = {row["path"]: row for row in external_artifacts(manifest)}
     require(len(expected) == len(manifest["files"]), "duplicate manifest path")
     actual = set()
     for parent, dirs, files in os.walk(directory, followlinks=False):
@@ -465,11 +563,18 @@ def inspect(directory):
         for name in files:
             path = Path(parent) / name
             actual.add(path.relative_to(directory).as_posix())
-    require(actual == set(expected) | {MANIFEST}, "release contains missing or unlisted files")
+    required = set(expected) | {MANIFEST}
+    require(required <= actual and actual <= required | set(external), "release contains missing or unlisted files")
     for name, row in expected.items():
         safe_name(name)
         raw = (directory / name).read_bytes()
         require(len(raw) == row["bytes"] and digest(raw) == row["sha256"], "modified release file: " + name)
+    for name, row in external.items():
+        if name not in actual:
+            require(not require_external, missing_external_message(row))
+            continue
+        require(external_archive_identity(directory / name) == {key: row[key] for key in ("bytes", "sha256")},
+                "downloaded reviewer archive differs from exact external artifact hash")
     return manifest
 
 
@@ -644,12 +749,24 @@ def build(directory, refresh=False, paper_files=(), hardlink_identical=False, pl
     if directory.exists():
         require(refresh, "existing release requires explicit --refresh")
         old = inspect(directory)
-        require({row["path"] for row in old["files"]} <= set(payloads), "refresh would remove a prior file; use a fresh output directory")
+        require({row["path"] for row in old["files"]} <= set(payloads) | {row["path"] for row in manifest["external_artifacts"]},
+                "refresh would remove a prior file; use a fresh output directory")
     else:
         directory.mkdir(parents=True)
     origins = {row["path"]: row["origin"] for row in manifest["files"]}
     hardlinked = 0
     for name, raw in sorted(payloads.items(), key=lambda item: item[0] == MANIFEST):
+        if name == MANIFEST:
+            for row in manifest["external_artifacts"]:
+                target = directory / row["path"]
+                expected = {key: row[key] for key in ("bytes", "sha256")}
+                if target.exists() and external_archive_identity(target) != expected:
+                    source = ROOT / row["path"]
+                    require(external_archive_identity(source) == expected, "canonical reviewer archive changed")
+                    temporary = target.with_name(target.name + ".building")
+                    require(not temporary.exists(), "incomplete external reviewer link exists")
+                    os.link(source, temporary)
+                    os.replace(temporary, target)
         path = directory / name
         path.parent.mkdir(parents=True, exist_ok=True)
         if path.exists() and path.read_bytes() == raw:

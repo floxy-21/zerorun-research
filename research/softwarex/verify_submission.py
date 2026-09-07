@@ -27,9 +27,12 @@ def manifest_check(root):
     saved = strict_json(raw)
     rows = saved["files"]
     require(isinstance(rows, list) and rows and len(rows) == len({r["path"] for r in rows}), "public manifest rows absent/duplicated")
-    actual = release.inspect(root)
+    require(saved.get("current_version") != release.CURRENT_VERSION or len(release.external_artifacts(saved)) == 1,
+            "complete 0.5.2 submission requires its exact external reviewer ZIP declaration")
+    actual = release.inspect(root, require_external=True)
     require(actual == saved, "public manifest changed during verification")
     return {"manifest_sha256": release.digest(raw), "payload_files": len(rows),
+            "external_artifacts_required": release.external_artifacts(saved),
             "scope": "exact complete payload and hashes; .git administration excluded"}
 
 

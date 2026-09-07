@@ -1,0 +1,27 @@
+{
+  "command": [
+    "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+    "-B",
+    "-c",
+    "import importlib.metadata as m,json,pathlib,platform,re,sys\nfrom packaging.requirements import Requirement\nraw=pathlib.Path(sys.argv[1]).read_text()\npackages={};mismatches=[]\nfor line in raw.splitlines():\n line=line.strip()\n if not line or line.startswith(('#','--')): continue\n text=line.split('--hash=',1)[0].strip().rstrip(chr(92)).strip()\n requirement=Requirement(text)\n if requirement.marker is not None and not requirement.marker.evaluate(): continue\n try: actual=m.version(requirement.name)\n except m.PackageNotFoundError: actual=None\n packages[requirement.name]=actual\n if actual is None or not requirement.specifier.contains(actual): mismatches.append({'requirement':str(requirement),'actual':actual})\nprint(json.dumps({'python':sys.version,'executable':sys.executable,'platform':platform.platform(),'test_dependency_versions':packages,'test_lock_mismatches':mismatches}))\n",
+    "/tmp/zerorun-full-product-o14tl22g/checkout/ci/release-test-requirements.txt"
+  ],
+  "completed_utc": "2026-09-07T06:33:23.504127+00:00",
+  "cwd": "/tmp/zerorun-full-product-o14tl22g",
+  "error": null,
+  "label": "python_environment",
+  "outer_seconds": 0.37609436999991885,
+  "returncode": 0,
+  "started_utc": "2026-09-07T06:33:23.127623+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "python_environment.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 567,
+    "path": "python_environment.stdout.txt",
+    "sha256": "d89a52cb1e461af84c04d69072c32959f500cee43559d3ed5981b78de49f107d"
+  },
+  "timeout_seconds": 300
+}

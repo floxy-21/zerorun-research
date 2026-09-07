@@ -1,0 +1,497 @@
+{
+  "checkout": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "init",
+        "--template=",
+        "--initial-branch=main",
+        "/tmp/zerorun-full-product-qul8r8pf/checkout"
+      ],
+      "completed_utc": "2026-09-07T06:03:45.086420+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf",
+      "error": null,
+      "label": "git_init",
+      "outer_seconds": 0.020135747001404525,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:03:45.065107+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "git_init.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 86,
+        "path": "git_init.stdout.txt",
+        "sha256": "739dcfda51c0415650cd53f23675d1ba0d6325660d780ab09f74d87b464ed0ed"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/floxy-21/zerorun-mvp.git"
+      ],
+      "completed_utc": "2026-09-07T06:03:45.105337+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+      "error": null,
+      "label": "git_remote",
+      "outer_seconds": 0.017566665999765974,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:03:45.087331+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "git_remote.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "git_remote.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "git",
+        "-c",
+        "credential.helper=",
+        "fetch",
+        "--depth=1",
+        "file:///home/floxy/zerorun-five-hour-20260907/private-git-transport-0e59813/.git",
+        "0e59813c21cb023a9f490bda160420c95988b322"
+      ],
+      "completed_utc": "2026-09-07T06:03:50.332447+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+      "error": null,
+      "label": "git_fetch",
+      "outer_seconds": 5.225484106000295,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:03:45.106466+00:00",
+      "stderr": {
+        "bytes": 158,
+        "path": "git_fetch.stderr.txt",
+        "sha256": "3faed79f3aedbe9ab2029e7f599b1b4a877085dbeb1b658845f40c07b75e3c55"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "git_fetch.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "git",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "completed_utc": "2026-09-07T06:03:52.798335+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+      "error": null,
+      "label": "git_checkout",
+      "outer_seconds": 2.463598952999746,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:03:50.334281+00:00",
+      "stderr": {
+        "bytes": 83,
+        "path": "git_checkout.stderr.txt",
+        "sha256": "41582a233f21d6f12d4cc2d302b90c457f97ac5c96f0c4db7fda91d7bb84a043"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "git_checkout.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "git",
+        "rev-parse",
+        "HEAD"
+      ],
+      "completed_utc": "2026-09-07T06:03:52.817341+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+      "error": null,
+      "label": "git_head",
+      "outer_seconds": 0.017759279999154387,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:03:52.799315+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "git_head.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 41,
+        "path": "git_head.stdout.txt",
+        "sha256": "67ee9d515dddf7fe634305388892d4eaeb8d2370e21e2417360f4906c6565d50"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+        "-B",
+        "-c",
+        "import importlib.metadata as m,json,pathlib,platform,re,sys\nfrom packaging.requirements import Requirement\nraw=pathlib.Path(sys.argv[1]).read_text()\npackages={};mismatches=[]\nfor line in raw.splitlines():\n line=line.strip()\n if not line or line.startswith(('#','--')): continue\n text=line.split('--hash=',1)[0].strip().rstrip(chr(92)).strip()\n requirement=Requirement(text)\n if requirement.marker is not None and not requirement.marker.evaluate(): continue\n try: actual=m.version(requirement.name)\n except m.PackageNotFoundError: actual=None\n packages[requirement.name]=actual\n if actual is None or not requirement.specifier.contains(actual): mismatches.append({'requirement':str(requirement),'actual':actual})\nprint(json.dumps({'python':sys.version,'executable':sys.executable,'platform':platform.platform(),'test_dependency_versions':packages,'test_lock_mismatches':mismatches}))\n",
+        "/tmp/zerorun-full-product-qul8r8pf/checkout/ci/release-test-requirements.txt"
+      ],
+      "completed_utc": "2026-09-07T06:03:55.104084+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf",
+      "error": null,
+      "label": "python_environment",
+      "outer_seconds": 0.6140195669995592,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:03:54.489524+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "python_environment.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 567,
+        "path": "python_environment.stdout.txt",
+        "sha256": "d89a52cb1e461af84c04d69072c32959f500cee43559d3ed5981b78de49f107d"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+        "-B",
+        "-c",
+        "import pathlib,sys;root=pathlib.Path(sys.argv[1]).resolve();sys.path.insert(0,str(root));import zerorun,pytest;assert pathlib.Path(zerorun.__file__).resolve()==root/'zerorun/__init__.py';raise SystemExit(pytest.main(sys.argv[2:]))",
+        "/tmp/zerorun-full-product-qul8r8pf/checkout",
+        "tests",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/tmp/zerorun-full-product-qul8r8pf/pytest",
+        "--junitxml=/home/floxy/zerorun-five-hour-20260907/full-product-vm-20260907-v2/tests.xml"
+      ],
+      "completed_utc": "2026-09-07T06:23:55.294549+00:00",
+      "cwd": "/tmp/zerorun-full-product-qul8r8pf/checkout",
+      "error": {
+        "message": "full_product_pytest exceeded its fixed timeout",
+        "type": "TimeoutExpired"
+      },
+      "label": "full_product_pytest",
+      "outer_seconds": 1200.1872316460012,
+      "returncode": null,
+      "started_utc": "2026-09-07T06:03:55.106551+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "full_product_pytest.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 1467,
+        "path": "full_product_pytest.stdout.txt",
+        "sha256": "41e2ff5a4cde77fc6b1b2d7acfd3fb917828ed8d298c0360db434dd8b0b40b50"
+      },
+      "timeout_seconds": 1200
+    }
+  ],
+  "commercial_performance_gate_claimed": false,
+  "commit": "0e59813c21cb023a9f490bda160420c95988b322",
+  "completed_utc": "2026-09-07T06:24:03.952740+00:00",
+  "driver": {
+    "bytes": 12534,
+    "sha256": "12c236b155264688377060a9d9f5555727c6762cb7c16981e5b0233bbdaa97d2"
+  },
+  "environment": {
+    "executable": "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+    "platform": "Linux-5.15.0-190-generic-x86_64-with-glibc2.35",
+    "python": "3.10.12 (main, Jul 15 2026, 23:40:17) [GCC 11.4.0]",
+    "test_dependency_versions": {
+      "Pygments": "2.21.0",
+      "attrs": "26.1.0",
+      "exceptiongroup": "1.3.1",
+      "iniconfig": "2.3.0",
+      "jsonschema": "4.26.0",
+      "jsonschema-specifications": "2025.9.1",
+      "packaging": "26.3",
+      "pluggy": "1.6.0",
+      "pytest": "9.1.1",
+      "referencing": "0.37.0",
+      "rpds-py": "0.30.0",
+      "tomli": "2.4.1",
+      "typing-extensions": "4.16.0"
+    },
+    "test_lock_mismatches": []
+  },
+  "expected_test_modules": [
+    "test_agent_retest_trial",
+    "test_analyze_research_frozen_ceiling",
+    "test_cache_trust_session",
+    "test_codex_agent_integration_smoke",
+    "test_codex_agent_lifecycle",
+    "test_codex_integration",
+    "test_codex_stats",
+    "test_commercial_corpus",
+    "test_commercial_smoke",
+    "test_compact_result_metadata",
+    "test_event_safety",
+    "test_execution_policy_probe",
+    "test_fingerprint_safety",
+    "test_fingerprint_snapshot_acceleration",
+    "test_function_boundary_probe",
+    "test_hermetic",
+    "test_hermetic_batch_key",
+    "test_hermetic_batch_uncertainty",
+    "test_managed_write_safety",
+    "test_manifest_safety",
+    "test_mcp",
+    "test_mcp_discovery_semantics",
+    "test_mvp",
+    "test_normalize_sdist",
+    "test_path_safety",
+    "test_pilot",
+    "test_pilot_package_publish",
+    "test_product_generalization_benchmark",
+    "test_pytest_auto_qualify",
+    "test_pytest_auto_task",
+    "test_pytest_batched_executor",
+    "test_pytest_closure_analysis_cache",
+    "test_pytest_collection_cache",
+    "test_pytest_collection_contract_probe",
+    "test_pytest_collection_identity_probe",
+    "test_pytest_collection_identity_v2",
+    "test_pytest_collection_invocation_contract",
+    "test_pytest_historical_closure_bundle",
+    "test_pytest_incremental_collection",
+    "test_pytest_incremental_runtime_qualification",
+    "test_pytest_invalidation_diagnostics",
+    "test_pytest_negative_import_guards",
+    "test_pytest_node_action_key",
+    "test_pytest_node_batch_probe",
+    "test_pytest_node_cache",
+    "test_pytest_node_closure_audit",
+    "test_pytest_node_dependency_probe",
+    "test_pytest_node_impact_matrix",
+    "test_pytest_node_impact_model",
+    "test_pytest_node_key_snapshot_cache",
+    "test_pytest_node_merkle_identity",
+    "test_pytest_node_recovery",
+    "test_pytest_node_runtime_qualification",
+    "test_pytest_per_node_alignment",
+    "test_pytest_prepare_cli",
+    "test_pytest_profile_safety",
+    "test_pytest_profiler_adversarial",
+    "test_pytest_result_dependency_evidence",
+    "test_pytest_review_activation",
+    "test_pytest_reviewed_source_equivalence",
+    "test_pytest_runtime_adapter",
+    "test_pytest_session_scoped_result_probe",
+    "test_pytest_windows_temp_paths",
+    "test_pytest_zero_miss_cache",
+    "test_python_call_closure",
+    "test_release_prerequisites",
+    "test_release_safety",
+    "test_research_artifact",
+    "test_research_candidate_selector",
+    "test_research_confirmatory",
+    "test_research_cpython_formative_evidence",
+    "test_research_formative_evidence",
+    "test_research_frozen_ceiling",
+    "test_research_github_frame",
+    "test_research_lifecycle_challenges",
+    "test_research_m1_dispatch",
+    "test_research_pilot_bootstrap",
+    "test_research_pilot_export",
+    "test_research_power",
+    "test_research_pytest_capture",
+    "test_research_real_repo_pilot",
+    "test_runner_safety",
+    "test_security_json_boundaries",
+    "test_strict_performance_gate",
+    "test_symbol_batching",
+    "test_symbol_closure",
+    "test_symbol_content_cache",
+    "test_sympy_equivalence_qualification",
+    "test_testmon_policy_gate",
+    "test_trust",
+    "test_verified_codex_install"
+  ],
+  "failure": {
+    "message": "full product regression failed",
+    "type": "ValueError"
+  },
+  "new_model_calls": 0,
+  "output_files": [
+    {
+      "bytes": 1331,
+      "path": "full_product_pytest.json",
+      "sha256": "047f87c57f4ee3a0c8410a0d87e83e19a553acde38bbdec8355ae1e52b363240"
+    },
+    {
+      "bytes": 815,
+      "path": "full_product_pytest.started.json",
+      "sha256": "82bd9807516bb69d1d1be96f2a44b5537f1cbc1cfac3156793a9411d36249079"
+    },
+    {
+      "bytes": 0,
+      "path": "full_product_pytest.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1467,
+      "path": "full_product_pytest.stdout.txt",
+      "sha256": "41e2ff5a4cde77fc6b1b2d7acfd3fb917828ed8d298c0360db434dd8b0b40b50"
+    },
+    {
+      "bytes": 685,
+      "path": "git_checkout.json",
+      "sha256": "3c916ce38d6d7f7db0a2cd3e806f42d31c9f196739cd96a7838e6cc625d2c58a"
+    },
+    {
+      "bytes": 284,
+      "path": "git_checkout.started.json",
+      "sha256": "fe1d638a61a6b74706fd20e31e613004af988ce871791d58a5abff39ca602f7b"
+    },
+    {
+      "bytes": 83,
+      "path": "git_checkout.stderr.txt",
+      "sha256": "41582a233f21d6f12d4cc2d302b90c457f97ac5c96f0c4db7fda91d7bb84a043"
+    },
+    {
+      "bytes": 0,
+      "path": "git_checkout.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 829,
+      "path": "git_fetch.json",
+      "sha256": "ed9037850be9470aeaf39fe8a5a6b79a1c5ffda9d6c769a7c757f17d2132d2a8"
+    },
+    {
+      "bytes": 433,
+      "path": "git_fetch.started.json",
+      "sha256": "4b71423e04d86554960bca249cc772215ecc9338ab62bbb54074b54dea282ca0"
+    },
+    {
+      "bytes": 158,
+      "path": "git_fetch.stderr.txt",
+      "sha256": "3faed79f3aedbe9ab2029e7f599b1b4a877085dbeb1b658845f40c07b75e3c55"
+    },
+    {
+      "bytes": 0,
+      "path": "git_fetch.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 655,
+      "path": "git_head.json",
+      "sha256": "007ced0447d13af63fc23681ec850912ed1f1831251d501bbd68d7d03f12b392"
+    },
+    {
+      "bytes": 259,
+      "path": "git_head.started.json",
+      "sha256": "e5cdb8334d33f34b71c09d87551e1d5a82c7a1d893388e145c5d38952a73399f"
+    },
+    {
+      "bytes": 0,
+      "path": "git_head.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 41,
+      "path": "git_head.stdout.txt",
+      "sha256": "67ee9d515dddf7fe634305388892d4eaeb8d2370e21e2417360f4906c6565d50"
+    },
+    {
+      "bytes": 728,
+      "path": "git_init.json",
+      "sha256": "ab15c57ee918d4d33c24aee0f76a7a2fdbc6e945b3696f71b6d853a527008f84"
+    },
+    {
+      "bytes": 332,
+      "path": "git_init.started.json",
+      "sha256": "b1e815fc28b4185b5f0b2a15a4514ad15342615c1d7e77611803e01324ec5c12"
+    },
+    {
+      "bytes": 0,
+      "path": "git_init.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 86,
+      "path": "git_init.stdout.txt",
+      "sha256": "739dcfda51c0415650cd53f23675d1ba0d6325660d780ab09f74d87b464ed0ed"
+    },
+    {
+      "bytes": 721,
+      "path": "git_remote.json",
+      "sha256": "fc343fc0349f5d6310066960b982ce7d5fa1d41ee35273869bea418da7f450ce"
+    },
+    {
+      "bytes": 322,
+      "path": "git_remote.started.json",
+      "sha256": "b798f2d1794e12bd6538a8fd1c84f95a19f33d23a66c1517f04ee01f3b5e4364"
+    },
+    {
+      "bytes": 0,
+      "path": "git_remote.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "git_remote.stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1707,
+      "path": "python_environment.json",
+      "sha256": "7406d9a2e5b4f90fd611cba1e11893e8feb761efabaf9e33a0e3d37945e7865f"
+    },
+    {
+      "bytes": 1292,
+      "path": "python_environment.started.json",
+      "sha256": "e7abb7e65c219c74910e789f4c2b1fa4b15351d077d6b51e4e71e6a63d61a87e"
+    },
+    {
+      "bytes": 0,
+      "path": "python_environment.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 567,
+      "path": "python_environment.stdout.txt",
+      "sha256": "d89a52cb1e461af84c04d69072c32959f500cee43559d3ed5981b78de49f107d"
+    },
+    {
+      "bytes": 1092680,
+      "path": "source-after.json",
+      "sha256": "10acc21bc681ad6d5061e973ff810bee9125ebb62201eae8f2b7199d6e3e1b1f"
+    },
+    {
+      "bytes": 1092680,
+      "path": "source-before.json",
+      "sha256": "10acc21bc681ad6d5061e973ff810bee9125ebb62201eae8f2b7199d6e3e1b1f"
+    }
+  ],
+  "passed": false,
+  "production_authority_created": false,
+  "python": "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+  "repository": "https://github.com/floxy-21/zerorun-mvp.git",
+  "runtime_import": "exact fresh commit source precedes installed packages; PYTHONPATH is propagated to subprocess children",
+  "schema": "zerorun.full-product-vm-regression.v1",
+  "scope": "Full repository pytest regression for one existing CPython environment; not the full hosted matrix, model experiments, or commercial gates",
+  "started_utc": "2026-09-07T06:03:45.064807+00:00",
+  "temporary_directory": "/tmp/zerorun-full-product-qul8r8pf",
+  "test_selection": "all tests in the exact commit's tests directory; no -k/-m exclusions",
+  "tracked_source_unchanged": true,
+  "transport": {
+    "git_source": "file:///home/floxy/zerorun-five-hour-20260907/private-git-transport-0e59813/.git",
+    "original_repository_pointer": "https://github.com/floxy-21/zerorun-mvp.git",
+    "repository_credentials_forwarded": false,
+    "source_kind": "private local Git object transport"
+  }
+}

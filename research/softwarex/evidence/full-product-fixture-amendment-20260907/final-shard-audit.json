@@ -1,0 +1,71 @@
+{
+  "checker_role": "Separate read-only preparation audit; automated cross-check, not independent human replication.",
+  "checker_sha256": "cb1a624402e3ff06abf9344cf729ebfd6943dd3c43bc56af3ba15e2c1494ad5d",
+  "collected_nodes": 1674,
+  "commit": "a4ac905985a38308000a586140aeb4b259a7960e",
+  "junit_total_including_subtests": 1693,
+  "modules": 91,
+  "node_overlap": 0,
+  "passed": true,
+  "passing_subtests": 19,
+  "primary_passed": 1662,
+  "python_version": "3.10.12",
+  "raw_records_modified": false,
+  "schema": "zerorun.independent-full-product-shards.v1",
+  "scope": "Two disjoint full product regression shards, one Python environment version and exact source commit; not a monolithic run, Python matrix, benchmark or independent human replication.",
+  "shards": [
+    {
+      "collected_nodes": 18,
+      "commit": "a4ac905985a38308000a586140aeb4b259a7960e",
+      "junit_tests": 18,
+      "modules": 1,
+      "passed": true,
+      "passing_subtests": 0,
+      "path": "research/softwarex/evidence/full-product-vm-shard-a-20260907",
+      "primary_passed": 18,
+      "receipt_sha256": "40445fc0fe08bfc6f9199d57be6327e6c0fd6610c4f4cef9c3a213e7cf2b4452",
+      "report_outcomes": {
+        "call:passed": 18,
+        "setup:passed": 18,
+        "teardown:passed": 18
+      },
+      "shard": "confirmatory",
+      "shard_plan_sha256": "26b34304bca4408efec68efa743f9bac26aebd419ed5e3158d3e836394a8ae95",
+      "skipped": 0,
+      "source_inventory_sha256": "f35975ffce0b17584b7ad9ea08f985982f019d8dc3593b285cc5d0935e289776"
+    },
+    {
+      "collected_nodes": 1656,
+      "commit": "a4ac905985a38308000a586140aeb4b259a7960e",
+      "junit_tests": 1675,
+      "modules": 90,
+      "passed": true,
+      "passing_subtests": 19,
+      "path": "research/softwarex/evidence/full-product-vm-shard-b-20260907",
+      "primary_passed": 1644,
+      "receipt_sha256": "0a6dbb881e343f79471ed7a55ea15b069a7ac26d5ea9d9508c80956582254347",
+      "report_outcomes": {
+        "call:passed": 1663,
+        "call:skipped": 2,
+        "setup:passed": 1646,
+        "setup:skipped": 10,
+        "teardown:passed": 1656
+      },
+      "shard": "other90",
+      "shard_plan_sha256": "26b34304bca4408efec68efa743f9bac26aebd419ed5e3158d3e836394a8ae95",
+      "skipped": 12,
+      "source_inventory_sha256": "f35975ffce0b17584b7ad9ea08f985982f019d8dc3593b285cc5d0935e289776"
+    }
+  ],
+  "skipped": 12,
+  "verification_checks": [
+    "Exact shared commit and all tracked before/after source inventories agree",
+    "Identical exhaustive and disjoint 91-module shard plan",
+    "All 1674 collected node IDs are unique across shards; no -k/-m or deselected nodes",
+    "Every collected node has a completed call or explicit setup skip",
+    "JUnit counts, final pytest summaries and per-phase runtime reports agree",
+    "All retained producer output and auxiliary file byte/hash bindings agree",
+    "Captured collection-observer bytes match the driver-generated observer and receipt",
+    "Only 17 version literals in one test fixture changed; product runtime unchanged"
+  ]
+}

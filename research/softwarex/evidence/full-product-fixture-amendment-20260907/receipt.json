@@ -1,0 +1,100 @@
+{
+  "amendment": {
+    "after_sha256": "1bb38541b025b77e3a5067edbdb3f022a477a968f3fec2e702b23d4630fe5296",
+    "before_sha256": "5bf045ddce1df4f80081c9501eee6a8147a8ee9d6e798e3185041fdd2e6841c4",
+    "path": "tests/test_release_prerequisites.py",
+    "reason": "0.5.1 fixture identities conflict with unchanged validator and current 0.5.2 project version"
+  },
+  "base_commit": "0e59813c21cb023a9f490bda160420c95988b322",
+  "commands": [
+    {
+      "command": [
+        "git",
+        "-c",
+        "credential.helper=",
+        "clone",
+        "--template=",
+        "--depth=1",
+        "file:///home/floxy/zerorun-five-hour-20260907/private-git-transport-0e59813/.git",
+        "/tmp/zerorun-fixture-amendment-xpqyiw1a/checkout"
+      ],
+      "completed_utc": "2026-09-07T06:29:25.890573+00:00",
+      "cwd": "/tmp/zerorun-fixture-amendment-xpqyiw1a",
+      "error": null,
+      "label": "git_clone",
+      "outer_seconds": 7.515963949001161,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:29:18.374132+00:00",
+      "stderr": {
+        "bytes": 1427,
+        "path": "git_clone.stderr.txt",
+        "sha256": "01e03e24fa1a790abf1650e9a80fc936c53ddc50d40eaeafd4078379312d9dcd"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "git_clone.stdout.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timeout_seconds": 300
+    },
+    {
+      "command": [
+        "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+        "-B",
+        "-c",
+        "import pathlib,sys;root=pathlib.Path(sys.argv[1]).resolve();sys.path.insert(0,str(root));import zerorun,pytest;assert pathlib.Path(zerorun.__file__).resolve()==root/'zerorun/__init__.py';raise SystemExit(pytest.main(sys.argv[2:]))",
+        "/tmp/zerorun-fixture-amendment-xpqyiw1a/checkout",
+        "tests/test_release_prerequisites.py",
+        "-q",
+        "--tb=short",
+        "--durations=10",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/tmp/zerorun-fixture-amendment-xpqyiw1a/pytest",
+        "--junitxml=/home/floxy/zerorun-five-hour-20260907/full-product-fixture-amendment-20260907/tests.xml"
+      ],
+      "completed_utc": "2026-09-07T06:31:00.074793+00:00",
+      "cwd": "/tmp/zerorun-fixture-amendment-xpqyiw1a/checkout",
+      "error": null,
+      "label": "affected_module",
+      "outer_seconds": 91.17764148899914,
+      "returncode": 0,
+      "started_utc": "2026-09-07T06:29:28.895881+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "affected_module.stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 1517,
+        "path": "affected_module.stdout.txt",
+        "sha256": "08cb2ff2adcc7a6f0fc5146f5ec641c5365ddf00ab17858c31e8bd5582d81cef"
+      },
+      "timeout_seconds": 240
+    }
+  ],
+  "completed_utc": "2026-09-07T06:31:01.734389+00:00",
+  "driver_sha256": "34f2868266b2787293d3e38af43e1694fbf7f6223c96b2aaf158df84f347e2d2",
+  "failure": null,
+  "fixture_literals_changed": 17,
+  "junit_counts": {
+    "errors": 0,
+    "failures": 0,
+    "module_count": 1,
+    "passing_subtests": 0,
+    "primary_passed": 62,
+    "represented_modules": [
+      "test_release_prerequisites"
+    ],
+    "skipped": 0,
+    "testcase_elements": 62,
+    "tests": 62
+  },
+  "passed": true,
+  "product_runtime_changed": false,
+  "schema": "zerorun.version-fixture-amendment.v1",
+  "started_utc": "2026-09-07T06:29:18.373733+00:00",
+  "support_driver_sha256": "12c236b155264688377060a9d9f5555727c6762cb7c16981e5b0233bbdaa97d2",
+  "test_assertions_changed": false,
+  "tracked_source_unchanged_during_tests": true
+}
