@@ -41,7 +41,7 @@ Keep the template's C1–C8 labels and fill these values from the released artif
 - [x] Clean Windows wheel installation and CLI inspection passed; all 36 installed runtime files match the frozen source, with no third-party runtime Python dependencies (`generated/public-install-smoke.json`). Selected public-layout tests separately passed 465 primary cases, with 21 platform skips and eight passing subtests (`generated/public-release-tests.json`). These checks do not claim a fresh Linux/Docker re-execution from the final manuscript snapshot or an autonomous Codex task.
 - [x] Recorded-data validation and documented laboratory examples do not require private GitHub credentials or distributed private keys. All four offline evidence validators passed from the clean public stage. Normal production integration still requires explicit external operator review.
 - [x] Third-party notices, CC-BY-4.0 trajectory attribution, observed dataset revision, raw hashes, and excluded/failed rows are retained; third-party data is not relicensed as MIT.
-- [x] The public source/evidence snapshot is commit `67ee27ea02d83bd00f1ee4c65b0ed224a884799c`, anonymously verified; the manuscript links this immutable snapshot. The later final-readiness receipt identifies the separate completed submission archives and review PDF.
+- [x] The strengthened public source/evidence snapshot is commit `08b3b9649af46e720dbff53060276381ae0d9f1d`, anonymously verified by exact manifest and extension-receipt hashes. Both new analysis checks pass from its clean public layout. The later final-readiness receipt identifies the separate completed submission archives and review PDF.
 
 ## Evidence and contribution checks
 
@@ -56,6 +56,21 @@ Keep the template's C1–C8 labels and fill these values from the released artif
 The journal's reviewer form weighs potential research impact, working installation, API/user documentation, automated tests, and reproducibility. It does not prescribe a new caching algorithm, but a usable artifact and credible benefit remain essential. [SoftwareX reviewer form](https://legacyfileshare.elsevier.com/promis_misc/softwarex-reviewer-form.pdf)
 
 ## Author-controlled declarations
+
+The final client extension separately records 14 scripted response cases, 11
+installed-server checks across eight stdio requests, one failed Codex doctor
+turn, and a successful five-call non-model configuration diagnostic. These are
+not pooled into an agent success rate. The model trial is not rerun or called a
+corrected Codex success. The operator-managed trust-path route and its conflict
+with the frozen managed initializer are documented. The exact runtime remains
+unchanged.
+
+The final direct publication suite passed 372 cases with two Windows symlink
+skips, binding 50 public source/test files before and after execution. Its
+`publication-extension-final-v2` receipt follows the separately retained
+newline-only analysis-helper packaging correction. This is additional research
+tooling validation, not a rerun of the complete runtime suite or proof of a
+journal acceptance probability.
 
 - [x] Author-provided name, contact and affiliation are included: Jishan Kapoor; kapoorjishan2@gmail.com; Independent researcher, Toronto, Canada. Any additional postal-address details required by the submission system must be supplied privately, not invented.
 - [x] The manuscript's funding statement reflects the author-confirmed absence of external funding.
