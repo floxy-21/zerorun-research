@@ -93,3 +93,50 @@ it changes no numerical tolerance, test result, raw record, model transcript,
 or frozen experiment producer. The original failed configurations remain
 failed. The new full publication test receipt and final Linux verification
 identify the corrected implementation separately from the earlier checks.
+
+### Corrected verification outcome
+
+On 7 September 2026, the coordinating assistant executed all seven raw-evidence
+commands from the documented pinned-container route against clean public commit
+`bdf7fdc1309381b1c6762b2189547d1a1da87263`. Each reported successful validation:
+
+1. Trace validator: 128 selected, 122 valid, 120 repeat pairs, zero pairs without
+   intervening barriers.
+2. Original comparison: 70 validated requests; whole-task challenges passed.
+3. Canonical recovered analysis: six protected anchors, 24 blocks, 168 fresh
+   agreements and 96 optimized hits; no numerical tolerance.
+4. State-rejoin analysis: completed, empty error list.
+5. Operating-region analysis: completed, four subjects, 168 requests; saved
+   output matched exactly.
+6. Extension evidence: completed and byte-identical. Its retained V1 live
+   lifecycle still reports `live_pass: false`, correctly preserving that failure.
+7. Application evidence: reconciled, including all failed and successful trials.
+
+The public checkout remained clean afterward. The read-only container used
+the digest and resource restrictions in `REPRODUCIBILITY.md`; no new model call
+or test workload was executed. This paragraph is an internal execution
+confirmation transcribed from tool outputs, not a new timing measurement,
+external reproduction certificate or independent-human assessment.
+
+The final Windows publication suite is
+`../publication-four-hour-final-v3/receipt.json`: 706 passing cases and two
+platform skips (708 JUnit cases), zero failures/errors, with all 69 inventoried
+Python sources unchanged during execution. Earlier full suites remain separate.
+
+### Archived manuscript and private-directory permissions
+
+The coordinating assistant also extracted the compiled reviewer artifact into
+a fresh Linux `mktemp` directory (mode 0700). The initial capability-dropped
+container used its default UID 0 and could not traverse the host-owned folder;
+the module import failed before article analysis. A diagnostic confirmed
+`PermissionError` on `/artifact`, not absent archive members. The extraction
+contained the expected `research` and `src/zerorun` trees.
+
+The documented optional container function now supplies the invoking host
+user's UID/GID with `--user`. This retains the private directory's permissions,
+read-only mount, no-network policy and dropped capabilities. With that explicit
+ownership configuration, `build_paper --check` passed against the extracted
+reviewer artifact, including exact article, bibliography and evidence output.
+No source, observation, PDF or experimental runtime was altered for this check.
+The final archive includes the corrected instructions; archive-level integrity
+and post-build replay records identify its exact bytes separately.

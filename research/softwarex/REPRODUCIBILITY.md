@@ -46,7 +46,9 @@ If the host's default Python is 3.10 or 3.11, keep it for the supported product
 quickstart and use this separate Linux/amd64 route for canonical analysis. From
 the completed release root, the following function uses CPython 3.12.14 from
 the experiment's digest-pinned image, with a read-only source mount, no network,
-and no account or operator credentials. No package installation is required
+and no account or operator credentials. It runs with the host user's UID/GID so
+the capability-dropped container can read that user's private extraction
+directory without broadening directory permissions. No package installation is required
 inside this analysis container. Acquire the public image once with
 `docker pull` if it is not already present; image acquisition is not an offline
 check or part of the reported quickstart timings.
@@ -56,6 +58,7 @@ analysis_image='docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126
 analysis_root="$(pwd -P)"
 analysis_python() {
   docker run --rm --network none --read-only --cap-drop ALL \
+    --user "$(id -u):$(id -g)" \
     --security-opt no-new-privileges --cpus 2 --memory 2g --pids-limit 128 \
     --mount "type=bind,src=$analysis_root,dst=/artifact,readonly" \
     -w /artifact -e PYTHONPATH=/artifact/src -e PYTHONDONTWRITEBYTECODE=1 \

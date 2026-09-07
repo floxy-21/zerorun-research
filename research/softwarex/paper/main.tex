@@ -5,6 +5,7 @@
 \usepackage{amssymb,amsmath,booktabs,array,hyperref,url}
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do-}
 \setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{2em}
 \hypersetup{pdftitle={ZeroRun: Reproducible test-result reuse for AI coding tools},pdfauthor={Jishan Kapoor},colorlinks=false,pdfborder={0 0 0}}
 \journal{SoftwareX}
 \newcommand{\code}[1]{\texttt{#1}}
@@ -16,7 +17,7 @@
 \cortext[cor1]{Corresponding author.}
 \address{Independent researcher, Toronto, Canada}
 \begin{abstract}
-AI coding tools repeatedly invoke tests, but command repetition alone does not establish reusable evidence. ZeroRun is open-source research software for returning an explicitly identified previous success of a deterministic, result-only test command. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids unnecessary source staging. We provide source-bound experiments, an independent input-inventory oracle, and a descriptive audit of public OpenHands trajectories. The four-target study, completed through an explicit post-crash recovery, reconciles 168 fresh comparisons and 96 reused successes. The package enables reproducible investigation of validation overhead and reuse boundaries; it does not establish autonomous-agent acceleration or reproduce cached test output.
+ZeroRun is open-source software for reusing the identified successful status of a deterministic test command in AI coding-tool integrations. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids source staging. The release includes fresh-result comparisons, an independent input-boundary oracle, a descriptive audit of public agent trajectories, and runnable client examples. The four-target study, completed through an explicit post-crash recovery, reconciles 168 fresh comparisons and 96 reused successes. On one synthetic fixture, a controlled Codex lifecycle distinguished reused status from fresh validation. The software enables investigation of validation cost and reuse boundaries; it does not replay cached output or establish autonomous-agent acceleration.
 \end{abstract}
 \begin{keyword}
 AI coding tools \sep test-result reuse \sep research software \sep reproducibility \sep software testing
@@ -32,9 +33,9 @@ AI coding tools \sep test-result reuse \sep research software \sep reproducibili
 \hline
 \textbf{Nr.} & \textbf{Code metadata description} & \textbf{Value} \\
 \hline
-C1 & Current code version & ZeroRun 0.5.1; research release 2026-09-06 \\
+C1 & Current code version & ZeroRun 0.5.1; research release 2026-09-07 \\
 \hline
-C2 & Permanent GitHub link to code/repository used for this code version & \href{https://github.com/floxy-21/zerorun-research/tree/08b3b9649af46e720dbff53060276381ae0d9f1d}{\texttt{floxy-21/zerorun-research}}; linked immutable source/evidence snapshot \\
+C2 & Permanent GitHub link to code/repository used for this code version & \href{https://github.com/floxy-21/zerorun-research/tree/bdf7fdc1309381b1c6762b2189547d1a1da87263}{\texttt{floxy-21/zerorun-research}}; linked immutable source/evidence snapshot \\
 \hline
 C3 & Legal Code License & MIT (ZeroRun code); third-party licenses retained; trajectory data CC-BY-4.0 \\
 \hline
@@ -42,9 +43,9 @@ C4 & Code versioning system used & Git \\
 \hline
 C5 & Software code languages, tools, and services used & Python; pytest; Docker; CLI; Model Context Protocol (MCP); Codex skill \\
 \hline
-C6 & Compilation requirements, operating environments \& dependencies & Python $\geq$3.10; no core Python dependencies. Whole-task reuse: Linux/amd64 and Docker. Experiments: digest-pinned Python 3.12 container and frozen dependencies. \\
+C6 & Compilation requirements, operating environments \& dependencies & Runtime: Python $\geq$3.10; no core Python dependencies. Whole-task reuse: Linux/amd64 and Docker. Canonical analysis: CPython 3.12--3.14. Experiments: digest-pinned Python 3.12 container and frozen dependencies. \\
 \hline
-C7 & If available Link to developer documentation/manual & \href{https://github.com/floxy-21/zerorun-research/blob/08b3b9649af46e720dbff53060276381ae0d9f1d/README.md}{Version-pinned README: installation, interfaces, reproduction, and limitations} \\
+C7 & If available Link to developer documentation/manual & \href{https://github.com/floxy-21/zerorun-research/blob/bdf7fdc1309381b1c6762b2189547d1a1da87263/README.md}{Version-pinned README: installation, interfaces, reproduction, and limitations} \\
 \hline
 C8 & Support email for questions & \href{mailto:kapoorjishan2@gmail.com}{kapoorjishan2@gmail.com} \\
 \hline
@@ -69,7 +70,7 @@ The contribution combines a repository-bound status interface, a hit path that a
 System & Reuse basis & Returned information / execution state \\
 \midrule
 Bazel \cite{bazelremotecache} & Build-action hashes with declared inputs and outputs & Action metadata, output files, stdout and stderr. \\
-ToolCaching \cite{zhai2026toolcaching} & Tool name and serialized arguments; feature/TTL-based admission & Tool results and metadata; command-type requests excluded. \\
+ToolCaching \cite{zhai2026toolcaching} & Tool name and serialized arguments; feature/TTL-based admission & Tool results and metadata; requests classified as COMMAND excluded. \\
 TVCache \cite{kumar2026tvcache} & Tool-call prefixes; optional state-preserving annotations & Tool values; selective sandbox snapshots support continued rollout execution. \\
 ZeroRun & Reviewed local test inputs, command and runtime identity & Identified earlier success; no historical transcript or restored output artifacts. \\
 \bottomrule
@@ -80,17 +81,17 @@ ZeroRun & Reviewed local test inputs, command and runtime identity & Identified 
 
 \section{Software description}
 \subsection{Architecture and execution contract}
-The Python package separates manifest validation, input fingerprinting, result storage, isolated execution, and interfaces. A version-2 whole-task manifest identifies a command, declared input paths, environment policy, and digest-pinned Linux/amd64 container. Its supported cache contract requires a result-only computation, no output artifacts, and no cached stdout or stderr. The input closure and determinism are operator assumptions, not facts inferred from passing tests.
+Figure~\ref{fig:architecture} shows the package's manifest validation, input fingerprinting, result storage, isolated execution, and interfaces. A version-2 whole-task manifest identifies a command, declared input paths, environment policy, and digest-pinned Linux/amd64 container. Its supported cache contract requires a result-only computation, no output artifacts, and no cached stdout or stderr. The input closure and determinism are operator assumptions, not facts inferred from passing tests.
 
 \begin{figure}[htbp]
 \centering
 \setlength{\fboxsep}{7pt}
 \fbox{\parbox{0.88\linewidth}{\centering
-CLI / Codex skill / repository-bound MCP request\\[4pt]
+CLI / Codex skill / configured-task MCP request\\[4pt]
 $\downarrow$\\[4pt]
-Configuration and authority checks; runtime inspection; input fingerprint\\[4pt]
+Interface-specific checks; runtime inspection; declared-input fingerprint\\[4pt]
 $\downarrow$\\[4pt]
-Authenticated lookup under a task-key lock\\[6pt]
+Task-key lock and authenticated result lookup\\[6pt]
 \begin{tabular}{p{0.41\linewidth}p{0.41\linewidth}}
 \centering Eligible hit & \centering Miss or explicit verification\tabularnewline
 \centering Recompute fingerprint; require identity agreement & \centering Construct private source snapshot; execute isolated command\tabularnewline
@@ -98,7 +99,7 @@ Authenticated lookup under a task-key lock\\[6pt]
 \end{tabular}\\[6pt]
 Unsupported conditions produce fresh-required or refusal responses; no silent success.
 }}
-\caption{Whole-file result-reuse path. A hit returns result metadata, not the prior test transcript. The diagram describes software control flow, not an autonomous-agent evaluation.}
+\caption{Whole-file result-reuse path. A hit returns status metadata, not the prior transcript. This explanatory diagram was revised as editable LaTeX with OpenAI Codex desktop 26.901.6511.0 assistance and checked against the described implementation; it is not experimental image data.}
 \label{fig:architecture}
 \end{figure}
 
@@ -144,9 +145,9 @@ These commands inspect eligibility, request execution/reuse, and verify a stored
 \subsection{Client decisions and integration evidence}
 The reference consumer checks response consistency, \code{status}, \code{exit\_code}, and tool/protocol errors: \code{mode=reuse} alone is not success. It labels previous success explicitly, routes fresh failures to diagnostics, and requests fresh execution when required; it does not authorize tasks or execute its recommended fallback.
 
-A scripted consumer passed 14 response cases across nine categories, separating previous success, fresh success, failure and refusal, and rejecting inconsistent metadata. Positive cases are preserved API results in explicitly scripted MCP-shaped fixtures, not live agent responses. A separately installed server passed 11 checks across eight actual stdio requests, covering discovery, diagnostics and refusal; those requests did not execute user code. The bounded Codex attempt stopped after one diagnostic call: the server reported no matching manifest authority and remained observe-only. An additional commentary message also violated the prespecified exact-message harness; no execution, reuse or verification turn followed, and no retry was made. The research adapter and pre-model packaging corrections are separately source-bound; the runtime and authority checks are unchanged. This tests a client integration, not agent understanding, issue resolution or workflow speedup. No external user study is implied. A separately frozen, non-model diagnostic tested the trust-path handoff: its missing-variable control refused readiness, while explicitly supplying the same external authority path enabled readiness, fresh execution, reuse and verification in five checked calls. This validates the server configuration correction, not a corrected Codex run; the original live failure remains unchanged.
+The model-backed examples use one deterministic two-file synthetic fixture, not issue-resolution tasks. Client evaluation separated API execution from model-selected use. A scripted consumer passed 14 response cases; 11 installed-server checks covered eight discovery/diagnostic requests. All model attempts are retained. Trial~1 stopped at missing authority. Trial~2 forwarded the authority path and passed readiness, but Codex denied its next call because client approval was unavailable. With explicit, tool-specific operator preapproval, trial~3 completed four Codex~0.153.3 turns: readiness, fresh success, identified reuse and fresh verification. All four interpretations were correct; two separate fresh container executions agreed. The fifth, model-selected request invented an unsupported argument and was rejected before execution. The model declined success, but the protocol failed and stopped; the remaining decision and six interpretation cases were not run. Thus the core lifecycle passed, not the entire trial. The sparse input-parameter description motivated a separately recorded documented-use example; it does not establish the cause of the model error. That prospectively frozen demonstration supplied one neutral API card to both decision prompts. After non-model readiness and seeding, the model selected normal reuse for a status-only need and fresh verification for a fresh-evidence need; both decisions and two independent fresh checks passed. Six fixed no-tool interpretation cases also passed, including fresh failure, refusal, and rejecting a hit when fresh diagnostics were required. All eight model turns are retained, without retries. This documents bounded use, not a causal documentation effect or population accuracy. An account-free laboratory guide additionally exercises missing-authority refusal, authorized readiness, fresh success, reuse and verification through the actual server. After an external-adapter check, a clean public clone and new external installation reproduced the published procedure with 36 matching runtime modules. The recorded installation took 18.6~s and the server check 11.3~s, excluding cloning, prior Docker setup and researcher preparation. These are researcher-executed checks, not independent user observations.
 
-The operating guide separates these evidence classes from operator-approved application use.
+All model calls used the CLI's default model; the transcripts do not identify the backing model. These are observations of the recorded client configuration, not a model-population accuracy estimate. The operating guide separates laboratory examples from operator-approved application use.
 
 \subsection{Real AI-workflow observations}
 We also provide a read-only analysis of the public SWE-rebench OpenHands trajectories \cite{swerebenchtrajectories,badertdinov2025swerebench}. After inspecting ten separate pilot rows, a fixed SHA-256 ordering selected 128 rows from the remaining 67,064. Selection did not use repository, resolution, repetition, or performance. The raw responses, source notices, retrieval receipts, exclusions, and deterministic parser are available. An initial rate-limited attempt is retained, followed by a complete recovery of the same selected rows.
@@ -177,13 +178,15 @@ This standalone case ran after the timing VM interruption, with independently ch
 \subsection{Reproducible validation and measured cost}
 Researchers can change a target or input boundary while preserving fresh-oracle comparisons and explicit denominators. The kit retains raw invocations, source hashes, fixed manifests, failures, setup receipts, and analysis scripts, making qualification behavior and unfavorable costs inspectable.
 
-Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient. The supplied snapshot-first ablation isolates staging; it is not an independent competing cache.
+Codex assisted software, experiment and analysis implementation and manuscript preparation. Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached outcomes for their reference. These are automated cross-checks, not independent human replication.
+
+Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient.
 
 The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. Two reversed-order seven-request sequences per library yielded 70 fresh-result agreements and 40 optimized-arm whole-task hits. The original mean conditional hit latency reduction against the ablation was 67.3--71.0\%. Complete-sequence direct/optimized ratios were 0.85--2.09. For more-itertools, optimized execution was 16.6\% slower overall than snapshot-first reuse, despite faster hits. These results are retained, including large lifecycle delays and their order sensitivity.
 
 To examine timing stability, a prospectively recorded extension used six independently initialized blocks on each of the four previously observed short subjects, covering every ordering of direct pytest, snapshot-first reuse, and optimized reuse. The seven request states were unchanged. All arms used the same 900-second test-execution bound and container resource limits. Docker control phases in the direct/oracle helpers used 30-second limits, whereas product inspection and cleanup used 60-second limits; complete invocation timings include these different lifecycle paths. Timings cover complete helper/API invocations; host telemetry and receipt writing are outside every timed boundary. Dependency preparation and block setup are separately retained. This is a replication on seen subjects, not a new holdout or a replacement for more-itertools.
 
-Across 24 completed planned blocks, all 168 requests agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. Table~\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No completed block or outlying invocation within those blocks is dropped; interrupted-attempt costs are reported separately. The complete-block record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension. A VirtualBox host assertion aborted the VM after 21 complete blocks and part of Packaging block four. A separately recorded amendment reran only the unfinished preselected blocks four through six from independent initial states, using the unchanged frozen driver. The original protocol, partial invocation files, zero-byte crash remnants, failed recovery preflight, and surviving timings remain available. This is recovered coverage of the plan, not uninterrupted completion of its original no-retry protocol. Packaging's unflushed original environment-setup total is unavailable; its setup-inclusive ratio is therefore not reported. The interrupted attempt adds 1 complete request, 1 partially recorded request, and an unflushed invocation-only directory with no outcomes. Its surviving arm costs are retained separately; including those costs changes Packaging's direct/optimized ratio to 1.029.
+Across 24 completed planned blocks, all 168 requests agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. Table~\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No completed block or outlying invocation within those blocks is dropped; interrupted-attempt costs are reported separately. The complete-block record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension. A VirtualBox host assertion interrupted execution after 21 complete blocks and part of Packaging block four. A recorded amendment reran only the unfinished preselected blocks four through six using the unchanged driver. Original failures, partial records, crash remnants and recovery preflight failures remain available. This is recovered coverage, not uninterrupted completion of the no-retry protocol. Packaging's unflushed original setup total is unavailable, so its setup-inclusive ratio is omitted. The interrupted attempt additionally retains 1 complete request, 1 partial request and an outcome-less invocation directory. Including its surviving arm costs changes Packaging's direct/optimized ratio to 1.029.
 
 \begin{table}[htbp]
 \centering\small
@@ -214,13 +217,13 @@ For an integrator, the benefit is a small Python package with a result contract 
 
 The evidence does not establish the prevalence of reusable tasks, population-wide speedup, model-token savings, improved patch quality, user productivity, or commercial demand. The trajectory audit is descriptive and resource-bounded; repository and issue clustering is reported. Its zero barrier-free pairs do not prove zero state-restoration opportunities, but they prevent interpreting repetition as measured eligibility. The controlled library targets are convenience workloads on one constrained VM, and original and replicated observations are not statistically independent datasets. The VM shared a Windows host with publication and validation tooling; host activity outside the VM was not fully isolated. Complete-block spreads and influential observations are reported without treating thousands of nested test nodes as independent samples.
 
-No external users, production deployments, or third-party publications using ZeroRun are claimed. Application-level evaluation must still establish how agents interpret reused status and whether qualified tasks occur often enough to benefit complete workflows. The artifact provides components for that study, not its outcome.
+No external users, production deployments, or third-party publications using ZeroRun are claimed. The client results are controlled examples. Natural-task agent behavior, generalization across clients and models, and whether qualified tasks occur often enough to benefit complete workflows remain unmeasured.
 
 \section{Conclusions}
 ZeroRun provides reusable software for explicitly identified test-status reuse in AI coding-tool integrations. Its whole-file hit path removes execution staging when no code will run, while retaining full identity checks and the existing fresh path. The public package combines runnable examples, fresh-oracle comparisons, independent boundary checks, and a real-trajectory observation tool. The results support conditional utility and expose overhead and applicability limits. The release is a research and integration artifact, not evidence of universal AI acceleration.
 
 \section*{Data and software availability}
-Code, raw evidence, analysis scripts, and reproduction instructions are provided at \url{https://github.com/floxy-21/zerorun-research}. Table 1 pins the release used by the article; the source-binding manifest connects it to runtime revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}. Public trajectory responses are redistributed with CC-BY-4.0 notices and unmodified source attribution. Private cache-authentication fixture keys and operator authority are not distributed.
+Code, research data and reproduction instructions are deposited in the public ZeroRun repository \cite{kapoor2026zerorunartifact}. Table 1 pins the release; its manifest binds runtime revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}. Supplementary material 1, \code{ZeroRun\_SoftwareX\_reviewer.zip}, contains the inventoried software, raw evidence and analysis tools; its README explains installation and reproduction. Public trajectory responses retain CC-BY-4.0 notices and source attribution. Private cache-authentication keys and operator authority are excluded.
 
 \section*{Funding}
 This research received no specific grant from funding agencies in the public, commercial, or not-for-profit sectors.

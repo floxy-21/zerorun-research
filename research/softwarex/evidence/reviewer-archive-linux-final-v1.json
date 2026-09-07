@@ -1,0 +1,85 @@
+{
+  "schema": "zerorun.softwarex-final-reviewer-archive-replay.v1",
+  "recorded_utc": "2026-09-07 02:54:41 UTC",
+  "passed": true,
+  "scope": "Post-build internal Linux replay of the exact reviewer ZIP; coordinating-assistant observation with original PTY tool output, not external human reproduction or a new experiment.",
+  "archive": {
+    "path": "output/submission/ZeroRun_SoftwareX_reviewer.zip",
+    "sha256": "d34dbaef41d23748d37e739e688c16b5a6f06d6518b5209b6fe29a6d0ca31e54",
+    "bytes": 20965246,
+    "members": 2918,
+    "transferred_sha256_checked_before_extraction": true
+  },
+  "extraction": {
+    "new_directory": "/tmp/zerorun-reviewer-final-v2-jDRCFkeB",
+    "private_directory_mode": "0700",
+    "source_unchanged_by_container": "read-only bind mount"
+  },
+  "container": {
+    "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "python": "CPython 3.12.14",
+    "network": "none",
+    "read_only": true,
+    "cap_drop": "ALL",
+    "user": "invoking host UID:GID from id -u and id -g",
+    "no_new_privileges": true,
+    "cpus": 2,
+    "memory": "2g",
+    "pids_limit": 128,
+    "model_credentials_mounted": false
+  },
+  "commands": [
+    [
+      "research.sqj.strengthening.validate_traces",
+      "--check"
+    ],
+    [
+      "research.sqj.analyze_comparison",
+      "--check"
+    ],
+    [
+      "research.softwarex.analysis_reproduction",
+      "--check"
+    ],
+    [
+      "research.sqj.strengthening.analyze_state_rejoin",
+      "--directory",
+      "research/sqj/strengthening/evidence/agent-state-rejoin-v3",
+      "--replication-directory",
+      "research/sqj/strengthening/evidence/short-randomized-replication-v1",
+      "--output",
+      "research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json",
+      "--check"
+    ],
+    [
+      "research.softwarex.analyze_operating_region",
+      "--check"
+    ],
+    [
+      "research.softwarex.build_extension_evidence",
+      "--check"
+    ],
+    [
+      "research.softwarex.build_application_evidence",
+      "--check"
+    ],
+    [
+      "research.softwarex.build_paper",
+      "--check"
+    ]
+  ],
+  "invocation": "analysis_python -m MODULE ARGS; analysis_python is the exact host-UID/GID pinned-container function in REPRODUCIBILITY.md",
+  "checks_reporting_success": 8,
+  "original_failed_model_trials_remain_failed": true,
+  "new_model_calls": 0,
+  "new_test_workload_executions": 0,
+  "numerical_tolerance_added": false,
+  "raw_tool_output_segments": [
+    "floxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<lab-23Ydu6p7/source$ analysis_root=\"$reviewer_root\"\r\n< research.sqj.strengthening.validate_traces --check\r\n{\"validated\": true, \"main_selected\": 128, \"main_valid\": 122, \"main_repeat_pairs\"\r\n\u001b[23;80H\": 120, \"main_no_intervening_barrier_pairs\": 0}\r\n<s_python -m research.sqj.analyze_comparison --check\r\n{\"validated_requests\": 70, \"whole_task_challenges_pass\": true, \"output\": \"/artif\r\n\u001b[23;80Hfact/research/sqj/generated\"}\r\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<-m research.softwarex.analysis_reproduction --check\r\n{\"anchors_verified\": 6, \"check_only\": true, \"counts\": {\"complete_blocks\": 24, \"e\r\n\u001b[23;80Hexpected_cache_behaviors\": 168, \"fresh_agreements\": 168, \"fresh_node_observations\r\n\u001b[23;80Hs\": 19368, \"observed_complete_requests\": 168, \"optimized_hits\": 96}, \"numeric_tol\r\n\u001b[23;80Hlerance_applied\": false, \"order_insensitive_field\": \"unparseable_zero_byte_receip\r\n\u001b[23;80Hpts\", \"passed\": true, \"raw_evidence_and_frozen_analyzers_unchanged\": true, \"runti\r\n\u001b[23;80Hime\": {\"implementation\": \"cpython\", \"major_minor\": [3, 12]}, \"schema\": \"zerorun.a\r\n\u001b[23;80Hanalysis-reproduction-check.v1\"}\r\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<ning/evidence/state-rejoin-analysis-v1.json --check\r\n{\"completed\": true, \"errors\": []}\r\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<research.softwarex.analyze_operating_region --check\r\n{\"completed\": true, \"subjects\": 4, \"requests\": 168, \"check_only\": true}\r\n<research.softwarex.build_extension_evidence --check\r\n{\"completed\": true, \"preview\": false, \"live_recorded\": true, \"live_pass\": false}\u001b[24;1H\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<search.softwarex.build_application_evidence --check\r\n{\"reconciled\": true, \"path\": \"/artifact/research/softwarex/generated/application\r\n\u001b[23;80Hn-evidence-v1.json\", \"live\": {\"path\": \"research/softwarex/evidence/application-cl\r\n\u001b[23;80Hlient-v2/receipt.json\", \"sha256\": \"007eb8344bf468b28b28cf7e7b9508dc335eaaa6bb30f4\r\n\u001b[23;80H40bce30b0ef046eec08\", \"freeze_path\": \"research/softwarex/evidence/application-cli\r\n\u001b[23;80Hient-v2/receipt.freeze.json\", \"freeze_sha256\": \"ee81553542f20617c2a4313b8a62fa864\r\n\u001b[23;80H41fb945da250cf92bfccfcaf69f76e6a\", \"fresh_oracle_calls_passed\": 0, \"live_turns_co\r\n\u001b[23;80Hompleted\": 2, \"live_turns_passed\": 1, \"core_lifecycle_pass\": false, \"decision_tur\r\n\u001b[23;80Hrns_passed\": 0, \"common_six_turn_cache_key\": false, \"interpretation_cases_complet\r\n\u001b[23;80Hted\": 0, \"interpretation_cases_passed\": 0, \"fresh_oracle_calls\": 0, \"fresh_oracle\r\n\u001b[23;80Hes_pass\": false, \"all_planned_checks_pass\": false, \"population_accuracy_claim\": f\r\n\u001b[23;80Hfalse, \"autonomous_workflow_speedup_claim\": false}}\r\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<is_python -m research.softwarex.build_paper --check\r\n{\"validated\": true, \"preview\": false, \"abstract_words\": 114, \"destination\": \"/ar\r\n\u001b[23;80Hrtifact/research/softwarex/paper\"}\r\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$ \r<lab-23Ydu6p7/source$ printf '%s\\n' \"$reviewer_root\"\r\n/tmp/zerorun-reviewer-final-v2-jDRCFkeB\r\nfloxy@ZeroRun:/tmp/zerorun-lab-23Ydu6p7/source$\u001b[1C"
+  ],
+  "raw_output_note": "Original interactive PTY output is preserved with its control characters and terminal wrapping. The assistant classified the eight printed successful check results; this is not a separate instrumented exit-code harness.",
+  "included_inside_checked_archive": false,
+  "author_approval_recorded": false,
+  "journal_submitted": false,
+  "payment_made": false
+}
