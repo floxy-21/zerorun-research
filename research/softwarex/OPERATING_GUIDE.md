@@ -1,4 +1,4 @@
-# Operating ZeroRun 0.5.1
+# Operating ZeroRun 0.5.2
 
 This guide describes the **public research release** and its shipped interfaces. Whole-task reuse returns an explicitly identified previous successful exit status. It does not reproduce the previous stdout/stderr, restore generated files, or assert that an AI agent will make the same decision as after fresh execution.
 
@@ -6,7 +6,11 @@ The commands below are **operator instructions, not evidence that they have been
 
 First-use path: [install](#1-install-outside-the-repository-you-will-test), [inspect](#2-inspect-the-target-before-executing-anything), [configure](#3-configure-one-reviewed-whole-task-command), [review and authorize](#4-make-the-manual-authorization-decision), [run and verify](#5-run-identify-reuse-and-verify), then [connect the client](#6-connect-an-mcp-client-or-codex). The [tool and response reference](#the-seven-shipped-tools) and [optional node-level workflow](#7-optional-separately-reviewed-pytest-node-reuse) are separate.
 
-To try the installed server without a Codex account or a real project, use the [account-free Linux laboratory quickstart](QUICKSTART_LAB.md). It creates only the explicitly approved built-in synthetic fixture and records fresh-install and actual STDIO results separately.
+To try the installed server without a Codex account or a real project, use the [current 0.5.2 Linux laboratory quickstart](QUICKSTART_052.md). It creates only the explicitly approved built-in synthetic fixture and records fresh-install and actual STDIO results separately. The retained `QUICKSTART_LAB.md` describes the historical 0.5.1 procedure; its frozen checker is not the current installation route.
+
+For a deliberate new laboratory attempt after fixing a prerequisite, choose a new tools-environment directory and new installation and check receipt filenames. Preserve the previous attempt and record the intervention as described in the versioned guide; changing only the receipt filename does not make an existing environment new.
+
+For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12–3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
 
 ## 1. Install outside the repository you will test
 
@@ -15,14 +19,14 @@ CLI installation needs Python 3.10 or later. The demonstrated whole-task executi
 Use separate locations for the public source, installed tools, and target project. For example, on Linux:
 
 ```sh
-git clone https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
+git clone --depth 1 --branch softwarex-0.5.2-20260907 https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
 python3 -m venv /absolute/path/zerorun-tools
-/absolute/path/zerorun-tools/bin/python -m pip install /absolute/path/zerorun-research
+/absolute/path/zerorun-tools/bin/python -m pip install --no-index /absolute/path/zerorun-research/output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl
 /absolute/path/zerorun-tools/bin/zerorun --version
 /absolute/path/zerorun-tools/bin/zerorun --help
 ```
 
-For the manuscript's exact version, check out its immutable C2 code commit before installation. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal install, not an editable install, makes the installed package independent of subsequent checkout edits.
+The submission tag resolves to `0528905a52b74df78aa4e5a09219df34620282dd`; check it with `git -C /absolute/path/zerorun-research rev-parse HEAD`. The manuscript's earlier immutable C2 pointer identifies the code/evidence stage. The included wheel installs without a source build or network access. Use a separate source working copy if you choose to build with setuptools, because a local source installation creates build artifacts there. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal external installation keeps the tools independent of subsequent checkout edits.
 
 On Windows, the equivalent external environment has `Scripts\python.exe` and `Scripts\zerorun.exe`. Read-only inspection can be performed there, but the Linux/amd64 execution requirement remains. Research-analysis dependencies are separate from the runtime package, which has no third-party Python runtime dependencies.
 
@@ -53,7 +57,7 @@ docker pull --platform linux/amd64 REVIEWED_IMAGE_NAME@sha256:REVIEWED_64_HEX_DI
 docker image inspect REVIEWED_IMAGE_NAME@sha256:REVIEWED_64_HEX_DIGEST
 ```
 
-These are placeholders, not a known runnable image. Check the result and image provenance. A tag such as `latest`, a source lock file, or a digest copied without review is not an interchangeable runtime identity. Normal MCP `run_tests` and `run_pytest` calls **do not pull missing images**. Explicitly approved managed preparation is a separate option described below.
+These are placeholders, not a known runnable image. Check the result and image provenance. A tag such as `latest`, a source lock file, or a digest copied without review is not an interchangeable runtime identity. MCP preflight refuses an absent image without pulling it. Keep the pinned image available for the entire run: if runtime availability changes after preflight, later inspections can attempt to pull that pinned image. The preflight check therefore does not guarantee zero image acquisition under concurrent image removal. Explicitly approved managed preparation is a separate option described below.
 
 Write or review the target's `.zerorun.json` using the reference. Whole-task reuse does not require a pytest-node profile. In particular, do not generate or activate node-level reuse merely to make a whole-task example work.
 
@@ -149,7 +153,7 @@ env = { ZERORUN_TRUST_ROOT = "/absolute/operator-owned/zerorun-trust" }
 
 Replace each path with the reviewed local value. The authority directory must be the exact one used for manual exact-hash authorization, outside the repository and not containing it. Keep it operator-controlled and non-linked. Merge the settings into the existing server entry; do not create duplicate TOML tables or silently replace another registration. An alternative is `env_vars = ["ZERORUN_TRUST_ROOT"]`, with that single value already set in the client's host environment. Use one explicit method and restart the server/client. The [official OpenAI MCP guide](https://learn.chatgpt.com/docs/extend/mcp) documents both `env` and `env_vars`.
 
-**Managed-initialization limitation:** the frozen ZeroRun 0.5.1 `init --codex` registration checker deliberately rejects nonempty `env` or `env_vars`. The custom setting above is therefore an operator-managed MCP route, not a correction implemented by managed initialization. Rerunning `init --codex` can report a conflict; do not remove the necessary authority setting merely to make that checker green. Check readiness through the actual MCP `doctor` result instead. Do not put the override into task `env`, forward arbitrary host variables, copy authority keys into a checkout, or let the AI agent authorize itself.
+**Managed-initialization limitation:** the `init --codex` registration checker inherited from 0.5.1 remains unchanged in 0.5.2 and deliberately rejects nonempty `env` or `env_vars`. The custom setting above is therefore an operator-managed MCP route, not a correction implemented by managed initialization. Rerunning `init --codex` can report a conflict; do not remove the necessary authority setting merely to make that checker green. Check readiness through the actual MCP `doctor` result instead. Do not put the override into task `env`, forward arbitrary host variables, copy authority keys into a checkout, or let the AI agent authorize itself.
 
 The original [V1 Codex trial](evidence/live-client-v1/receipt.json) stopped after one doctor call: the tool reported `UNTRUSTED`, and extra agent commentary violated that trial's fixed completion-marker rule. Its separate [non-model diagnostic](evidence/live-client-v1/non-model-diagnostic.json) passed five STDIO checks, but did not itself establish a model-backed lifecycle. Both records remain unchanged. Later prospective trials separately exposed client-side approval refusal (V2) and an unsupported model-generated argument after a successful four-turn lifecycle (V3). The final API-guided demonstration passed two model-selected actions, two separate fresh oracle checks, and six no-tool interpretation cases. Read [all application results and their exact denominators](APPLICATION_RESULTS.md); these bounded synthetic observations establish neither production reliability nor an AI workflow speedup.
 
@@ -235,7 +239,7 @@ Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the
 
 ## Inspect or reproduce the bounded integration experiments
 
-Offline inspection needs no Codex account or model credits. From the release root, run `python -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. These validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
+Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12–3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.2 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
 
 ### Historical V1 and its non-model diagnostic only
 

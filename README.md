@@ -14,6 +14,28 @@ ZeroRun can reuse a prior successful **result** for explicitly configured determ
 
 The submission artifacts, when included in the checked snapshot, are the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence release asset](https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). The complete reviewer ZIP exceeds GitHub's repository-file limit and is distributed as a release asset; its exact size and SHA-256 are recorded in the public manifest and artifact receipt. Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for the exact checked version/hashes and remaining author-controlled steps. Completion requires a receipt bound to the actual current distribution; a retained 0.5.1 receipt or the existence of an archive is not sufficient. The manuscript's immutable code/evidence pointer is intentionally distinct from the later submission snapshot. No journal submission or payment is performed by publishing these files.
 
+## Verify the submission first
+
+Use a clean checkout and **CPython 3.12–3.14**. Verification needs no package installation, Docker, AI account, or model credits. If starting from scratch, these Git commands select the published submission:
+
+```sh
+git clone --depth 1 --branch softwarex-0.5.2-20260907 https://github.com/floxy-21/zerorun-research.git zerorun-review
+cd zerorun-review
+git rev-parse HEAD
+```
+
+The printed commit must be `0528905a52b74df78aa4e5a09219df34620282dd`. From the checkout root, download the separately distributed reviewer ZIP, then run the offline verifier:
+
+```sh
+python3 --version
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip
+python3 -B -m research.softwarex.verify_submission
+```
+
+Use a Python executable reporting 3.12, 3.13, or 3.14; replace `python3` if necessary. In Windows PowerShell, use `python` and `curl.exe` with the same arguments. The download needs network access; the verification command does not. Exit status `0` and JSON `"passed": true` mean all required checks passed. Keep any redirected report outside the checkout.
+
+**Use the Git checkout for complete verification, not an extracted reviewer ZIP.** The ZIP contains the earlier sealed evidence inventory and cannot contain itself or the later artifact receipt. Its bundled README is preserved historical text; use this current procedure and the [verification guide](research/softwarex/VERIFY_SUBMISSION.md). Do not install from source, add notes, or run tests inside the pristine verification copy. An external virtual environment alone does not prevent `pip install .` from creating build files in the source directory.
+
 ## Install
 
 For an account-free runnable Linux example, start with the [0.5.2 laboratory quickstart](research/softwarex/QUICKSTART_052.md). It records a new external installation and five actual synthetic STDIO requests; no Codex login or historical evidence bundle is needed.
@@ -23,7 +45,7 @@ Python 3.10 or later is required. From this repository root, create a fresh envi
 ```sh
 study_env="$(mktemp -d)/venv"
 python3 -m venv "$study_env"
-"$study_env/bin/python" -m pip install .
+"$study_env/bin/python" -m pip install --no-index output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl
 "$study_env/bin/python" -m zerorun --help
 ```
 
@@ -33,44 +55,31 @@ Windows PowerShell:
 $studyEnv = Join-Path $env:TEMP ('zerorun-env-' + [guid]::NewGuid().ToString('N'))
 python -m venv $studyEnv
 $studyPython = Join-Path $studyEnv 'Scripts/python.exe'
-& $studyPython -m pip install .
+& $studyPython -m pip install --no-index output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl
 & $studyPython -m zerorun --help
 ```
 
-The package has no third-party Python runtime dependency; building uses setuptools. Pinned research containers, Git, Docker, and pytest are additional requirements for the relevant experiments. Recorded whole-task timings were obtained on Linux with a pinned Linux/amd64 Python container; do not assume those timings or all permission semantics transfer to Windows or macOS.
+These commands install the included, checked wheel without a network download or a source build. The package has no third-party Python runtime dependency. If building from source with setuptools, use a separate working copy so build artifacts cannot contaminate the verified snapshot. Pinned research containers, Git, Docker, and pytest are additional requirements for the relevant experiments. Recorded whole-task timings were obtained on Linux with a pinned Linux/amd64 Python container; do not assume those timings or all permission semantics transfer to Windows or macOS.
 
 **For Codex/MCP integration, keep the ZeroRun and Codex console launchers outside the target checkout.** See the [operating guide](research/softwarex/OPERATING_GUIDE.md) for manual exact-byte authorization, seven MCP tools, and the fresh/reused/error response contract. The [manifest v2 reference](research/softwarex/MANIFEST_REFERENCE.md) explains the result-only fields and input-review requirements. Neither installation nor an automatically generated candidate authorizes reuse.
 
 ## Offline evidence checks
 
-Run these from the repository root with the installed environment's Python. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**; this is separate from the runtime and laboratory quickstart's Python 3.10+ requirement. The older float-aggregation behavior is not byte-identical to the archived canonical analysis. The versioned reproduction check also reconciles one unordered crash-file inventory without changing measurements or permitting numeric tolerances. See [the portability record](research/softwarex/evidence/analysis-portability-v1/README.md).
+Run these from the repository root using **CPython 3.12–3.14**; package installation is unnecessary. This is separate from the runtime and laboratory quickstart's Python 3.10+ requirement. The older float-aggregation behavior is not byte-identical to the archived canonical analysis. The versioned reproduction check also reconciles one unordered crash-file inventory without changing measurements or permitting numeric tolerances. See [the portability record](research/softwarex/evidence/analysis-portability-v1/README.md).
 
-**Verify the complete submission snapshot first**, before generating any new test evidence. First download the separately distributed reviewer ZIP once, from the repository root:
-
-```sh
-curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip
-# Windows PowerShell uses curl.exe with the same arguments.
-```
-
-The source ZIP is already in Git. The reviewer ZIP is a declared external asset, ignored by Git and accepted only at its recorded path with the exact recorded bytes. A missing or altered reviewer ZIP fails complete verification. After this download, the offline verifier checks the public file manifest, both submission archives and evidence reconciliations, then verifies that the snapshot is unchanged. It does not execute recorded agent commands or rerun repository experiments:
-
-```sh
-"$study_env/bin/python" -B -m research.softwarex.verify_submission
-# Windows PowerShell:
-# & $studyPython -B -m research.softwarex.verify_submission
-```
+Complete submission verification is the first procedure above. It checks the public file manifest, both submission archives and evidence reconciliations, then verifies that the snapshot is unchanged. A missing or altered reviewer ZIP fails verification. It does not execute recorded agent commands or rerun repository experiments.
 
 The individual commands below are useful for investigating a specific analysis check; they do not replace complete snapshot verification:
 
 ```sh
-"$study_env/bin/python" -B -m research.sqj.strengthening.validate_traces --check
-"$study_env/bin/python" -B -m research.sqj.analyze_comparison --check
-"$study_env/bin/python" -B -m research.softwarex.analysis_reproduction --check
-"$study_env/bin/python" -B -m research.softwarex.analyze_operating_region --check
-"$study_env/bin/python" -B -m research.softwarex.build_extension_evidence --check
-"$study_env/bin/python" -B -m research.softwarex.build_application_evidence --check
+python3 -B -m research.sqj.strengthening.validate_traces --check
+python3 -B -m research.sqj.analyze_comparison --check
+python3 -B -m research.softwarex.analysis_reproduction --check
+python3 -B -m research.softwarex.analyze_operating_region --check
+python3 -B -m research.softwarex.build_extension_evidence --check
+python3 -B -m research.softwarex.build_application_evidence --check
 # Windows PowerShell uses the corresponding form:
-# & $studyPython -B -m research.softwarex.build_extension_evidence --check
+# python -B -m research.softwarex.build_extension_evidence --check
 ```
 
 To run the included unit tests, install pytest in the same environment and use a new temporary directory for each run:
@@ -108,13 +117,15 @@ This optional test run creates new evidence files inside the checkout, so it cha
 
 ## What the evidence establishes
 
+**Practical interpretation.** Consumer wait time and complete producer-consumer cost answer different questions. In the clean dependency-image pilot repeat, consumer latency was about 71% lower while complete chain time was 10.7% higher. The two completed pycparser cases in the 24-case image main cohort had 23.2% lower complete chain time; that partial cohort is evidence of bounded feasibility, not a prevalence estimate. Selection was frozen prospectively, and unsupported, incomplete and unexecuted cases remain in the ledger. The original copy pilot's 42.3% overhead also remains visible. These observations support workloads where identified prior status is useful enough to justify qualification and checking costs; they do not establish population-wide acceleration.
+
 The controlled experiments measure complete request costs and compare fresh outcomes under their stated contract, including failure and restoration requests. The independent inventory tests examine input-key boundaries; they are not a proof that arbitrary programs are deterministic.
 
 The separate public AI-trace cohort contains 128 selected episodes and 122 analyzable episodes, with six exclusions retained. All 120 exact-command repeat pairs have intervening barriers. These observations motivate explicit state validation; they are **not measured cache hits, AI speedups, or demonstrated reuse eligibility**. The ten-episode parser pilot and the first rate-limited acquisition attempt remain separate and preserved.
 
 The [application-results ledger](research/softwarex/APPLICATION_RESULTS.md) preserves three earlier adverse client trials and the successful bounded API-guided demonstration. V3 completed four actual model lifecycle turns and two fresh oracle checks before an unsupported argument stopped its next turn. The guided treatment separately passed two model-selected actions, two fresh oracles, and six no-tool interpretation cases. These are synthetic interface demonstrations, not eight autonomous coding tasks, population accuracy, or a causal evaluation of the documentation.
 
-The historical 0.5.1 [public quickstart](research/softwarex/QUICKSTART_LAB.md) passed from a fresh public clone with no intervention: seven installation commands and five actual STDIO stages, with all 36 runtime files bound. The [raw installation](research/softwarex/evidence/quickstart-public-v1/install.json) and [server check](research/softwarex/evidence/quickstart-public-v1/check.json) are separate from model evidence and are internal reproduction, not external user validation. The original fine-grained 5x/50% product gates remain unmet; they are not claims made by this SoftwareX manuscript.
+The current 0.5.2 [laboratory procedure](research/softwarex/QUICKSTART_052.md) has separately retained [public installation](research/softwarex/evidence/quickstart-public-052-v1/install.json) and [five-stage STDIO](research/softwarex/evidence/quickstart-public-052-v1/check.json) receipts. The historical 0.5.1 [public quickstart](research/softwarex/QUICKSTART_LAB.md) and its [installation](research/softwarex/evidence/quickstart-public-v1/install.json) and [server check](research/softwarex/evidence/quickstart-public-v1/check.json) remain separate. Use the 0.5.2 procedure for a new run. Both are internal reproduction, not external user validation or model evidence. The original fine-grained 5x/50% product gates remain unmet; they are not claims made by this SoftwareX manuscript.
 
 There are no measured external users, commercial deployments, or established market-demand results in this release. Its contribution is a reusable tool and evaluation artifact with explicit limitations, not a new general caching algorithm or a claim of journal acceptance.
 
@@ -123,6 +134,8 @@ There are no measured external users, commercial deployments, or established mar
 The final submission files, when present under `output/submission/`, are assembled in two stages. First, the checked code/evidence/manuscript inventory is frozen and used to build `SoftwareX_source.zip` and `ZeroRun_SoftwareX_reviewer.zip`. Each archive contains its own exact member inventory; the reviewer archive also preserves the **pre-archive** `PUBLIC_RELEASE_MANIFEST.json`. The artifact-build receipt identifies the input inventory and the resulting archive hashes.
 
 Second, the public release is refreshed to include those completed archives and their receipt. Its newer root manifest hashes the archive bytes, so its hash intentionally differs from the earlier manifest sealed inside the reviewer archive. The reviewer archive does not contain itself, the subsequent enclosing manifest, or the later artifact receipt. This acyclic binding permits independent verification without a circular self-hash. Initial-publication and final-readiness receipts describe their own observed stage; they do not establish author approval or journal acceptance.
+
+The tag `softwarex-0.5.2-20260907` and its archives remain sealed at `0528905a52b74df78aa4e5a09219df34620282dd`. Later navigation corrections on `main` do not rewrite the archived README, either quickstart protocol, or the manuscript. The published fresh-VM verification report identifies that tagged commit; use each later snapshot's own manifest and verification result for its updated documentation.
 
 The author-facing cover letter, highlights, declaration checklist, and final manuscript must still be reviewed and approved by Jishan Kapoor. Artifact preparation does not submit the paper, select a publisher agreement, or authorize a payment.
 

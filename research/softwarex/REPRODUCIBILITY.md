@@ -2,21 +2,23 @@
 
 The manuscript is **ZeroRun: Reproducible test-result reuse for AI coding tools**, by Jishan Kapoor. There are three separate workflows below. Reading the recorded evidence does not require Docker, private GitHub access, an AI subscription, or model API credits.
 
+Start with [complete offline submission verification](VERIFY_SUBMISSION.md) using CPython 3.12–3.14, before installation, testing, or local notes change the checkout. It needs no package installation. Use a clean Git checkout for that command; the extracted reviewer ZIP contains the earlier sealed inventory and original README, so it cannot satisfy complete final-snapshot verification. The individual checks below remain available for inspecting that extracted evidence.
+
 ## 1. Install and inspect the submitted software
 
-Clone the public `floxy-21/zerorun-research` repository at the exact commit given in the manuscript's metadata. Use a fresh Python environment. The package has no third-party runtime Python dependencies; its source build uses pinned setuptools. The release's root `README.md` supplies Linux and Windows commands. Do not accidentally substitute a globally installed ZeroRun for this version.
+Clone the public `floxy-21/zerorun-research` repository at submission tag `softwarex-0.5.2-20260907`, which resolves to `0528905a52b74df78aa4e5a09219df34620282dd`. The earlier manuscript metadata pointer identifies its code/evidence stage, rather than the later completed submission. Use a fresh external Python environment. The package has no third-party runtime Python dependencies; the included wheel avoids a source build and network installation. The release's root `README.md` supplies Linux and Windows commands. Do not accidentally substitute a globally installed ZeroRun for this version.
 
 On Linux, from the release root:
 
 ```sh
 study_env="$(mktemp -d)/venv"
 python3 -m venv "$study_env"
-"$study_env/bin/python" -m pip install .
+"$study_env/bin/python" -m pip install --no-index output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl
 "$study_env/bin/python" -m zerorun --version
 "$study_env/bin/python" -m zerorun --help
 ```
 
-Keep the environment outside the source checkout. For Windows PowerShell commands, use the root README's external-environment example. CLI inspection is cross-platform; the demonstrated whole-task result-reuse mode requires Linux/amd64 and Docker. An unsupported host is not evidence that Linux reuse works there. The operating workflow and exact manifest contract are documented in `OPERATING_GUIDE.md` and `MANIFEST_REFERENCE.md`.
+Keep the environment outside the source checkout. If building from source with setuptools, use a separate working copy: local source installation can create build and `.egg-info` files even when its virtual environment is external. For Windows PowerShell commands, use the root README's external-environment example. CLI inspection is cross-platform; the demonstrated whole-task result-reuse mode requires Linux/amd64 and Docker. An unsupported host is not evidence that Linux reuse works there. The operating workflow and exact manifest contract are documented in `OPERATING_GUIDE.md` and `MANIFEST_REFERENCE.md`. A new account-free server demonstration uses [QUICKSTART_052.md](QUICKSTART_052.md).
 
 The public release uses `src/zerorun` for packaging. The frozen original experiment source is separately included under `research/sqj/source-final`, and exact Git source bytes under `source-ci-final`. The binding manifest records physical newline differences. Do not silently replace the frozen experiment source with an installed version when reproducing timings.
 
@@ -25,20 +27,20 @@ The public release uses `src/zerorun` for packaging. The frozen original experim
 Run from the completed submission snapshot or extracted reviewer archive using its environment. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**, independently of the runtime and account-free quickstart's Python 3.10+ support. Older Python float aggregation is not byte-identical to the archived analysis; adding `tomli` does not fix that difference. The [portability record](evidence/analysis-portability-v1/README.md) explains the separately versioned check and retained earlier outputs. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
 
 ```sh
-"$study_env/bin/python" -m research.sqj.strengthening.validate_traces --check
-"$study_env/bin/python" -m research.sqj.analyze_comparison --check
-"$study_env/bin/python" -m research.softwarex.analysis_reproduction --check
-"$study_env/bin/python" -m research.sqj.strengthening.analyze_state_rejoin \
+"$study_env/bin/python" -B -m research.sqj.strengthening.validate_traces --check
+"$study_env/bin/python" -B -m research.sqj.analyze_comparison --check
+"$study_env/bin/python" -B -m research.softwarex.analysis_reproduction --check
+"$study_env/bin/python" -B -m research.sqj.strengthening.analyze_state_rejoin \
   --directory research/sqj/strengthening/evidence/agent-state-rejoin-v3 \
   --replication-directory research/sqj/strengthening/evidence/short-randomized-replication-v1 \
   --output research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json --check
-"$study_env/bin/python" -m research.softwarex.analyze_operating_region --check
-"$study_env/bin/python" -m research.softwarex.build_extension_evidence --check
-"$study_env/bin/python" -m research.softwarex.build_application_evidence --check
-"$study_env/bin/python" -m research.softwarex.build_paper --check
+"$study_env/bin/python" -B -m research.softwarex.analyze_operating_region --check
+"$study_env/bin/python" -B -m research.softwarex.build_extension_evidence --check
+"$study_env/bin/python" -B -m research.softwarex.build_application_evidence --check
+"$study_env/bin/python" -B -m research.softwarex.build_paper --check
 ```
 
-These commands verify raw-result consistency, source identities, denominators, original failures, restored source, and generated article inputs. They fail on missing or modified evidence. They do not execute shell strings or code from the downloaded AI trajectories. The original publication snapshot and the new extension are retained separately, not pooled into a new favorable dataset.
+These individual diagnostics verify raw-result consistency, source identities, denominators, original failures, restored source, and generated article inputs. They do not replace the complete verifier, which also checks the current runtime, 0.5.2 quickstart, handoff evidence, and archives. They fail on missing or modified evidence. Use `-B` to avoid adding bytecode files to the exact release inventory. No shell strings or code from the downloaded AI trajectories are executed. The original publication snapshot and the new extension are retained separately, not pooled into a new favorable dataset.
 
 ### Pinned Linux analysis environment
 
@@ -57,7 +59,7 @@ check or part of the reported quickstart timings.
 analysis_image='docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef'
 analysis_root="$(pwd -P)"
 analysis_python() {
-  docker run --rm --network none --read-only --cap-drop ALL \
+  docker run --rm --platform linux/amd64 --pull=never --network none --read-only --cap-drop ALL \
     --user "$(id -u):$(id -g)" \
     --security-opt no-new-privileges --cpus 2 --memory 2g --pids-limit 128 \
     --mount "type=bind,src=$analysis_root,dst=/artifact,readonly" \
@@ -164,7 +166,7 @@ V1 and its diagnostic use source `681907860dc2ab9df70034f82a0025463d1fdec4`. V2,
 
 The [account-free public quickstart](QUICKSTART_LAB.md) was also replayed literally from clean public commit `860675c041c5190dcbae0892d64c8ba82b257bb8` without intervention: seven recorded installation commands passed in 18.645573 seconds, then five actual STDIO stages passed in 11.340818 seconds. Those clocks exclude cloning, Docker setup, and researcher preparation. The [installation receipt](evidence/quickstart-public-v1/install.json) and [server receipt](evidence/quickstart-public-v1/check.json) bind all 36 runtime files. This installation is distinct from the model experiment's installed environment; both contain the same frozen runtime. It is an internal reproduction, not five independent developers or a user study.
 
-`python -m research.softwarex.build_application_evidence --check` recomputes [application-evidence-v1.json](generated/application-evidence-v1.json) from raw records and frozen validators. It checks the earlier adverse trials, guided denominators, source/receipt identities, and both laboratory and literal-public-guide installation records. No model is invoked. Successful fixed cases do not establish population accuracy, causal improvement from documentation, autonomous workflow speedup, or commercial adoption.
+`python -B -m research.softwarex.build_application_evidence --check` recomputes [application-evidence-v1.json](generated/application-evidence-v1.json) from raw records and frozen validators. It checks the earlier adverse trials, guided denominators, source/receipt identities, and both laboratory and literal-public-guide installation records. No model is invoked. Successful fixed cases do not establish population accuracy, causal improvement from documentation, autonomous workflow speedup, or commercial adoption.
 
 ## Build the article
 
