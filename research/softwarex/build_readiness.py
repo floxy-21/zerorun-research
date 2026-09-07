@@ -17,7 +17,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-four-hour-final-v2"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-four-hour-final-v3"
 
 
 def require(condition, message):
@@ -356,7 +356,7 @@ def build(release):
         "replication": {"completed": True, "planned_requests": planned["requests"],
                         "fresh_agreements": replication["counts"]["fresh_agreements"], "optimized_hits": replication["counts"]["optimized_hits"]},
         "state_case": {"completed": True, "requests": state["requests"], "optimized_hits": state["optimized_hits"], "autonomous_agent_evaluation": False},
-        "author_actions_remaining": ["Read and approve manuscript and evidence", "Confirm originality and no concurrent submission", "Complete publisher competing-interest and actual contribution declarations", "Supply any required private address information", "Upload files and approve the publisher-generated review PDF"],
+        "author_actions_remaining": ["Read and approve manuscript and evidence", "Confirm originality and no concurrent submission", "Complete publisher competing-interest tool and upload its generated Word document; confirm actual CRediT contributions", "Supply the required full postal address privately", "Upload files and approve the publisher-generated review PDF"],
         "journal_submitted": False,
         "payment_made": False,
         "acceptance_probability_estimated": False,

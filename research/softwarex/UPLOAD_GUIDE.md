@@ -17,6 +17,9 @@ Use the completed files at the repository's `main` branch, indexed by `research/
 
 The source ZIP is flat: `main.tex`, `references.bib`, compiled `main.bbl`, publisher class/style, and their notice. Its architecture figure and tables are editable LaTeX; no figure image is missing. The ZIP manifest is an integrity file, not manuscript content. If the submission system asks for individual source files, upload those files at the same folder level. The reviewer ZIP is a separate supplementary software/evidence item, not the LaTeX source archive.
 
+Use the portal category **Manuscript** for the PDF and **Zip files** for the
+complete editable LaTeX source ZIP, following the current author guide.
+
 Paste `COVER_LETTER.txt` into the corresponding text field. Upload `HIGHLIGHTS.docx` as Highlights; its wording matches `HIGHLIGHTS.txt`, and `generated/highlights-docx-review.json` records its structural and visual checks. The `.txt` file is the highlights source, not the preferred Word upload. Do not use older `.md` cover/highlight copies, older PDFs, or `ESM_1.zip` as the current submission.
 
 Final PDF counts, visual review, references, and compilation-source hashes come from `generated/pdf-review.json`; archive and public-release bindings come from `generated/final-readiness.json`. Do not copy counts from an earlier checklist into the portal.
@@ -34,8 +37,8 @@ performance criteria are used.
 
 1. Read and approve the final article, tables, limitations, public software, methods disclosure of AI assistance, and diagram-caption attribution. Jishan Kapoor is the sole author; AI is not an author. Author review and intellectual responsibility are substantive requirements, not a formality completed by automated checks.
 2. Confirm originality and that the article is not under consideration elsewhere. Submit to only one journal at a time; after rejection or confirmed withdrawal, another suitable journal can be considered with its own format and declarations.
-3. Confirm the disclosed interest in ZeroRun's possible commercialization, and complete the publisher's competing-interest declaration using its required form/tool. No external funding was reported. Do not replace this with an invented "no interests" declaration.
-4. Provide any required private postal-address details and actual CRediT contributions in the portal. The supplied author information is Jishan Kapoor, Independent researcher, Toronto, Canada; kapoorjishan2@gmail.com.
+3. Confirm the disclosed interest in ZeroRun's possible commercialization, complete the publisher's competing-interest declarations tool, and upload its generated Word document. No external funding was reported. Do not replace this with an invented "no interests" declaration.
+4. Provide the required full postal address and actual CRediT contributions in the portal; the private street/postal-code details have not been supplied. The supplied author information is Jishan Kapoor, Independent researcher, Toronto, Canada; kapoorjishan2@gmail.com.
 5. Inspect the portal's generated review PDF before approving submission. Source compilation and local PDF review do not establish that the portal rendered it identically.
 
 The current guide and submission link are on the [official SoftwareX author page](https://www.sciencedirect.com/journal/softwarex/publish/guide-for-authors). Check any publisher terms personally. The user's permission covers considering charges after acceptance, not advance payment or an automatic transaction.

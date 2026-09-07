@@ -95,6 +95,11 @@ def expected_core(root):
     return sorted(rows, key=lambda row: row["path"])
 
 
+def retained_paths(root, relative):
+    """Order inventories by case-sensitive relative POSIX labels on every OS."""
+    return sorted((root / relative).rglob("*"), key=lambda path: path.relative_to(root).as_posix())
+
+
 def output_bindings(root, attempt, receipt):
     paths = {path.name for path in (root / attempt).iterdir() if path.is_file()}
     require(paths == set(receipt["output_files"]) | {"receipt.json"}, "unlisted or missing client attempt output")
@@ -180,7 +185,7 @@ def validate_client(root):
     require(receipt["source_unchanged"] is True and receipt["completed"] == (passed == 14 and all(live["checks"].values())), "client completion claim differs")
     prior = []
     files = []
-    for path in sorted((root / CLIENT_BASE).rglob("*")):
+    for path in retained_paths(root, CLIENT_BASE):
         if path.is_file():
             relative = path.relative_to(root).as_posix()
             files.append(record(root, relative))
@@ -431,7 +436,7 @@ def validate_live(root, *, preview=False):
     support = record(root, HERE + "/" + SUPPORT_AMENDMENT["helper_path"])
     require(amendment["sha256"] == SUPPORT_AMENDMENT["amendment_sha256"] and support["sha256"] == SUPPORT_AMENDMENT["helper_sha256"], "retained support amendment/helper changed")
     result = validate_live_envelope(envelope, expected=expected, adapter_sha=adapter["sha256"], protocol_sha=protocol["sha256"], manifest_sha=record(root, manifest_path)["sha256"])
-    files = [record(root, item.relative_to(root).as_posix()) for item in sorted((root / LIVE_BASE).rglob("*")) if item.is_file()]
+    files = [record(root, item.relative_to(root).as_posix()) for item in retained_paths(root, LIVE_BASE) if item.is_file()]
     return {**result, "receipt": record(root, path), "adapter": adapter, "protocol": protocol, "support_amendment": amendment, "support_helper": support,
             "helper_bindings": helpers, "retained_files": files}
 

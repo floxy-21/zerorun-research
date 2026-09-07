@@ -2,11 +2,35 @@
 import base64
 from copy import deepcopy
 import json
+from pathlib import PurePosixPath, PureWindowsPath
 from types import SimpleNamespace
 
 import pytest
 
 from research.softwarex import build_extension_evidence as b
+
+
+@pytest.mark.parametrize("path_type,base", [(PureWindowsPath, "C:/artifact"), (PurePosixPath, "/artifact")])
+@pytest.mark.parametrize("reverse_discovery", [False, True])
+def test_retained_inventory_sort_is_case_sensitive_posix_on_every_platform(path_type, base, reverse_discovery):
+    base_path = path_type(base)
+    names = ["non-model-diagnostic.json", "NON_MODEL_SETUP_NOTES.md", "PRE_MODEL_PREPARATION.md",
+             "receipt.json", "nested/b.json", "nested/A.json"]
+    discovered = [base_path / "evidence" / name for name in names]
+    if reverse_discovery:
+        discovered.reverse()
+    class Root:
+        def __fspath__(self):
+            return str(base_path)
+        def __truediv__(self, relative):
+            assert relative == "evidence"
+            class Tree:
+                def rglob(self, pattern):
+                    assert pattern == "*"
+                    return iter(discovered)
+            return Tree()
+    observed = b.retained_paths(Root(), "evidence")
+    assert [path.relative_to(base_path / "evidence").as_posix() for path in observed] == sorted(names)
 
 
 def seal(value):

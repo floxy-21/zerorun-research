@@ -68,3 +68,28 @@ Use `python -m research.softwarex.analysis_reproduction --check`, then the
 documented operating-region, extension and article checks. Final tests and
 cross-platform verification records accompany the completed release; a retained
 earlier check is not retroactively described as successful.
+
+### Subsequent public-clone check
+
+On public commit `8e555eab8663ef9f056e2181baecef532172846d`, the documented
+read-only pinned-container commands successfully checked trace selection,
+the original 70-request comparison, canonical recovered analysis, state rejoin,
+operating-region output and the complete application ledger. The operating
+output matched byte-for-byte. The extension-summary command still refused its
+saved output; this failure is retained, not represented as a full passing run.
+
+A recursive comparison isolated that remaining discrepancy to the ordering
+of three `bounded_live_client.retained_files` inventory rows. Windows path
+comparison is case-insensitive, while Linux path comparison places uppercase
+names before lowercase names. The affected files were
+`NON_MODEL_SETUP_NOTES.md`, `PRE_MODEL_PREPARATION.md`, and
+`non-model-diagnostic.json`; their bytes and hashes were unchanged. The prior
+extension output is retained as `prior-extension-before-posix-sort.json`,
+SHA-256 `4e3512ac7054e768c713cc28b87ceee1ee3644aec5c734c5ae2dafdf529ac8dc`.
+
+The extension inventory now orders paths by their explicit relative POSIX
+strings, identically on both platforms. This makes serialization deterministic;
+it changes no numerical tolerance, test result, raw record, model transcript,
+or frozen experiment producer. The original failed configurations remain
+failed. The new full publication test receipt and final Linux verification
+identify the corrected implementation separately from the earlier checks.

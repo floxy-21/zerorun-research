@@ -148,3 +148,20 @@ These are not waived by a completed technical package:
 Root owns the manuscript, cover letter, builders, final tests and publication.
 This audit changed none of those files. Its actionable findings were sent
 before the final rebuild so that one reconciled package can close them.
+
+## Final-state closure note
+
+The earlier numbered findings describe the initial inspected state, not the
+current checklist. The revised template includes the diagram-assistance caption
+and explicit public software/data citation. The five Word highlights have
+structural and page-image review; the application ledger now reports the actual
+V3 core success and later failure, the separately frozen successful guided
+demonstration, and literal public quickstart reproduction. The upload guide
+specifies the declarations-tool Word file and required full postal address.
+
+For the completed snapshot, use `generated/final-readiness.json` and
+`generated/pdf-review.json` for exact tested source, artifact hashes, final page
+and word counts, and remaining author actions. The historical counts above do
+not certify the revised PDF. The word-count exclusions are only title, authors,
+affiliations, references and metadata tables; the separate six-page target's
+broader exclusions must not be applied to the 4,000-word limit.
