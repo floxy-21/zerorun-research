@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "-i",
+    "--pull=never",
+    "--network=none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+    "python",
+    "-B",
+    "-c",
+    "import hashlib,json,pathlib,sys;root=pathlib.Path('/usr/local/lib/python3.12/site-packages');rows=json.load(sys.stdin);out=[];exec(\"for row in rows:\\n p=root/row['path']; raw=p.read_bytes(); out.append({'path':row['path'],'bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest()})\");print(json.dumps(out,sort_keys=True,separators=(',',':')))"
+  ],
+  "started_utc": "2026-09-07T08:37:23.369321+00:00"
+}

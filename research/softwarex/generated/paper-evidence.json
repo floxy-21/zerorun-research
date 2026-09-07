@@ -1,5 +1,5 @@
 {
-  "abstract_whitespace_words": 132,
+  "abstract_whitespace_words": 113,
   "application": {
     "account_free_quickstart": {
       "path": "research/softwarex/evidence/quickstart-lab-v1/check.json",
@@ -2411,8 +2411,575 @@
         "selected_cases": 2
       }
     },
+    "application_revision_attempts": {
+      "preflight": {
+        "acceptance_probability_estimated": false,
+        "amendment_sha256": "df82a9914742367826886389657066ae00fb41e586de019c4da824892928c72d",
+        "bit_identical_rebuild_claimed": false,
+        "bound_files": 36,
+        "checkout_execution_binding_confirmed": false,
+        "commands": 8,
+        "completed_workload_outcomes_reconciled": false,
+        "driver_sha256": "391af8fd86a605520b66d5b1a094087a31a14e7dcca30d8e97fa009ed5164e34",
+        "error": {
+          "message": "command failed; retained record: harness-sparse-init",
+          "type": "RuntimeError"
+        },
+        "external_independent_researcher": false,
+        "failed_commands": [
+          "harness-sparse-init",
+          "harness-head-after"
+        ],
+        "fresh_real_workload_reproduction_confirmed": false,
+        "material_correctness_stop": false,
+        "path": "research/softwarex/evidence/application-revision-preflight-v1/record-only",
+        "record_manifest_sha256": "f4394331c15542968b4c0caf9efab217fd326767318b3d838fa304a2b4f4fc73",
+        "schema": "zerorun.application-revision-reconciliation.v1",
+        "sequence_completed": false,
+        "source_and_raw_bindings_reconciled": true,
+        "state": "RECONCILED_FAILED_ATTEMPT",
+        "verifier_sha256": "eb033f9f1561146b7fe00085be1b96e08b2970d253c2b0ca01f9f2b3e6645c17"
+      },
+      "revision": {
+        "acceptance_probability_estimated": false,
+        "amendment_sha256": "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c",
+        "bit_identical_rebuild_claimed": false,
+        "bound_files": 1244,
+        "checkout_execution_binding_confirmed": true,
+        "commands": 33,
+        "completed_workload_outcomes_reconciled": true,
+        "driver_sha256": "486e5bd331e0fae780c6792ea4d669b8406cfafced6370f735538a92bd1a52f4",
+        "external_independent_researcher": false,
+        "fresh_real_workload_reproduction_confirmed": true,
+        "image_existing": {
+          "completion_sha256": "2e601bc33681e88dc33c52e4d7f1b54593ccfaed9c4d41df5b17cb553ff9999b",
+          "dependency_files": 511,
+          "dependency_provenance": {
+            "build_count": 1,
+            "build_once_ms": 9316.117,
+            "construction_contract": {
+              "extra_requirements": [
+                "pretend"
+              ],
+              "installer": {
+                "arguments": [
+                  "install",
+                  "--disable-pip-version-check",
+                  "--no-input",
+                  "--no-cache-dir",
+                  "--no-compile",
+                  "--require-hashes",
+                  "--only-binary=:all:",
+                  "--target",
+                  "/zerorun-env/site-packages",
+                  "--requirement",
+                  "/zerorun-env/runtime-requirements.txt"
+                ],
+                "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                "capabilities": "drop-all",
+                "container_user": "exact-private-staging-owner",
+                "entrypoint": [
+                  "/usr/local/bin/python",
+                  "-I",
+                  "-c"
+                ],
+                "no_new_privileges": true,
+                "pull_policy": "never",
+                "resource_args": [
+                  "--cpus",
+                  "2",
+                  "--memory",
+                  "2g",
+                  "--memory-swap",
+                  "2g",
+                  "--pids-limit",
+                  "512"
+                ]
+              },
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+              "requirements": {
+                "path": "ci/generalization-runtime-requirements.txt",
+                "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                "size": 1006
+              },
+              "runtime": {
+                "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                "platform": "linux/amd64",
+                "python_implementation": "CPython",
+                "python_implementation_id": "cpython",
+                "python_version": "3.12.14"
+              },
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+            "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "directory_count": 32,
+            "extra_requirements": [
+              "pretend"
+            ],
+            "file_count": 513,
+            "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+            "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+            "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+            "path_bytes": 21037,
+            "read_only_mode_and_content_verified": true,
+            "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+            "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+            "schema": "zerorun.generalization-dependency-layer.v1",
+            "source_hardlinks_rejected": true,
+            "total_bytes": 6579552,
+            "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+          },
+          "image": {
+            "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+            "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "repo_digests": [
+              "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+            ],
+            "requested": "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "rootfs": {
+              "Layers": [
+                "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+              ],
+              "Type": "layers"
+            }
+          },
+          "image_publicly_pullable": false,
+          "independent_image_rebuild": false,
+          "reconciled": true,
+          "schema": "zerorun.handoff-image-reconciliation.v2",
+          "setup_outer_ms": 22954.829173999315
+        },
+        "image_fresh": {
+          "completion_sha256": "920bd72a2aae0414446e429a79585dc35968ef15cff15485a73120b69a862e12",
+          "dependency_files": 511,
+          "dependency_provenance": {
+            "build_count": 1,
+            "build_once_ms": 11312.396,
+            "construction_contract": {
+              "extra_requirements": [
+                "pretend"
+              ],
+              "installer": {
+                "arguments": [
+                  "install",
+                  "--disable-pip-version-check",
+                  "--no-input",
+                  "--no-cache-dir",
+                  "--no-compile",
+                  "--require-hashes",
+                  "--only-binary=:all:",
+                  "--target",
+                  "/zerorun-env/site-packages",
+                  "--requirement",
+                  "/zerorun-env/runtime-requirements.txt"
+                ],
+                "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                "capabilities": "drop-all",
+                "container_user": "exact-private-staging-owner",
+                "entrypoint": [
+                  "/usr/local/bin/python",
+                  "-I",
+                  "-c"
+                ],
+                "no_new_privileges": true,
+                "pull_policy": "never",
+                "resource_args": [
+                  "--cpus",
+                  "2",
+                  "--memory",
+                  "2g",
+                  "--memory-swap",
+                  "2g",
+                  "--pids-limit",
+                  "512"
+                ]
+              },
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+              "requirements": {
+                "path": "ci/generalization-runtime-requirements.txt",
+                "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                "size": 1006
+              },
+              "runtime": {
+                "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                "platform": "linux/amd64",
+                "python_implementation": "CPython",
+                "python_implementation_id": "cpython",
+                "python_version": "3.12.14"
+              },
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+            "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "directory_count": 32,
+            "extra_requirements": [
+              "pretend"
+            ],
+            "file_count": 513,
+            "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+            "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+            "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+            "path_bytes": 21037,
+            "read_only_mode_and_content_verified": true,
+            "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+            "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+            "schema": "zerorun.generalization-dependency-layer.v1",
+            "source_hardlinks_rejected": true,
+            "total_bytes": 6579552,
+            "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+          },
+          "image": {
+            "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+            "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "repo_digests": [
+              "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+            ],
+            "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "rootfs": {
+              "Layers": [
+                "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+              ],
+              "Type": "layers"
+            }
+          },
+          "image_publicly_pullable": false,
+          "independent_image_rebuild": false,
+          "reconciled": true,
+          "schema": "zerorun.handoff-image-reconciliation.v2",
+          "setup_outer_ms": 26395.79032799884
+        },
+        "main": {
+          "controlled_handoffs": {
+            "acquisition_bytes_rechecked": true,
+            "additional_completed_blocks_from_incomplete_cases": 0,
+            "all_recorded_cost_scope": "sum of retained outer operation clocks including compatibility/oracles/diagnostics/failures, not an end-to-end treatment ratio; missing work not imputed",
+            "all_recorded_operation_ms": 1038946.9793899803,
+            "complete_blocks": 30,
+            "complete_cases": 15,
+            "complete_pair_chain_saved_fraction": 0.02002459426248404,
+            "complete_paired_chain_ms": {
+              "fresh": 240691.96637999994,
+              "zerorun": 235872.207411001
+            },
+            "complete_repositories": 7,
+            "dispositions": {
+              "COMPLETE": 15,
+              "INCOMPLETE_OR_UNSUPPORTED": 9,
+              "MATERIAL_CORRECTNESS_STOP": 0,
+              "NOT_RUN_BUDGET": 0,
+              "NOT_RUN_CAMPAIGN_FAILURE": 0,
+              "NOT_RUN_CORRECTNESS_STOP": 0,
+              "UNAVAILABLE_ACQUISITION": 0
+            },
+            "failed_operations": 7,
+            "material_correctness_stop": false,
+            "phase": "main",
+            "planned_cases": 30,
+            "receipt_sha256": "69524329372af3926e881e860b4cfc00d75ac95b38c9966723beff6557737702",
+            "reconciled": true,
+            "recorded_operations": 234,
+            "schema": "zerorun.controlled-handoff-reconciliation.v1",
+            "scope": "controlled issue-state handoffs, not model tasks or natural repeat prevalence; incomplete costs excluded from ratios but dispositions retained",
+            "selected_cases": 24,
+            "selected_repositories": 8
+          },
+          "image_build": {
+            "completion_sha256": "2e601bc33681e88dc33c52e4d7f1b54593ccfaed9c4d41df5b17cb553ff9999b",
+            "dependency_files": 511,
+            "dependency_provenance": {
+              "build_count": 1,
+              "build_once_ms": 9316.117,
+              "construction_contract": {
+                "extra_requirements": [
+                  "pretend"
+                ],
+                "installer": {
+                  "arguments": [
+                    "install",
+                    "--disable-pip-version-check",
+                    "--no-input",
+                    "--no-cache-dir",
+                    "--no-compile",
+                    "--require-hashes",
+                    "--only-binary=:all:",
+                    "--target",
+                    "/zerorun-env/site-packages",
+                    "--requirement",
+                    "/zerorun-env/runtime-requirements.txt"
+                  ],
+                  "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                  "capabilities": "drop-all",
+                  "container_user": "exact-private-staging-owner",
+                  "entrypoint": [
+                    "/usr/local/bin/python",
+                    "-I",
+                    "-c"
+                  ],
+                  "no_new_privileges": true,
+                  "pull_policy": "never",
+                  "resource_args": [
+                    "--cpus",
+                    "2",
+                    "--memory",
+                    "2g",
+                    "--memory-swap",
+                    "2g",
+                    "--pids-limit",
+                    "512"
+                  ]
+                },
+                "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+                "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+                "requirements": {
+                  "path": "ci/generalization-runtime-requirements.txt",
+                  "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                  "size": 1006
+                },
+                "runtime": {
+                  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                  "platform": "linux/amd64",
+                  "python_implementation": "CPython",
+                  "python_implementation_id": "cpython",
+                  "python_version": "3.12.14"
+                },
+                "schema": "zerorun.generalization-dependency-layer.v1",
+                "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+              },
+              "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+              "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "directory_count": 32,
+              "extra_requirements": [
+                "pretend"
+              ],
+              "file_count": 513,
+              "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+              "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "path_bytes": 21037,
+              "read_only_mode_and_content_verified": true,
+              "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "source_hardlinks_rejected": true,
+              "total_bytes": 6579552,
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "image": {
+              "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+              "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "repo_digests": [
+                "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+              ],
+              "requested": "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "rootfs": {
+                "Layers": [
+                  "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                  "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                  "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                  "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                  "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                  "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+                ],
+                "Type": "layers"
+              }
+            },
+            "image_publicly_pullable": false,
+            "independent_image_rebuild": false,
+            "reconciled": true,
+            "schema": "zerorun.handoff-image-reconciliation.v2",
+            "setup_outer_ms": 22954.829173999315
+          },
+          "image_setup_in_chain_ratio": false,
+          "natural_repeat_frequency": false,
+          "new_model_calls": 0,
+          "reconciled": true,
+          "runtime_before_after_exact": true,
+          "schema": "zerorun.image-contained-handoff-reconciliation.v2"
+        },
+        "material_correctness_stop": false,
+        "path": "research/softwarex/evidence/application-revision-20260907-v2/record-only",
+        "pilot": {
+          "controlled_handoffs": {
+            "acquisition_bytes_rechecked": true,
+            "additional_completed_blocks_from_incomplete_cases": 0,
+            "all_recorded_cost_scope": "sum of retained outer operation clocks including compatibility/oracles/diagnostics/failures, not an end-to-end treatment ratio; missing work not imputed",
+            "all_recorded_operation_ms": 228641.15918599782,
+            "complete_blocks": 4,
+            "complete_cases": 2,
+            "complete_pair_chain_saved_fraction": -0.10546160766769419,
+            "complete_paired_chain_ms": {
+              "fresh": 55272.0540290029,
+              "zerorun": 61101.1337059972
+            },
+            "complete_repositories": 1,
+            "dispositions": {
+              "COMPLETE": 2,
+              "INCOMPLETE_OR_UNSUPPORTED": 0,
+              "MATERIAL_CORRECTNESS_STOP": 0,
+              "NOT_RUN_BUDGET": 0,
+              "NOT_RUN_CAMPAIGN_FAILURE": 0,
+              "NOT_RUN_CORRECTNESS_STOP": 0,
+              "UNAVAILABLE_ACQUISITION": 0
+            },
+            "failed_operations": 0,
+            "material_correctness_stop": false,
+            "phase": "pilot",
+            "planned_cases": 2,
+            "receipt_sha256": "4fca0e1c7065540b02b6b95306ddb3ca9618498327a162c59b2c3ebc9bc21b63",
+            "reconciled": true,
+            "recorded_operations": 30,
+            "schema": "zerorun.controlled-handoff-reconciliation.v1",
+            "scope": "controlled issue-state handoffs, not model tasks or natural repeat prevalence; incomplete costs excluded from ratios but dispositions retained",
+            "selected_cases": 2,
+            "selected_repositories": 1
+          },
+          "image_build": {
+            "completion_sha256": "920bd72a2aae0414446e429a79585dc35968ef15cff15485a73120b69a862e12",
+            "dependency_files": 511,
+            "dependency_provenance": {
+              "build_count": 1,
+              "build_once_ms": 11312.396,
+              "construction_contract": {
+                "extra_requirements": [
+                  "pretend"
+                ],
+                "installer": {
+                  "arguments": [
+                    "install",
+                    "--disable-pip-version-check",
+                    "--no-input",
+                    "--no-cache-dir",
+                    "--no-compile",
+                    "--require-hashes",
+                    "--only-binary=:all:",
+                    "--target",
+                    "/zerorun-env/site-packages",
+                    "--requirement",
+                    "/zerorun-env/runtime-requirements.txt"
+                  ],
+                  "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                  "capabilities": "drop-all",
+                  "container_user": "exact-private-staging-owner",
+                  "entrypoint": [
+                    "/usr/local/bin/python",
+                    "-I",
+                    "-c"
+                  ],
+                  "no_new_privileges": true,
+                  "pull_policy": "never",
+                  "resource_args": [
+                    "--cpus",
+                    "2",
+                    "--memory",
+                    "2g",
+                    "--memory-swap",
+                    "2g",
+                    "--pids-limit",
+                    "512"
+                  ]
+                },
+                "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+                "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+                "requirements": {
+                  "path": "ci/generalization-runtime-requirements.txt",
+                  "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                  "size": 1006
+                },
+                "runtime": {
+                  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                  "platform": "linux/amd64",
+                  "python_implementation": "CPython",
+                  "python_implementation_id": "cpython",
+                  "python_version": "3.12.14"
+                },
+                "schema": "zerorun.generalization-dependency-layer.v1",
+                "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+              },
+              "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+              "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "directory_count": 32,
+              "extra_requirements": [
+                "pretend"
+              ],
+              "file_count": 513,
+              "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+              "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "path_bytes": 21037,
+              "read_only_mode_and_content_verified": true,
+              "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "source_hardlinks_rejected": true,
+              "total_bytes": 6579552,
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "image": {
+              "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+              "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "repo_digests": [
+                "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+                "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+              ],
+              "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "rootfs": {
+                "Layers": [
+                  "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                  "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                  "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                  "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                  "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                  "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+                ],
+                "Type": "layers"
+              }
+            },
+            "image_publicly_pullable": false,
+            "independent_image_rebuild": false,
+            "reconciled": true,
+            "schema": "zerorun.handoff-image-reconciliation.v2",
+            "setup_outer_ms": 26395.79032799884
+          },
+          "image_setup_in_chain_ratio": false,
+          "natural_repeat_frequency": false,
+          "new_model_calls": 0,
+          "reconciled": true,
+          "runtime_before_after_exact": true,
+          "schema": "zerorun.image-contained-handoff-reconciliation.v2"
+        },
+        "record_manifest_sha256": "04e29e0062a6f0b1e3c6b175bba73f6ad450be14e9b48b593d2df8e6c068631e",
+        "schema": "zerorun.application-revision-reconciliation.v1",
+        "scope": "Author-side VM sequence; preserved original cases, distinct image bindings and fresh oracles. Completion does not imply every main case was supported.",
+        "sequence_completed": true,
+        "source_and_raw_bindings_reconciled": true,
+        "state": "RECONCILED_COMPLETED_SEQUENCE",
+        "verifier_sha256": "eb033f9f1561146b7fe00085be1b96e08b2970d253c2b0ca01f9f2b3e6645c17",
+        "wrapper_aggregate_check": "Exact producer-version sum rule re-executed from raw blocks; no floating tolerance. Returned aggregates use the canonical validator.",
+        "wrapper_python_version": "3.10.12"
+      }
+    },
     "available_completed_runs_reconciled": true,
-    "builder_sha256": "1cebfa036cffa05f703d032caa01f3ce85c250025bfb23a51108b3d53aa4f907",
+    "builder_sha256": "2d4fddab108533507a4e1ecf7bb521d9bc7166dcdfda415b79c21e741477e2a4",
     "controlled_runs": {
       "v1_main": {
         "execution_success_claimed": false,
@@ -2959,6 +3526,829 @@
         },
         "selected_case_count": 24,
         "state": "RECONCILED_RECORDED_OUTCOMES",
+        "version": "v2"
+      },
+      "v2_main_extended": {
+        "all_selected_cases_completed": false,
+        "campaign_error": null,
+        "cases": [
+          {
+            "case_id": "eliben__pycparser-364",
+            "complete_chain_ms": {
+              "fresh": 17341.025215999252,
+              "zerorun": 12259.327838997706
+            },
+            "complete_chain_saved_fraction": 0.2930448063885548,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 17341.025215999252,
+                "zerorun": 12259.327838997706
+              },
+              "chain_saved_fraction": 0.2930448063885548,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 8879.530988000624,
+                "zerorun": 1064.1071279969765
+              },
+              "consumer_saved_fraction": 0.8801617867616026,
+              "fresh_diagnostics_ms": 11339.06578800088,
+              "oracle_ms": 16069.033169002068,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 17409.584100998472,
+                "zerorun": 12331.10656399731
+              },
+              "setup_inclusive_saved_fraction": 0.2917058504981691,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "eliben/pycparser"
+          },
+          {
+            "case_id": "eliben__pycparser-346",
+            "complete_chain_ms": {
+              "fresh": 16424.720024002454,
+              "zerorun": 13468.434007001633
+            },
+            "complete_chain_saved_fraction": 0.179990040176065,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 16424.720024002454,
+                "zerorun": 13468.434007001633
+              },
+              "chain_saved_fraction": 0.179990040176065,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 8304.804892002721,
+                "zerorun": 1462.2725360022741
+              },
+              "consumer_saved_fraction": 0.8239245165879334,
+              "fresh_diagnostics_ms": 10314.950770996802,
+              "oracle_ms": 16808.17079800181,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 16495.248725001147,
+                "zerorun": 13550.019246999
+              },
+              "setup_inclusive_saved_fraction": 0.1785501708463595,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "eliben/pycparser"
+          },
+          {
+            "case_id": "eliben__pycparser-236",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "repaired-state compatibility oracle failed",
+              "type": "ValueError"
+            },
+            "repo": "eliben/pycparser"
+          },
+          {
+            "case_id": "joke2k__django-environ-329",
+            "complete_chain_ms": {
+              "fresh": 14285.290662002808,
+              "zerorun": 9162.779198002681
+            },
+            "complete_chain_saved_fraction": 0.35858643588018857,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 14285.290662002808,
+                "zerorun": 9162.779198002681
+              },
+              "chain_saved_fraction": 0.35858643588018857,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6953.937009999208,
+                "zerorun": 720.4291160014691
+              },
+              "consumer_saved_fraction": 0.8963998214298534,
+              "fresh_diagnostics_ms": 8347.159641998587,
+              "oracle_ms": 14230.724480003119,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 14313.151017002383,
+                "zerorun": 9199.213199997757
+              },
+              "setup_inclusive_saved_fraction": 0.3572894473711521,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "joke2k/django-environ"
+          },
+          {
+            "case_id": "joke2k__django-environ-450",
+            "complete_chain_ms": {
+              "fresh": 14636.458821001725,
+              "zerorun": 9345.455499002128
+            },
+            "complete_chain_saved_fraction": 0.3614947704705447,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 14636.458821001725,
+                "zerorun": 9345.455499002128
+              },
+              "chain_saved_fraction": 0.3614947704705447,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 7541.684879000968,
+                "zerorun": 767.6403459990979
+              },
+              "consumer_saved_fraction": 0.8982136805879397,
+              "fresh_diagnostics_ms": 7177.845345999231,
+              "oracle_ms": 15093.900218995259,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 14677.22606299867,
+                "zerorun": 9389.611262005928
+              },
+              "setup_inclusive_saved_fraction": 0.3602598187352878,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "joke2k/django-environ"
+          },
+          {
+            "case_id": "joke2k__django-environ-174",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "oracle node identity absent/duplicate",
+              "type": "ValueError"
+            },
+            "repo": "joke2k/django-environ"
+          },
+          {
+            "case_id": "tobymao__sqlglot-3182",
+            "complete_chain_ms": {
+              "fresh": 22744.824489000166,
+              "zerorun": 21438.974862001487
+            },
+            "complete_chain_saved_fraction": 0.0574130447843294,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 22744.824489000166,
+                "zerorun": 21438.974862001487
+              },
+              "chain_saved_fraction": 0.0574130447843294,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 10487.182611999742,
+                "zerorun": 2026.4241200020479
+              },
+              "consumer_saved_fraction": 0.806771351756252,
+              "fresh_diagnostics_ms": 18080.379153998365,
+              "oracle_ms": 20184.901826996793,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 23017.131561999122,
+                "zerorun": 21634.469097003603
+              },
+              "setup_inclusive_saved_fraction": 0.06007101542045623,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "tobymao/sqlglot"
+          },
+          {
+            "case_id": "tobymao__sqlglot-1765",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "independent plain-pytest cleanup was not confirmed for uncertain create name zerorun-independent-pytest-9f5908f0d8bcdc51308715bd6c562afa",
+              "type": "ConfigurationError"
+            },
+            "repo": "tobymao/sqlglot"
+          },
+          {
+            "case_id": "tobymao__sqlglot-2658",
+            "complete_chain_ms": {
+              "fresh": 25051.31254299704,
+              "zerorun": 22708.41233199826
+            },
+            "complete_chain_saved_fraction": 0.09352405016613485,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 25051.31254299704,
+                "zerorun": 22708.41233199826
+              },
+              "chain_saved_fraction": 0.09352405016613485,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 11439.115228997252,
+                "zerorun": 2111.2493879991234
+              },
+              "consumer_saved_fraction": 0.8154359541158154,
+              "fresh_diagnostics_ms": 16935.575023999263,
+              "oracle_ms": 20941.71076299608,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 25248.87012299223,
+                "zerorun": 22905.618622000475
+              },
+              "setup_inclusive_saved_fraction": 0.09280619249801336,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "tobymao/sqlglot"
+          },
+          {
+            "case_id": "terryyin__lizard-174",
+            "complete_chain_ms": {
+              "fresh": 13278.078506002203,
+              "zerorun": 15419.320192999294
+            },
+            "complete_chain_saved_fraction": -0.16126141188494758,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 13278.078506002203,
+                "zerorun": 15419.320192999294
+              },
+              "chain_saved_fraction": -0.16126141188494758,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6419.829782000306,
+                "zerorun": 2064.7604020014114
+              },
+              "consumer_saved_fraction": 0.6783777028184588,
+              "fresh_diagnostics_ms": 12179.586047997873,
+              "oracle_ms": 13836.341886992159,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 13396.28256400465,
+                "zerorun": 15564.888741995674
+              },
+              "setup_inclusive_saved_fraction": -0.16188119111625743,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "terryyin/lizard"
+          },
+          {
+            "case_id": "terryyin__lizard-241",
+            "complete_chain_ms": {
+              "fresh": 15271.94526999665,
+              "zerorun": 14557.968828001322
+            },
+            "complete_chain_saved_fraction": 0.046750851274854344,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 15271.94526999665,
+                "zerorun": 14557.968828001322
+              },
+              "chain_saved_fraction": 0.046750851274854344,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6461.827824998181,
+                "zerorun": 1692.0015910036454
+              },
+              "consumer_saved_fraction": 0.7381543370038459,
+              "fresh_diagnostics_ms": 13226.70747900338,
+              "oracle_ms": 13154.945587000839,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 15396.645580996847,
+                "zerorun": 14670.727218999673
+              },
+              "setup_inclusive_saved_fraction": 0.04714782568568898,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "terryyin/lizard"
+          },
+          {
+            "case_id": "terryyin__lizard-191",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "repaired-state compatibility oracle failed",
+              "type": "ValueError"
+            },
+            "repo": "terryyin/lizard"
+          },
+          {
+            "case_id": "eyeseast__python-frontmatter-34",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "oracle node identity absent/duplicate",
+              "type": "ValueError"
+            },
+            "repo": "eyeseast/python-frontmatter"
+          },
+          {
+            "case_id": "eyeseast__python-frontmatter-56",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "oracle node identity absent/duplicate",
+              "type": "ValueError"
+            },
+            "repo": "eyeseast/python-frontmatter"
+          },
+          {
+            "case_id": "eyeseast__python-frontmatter-31",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "oracle node identity absent/duplicate",
+              "type": "ValueError"
+            },
+            "repo": "eyeseast/python-frontmatter"
+          },
+          {
+            "case_id": "joshtemple__lkml-85",
+            "complete_chain_ms": {
+              "fresh": 15583.566425004392,
+              "zerorun": 25291.707669995958
+            },
+            "complete_chain_saved_fraction": -0.6229730076046331,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 15583.566425004392,
+                "zerorun": 25291.707669995958
+              },
+              "chain_saved_fraction": -0.6229730076046331,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6978.416244000982,
+                "zerorun": 2305.879745996208
+              },
+              "consumer_saved_fraction": 0.6695697611935281,
+              "fresh_diagnostics_ms": 16022.958173005463,
+              "oracle_ms": 13682.584583995776,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 15798.240708008962,
+                "zerorun": 25532.94461499536
+              },
+              "setup_inclusive_saved_fraction": -0.6161891116174323,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "joshtemple/lkml"
+          },
+          {
+            "case_id": "joshtemple__lkml-97",
+            "complete_chain_ms": {
+              "fresh": 13535.797252996417,
+              "zerorun": 20388.678407001862
+            },
+            "complete_chain_saved_fraction": -0.5062783540502886,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 13535.797252996417,
+                "zerorun": 20388.678407001862
+              },
+              "chain_saved_fraction": -0.5062783540502886,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6352.165410997259,
+                "zerorun": 2280.8432249985344
+              },
+              "consumer_saved_fraction": 0.6409345353240017,
+              "fresh_diagnostics_ms": 16547.350683998957,
+              "oracle_ms": 13394.194280997908,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 13744.25896399407,
+                "zerorun": 20612.900196007104
+              },
+              "setup_inclusive_saved_fraction": -0.4997462031242905,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "joshtemple/lkml"
+          },
+          {
+            "case_id": "joshtemple__lkml-87",
+            "complete_chain_ms": {
+              "fresh": 17689.90396300069,
+              "zerorun": 29982.72384199663
+            },
+            "complete_chain_saved_fraction": -0.6949059703606637,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 17689.90396300069,
+                "zerorun": 29982.72384199663
+              },
+              "chain_saved_fraction": -0.6949059703606637,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 8245.681162999972,
+                "zerorun": 3887.6568699961354
+              },
+              "consumer_saved_fraction": 0.5285220477065214,
+              "fresh_diagnostics_ms": 20908.233099995414,
+              "oracle_ms": 18000.512399004947,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 18228.904545998375,
+                "zerorun": 30344.801129995176
+              },
+              "setup_inclusive_saved_fraction": -0.6646530269234687,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "joshtemple/lkml"
+          },
+          {
+            "case_id": "mahmoud__boltons-302",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "Expecting value: line 1 column 1 (char 0)",
+              "type": "JSONDecodeError"
+            },
+            "repo": "mahmoud/boltons"
+          },
+          {
+            "case_id": "mahmoud__boltons-203",
+            "disposition": "INCOMPLETE_OR_UNSUPPORTED",
+            "error": {
+              "message": "Expecting value: line 1 column 1 (char 0)",
+              "type": "JSONDecodeError"
+            },
+            "repo": "mahmoud/boltons"
+          },
+          {
+            "case_id": "mahmoud__boltons-31",
+            "complete_chain_ms": {
+              "fresh": 16200.990895002178,
+              "zerorun": 11432.36002300182
+            },
+            "complete_chain_saved_fraction": 0.2943419265466921,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 16200.990895002178,
+                "zerorun": 11432.36002300182
+              },
+              "chain_saved_fraction": 0.2943419265466921,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 7134.817019003094,
+                "zerorun": 1247.1421980008017
+              },
+              "consumer_saved_fraction": 0.8252033381263844,
+              "fresh_diagnostics_ms": 12475.47662299985,
+              "oracle_ms": 17945.01505199878,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 16272.786126002757,
+                "zerorun": 11476.605933003157
+              },
+              "setup_inclusive_saved_fraction": 0.2947362643288014,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "mahmoud/boltons"
+          },
+          {
+            "case_id": "lepture__mistune-393",
+            "complete_chain_ms": {
+              "fresh": 13860.803709998436,
+              "zerorun": 10963.265973001398
+            },
+            "complete_chain_saved_fraction": 0.20904543471075276,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 13860.803709998436,
+                "zerorun": 10963.265973001398
+              },
+              "chain_saved_fraction": 0.20904543471075276,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6350.898225999117,
+                "zerorun": 964.7657220011752
+              },
+              "consumer_saved_fraction": 0.8480898783652924,
+              "fresh_diagnostics_ms": 8622.92380600411,
+              "oracle_ms": 13129.098411998712,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 13922.18667099587,
+                "zerorun": 11005.921633004618
+              },
+              "setup_inclusive_saved_fraction": 0.2094688935658875,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "lepture/mistune"
+          },
+          {
+            "case_id": "lepture__mistune-143",
+            "complete_chain_ms": {
+              "fresh": 11819.923116996506,
+              "zerorun": 9785.55115799827
+            },
+            "complete_chain_saved_fraction": 0.17211380639802154,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 11819.923116996506,
+                "zerorun": 9785.55115799827
+              },
+              "chain_saved_fraction": 0.17211380639802154,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 5429.2316529972595,
+                "zerorun": 886.147613000503
+              },
+              "consumer_saved_fraction": 0.8367821324199167,
+              "fresh_diagnostics_ms": 8029.064632002701,
+              "oracle_ms": 13610.482098007196,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 11867.21168499571,
+                "zerorun": 9840.846623999823
+              },
+              "setup_inclusive_saved_fraction": 0.17075325820284448,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "lepture/mistune"
+          },
+          {
+            "case_id": "lepture__mistune-105",
+            "complete_chain_ms": {
+              "fresh": 12967.325485999027,
+              "zerorun": 9667.247580000549
+            },
+            "complete_chain_saved_fraction": 0.2544917924333442,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 12967.325485999027,
+                "zerorun": 9667.247580000549
+              },
+              "chain_saved_fraction": 0.2544917924333442,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 6520.223677001923,
+                "zerorun": 877.4015630006033
+              },
+              "consumer_saved_fraction": 0.8654338245947962,
+              "fresh_diagnostics_ms": 7930.712319001032,
+              "oracle_ms": 13022.614205001446,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 13008.311440000398,
+                "zerorun": 9727.038303997688
+              },
+              "setup_inclusive_saved_fraction": 0.25224435555200775,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "lepture/mistune"
+          }
+        ],
+        "complete_case_count": 15,
+        "complete_case_faster_count": 11,
+        "complete_case_median_chain_saved_fraction": 0.17211380639802154,
+        "complete_paired_costs": {
+          "cache_hits": 30,
+          "chain_ms": {
+            "fresh": 240691.96637999994,
+            "zerorun": 235872.207411001
+          },
+          "chain_saved_fraction": 0.02002459426248404,
+          "complete_blocks": 30,
+          "consumer_ms": {
+            "fresh": 113499.34660999861,
+            "zerorun": 24358.721564000007
+          },
+          "consumer_saved_fraction": 0.785384477606727,
+          "fresh_diagnostics_ms": 188137.9885890019,
+          "oracle_ms": 233104.2297609929,
+          "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+          "setup_inclusive_chain_ms": {
+            "fresh": 242796.03987598966,
+            "zerorun": 237786.71238800234
+          },
+          "setup_inclusive_saved_fraction": 0.020631833577458236,
+          "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+        },
+        "completion": {
+          "bytes": 9914,
+          "path": "completion.json",
+          "sha256": "e44f556aa16ce6d5371528fa05ceadfe9663514d7b02c1da3fc2a6fafff355dd"
+        },
+        "live_agent_speedup_established": false,
+        "natural_repeat_prevalence_established": false,
+        "operation_cost_scope": "cold producer plus consumer in both arms; diagnostics and independent oracles reported separately; incomplete costs never imputed as zero",
+        "path": "research/softwarex/evidence/application-revision-20260907-v2/record-only/handoff-main-repeat-v1",
+        "phase": "main",
+        "producer_reported_material_correctness_stop": false,
+        "protocol": {
+          "bytes": 15197,
+          "path": "protocol.json",
+          "sha256": "31830aaff87f86e51f0a7fc3c2d701132e742ca8612aca6c18b94d79ed01d065"
+        },
+        "reconciliation": {
+          "controlled_handoffs": {
+            "acquisition_bytes_rechecked": true,
+            "additional_completed_blocks_from_incomplete_cases": 0,
+            "all_recorded_cost_scope": "sum of retained outer operation clocks including compatibility/oracles/diagnostics/failures, not an end-to-end treatment ratio; missing work not imputed",
+            "all_recorded_operation_ms": 1038946.9793899803,
+            "complete_blocks": 30,
+            "complete_cases": 15,
+            "complete_pair_chain_saved_fraction": 0.02002459426248404,
+            "complete_paired_chain_ms": {
+              "fresh": 240691.96637999994,
+              "zerorun": 235872.207411001
+            },
+            "complete_repositories": 7,
+            "dispositions": {
+              "COMPLETE": 15,
+              "INCOMPLETE_OR_UNSUPPORTED": 9,
+              "MATERIAL_CORRECTNESS_STOP": 0,
+              "NOT_RUN_BUDGET": 0,
+              "NOT_RUN_CAMPAIGN_FAILURE": 0,
+              "NOT_RUN_CORRECTNESS_STOP": 0,
+              "UNAVAILABLE_ACQUISITION": 0
+            },
+            "failed_operations": 7,
+            "material_correctness_stop": false,
+            "phase": "main",
+            "planned_cases": 30,
+            "receipt_sha256": "69524329372af3926e881e860b4cfc00d75ac95b38c9966723beff6557737702",
+            "reconciled": true,
+            "recorded_operations": 234,
+            "schema": "zerorun.controlled-handoff-reconciliation.v1",
+            "scope": "controlled issue-state handoffs, not model tasks or natural repeat prevalence; incomplete costs excluded from ratios but dispositions retained",
+            "selected_cases": 24,
+            "selected_repositories": 8
+          },
+          "image_build": {
+            "completion_sha256": "2e601bc33681e88dc33c52e4d7f1b54593ccfaed9c4d41df5b17cb553ff9999b",
+            "dependency_files": 511,
+            "dependency_provenance": {
+              "build_count": 1,
+              "build_once_ms": 9316.117,
+              "construction_contract": {
+                "extra_requirements": [
+                  "pretend"
+                ],
+                "installer": {
+                  "arguments": [
+                    "install",
+                    "--disable-pip-version-check",
+                    "--no-input",
+                    "--no-cache-dir",
+                    "--no-compile",
+                    "--require-hashes",
+                    "--only-binary=:all:",
+                    "--target",
+                    "/zerorun-env/site-packages",
+                    "--requirement",
+                    "/zerorun-env/runtime-requirements.txt"
+                  ],
+                  "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                  "capabilities": "drop-all",
+                  "container_user": "exact-private-staging-owner",
+                  "entrypoint": [
+                    "/usr/local/bin/python",
+                    "-I",
+                    "-c"
+                  ],
+                  "no_new_privileges": true,
+                  "pull_policy": "never",
+                  "resource_args": [
+                    "--cpus",
+                    "2",
+                    "--memory",
+                    "2g",
+                    "--memory-swap",
+                    "2g",
+                    "--pids-limit",
+                    "512"
+                  ]
+                },
+                "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+                "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+                "requirements": {
+                  "path": "ci/generalization-runtime-requirements.txt",
+                  "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                  "size": 1006
+                },
+                "runtime": {
+                  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                  "platform": "linux/amd64",
+                  "python_implementation": "CPython",
+                  "python_implementation_id": "cpython",
+                  "python_version": "3.12.14"
+                },
+                "schema": "zerorun.generalization-dependency-layer.v1",
+                "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+              },
+              "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+              "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "directory_count": 32,
+              "extra_requirements": [
+                "pretend"
+              ],
+              "file_count": 513,
+              "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+              "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "path_bytes": 21037,
+              "read_only_mode_and_content_verified": true,
+              "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "source_hardlinks_rejected": true,
+              "total_bytes": 6579552,
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "image": {
+              "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+              "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "repo_digests": [
+                "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+              ],
+              "requested": "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "rootfs": {
+                "Layers": [
+                  "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                  "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                  "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                  "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                  "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                  "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+                ],
+                "Type": "layers"
+              }
+            },
+            "image_publicly_pullable": false,
+            "independent_image_rebuild": false,
+            "reconciled": true,
+            "schema": "zerorun.handoff-image-reconciliation.v2",
+            "setup_outer_ms": 22954.829173999315
+          },
+          "image_setup_in_chain_ratio": false,
+          "natural_repeat_frequency": false,
+          "new_model_calls": 0,
+          "reconciled": true,
+          "runtime_before_after_exact": true,
+          "schema": "zerorun.image-contained-handoff-reconciliation.v2"
+        },
+        "repeat_context": {
+          "amendment": {
+            "bytes": 3679,
+            "path": "research/softwarex/APPLICATION_REVISION_AMENDMENT.md",
+            "sha256": "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c"
+          },
+          "new_independent_subjects_claimed": false,
+          "original_run": "v2_main",
+          "pooled_with_original": false,
+          "same_frozen_selection": true
+        },
+        "selected_case_count": 24,
+        "state": "RECONCILED_RECORDED_OUTCOMES",
+        "timing_context": {
+          "basis": "The expanded-budget main repeat was interrupted by a host-storage pause. Preserve raw guest times and all outcomes. Its timings are not an uninterrupted performance replication; this host observation does not replace fresh-oracle or record reconciliation.",
+          "host_event_record": {
+            "bytes": 1262,
+            "path": "research/softwarex/evidence/application-revision-20260907-v2/host-interruption.json",
+            "sha256": "0e933d32f40d5ad638d784dff0b27eea12209c9f9b9bbce94f1b370a258e9f41"
+          },
+          "interruption_reported": true,
+          "pause_utc_operator_reported": "2026-09-07T08:07:57Z",
+          "post_resume_clock_observation": {
+            "clocks_agreed": false,
+            "guest_reported_utc": "2026-09-07T08:08:51.915852Z",
+            "host_observed_utc": "2026-09-07T08:25:22Z"
+          },
+          "resume_command_issued_utc_bounds": {
+            "exact_resume_instant_established": false,
+            "not_after": "2026-09-07T08:24:30Z",
+            "not_before": "2026-09-07T08:24:17Z"
+          },
+          "uninterrupted_timing_certified": false
+        },
         "version": "v2"
       },
       "v2_pilot": {
@@ -3615,6 +5005,932 @@
       "setup_outer_ms": 24396.20924599876,
       "state": "RECONCILED_RECORDED_PREPARATION_FAILURE"
     },
+    "fresh_public_source_reproduction": {
+      "amendment": {
+        "bytes": 3679,
+        "path": "research/softwarex/APPLICATION_REVISION_AMENDMENT.md",
+        "sha256": "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c"
+      },
+      "fresh_real_workload_reproduction_confirmed": true,
+      "image": {
+        "completion_sha256": "920bd72a2aae0414446e429a79585dc35968ef15cff15485a73120b69a862e12",
+        "dependency_files": 511,
+        "dependency_provenance": {
+          "build_count": 1,
+          "build_once_ms": 11312.396,
+          "construction_contract": {
+            "extra_requirements": [
+              "pretend"
+            ],
+            "installer": {
+              "arguments": [
+                "install",
+                "--disable-pip-version-check",
+                "--no-input",
+                "--no-cache-dir",
+                "--no-compile",
+                "--require-hashes",
+                "--only-binary=:all:",
+                "--target",
+                "/zerorun-env/site-packages",
+                "--requirement",
+                "/zerorun-env/runtime-requirements.txt"
+              ],
+              "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "capabilities": "drop-all",
+              "container_user": "exact-private-staging-owner",
+              "entrypoint": [
+                "/usr/local/bin/python",
+                "-I",
+                "-c"
+              ],
+              "no_new_privileges": true,
+              "pull_policy": "never",
+              "resource_args": [
+                "--cpus",
+                "2",
+                "--memory",
+                "2g",
+                "--memory-swap",
+                "2g",
+                "--pids-limit",
+                "512"
+              ]
+            },
+            "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+            "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+            "requirements": {
+              "path": "ci/generalization-runtime-requirements.txt",
+              "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "size": 1006
+            },
+            "runtime": {
+              "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "platform": "linux/amd64",
+              "python_implementation": "CPython",
+              "python_implementation_id": "cpython",
+              "python_version": "3.12.14"
+            },
+            "schema": "zerorun.generalization-dependency-layer.v1",
+            "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+          },
+          "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+          "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+          "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+          "directory_count": 32,
+          "extra_requirements": [
+            "pretend"
+          ],
+          "file_count": 513,
+          "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+          "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+          "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+          "path_bytes": 21037,
+          "read_only_mode_and_content_verified": true,
+          "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+          "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+          "schema": "zerorun.generalization-dependency-layer.v1",
+          "source_hardlinks_rejected": true,
+          "total_bytes": 6579552,
+          "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+        },
+        "image": {
+          "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+          "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+          "repo_digests": [
+            "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+          ],
+          "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+          "rootfs": {
+            "Layers": [
+              "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+              "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+              "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+              "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+              "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+              "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+            ],
+            "Type": "layers"
+          }
+        },
+        "image_publicly_pullable": false,
+        "independent_image_rebuild": false,
+        "reconciled": true,
+        "schema": "zerorun.handoff-image-reconciliation.v2",
+        "setup_outer_ms": 26395.79032799884
+      },
+      "image_path": "research/softwarex/evidence/application-revision-20260907-v2/record-only/handoff-image-build-fresh-v1",
+      "independent_human_replication": false,
+      "pilot": {
+        "all_selected_cases_completed": true,
+        "campaign_error": null,
+        "cases": [
+          {
+            "case_id": "tobymao__sqlglot-3425",
+            "complete_chain_ms": {
+              "fresh": 28653.225812002347,
+              "zerorun": 31906.888056000753
+            },
+            "complete_chain_saved_fraction": -0.11355308701875733,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 28653.225812002347,
+                "zerorun": 31906.888056000753
+              },
+              "chain_saved_fraction": -0.11355308701875733,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 9361.263681003038,
+                "zerorun": 2368.3713320024253
+              },
+              "consumer_saved_fraction": 0.7470030315662832,
+              "fresh_diagnostics_ms": 23050.339093999355,
+              "oracle_ms": 21490.303718001087,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 29006.296471001406,
+                "zerorun": 32357.090317000257
+              },
+              "setup_inclusive_saved_fraction": -0.11551953381393432,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "tobymao/sqlglot"
+          },
+          {
+            "case_id": "tobymao__sqlglot-3756",
+            "complete_chain_ms": {
+              "fresh": 26618.828217000555,
+              "zerorun": 29194.245649996446
+            },
+            "complete_chain_saved_fraction": -0.09675172069937554,
+            "complete_paired_blocks": 2,
+            "complete_paired_costs": {
+              "cache_hits": 2,
+              "chain_ms": {
+                "fresh": 26618.828217000555,
+                "zerorun": 29194.245649996446
+              },
+              "chain_saved_fraction": -0.09675172069937554,
+              "complete_blocks": 2,
+              "consumer_ms": {
+                "fresh": 10699.090263999096,
+                "zerorun": 2489.07755899927
+              },
+              "consumer_saved_fraction": 0.7673561492069416,
+              "fresh_diagnostics_ms": 23719.370007998805,
+              "oracle_ms": 23394.276121001894,
+              "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+              "setup_inclusive_chain_ms": {
+                "fresh": 27053.347893997852,
+                "zerorun": 29551.18823199882
+              },
+              "setup_inclusive_saved_fraction": -0.09233017472691984,
+              "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+            },
+            "disposition": "COMPLETE",
+            "repo": "tobymao/sqlglot"
+          }
+        ],
+        "complete_case_count": 2,
+        "complete_case_faster_count": 0,
+        "complete_case_median_chain_saved_fraction": -0.10515240385906643,
+        "complete_paired_costs": {
+          "cache_hits": 4,
+          "chain_ms": {
+            "fresh": 55272.0540290029,
+            "zerorun": 61101.1337059972
+          },
+          "chain_saved_fraction": -0.10546160766769419,
+          "complete_blocks": 4,
+          "consumer_ms": {
+            "fresh": 20060.353945002134,
+            "zerorun": 4857.448891001695
+          },
+          "consumer_saved_fraction": 0.7578582658950598,
+          "fresh_diagnostics_ms": 46769.70910199816,
+          "oracle_ms": 44884.57983900298,
+          "oracle_scope": "Two independent paired-arm fresh checks per complete block; baseline and compatibility checks remain separate.",
+          "setup_inclusive_chain_ms": {
+            "fresh": 56059.64436499926,
+            "zerorun": 61908.27854899908
+          },
+          "setup_inclusive_saved_fraction": -0.10432877786237627,
+          "setup_inclusive_scope": "Per-arm source/environment preparation only; common dependency/image setup, acquisition and operator review remain separate."
+        },
+        "completion": {
+          "bytes": 10029,
+          "path": "completion.json",
+          "sha256": "e786062e367266926ce5a94f9f4a9e8c7ea75c26687a4f3ee416090549fddfb8"
+        },
+        "live_agent_speedup_established": false,
+        "natural_repeat_prevalence_established": false,
+        "operation_cost_scope": "cold producer plus consumer in both arms; diagnostics and independent oracles reported separately; incomplete costs never imputed as zero",
+        "phase": "pilot",
+        "producer_reported_material_correctness_stop": false,
+        "protocol": {
+          "bytes": 15430,
+          "path": "protocol.json",
+          "sha256": "966e382b6a84961d248f47d2c0ba16a2f1740fd7fa124f20cbe08d5f298a0add"
+        },
+        "reconciliation": {
+          "controlled_handoffs": {
+            "acquisition_bytes_rechecked": true,
+            "additional_completed_blocks_from_incomplete_cases": 0,
+            "all_recorded_cost_scope": "sum of retained outer operation clocks including compatibility/oracles/diagnostics/failures, not an end-to-end treatment ratio; missing work not imputed",
+            "all_recorded_operation_ms": 228641.15918599782,
+            "complete_blocks": 4,
+            "complete_cases": 2,
+            "complete_pair_chain_saved_fraction": -0.10546160766769419,
+            "complete_paired_chain_ms": {
+              "fresh": 55272.0540290029,
+              "zerorun": 61101.1337059972
+            },
+            "complete_repositories": 1,
+            "dispositions": {
+              "COMPLETE": 2,
+              "INCOMPLETE_OR_UNSUPPORTED": 0,
+              "MATERIAL_CORRECTNESS_STOP": 0,
+              "NOT_RUN_BUDGET": 0,
+              "NOT_RUN_CAMPAIGN_FAILURE": 0,
+              "NOT_RUN_CORRECTNESS_STOP": 0,
+              "UNAVAILABLE_ACQUISITION": 0
+            },
+            "failed_operations": 0,
+            "material_correctness_stop": false,
+            "phase": "pilot",
+            "planned_cases": 2,
+            "receipt_sha256": "4fca0e1c7065540b02b6b95306ddb3ca9618498327a162c59b2c3ebc9bc21b63",
+            "reconciled": true,
+            "recorded_operations": 30,
+            "schema": "zerorun.controlled-handoff-reconciliation.v1",
+            "scope": "controlled issue-state handoffs, not model tasks or natural repeat prevalence; incomplete costs excluded from ratios but dispositions retained",
+            "selected_cases": 2,
+            "selected_repositories": 1
+          },
+          "image_build": {
+            "completion_sha256": "920bd72a2aae0414446e429a79585dc35968ef15cff15485a73120b69a862e12",
+            "dependency_files": 511,
+            "dependency_provenance": {
+              "build_count": 1,
+              "build_once_ms": 11312.396,
+              "construction_contract": {
+                "extra_requirements": [
+                  "pretend"
+                ],
+                "installer": {
+                  "arguments": [
+                    "install",
+                    "--disable-pip-version-check",
+                    "--no-input",
+                    "--no-cache-dir",
+                    "--no-compile",
+                    "--require-hashes",
+                    "--only-binary=:all:",
+                    "--target",
+                    "/zerorun-env/site-packages",
+                    "--requirement",
+                    "/zerorun-env/runtime-requirements.txt"
+                  ],
+                  "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                  "capabilities": "drop-all",
+                  "container_user": "exact-private-staging-owner",
+                  "entrypoint": [
+                    "/usr/local/bin/python",
+                    "-I",
+                    "-c"
+                  ],
+                  "no_new_privileges": true,
+                  "pull_policy": "never",
+                  "resource_args": [
+                    "--cpus",
+                    "2",
+                    "--memory",
+                    "2g",
+                    "--memory-swap",
+                    "2g",
+                    "--pids-limit",
+                    "512"
+                  ]
+                },
+                "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+                "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+                "requirements": {
+                  "path": "ci/generalization-runtime-requirements.txt",
+                  "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                  "size": 1006
+                },
+                "runtime": {
+                  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                  "platform": "linux/amd64",
+                  "python_implementation": "CPython",
+                  "python_implementation_id": "cpython",
+                  "python_version": "3.12.14"
+                },
+                "schema": "zerorun.generalization-dependency-layer.v1",
+                "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+              },
+              "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+              "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "directory_count": 32,
+              "extra_requirements": [
+                "pretend"
+              ],
+              "file_count": 513,
+              "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+              "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "path_bytes": 21037,
+              "read_only_mode_and_content_verified": true,
+              "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "source_hardlinks_rejected": true,
+              "total_bytes": 6579552,
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "image": {
+              "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+              "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "repo_digests": [
+                "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+                "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+              ],
+              "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "rootfs": {
+                "Layers": [
+                  "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                  "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                  "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                  "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                  "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                  "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+                ],
+                "Type": "layers"
+              }
+            },
+            "image_publicly_pullable": false,
+            "independent_image_rebuild": false,
+            "reconciled": true,
+            "schema": "zerorun.handoff-image-reconciliation.v2",
+            "setup_outer_ms": 26395.79032799884
+          },
+          "image_setup_in_chain_ratio": false,
+          "natural_repeat_frequency": false,
+          "new_model_calls": 0,
+          "reconciled": true,
+          "runtime_before_after_exact": true,
+          "schema": "zerorun.image-contained-handoff-reconciliation.v2"
+        },
+        "selected_case_count": 2,
+        "state": "RECONCILED_RECORDED_OUTCOMES",
+        "version": "v2"
+      },
+      "pooled_with_historical_measurements": false,
+      "public_source_provenance": {
+        "acceptance_probability_estimated": false,
+        "amendment_sha256": "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c",
+        "bit_identical_rebuild_claimed": false,
+        "bound_files": 1244,
+        "checkout_execution_binding_confirmed": true,
+        "commands": 33,
+        "completed_workload_outcomes_reconciled": true,
+        "driver_sha256": "486e5bd331e0fae780c6792ea4d669b8406cfafced6370f735538a92bd1a52f4",
+        "external_independent_researcher": false,
+        "fresh_real_workload_reproduction_confirmed": true,
+        "image_existing": {
+          "completion_sha256": "2e601bc33681e88dc33c52e4d7f1b54593ccfaed9c4d41df5b17cb553ff9999b",
+          "dependency_files": 511,
+          "dependency_provenance": {
+            "build_count": 1,
+            "build_once_ms": 9316.117,
+            "construction_contract": {
+              "extra_requirements": [
+                "pretend"
+              ],
+              "installer": {
+                "arguments": [
+                  "install",
+                  "--disable-pip-version-check",
+                  "--no-input",
+                  "--no-cache-dir",
+                  "--no-compile",
+                  "--require-hashes",
+                  "--only-binary=:all:",
+                  "--target",
+                  "/zerorun-env/site-packages",
+                  "--requirement",
+                  "/zerorun-env/runtime-requirements.txt"
+                ],
+                "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                "capabilities": "drop-all",
+                "container_user": "exact-private-staging-owner",
+                "entrypoint": [
+                  "/usr/local/bin/python",
+                  "-I",
+                  "-c"
+                ],
+                "no_new_privileges": true,
+                "pull_policy": "never",
+                "resource_args": [
+                  "--cpus",
+                  "2",
+                  "--memory",
+                  "2g",
+                  "--memory-swap",
+                  "2g",
+                  "--pids-limit",
+                  "512"
+                ]
+              },
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+              "requirements": {
+                "path": "ci/generalization-runtime-requirements.txt",
+                "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                "size": 1006
+              },
+              "runtime": {
+                "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                "platform": "linux/amd64",
+                "python_implementation": "CPython",
+                "python_implementation_id": "cpython",
+                "python_version": "3.12.14"
+              },
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+            "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "directory_count": 32,
+            "extra_requirements": [
+              "pretend"
+            ],
+            "file_count": 513,
+            "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+            "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+            "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+            "path_bytes": 21037,
+            "read_only_mode_and_content_verified": true,
+            "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+            "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+            "schema": "zerorun.generalization-dependency-layer.v1",
+            "source_hardlinks_rejected": true,
+            "total_bytes": 6579552,
+            "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+          },
+          "image": {
+            "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+            "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "repo_digests": [
+              "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+            ],
+            "requested": "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "rootfs": {
+              "Layers": [
+                "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+              ],
+              "Type": "layers"
+            }
+          },
+          "image_publicly_pullable": false,
+          "independent_image_rebuild": false,
+          "reconciled": true,
+          "schema": "zerorun.handoff-image-reconciliation.v2",
+          "setup_outer_ms": 22954.829173999315
+        },
+        "image_fresh": {
+          "completion_sha256": "920bd72a2aae0414446e429a79585dc35968ef15cff15485a73120b69a862e12",
+          "dependency_files": 511,
+          "dependency_provenance": {
+            "build_count": 1,
+            "build_once_ms": 11312.396,
+            "construction_contract": {
+              "extra_requirements": [
+                "pretend"
+              ],
+              "installer": {
+                "arguments": [
+                  "install",
+                  "--disable-pip-version-check",
+                  "--no-input",
+                  "--no-cache-dir",
+                  "--no-compile",
+                  "--require-hashes",
+                  "--only-binary=:all:",
+                  "--target",
+                  "/zerorun-env/site-packages",
+                  "--requirement",
+                  "/zerorun-env/runtime-requirements.txt"
+                ],
+                "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                "capabilities": "drop-all",
+                "container_user": "exact-private-staging-owner",
+                "entrypoint": [
+                  "/usr/local/bin/python",
+                  "-I",
+                  "-c"
+                ],
+                "no_new_privileges": true,
+                "pull_policy": "never",
+                "resource_args": [
+                  "--cpus",
+                  "2",
+                  "--memory",
+                  "2g",
+                  "--memory-swap",
+                  "2g",
+                  "--pids-limit",
+                  "512"
+                ]
+              },
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+              "requirements": {
+                "path": "ci/generalization-runtime-requirements.txt",
+                "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                "size": 1006
+              },
+              "runtime": {
+                "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                "platform": "linux/amd64",
+                "python_implementation": "CPython",
+                "python_implementation_id": "cpython",
+                "python_version": "3.12.14"
+              },
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+            "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+            "directory_count": 32,
+            "extra_requirements": [
+              "pretend"
+            ],
+            "file_count": 513,
+            "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+            "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+            "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+            "path_bytes": 21037,
+            "read_only_mode_and_content_verified": true,
+            "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+            "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+            "schema": "zerorun.generalization-dependency-layer.v1",
+            "source_hardlinks_rejected": true,
+            "total_bytes": 6579552,
+            "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+          },
+          "image": {
+            "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+            "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "repo_digests": [
+              "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+            ],
+            "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+            "rootfs": {
+              "Layers": [
+                "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+              ],
+              "Type": "layers"
+            }
+          },
+          "image_publicly_pullable": false,
+          "independent_image_rebuild": false,
+          "reconciled": true,
+          "schema": "zerorun.handoff-image-reconciliation.v2",
+          "setup_outer_ms": 26395.79032799884
+        },
+        "main": {
+          "controlled_handoffs": {
+            "acquisition_bytes_rechecked": true,
+            "additional_completed_blocks_from_incomplete_cases": 0,
+            "all_recorded_cost_scope": "sum of retained outer operation clocks including compatibility/oracles/diagnostics/failures, not an end-to-end treatment ratio; missing work not imputed",
+            "all_recorded_operation_ms": 1038946.9793899803,
+            "complete_blocks": 30,
+            "complete_cases": 15,
+            "complete_pair_chain_saved_fraction": 0.02002459426248404,
+            "complete_paired_chain_ms": {
+              "fresh": 240691.96637999994,
+              "zerorun": 235872.207411001
+            },
+            "complete_repositories": 7,
+            "dispositions": {
+              "COMPLETE": 15,
+              "INCOMPLETE_OR_UNSUPPORTED": 9,
+              "MATERIAL_CORRECTNESS_STOP": 0,
+              "NOT_RUN_BUDGET": 0,
+              "NOT_RUN_CAMPAIGN_FAILURE": 0,
+              "NOT_RUN_CORRECTNESS_STOP": 0,
+              "UNAVAILABLE_ACQUISITION": 0
+            },
+            "failed_operations": 7,
+            "material_correctness_stop": false,
+            "phase": "main",
+            "planned_cases": 30,
+            "receipt_sha256": "69524329372af3926e881e860b4cfc00d75ac95b38c9966723beff6557737702",
+            "reconciled": true,
+            "recorded_operations": 234,
+            "schema": "zerorun.controlled-handoff-reconciliation.v1",
+            "scope": "controlled issue-state handoffs, not model tasks or natural repeat prevalence; incomplete costs excluded from ratios but dispositions retained",
+            "selected_cases": 24,
+            "selected_repositories": 8
+          },
+          "image_build": {
+            "completion_sha256": "2e601bc33681e88dc33c52e4d7f1b54593ccfaed9c4d41df5b17cb553ff9999b",
+            "dependency_files": 511,
+            "dependency_provenance": {
+              "build_count": 1,
+              "build_once_ms": 9316.117,
+              "construction_contract": {
+                "extra_requirements": [
+                  "pretend"
+                ],
+                "installer": {
+                  "arguments": [
+                    "install",
+                    "--disable-pip-version-check",
+                    "--no-input",
+                    "--no-cache-dir",
+                    "--no-compile",
+                    "--require-hashes",
+                    "--only-binary=:all:",
+                    "--target",
+                    "/zerorun-env/site-packages",
+                    "--requirement",
+                    "/zerorun-env/runtime-requirements.txt"
+                  ],
+                  "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                  "capabilities": "drop-all",
+                  "container_user": "exact-private-staging-owner",
+                  "entrypoint": [
+                    "/usr/local/bin/python",
+                    "-I",
+                    "-c"
+                  ],
+                  "no_new_privileges": true,
+                  "pull_policy": "never",
+                  "resource_args": [
+                    "--cpus",
+                    "2",
+                    "--memory",
+                    "2g",
+                    "--memory-swap",
+                    "2g",
+                    "--pids-limit",
+                    "512"
+                  ]
+                },
+                "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+                "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+                "requirements": {
+                  "path": "ci/generalization-runtime-requirements.txt",
+                  "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                  "size": 1006
+                },
+                "runtime": {
+                  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                  "platform": "linux/amd64",
+                  "python_implementation": "CPython",
+                  "python_implementation_id": "cpython",
+                  "python_version": "3.12.14"
+                },
+                "schema": "zerorun.generalization-dependency-layer.v1",
+                "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+              },
+              "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+              "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "directory_count": 32,
+              "extra_requirements": [
+                "pretend"
+              ],
+              "file_count": 513,
+              "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+              "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "path_bytes": 21037,
+              "read_only_mode_and_content_verified": true,
+              "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "source_hardlinks_rejected": true,
+              "total_bytes": 6579552,
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "image": {
+              "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+              "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "repo_digests": [
+                "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+              ],
+              "requested": "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "rootfs": {
+                "Layers": [
+                  "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                  "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                  "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                  "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                  "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                  "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+                ],
+                "Type": "layers"
+              }
+            },
+            "image_publicly_pullable": false,
+            "independent_image_rebuild": false,
+            "reconciled": true,
+            "schema": "zerorun.handoff-image-reconciliation.v2",
+            "setup_outer_ms": 22954.829173999315
+          },
+          "image_setup_in_chain_ratio": false,
+          "natural_repeat_frequency": false,
+          "new_model_calls": 0,
+          "reconciled": true,
+          "runtime_before_after_exact": true,
+          "schema": "zerorun.image-contained-handoff-reconciliation.v2"
+        },
+        "material_correctness_stop": false,
+        "path": "research/softwarex/evidence/application-revision-20260907-v2/record-only",
+        "pilot": {
+          "controlled_handoffs": {
+            "acquisition_bytes_rechecked": true,
+            "additional_completed_blocks_from_incomplete_cases": 0,
+            "all_recorded_cost_scope": "sum of retained outer operation clocks including compatibility/oracles/diagnostics/failures, not an end-to-end treatment ratio; missing work not imputed",
+            "all_recorded_operation_ms": 228641.15918599782,
+            "complete_blocks": 4,
+            "complete_cases": 2,
+            "complete_pair_chain_saved_fraction": -0.10546160766769419,
+            "complete_paired_chain_ms": {
+              "fresh": 55272.0540290029,
+              "zerorun": 61101.1337059972
+            },
+            "complete_repositories": 1,
+            "dispositions": {
+              "COMPLETE": 2,
+              "INCOMPLETE_OR_UNSUPPORTED": 0,
+              "MATERIAL_CORRECTNESS_STOP": 0,
+              "NOT_RUN_BUDGET": 0,
+              "NOT_RUN_CAMPAIGN_FAILURE": 0,
+              "NOT_RUN_CORRECTNESS_STOP": 0,
+              "UNAVAILABLE_ACQUISITION": 0
+            },
+            "failed_operations": 0,
+            "material_correctness_stop": false,
+            "phase": "pilot",
+            "planned_cases": 2,
+            "receipt_sha256": "4fca0e1c7065540b02b6b95306ddb3ca9618498327a162c59b2c3ebc9bc21b63",
+            "reconciled": true,
+            "recorded_operations": 30,
+            "schema": "zerorun.controlled-handoff-reconciliation.v1",
+            "scope": "controlled issue-state handoffs, not model tasks or natural repeat prevalence; incomplete costs excluded from ratios but dispositions retained",
+            "selected_cases": 2,
+            "selected_repositories": 1
+          },
+          "image_build": {
+            "completion_sha256": "920bd72a2aae0414446e429a79585dc35968ef15cff15485a73120b69a862e12",
+            "dependency_files": 511,
+            "dependency_provenance": {
+              "build_count": 1,
+              "build_once_ms": 11312.396,
+              "construction_contract": {
+                "extra_requirements": [
+                  "pretend"
+                ],
+                "installer": {
+                  "arguments": [
+                    "install",
+                    "--disable-pip-version-check",
+                    "--no-input",
+                    "--no-cache-dir",
+                    "--no-compile",
+                    "--require-hashes",
+                    "--only-binary=:all:",
+                    "--target",
+                    "/zerorun-env/site-packages",
+                    "--requirement",
+                    "/zerorun-env/runtime-requirements.txt"
+                  ],
+                  "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+                  "capabilities": "drop-all",
+                  "container_user": "exact-private-staging-owner",
+                  "entrypoint": [
+                    "/usr/local/bin/python",
+                    "-I",
+                    "-c"
+                  ],
+                  "no_new_privileges": true,
+                  "pull_policy": "never",
+                  "resource_args": [
+                    "--cpus",
+                    "2",
+                    "--memory",
+                    "2g",
+                    "--memory-swap",
+                    "2g",
+                    "--pids-limit",
+                    "512"
+                  ]
+                },
+                "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+                "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+                "requirements": {
+                  "path": "ci/generalization-runtime-requirements.txt",
+                  "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+                  "size": 1006
+                },
+                "runtime": {
+                  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+                  "platform": "linux/amd64",
+                  "python_implementation": "CPython",
+                  "python_implementation_id": "cpython",
+                  "python_version": "3.12.14"
+                },
+                "schema": "zerorun.generalization-dependency-layer.v1",
+                "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+              },
+              "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+              "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+              "directory_count": 32,
+              "extra_requirements": [
+                "pretend"
+              ],
+              "file_count": 513,
+              "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+              "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+              "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+              "path_bytes": 21037,
+              "read_only_mode_and_content_verified": true,
+              "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+              "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+              "schema": "zerorun.generalization-dependency-layer.v1",
+              "source_hardlinks_rejected": true,
+              "total_bytes": 6579552,
+              "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+            },
+            "image": {
+              "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+              "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "repo_digests": [
+                "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+                "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+              ],
+              "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+              "rootfs": {
+                "Layers": [
+                  "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+                  "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+                  "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+                  "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+                  "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+                  "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+                ],
+                "Type": "layers"
+              }
+            },
+            "image_publicly_pullable": false,
+            "independent_image_rebuild": false,
+            "reconciled": true,
+            "schema": "zerorun.handoff-image-reconciliation.v2",
+            "setup_outer_ms": 26395.79032799884
+          },
+          "image_setup_in_chain_ratio": false,
+          "natural_repeat_frequency": false,
+          "new_model_calls": 0,
+          "reconciled": true,
+          "runtime_before_after_exact": true,
+          "schema": "zerorun.image-contained-handoff-reconciliation.v2"
+        },
+        "record_manifest_sha256": "04e29e0062a6f0b1e3c6b175bba73f6ad450be14e9b48b593d2df8e6c068631e",
+        "schema": "zerorun.application-revision-reconciliation.v1",
+        "scope": "Author-side VM sequence; preserved original cases, distinct image bindings and fresh oracles. Completion does not imply every main case was supported.",
+        "sequence_completed": true,
+        "source_and_raw_bindings_reconciled": true,
+        "state": "RECONCILED_COMPLETED_SEQUENCE",
+        "verifier_sha256": "eb033f9f1561146b7fe00085be1b96e08b2970d253c2b0ca01f9f2b3e6645c17",
+        "wrapper_aggregate_check": "Exact producer-version sum rule re-executed from raw blocks; no floating tolerance. Returned aggregates use the canonical validator.",
+        "wrapper_python_version": "3.10.12"
+      },
+      "run_path": "research/softwarex/evidence/application-revision-20260907-v2/record-only/handoff-pilot-fresh-image-v1",
+      "state": "RECONCILED_IMAGE_BUILD"
+    },
     "image_build": {
       "path": "research/softwarex/evidence/handoff-image-build-v2b",
       "reconciliation": {
@@ -3737,9 +6053,14 @@
         "bytes": 1327,
         "path": "research/softwarex/AGENT_AUTHENTICATION_AMENDMENT.md",
         "sha256": "27e56d3a0537f7b1d922c1e5a926dd6dccb620e67e42fa16a7acc59a1a1ede6d"
+      },
+      {
+        "bytes": 3679,
+        "path": "research/softwarex/APPLICATION_REVISION_AMENDMENT.md",
+        "sha256": "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c"
       }
     ],
-    "reconciled_run_count": 4,
+    "reconciled_run_count": 5,
     "schema": "zerorun.softwarex-handoff-evidence.v1",
     "scope": "Read-only source/receipt reconciliation; no new model calls, benchmark executions or authorizations.",
     "unavailable_or_incomplete_runs": [
@@ -3752,7 +6073,7 @@
     "inventory_cases": 38,
     "junit_sha256": "e4dd67ae43b0daa50ea8f2c75668b284e0235a907e3ab6ec102c663ba83c9f2c"
   },
-  "main_tex_sha256": "ca644eb479ea087cc8ce8dbe135361d38f244eb39b6b596450d51ae32c5d8996",
+  "main_tex_sha256": "99c2a3524056809bfe2325f615d1002f5bba4e07b30dd43ea7efcf59a4706e9d",
   "meaning": "Evidence and format validation, not an acceptance probability or production qualification.",
   "original_comparison": {
     "agent_effect_measured": false,
@@ -8688,7 +11009,7 @@
     "review_sha256": "7bf8d06279e264a0f536858e5cfcddd4a4f216f9555c892168a1eeb12a74ccbd",
     "text_sha256": "9d752d0a800d4e0c7417bff1028b78a951985f5a1e2c964954ead7a9b3e603fa"
   },
-  "template_sha256": "1dcffce43dc6af823fbc94db17d8d6442a7c94f1fcac96fa2dd117ab3a89f444",
+  "template_sha256": "f889c97366eadff1cca4500a88954ffb05cf8fc0d9df2ee3ee5d42de2e8ee200",
   "title": "ZeroRun: Reproducible test-result reuse for AI coding tools",
   "trace_summary_sha256": "62e8fbbea979c6f19ea07e4185ade2d064634356a3d0b87364fac7ef889a6152"
 }

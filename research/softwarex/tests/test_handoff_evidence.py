@@ -199,7 +199,7 @@ def test_acquisition_reconciliation_refuses_missing_or_false_green_data(acquisit
 def test_absent_runs_and_incomplete_runs_are_never_success(acquisition_fixture):
     root, _ = acquisition_fixture
     value = evidence.build(root)
-    assert set(value["unavailable_or_incomplete_runs"]) == {"v1_pilot", "v1_main", "v2_pilot", "v2_pilot_repeat", "v2_main"}
+    assert set(value["unavailable_or_incomplete_runs"]) == {"v1_pilot", "v1_main", "v2_pilot", "v2_pilot_repeat", "v2_main", "v2_main_extended"}
     assert all(run["state"] == "NOT_AVAILABLE" and run["execution_success_claimed"] is False
                for run in value["controlled_runs"].values())
     path = root / evidence.RUNS["v1_pilot"][0]
@@ -470,3 +470,197 @@ def test_previous_companion_cannot_hide_a_different_failure(previous_companion_f
         replace(directory, "completion.json", completion)
     with pytest.raises(ValueError):
         evidence.previous_agent_evaluation(directory, Path("unused"), Path("unused"))
+
+
+def fake_revision_run(root, relative, manifests, phase, budget):
+    """Artificial adapter records exercise aggregation, not the lower raw validator."""
+    directory = root / relative
+    save(directory, "protocol.json", {"artificial": "adapter boundary fixture"})
+    save(directory, "completion.json", {"artificial": "retained unfinished outcomes"})
+    save(directory, "run/protocol.json", {
+        "selection": deepcopy(manifests[phase]), "phase": phase, "blocks_per_case": 2,
+        "natural_hit_frequency_study": False, "budget_seconds": budget, "execution_seconds": 120})
+    save(directory, "run/completion.json", {
+        "cases": [{"case_id": case["case_id"], "repo": case["repo"], "disposition": "NOT_RUN_BUDGET"}
+                  for case in manifests[phase]["cases"]],
+        "campaign_error": None, "material_correctness_stop": False})
+    return directory
+
+
+def mock_revision_image_boundary(monkeypatch, expected_images):
+    """Preserve a distinguishing image boundary while isolating the new builder route."""
+    def validate_saved(directory, image_build, acquisition_base):
+        assert acquisition_base.is_dir()
+        if Path(image_build) != expected_images[Path(directory)]:
+            raise ValueError("artificial image binding differs")
+        return {"bound_image": str(image_build), "controlled_handoffs": {
+            "complete_paired_chain_ms": {"fresh": 0, "zerorun": 0}}}
+    monkeypatch.setattr(evidence.v2, "validate_saved", validate_saved)
+    monkeypatch.setattr(evidence.v2, "validate_image", lambda directory: {
+        "reconciled": True, "bound_image": str(directory)})
+
+
+@pytest.mark.parametrize("relative", [evidence.RUNS["v2_main_extended"][0], evidence.FRESH_IMAGE, evidence.FRESH_PILOT])
+def test_revision_presence_requires_retained_prospective_amendment(acquisition_fixture, relative):
+    root, _ = acquisition_fixture
+    (root / relative).mkdir(parents=True)
+    with pytest.raises(ValueError, match="prospective amendment"):
+        evidence.build(root)
+
+
+@pytest.mark.parametrize("kind,field,value", [
+    ("main", "budget_seconds", 1800), ("main", "execution_seconds", 121),
+    ("pilot", "budget_seconds", 1200), ("pilot", "execution_seconds", 121)])
+def test_revision_rejects_changed_budget_even_when_lower_records_reconcile(acquisition_fixture, monkeypatch, kind, field, value):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    a.save_new(root / evidence.AMENDMENTS[2], b"Artificial prospective amendment fixture.")
+    relative = evidence.RUNS["v2_main_extended"][0] if kind == "main" else evidence.FRESH_PILOT
+    image = root / (evidence.IMAGE if kind == "main" else evidence.FRESH_IMAGE)
+    directory = fake_revision_run(root, relative, manifests, kind, 1200 if kind == "main" else 600)
+    if kind == "pilot":
+        save(image, "completion.json", {"passed": True})
+    mock_revision_image_boundary(monkeypatch, {directory: image})
+    protocol = json.loads((directory / "run/protocol.json").read_bytes())
+    protocol[field] = value
+    replace(directory, "run/protocol.json", protocol)
+    with pytest.raises(ValueError, match="prospective execution budget"):
+        evidence.build(root)
+
+
+def test_fresh_image_binding_is_separate_and_does_not_pool_historical_runs(acquisition_fixture, monkeypatch):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    a.save_new(root / evidence.AMENDMENTS[2], b"Artificial prospective amendment fixture.")
+    old = fake_revision_run(root, evidence.RUNS["v2_pilot"][0], manifests, "pilot", 600)
+    fresh = fake_revision_run(root, evidence.FRESH_PILOT, manifests, "pilot", 600)
+    old_image, fresh_image = root / evidence.IMAGE, root / evidence.FRESH_IMAGE
+    save(old_image, "completion.json", {"passed": True})
+    save(fresh_image, "completion.json", {"passed": True})
+    mock_revision_image_boundary(monkeypatch, {old: old_image, fresh: fresh_image})
+    summary = evidence.build(root)
+    fresh_summary = summary["fresh_public_source_reproduction"]
+    assert summary["controlled_runs"]["v2_pilot"]["reconciliation"]["bound_image"] == str(old_image)
+    assert fresh_summary["image"]["bound_image"] == str(fresh_image)
+    assert fresh_summary["pilot"]["reconciliation"]["bound_image"] == str(fresh_image)
+    assert fresh_summary["pooled_with_historical_measurements"] is False
+    assert fresh_summary["independent_human_replication"] is False
+    assert fresh_summary["pilot"]["all_selected_cases_completed"] is False
+    assert summary["reconciled_run_count"] == 1
+    with pytest.raises(ValueError, match="image binding"):
+        evidence.run_summary(fresh, "v2", "pilot", base, manifests, old_image)
+
+
+@pytest.mark.parametrize("mode", ["subset", "main-ledger", "reordered"])
+def test_fresh_pilot_rejects_changed_frozen_ledger(acquisition_fixture, monkeypatch, mode):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    a.save_new(root / evidence.AMENDMENTS[2], b"Artificial prospective amendment fixture.")
+    directory = fake_revision_run(root, evidence.FRESH_PILOT, manifests, "pilot", 600)
+    image = root / evidence.FRESH_IMAGE
+    save(image, "completion.json", {"passed": True})
+    mock_revision_image_boundary(monkeypatch, {directory: image})
+    protocol = json.loads((directory / "run/protocol.json").read_bytes())
+    if mode == "subset":
+        protocol["selection"]["cases"].pop()
+    elif mode == "main-ledger":
+        protocol["selection"] = deepcopy(manifests["main"])
+    else:
+        protocol["selection"]["cases"].reverse()
+    replace(directory, "run/protocol.json", protocol)
+    with pytest.raises(ValueError, match="subset or changed frozen"):
+        evidence.build(root)
+
+
+@pytest.mark.parametrize("mode", ["absent", "image-only", "incomplete-pilot", "pilot-without-image"])
+def test_missing_rebuild_records_never_claim_successful_rerun(acquisition_fixture, monkeypatch, mode):
+    root, _ = acquisition_fixture
+    a.save_new(root / evidence.AMENDMENTS[2], b"Artificial prospective amendment fixture.")
+    if mode in {"image-only", "incomplete-pilot"}:
+        save(root / evidence.FRESH_IMAGE, "completion.json", {"passed": True})
+    if mode in {"incomplete-pilot", "pilot-without-image"}:
+        (root / evidence.FRESH_PILOT).mkdir(parents=True)
+    mock_revision_image_boundary(monkeypatch, {})
+    value = evidence.build(root)["fresh_public_source_reproduction"]
+    pilot = value.get("pilot", {})
+    assert pilot.get("state") != "RECONCILED_RECORDED_OUTCOMES"
+    assert pilot.get("all_selected_cases_completed") is not True
+    assert pilot.get("execution_success_claimed") is not True
+    assert value["independent_human_replication"] is False
+    if mode in {"image-only", "incomplete-pilot"}:
+        assert value["state"] == "RECONCILED_IMAGE_BUILD"
+        assert pilot["state"] == ("NOT_AVAILABLE" if mode == "image-only" else "INCOMPLETE_RECORD")
+
+
+def test_unsealed_wrapper_completion_never_confirms_public_provenance(acquisition_fixture):
+    root, _ = acquisition_fixture
+    a.save_new(root / evidence.AMENDMENTS[2], b"Artificial prospective amendment fixture.")
+    save(root / evidence.REVISION_RECORDS, "completion.json", {"artificial": "unsealed export"})
+    summary = evidence.build(root)
+    revision = summary["application_revision_attempts"]["revision"]
+    assert revision["state"] == "INCOMPLETE_RECORD"
+    assert revision["sequence_completed"] is False
+    assert revision["checkout_execution_binding_confirmed"] is False
+    assert summary["fresh_public_source_reproduction"]["fresh_real_workload_reproduction_confirmed"] is False
+
+
+def test_sealed_revision_wrapper_requires_its_external_interruption_record(acquisition_fixture):
+    root, _ = acquisition_fixture
+    a.save_new(root / evidence.AMENDMENTS[2], b"Artificial prospective amendment fixture.")
+    save(root / evidence.REVISION_RECORDS, "completion.json", {"artificial": "completed wrapper"})
+    save(root / evidence.REVISION_RECORDS, "RECORD_MANIFEST.json", {"artificial": "sealed export"})
+    with pytest.raises(ValueError, match="retained host interruption record"):
+        evidence.build(root)
+
+
+@pytest.fixture
+def host_event_fixture(tmp_path):
+    row = {"schema": "zerorun.softwarex-host-interruption.v1", "basis": "operator-observed host event",
+        "pause_observed_utc": "2000-01-01T00:00:00Z",
+        "resume_command_issued_utc_bounds": {"not_before": "2000-01-01T00:01:00Z",
+            "not_after": "2000-01-01T00:01:10Z", "exact_resume_instant_established": False},
+        "post_resume_clock_observation": {"guest_reported_utc": "2000-01-01T00:00:10Z",
+            "host_observed_utc": "2000-01-01T00:02:00Z", "clocks_agreed": False},
+        "virtualbox": {"snapshot_uuid": "11111111-1111-1111-1111-111111111111",
+            "delta_uuid": "22222222-2222-2222-2222-222222222222", "exact_delta_file_path_claimed": False},
+        "existing_external_drive_files_deleted": False, "raw_guest_timestamps_altered": False,
+        "guest_clock_synchronization_requested_during_run": False, "prospective_amendment_modified": False,
+        "uninterrupted_timing_certified": False, "interpretation": "Artificial interrupted timing fixture."}
+    save(tmp_path, evidence.HOST_INTERRUPTION, row)
+    return tmp_path, row
+
+
+def test_host_event_binding_preserves_clock_interval_and_raw_record(host_event_fixture):
+    root, row = host_event_fixture
+    path = root / evidence.HOST_INTERRUPTION
+    before = path.read_bytes()
+    result = evidence.host_interruption_summary(root)
+    assert result["host_event_record"] == r.file_record(root, evidence.HOST_INTERRUPTION)
+    assert result["resume_command_issued_utc_bounds"] == row["resume_command_issued_utc_bounds"]
+    assert result["post_resume_clock_observation"] == row["post_resume_clock_observation"]
+    assert result["uninterrupted_timing_certified"] is False
+    assert path.read_bytes() == before
+
+
+@pytest.mark.parametrize("mode", ["uninterrupted", "altered-times", "exact-resume", "clocks-agree"])
+def test_host_event_cannot_be_reclassified_as_clean_timing(host_event_fixture, mode):
+    root, row = host_event_fixture
+    if mode == "uninterrupted":
+        row["uninterrupted_timing_certified"] = True
+    elif mode == "altered-times":
+        row["raw_guest_timestamps_altered"] = True
+    elif mode == "exact-resume":
+        row["resume_command_issued_utc_bounds"]["exact_resume_instant_established"] = True
+    else:
+        row["post_resume_clock_observation"]["clocks_agreed"] = True
+    replace(root, evidence.HOST_INTERRUPTION, row)
+    with pytest.raises(ValueError):
+        evidence.host_interruption_summary(root)
+
+
+def test_publication_inputs_include_external_host_event(acquisition_fixture):
+    root, _ = acquisition_fixture
+    a.save_new(root / "research/softwarex/build_handoff_evidence.py", b"# artificial builder fixture")
+    save(root, evidence.HOST_INTERRUPTION, {"artificial": "separate host observation"})
+    paths = {row["path"] for row in evidence.source_inputs(root)}
+    assert evidence.HOST_INTERRUPTION in paths

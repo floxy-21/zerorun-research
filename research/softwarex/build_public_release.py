@@ -30,7 +30,7 @@ HISTORICAL_RUNTIME_PREFIX = "research/softwarex/historical_runtime_0_5_1"
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
 REVIEWER_ASSET = "output/submission/ZeroRun_SoftwareX_reviewer.zip"
-REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip"
+REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907-r2/ZeroRun_SoftwareX_reviewer.zip"
 MAX_EXTERNAL_ARCHIVE_BYTES = 600 * 1024 * 1024
 VM_REGRESSION_EVIDENCE_DIRS = (
     "full-product-vm-20260907", "full-product-vm-20260907-v2",
@@ -98,7 +98,8 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "agent_handoff_evaluation_v1/__init__.py", "agent_handoff_evaluation_v1/PROTOCOL.md",
     "agent_handoff_evaluation_v1/run.py", "agent_handoff_evaluation_v1/validate.py",
     "agent_handoff_evaluation_v1/test_evaluation.py", "AGENT_AUTHENTICATION_AMENDMENT.md",
-    "HANDOFF_IMAGE_RECOVERY_AMENDMENT.md",
+    "HANDOFF_IMAGE_RECOVERY_AMENDMENT.md", "APPLICATION_REVISION_AMENDMENT.md",
+    "APPLICATION_COVERAGE_AUDIT.md", "FRESH_REAL_WORKLOAD_REPRODUCTION.md", "verify_application_revision.py",
     "handoff_image_v2/__init__.py", "handoff_image_v2/PROTOCOL.md", "handoff_image_v2/build_image.py",
     "handoff_image_v2/run.py", "handoff_image_v2/validate.py", "handoff_image_v2/export.py", "handoff_image_v2/test_image.py",
     "handoff_image_v2/TRANSPORT_AMENDMENT_1.md", "build_handoff_evidence.py", "generated/handoff-evidence-v1.json")

@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "import json,platform,os,shutil;print(json.dumps({\"python\":platform.python_version(),\"platform\":platform.platform(),\"uid\":os.getuid(),\"cpu_count\":os.cpu_count(),\"ram_meminfo\":open(\"/proc/meminfo\").read(),\"shm_free\":shutil.disk_usage(\"/dev/shm\").free,\"guest_free\":shutil.disk_usage(\"/home/floxy\").free},sort_keys=True))"
+  ],
+  "completed_utc": "2026-09-07T08:02:21.534782+00:00",
+  "elapsed_seconds": 0.11635572399973171,
+  "error": null,
+  "label": "environment",
+  "returncode": 0,
+  "started_utc": "2026-09-07T08:02:21.418332+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "commands/environment.stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 1625,
+    "path": "commands/environment.stdout.log",
+    "sha256": "563884081691df37ae50efdf863b1bd4911b3aad13bd096a4caf1503b453b566"
+  },
+  "timed_out": false,
+  "timeout_seconds": 120
+}

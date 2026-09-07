@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "/usr/bin/docker",
+    "build",
+    "--pull=false",
+    "--network=none",
+    "--build-arg",
+    "SOURCE_DATE_EPOCH=0",
+    "--tag",
+    "127.0.0.1:19509/zerorun-handoff-v2:48f36578b53d432a8e4cf89fdb8d9545",
+    "/home/floxy/zerorun-five-hour-20260907/handoff-image-build-v2b/context"
+  ],
+  "completed_utc": "2026-09-07T04:19:43.948433+00:00",
+  "error": null,
+  "outer_ms": 992.9900699989958,
+  "returncode": 0,
+  "stderr": "DEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\n",
+  "stderr_truncated": false,
+  "stdout": "Sending build context to Docker daemon  6.993MB\r\r\nStep 1/6 : FROM docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef\n ---> 9c47360a2a03\nStep 2/6 : ARG SOURCE_DATE_EPOCH=0\n ---> Using cache\n ---> ea459151b905\nStep 3/6 : COPY site-packages/ /usr/local/lib/python3.12/site-packages/\n ---> Using cache\n ---> 3bdc191aa723\nStep 4/6 : COPY runtime-requirements.txt /opt/zerorun-runtime-requirements.txt\n ---> Using cache\n ---> 20386a47447d\nStep 5/6 : ENV PYTHONPATH=/workspace/src:/workspace\n ---> Using cache\n ---> 91288355f773\nStep 6/6 : LABEL org.opencontainers.image.title=ZeroRun-controlled-handoff-dependencies\n ---> Using cache\n ---> 155eee3ae061\nSuccessfully built 155eee3ae061\nSuccessfully tagged 127.0.0.1:19509/zerorun-handoff-v2:48f36578b53d432a8e4cf89fdb8d9545\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 600
+}

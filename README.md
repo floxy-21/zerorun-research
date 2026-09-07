@@ -12,29 +12,29 @@ ZeroRun can reuse a prior successful **result** for explicitly configured determ
 
 ## Submission package
 
-The submission artifacts, when included in the checked snapshot, are the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence release asset](https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). The complete reviewer ZIP exceeds GitHub's repository-file limit and is distributed as a release asset; its exact size and SHA-256 are recorded in the public manifest and artifact receipt. Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for the exact checked version/hashes and remaining author-controlled steps. Completion requires a receipt bound to the actual current distribution; a retained 0.5.1 receipt or the existence of an archive is not sufficient. The manuscript's immutable code/evidence pointer is intentionally distinct from the later submission snapshot. No journal submission or payment is performed by publishing these files.
+The submission artifacts, when included in the checked snapshot, are the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence release asset](https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907-r2/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). The complete reviewer ZIP exceeds GitHub's repository-file limit and is distributed as a release asset; its exact size and SHA-256 are recorded in the public manifest and artifact receipt. Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for the exact checked version/hashes and remaining author-controlled steps. Completion requires a receipt bound to the actual current distribution; a retained 0.5.1 receipt or the existence of an archive is not sufficient. The manuscript's immutable code/evidence pointer is intentionally distinct from the later submission snapshot. No journal submission or payment is performed by publishing these files.
 
 ## Verify the submission first
 
 Use a clean checkout and **CPython 3.12–3.14**. Verification needs no package installation, Docker, AI account, or model credits. If starting from scratch, these Git commands select the published submission:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.2-20260907 https://github.com/floxy-21/zerorun-research.git zerorun-review
+git clone --depth 1 --branch softwarex-0.5.2-20260907-r2 https://github.com/floxy-21/zerorun-research.git zerorun-review
 cd zerorun-review
 git rev-parse HEAD
 ```
 
-The printed commit must be `0528905a52b74df78aa4e5a09219df34620282dd`. From the checkout root, download the separately distributed reviewer ZIP, then run the offline verifier:
+Compare the printed commit with the commit shown on the `softwarex-0.5.2-20260907-r2` GitHub Release page. From the checkout root, download the separately distributed reviewer ZIP, then run the offline verifier:
 
 ```sh
 python3 --version
-curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907-r2/ZeroRun_SoftwareX_reviewer.zip
 python3 -B -m research.softwarex.verify_submission
 ```
 
 Use a Python executable reporting 3.12, 3.13, or 3.14; replace `python3` if necessary. In Windows PowerShell, use `python` and `curl.exe` with the same arguments. The download needs network access; the verification command does not. Exit status `0` and JSON `"passed": true` mean all required checks passed. Keep any redirected report outside the checkout.
 
-**Use the Git checkout for complete verification, not an extracted reviewer ZIP.** The ZIP contains the earlier sealed evidence inventory and cannot contain itself or the later artifact receipt. Its bundled README is preserved historical text; use this current procedure and the [verification guide](research/softwarex/VERIFY_SUBMISSION.md). Do not install from source, add notes, or run tests inside the pristine verification copy. An external virtual environment alone does not prevent `pip install .` from creating build files in the source directory.
+**Use the Git checkout for complete verification, not an extracted reviewer ZIP.** The ZIP contains the earlier sealed evidence inventory and cannot contain itself or the later artifact receipt. Its bundled README describes the complete-checkout procedure; use that procedure and the [verification guide](research/softwarex/VERIFY_SUBMISSION.md). Do not install from source, add notes, or run tests inside the pristine verification copy. An external virtual environment alone does not prevent `pip install .` from creating build files in the source directory.
 
 ## Install
 
@@ -117,7 +117,9 @@ This optional test run creates new evidence files inside the checkout, so it cha
 
 ## What the evidence establishes
 
-**Practical interpretation.** Consumer wait time and complete producer-consumer cost answer different questions. In the clean dependency-image pilot repeat, consumer latency was about 71% lower while complete chain time was 10.7% higher. The two completed pycparser cases in the 24-case image main cohort had 23.2% lower complete chain time; that partial cohort is evidence of bounded feasibility, not a prevalence estimate. Selection was frozen prospectively, and unsupported, incomplete and unexecuted cases remain in the ledger. The original copy pilot's 42.3% overhead also remains visible. These observations support workloads where identified prior status is useful enough to justify qualification and checking costs; they do not establish population-wide acceleration.
+**Practical interpretation.** Consumer wait time and complete producer-consumer cost answer different questions. The earlier clean image pilot repeat reduced consumer latency about 71% while increasing chain time 10.7%; the original two-case main observation reduced chain time 23.2%. A separately amended repeat has now attempted all 24 selected cases: 15 completed across seven repositories and nine remained incomplete or unsupported. Its guest-clock totals were near break-even, but a host-storage interruption prevents treating it as uninterrupted performance replication. No cases or dependencies were replaced after outcomes. See the [complete coverage audit](research/softwarex/APPLICATION_COVERAGE_AUDIT.md).
+
+The [tested public-source reproduction procedure](research/softwarex/FRESH_REAL_WORKLOAD_REPRODUCTION.md) rebuilt the dependency-image recipe and completed both original pilot cases with all four paired blocks and agreeing fresh oracles. Consumer latency fell 75.8%, while complete chain time increased 10.5%. The existing VM and Docker cache were reused; neither independent-laboratory nor cache-independent bit-identical rebuilding is claimed. The original 42.3% copy-pilot overhead and every retained failure remain visible. These observations support qualified prior-status handoffs, not population-wide acceleration.
 
 The controlled experiments measure complete request costs and compare fresh outcomes under their stated contract, including failure and restoration requests. The independent inventory tests examine input-key boundaries; they are not a proof that arbitrary programs are deterministic.
 
@@ -135,7 +137,7 @@ The final submission files, when present under `output/submission/`, are assembl
 
 Second, the public release is refreshed to include those completed archives and their receipt. Its newer root manifest hashes the archive bytes, so its hash intentionally differs from the earlier manifest sealed inside the reviewer archive. The reviewer archive does not contain itself, the subsequent enclosing manifest, or the later artifact receipt. This acyclic binding permits independent verification without a circular self-hash. Initial-publication and final-readiness receipts describe their own observed stage; they do not establish author approval or journal acceptance.
 
-The tag `softwarex-0.5.2-20260907` and its archives remain sealed at `0528905a52b74df78aa4e5a09219df34620282dd`. Later navigation corrections on `main` do not rewrite the archived README, either quickstart protocol, or the manuscript. The published fresh-VM verification report identifies that tagged commit; use each later snapshot's own manifest and verification result for its updated documentation.
+The tag `softwarex-0.5.2-20260907` and its archives remain sealed at `0528905a52b74df78aa4e5a09219df34620282dd`. The separate `softwarex-0.5.2-20260907-r2` revision preserves that earlier release and adds revised interpretation and separately identified application evidence. Earlier VM receipts retain their original source bindings; use this revision's own manifest and final verification result for the revised package.
 
 The author-facing cover letter, highlights, declaration checklist, and final manuscript must still be reviewed and approved by Jishan Kapoor. Artifact preparation does not submit the paper, select a publisher agreement, or authorize a payment.
 

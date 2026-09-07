@@ -1,0 +1,109 @@
+{
+  "dependency_provenance": {
+    "build_once_ms": 26395.79032799884,
+    "image": {
+      "config_sha256": "4d7707dcf5aaa18eb988f21f955339e67a1408f07b5712487288587a7a9dd5d2",
+      "image_id": "sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+      "repo_digests": [
+        "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+        "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+      ],
+      "requested": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+      "rootfs": {
+        "Layers": [
+          "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+          "sha256:32488c65fb2595aaf67371142ffe3ffdc39660ab83b4cfb35ebd9fdf751997ff",
+          "sha256:4a3d4f8d9fbb21dbb593489962d9f6a77bb0086315a5d3c66e67738fdf27029b",
+          "sha256:38ed9d88ee80c1d99e220af90592650b2b4126bd5bcfa2612df3fdeb42e8844c",
+          "sha256:ea323d2f4b76ac71fe3857f92012f78030eaa707396b8369291d6a95bb47db79",
+          "sha256:c732fe5f1b15b1b7c8c754bc42ded9bd618f0763e492275049dee703bf7b0583"
+        ],
+        "Type": "layers"
+      }
+    },
+    "original_locked_layer": {
+      "build_count": 1,
+      "build_once_ms": 11312.396,
+      "construction_contract": {
+        "extra_requirements": [
+          "pretend"
+        ],
+        "installer": {
+          "arguments": [
+            "install",
+            "--disable-pip-version-check",
+            "--no-input",
+            "--no-cache-dir",
+            "--no-compile",
+            "--require-hashes",
+            "--only-binary=:all:",
+            "--target",
+            "/zerorun-env/site-packages",
+            "--requirement",
+            "/zerorun-env/runtime-requirements.txt"
+          ],
+          "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+          "capabilities": "drop-all",
+          "container_user": "exact-private-staging-owner",
+          "entrypoint": [
+            "/usr/local/bin/python",
+            "-I",
+            "-c"
+          ],
+          "no_new_privileges": true,
+          "pull_policy": "never",
+          "resource_args": [
+            "--cpus",
+            "2",
+            "--memory",
+            "2g",
+            "--memory-swap",
+            "2g",
+            "--pids-limit",
+            "512"
+          ]
+        },
+        "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+        "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+        "requirements": {
+          "path": "ci/generalization-runtime-requirements.txt",
+          "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+          "size": 1006
+        },
+        "runtime": {
+          "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+          "platform": "linux/amd64",
+          "python_implementation": "CPython",
+          "python_implementation_id": "cpython",
+          "python_version": "3.12.14"
+        },
+        "schema": "zerorun.generalization-dependency-layer.v1",
+        "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+      },
+      "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+      "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+      "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+      "directory_count": 32,
+      "extra_requirements": [
+        "pretend"
+      ],
+      "file_count": 513,
+      "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+      "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+      "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+      "path_bytes": 21037,
+      "read_only_mode_and_content_verified": true,
+      "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+      "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+      "schema": "zerorun.generalization-dependency-layer.v1",
+      "source_hardlinks_rejected": true,
+      "total_bytes": 6579552,
+      "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+    },
+    "preparation_precedes_run": true,
+    "schema": "zerorun.image-contained-dependency-deployment.v2"
+  },
+  "deployment": "image-contained locked dependencies",
+  "mutable_dependency_directory_materialized": false,
+  "runtime_image": "127.0.0.1:19519/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9"
+}

@@ -3,19 +3,19 @@
 Use a clean Git checkout and **CPython 3.12–3.14**. No package installation is required. To select the published submission from scratch:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.2-20260907 https://github.com/floxy-21/zerorun-research.git zerorun-review
+git clone --depth 1 --branch softwarex-0.5.2-20260907-r2 https://github.com/floxy-21/zerorun-research.git zerorun-review
 cd zerorun-review
 git rev-parse HEAD
 ```
 
-The printed commit must be `0528905a52b74df78aa4e5a09219df34620282dd`. The tagged release and its archives remain unchanged when later navigation corrections are published on `main`; each checkout is checked against its own complete manifest.
+Compare the printed commit with the commit shown on the `softwarex-0.5.2-20260907-r2` GitHub Release page. The tagged release and its archives remain unchanged when later navigation corrections are published on `main`; each checkout is checked against its own complete manifest.
 
-**Do not run this complete verifier from an extracted reviewer ZIP.** That archive seals an earlier inventory and does not contain itself or the later artifact receipt. Its README remains the original archived text. Use these current instructions with the Git checkout; individual evidence checkers can still inspect the extracted archive.
+**Do not run this complete verifier from an extracted reviewer ZIP.** That archive seals an earlier inventory and does not contain itself or the later artifact receipt. Its README remains bound to that inventory. Use these instructions with the Git checkout; individual evidence checkers can still inspect the extracted archive.
 
 First download the complete reviewer ZIP. It is a GitHub Release asset because it exceeds the repository-file size limit; the source ZIP is already in Git. Run from the checkout root:
 
 ```sh
-curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907/ZeroRun_SoftwareX_reviewer.zip
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907-r2/ZeroRun_SoftwareX_reviewer.zip
 # Windows PowerShell: use curl.exe with the same arguments.
 ```
 

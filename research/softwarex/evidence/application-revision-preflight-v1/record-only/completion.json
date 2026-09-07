@@ -1,0 +1,287 @@
+{
+  "automatic_retries": 0,
+  "bit_identical_rebuild_claimed": false,
+  "checkouts": {
+    "harness": {
+      "clean_exact_after": false
+    }
+  },
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/python3",
+        "-I",
+        "-B",
+        "-c",
+        "import json,platform,os,shutil;print(json.dumps({\"python\":platform.python_version(),\"platform\":platform.platform(),\"uid\":os.getuid(),\"cpu_count\":os.cpu_count(),\"ram_meminfo\":open(\"/proc/meminfo\").read(),\"shm_free\":shutil.disk_usage(\"/dev/shm\").free,\"guest_free\":shutil.disk_usage(\"/home/floxy\").free},sort_keys=True))"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.057483+00:00",
+      "elapsed_seconds": 0.09396198199829087,
+      "error": null,
+      "label": "environment",
+      "returncode": 0,
+      "started_utc": "2026-09-07T08:00:15.963067+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "commands/environment.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 1625,
+        "path": "commands/environment.stdout.log",
+        "sha256": "b520bcdb091d643c7136ae9faab0c4a0b796383f33a423bb37b7a3f813ca9765"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "docker",
+        "version"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.284007+00:00",
+      "elapsed_seconds": 0.22566603300219867,
+      "error": null,
+      "label": "docker-version",
+      "returncode": 0,
+      "started_utc": "2026-09-07T08:00:16.058183+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "commands/docker-version.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 700,
+        "path": "commands/docker-version.stdout.log",
+        "sha256": "f932608a7b7bdf85070d4da35ddef97ecededc8ad45f5734e79d55e398003ffc"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "init.templateDir=",
+        "init",
+        "/dev/shm/zerorun-application-revision-20260907-v1/harness"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.296439+00:00",
+      "elapsed_seconds": 0.011611882000579499,
+      "error": null,
+      "label": "harness-init",
+      "returncode": 0,
+      "started_utc": "2026-09-07T08:00:16.284612+00:00",
+      "stderr": {
+        "bytes": 485,
+        "path": "commands/harness-init.stderr.log",
+        "sha256": "7cc74f74cc8a8f9938bd00571e2c171ce3c59d048f2242a836ccca722182d430"
+      },
+      "stdout": {
+        "bytes": 100,
+        "path": "commands/harness-init.stdout.log",
+        "sha256": "182e8ce00b8db5f6ba9ee50174d79fac4da4450440d7969aecf97b74ca254ada"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "init.templateDir=",
+        "-C",
+        "/dev/shm/zerorun-application-revision-20260907-v1/harness",
+        "config",
+        "core.autocrlf",
+        "false"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.315438+00:00",
+      "elapsed_seconds": 0.01817370300341281,
+      "error": null,
+      "label": "harness-autocrlf",
+      "returncode": 0,
+      "started_utc": "2026-09-07T08:00:16.297099+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "commands/harness-autocrlf.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "commands/harness-autocrlf.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "init.templateDir=",
+        "-C",
+        "/dev/shm/zerorun-application-revision-20260907-v1/harness",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/floxy-21/zerorun-research.git"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.328233+00:00",
+      "elapsed_seconds": 0.0111665250005899,
+      "error": null,
+      "label": "harness-remote",
+      "returncode": 0,
+      "started_utc": "2026-09-07T08:00:16.316857+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "commands/harness-remote.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "commands/harness-remote.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "init.templateDir=",
+        "-C",
+        "/dev/shm/zerorun-application-revision-20260907-v1/harness",
+        "sparse-checkout",
+        "init",
+        "--no-cone"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.340696+00:00",
+      "elapsed_seconds": 0.010850982998817926,
+      "error": null,
+      "label": "harness-sparse-init",
+      "returncode": 128,
+      "started_utc": "2026-09-07T08:00:16.329595+00:00",
+      "stderr": {
+        "bytes": 89,
+        "path": "commands/harness-sparse-init.stderr.log",
+        "sha256": "f66d6181f2b17706291f8b78233706f3d3f70d5b90774f998e7a2116b48a088c"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "commands/harness-sparse-init.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "init.templateDir=",
+        "-C",
+        "/dev/shm/zerorun-application-revision-20260907-v1/harness",
+        "rev-parse",
+        "HEAD"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.348026+00:00",
+      "elapsed_seconds": 0.006519833998027025,
+      "error": null,
+      "label": "harness-head-after",
+      "returncode": 128,
+      "started_utc": "2026-09-07T08:00:16.341331+00:00",
+      "stderr": {
+        "bytes": 185,
+        "path": "commands/harness-head-after.stderr.log",
+        "sha256": "45a04ce22e640d6e67423341e77e8e53abaa5c31f1a05fb12fe1d1375578e347"
+      },
+      "stdout": {
+        "bytes": 5,
+        "path": "commands/harness-head-after.stdout.log",
+        "sha256": "34d6a94dacb895403529caac12a19aed745c6caca7a8d0f4ed631999044f76e8"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    },
+    {
+      "argv": [
+        "/usr/bin/git",
+        "-c",
+        "credential.helper=",
+        "-c",
+        "http.extraHeader=",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "init.templateDir=",
+        "-C",
+        "/dev/shm/zerorun-application-revision-20260907-v1/harness",
+        "status",
+        "--porcelain"
+      ],
+      "completed_utc": "2026-09-07T08:00:16.361621+00:00",
+      "elapsed_seconds": 0.012266977999388473,
+      "error": null,
+      "label": "harness-status-after",
+      "returncode": 0,
+      "started_utc": "2026-09-07T08:00:16.348560+00:00",
+      "stderr": {
+        "bytes": 0,
+        "path": "commands/harness-status-after.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 0,
+        "path": "commands/harness-status-after.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "timed_out": false,
+      "timeout_seconds": 120
+    }
+  ],
+  "completed_utc": "2026-09-07T08:00:16.362332+00:00",
+  "error": {
+    "message": "command failed; retained record: harness-sparse-init",
+    "type": "RuntimeError"
+  },
+  "exported_directories": [],
+  "external_independent_researcher": false,
+  "finished_sequence": false,
+  "material_correctness_stop": false,
+  "old_results_overwritten": false,
+  "passed": false,
+  "schema": "zerorun.application-revision-completion.v1",
+  "workspaces_and_private_keys_exported": false
+}

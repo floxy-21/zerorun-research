@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "/usr/bin/python3",
+    "-I",
+    "-B",
+    "-c",
+    "import json,platform,os,shutil;print(json.dumps({\"python\":platform.python_version(),\"platform\":platform.platform(),\"uid\":os.getuid(),\"cpu_count\":os.cpu_count(),\"ram_meminfo\":open(\"/proc/meminfo\").read(),\"shm_free\":shutil.disk_usage(\"/dev/shm\").free,\"guest_free\":shutil.disk_usage(\"/home/floxy\").free},sort_keys=True))"
+  ],
+  "error": null,
+  "label": "environment",
+  "returncode": null,
+  "started_utc": "2026-09-07T08:00:15.963067+00:00",
+  "timed_out": false,
+  "timeout_seconds": 120
+}

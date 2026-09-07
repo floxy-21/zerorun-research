@@ -6,7 +6,7 @@ Start with [complete offline submission verification](VERIFY_SUBMISSION.md) usin
 
 ## 1. Install and inspect the submitted software
 
-Clone the public `floxy-21/zerorun-research` repository at submission tag `softwarex-0.5.2-20260907`, which resolves to `0528905a52b74df78aa4e5a09219df34620282dd`. The earlier manuscript metadata pointer identifies its code/evidence stage, rather than the later completed submission. Use a fresh external Python environment. The package has no third-party runtime Python dependencies; the included wheel avoids a source build and network installation. The release's root `README.md` supplies Linux and Windows commands. Do not accidentally substitute a globally installed ZeroRun for this version.
+Clone the public `floxy-21/zerorun-research` repository at submission tag `softwarex-0.5.2-20260907-r2`; compare its commit with the versioned GitHub Release page. The earlier manuscript metadata pointer identifies its code/evidence stage, rather than the later completed submission. Use a fresh external Python environment. The package has no third-party runtime Python dependencies; the included wheel avoids a source build and network installation. The release's root `README.md` supplies Linux and Windows commands. Do not accidentally substitute a globally installed ZeroRun for this version.
 
 On Linux, from the release root:
 

@@ -28,19 +28,30 @@ EVIDENCE = "research/softwarex/evidence/"
 ACQUISITION = EVIDENCE + "handoff-acquisition-recovery-v1"
 IMAGE = EVIDENCE + "handoff-image-build-v2b"
 FAILED_IMAGE = EVIDENCE + "handoff-image-build-v2"
+REVISION_RECORDS = EVIDENCE + "application-revision-20260907-v2/record-only"
+REVISION_PREFLIGHT = EVIDENCE + "application-revision-preflight-v1/record-only"
+HOST_INTERRUPTION = EVIDENCE + "application-revision-20260907-v2/host-interruption.json"
+REVISION_DRIVER_SHA = "486e5bd331e0fae780c6792ea4d669b8406cfafced6370f735538a92bd1a52f4"
+REVISION_AMENDMENT_SHA = "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c"
+PREFLIGHT_DRIVER_SHA = "391af8fd86a605520b66d5b1a094087a31a14e7dcca30d8e97fa009ed5164e34"
+PREFLIGHT_AMENDMENT_SHA = "df82a9914742367826886389657066ae00fb41e586de019c4da824892928c72d"
 RUNS = {
     "v1_pilot": (EVIDENCE + "handoff-pilot-v1", "v1", "pilot"),
     "v1_main": (EVIDENCE + "handoff-main-v1", "v1", "main"),
     "v2_pilot": (EVIDENCE + "handoff-pilot-v2", "v2", "pilot"),
     "v2_pilot_repeat": (EVIDENCE + "handoff-pilot-v2-repeat-20260907", "v2", "pilot"),
     "v2_main": (EVIDENCE + "handoff-main-v2", "v2", "main"),
+    "v2_main_extended": (REVISION_RECORDS + "/handoff-main-repeat-v1", "v2", "main"),
 }
+FRESH_IMAGE = REVISION_RECORDS + "/handoff-image-build-fresh-v1"
+FRESH_PILOT = REVISION_RECORDS + "/handoff-pilot-fresh-image-v1"
 OUTPUT = "research/softwarex/generated/handoff-evidence-v1.json"
 AGENTS = {"pilot": (EVIDENCE + "agent-producer-pilot-v1", EVIDENCE + "agent-evaluation-pilot-v2"),
           "main": (EVIDENCE + "agent-producer-main-v1", EVIDENCE + "agent-evaluation-main-v1")}
 PREVIOUS_AGENT_EVALUATION = EVIDENCE + "agent-evaluation-pilot-v1"
 AMENDMENTS = ("research/softwarex/HANDOFF_IMAGE_RECOVERY_AMENDMENT.md",
-              "research/softwarex/AGENT_AUTHENTICATION_AMENDMENT.md")
+              "research/softwarex/AGENT_AUTHENTICATION_AMENDMENT.md",
+              "research/softwarex/APPLICATION_REVISION_AMENDMENT.md")
 
 
 def source_inputs(root=ROOT):
@@ -55,6 +66,11 @@ def source_inputs(root=ROOT):
 
     root = Path(root)
     paths = {"research/softwarex/build_handoff_evidence.py"}
+    verifier = "research/softwarex/verify_application_revision.py"
+    if (root / verifier).is_file():
+        paths.add(verifier)
+    if (root / HOST_INTERRUPTION).is_file():
+        paths.add(HOST_INTERRUPTION)
     paths.update(relative for relative in AMENDMENTS if (root / relative).is_file())
     folders = ("handoff_acquisition_v1", "handoff_acquisition_recovery_v1", "handoff_v1",
                "handoff_image_v2", "agent_handoff_v1", "agent_handoff_evaluation_v1")
@@ -65,7 +81,8 @@ def source_inputs(root=ROOT):
             paths.update(path.relative_to(root).as_posix() for path in folder.iterdir()
                          if path.suffix in {".py", ".md"} and path.is_file())
     excluded = set(EXCLUDED) | {"data", "workspaces", ".codex", "private", "authority", "authorities"}
-    record_dirs = {ACQUISITION, IMAGE, FAILED_IMAGE, PREVIOUS_AGENT_EVALUATION, *(spec[0] for spec in RUNS.values()),
+    record_dirs = {ACQUISITION, IMAGE, FAILED_IMAGE, FRESH_IMAGE, FRESH_PILOT, REVISION_RECORDS, REVISION_PREFLIGHT,
+                   PREVIOUS_AGENT_EVALUATION, *(spec[0] for spec in RUNS.values()),
                    *(spec[1] for spec in AGENTS.values())}
     for relative in sorted(record_dirs):
         h.literal(relative)
@@ -513,6 +530,56 @@ def previous_agent_evaluation(directory, prepared, image_build):
             "scope": "Original checker rejected archive/source ordering; its producer-reported success is not independently certified by this attempt."}
 
 
+def host_interruption_summary(root):
+    """Bind an operator observation without changing frozen experiment records."""
+    root = Path(root)
+    path = root / HOST_INTERRUPTION
+    if not path.is_file():
+        return None
+    row = v1.read(path)
+    h.require(row.get("schema") == "zerorun.softwarex-host-interruption.v1"
+              and row.get("basis") == "operator-observed host event",
+              "host interruption observation identity differs")
+    h.require(all(row.get(key) is False for key in (
+        "existing_external_drive_files_deleted", "raw_guest_timestamps_altered",
+        "guest_clock_synchronization_requested_during_run", "prospective_amendment_modified",
+        "uninterrupted_timing_certified")), "host interruption record changes preservation or timing claim")
+    interval = row["resume_command_issued_utc_bounds"]
+    h.require(interval.get("exact_resume_instant_established") is False
+              and row["pause_observed_utc"] < interval["not_before"] <= interval["not_after"],
+              "host interruption command interval is invalid")
+    clocks = row["post_resume_clock_observation"]
+    h.require(clocks.get("clocks_agreed") is False
+              and clocks["guest_reported_utc"] < clocks["host_observed_utc"],
+              "host interruption hides the observed guest-clock offset")
+    virtualbox = row["virtualbox"]
+    h.require(all(re.fullmatch(r"[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}", virtualbox[key])
+                  for key in ("snapshot_uuid", "delta_uuid"))
+              and virtualbox.get("exact_delta_file_path_claimed") is False,
+              "host interruption storage identity differs")
+    return {"basis": row["interpretation"], "interruption_reported": True,
+        "uninterrupted_timing_certified": False,
+        "pause_utc_operator_reported": row["pause_observed_utc"],
+        "resume_command_issued_utc_bounds": interval,
+        "post_resume_clock_observation": clocks,
+        "host_event_record": filename_record(root, HOST_INTERRUPTION)}
+
+
+def application_revision_attempt(root, directory, driver_sha, amendment_sha):
+    """Require the bound public-checkout wrapper before confirming its provenance."""
+    directory = Path(directory)
+    missing = {"state": "NOT_AVAILABLE", "sequence_completed": False,
+        "checkout_execution_binding_confirmed": False,
+        "completed_workload_outcomes_reconciled": False,
+        "fresh_real_workload_reproduction_confirmed": False}
+    if not directory.exists():
+        return missing
+    if not all((directory / name).is_file() for name in ("completion.json", "RECORD_MANIFEST.json")):
+        return {**missing, "state": "INCOMPLETE_RECORD"}
+    from research.softwarex.verify_application_revision import verify
+    return verify(root, directory, driver_sha, amendment_sha)
+
+
 def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_paths=None):
     root = Path(root)
     base = root / acquisition_path
@@ -534,6 +601,55 @@ def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_path
             "original_run": "v2_pilot", "uninterrupted_timing_certified": False, "amendment": recovery_amendment}
     h.require(not (root / paths["v2_pilot_repeat"]).exists() or recovery_amendment is not None,
               "separate recovery repeat requires its retained prospective amendment")
+    revision_amendment = next((row for row in amendments if row["path"] == AMENDMENTS[2]), None)
+    h.require(not any((root / path).exists() for path in (paths["v2_main_extended"], FRESH_IMAGE, FRESH_PILOT))
+              or revision_amendment is not None, "application revision requires its prospective amendment")
+    interruption = host_interruption_summary(root)
+    wrapper_sealed = all((root / REVISION_RECORDS / name).is_file()
+                         for name in ("completion.json", "RECORD_MANIFEST.json"))
+    h.require(not wrapper_sealed or interruption is not None,
+              "completed application wrapper requires the retained host interruption record")
+    runs["v2_main_extended"]["timing_context"] = interruption or {
+        "basis": "Operator-reported VirtualBox pause at 2026-09-07 08:07:57 UTC after host storage exhaustion; original records retained.",
+        "interruption_reported": True, "uninterrupted_timing_certified": False,
+        "pause_utc_operator_reported": "2026-09-07T08:07:57Z"}
+    if runs["v2_main_extended"]["state"] == "RECONCILED_RECORDED_OUTCOMES":
+        extended_protocol = v1.read(root / paths["v2_main_extended"] / "run/protocol.json")
+        h.require(extended_protocol["budget_seconds"] == 1200
+                  and extended_protocol["execution_seconds"] == 120,
+                  "expanded main repeat changed its prospective execution budget")
+        runs["v2_main_extended"]["repeat_context"] = {
+            "original_run": "v2_main", "same_frozen_selection": True,
+            "pooled_with_original": False, "new_independent_subjects_claimed": False,
+            "amendment": revision_amendment}
+    revision_attempts = {
+        "preflight": {"path": REVISION_PREFLIGHT, **application_revision_attempt(
+            root, root / REVISION_PREFLIGHT, PREFLIGHT_DRIVER_SHA, PREFLIGHT_AMENDMENT_SHA)},
+        "revision": {"path": REVISION_RECORDS, **application_revision_attempt(
+            root, root / REVISION_RECORDS, REVISION_DRIVER_SHA, REVISION_AMENDMENT_SHA)}}
+    fresh_reproduction = {"image_path": FRESH_IMAGE, "run_path": FRESH_PILOT,
+        "state": "NOT_AVAILABLE", "independent_human_replication": False,
+        "pooled_with_historical_measurements": False,
+        "fresh_real_workload_reproduction_confirmed": revision_attempts["revision"].get(
+            "fresh_real_workload_reproduction_confirmed", False),
+        "public_source_provenance": revision_attempts["revision"]}
+    if (root / FRESH_IMAGE / "completion.json").is_file():
+        fresh_completion = v1.read(root / FRESH_IMAGE / "completion.json")
+        if fresh_completion.get("passed") is True:
+            fresh_reproduction.update(state="RECONCILED_IMAGE_BUILD",
+                image=v2.validate_image(root / FRESH_IMAGE),
+                pilot=run_summary(root / FRESH_PILOT, "v2", "pilot", base, manifests, root / FRESH_IMAGE),
+                amendment=revision_amendment)
+            if fresh_reproduction["pilot"]["state"] == "RECONCILED_RECORDED_OUTCOMES":
+                fresh_protocol = v1.read(root / FRESH_PILOT / "run/protocol.json")
+                h.require(fresh_protocol["budget_seconds"] == 600
+                          and fresh_protocol["execution_seconds"] == 120,
+                          "fresh pilot changed its prospective execution budget")
+        else:
+            fresh_reproduction.update(state="RETAINED_IMAGE_BUILD_FAILURE",
+                failure=failed_image_summary(root / FRESH_IMAGE), amendment=revision_amendment)
+    elif (root / FRESH_IMAGE).exists() or (root / FRESH_PILOT).exists():
+        fresh_reproduction["state"] = "INCOMPLETE_RECORD"
     image_directory = root / image_path
     image = {"path": image_path, "state": "NOT_AVAILABLE"}
     if (image_directory / "completion.json").is_file():
@@ -555,6 +671,8 @@ def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_path
         "unavailable_or_incomplete_runs": [key for key, value in runs.items() if value["state"] != "RECONCILED_RECORDED_OUTCOMES"],
         "agent_evaluation": agents,
         "earlier_agent_evaluation": previous_agent,
+        "fresh_public_source_reproduction": fresh_reproduction,
+        "application_revision_attempts": revision_attempts,
         "protocol_amendments": amendments,
         "acceptance_probability_estimated": False, "performance_threshold_imposed": False,
         "scope": "Read-only source/receipt reconciliation; no new model calls, benchmark executions or authorizations."}

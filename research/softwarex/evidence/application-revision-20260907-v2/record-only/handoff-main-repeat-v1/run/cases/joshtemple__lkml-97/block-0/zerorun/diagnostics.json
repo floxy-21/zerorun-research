@@ -1,0 +1,42 @@
+{
+  "completed_utc": "2026-09-07T08:14:22.968076+00:00",
+  "error": null,
+  "operation": "diagnostics",
+  "outer_ms": 8972.96461699807,
+  "result": {
+    "cache_key": "d57bb2de01da6821a38e8fdd4278a8c81a40a5beafdddf292bff5771c9b3ad2f",
+    "execution_ms": 4637.227,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 68.052,
+      "docker_execution": 4640.669,
+      "environment": 0.025,
+      "event_append": 38.935,
+      "fingerprint_final": 648.232,
+      "fingerprint_initial": 478.364,
+      "lock_acquire": 1.938,
+      "runtime_inspect_initial": 171.985,
+      "snapshot_cleanup": 21.147,
+      "snapshot_prepare": 2871.241
+    },
+    "reason": "fresh hermetic execution matched cached successful result",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "VERIFY_MATCH",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 2486,
+      "emitted_bytes": 2486,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /workspace\nconfigfile: setup.cfg\ncollecting ... collected 27 items\n\ntests/test_simple.py::test_parse_token_with_unquoted_literal PASSED      [  3%]\ntests/test_simple.py::test_parse_token_with_quoted_literal PASSED        [  7%]\ntests/test_simple.py::test_parse_pair_with_unquoted_literal PASSED       [ 11%]\ntests/test_simple.py::test_parse_pair_with_quoted_literal PASSED         [ 14%]\ntests/test_simple.py::test_parse_list_with_unquoted_literals PASSED      [ 18%]\ntests/test_simple.py::test_parse_list_with_quoted_literals PASSED        [ 22%]\ntests/test_simple.py::test_parse_list_with_many_values PASSED            [ 25%]\ntests/test_simple.py::test_parse_list_with_no_values PASSED              [ 29%]\ntests/test_simple.py::test_parse_block_with_unquoted_literals PASSED     [ 33%]\ntests/test_simple.py::test_parse_block_with_quoted_literals PASSED       [ 37%]\ntests/test_simple.py::test_parse_block_with_name PASSED                  [ 40%]\ntests/test_simple.py::test_parse_block_with_no_fields_and_name PASSED    [ 44%]\ntests/test_simple.py::test_parse_block_with_no_fields_and_no_name PASSED [ 48%]\ntests/test_simple.py::test_parse_nested_block PASSED                     [ 51%]\ntests/test_simple.py::test_parse_any_with_str_value PASSED               [ 55%]\ntests/test_simple.py::test_parse_any_with_list_value PASSED              [ 59%]\ntests/test_simple.py::test_parse_any_with_dict_value_and_name PASSED     [ 62%]\ntests/test_simple.py::test_parse_any_with_dict_value_and_no_name PASSED  [ 66%]\ntests/test_simple.py::test_parse_any_raises_with_bad_type PASSED         [ 70%]\ntests/test_simple.py::test_expand_list_with_blocks PASSED                [ 74%]\ntests/test_simple.py::test_expand_list_with_pairs PASSED                 [ 77%]\ntests/test_simple.py::test_parse_top_level_pairs PASSED                  [ 81%]\ntests/test_simple.py::test_parse_query PASSED                            [ 85%]\ntests/test_simple.py::test_parse_query_with_filters PASSED               [ 88%]\ntests/test_simple.py::test_resolve_filters_filter_only_field PASSED      [ 92%]\ntests/test_simple.py::test_resolve_filters_legacy_filters PASSED         [ 96%]\ntests/test_simple.py::test_resolve_filters_new_filters PASSED            [100%]\n\n============================== 27 passed in 0.63s ==============================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": true,
+    "wall_ms": 8933.894
+  }
+}

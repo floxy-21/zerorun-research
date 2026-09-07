@@ -20,7 +20,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-five-hour-final-v2"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-application-revision-20260907-v3"
 CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.2-v5/receipt.json"
 CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-052-v1"
 HOSTED_CI_RECEIPT = "research/softwarex/evidence/hosted-ci-20260907/receipt.json"
