@@ -14,6 +14,8 @@ The completed submission snapshot includes the [manuscript PDF](output/pdf/zeror
 
 ## Install
 
+For an account-free runnable Linux example, start with the [laboratory quickstart](research/softwarex/QUICKSTART_LAB.md). It records a new external installation and five actual synthetic STDIO requests; no Codex login or historical evidence bundle is needed.
+
 Python 3.10 or later is required. From this repository root, create a fresh environment outside the checkout. Linux/macOS:
 
 ```sh

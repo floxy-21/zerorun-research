@@ -11,11 +11,13 @@ import xml.etree.ElementTree as ET
 from research.softwarex.build_paper import build as build_paper
 from research.softwarex.build_public_release import inspect
 from research.softwarex import build_submission_artifacts as artifacts_builder
+from research.softwarex import build_application_evidence as application_builder
+from research.softwarex import build_highlights as highlights_builder
 from research.softwarex.build_submission_artifacts import verify, strict_json, read_regular, member_name, SOURCE_FILES
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-extension-final-v2"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-four-hour-final-v1"
 
 
 def require(condition, message):
@@ -183,6 +185,119 @@ def check_extension_tests(release):
             "source_files_bound": len(rows), "scope": receipt["scope"]}
 
 
+def check_application_evidence(release, paper_evidence):
+    """Reconcile actual outcomes and all public inputs; never require a live pass."""
+    regenerated = application_builder.build(ROOT)
+    relative = "research/softwarex/generated/application-evidence-v1.json"
+    saved = read(ROOT / relative)
+    require(saved == regenerated, "application evidence is stale")
+    require(paper_evidence.get("application") == regenerated,
+            "manuscript application evidence differs from independently reconciled outcomes")
+    require(regenerated.get("schema") == "zerorun.softwarex-application-evidence.v1"
+            and regenerated.get("completed") is True,
+            "recorded application outcomes are not completely reconciled")
+    # These are installation/conformance prerequisites, not model success gates.
+    # Adverse v1/v2/v3 model outcomes remain present exactly as regenerated.
+    for name in ("clean_installation", "account_free_quickstart",
+                 "public_guide_installation", "public_guide_quickstart"):
+        require(regenerated.get(name, {}).get("validation", {}).get("passed") is True,
+                "passing installation/quickstart evidence required: " + name)
+    interpretation = regenerated.get("interpretation", {})
+    require(interpretation.get("model_and_quickstart_installations_are_distinct") is True
+            and interpretation.get("same_frozen_runtime_required") is True
+            and type(interpretation.get("independent_human_users")) is int
+            and interpretation["independent_human_users"] == 0
+            and interpretation.get("autonomous_issue_resolution_study") is False
+            and interpretation.get("workflow_speedup_established") is False
+            and interpretation.get("acceptance_probability_estimated") is False,
+            "application evidence exceeds its observed scope")
+    rows = application_builder.source_inputs(ROOT)
+    require(isinstance(rows, list) and rows
+            and all(isinstance(row, dict) and isinstance(row.get("path"), str) for row in rows)
+            and len({row["path"] for row in rows}) == len(rows),
+            "application source/evidence inventory absent or duplicated")
+    for row in rows:
+        member_name(row["path"])
+        raw = read_regular(ROOT / row["path"])
+        require(type(row.get("bytes")) is int and row["bytes"] == len(raw)
+                and row.get("sha256") == hashlib.sha256(raw).hexdigest(),
+                "application input bytes differ: " + row["path"])
+        matching_public_file(release, row["path"], ROOT / row["path"])
+    matching_public_file(release, relative, ROOT / relative)
+    return regenerated, len(rows)
+
+
+def check_word_highlights(release):
+    """Recheck Word structure and bind the retained visual-review attestation.
+
+    This read-only step does not invoke Word/LibreOffice, recreate the document,
+    or claim that a recorded visual inspection has been repeated automatically.
+    """
+    relative = "research/softwarex/generated/highlights-docx-review.json"
+    review = read(ROOT / relative)
+    require(review.get("schema") == "zerorun-highlights-docx-review-v1",
+            "unexpected Word highlights review schema")
+    expected = {"artifact": "research/softwarex/HIGHLIGHTS.docx",
+                "builder": "research/softwarex/build_highlights.py",
+                "source": "research/softwarex/HIGHLIGHTS.txt"}
+    for key, path in expected.items():
+        require(review.get(key) == path, "unexpected Word highlights " + key + " path")
+        require(review.get(key + "_sha256") == sha(ROOT / path),
+                "reviewed Word highlights " + key + " bytes changed")
+        matching_public_file(release, path, ROOT / path)
+    require(sha(ROOT / expected["builder"]) == sha(Path(highlights_builder.__file__)),
+            "loaded Word highlights validator differs from reviewed builder")
+    raw = read_regular(ROOT / expected["artifact"])
+    require(type(review.get("artifact_bytes")) is int and review["artifact_bytes"] == len(raw),
+            "reviewed Word highlights size differs")
+    # This is the same structural validator called by build_highlights --check.
+    actual = highlights_builder.validate_docx(ROOT / expected["artifact"], ROOT / expected["source"])
+    require(actual.get("structural_checks_passed") is True,
+            "actual Word highlights structure did not pass")
+    require(review.get("author") == actual["author"]
+            and review.get("unchanged_highlight_character_counts") == actual["highlight_character_counts"],
+            "reviewed Word author or highlight counts differ")
+    expected_structure = {
+        "passed": actual["structural_checks_passed"], "zip_integrity": True,
+        "exact_title_and_five_source_paragraphs": actual["exact_source_text"],
+        "true_word_bullets": actual["true_word_bullets"], "title_style": True,
+        "black_11pt_times_new_roman_no_title_border": actual["black_11pt_text_no_borders"],
+        "letter_portrait": actual["letter_portrait"],
+        "no_headers_footers_comments_or_tracked_changes": actual["header_footer_absent"],
+    }
+    recorded_structure = review.get("structural_validation", {})
+    require(isinstance(recorded_structure, dict) and set(recorded_structure) == set(expected_structure)
+            and all(recorded_structure[key] is value is True for key, value in expected_structure.items()),
+            "saved Word structural checks differ from actual validation")
+    visual = review.get("visual_review", {})
+    require(isinstance(visual, dict) and visual.get("performed_by") == "internal_document_agent"
+            and visual.get("independent_human_review") is False
+            and visual.get("all_rendered_pages_inspected") is True
+            and type(visual.get("page_count")) is int and visual["page_count"] == 1
+            and visual.get("page_size_points") == [612, 792]
+            and all(type(size) is int for size in visual["page_size_points"])
+            and isinstance(visual.get("outcome"), str) and visual["outcome"].strip()
+            and visual.get("intermediates_are_local_qa_only") is True,
+            "completed, scoped one-page Word visual review required")
+    require(isinstance(visual.get("page_png"), str), "Word visual-review PNG reference absent")
+    member_name(visual["page_png"])
+    require(visual["page_png"].startswith("tmp/") and visual["page_png"].endswith("/page-1.png"),
+            "Word visual-review intermediate must remain local QA")
+    for key in ("page_png_sha256", "intermediate_pdf_sha256"):
+        digest = visual.get(key)
+        require(isinstance(digest, str) and len(digest) == 64
+                and all(character in "0123456789abcdef" for character in digest),
+                "Word visual-review image/PDF hash absent")
+    matching_public_file(release, relative, ROOT / relative)
+    return {"artifact": expected["artifact"], "artifact_bytes": len(raw),
+            "artifact_sha256": actual["docx_sha256"],
+            "source_sha256": actual["source_text_sha256"], "builder_sha256": review["builder_sha256"],
+            "review_receipt": relative, "review_receipt_sha256": sha(ROOT / relative),
+            "structural_validation": actual, "saved_visual_review": visual,
+            "visual_review_scope": "Retained internal visual-review attestation bound to exact DOCX, source, and builder bytes; readiness rechecks structure but does not re-render or reperform visual inspection.",
+            "renderer_executed_for_readiness": False, "public_files_bound": 4}
+
+
 def build(release):
     inspect(release)
     _, _, regenerated = build_paper()
@@ -190,6 +305,7 @@ def build(release):
     require(evidence == regenerated and evidence["preview"] is False, "article evidence is stale")
     require(evidence["replication"]["completed"] is True and evidence["state_rejoin"]["independent_analysis"]["completed"] is True,
             "completed independently reconciled examples required")
+    application, application_files_bound = check_application_evidence(release, evidence)
     artifacts, pdf = check_artifacts(release, evidence)
     files = {}
     for name in ("COVER_LETTER.txt", "HIGHLIGHTS.txt", "UPLOAD_GUIDE.md", "SUBMISSION_CHECKLIST.md", "REPRODUCIBILITY.md"):
@@ -199,6 +315,7 @@ def build(release):
         matching_public_file(release, path.relative_to(ROOT).as_posix(), path)
     highlights = (HERE / "HIGHLIGHTS.txt").read_text(encoding="utf-8").splitlines()
     require(3 <= len(highlights) <= 5 and all(0 < len(line) <= 85 for line in highlights), "highlight limits not met")
+    word_highlights = check_word_highlights(release)
     install, final_tests = check_test_and_install_bindings(release)
     extension_tests = check_extension_tests(release)
     extension = evidence["extension"]
@@ -225,9 +342,13 @@ def build(release):
         "pdf": {"path": pdf.relative_to(ROOT).as_posix(), "sha256": sha(pdf), "review_receipt_sha256": sha(HERE / "generated/pdf-review.json")},
         "archives": {key: artifacts[key] for key in ("source_archive", "reviewer_archive")},
         "author_upload_texts_sha256": files,
+        "word_highlights": word_highlights,
         "selected_public_tests": {"passed": final_tests["pytest_passed"], "skipped": final_tests["pytest_skipped"], "additional_passing_subtests": final_tests["subtests_passed"]},
         "targeted_public_test_amendments": final_tests.get("targeted_test_amendments", []),
         "publication_extension_tests": extension_tests,
+        "application_evidence": application,
+        "application_evidence_sha256": sha(HERE / "generated/application-evidence-v1.json"),
+        "application_files_bound": application_files_bound,
         "client_extension": {"scripted_cases": extension["scripted_client_conformance"]["scripted_cases"],
                              "live_model_lifecycle_pass": extension["bounded_live_client"]["functional_lifecycle_pass"],
                              "recorded_model_turns": extension["bounded_live_client"]["agent_stages_recorded"],

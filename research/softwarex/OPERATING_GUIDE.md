@@ -6,6 +6,8 @@ The commands below are **operator instructions, not evidence that they have been
 
 First-use path: [install](#1-install-outside-the-repository-you-will-test), [inspect](#2-inspect-the-target-before-executing-anything), [configure](#3-configure-one-reviewed-whole-task-command), [review and authorize](#4-make-the-manual-authorization-decision), [run and verify](#5-run-identify-reuse-and-verify), then [connect the client](#6-connect-an-mcp-client-or-codex). The [tool and response reference](#the-seven-shipped-tools) and [optional node-level workflow](#7-optional-separately-reviewed-pytest-node-reuse) are separate.
 
+To try the installed server without a Codex account or a real project, use the [account-free Linux laboratory quickstart](QUICKSTART_LAB.md). It creates only the explicitly approved built-in synthetic fixture and records fresh-install and actual STDIO results separately.
+
 ## 1. Install outside the repository you will test
 
 CLI installation needs Python 3.10 or later. The demonstrated whole-task execution mode additionally requires a Linux/amd64 host with Git and access to an operator-controlled Docker daemon. Use a non-root account for the documented laboratory and permission-sensitive checks. Windows and macOS CLI installation is not evidence of working whole-task reuse on those hosts.

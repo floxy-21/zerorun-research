@@ -16,7 +16,7 @@
 \cortext[cor1]{Corresponding author.}
 \address{Independent researcher, Toronto, Canada}
 \begin{abstract}
-AI coding tools repeatedly invoke tests, but command repetition alone does not establish reusable evidence. ZeroRun is open-source research software for returning an explicitly identified previous success of a deterministic, result-only test command. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids unnecessary source staging. We provide source-bound experiments, an independent input-inventory oracle, and a descriptive audit of public OpenHands trajectories. @@ABSTRACT_RESULT@@ The package enables reproducible investigation of validation overhead and reuse boundaries; it does not establish autonomous-agent acceleration or reproduce cached test output.
+ZeroRun is open-source software for reusing the identified successful status of a deterministic test command in AI coding-tool integrations. It combines declared input and runtime identities, authenticated results, isolated fresh execution, and command-line and coding-tool interfaces. A read-only hit path avoids source staging. The release includes fresh-result comparisons, an independent input-boundary oracle, a descriptive audit of public agent trajectories, and runnable client examples. @@ABSTRACT_RESULT@@ A controlled Codex lifecycle distinguished reused status from fresh validation. The software enables investigation of validation cost and reuse boundaries; it does not replay cached output or establish autonomous-agent acceleration.
 \end{abstract}
 \begin{keyword}
 AI coding tools \sep test-result reuse \sep research software \sep reproducibility \sep software testing
@@ -32,7 +32,7 @@ AI coding tools \sep test-result reuse \sep research software \sep reproducibili
 \hline
 \textbf{Nr.} & \textbf{Code metadata description} & \textbf{Value} \\
 \hline
-C1 & Current code version & ZeroRun 0.5.1; research release 2026-09-06 \\
+C1 & Current code version & ZeroRun 0.5.1; research release 2026-09-07 \\
 \hline
 C2 & Permanent GitHub link to code/repository used for this code version & \href{https://github.com/floxy-21/zerorun-research/tree/@@PUBLIC_COMMIT@@}{\texttt{floxy-21/zerorun-research}}; linked immutable source/evidence snapshot \\
 \hline
@@ -86,11 +86,11 @@ The Python package separates manifest validation, input fingerprinting, result s
 \centering
 \setlength{\fboxsep}{7pt}
 \fbox{\parbox{0.88\linewidth}{\centering
-CLI / Codex skill / repository-bound MCP request\\[4pt]
+CLI / Codex skill / configured-task MCP request\\[4pt]
 $\downarrow$\\[4pt]
-Configuration and authority checks; runtime inspection; input fingerprint\\[4pt]
+Interface-specific checks; runtime inspection; declared-input fingerprint\\[4pt]
 $\downarrow$\\[4pt]
-Authenticated lookup under a task-key lock\\[6pt]
+Task-key lock and authenticated result lookup\\[6pt]
 \begin{tabular}{p{0.41\linewidth}p{0.41\linewidth}}
 \centering Eligible hit & \centering Miss or explicit verification\tabularnewline
 \centering Recompute fingerprint; require identity agreement & \centering Construct private source snapshot; execute isolated command\tabularnewline
@@ -98,7 +98,7 @@ Authenticated lookup under a task-key lock\\[6pt]
 \end{tabular}\\[6pt]
 Unsupported conditions produce fresh-required or refusal responses; no silent success.
 }}
-\caption{Whole-file result-reuse path. A hit returns result metadata, not the prior test transcript. The diagram describes software control flow, not an autonomous-agent evaluation.}
+\caption{Whole-file result-reuse path. A hit returns status metadata, not the prior transcript. This explanatory diagram was revised as editable LaTeX with OpenAI Codex desktop 26.901.6511.0 assistance and checked against the described implementation; it is not experimental image data.}
 \label{fig:architecture}
 \end{figure}
 
@@ -146,7 +146,7 @@ The reference consumer checks response consistency, \code{status}, \code{exit\_c
 
 @@CLIENT_EVIDENCE@@
 
-The operating guide separates these evidence classes from operator-approved application use.
+All model calls used the CLI's default model; the transcripts do not identify the backing model. These are observations of the recorded client configuration, not a model-population accuracy estimate. The operating guide separates laboratory examples from operator-approved application use.
 
 \subsection{Real AI-workflow observations}
 We also provide a read-only analysis of the public SWE-rebench OpenHands trajectories \cite{swerebenchtrajectories,badertdinov2025swerebench}. After inspecting ten separate pilot rows, a fixed SHA-256 ordering selected 128 rows from the remaining 67,064. Selection did not use repository, resolution, repetition, or performance. The raw responses, source notices, retrieval receipts, exclusions, and deterministic parser are available. An initial rate-limited attempt is retained, followed by a complete recovery of the same selected rows.
@@ -158,6 +158,8 @@ This example makes a practical distinction visible: repeated command text is an 
 \section{Impact}
 \subsection{Reproducible validation and measured cost}
 Researchers can change a target or input boundary while preserving fresh-oracle comparisons and explicit denominators. The kit retains raw invocations, source hashes, fixed manifests, failures, setup receipts, and analysis scripts, making qualification behavior and unfavorable costs inspectable.
+
+Codex assisted software, experiment and analysis implementation and manuscript preparation. Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached outcomes for their reference. These are automated cross-checks, not independent human replication.
 
 Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient. The supplied snapshot-first ablation isolates staging; it is not an independent competing cache.
 
@@ -191,7 +193,7 @@ For an integrator, the benefit is a small Python package with a result contract 
 
 The evidence does not establish the prevalence of reusable tasks, population-wide speedup, model-token savings, improved patch quality, user productivity, or commercial demand. The trajectory audit is descriptive and resource-bounded; repository and issue clustering is reported. Its zero barrier-free pairs do not prove zero state-restoration opportunities, but they prevent interpreting repetition as measured eligibility. The controlled library targets are convenience workloads on one constrained VM, and original and replicated observations are not statistically independent datasets. The VM shared a Windows host with publication and validation tooling; host activity outside the VM was not fully isolated. Complete-block spreads and influential observations are reported without treating thousands of nested test nodes as independent samples.
 
-No external users, production deployments, or third-party publications using ZeroRun are claimed. Application-level evaluation must still establish how agents interpret reused status and whether qualified tasks occur often enough to benefit complete workflows. The artifact provides components for that study, not its outcome.
+No external users, production deployments, or third-party publications using ZeroRun are claimed. The client results are controlled examples. Natural-task agent behavior, generalization across clients and models, and whether qualified tasks occur often enough to benefit complete workflows remain unmeasured.
 
 \section{Conclusions}
 ZeroRun provides reusable software for explicitly identified test-status reuse in AI coding-tool integrations. Its whole-file hit path removes execution staging when no code will run, while retaining full identity checks and the existing fresh path. The public package combines runnable examples, fresh-oracle comparisons, independent boundary checks, and a real-trajectory observation tool. The results support conditional utility and expose overhead and applicability limits. The release is a research and integration artifact, not evidence of universal AI acceleration.

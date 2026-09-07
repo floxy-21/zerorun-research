@@ -34,6 +34,8 @@ def binding(tmp_path, monkeypatch):
     monkeypatch.setattr(paper, "bibliography", lambda _: "")
     monkeypatch.setattr(paper, "extension_evidence", lambda *_: {"fixture_extension": True})
     monkeypatch.setattr(paper, "extension_text", lambda _: ("Bounded client fixture.", "Conditional cost fixture."))
+    monkeypatch.setattr(paper, "application_evidence", lambda *_: {"fixture_application": True})
+    monkeypatch.setattr(paper, "application_text", lambda _: "Bounded application fixture.")
     analysis = {"completed": True, "requests": 4, "optimized_hits": 1, "source_sha256": "a" * 64}
     monkeypatch.setattr(paper, "state_analysis", lambda *args, **kwargs: deepcopy(analysis))
     text_path = here / "paper/state-rejoin.tex"

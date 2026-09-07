@@ -41,8 +41,16 @@ def run(output):
     output.mkdir()
     before = inventory(ROOT)
     temporary = Path(tempfile.mkdtemp(prefix="zerorun-publication-test-"))
-    command = [sys.executable, "-B", "-m", "pytest", "research/softwarex/tests",
-               "-q", "-p", "no:cacheprovider", "--basetemp=" + str(temporary / "cases"),
+    test_paths = ["research/softwarex/tests"]
+    for version in ("v2", "v3"):
+        path = "research/softwarex/live_client_" + version + "/test_validation.py"
+        if (ROOT / path).is_file():
+            test_paths.append(path)
+    guided = "research/softwarex/guided_client_v1/test_validation.py"
+    if (ROOT / guided).is_file():
+        test_paths.append(guided)
+    command = [sys.executable, "-B", "-m", "pytest", *test_paths,
+               "-q", "--import-mode=importlib", "-p", "no:cacheprovider", "--basetemp=" + str(temporary / "cases"),
                "--junitxml=" + str(output / "tests.xml")]
     started = datetime.now(timezone.utc).isoformat()
     failure = None

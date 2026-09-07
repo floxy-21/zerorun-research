@@ -43,7 +43,8 @@ SQJ_EVIDENCE_DIRS = ("campaign-1", "comparison-final-1", "comparison-packaging-c
     "comparison-packaging-final", "comparison-more-whole-task", "linux-regression-final",
     "readonly-hit-linux", "cleanup-and-venv-linux", "github-86f4228")
 PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILITY.md",
-    "HIGHLIGHTS.md", "HIGHLIGHTS.txt", "CODE_METADATA.md", "DATA_AVAILABILITY.md", "THIRD_PARTY_NOTICES.md",
+    "HIGHLIGHTS.md", "HIGHLIGHTS.txt", "HIGHLIGHTS.docx", "build_highlights.py", "generated/highlights-docx-review.json",
+    "CODE_METADATA.md", "DATA_AVAILABILITY.md", "THIRD_PARTY_NOTICES.md",
     "README.md", "UPLOAD_GUIDE.md", "COVER_LETTER.md", "COVER_LETTER.txt", "SUBMISSION_CHECKLIST.md",
     "MANUSCRIPT_CLAIM_AUDIT.md", "RELATED_WORK_AUDIT.md",
     "paper/main.tex", "paper/main.bbl", "paper/submission.tex.in", "paper/references.bib", "paper/elsarticle.cls", "paper/elsarticle-num.bst",
@@ -59,7 +60,16 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "LIVE_CLIENT_AMENDMENT_1.md", "support/tools/aggregate_codex_install_evidence.py", "RELATED_SYSTEMS.md",
     "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py", "PUBLIC_LAYOUT_CORRECTION.md",
     "client_conformance.py", "analyze_operating_region.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
-    "generated/operating-region-v1.json", "generated/extension-evidence-v1.json")
+    "generated/operating-region-v1.json", "generated/extension-evidence-v1.json",
+    "REVIEWER_STRENGTHENING_4H.md", "JOURNAL_REQUIREMENTS_REVIEW.md", "QUICKSTART_RESULTS.md",
+    "QUICKSTART_LAB.md", "quickstart_check.py", "CLIENT_API_CARD.md", "APPLICATION_RESULTS.md",
+    "build_application_evidence.py", "generated/application-evidence-v1.json",
+    "live_client_v2/__init__.py", "live_client_v2/PROTOCOL.md", "live_client_v2/run.py",
+    "live_client_v2/validation.py", "live_client_v2/test_validation.py",
+    "live_client_v3/__init__.py", "live_client_v3/PROTOCOL.md", "live_client_v3/run.py",
+    "live_client_v3/validation.py", "live_client_v3/test_validation.py",
+    "guided_client_v1/__init__.py", "guided_client_v1/PROTOCOL.md", "guided_client_v1/run.py",
+    "guided_client_v1/validation.py", "guided_client_v1/test_validation.py")
 SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
 BLOCKED = {".git", "__pycache__", ".pytest_cache", ".venv", ".zerorun-env", "node_modules", "workspace", "workspaces",
     "private-cache-authentication-NOT-FOR-PUBLICATION", "pytest-temp", "testmon-runtime", "testmon-state",

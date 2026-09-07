@@ -74,6 +74,54 @@ def extension_evidence(preview=False):
     return evidence
 
 
+def application_evidence(preview=False):
+    from research.softwarex.build_application_evidence import build as reconcile_application
+    if preview:
+        return None
+    evidence = reconcile_application(ROOT)
+    require(evidence["completed"] is True
+            and load(HERE / "generated/application-evidence-v1.json") == evidence,
+            "application evidence is incomplete or stale")
+    return evidence
+
+
+def application_text(evidence):
+    if evidence is None:
+        return "[Layout preview: application evidence pending.]"
+    v2, v3 = evidence["model_backed_application"], evidence["model_backed_application_v3"]
+    require(v2["live_turns_completed"] == 2 and v2["live_turns_passed"] == 1
+            and v2["all_planned_checks_pass"] is False,
+            "second client trial narrative differs")
+    require(v3["core_lifecycle_pass"] is True and v3["live_turns_completed"] == 5
+            and v3["live_turns_passed"] == 4 and v3["decision_turns_passed"] == 0
+            and v3["fresh_oracle_calls"] == v3["fresh_oracle_calls_passed"] == 2
+            and v3["interpretation_cases_completed"] == 0
+            and v3["all_planned_checks_pass"] is False,
+            "third client trial narrative differs")
+    installation = evidence["public_guide_installation"]["validation"]
+    quickstart = evidence["public_guide_quickstart"]["validation"]
+    require(installation["passed"] is True and quickstart["passed"] is True
+            and quickstart["runtime_files"] == 36,
+            "passing public quickstart narrative required")
+    return (
+        "Client evaluation separated API execution from model-selected use. A scripted consumer passed 14 response cases; "
+        "11 installed-server checks covered eight discovery/diagnostic requests. All model attempts are retained. "
+        "Trial~1 stopped at missing authority. Trial~2 forwarded the authority path and passed readiness, but Codex denied "
+        "its next call because client approval was unavailable. With explicit, tool-specific operator preapproval, "
+        "trial~3 completed four Codex~0.153.3 turns: readiness, fresh success, identified reuse and fresh verification. "
+        "All four interpretations were correct; two separate fresh container executions agreed. The fifth, model-selected "
+        "request invented an unsupported argument and was rejected before execution. The model declined success, "
+        "but the protocol failed and stopped; the remaining decision and six interpretation cases were not run. "
+        "Thus the core lifecycle passed, not the entire trial. "
+        "The sparse input-parameter description motivated a separately recorded documented-use example; "
+        "it does not establish the cause of the model error. "
+        "An account-free laboratory guide additionally exercises missing-authority refusal, authorized readiness, "
+        "fresh success, reuse and verification through the actual server. After an external-adapter check, "
+        "a clean public clone and new external installation reproduced the published procedure with 36 matching runtime modules. "
+        f"The recorded installation took {installation['elapsed_seconds']:.1f}~s and the server check {quickstart['elapsed_seconds']:.1f}~s, "
+        "excluding cloning, prior Docker setup and researcher preparation. These are researcher-executed checks, not independent user observations.")
+
+
 def extension_text(evidence):
     client = evidence["scripted_client_conformance"]
     require(client["scripted_cases"] == client["scripted_passed"] == 14
@@ -193,8 +241,8 @@ def build(preview=False):
             "Across 24 completed planned blocks, all 168 requests agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. "
             "Table~\\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No completed block or outlying invocation within those blocks is dropped; interrupted-attempt costs are reported separately. "
             "The complete-block record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension. "
-            "A VirtualBox host assertion aborted the VM after 21 complete blocks and part of Packaging block four. A separately recorded amendment reran only the unfinished preselected blocks four through six from independent initial states, using the unchanged frozen driver. The original protocol, partial invocation files, zero-byte crash remnants, failed recovery preflight, and surviving timings remain available. This is recovered coverage of the plan, not uninterrupted completion of its original no-retry protocol. Packaging's unflushed original environment-setup total is unavailable; its setup-inclusive ratio is therefore not reported. "
-            f"The interrupted attempt adds {replication['additional_interrupted_complete_requests']} complete request, {replication['additional_incomplete_requests']} partially recorded request, and an unflushed invocation-only directory with no outcomes. Its surviving arm costs are retained separately; including those costs changes Packaging's direct/optimized ratio to {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}.")
+            "A VirtualBox host assertion interrupted execution after 21 complete blocks and part of Packaging block four. A recorded amendment reran only the unfinished preselected blocks four through six using the unchanged driver. Original failures, partial records, crash remnants and recovery preflight failures remain available. This is recovered coverage, not uninterrupted completion of the no-retry protocol. Packaging's unflushed original setup total is unavailable, so its setup-inclusive ratio is omitted. "
+            f"The interrupted attempt additionally retains {replication['additional_interrupted_complete_requests']} complete request, {replication['additional_incomplete_requests']} partial request and an outcome-less invocation directory. Including its surviving arm costs changes Packaging's direct/optimized ratio to {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}.")
         table_rows = []
         for r in compact:
             setup = r['setup_inclusive_direct_to_fast_ratio']
@@ -220,7 +268,9 @@ def build(preview=False):
             "text_sha256": digest(state_path), "independent_analysis": verified_state}
         state_text = state_path.read_text(encoding="utf-8").strip()
     extension = extension_evidence(preview)
-    client_text, operating_text = extension_text(extension)
+    _, operating_text = extension_text(extension)
+    application = application_evidence(preview)
+    client_text = application_text(application)
     slots = {"PUBLIC_COMMIT": commit, "ABSTRACT_RESULT": abstract, "REPLICATION_RESULT": result,
              "REPLICATION_ROWS": table, "STATE_REJOIN": state_text, "ORIGINAL_RESULTS": original_text}
     slots.update({"CLIENT_EVIDENCE": client_text, "OPERATING_REGION": operating_text})
@@ -240,7 +290,8 @@ def build(preview=False):
         "bibliography_sha256": hashlib.sha256(refs.encode()).hexdigest(),
         "original_comparison": original, "engineering": engineering, "fine_grained_revision": revision,
         "replication": replication, "state_rejoin": state_binding, "trace_summary_sha256": digest(EVIDENCE / "trace-summary-v1.json"),
-        "inventory": inventory, "extension": extension, "abstract_whitespace_words": len(abstract_text.split()),
+        "inventory": inventory, "extension": extension, "application": application,
+        "abstract_whitespace_words": len(abstract_text.split()),
         "meaning": "Evidence and format validation, not an acceptance probability or production qualification."}
     return document, refs, summary
 
