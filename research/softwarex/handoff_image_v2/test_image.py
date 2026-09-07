@@ -155,6 +155,34 @@ def test_dockerfile_is_network_free_copy_of_pinned_base():
     assert "COPY site-packages/ /usr/local/lib/python3.12/site-packages/" in lines
 
 
+def test_registry_startup_reset_is_retried_within_same_bound(monkeypatch):
+    calls = []
+    @contextmanager
+    def response(url, timeout):
+        calls.append((url, timeout))
+        if len(calls) == 1:
+            raise ConnectionResetError("startup fixture reset")
+        yield SimpleNamespace(status=200)
+    monkeypatch.setattr(b.urllib.request, "urlopen", response)
+    monkeypatch.setattr(b.time, "sleep", lambda value: None)
+    assert b.wait_registry_ready("http://127.0.0.1:19509/v2/") is True
+    assert len(calls) == 2
+    assert all(timeout == 1 for _, timeout in calls)
+
+
+def test_registry_startup_stays_bounded_and_other_errors_escape(monkeypatch):
+    ticks = iter([0, 16])
+    monkeypatch.setattr(b.time, "monotonic", lambda: next(ticks))
+    monkeypatch.setattr(b.urllib.request, "urlopen", lambda *a, **kw: pytest.fail("outside startup bound"))
+    assert b.wait_registry_ready("http://127.0.0.1:19509/v2/") is False
+    ticks = iter([0, 0])
+    def fail(*a, **kw):
+        raise ValueError("not a transient transport error")
+    monkeypatch.setattr(b.urllib.request, "urlopen", fail)
+    with pytest.raises(ValueError, match="not a transient"):
+        b.wait_registry_ready("http://127.0.0.1:19509/v2/")
+
+
 def test_original_v1_source_stays_unchanged():
     here = h.HERE
     expected = {"run.py": "b549bbc77745a99413c6a3f9976ccdb0af204e831686b2a6af761690c8e9c064",

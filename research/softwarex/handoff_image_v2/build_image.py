@@ -80,6 +80,20 @@ def image_metadata(raw, requested):
             "rootfs": image.get("RootFS"), "config_sha256": h.sha(h.encoded(image.get("Config")))}
 
 
+def wait_registry_ready(url, timeout_seconds=15):
+    """Bounded startup transport polling; never retry experiment outcomes."""
+    started = time.monotonic()
+    while time.monotonic() - started < timeout_seconds:
+        try:
+            with urllib.request.urlopen(url, timeout=1) as response:
+                if response.status == 200:
+                    return True
+        except (urllib.error.URLError, TimeoutError, ConnectionResetError):
+            pass
+        time.sleep(.2)
+    return False
+
+
 def build(engine, output, registry_image, port=19509):
     h.require(os.name == "posix", "image preparation requires Linux")
     h.require(re.fullmatch(r"(?:docker.io/)?library/registry@sha256:[0-9a-f]{64}", registry_image) is not None,
@@ -141,16 +155,7 @@ def build(engine, output, registry_image, port=19509):
                   and state[0]["Image"] == registry["image_id"]
                   and state[0]["HostConfig"]["PortBindings"] == {"5000/tcp": [{"HostIp": "127.0.0.1", "HostPort": str(port)}]},
                   "registry identity/state/loopback binding differs")
-        ready = False
-        ready_started = time.monotonic()
-        while time.monotonic() - ready_started < 15:
-            try:
-                with urllib.request.urlopen("http://127.0.0.1:" + str(port) + "/v2/", timeout=1) as response:
-                    ready = response.status == 200
-                if ready:
-                    break
-            except (urllib.error.URLError, TimeoutError):
-                time.sleep(.2)
+        ready = wait_registry_ready("http://127.0.0.1:" + str(port) + "/v2/")
         h.require(ready, "isolated loopback registry did not become ready")
         push = command(commands, "push", [docker, "push", tag], timeout=300)
         matches = re.findall(rb"digest: (sha256:[0-9a-f]{64})", push)
