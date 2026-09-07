@@ -4,6 +4,8 @@ Software for **ZeroRun: Reproducible test-result reuse for AI coding tools**, by
 
 This is a clean research distribution of the runtime at commit `86f42289c2f59a74b1f642f0b20d1a26b3d55e57`, packaged as version 0.5.1. It includes selected runtime regression tests, research drivers, immutable observations, and independently checked summaries. `PUBLIC_RELEASE_MANIFEST.json` records each file's bytes, origin, and SHA256. Runtime source bytes are unchanged; packaging uses a `src/` layout. Five file-path references in two selected tests are adapted to that layout and the relocated skill document; this is recorded in the manifest. The distribution does not contain development history or private operator credentials.
 
+The analysis helper uses its exact recorded physical bytes; the [public-layout correction](research/softwarex/PUBLIC_LAYOUT_CORRECTION.md) documents the newline-only packaging mismatch caught by clean-copy validation and the separately retested correction. The original refusal and pre-correction test receipts remain available.
+
 ZeroRun can reuse a prior successful **result** for explicitly configured deterministic tasks after checking the declared input contract. It provides CLI and MCP interfaces for integration with coding tools. It does not cache a language model's inference, infer that arbitrary commands are deterministic, or establish that repeated command text implies reusable state.
 
 ## Submission package

@@ -57,7 +57,7 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "generated/readiness-bindings-unit-v1.xml",
     "OPERATING_GUIDE.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
     "LIVE_CLIENT_AMENDMENT_1.md", "support/tools/aggregate_codex_install_evidence.py", "RELATED_SYSTEMS.md",
-    "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py",
+    "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py", "PUBLIC_LAYOUT_CORRECTION.md",
     "client_conformance.py", "analyze_operating_region.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
     "generated/operating-region-v1.json", "generated/extension-evidence-v1.json")
 SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
@@ -145,6 +145,15 @@ testpaths = ["tests", "research/sqj/strengthening/tests"]
 '''.encode()
 
 
+def exact_analysis_helper(git_bytes):
+    recorded = read_local(ROOT / "research/sqj/source-final/tools/product_generalization_benchmark.py")
+    require(digest(recorded) == "96588c65ee674597e4c459651345b9e89ac92cbdc0c85baaa3de4f57f6a44359",
+            "recorded analysis helper bytes differ")
+    require(git_bytes.replace(b"\r\n", b"\n") == recorded.replace(b"\r\n", b"\n"),
+            "analysis helper differs beyond recorded physical newlines")
+    return recorded
+
+
 def collect(paper_files=()):
     payloads, origins = {}, {}
 
@@ -176,6 +185,10 @@ def collect(paper_files=()):
             origin = "git:" + CORE + ":" + member.name
             if member.name == ".agents/skills/zerorun/SKILL.md":
                 target = "docs/zerorun-SKILL.md"
+            elif member.name == "tools/product_generalization_benchmark.py":
+                raw = exact_analysis_helper(raw)
+                origin = ("workspace:research/sqj/source-final/tools/product_generalization_benchmark.py; "
+                          "exact recorded analysis-helper bytes; normalized content equals git:" + CORE + ":" + member.name)
             elif member.name == "tests/test_path_safety.py":
                 require(raw.count(b'ROOT / "zerorun"') == 4, "unexpected path-test adaptation boundary")
                 raw = raw.replace(b'ROOT / "zerorun"', b'ROOT / "src" / "zerorun"')
