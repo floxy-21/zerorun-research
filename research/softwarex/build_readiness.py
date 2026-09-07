@@ -15,6 +15,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-extension-final-v1"
 
 
 def require(condition, message):
@@ -148,6 +149,40 @@ def check_test_and_install_bindings(release):
     return install, dict(final_tests, targeted_test_amendments=amendments)
 
 
+def check_extension_tests(release):
+    relative = EXTENSION_TESTS + "/receipt.json"
+    receipt = read(ROOT / relative)
+    matching_public_file(release, relative, ROOT / relative)
+    require(receipt["schema"] == "zerorun.softwarex-publication-tests.v1"
+            and receipt["passed"] is True and receipt["returncode"] == 0 and receipt["failure"] is None,
+            "complete passing publication-extension tests required")
+    require(receipt["source_unchanged"] is True and receipt["source_before"] == receipt["source_after"],
+            "publication source changed during tests")
+    rows = receipt["source_before"]
+    require(rows and len({row["path"] for row in rows}) == len(rows), "test-source inventory absent or duplicated")
+    for row in rows:
+        member_name(row["path"])
+        raw = read_regular(ROOT / row["path"])
+        require(len(raw) == row["bytes"] and hashlib.sha256(raw).hexdigest() == row["sha256"],
+                "publication source differs from tested bytes: " + row["path"])
+        matching_public_file(release, row["path"], ROOT / row["path"])
+    for name, row in receipt["output_files"].items():
+        require(name in {"tests.xml", "pytest.log"}, "unexpected test-output name")
+        path = ROOT / EXTENSION_TESTS / name
+        require(path.stat().st_size == row["bytes"] and sha(path) == row["sha256"], "test-output bytes differ")
+        matching_public_file(release, EXTENSION_TESTS + "/" + name, path)
+    require(set(receipt["output_files"]) == {"tests.xml", "pytest.log"}, "test output missing")
+    xml = ET.fromstring(read_regular(ROOT / EXTENSION_TESTS / "tests.xml"))
+    suites = [xml] if xml.tag == "testsuite" else xml.findall(".//testsuite")
+    counts = {key: sum(int(s.attrib[key]) for s in suites) for key in ("tests", "failures", "errors", "skipped")}
+    require(counts == receipt["junit_counts"] and counts["tests"] == receipt["testcases_present"]
+            == len(xml.findall(".//testcase")) and counts["failures"] == counts["errors"] == 0
+            and counts["tests"] > counts["skipped"] >= 0
+            and not xml.findall(".//failure") and not xml.findall(".//error"), "publication JUnit disagrees")
+    return {"receipt": relative, "sha256": sha(ROOT / relative), "counts": counts,
+            "source_files_bound": len(rows), "scope": receipt["scope"]}
+
+
 def build(release):
     inspect(release)
     _, _, regenerated = build_paper()
@@ -165,6 +200,12 @@ def build(release):
     highlights = (HERE / "HIGHLIGHTS.txt").read_text(encoding="utf-8").splitlines()
     require(3 <= len(highlights) <= 5 and all(0 < len(line) <= 85 for line in highlights), "highlight limits not met")
     install, final_tests = check_test_and_install_bindings(release)
+    extension_tests = check_extension_tests(release)
+    extension = evidence["extension"]
+    require(extension["completed"] is True and extension["preview"] is False,
+            "recorded extension outcomes required")
+    matching_public_file(release, "research/softwarex/generated/extension-evidence-v1.json",
+                         HERE / "generated/extension-evidence-v1.json")
     replication, state = evidence["replication"], evidence["state_rejoin"]["independent_analysis"]
     planned = replication.get("planned", replication.get("original_analysis", {}).get("planned"))
     require(isinstance(planned, dict) and type(planned.get("requests")) is int, "planned request denominator missing")
@@ -186,6 +227,11 @@ def build(release):
         "author_upload_texts_sha256": files,
         "selected_public_tests": {"passed": final_tests["pytest_passed"], "skipped": final_tests["pytest_skipped"], "additional_passing_subtests": final_tests["subtests_passed"]},
         "targeted_public_test_amendments": final_tests.get("targeted_test_amendments", []),
+        "publication_extension_tests": extension_tests,
+        "client_extension": {"scripted_cases": extension["scripted_client_conformance"]["scripted_cases"],
+                             "live_model_lifecycle_pass": extension["bounded_live_client"]["functional_lifecycle_pass"],
+                             "recorded_model_turns": extension["bounded_live_client"]["agent_stages_recorded"],
+                             "evidence_sha256": sha(HERE / "generated/extension-evidence-v1.json")},
         "replication": {"completed": True, "planned_requests": planned["requests"],
                         "fresh_agreements": replication["counts"]["fresh_agreements"], "optimized_hits": replication["counts"]["optimized_hits"]},
         "state_case": {"completed": True, "requests": state["requests"], "optimized_hits": state["optimized_hits"], "autonomous_agent_evaluation": False},

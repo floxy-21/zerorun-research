@@ -6,42 +6,56 @@ This is a clean research distribution of the runtime at commit `86f42289c2f59a74
 
 ZeroRun can reuse a prior successful **result** for explicitly configured deterministic tasks after checking the declared input contract. It provides CLI and MCP interfaces for integration with coding tools. It does not cache a language model's inference, infer that arbitrary commands are deterministic, or establish that repeated command text implies reusable state.
 
+## Submission package
+
+The completed submission snapshot includes the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence](output/submission/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for exact checked hashes and remaining author-controlled steps. The manuscript's earlier immutable code/evidence pointer is intentionally distinct from this later submission snapshot. No journal submission or payment is performed by publishing these files.
+
 ## Install
 
-Python 3.10 or later is required. From this repository root, create a fresh environment:
+Python 3.10 or later is required. From this repository root, create a fresh environment outside the checkout. Linux/macOS:
 
 ```sh
-python -m venv .venv
-# Linux/macOS:
-.venv/bin/python -m pip install .
-.venv/bin/python -m zerorun --help
-# Windows equivalents:
-# .venv\Scripts\python.exe -m pip install .
-# .venv\Scripts\python.exe -m zerorun --help
+study_env="$(mktemp -d)/venv"
+python3 -m venv "$study_env"
+"$study_env/bin/python" -m pip install .
+"$study_env/bin/python" -m zerorun --help
+```
+
+Windows PowerShell:
+
+```powershell
+$studyEnv = Join-Path $env:TEMP ('zerorun-env-' + [guid]::NewGuid().ToString('N'))
+python -m venv $studyEnv
+$studyPython = Join-Path $studyEnv 'Scripts/python.exe'
+& $studyPython -m pip install .
+& $studyPython -m zerorun --help
 ```
 
 The package has no third-party Python runtime dependency; building uses setuptools. Pinned research containers, Git, Docker, and pytest are additional requirements for the relevant experiments. Recorded whole-task timings were obtained on Linux with a pinned Linux/amd64 Python container; do not assume those timings or all permission semantics transfer to Windows or macOS.
+
+**For Codex/MCP integration, keep the ZeroRun and Codex console launchers outside the target checkout.** See the [operating guide](research/softwarex/OPERATING_GUIDE.md) for manual exact-byte authorization, seven MCP tools, and the fresh/reused/error response contract. The [manifest v2 reference](research/softwarex/MANIFEST_REFERENCE.md) explains the result-only fields and input-review requirements. Neither installation nor an automatically generated candidate authorizes reuse.
 
 ## Offline evidence checks
 
 Run these from the repository root with the installed environment's Python. Use Python 3.11+ for offline research analysis, or additionally install `tomli` when using Python 3.10. These commands parse local observations and do **not** execute any recorded AI-agent command:
 
 ```sh
-.venv/bin/python -B -m research.sqj.strengthening.validate_traces --check
-.venv/bin/python -B -m research.sqj.analyze_comparison --check
-# Windows:
-# .venv\Scripts\python.exe -B -m research.sqj.strengthening.validate_traces --check
-# .venv\Scripts\python.exe -B -m research.sqj.analyze_comparison --check
+"$study_env/bin/python" -B -m research.sqj.strengthening.validate_traces --check
+"$study_env/bin/python" -B -m research.sqj.analyze_comparison --check
+"$study_env/bin/python" -B -m research.softwarex.analyze_operating_region --check
+"$study_env/bin/python" -B -m research.softwarex.build_extension_evidence --check
+# Windows PowerShell uses the corresponding form:
+# & $studyPython -B -m research.softwarex.build_extension_evidence --check
 ```
 
 To run the included unit tests, install pytest in the same environment and use a new temporary directory for each run:
 
 ```sh
-.venv/bin/python -m pip install pytest==9.0.2
-.venv/bin/python -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp=/tmp/zerorun-research-tests-unique
+"$study_env/bin/python" -m pip install pytest==9.0.2
+"$study_env/bin/python" -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp=/tmp/zerorun-research-tests-unique
 # Windows PowerShell, with a new name on every run:
-# .venv\Scripts\python.exe -m pip install pytest==9.0.2
-# .venv\Scripts\python.exe -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp="$env:TEMP/zerorun-research-tests-unique"
+# & $studyPython -m pip install pytest==9.0.2
+# & $studyPython -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp="$env:TEMP/zerorun-research-tests-unique"
 ```
 
 The temporary directory **must be outside every Git checkout**, on every platform. Some trust tests intentionally create incomplete `.git` fixtures; Git must not discover an ancestor repository. The first staging test attempt used a nested development-repository directory and exposed this harness constraint; its [failure report](research/softwarex/evidence/public-release-tests-1.xml) is retained separately from the corrected-location run. On Windows, use a fresh absolute path under a non-repository temporary directory. POSIX permission checks require a non-root Linux user and are explicitly skipped when the platform cannot express the tested behavior. The included tests are a selected research/runtime set, not a claim that every development-repository test is included.
@@ -55,7 +69,7 @@ The `research/softwarex/tests` directory additionally checks publication evidenc
 - Whole-task reuse is result-only: cache hits do **not** replay historical stdout/stderr or generated files. If an AI client needs a fresh diagnostic transcript, execute the tests; do not substitute cached success for equivalent agent behavior.
 - Reuse requires complete declared inputs, a deterministic execution contract, and the required external operator review/authorization. Generated candidates, repository files, and observation receipts are not authorization. Do not let an AI agent approve its own cache eligibility.
 - Unknown, unsupported, changed, failed, or uncertain requests must remain fresh execution or refusal/bypass according to the API contract. Failure is not published as a successful reusable result.
-- The MCP interface is available through the documented CLI help. Client compatibility checks are not evidence of improved AI task completion, token savings, or production reliability.
+- The [MCP tool and response reference](research/softwarex/OPERATING_GUIDE.md#the-seven-shipped-tools) distinguishes actual `HIT_REUSED` results from fresh execution and errors. In particular, `mode: "reuse"` is not evidence of a hit. Client compatibility checks are not evidence of improved AI task completion, token savings, or production reliability.
 - Never apply the laboratory's disposable cache-authentication fixtures to a production repository. Public artifacts contain neither those keys nor production authority receipts.
 
 ## What the evidence establishes

@@ -2,3 +2,4 @@
 - Eligible whole-file hits avoid staging without relaxing input checks.
 - Fresh oracles and full-sequence costs make reuse decisions inspectable.
 - Public AI traces distinguish command repetition from validated reuse.
+- Controlled MCP checks expose and test an external-authority configuration boundary.

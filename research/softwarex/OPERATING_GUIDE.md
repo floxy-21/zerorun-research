@@ -1,0 +1,263 @@
+# Operating ZeroRun 0.5.1
+
+This guide describes the **public research release** and its shipped interfaces. Whole-task reuse returns an explicitly identified previous successful exit status. It does not reproduce the previous stdout/stderr, restore generated files, or assert that an AI agent will make the same decision as after fresh execution.
+
+The commands below are **operator instructions, not evidence that they have been executed on your repository**. Names and paths in capitals or `/absolute/path/...` must be replaced. The [reproduction guide](REPRODUCIBILITY.md) identifies the recorded experiments and their limits separately.
+
+First-use path: [install](#1-install-outside-the-repository-you-will-test), [inspect](#2-inspect-the-target-before-executing-anything), [configure](#3-configure-one-reviewed-whole-task-command), [review and authorize](#4-make-the-manual-authorization-decision), [run and verify](#5-run-identify-reuse-and-verify), then [connect the client](#6-connect-an-mcp-client-or-codex). The [tool and response reference](#the-seven-shipped-tools) and [optional node-level workflow](#7-optional-separately-reviewed-pytest-node-reuse) are separate.
+
+## 1. Install outside the repository you will test
+
+CLI installation needs Python 3.10 or later. The demonstrated whole-task execution mode additionally requires a Linux/amd64 host with Git and access to an operator-controlled Docker daemon. Use a non-root account for the documented laboratory and permission-sensitive checks. Windows and macOS CLI installation is not evidence of working whole-task reuse on those hosts.
+
+Use separate locations for the public source, installed tools, and target project. For example, on Linux:
+
+```sh
+git clone https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
+python3 -m venv /absolute/path/zerorun-tools
+/absolute/path/zerorun-tools/bin/python -m pip install /absolute/path/zerorun-research
+/absolute/path/zerorun-tools/bin/zerorun --version
+/absolute/path/zerorun-tools/bin/zerorun --help
+```
+
+For the manuscript's exact version, check out its immutable C2 code commit before installation. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal install, not an editable install, makes the installed package independent of subsequent checkout edits.
+
+On Windows, the equivalent external environment has `Scripts\python.exe` and `Scripts\zerorun.exe`. Read-only inspection can be performed there, but the Linux/amd64 execution requirement remains. Research-analysis dependencies are separate from the runtime package, which has no third-party Python runtime dependencies.
+
+For the rest of this guide, `zerorun` means this **external installed console executable**, available on `PATH`. Before integration, inspect its resolution with `command -v zerorun` on Linux or `Get-Command zerorun` in PowerShell. If using Codex, inspect `codex` the same way. ZeroRun refuses a resolved ZeroRun or Codex launcher inside the target repository. An in-project `.venv` is suitable for offline evidence inspection, but not for this launcher trust boundary.
+
+## 2. Inspect the target before executing anything
+
+Change to the target's Git repository root, not to the ZeroRun source repository unless that is deliberately your target. Inspect:
+
+```sh
+git rev-parse --show-toplevel
+git ls-files -- .zerorun
+git status --ignored --short -- .zerorun
+```
+
+The integration accepts an ordinary `.git` directory or the ordinary Git-file marker used by a linked worktree; symbolic links, junctions, dangling markers, and special files are refused. Git-tracked `.zerorun` runtime state is refused. Do not blindly delete suspicious existing state: preserve it for investigation and use a separate clean checkout when appropriate.
+
+Treat `.zerorun.json`, `.zerorun-pytest.json`, and any candidate/review files as repository-supplied executable policy until reviewed. A checked-in `closure_reviewed: true` does not authenticate a local operator. Neither installing a skill nor generating a candidate authorizes reuse.
+
+## 3. Configure one reviewed whole-task command
+
+Use the [manifest v2 reference](MANIFEST_REFERENCE.md) to define a named task, such as `tests`. The operator must review its command, complete result-affecting inputs, determinism, environment, and result-only behavior. The pinned image must already contain everything the command needs, including pytest and project dependencies when applicable. A Python base image alone does not imply those packages are installed.
+
+Acquire the **reviewed exact image** through the operator's normal Docker workflow. For a published digest-pinned image, an example is:
+
+```sh
+docker pull --platform linux/amd64 REVIEWED_IMAGE_NAME@sha256:REVIEWED_64_HEX_DIGEST
+docker image inspect REVIEWED_IMAGE_NAME@sha256:REVIEWED_64_HEX_DIGEST
+```
+
+These are placeholders, not a known runnable image. Check the result and image provenance. A tag such as `latest`, a source lock file, or a digest copied without review is not an interchangeable runtime identity. Normal MCP `run_tests` and `run_pytest` calls **do not pull missing images**. Explicitly approved managed preparation is a separate option described below.
+
+Write or review the target's `.zerorun.json` using the reference. Whole-task reuse does not require a pytest-node profile. In particular, do not generate or activate node-level reuse merely to make a whole-task example work.
+
+Now inspect the configuration through the trusted-operator CLI:
+
+```sh
+zerorun --manifest .zerorun.json --json doctor
+zerorun --manifest .zerorun.json --json list
+zerorun --manifest .zerorun.json --json explain tests
+```
+
+`doctor` validates the manifest/runtime contract; it does not prove input completeness or determinism. Direct CLI diagnostics can acquire runtime state under the operator's Docker policy, which is why image acquisition is explicit above. `explain` does not execute tests, but can quarantine invalid cache metadata. Its `HIT`, `MISS`, or `BYPASS` prediction is not an executed test result.
+
+## 4. Make the manual authorization decision
+
+**Stop here unless a human operator has completed the review.** Authorization records an assertion; it does not perform that review. An AI coding agent must not edit approval fields, approve its own manifest, or invoke authorization on its own initiative. Laboratory fixture authority is not production approval and must never be copied into a real project.
+
+Independently hash the exact file bytes after review. On Linux:
+
+```sh
+sha256sum .zerorun.json
+```
+
+On Windows PowerShell:
+
+```powershell
+(Get-FileHash -Algorithm SHA256 -LiteralPath .zerorun.json).Hash.ToLowerInvariant()
+```
+
+Compare the digest with the exact file the operator reviewed. Do not combine hashing and authorization into an automatic pipeline. Only then, in a separate operator action:
+
+```sh
+zerorun --manifest .zerorun.json --json authorize --manifest-sha256 REVIEWED_MANIFEST_SHA256
+```
+
+Success returns `status: "AUTHORIZED"` and the exact manifest digest. The receipt resides outside the checkout, is per-user, and is bound to the canonical repository and exact bytes. Even a formatting-only manifest edit requires renewed approval for its new bytes. The authority boundary protects against repository-supplied configuration/evidence; it is not a sandbox against arbitrary host code run as the same user. Use a sanitized environment and an operator-controlled Docker daemon.
+
+The direct CLI is a trusted-operator interface and does **not** substitute for the external-authority enforcement on MCP. A successful direct CLI run is not proof that the MCP task is authorized.
+
+## 5. Run, identify reuse, and verify
+
+For the reviewed task `tests`:
+
+```sh
+zerorun --manifest .zerorun.json --json run tests
+zerorun --manifest .zerorun.json --json run tests
+zerorun --manifest .zerorun.json --json run tests --verify
+```
+
+With an initially empty store, a successful deterministic task, unchanged declared identity, and no interfering state, the expected statuses are `MISS_EXECUTED`, `HIT_REUSED`, then `VERIFY_MATCH`. This is an **expected example sequence**, not a promise for your repository. Preserve and investigate different results rather than editing the configuration until the expected labels appear. `--verify` executes fresh; without a matching entry, it follows the fresh miss path instead of fabricating a verification match.
+
+In CLI JSON mode, stdout contains the result JSON and the task's emitted stdout/stderr are directed to stderr. The CLI process exit code follows the result's exit code. Configuration errors exit 2 and are written to stderr; they need not produce a result JSON object.
+
+When a fresh diagnostic transcript is needed, an operator can use:
+
+```sh
+zerorun --manifest .zerorun.json --json run tests --force
+```
+
+`--force` and `--verify` are mutually exclusive. Both execute the command fresh; force may still compare an existing successful record and report a conflict. Container output capture is bounded, so fresh execution is not a promise of a complete, untruncated log. Coverage files, generated artifacts, or other outputs require a separately approved execution workflow outside this result-only contract.
+
+## 6. Connect an MCP client or Codex
+
+The shipped stdio server starts with `zerorun mcp-server` from the target Git repository. Its lifetime is bound to that repository; an optional tool `root` argument cannot redirect it to another checkout. Configure the client to launch the external executable with that working directory.
+
+For the shipped Codex integration, a compatible local Codex CLI must already be installed outside the target repository and be on `PATH`. This release does not install Codex or provide authentication. After approving skill/configuration changes, run from the target root:
+
+```sh
+zerorun --json init --codex --root .
+codex mcp get zerorun --json
+codex mcp list
+```
+
+These are the registration commands used by the shipped integration, not a promise about every future client version. Inspect the installed client's help if its interface differs. Initialization refuses to overwrite a user-authored skill or a conflicting `zerorun` MCP registration. A skill conflict also prevents registration. Follow the returned `next_action`, including restarting the client when requested, and verify the seven-tool catalog.
+
+The [official OpenAI MCP guide](https://learn.chatgpt.com/docs/extend/mcp) describes the shared configuration on a Codex host, stdio `command`/`args`/`cwd`, and client restart procedures. It also documents a default `tool_timeout_sec` of 60 seconds. This is shorter than ZeroRun's maximum test-execution allowance. The operator must set an appropriate bounded client timeout for an intended long task; registration alone does not establish that the client will wait for it. A client timeout is not a passed test or an instruction to retry blindly.
+
+`integration_ready: true` means the integration was installed, **not** that reuse is authorized or that a hit occurred. Ask the MCP `doctor` and `list_tasks` tools to check readiness. For whole-task reuse, require the exact manifest to be authorized and the selected task/runtime to be usable. Inspect task-level reasons as well as `manifest_authorized`, `task_reuse_ready`, and `reuse_ready`; another configured task being ready does not make this task ready. A repository without a reviewed manifest can remain in `observe-only` mode.
+
+### Match the operator's external authority location
+
+The trusted authorization command and the MCP server must resolve the **same external per-user authority directory**. If both use the same ordinary user-home/state settings and no custom override, the default location can suffice. If an operator used `ZERORUN_TRUST_ROOT`, setting it only in the shell that starts Codex does not establish that the MCP subprocess receives it. A valid authorization receipt elsewhere does not make the current server authorized.
+
+For a custom authority location, the operator can manage the MCP registration directly in their user-level Codex configuration. This is an **example configuration**, not the configuration or output of the recorded live trial:
+
+```toml
+[mcp_servers.zerorun]
+command = "/absolute/external/venv/bin/zerorun"
+args = ["mcp-server"]
+cwd = "/absolute/reviewed/repository"
+env = { ZERORUN_TRUST_ROOT = "/absolute/operator-owned/zerorun-trust" }
+```
+
+Replace each path with the reviewed local value. The authority directory must be the exact one used for manual exact-hash authorization, outside the repository and not containing it. Keep it operator-controlled and non-linked. Merge the settings into the existing server entry; do not create duplicate TOML tables or silently replace another registration. An alternative is `env_vars = ["ZERORUN_TRUST_ROOT"]`, with that single value already set in the client's host environment. Use one explicit method and restart the server/client. The [official OpenAI MCP guide](https://learn.chatgpt.com/docs/extend/mcp) documents both `env` and `env_vars`.
+
+**Managed-initialization limitation:** the frozen ZeroRun 0.5.1 `init --codex` registration checker deliberately rejects nonempty `env` or `env_vars`. The custom setting above is therefore an operator-managed MCP route, not a correction implemented by managed initialization. Rerunning `init --codex` can report a conflict; do not remove the necessary authority setting merely to make that checker green. Check readiness through the actual MCP `doctor` result instead. Do not put the override into task `env`, forward arbitrary host variables, copy authority keys into a checkout, or let the AI agent authorize itself.
+
+The recorded [live Codex trial](evidence/live-client-v1/receipt.json) stopped after one doctor call: the tool reported `UNTRUSTED`, and an extra agent commentary message also violated the fixed completion-marker rule. It was not retried. The separate [non-model diagnostic](evidence/live-client-v1/non-model-diagnostic.json) passed five fresh STDIO-server checks: missing-variable refusal, explicit-path readiness, `MISS_EXECUTED`, `HIT_REUSED`, and `VERIFY_MATCH`. It retained matching 36-file installed/source identities and cleaned up its synthetic fixture and authority. This demonstrates the server-side configuration behavior on that fixture; **it does not establish a corrected Codex lifecycle, model compliance, production reliability, or an AI speedup**.
+
+Example MCP **argument objects** for the reviewed task, not observed responses:
+
+```json
+{"task": "tests"}
+```
+
+Pass this object to `run_tests`. For fresh verification, call the same tool with:
+
+```json
+{"task": "tests", "verify": true}
+```
+
+There is no `force` argument in the MCP `run_tests` schema. Use `verify: true` for a fresh configured-task check, or the client's ordinary explicitly approved testing workflow when requirements exceed the result-only interface. Observation-only MCP does not execute arbitrary repository commands on the host. The direct CLI `observe` command is an operator-only path, not an MCP fallback.
+
+### The seven shipped tools
+
+| Tool | Accepted inputs | Behavior and boundary |
+| --- | --- | --- |
+| `doctor` | optional `root` | Diagnose configuration, runtime, authority, and profile readiness. A diagnostic failure is not a test failure. |
+| `list_tasks` | optional `root` | List configured tasks and readiness; does not execute tests. |
+| `explain` | `task`, optional `root` | Predict `HIT`/`MISS`/`BYPASS`; does not execute tests, but may quarantine invalid cache metadata. |
+| `stats` | optional `root` | Read repository-local counts and savings fields, not market-wide or agent-effectiveness metrics. |
+| `prepare_pytest` | `approve_setup`, optional `root`, `task`, `targets` | Requires `approve_setup: true` after explicit user approval; may acquire dependencies, create managed files, and execute collection. Writes a non-authorizing candidate. |
+| `run_tests` | `task`, optional `root`, `verify` | Execute or reuse a configured v2 whole task; requires matching external authority, empty task `env`, and an already-present pinned image. |
+| `run_pytest` | optional `root`, `profile` | Execute a reviewed per-node profile; requires exact manifest and profile authority, empty task `env`, and the present pinned image. `profile` is repository-relative. |
+
+Unknown tools or arguments are errors. There is no `observe_test` tool and no MCP authorization tool.
+
+### Interpret results, not reassuring labels
+
+Successful protocol handling is not the same as successful tests. A tool result contains JSON text, `structuredContent`, and `isError`. Read the structured fields when available. Anticipated tool/configuration errors generally produce `status: "ERROR"` with `isError: true`; malformed protocol requests may instead have a top-level JSON-RPC `error`. Handle both.
+
+For whole-task `run_tests`, `mode: "reuse"` identifies the interface path even when the task executed fresh or failed. It **never establishes a hit** by itself.
+
+| Whole-task result | Interpretation |
+| --- | --- |
+| `HIT_REUSED`, `exit_code: 0`, `isError: false` | Identified previous success under the checked identity; no fresh execution or replayed transcript. |
+| `MISS_EXECUTED`, `exit_code: 0`, `isError: false` | Fresh successful execution; not a hit. |
+| `VERIFY_MATCH`, `exit_code: 0`, `isError: false` | Fresh execution agreed with stored success; not an avoided execution. |
+| `MISS_FAILED`, nonzero `exit_code`, `isError: true` | Fresh execution failed; no reusable success was stored. Pytest exit 5, for example, means no tests were collected, not success. |
+| `VERIFY_MISMATCH`, `exit_code: 86`, `isError: true` | Fresh execution contradicted stored success; the cache entry was quarantined. Investigate. |
+| `REJECTED_INPUT_RACE` or `BYPASS_ACTION_BUSY`, `exit_code: 75`, `isError: true` | No acceptable success to use. Re-establish a stable reviewed state before deciding what to do next. |
+| `ERROR` or top-level JSON-RPC `error` | Configuration, setup, transport, or protocol problem; never convert it into a passed test. |
+
+The `run_tests` MCP response includes `stdout_tail` and `stderr_tail`, each decoded from at most the last 4,000 captured bytes. They can be incomplete. A hit normally has empty tails because it does not execute the tests or replay saved streams. For per-node `run_pytest`, inspect its own node counts and exit status; do not reuse the whole-task status table as a node-level hit classifier.
+
+## 7. Optional, separately reviewed pytest-node reuse
+
+This is not needed for the demonstrated whole-task path. The supplied five-library fine-grained evaluation accepted no node reuse; installation is not evidence that a project's nodes can be safely omitted.
+
+After explicit approval for acquisition, managed file changes, and collection, either use MCP `prepare_pytest` or the operator CLI:
+
+```sh
+zerorun-pytest-prepare --root . --target tests --json
+zerorun-pytest-review --root . --reviewer "OPERATOR_NAME" --json
+```
+
+Preparation may pull a pinned Python image, install supported requirements in `.zerorun-env/`, create `.zerorun.json` only when absent, and execute pytest collection/profiling. The prepared candidate does not authorize any reuse. Supported managed dependency syntax is restricted; URLs, VCS/local-path requirements, and requirement directives are refused rather than silently broadened.
+
+The human operator must inspect the exact candidate and the generated `.zerorun-pytest.review.json`. The review requires a reviewer identity and all four assertions: `closure_completeness_reviewed`, `node_independence_reviewed`, `all_candidate_reviewable_nodes_covered`, and `authorizes_activation`. Set them true **only when the assertions are substantiated**, not to clear a setup checklist. If review cannot establish them, leave reuse inactive.
+
+After that review:
+
+```sh
+zerorun-pytest-activate --root . --json
+sha256sum .zerorun.json .zerorun-pytest.json
+```
+
+Activation creates the reviewed profile but does not supply external user authority. Independently compare both exact digests, then authorize them in a separate operator action:
+
+```sh
+zerorun --manifest .zerorun.json --json authorize --manifest-sha256 REVIEWED_MANIFEST_SHA256 --pytest-profile-sha256 REVIEWED_PROFILE_SHA256
+```
+
+Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the relevant reasons. A profile or manifest change requires renewed review and exact-byte authority. Unknown or unqualified nodes must run fresh; partial qualification is not permission to skip the rest.
+
+## Inspect or reproduce the bounded integration experiments
+
+Offline inspection needs no Codex account or model credits. Run the release's `research.softwarex.build_extension_evidence --check` procedure in the [release README](../../README.md); it validates archived evidence without replaying agent commands. Read the [original live protocol](LIVE_CLIENT_PROTOCOL.md), [pre-model support amendment](LIVE_CLIENT_AMENDMENT_1.md), and [separate non-model diagnostic protocol](NON_MODEL_DIAGNOSTIC_PROTOCOL.md) before any new experiment. The original failed trial and later diagnostic are separate records, not repeated attempts at the same success claim.
+
+For a fresh reproduction, use a **separate clean clone** of [the public repository](https://github.com/floxy-21/zerorun-research) pinned to commit `681907860dc2ab9df70034f82a0025463d1fdec4`, not the current release's moving `main`. Its `PUBLIC_RELEASE_MANIFEST.json` SHA-256 must be `76bded3e8312517594c3977fa311c1cc4e3060bd7c7a390f34b5055f2cc632dc`. Install that pinned clone into an external Linux Python environment using the installation procedure above. The Linux/amd64 image specified in the protocols must already be present; these experiments do not pull it.
+
+Copy the following files from this release into a separate **external adapter directory**, preserving their relative paths: `run_public_lifecycle.py`, `LIVE_CLIENT_PROTOCOL.md`, `LIVE_CLIENT_AMENDMENT_1.md`, `support/tools/aggregate_codex_install_evidence.py`, `diagnose_mcp_authority.py`, and `NON_MODEL_DIAGNOSTIC_PROTOCOL.md`. Keep the unchanged published live receipt available separately for the diagnostic's `--live-receipt` binding. Do not copy those support files into the pinned clone or modify its manifest to bypass a mismatch. The adapter deliberately accepts only the frozen manifest and original helper bytes.
+
+Inspect argument requirements first; these help commands make no model call:
+
+```sh
+/absolute/external/venv/bin/python -B /absolute/adapter/run_public_lifecycle.py --source-root /absolute/pinned-public-clone --help
+/absolute/external/venv/bin/python -B /absolute/adapter/diagnose_mcp_authority.py --help
+```
+
+The original model-backed experiment additionally requires the reviewer's **own authorized Codex account**, the pinned client/runtime provenance and installer-receipt arguments specified in its protocol, and a new explicit operator decision about model use, metadata disclosure, and fixture-only authority. The archived author's approval does not authorize a reviewer or an agent to start new model calls. Keep credentials outside all repositories and output artifacts; do not copy or publish another person's login data. Preserve any new outcome, including a failure, under a new evidence path; do not overwrite or relabel the published record.
+
+The non-model helper needs no Codex process, account, or login. Its help lists the installed launcher/Python, pinned source, original live-receipt, and new output-file arguments. It requires an explicit `--approve-synthetic-formative-authority` acknowledgement and accepts no caller-selected test repository or authority directory. That acknowledgement applies only to its newly created, original built-in fixture. Read the diagnostic protocol before granting it. Record one new attempt in an existing external evidence directory, stop on a failure, and keep the raw result. A passing non-model diagnostic is still not a model-backed reproduction.
+
+## Resource limits, troubleshooting, and support
+
+Execution uses network-disabled containers with a read-only source view, 2 CPUs, 2 GiB memory with no additional swap, 512 PIDs, a 900-second execution limit, bounded output capture, and bounded cleanup. Docker acquisition/inspection/cleanup have separate limits; a complete request is not guaranteed to finish within 900 seconds. The operator controls the Docker daemon and its credentials. These controls do not establish deterministic behavior or eliminate every host race.
+
+| Symptom | Next step |
+| --- | --- |
+| Missing manifest or observation-only mode | Review and configure a supported task; do not self-authorize a generated candidate. |
+| Authority missing or digest changed | Re-read the exact file, complete the review, independently hash, and obtain a separate operator decision. |
+| CLI authority exists but MCP remains `UNTRUSTED` | Check whether both processes resolve the same external authority directory; review the operator-managed configuration above before assuming new authorization is needed. |
+| Missing image | Ask the operator to acquire the reviewed exact runtime; do not let a normal execution call pull a different one. |
+| Launcher or skill conflict | Inspect executable resolution and existing client/skill configuration. Initialization intentionally does not overwrite it. |
+| Missing input, link, unsupported platform, or unsafe effect | Correct the actual scope/setup or execute through a separately approved fresh workflow; do not weaken the declaration to obtain a hit. |
+| Empty or truncated diagnostic tails | Request fresh execution as above. A cached success never supplies the old transcript. |
+
+For support, open a public repository issue or email kapoorjishan2@gmail.com with the release commit, platform, command, returned status, and a minimal non-sensitive example. Do not upload raw `.zerorun` state, private source, tokens, Docker credentials, or external authority keys. Keep the public research evidence separate from a customer's operational records.

@@ -1,0 +1,11 @@
+{
+  "schema": "zerorun.softwarex-client-conformance-amendment.v1",
+  "parent_protocol": "../amendment-1/protocol.json",
+  "prior_failed_attempt": "../amendment-1/attempt-20260906T235321276129Z/receipt.json",
+  "prior_producer_source": "../client_conformance_before_amendment_2.py",
+  "reason": "The external wheel identification preflight correctly refused a byte mismatch before starting MCP. The original check incorrectly compared the installed LF Git-blob package against the Windows CRLF checkout of source-final. Installed mcp.py SHA256 62c5634e467cf1d494e04e2b2c535f30b7431ab4d133f979c1105595de1432d1 matches the unchanged public Git-blob test inventory, whereas CRLF source-final/mcp.py has SHA256 3d7b9386843b2c817b04fda082b20f2cb2843b9e09c8872caaf1ff1ad6545266. The new preflight binds and checks all 36 exact installed file hashes against the pre-existing source-commit-bound public test inventory; it does not normalize or relax byte checks.",
+  "prior_live_server_started": false,
+  "runtime_or_consumer_semantics_changed": false,
+  "fixed_categories_or_cases_changed": false,
+  "prior_record_preserved": true
+}

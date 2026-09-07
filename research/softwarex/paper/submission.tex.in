@@ -56,11 +56,27 @@ C8 & Support email for questions & \href{mailto:kapoorjishan2@gmail.com}{kapoorj
 \section{Motivation and significance}
 Repository-level AI coding tools use test results when deciding whether an edit is satisfactory. SWE-bench and SWE-agent make this interaction a concrete research setting \cite{jimenez2024swebench,yang2024sweagent}. A reused result must be distinguishable from a new execution: a previous success is not a fresh transcript, and the same shell command can observe different source, dependencies, or external state.
 
-ZeroRun addresses a restricted but useful problem: exposing the previous successful exit status of a deterministic test command under an unchanged declared execution identity. Its primary users are developers integrating testing tools and researchers measuring the trade-off between validation cost and avoided execution. A relevant integration is a coding tool that revisits an already tested source state and needs its test status, while requesting fresh execution whenever it needs a new transcript. ZeroRun does not learn a caching policy or predict patch correctness. Users configure an existing pytest target, inspect its eligibility, and invoke it through a CLI or repository-bound coding-tool interface.
+ZeroRun exposes the previous successful exit status of a deterministic test command under an unchanged declared execution identity. Its users are testing-tool integrators and researchers evaluating whether avoided execution exceeds validation cost. A coding tool revisiting a previously tested source state can request its status, while requesting fresh execution for new diagnostics. ZeroRun neither learns a caching policy nor predicts patch correctness.
 
-The foundations are established. Regression-test selection avoids tests considered unaffected by a change \cite{rothermel1997safe,yoo2012regression}; build caches such as Bazel store action results and outputs \cite{bazelremotecache}. ToolCaching investigates caching LLM tool calls, while TVCache supports stateful tool reuse in agent post-training \cite{zhai2026toolcaching,kumar2026tvcache}. The SoftwareX tool eidos provides an adjacent contribution in LLM function integration and validation \cite{aldanamartin2025eidos}. Therefore, neither content hashing nor attaching a cache to an AI interface is claimed as a new algorithm.
+Regression-test selection avoids tests considered unaffected by a change \cite{rothermel1997safe,yoo2012regression}. Existing build and LLM-tool caches already address result reuse (Table~\ref{tab:contracts}); eidos provides adjacent LLM function-integration software \cite{aldanamartin2025eidos}. Neither content hashing nor attaching a cache to an AI interface is a new algorithm here.
 
-The software contribution has three connected parts: a repository-bound interface that distinguishes reused status from fresh evidence; an implementation that avoids execution staging on eligible whole-file hits; and an executable evaluation kit that checks input boundaries and compares full request costs with fresh outcomes. Unlike feature/TTL-guided tool caching or trajectory-prefix reuse during agent post-training, the demonstrated mode revalidates a declared local test-task identity and returns status metadata without reconstructing arbitrary effects or transcripts. This is a difference in operating contract, not a claim of superiority. The accompanying evidence distinguishes three questions: did reused status agree with fresh execution, was reuse actually eligible, and did avoided execution exceed checking overhead? An integrator can therefore evaluate both whether reuse is allowed and whether it is worthwhile.
+The contribution combines a repository-bound status interface, a hit path that avoids source staging, and an executable evaluation kit linking input boundaries, fresh outcomes, and full request cost. Its distinguishing unit is an operator-qualified, result-only test task, not an arbitrary tool result or sandbox history. Integrators can separately inspect three questions: does earlier status agree with fresh execution, is reuse eligible, and is it worthwhile? The software supplies those decision and measurement components without requiring a claim of universal acceleration.
+
+\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.35\linewidth}>{\raggedright\arraybackslash}p{0.38\linewidth}@{}}
+\toprule
+System & Reuse basis & Returned information / execution state \\
+\midrule
+Bazel \cite{bazelremotecache} & Build-action hashes with declared inputs and outputs & Action metadata, output files, stdout and stderr. \\
+ToolCaching \cite{zhai2026toolcaching} & Tool name and serialized arguments; feature/TTL-based admission & Tool results and metadata; command-type requests excluded. \\
+TVCache \cite{kumar2026tvcache} & Tool-call prefixes; optional state-preserving annotations & Tool values; selective sandbox snapshots support continued rollout execution. \\
+ZeroRun & Reviewed local test inputs, command and runtime identity & Identified earlier success; no historical transcript or restored output artifacts. \\
+\bottomrule
+\end{tabular}
+\caption{Operating contracts, not a performance ranking. ZeroRun evaluates a narrower result-only task contract; no head-to-head superiority is established.}
+\label{tab:contracts}
+\end{table}
 
 \section{Software description}
 \subsection{Architecture and execution contract}
@@ -97,11 +113,11 @@ The CLI exposes structured results identifying reused success, fresh success, fr
 
 The package also contains a fine-grained pytest path. Because omitted tests can affect fixtures, callbacks, shared state, or ordering, it conservatively requires fresh execution when qualification is incomplete. That path is included for reproducibility, but it is not the demonstrated acceleration mechanism in this article. Whole-task reuse does not require individual tests to be independent; it requires the complete requested command to satisfy the stated contract.
 
-On a hit, stdout and stderr are not reconstructed. A coding agent requiring failure details, coverage, generated files, or a new transcript must request fresh execution. This explicit API choice prevents conflating successful status reuse with general stateful tool replay. Installation and integration checks are automated; no external user adoption is asserted.
+Hits do not reconstruct stdout or stderr. Clients requiring new diagnostics, coverage, or generated files must execute fresh. The public operating guide and manifest reference document installation, operator review, authorization, and this boundary; automated interface checks do not establish external adoption.
 
 \section{Illustrative examples}
 \subsection{Repeat, failure, and restoration}
-The public artifact provides an executable example using a fixed pytest target. Starting with an empty store, the first request executes. Two unchanged requests can reuse its success. Appending an always-failing test changes the declared identity; both the first failing request and its repeat execute and fail. Restoring the original bytes permits the original success to be found again, followed by another reuse. The expected seven-response sequence is:
+The executable example starts with an empty store and a fixed pytest target. It executes a seed, reuses unchanged successes, executes an added failure twice, then finds the earlier success after byte restoration. The seven-response sequence is:
 \begin{center}
 \small
 \begin{tabular}{ll}
@@ -123,7 +139,14 @@ zerorun --manifest .zerorun.json --json explain tests
 zerorun --manifest .zerorun.json --json run tests
 zerorun --manifest .zerorun.json --json run tests --verify
 \end{verbatim}
-The first command inspects eligibility; the second requests execution or eligible reuse; the third checks a stored result by executing fresh. The named target must already exist in the reviewed manifest. These commands do not create an input-completeness review or override missing authority. The example harness supplies its own explicitly laboratory-only configuration and retains the complete returned JSON, including \code{status} and \code{exit\_code}. In an integration, \code{HIT\_REUSED} is labeled as a previous success, a fresh failure follows the ordinary diagnostic path, and a refusal must not be converted into success. If a new transcript is required, the caller executes fresh. This small decision boundary is shared by the CLI and coding-tool interfaces; it is not an assumed property of an autonomous agent.
+These commands inspect eligibility, request execution/reuse, and verify a stored result through fresh execution, respectively. The target must already exist in a reviewed manifest; the commands neither establish input completeness nor override authority. The harness uses laboratory-only configuration and retains the complete result JSON.
+
+\subsection{Client decisions and integration evidence}
+The reference consumer checks response consistency, \code{status}, \code{exit\_code}, and tool/protocol errors: \code{mode=reuse} alone is not success. It labels previous success explicitly, routes fresh failures to diagnostics, and requests fresh execution when required; it does not authorize tasks or execute its recommended fallback.
+
+@@CLIENT_EVIDENCE@@
+
+The operating guide separates these evidence classes from operator-approved application use.
 
 \subsection{Real AI-workflow observations}
 We also provide a read-only analysis of the public SWE-rebench OpenHands trajectories \cite{swerebenchtrajectories,badertdinov2025swerebench}. After inspecting ten separate pilot rows, a fixed SHA-256 ordering selected 128 rows from the remaining 67,064. Selection did not use repository, resolution, repetition, or performance. The raw responses, source notices, retrieval receipts, exclusions, and deterministic parser are available. An initial rate-limited attempt is retained, followed by a complete recovery of the same selected rows.
@@ -134,9 +157,9 @@ This example makes a practical distinction visible: repeated command text is an 
 
 \section{Impact}
 \subsection{Reproducible validation and measured cost}
-The software supports experiments on how much work validation itself consumes, when conservative qualification prevents reuse, and how cache admission differs from command repetition. Researchers can replace a target or change an input boundary while preserving the fresh-oracle comparison and explicit denominators. Raw invocation records, source hashes, fixed manifests, failure states, setup receipts, and analysis scripts make unfavorable results inspectable rather than dependent on summary claims.
+Researchers can change a target or input boundary while preserving fresh-oracle comparisons and explicit denominators. The kit retains raw invocations, source hashes, fixed manifests, failures, setup receipts, and analysis scripts, making qualification behavior and unfavorable costs inspectable.
 
-The evaluation kit supports a concrete adoption decision: first qualify the result-only contract, then check agreement and failure behavior, and finally compare the full request sequence with direct execution, including available setup cost. Fast individual hits are insufficient if checking and miss costs erase their benefit. The supplied ablation isolates the staging change; it is not a head-to-head evaluation against another caching system.
+Adoption requires qualifying the result-only contract, checking agreement and failure behavior, then comparing full sequences with direct execution, including available setup cost. Fast hits alone are insufficient. The supplied snapshot-first ablation isolates staging; it is not an independent competing cache.
 
 The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. @@ORIGINAL_RESULTS@@ These results are retained, including large lifecycle delays and their order sensitivity.
 
@@ -157,6 +180,8 @@ Subject & $D/F$ & $D/F$ + setup & Block range & Hit saving (\%) \\
 \label{tab:replication}
 \end{table}
 
+@@OPERATING_REGION@@
+
 An independent standard-library input-inventory oracle checks boundary changes without importing ZeroRun's fingerprint implementation. Linux validation covers 32 production/oracle comparisons and six explicit oracle-scope refusals. Cases include same-size content changes with restored modification time, helper/configuration/data edits, additions, deletion, renaming, directory modes, restoration, command and environment changes, missing inputs, and symlinks. A new \emph{undeclared} top-level file changes neither declared identity: the test documents this limitation rather than claiming automatic closure discovery. These checks establish implementation behavior within the tested boundary, not universal determinism.
 
 The source-bound engineering record includes successful Python 3.10--3.14 CI regression runs and a Windows run with 1,593 passing tests, 55 skips, and 19 passing subtests. Selected public-package tests separately passed 465 tests with 21 skips and eight passing subtests; this is not a second run of the entire development suite. A separate 100-repository CLI/skill/MCP integration exercise returned 99 passes and one safe refusal, not 100 upstream test-suite executions or autonomous AI tasks. A five-library revision evaluation recorded 200 fresh comparisons but no accepted fine-grained node reuse; the pre-existing product performance gates remain unmet. These distinct evaluations are not pooled into a single reliability percentage.
@@ -166,7 +191,7 @@ For an integrator, the benefit is a small Python package with a result contract 
 
 The evidence does not establish the prevalence of reusable tasks, population-wide speedup, model-token savings, improved patch quality, user productivity, or commercial demand. The trajectory audit is descriptive and resource-bounded; repository and issue clustering is reported. Its zero barrier-free pairs do not prove zero state-restoration opportunities, but they prevent interpreting repetition as measured eligibility. The controlled library targets are convenience workloads on one constrained VM, and original and replicated observations are not statistically independent datasets. The VM shared a Windows host with publication and validation tooling; host activity outside the VM was not fully isolated. Complete-block spreads and influential observations are reported without treating thousands of nested test nodes as independent samples.
 
-No external users, production deployments, or third-party publications using ZeroRun are claimed. Potential use in AI-assisted software development motivates the software, but adoption and economic benefit remain future evaluations. The next application-level evaluation would measure how coding agents interpret reused-status responses and whether suitable tasks occur often enough to improve complete workflows. The present artifact supplies the execution and measurement components for that study, not its outcome.
+No external users, production deployments, or third-party publications using ZeroRun are claimed. Application-level evaluation must still establish how agents interpret reused status and whether qualified tasks occur often enough to benefit complete workflows. The artifact provides components for that study, not its outcome.
 
 \section{Conclusions}
 ZeroRun provides reusable software for explicitly identified test-status reuse in AI coding-tool integrations. Its whole-file hit path removes execution staging when no code will run, while retaining full identity checks and the existing fresh path. The public package combines runnable examples, fresh-oracle comparisons, independent boundary checks, and a real-trajectory observation tool. The results support conditional utility and expose overhead and applicability limits. The release is a research and integration artifact, not evidence of universal AI acceleration.

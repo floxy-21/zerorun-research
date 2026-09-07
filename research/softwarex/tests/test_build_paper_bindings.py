@@ -32,6 +32,8 @@ def binding(tmp_path, monkeypatch):
     write(evidence / "trace-summary-v1.json", trace)
     monkeypatch.setattr(paper, "inventory_check", lambda: {})
     monkeypatch.setattr(paper, "bibliography", lambda _: "")
+    monkeypatch.setattr(paper, "extension_evidence", lambda *_: {"fixture_extension": True})
+    monkeypatch.setattr(paper, "extension_text", lambda _: ("Bounded client fixture.", "Conditional cost fixture."))
     analysis = {"completed": True, "requests": 4, "optimized_hits": 1, "source_sha256": "a" * 64}
     monkeypatch.setattr(paper, "state_analysis", lambda *args, **kwargs: deepcopy(analysis))
     text_path = here / "paper/state-rejoin.tex"
@@ -42,7 +44,7 @@ def binding(tmp_path, monkeypatch):
     write(review_path, {"verified": True, "text_sha256": paper.digest(text_path), "analysis_sha256": paper.digest(analysis_path)})
     template = "\\begin{abstract}@@ABSTRACT_RESULT@@\\end{abstract}\n"
     template += "\n".join("\\section{" + s + "}" for s in ("Motivation and significance", "Software description", "Illustrative examples", "Impact", "Conclusions"))
-    template += "\n@@PUBLIC_COMMIT@@ @@REPLICATION_RESULT@@ @@REPLICATION_ROWS@@ @@STATE_REJOIN@@ @@ORIGINAL_RESULTS@@"
+    template += "\n@@PUBLIC_COMMIT@@ @@REPLICATION_RESULT@@ @@REPLICATION_ROWS@@ @@STATE_REJOIN@@ @@ORIGINAL_RESULTS@@ @@CLIENT_EVIDENCE@@ @@OPERATING_REGION@@"
     (here / "paper/submission.tex.in").write_text(template, encoding="utf-8")
     return here, evidence, analysis, review_path, text_path, analysis_path
 

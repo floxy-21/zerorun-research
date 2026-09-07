@@ -9,13 +9,14 @@ Clone the public `floxy-21/zerorun-research` repository at the exact commit give
 On Linux, from the release root:
 
 ```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install .
-.venv/bin/python -m zerorun --version
-.venv/bin/python -m zerorun --help
+study_env="$(mktemp -d)/venv"
+python3 -m venv "$study_env"
+"$study_env/bin/python" -m pip install .
+"$study_env/bin/python" -m zerorun --version
+"$study_env/bin/python" -m zerorun --help
 ```
 
-On Windows replace `.venv/bin/python` with `.venv\Scripts\python.exe`. CLI inspection is cross-platform; the demonstrated whole-task result-reuse mode requires Linux/amd64 and Docker. An unsupported host is not evidence that Linux reuse works there.
+Keep the environment outside the source checkout. For Windows PowerShell commands, use the root README's external-environment example. CLI inspection is cross-platform; the demonstrated whole-task result-reuse mode requires Linux/amd64 and Docker. An unsupported host is not evidence that Linux reuse works there. The operating workflow and exact manifest contract are documented in `OPERATING_GUIDE.md` and `MANIFEST_REFERENCE.md`.
 
 The public release uses `src/zerorun` for packaging. The frozen original experiment source is separately included under `research/sqj/source-final`, and exact Git source bytes under `source-ci-final`. The binding manifest records physical newline differences. Do not silently replace the frozen experiment source with an installed version when reproducing timings.
 
@@ -24,17 +25,19 @@ The public release uses `src/zerorun` for packaging. The frozen original experim
 Run from the completed submission snapshot or extracted reviewer archive using its environment. Offline analysis requires Python 3.11 or later, or the optional `tomli` parser on Python 3.10. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The four raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
 
 ```sh
-.venv/bin/python -m research.sqj.strengthening.validate_traces --check
-.venv/bin/python -m research.sqj.analyze_comparison --check
-.venv/bin/python -m research.sqj.strengthening.analyze_recovered_replication \
+"$study_env/bin/python" -m research.sqj.strengthening.validate_traces --check
+"$study_env/bin/python" -m research.sqj.analyze_comparison --check
+"$study_env/bin/python" -m research.sqj.strengthening.analyze_recovered_replication \
   --original research/sqj/strengthening/evidence/short-randomized-replication-v1 \
   --recovery research/sqj/strengthening/evidence/short-randomized-recovery-v1 \
   --output research/sqj/strengthening/evidence/replication-analysis-v1.json --check
-.venv/bin/python -m research.sqj.strengthening.analyze_state_rejoin \
+"$study_env/bin/python" -m research.sqj.strengthening.analyze_state_rejoin \
   --directory research/sqj/strengthening/evidence/agent-state-rejoin-v3 \
   --replication-directory research/sqj/strengthening/evidence/short-randomized-replication-v1 \
   --output research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json --check
-.venv/bin/python -m research.softwarex.build_paper --check
+"$study_env/bin/python" -m research.softwarex.analyze_operating_region --check
+"$study_env/bin/python" -m research.softwarex.build_extension_evidence --check
+"$study_env/bin/python" -m research.softwarex.build_paper --check
 ```
 
 These commands verify raw-result consistency, source identities, denominators, original failures, restored source, and generated article inputs. They fail on missing or modified evidence. They do not execute shell strings or code from the downloaded AI trajectories. The original publication snapshot and the new extension are retained separately, not pooled into a new favorable dataset.
@@ -79,6 +82,34 @@ Never export an entire live study directory. The extension exporter explicitly a
 ```
 
 The existing `research.sqj.import_public_evidence` verifies the archive inventory and every file hash before importing; it refuses to overwrite differing evidence. Fresh re-execution has a new Git context and new timestamps. Keep these truthful instead of editing them to imitate the original run.
+
+## Bounded client extension and configuration diagnostic
+
+`generated/extension-evidence-v1.json` independently reconciles the scripted
+consumer, installed-server refusal/readiness checks, actual Codex receipt,
+separate configuration diagnostic, and operating-region calculation. It binds
+raw requests and responses, unchanged source identities, and retained failures.
+The two new `--check` commands above require no model credentials or Docker.
+
+The recorded Codex trial stopped after its first doctor call: the MCP process
+did not find matching external authority, and an extra commentary message also
+violated the frozen exact-message harness. No execution/reuse/verification turn
+followed and the model trial was not retried. Its complete receipt remains at
+`evidence/live-client-v1/receipt.json`.
+
+The separately frozen non-model diagnostic records a fresh synthetic fixture,
+a missing-variable control, and an explicit external-trust-path intervention.
+All five planned exchanges passed; it did not invoke Codex or demonstrate a
+corrected autonomous-agent run. See `NON_MODEL_DIAGNOSTIC_PROTOCOL.md`,
+`evidence/live-client-v1/non-model-diagnostic.json`, and the operating guide's
+configuration/reproduction instructions. Do not supply a production repository
+or silently authorize a generated manifest. An independent reproduction uses
+new timestamps and output paths, never rewrites the archived evidence.
+
+`OPERATING_REGION.md` freezes the post-hoc calculation and its interpretation:
+the 57.14% hit fraction is imposed by constructed sequences, not an observed AI
+workflow frequency. Subject and block crossovers preserve within-category
+composition; deployment/review cost and application-level benefits are unmeasured.
 
 ## Build the article
 

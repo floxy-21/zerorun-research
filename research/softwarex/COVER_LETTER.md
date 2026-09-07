@@ -16,6 +16,8 @@ The evaluation separates controlled execution measurements from observations of 
 
 The intended research application is reproducible evaluation of test-reuse decisions in coding-tool infrastructure. An integrator can configure a bounded target, inspect eligibility, consume a provenance-bearing result, request fresh diagnostics when needed, and compare total cost before enabling reuse. The article explains this workflow and provides runnable examples. This emphasis on reusable research software and its application is appropriate for SoftwareX; established adoption, commercial demand, and end-to-end AI task improvements are not asserted.
 
+The submission now includes a complete operator guide and manifest reference, a checked client decision example, and a descriptive operating-region calculation using every completed replication block. Client evidence separates scripted response checks, the recorded Codex attempt, and a five-call non-model configuration diagnostic with a missing-authority control. The original failed client attempt is retained; the successful configuration diagnostic is not substituted for autonomous-agent validation. This makes both practical setup requirements and limits of the result-only interface inspectable.
+
 The clean public research repository is https://github.com/floxy-21/zerorun-research. Its metadata identify the exact code version, installation requirements, and applicable licenses. Please assess this work as a bounded software contribution with reproducible operating examples and explicit limitations.
 
 Thank you for considering the manuscript.

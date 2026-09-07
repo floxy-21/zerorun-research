@@ -54,7 +54,12 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "generated/initial-publication.json", "generated/artifact-build.json", "generated/final-readiness.json",
     "generated/artifact-builder-unit-v2.xml", "generated/artifact-builder-unit-v3.xml",
     "generated/artifact-builder-sandbox-diagnostic-v1.xml", "generated/artifact-builder-test-attempts.md",
-    "generated/readiness-bindings-unit-v1.xml")
+    "generated/readiness-bindings-unit-v1.xml",
+    "OPERATING_GUIDE.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
+    "LIVE_CLIENT_AMENDMENT_1.md", "support/tools/aggregate_codex_install_evidence.py", "RELATED_SYSTEMS.md",
+    "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py",
+    "client_conformance.py", "analyze_operating_region.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
+    "generated/operating-region-v1.json", "generated/extension-evidence-v1.json")
 SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
 BLOCKED = {".git", "__pycache__", ".pytest_cache", ".venv", ".zerorun-env", "node_modules", "workspace", "workspaces",
     "private-cache-authentication-NOT-FOR-PUBLICATION", "pytest-temp", "testmon-runtime", "testmon-state",
@@ -157,7 +162,7 @@ def collect(paper_files=()):
                     "tools/validate_release_prerequisites.py", "commercial/corpus/selection-v1.json",
                     ".agents/skills/zerorun/SKILL.md"]
     source_paths += ["tools/" + name for name in ("codex_agent_integration_smoke.py", "codex_agent_lifecycle.py",
-        "commercial_repo_smoke.py", "install_verified_codex_cli.py", "pytest_batched_executor.py", "aggregate_commercial_smoke.py")]
+        "commercial_repo_smoke.py", "install_verified_codex_cli.py", "aggregate_codex_install_evidence.py", "pytest_batched_executor.py", "aggregate_commercial_smoke.py")]
     source_paths += ["tests/" + name for name in CORE_TESTS]
     raw_tar = subprocess.check_output(["git", "archive", "--format=tar", CORE, *source_paths], cwd=ROOT)
     core_count = 0
@@ -263,7 +268,7 @@ def collect(paper_files=()):
             local(path.relative_to(ROOT).as_posix())
     publication_evidence = ROOT / "research/softwarex/evidence"
     if publication_evidence.is_dir():
-        for path in entries(publication_evidence, {".json", ".xml", ".log"}):
+        for path in entries(publication_evidence, {".json", ".xml", ".log", ".py", ".md"}):
             local(path.relative_to(ROOT).as_posix())
     # These archives are absent during the checked pre-archive stage. A later
     # refresh can inventory their completed bytes without changing the older

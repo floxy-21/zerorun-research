@@ -1,0 +1,325 @@
+{
+  "checks": {
+    "doctor_observe_only": false,
+    "exact_seven_tools": true,
+    "fixture_inputs_unchanged": true,
+    "initialized_installed_server": true,
+    "list_tasks_observe_only": false,
+    "no_authority_or_cache_created": true,
+    "other_repository_refused": false,
+    "stats_observe_only": false,
+    "unknown_method_protocol_error": true,
+    "untrusted_manifest_refused": false
+  },
+  "fixture_path": "C:\\Users\\floxy\\AppData\\Local\\Temp\\zerorun-client-conformance-d_i2qd51",
+  "model_called": false,
+  "operator_authority_created": false,
+  "positive_execution_tested": false,
+  "responses": [
+    {
+      "id": 1,
+      "jsonrpc": "2.0",
+      "result": {
+        "capabilities": {
+          "tools": {
+            "listChanged": false
+          }
+        },
+        "instructions": "ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.",
+        "protocolVersion": "2025-11-25",
+        "serverInfo": {
+          "name": "zerorun",
+          "version": "0.5.1"
+        }
+      }
+    },
+    {
+      "id": 2,
+      "jsonrpc": "2.0",
+      "result": {
+        "tools": [
+          {
+            "annotations": {
+              "destructiveHint": true,
+              "idempotentHint": false,
+              "openWorldHint": true,
+              "readOnlyHint": false,
+              "title": "Prepare reviewed pytest candidate"
+            },
+            "description": "With explicit setup approval, inspect and execute pytest collection, possibly create managed repository files and acquire a pinned runtime, then generate a non-authorizing .zerorun-pytest.candidate.json. This never activates reuse.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "approve_setup": {
+                  "description": "Must be true only after the user approves managed setup, repository-file changes, runtime acquisition, and pytest collection.",
+                  "type": "boolean"
+                },
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                },
+                "targets": {
+                  "description": "Optional pytest targets. Defaults to tests/, test/, testing/, then repository root.",
+                  "items": {
+                    "type": "string"
+                  },
+                  "minItems": 1,
+                  "type": "array"
+                },
+                "task": {
+                  "description": "Optional configured pytest task name. Auto-selected when exactly one direct python -m pytest task exists.",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "approve_setup"
+              ],
+              "type": "object"
+            },
+            "name": "prepare_pytest"
+          },
+          {
+            "annotations": {
+              "destructiveHint": true,
+              "idempotentHint": false,
+              "openWorldHint": false,
+              "readOnlyHint": false,
+              "title": "Run reviewed pytest selection"
+            },
+            "description": "Run the reviewed generic pytest node adapter. It reuses only exact nodes authorized by a valid .zerorun-pytest.json profile; unknown, changed, unsupported, or racing nodes execute fresh. The pinned image must already be present and host environment forwarding is refused.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "profile": {
+                  "description": "Profile path relative to the repository root. Defaults to .zerorun-pytest.json.",
+                  "type": "string"
+                },
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "name": "run_pytest"
+          },
+          {
+            "annotations": {
+              "destructiveHint": true,
+              "idempotentHint": false,
+              "openWorldHint": false,
+              "readOnlyHint": false,
+              "title": "Run reviewed ZeroRun task"
+            },
+            "description": "Run a configured task-level ZeroRun task. Use run_pytest instead when a valid reviewed pytest profile is present. The task must be hermetic v2, environment-free, and use an already-present pinned image.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                },
+                "task": {
+                  "type": "string"
+                },
+                "verify": {
+                  "default": false,
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "task"
+              ],
+              "type": "object"
+            },
+            "name": "run_tests"
+          },
+          {
+            "annotations": {
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": false,
+              "readOnlyHint": true,
+              "title": "Read ZeroRun statistics"
+            },
+            "description": "Return local ZeroRun reuse counts, conservative verified time saved, observation time, and pilot metrics.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "name": "stats"
+          },
+          {
+            "annotations": {
+              "destructiveHint": true,
+              "idempotentHint": false,
+              "openWorldHint": false,
+              "readOnlyHint": false,
+              "title": "Explain reuse decision"
+            },
+            "description": "Explain whether a configured task is currently a cache HIT, MISS, or safety BYPASS without executing it; invalid cache metadata is quarantined.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                },
+                "task": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "task"
+              ],
+              "type": "object"
+            },
+            "name": "explain"
+          },
+          {
+            "annotations": {
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": false,
+              "readOnlyHint": true,
+              "title": "Validate ZeroRun setup"
+            },
+            "description": "Validate ZeroRun setup, including the reviewed pytest profile when present.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "name": "doctor"
+          },
+          {
+            "annotations": {
+              "destructiveHint": false,
+              "idempotentHint": true,
+              "openWorldHint": false,
+              "readOnlyHint": true,
+              "title": "List ZeroRun tasks"
+            },
+            "description": "List configured ZeroRun tasks and their cache policy.",
+            "inputSchema": {
+              "additionalProperties": false,
+              "properties": {
+                "root": {
+                  "description": "Repository root or any path inside the repository. Defaults to the MCP server working directory.",
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "name": "list_tasks"
+          }
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"error\": \"task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness\",\n  \"status\": \"ERROR\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": true,
+        "structuredContent": {
+          "error": "task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness",
+          "status": "ERROR"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"error\": \"task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness\",\n  \"status\": \"ERROR\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": true,
+        "structuredContent": {
+          "error": "task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness",
+          "status": "ERROR"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"error\": \"task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness\",\n  \"status\": \"ERROR\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": true,
+        "structuredContent": {
+          "error": "task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness",
+          "status": "ERROR"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"error\": \"task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness\",\n  \"status\": \"ERROR\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": true,
+        "structuredContent": {
+          "error": "task 'tests': hermetic v2 requires closure_reviewed: true; ZeroRun does not infer source-closure completeness",
+          "status": "ERROR"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "jsonrpc": "2.0",
+      "result": {
+        "content": [
+          {
+            "text": "{\n  \"error\": \"test execution and managed setup require a path inside a repository with .git\",\n  \"status\": \"ERROR\"\n}",
+            "type": "text"
+          }
+        ],
+        "isError": true,
+        "structuredContent": {
+          "error": "test execution and managed setup require a path inside a repository with .git",
+          "status": "ERROR"
+        }
+      }
+    },
+    {
+      "error": {
+        "code": -32601,
+        "message": "method not found: conformance/unknown"
+      },
+      "id": 8,
+      "jsonrpc": "2.0"
+    }
+  ],
+  "scope": "real installed stdio server, diagnostics and refusals only"
+}

@@ -17,7 +17,7 @@ Use the completed files at the repository's `main` branch, indexed by `research/
 
 The source ZIP is flat: `main.tex`, `references.bib`, compiled `main.bbl`, publisher class/style, and their notice. Its architecture figure and tables are editable LaTeX; no figure image is missing. The ZIP manifest is an integrity file, not manuscript content. If the submission system asks for individual source files, upload those files at the same folder level. The reviewer ZIP is a separate supplementary software/evidence item, not the LaTeX source archive.
 
-The cover letter can be pasted into the corresponding text field. Highlights are plain editable text; if the portal restricts that field to a word-processing format, import these four lines without changing their wording. Do not upload older PDFs or the earlier `ESM_1.zip` as the current article.
+The cover letter can be pasted into the corresponding text field. Highlights are plain editable text; if the portal restricts that field to a word-processing format, import these five lines without changing their wording. Do not upload older PDFs or the earlier `ESM_1.zip` as the current article.
 
 ## Author-controlled steps
 

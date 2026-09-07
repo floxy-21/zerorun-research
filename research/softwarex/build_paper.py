@@ -63,6 +63,90 @@ def inventory_check():
     return {"junit_sha256": digest(path), "cases": 54, "inventory_cases": 38, "driver_cases": 16}
 
 
+def extension_evidence(preview=False):
+    from research.softwarex.build_extension_evidence import build as reconcile_extension
+    evidence = reconcile_extension(ROOT, preview=preview)
+    if not preview:
+        require(evidence["completed"] is True and evidence["preview"] is False,
+                "completed extension reconciliation required")
+        require(load(HERE / "generated/extension-evidence-v1.json") == evidence,
+                "extension evidence is stale")
+    return evidence
+
+
+def extension_text(evidence):
+    client = evidence["scripted_client_conformance"]
+    require(client["scripted_cases"] == client["scripted_passed"] == 14
+            and client["installed_stdio_requests"] == 8
+            and client["live_checks"] == client["live_checks_passed"] == 11,
+            "client conformance narrative denominator differs")
+    client_text = (
+        "A scripted consumer passed 14 response cases across nine categories, separating previous success, fresh success, failure and refusal, and rejecting inconsistent metadata. "
+        "Positive cases are preserved API results in explicitly scripted MCP-shaped fixtures, not live agent responses. "
+        "A separately installed server passed 11 checks across eight actual stdio requests, covering discovery, diagnostics and refusal; those requests did not execute user code. ")
+    live = evidence["bounded_live_client"]
+    if live["functional_lifecycle_pass"]:
+        require(live["recorded"] is True and live["agent_stages_recorded"] == 4
+                and len(live["independently_validated_stages"]) == 4,
+                "passing live narrative lacks four validated stages")
+        client_text += (
+            "A fresh Linux installation additionally completed four constrained Codex 0.153.3 turns: one diagnostic call, then "
+            "\\code{MISS\\_EXECUTED}, \\code{HIT\\_REUSED} and \\code{VERIFY\\_MATCH} on one reviewed synthetic fixture. "
+            "Each turn made one MCP call, with no retries; the three execution responses shared one cache key. ")
+    elif live["recorded"]:
+        adverse = live.get("stage_adverse_outcomes", [])
+        diagnostic = adverse[0].get("raw_diagnostics", {}) if len(adverse) == 1 else {}
+        if diagnostic.get("classification") == "untrusted_doctor_readiness_refusal":
+            require(live["agent_stages_recorded"] == 1 and diagnostic["mcp_calls"] == 1
+                    and diagnostic["run_tests_calls"] == 0 and diagnostic["exact_marker_only"] is False,
+                    "live refusal narrative differs")
+            client_text += (
+                "The bounded Codex attempt stopped after one diagnostic call: the server reported no matching manifest authority and remained observe-only. "
+                "An additional commentary message also violated the prespecified exact-message harness; no execution, reuse or verification turn followed, and no retry was made. ")
+        else:
+            client_text += (f"The separate bounded Codex lifecycle did not complete successfully; {live['agent_stages_recorded']} agent turns were recorded. "
+                            "The failure receipt is retained and no successful live lifecycle is claimed. ")
+    else:
+        client_text += "[Layout preview: live-client outcome pending.] "
+    client_text += (
+        "The research adapter and pre-model packaging corrections are separately source-bound; the runtime and authority checks are unchanged. "
+        "This tests a client integration, not agent understanding, issue resolution or workflow speedup. No external user study is implied.")
+    handoff = evidence.get("explicit_trust_path_diagnostic")
+    if handoff and handoff["recorded"]:
+        if handoff["passed"]:
+            require(handoff["negative_control_passed"] is True and handoff["stages_recorded"] == 5
+                    and handoff["stages_validated"] == 5 and handoff["model_called"] is False
+                    and handoff["codex_correction_tested"] is False, "configuration diagnostic narrative differs")
+            client_text += (
+                " A separately frozen, non-model diagnostic tested the trust-path handoff: its missing-variable control refused readiness, "
+                "while explicitly supplying the same external authority path enabled readiness, fresh execution, reuse and verification in five checked calls. "
+                "This validates the server configuration correction, not a corrected Codex run; the original live failure remains unchanged.")
+        else:
+            client_text += " A separate non-model trust-path diagnostic was also recorded without establishing a completed corrected lifecycle."
+    operating = evidence["operating_region"]
+    subjects = operating["subjects"]
+    require([row["workload"] for row in subjects] == ["click", "pycparser", "colorama", "packaging"],
+            "operating-region subjects differ")
+    require(all(row["crossover"]["regime"] == "reuse_faster_above_equality" for row in subjects),
+            "operating-region direction changed")
+    require(abs(operating["constructed_hit_fraction"] - 4 / 7) < 1e-12,
+            "constructed hit fraction changed")
+    crossovers = ", ".join(f"{100 * row['crossover']['equality_hit_fraction']:.2f}\\%" for row in subjects)
+    fractions = [row["hit_cost_attribution"]["fractions_of_outer"]["two_fingerprints"] for row in subjects]
+    operating_text = (
+        "A post-hoc operating-region analysis retains every completed block and holds within-category composition fixed. "
+        "Let $D_h,F_h$ and $D_m,F_m$ denote mean complete direct/optimized costs in hit and non-hit categories. "
+        "For a hypothetical hit fraction $p$, fixed category means give the equality point\n"
+        "\\[p^*=\\frac{F_m-D_m}{(F_m-D_m)+(D_h-F_h)}.\\]\n"
+        f"The crossovers for Click, pycparser, Colorama and Packaging are {crossovers}, respectively; larger fractions favor reuse in this fixed-mixture calculation. "
+        "The imposed fraction is 57.14\\%, explaining why full-sequence ratios can lie near or below one despite fast hits. "
+        "All six block-level crossovers per subject are archived; their ranges are descriptive, not confidence intervals. "
+        f"The two fingerprints account for {100 * min(fractions):.1f}--{100 * max(fractions):.1f}\\% of optimized hit time; their inclusive enclosing timer is not double-counted. "
+        "This is not a measured agent hit frequency or a deployable admission policy. Different miss/failure mixtures and host costs change the threshold. "
+        "Common setup cancels from equality; additional deployment/review costs remain unmeasured, not zero.")
+    return client_text, operating_text
+
+
 def build(preview=False):
     original = original_analysis(SQJ / "evidence/comparison-final-1", SQJ / "source-final")
     engineering = engineering_evidence()
@@ -135,8 +219,11 @@ def build(preview=False):
         state_binding = {"analysis_sha256": digest(analysis_path), "review_sha256": digest(HERE / "generated/state-rejoin-review.json"),
             "text_sha256": digest(state_path), "independent_analysis": verified_state}
         state_text = state_path.read_text(encoding="utf-8").strip()
+    extension = extension_evidence(preview)
+    client_text, operating_text = extension_text(extension)
     slots = {"PUBLIC_COMMIT": commit, "ABSTRACT_RESULT": abstract, "REPLICATION_RESULT": result,
              "REPLICATION_ROWS": table, "STATE_REJOIN": state_text, "ORIGINAL_RESULTS": original_text}
+    slots.update({"CLIENT_EVIDENCE": client_text, "OPERATING_REGION": operating_text})
     source = HERE / "paper/submission.tex.in"
     document = source.read_text(encoding="utf-8")
     for key, value in slots.items():
@@ -153,7 +240,7 @@ def build(preview=False):
         "bibliography_sha256": hashlib.sha256(refs.encode()).hexdigest(),
         "original_comparison": original, "engineering": engineering, "fine_grained_revision": revision,
         "replication": replication, "state_rejoin": state_binding, "trace_summary_sha256": digest(EVIDENCE / "trace-summary-v1.json"),
-        "inventory": inventory, "abstract_whitespace_words": len(abstract_text.split()),
+        "inventory": inventory, "extension": extension, "abstract_whitespace_words": len(abstract_text.split()),
         "meaning": "Evidence and format validation, not an acceptance probability or production qualification."}
     return document, refs, summary
 

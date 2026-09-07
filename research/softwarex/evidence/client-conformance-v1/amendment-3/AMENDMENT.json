@@ -1,0 +1,12 @@
+{
+  "schema": "zerorun.softwarex-client-conformance-amendment.v1",
+  "parent_protocol": "../amendment-2/protocol.json",
+  "prior_failed_attempt": "../amendment-2/attempt-20260906T235427829622Z/receipt.json",
+  "prior_producer_source": "../client_conformance_before_amendment_3.py",
+  "reason": "The previous fixture's unreviewed v2 manifest correctly failed schema validation before diagnostics could report observation-only readiness. No review flag or authority is now manufactured: the first-use fixture has no manifest at all. It tests normal unconfigured diagnosis and no-manifest execution refusal, not the configured-manifest authorization gate. The second root is initialized as an ordinary Git repository so the cross-repository check reaches the explicit server-binding refusal instead of the earlier missing-Git-marker refusal.",
+  "runtime_or_consumer_semantics_changed": false,
+  "fixed_scripted_categories_or_cases_changed": false,
+  "live_refusal_scope_clarified": "Unconfigured checkout execution refused; no assertion of positive MCP reuse or exact-configuration authority validation.",
+  "prior_live_result": "14 scripted cases passed; 5 of 10 original live assertions passed. Other assertions observed conservative fixture/schema refusals, not unsafe execution.",
+  "prior_record_preserved": true
+}
