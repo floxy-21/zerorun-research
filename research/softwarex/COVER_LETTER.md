@@ -1,6 +1,6 @@
 # Cover letter for author approval
 
-Prepared for SoftwareX, Original Software Publication. This text has not been sent. Before submission, the author must approve the exact manuscript, verify the public code/evidence links in its metadata, and complete the declarations listed in `SUBMISSION_CHECKLIST.md`.
+Prepared for SoftwareX, Original Software Publication. The canonical portal text is COVER_LETTER.txt. This copy has not been sent.
 
 ---
 
@@ -8,25 +8,27 @@ Dear Editors of SoftwareX,
 
 Please consider "ZeroRun: Reproducible test-result reuse for AI coding tools" as an Original Software Publication.
 
-ZeroRun is a Python execution component and evaluation kit for deterministic test-result reuse in AI coding-tool integrations. It gives researchers and tool developers a concrete way to distinguish a previous successful test status from fresh execution, test the declared input boundary, and measure whether avoided execution outweighs checking and miss costs. Command-line and repository-bound MCP interfaces expose this contract alongside isolated fresh execution.
+ZeroRun is a Python execution component and evaluation kit for auditable validation handoffs between AI coding tools. Its command-line and repository-bound MCP interfaces distinguish previous successful test status from fresh execution. A consumer can inspect the declared source/runtime identity, request fresh diagnostics when needed, and measure whether avoided execution outweighs checking and miss costs.
 
-The contribution combines an explicit result-origin interface, a whole-file hit path that avoids unnecessary execution staging, and source-bound validation tools. It is distinct in operating contract from feature/TTL-guided tool caching and trajectory-prefix caching in agent post-training: ZeroRun revalidates declared local test inputs and returns status metadata, without reconstructing arbitrary tool effects or transcripts. The article does not claim a new caching algorithm or language-model inference acceleration.
+The software contribution combines an explicit result-origin contract, a whole-file hit path that avoids execution staging, and source-bound validation tools. It rechecks declared local test inputs and returns status metadata without replaying historical transcripts. The article distinguishes this operating contract from build caches, stateful tool-value caches and LabChain's scientific-pipeline reuse; it does not claim a new caching algorithm or language-model inference acceleration.
 
-The evaluation separates controlled execution measurements from observations of public AI-agent trajectories. Independent input-inventory checks and fresh-oracle comparisons exercise changes, failures, repetitions, and restoration. Full-sequence costs are distinguished from favorable individual-hit timings. A fixed sample of 128 public episodes, including 122 with valid action/observation pairing, demonstrates why repeated command text cannot establish reuse eligibility: all 120 repeat pairs have intervening state uncertainty. These are not reported as agent cache hits. Raw measurements, exclusions, interrupted attempts, recovery records, and source-binding checks accompany the article.
+Evaluation separates controlled real-library measurements, issue-state handoffs and public AI-trajectory observations. Input-inventory checks and fresh-oracle comparisons exercise changes, failures, repetition and restoration. Complete-sequence costs retain unfavorable outcomes: the dependency-image repeat reduced consumer latency but still increased producer-consumer time. The original dependency-copy slowdown and interrupted image run remain separate. The fixed trajectory sample shows why repeated command text alone cannot establish reuse eligibility: intervening state uncertainty is not counted as an agent cache hit.
 
-The intended research application is reproducible evaluation of test-reuse decisions in coding-tool infrastructure. An integrator can configure a bounded target, inspect eligibility, consume a provenance-bearing result, request fresh diagnostics when needed, and compare total cost before enabling reuse. The article explains this workflow and provides runnable examples. This emphasis on reusable research software and its application is appropriate for SoftwareX; established adoption, commercial demand, and end-to-end AI task improvements are not asserted.
+A genuine coding-agent pilot produced one SQLGlot source repair among two preselected issue cases. The agent received the public issue and regression tests while the reference source solution was withheld. Separate fresh execution verified that the previously failing regression passed with the same collected node set. The other case stopped before model invocation because of a recorded client-configuration refusal. Downstream scripted handoffs retain full producer-consumer overhead and are not claimed as autonomous consumer decisions or end-to-end AI speedup.
 
-The submission now includes a complete operator guide and manifest reference, a checked client decision example, and a descriptive operating-region calculation using every completed replication block. Client evidence separates scripted response checks, the recorded Codex attempt, and a five-call non-model configuration diagnostic with a missing-authority control. The original failed client attempt is retained; the successful configuration diagnostic is not substituted for autonomous-agent validation. This makes both practical setup requirements and limits of the result-only interface inspectable.
+Controlled MCP client use is additionally demonstrated on an isolated synthetic fixture. A frozen API-guided demonstration passed two model-selected validation decisions, two fresh oracles and six no-tool interpretations. Discovery and seeding were non-model setup. Earlier client failures, all raw measurements, exclusions, interruptions and recovery records accompany the article.
 
-The clean public research repository is https://github.com/floxy-21/zerorun-research. Its metadata identify the exact code version, installation requirements, and applicable licenses. Please assess this work as a bounded software contribution with reproducible operating examples and explicit limitations.
+The public package provides an operator guide, API card, manifest reference and account-free Linux quickstart, with source-bound installation evidence. The 0.5.2 distribution and its checks are distinguished from the preserved 0.5.1 study runtime; historical timings are not relabeled as a new replication. These bounded results do not establish independent adoption, end-to-end AI speedup or a causal documentation effect.
+
+Code and reproducible evidence are available at https://github.com/floxy-21/zerorun-research with immutable version bindings and applicable licenses. The manuscript discloses substantial AI assistance and potential commercialization; no external funding was received. Jishan Kapoor is the sole human author. We request assessment as reusable research software with a demonstrated, explicitly scoped application.
 
 Thank you for considering the manuscript.
 
-Jishan Kapoor  
-Independent researcher  
-Toronto, Canada  
+Jishan Kapoor
+Independent researcher
+Toronto, Canada
 kapoorjishan2@gmail.com
 
 ---
 
-Author confirmation required before sending: final manuscript approval; originality and no concurrent consideration elsewhere; accurate funding and competing-interest disclosures; public artifact access and distribution rights; and the complete generative-AI disclosure. This prepared letter does not assert that those confirmations or journal submission have already occurred.
+Author confirmation required before sending: final manuscript approval; originality and no concurrent consideration elsewhere; accurate funding and competing-interest disclosures; public artifact access and distribution rights; and the complete generative-AI disclosure. These confirmations and journal submission have not been completed by preparing this letter.

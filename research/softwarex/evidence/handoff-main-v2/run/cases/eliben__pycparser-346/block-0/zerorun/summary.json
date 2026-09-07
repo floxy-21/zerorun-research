@@ -1,0 +1,809 @@
+{
+  "arm": "zerorun",
+  "consumer": {
+    "completed_utc": "2026-09-07T05:54:07.557487+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 955.7967450000433,
+    "result": {
+      "cache_key": "0bd5bf7959e73c55645714a1c6805c9349ad0e9220c8413d8788861afa5c9b1c",
+      "execution_ms": 6888.586,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 98.979,
+        "environment": 0.038,
+        "event_append": 25.865,
+        "fingerprint_final": 300.348,
+        "fingerprint_initial": 319.451,
+        "lock_acquire": 3.524,
+        "readonly_hit_path": 929.14,
+        "runtime_inspect_initial": 174.519,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "restored_outputs": [],
+      "saved_ms": 5959.443,
+      "status": "HIT_REUSED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 929.143
+    }
+  },
+  "diagnostics": {
+    "completed_utc": "2026-09-07T05:54:25.187126+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 9161.798065000767,
+    "result": {
+      "cache_key": "0bd5bf7959e73c55645714a1c6805c9349ad0e9220c8413d8788861afa5c9b1c",
+      "execution_ms": 6606.366,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 103.112,
+        "docker_execution": 6611.837,
+        "environment": 0.028,
+        "event_append": 8.219,
+        "fingerprint_final": 153.802,
+        "fingerprint_initial": 349.984,
+        "lock_acquire": 3.531,
+        "runtime_inspect_initial": 279.189,
+        "snapshot_cleanup": 6.017,
+        "snapshot_prepare": 1586.003
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 344,
+        "emitted_bytes": 344,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 49 items\n\ntests/test_c_parser.py ................................................. [100%]\n\n============================== 49 passed in 1.83s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 9153.374
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-07T05:54:15.995448+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 8414.42792700036,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "ff1bd82dd39d653147d35c586ea1c81c7f0c5c2068ddd8c17bcf03730f13697b",
+        "nodeids": [
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_FileAST",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_anonymous_struct_union",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_compound_literals",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_compound_statement",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_coords",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_decl_inits",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_decl_named_inits",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_duplicate_typedef",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_empty_toplevel_decl",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_enums",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_forloop_coord",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_func_decls_with_array_dim_qualifiers",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_function_definitions",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_initial_semi",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_inline_specifier",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_int128",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_invalid_multiple_types_error",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_multi_decls",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_nested_decls",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_offsetof",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_pragma",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_pragmacomp_or_statement",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_qualifiers_storage_specifiers",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_simple_decls",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_sizeof",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_bitfields",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_empty",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_members_namespace",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_union",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_with_extra_semis_inside",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_with_initial_semi",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_tags_namespace",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_typedef",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_unified_string_literals",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_unified_wstring_literals",
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_vla",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_empty_statements",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_expressions",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_for_statement",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_statements",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_switch_statement",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_whole_file",
+          "tests/test_c_parser.py::TestCParser_whole_code::test_whole_file_with_stdio",
+          "tests/test_c_parser.py::TestCParser_typenames::test_ambiguous_parameters",
+          "tests/test_c_parser.py::TestCParser_typenames::test_innerscope_reuse_typedef_name",
+          "tests/test_c_parser.py::TestCParser_typenames::test_innerscope_typedef",
+          "tests/test_c_parser.py::TestCParser_typenames::test_nested_function_decls",
+          "tests/test_c_parser.py::TestCParser_typenames::test_parameter_reuse_typedef_name",
+          "tests/test_c_parser.py::TestCParser_typenames::test_samescope_reuse_name"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 7316,
+        "path": "raw-outcomes.json",
+        "sha256": "941bb43a0ac6191720deec7f62b91880eb9fcfd1230f24c98dcbba09ec8af2fd"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 49 items\n\ntests/test_c_parser.py ................................................. [100%]\n\n============================== 49 passed in 2.66s ==============================\n",
+        "wall_ms": 8275.08047899937
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_FileAST": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_anonymous_struct_union": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_compound_literals": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_compound_statement": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_coords": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_decl_inits": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_decl_named_inits": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_duplicate_typedef": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_empty_toplevel_decl": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_enums": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_forloop_coord": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_func_decls_with_array_dim_qualifiers": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_function_definitions": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_initial_semi": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_inline_specifier": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_int128": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_invalid_multiple_types_error": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_multi_decls": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_nested_decls": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_offsetof": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_pragma": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_pragmacomp_or_statement": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_qualifiers_storage_specifiers": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_simple_decls": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_sizeof": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_bitfields": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_empty": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_members_namespace": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_union": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_with_extra_semis_inside": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_struct_with_initial_semi": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_tags_namespace": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_typedef": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_unified_string_literals": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_unified_wstring_literals": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_fundamentals::test_vla": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_typenames::test_ambiguous_parameters": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_typenames::test_innerscope_reuse_typedef_name": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_typenames::test_innerscope_typedef": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_typenames::test_nested_function_decls": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_typenames::test_parameter_reuse_typedef_name": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_typenames::test_samescope_reuse_name": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_empty_statements": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_expressions": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_for_statement": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_statements": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_switch_statement": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_whole_file": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_c_parser.py::TestCParser_whole_code::test_whole_file_with_stdio": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T05:54:06.587874+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 10155.47287300069,
+    "result": {
+      "cache_key": "0bd5bf7959e73c55645714a1c6805c9349ad0e9220c8413d8788861afa5c9b1c",
+      "execution_ms": 6888.586,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 2.155,
+        "cache_publish": 30.575,
+        "docker_execution": 6893.424,
+        "environment": 0.029,
+        "event_append": 14.143,
+        "fingerprint_final": 131.786,
+        "fingerprint_initial": 316.755,
+        "lock_acquire": 6.765,
+        "runtime_inspect_initial": 332.594,
+        "snapshot_cleanup": 5.847,
+        "snapshot_prepare": 1681.872
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 344,
+        "emitted_bytes": 344,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 49 items\n\ntests/test_c_parser.py ................................................. [100%]\n\n============================== 49 passed in 2.08s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 10140.575
+    }
+  },
+  "setup_outer_ms": 79.79660999990301,
+  "source_sha256": "00a5393de33bc322c4d597c9d1ef460b36ebed47285d7436be376a0df598c494",
+  "source_unchanged": true
+}

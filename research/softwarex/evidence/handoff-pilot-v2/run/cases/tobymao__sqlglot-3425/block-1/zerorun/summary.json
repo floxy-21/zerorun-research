@@ -1,0 +1,614 @@
+{
+  "arm": "zerorun",
+  "consumer": {
+    "completed_utc": "2026-09-07T04:23:12.355925+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 2857.8364290005993,
+    "result": {
+      "cache_key": "e1c7fd3f70e9760bdc8a4452dafb78cf0ace2469f355e6a1543c9df7a14f1645",
+      "execution_ms": 9033.843,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 122.364,
+        "environment": 0.029,
+        "event_append": 20.207,
+        "fingerprint_final": 1149.382,
+        "fingerprint_initial": 1163.648,
+        "lock_acquire": 5.064,
+        "readonly_hit_path": 2836.066,
+        "runtime_inspect_initial": 332.403,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "restored_outputs": [],
+      "saved_ms": 6197.774,
+      "status": "HIT_REUSED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 2836.069
+    }
+  },
+  "diagnostics": {
+    "completed_utc": "2026-09-07T04:23:41.293439+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 18791.004569000506,
+    "result": {
+      "cache_key": "e1c7fd3f70e9760bdc8a4452dafb78cf0ace2469f355e6a1543c9df7a14f1645",
+      "execution_ms": 9990.964,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 113.916,
+        "docker_execution": 9995.937,
+        "environment": 0.027,
+        "event_append": 18.804,
+        "fingerprint_final": 1263.98,
+        "fingerprint_initial": 1386.642,
+        "lock_acquire": 9.222,
+        "runtime_inspect_initial": 296.44,
+        "snapshot_cleanup": 54.869,
+        "snapshot_prepare": 5586.522
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 344,
+        "emitted_bytes": 344,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 34 items\n\ntests/dialects/test_mysql.py ..................................          [100%]\n\n============================== 34 passed in 2.80s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 18771.996
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-07T04:23:22.469992+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 10092.240152000159,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "7ad82ee060b2e32498c9b6bd72ad21dae70359d25e27b013dd69698812494c7a",
+        "nodeids": [
+          "tests/dialects/test_mysql.py::TestMySQL::test_bits_literal",
+          "tests/dialects/test_mysql.py::TestMySQL::test_canonical_functions",
+          "tests/dialects/test_mysql.py::TestMySQL::test_convert",
+          "tests/dialects/test_mysql.py::TestMySQL::test_date_format",
+          "tests/dialects/test_mysql.py::TestMySQL::test_ddl",
+          "tests/dialects/test_mysql.py::TestMySQL::test_escape",
+          "tests/dialects/test_mysql.py::TestMySQL::test_hexadecimal_literal",
+          "tests/dialects/test_mysql.py::TestMySQL::test_identity",
+          "tests/dialects/test_mysql.py::TestMySQL::test_introducers",
+          "tests/dialects/test_mysql.py::TestMySQL::test_is_null",
+          "tests/dialects/test_mysql.py::TestMySQL::test_json_object",
+          "tests/dialects/test_mysql.py::TestMySQL::test_match_against",
+          "tests/dialects/test_mysql.py::TestMySQL::test_monthname",
+          "tests/dialects/test_mysql.py::TestMySQL::test_mysql",
+          "tests/dialects/test_mysql.py::TestMySQL::test_mysql_time",
+          "tests/dialects/test_mysql.py::TestMySQL::test_safe_div",
+          "tests/dialects/test_mysql.py::TestMySQL::test_set_variable",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_columns",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_db_like_or_where_sql",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_engine",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_errors",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_events",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_grants",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_index",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_like_or_where",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_name",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_processlist",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_profile",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_replica_status",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_simple",
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_tables",
+          "tests/dialects/test_mysql.py::TestMySQL::test_string_literals",
+          "tests/dialects/test_mysql.py::TestMySQL::test_timestamp_trunc",
+          "tests/dialects/test_mysql.py::TestMySQL::test_types"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 4688,
+        "path": "raw-outcomes.json",
+        "sha256": "0236a52a4b545b82e64d8f71233d4255b72035bc3b25ca8dba2ba4fc6892cc35"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 34 items\n\ntests/dialects/test_mysql.py ..................................          [100%]\n\n============================== 34 passed in 2.94s ==============================\n",
+        "wall_ms": 9893.992182000147
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "tests/dialects/test_mysql.py::TestMySQL::test_bits_literal": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_canonical_functions": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_convert": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_date_format": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_ddl": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_escape": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_hexadecimal_literal": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_identity": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_introducers": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_is_null": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_json_object": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_match_against": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_monthname": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_mysql": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_mysql_time": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_safe_div": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_set_variable": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_columns": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_db_like_or_where_sql": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_engine": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_errors": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_events": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_grants": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_index": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_like_or_where": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_name": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_processlist": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_profile": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_replica_status": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_simple": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_show_tables": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_string_literals": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_timestamp_trunc": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_mysql.py::TestMySQL::test_types": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T04:23:09.478284+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 17344.026893000773,
+    "result": {
+      "cache_key": "e1c7fd3f70e9760bdc8a4452dafb78cf0ace2469f355e6a1543c9df7a14f1645",
+      "execution_ms": 9033.843,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 2.34,
+        "cache_publish": 104.026,
+        "docker_execution": 9038.231,
+        "environment": 0.027,
+        "event_append": 23.01,
+        "fingerprint_final": 1841.073,
+        "fingerprint_initial": 849.129,
+        "lock_acquire": 3.75,
+        "runtime_inspect_initial": 297.018,
+        "snapshot_cleanup": 106.734,
+        "snapshot_prepare": 3918.047
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 344,
+        "emitted_bytes": 344,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 34 items\n\ntests/dialects/test_mysql.py ..................................          [100%]\n\n============================== 34 passed in 2.58s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 17319.713
+    }
+  },
+  "setup_outer_ms": 214.96723000018392,
+  "source_sha256": "618d5d34cf847cb080631e95084f41b0578f2a644654d539d97fc60f5a2d04e5",
+  "source_unchanged": true
+}

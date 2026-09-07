@@ -23,6 +23,10 @@ import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
 CORE = "86f42289c2f59a74b1f642f0b20d1a26b3d55e57"
+HISTORICAL_CORE = CORE
+CURRENT_CORE = "d02b12e43ece3526566ec69c7516579f8d2fc9dd"
+CURRENT_VERSION = "0.5.2"
+HISTORICAL_RUNTIME_PREFIX = "research/softwarex/historical_runtime_0_5_1"
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
 CORE_TESTS = ("conftest.py", "test_hermetic.py", "test_mcp.py", "test_manifest_safety.py",
@@ -63,13 +67,32 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "generated/operating-region-v1.json", "generated/extension-evidence-v1.json",
     "REVIEWER_STRENGTHENING_4H.md", "JOURNAL_REQUIREMENTS_REVIEW.md", "QUICKSTART_RESULTS.md",
     "QUICKSTART_LAB.md", "quickstart_check.py", "CLIENT_API_CARD.md", "APPLICATION_RESULTS.md",
+    "QUICKSTART_052.md", "quickstart_052.py", "diagnose_mcp_authority_052.py",
     "build_application_evidence.py", "generated/application-evidence-v1.json",
     "live_client_v2/__init__.py", "live_client_v2/PROTOCOL.md", "live_client_v2/run.py",
     "live_client_v2/validation.py", "live_client_v2/test_validation.py",
     "live_client_v3/__init__.py", "live_client_v3/PROTOCOL.md", "live_client_v3/run.py",
     "live_client_v3/validation.py", "live_client_v3/test_validation.py",
     "guided_client_v1/__init__.py", "guided_client_v1/PROTOCOL.md", "guided_client_v1/run.py",
-    "guided_client_v1/validation.py", "guided_client_v1/test_validation.py")
+    "guided_client_v1/validation.py", "guided_client_v1/test_validation.py",
+    "five_hour_review/__init__.py", "five_hour_review/current_runtime.py",
+    "five_hour_review/INTEGRATION_CHECKLIST.md", "five_hour_review/REVIEWER_MATRIX.md",
+    "FIVE_HOUR_FINALIZATION_PLAN.md",
+    "verify_submission.py", "VERIFY_SUBMISSION.md",
+    "handoff_acquisition_v1/PROTOCOL.md", "handoff_acquisition_v1/collect.py", "handoff_acquisition_v1/test_collect.py",
+    "handoff_acquisition_recovery_v1/__init__.py", "handoff_acquisition_recovery_v1/PROTOCOL.md",
+    "handoff_acquisition_recovery_v1/recover.py", "handoff_acquisition_recovery_v1/test_recover.py",
+    "handoff_v1/__init__.py", "handoff_v1/PROTOCOL.md", "handoff_v1/run.py", "handoff_v1/validate.py",
+    "handoff_v1/export.py", "handoff_v1/test_run.py", "handoff_v1/test_validate.py",
+    "agent_handoff_v1/PROTOCOL.md", "agent_handoff_v1/common.py", "agent_handoff_v1/run.py",
+    "agent_handoff_v1/validate.py", "agent_handoff_v1/test_agent.py",
+    "agent_handoff_evaluation_v1/__init__.py", "agent_handoff_evaluation_v1/PROTOCOL.md",
+    "agent_handoff_evaluation_v1/run.py", "agent_handoff_evaluation_v1/validate.py",
+    "agent_handoff_evaluation_v1/test_evaluation.py", "AGENT_AUTHENTICATION_AMENDMENT.md",
+    "HANDOFF_IMAGE_RECOVERY_AMENDMENT.md",
+    "handoff_image_v2/__init__.py", "handoff_image_v2/PROTOCOL.md", "handoff_image_v2/build_image.py",
+    "handoff_image_v2/run.py", "handoff_image_v2/validate.py", "handoff_image_v2/export.py", "handoff_image_v2/test_image.py",
+    "handoff_image_v2/TRANSPORT_AMENDMENT_1.md", "build_handoff_evidence.py", "generated/handoff-evidence-v1.json")
 SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
 BLOCKED = {".git", "__pycache__", ".pytest_cache", ".venv", ".zerorun-env", "node_modules", "workspace", "workspaces",
     "private-cache-authentication-NOT-FOR-PUBLICATION", "pytest-temp", "testmon-runtime", "testmon-state",
@@ -109,10 +132,11 @@ def read_local(path):
     return path.read_bytes()
 
 
-def entries(directory, suffixes=TEXT_SUFFIXES):
+def entries(directory, suffixes=TEXT_SUFFIXES, excluded=()):
     require(directory.is_dir(), "required evidence directory missing: " + str(directory))
+    blocked = BLOCKED | set(excluded)
     for parent, dirs, files in os.walk(directory, followlinks=False):
-        dirs[:] = sorted(name for name in dirs if name not in BLOCKED)
+        dirs[:] = sorted(name for name in dirs if name not in blocked)
         for name in dirs:
             child = Path(parent) / name
             info = child.lstat()
@@ -124,7 +148,8 @@ def entries(directory, suffixes=TEXT_SUFFIXES):
                 yield path
 
 
-def pyproject():
+def pyproject(version="0.5.1"):
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
     return '''[build-system]
 requires = ["setuptools==84.0.0"]
 build-backend = "setuptools.build_meta"
@@ -152,7 +177,7 @@ include = ["zerorun*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "research/sqj/strengthening/tests"]
-'''.encode()
+'''.replace('version = "0.5.1"', 'version = "' + version + '"').encode()
 
 
 def exact_analysis_helper(git_bytes):
@@ -164,7 +189,34 @@ def exact_analysis_helper(git_bytes):
     return recorded
 
 
-def collect(paper_files=()):
+def selected_acquisition_archives():
+    """Allow only archive bytes bound by the reconciled frozen case selection."""
+    from research.softwarex.build_handoff_evidence import ACQUISITION, acquisition_summary
+    base = ROOT / ACQUISITION
+    if not base.exists():
+        return []
+    summary, _ = acquisition_summary(base)
+    rows = []
+    for case in summary["cases"]:
+        row = case["source_archive"]
+        if row is not None:
+            relative = ACQUISITION + "/" + row["path"]
+            safe_name(relative)
+            require(row["path"] == "cases/" + case["case_id"] + "/source.tar.gz"
+                    and row["bytes"] <= 64 * 1024 * 1024, "selected archive path or bound differs")
+            rows.append((relative, row))
+    require(len({name for name, _ in rows}) == len(rows), "duplicate selected public archive")
+    return sorted(rows)
+
+
+def archive_source(commit, paths, root=None):
+    """Keep the already tested CRLF archive representation independent of host defaults."""
+    return subprocess.check_output(
+        ["git", "-c", "core.autocrlf=true", "-c", "core.eol=crlf",
+         "archive", "--format=tar", commit, *paths], cwd=ROOT if root is None else root)
+
+
+def collect(paper_files=(), current_core=None):
     payloads, origins = {}, {}
 
     def add(name, raw, origin):
@@ -183,7 +235,7 @@ def collect(paper_files=()):
     source_paths += ["tools/" + name for name in ("codex_agent_integration_smoke.py", "codex_agent_lifecycle.py",
         "commercial_repo_smoke.py", "install_verified_codex_cli.py", "aggregate_codex_install_evidence.py", "pytest_batched_executor.py", "aggregate_commercial_smoke.py")]
     source_paths += ["tests/" + name for name in CORE_TESTS]
-    raw_tar = subprocess.check_output(["git", "archive", "--format=tar", CORE, *source_paths], cwd=ROOT)
+    raw_tar = archive_source(CORE, source_paths)
     core_count = 0
     with tarfile.open(fileobj=io.BytesIO(raw_tar), mode="r:") as archive:
         for member in archive.getmembers():
@@ -211,11 +263,41 @@ def collect(paper_files=()):
             add(target, raw, origin)
             core_count += member.name.startswith("zerorun/")
     require(core_count == 36, "unexpected frozen core file denominator")
+    current_version = "0.5.1"
+    if current_core is not None:
+        from research.softwarex.five_hour_review.current_runtime import validate_metadata_only
+        require(current_core == CURRENT_CORE and current_core != HISTORICAL_CORE,
+                "only the reviewed current runtime commit is allowed")
+        historical = {Path(name).name: raw for name, raw in payloads.items() if name.startswith("src/zerorun/")}
+        current = {}
+        new_test = "tests/test_mcp_discovery_semantics.py"
+        current_tar = archive_source(current_core, ["zerorun", new_test])
+        with tarfile.open(fileobj=io.BytesIO(current_tar), mode="r:") as archive:
+            for member in archive.getmembers():
+                if member.isdir():
+                    continue
+                require(member.isfile(), "nonregular current source member")
+                raw = archive.extractfile(member).read()
+                if member.name.startswith("zerorun/"):
+                    require(member.name.count("/") == 1 and member.name.endswith(".py"), "unexpected current runtime member")
+                    current[Path(member.name).name] = raw
+                else:
+                    require(member.name == new_test, "unexpected current test member")
+                    add(new_test, raw, "git:" + current_core + ":" + new_test)
+        validate_metadata_only(historical, current)
+        require(new_test in payloads, "current discovery regression test missing")
+        for name, old_raw in sorted(historical.items()):
+            old_relative = "src/zerorun/" + name
+            add(HISTORICAL_RUNTIME_PREFIX + "/" + old_relative, old_raw,
+                "git:" + HISTORICAL_CORE + ":zerorun/" + name)
+            payloads[old_relative] = current[name]
+            origins[old_relative] = "git:" + current_core + ":zerorun/" + name
+        current_version = CURRENT_VERSION
     local("LICENSE.txt", "LICENSE.txt")
     add("Licence.txt", payloads["LICENSE.txt"], "identical alias of LICENSE.txt")
     local("research/softwarex/PUBLIC_RELEASE_README.md", "README.md")
     local("research/softwarex/build_public_release.py")
-    add("pyproject.toml", pyproject(), "generated src-layout packaging; runtime bytes unchanged")
+    add("pyproject.toml", pyproject(current_version), "generated src-layout packaging; runtime uses the identified commit exported with explicitly recorded Git text-newline conversion")
     add(".gitattributes", b"* -text\n", "preserve evidence and frozen source bytes across checkouts")
     add(".gitignore", b"__pycache__/\n*.py[cod]\n.pytest_cache/\n.venv/\nbuild/\ndist/\n*.egg-info/\n", "generated build-only exclusions")
     add("THIRD_PARTY_NOTICES.md", (
@@ -263,6 +345,10 @@ def collect(paper_files=()):
     public_wheel = "output/packages/zerorun-softwarex/zerorun-0.5.1-py3-none-any.whl"
     if (ROOT / public_wheel).is_file():
         local(public_wheel)
+    if current_core is not None:
+        current_wheel = "output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl"
+        if (ROOT / current_wheel).is_file():
+            local(current_wheel)
     for path in entries(ROOT / "docs/evidence/softwarex-regression/windows-20260906-readonly-hit-final"):
         local(path.relative_to(ROOT).as_posix())
     for directory in ("source-final", "source-ci-final", "producers"):
@@ -291,8 +377,28 @@ def collect(paper_files=()):
             local(path.relative_to(ROOT).as_posix())
     publication_evidence = ROOT / "research/softwarex/evidence"
     if publication_evidence.is_dir():
-        for path in entries(publication_evidence, {".json", ".xml", ".log", ".py", ".md"}):
+        # Agent inputs are copied only through their exact public capture list below.
+        # Never walk a private client home or generated execution/build directory.
+        excluded = {"agent-producer-pilot-v1", "agent-producer-main-v1", "source", "preflight-workspace",
+                    "dependency-starter", "context", "registry-store", "client-home", "codex-home"}
+        for path in entries(publication_evidence, {".json", ".xml", ".log", ".py", ".md"}, excluded):
             local(path.relative_to(ROOT).as_posix())
+    for relative, row in selected_acquisition_archives():
+        raw = read_local(ROOT / relative)
+        require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
+                "selected source archive changed during release assembly")
+        add(relative, raw, "workspace:selection-bound-upstream-source:" + relative)
+    if (ROOT / "research/softwarex/generated/handoff-evidence-v1.json").is_file():
+        from research.softwarex.build_handoff_evidence import source_inputs as handoff_inputs
+        for row in handoff_inputs(ROOT):
+            relative = row["path"]
+            raw = read_local(ROOT / relative)
+            require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
+                    "handoff publication input changed during release assembly")
+            if relative in payloads:
+                require(payloads[relative] == raw, "duplicate handoff input bytes disagree")
+            else:
+                add(relative, raw, "workspace:record-only-handoff-input:" + relative)
     # These archives are absent during the checked pre-archive stage. A later
     # refresh can inventory their completed bytes without changing the older
     # manifest sealed inside the reviewer archive or creating a self-reference.
@@ -318,8 +424,19 @@ def collect(paper_files=()):
     manifest = {"schema": "zerorun.public-research-release.v1", "article_title": TITLE,
         "frozen_core_commit": CORE, "frozen_core_files": core_count,
         "builder_sha256": digest(Path(__file__).read_bytes()),
-        "construction": "selective exact-commit Git archive plus explicit research allowlist; no development history",
-        "runtime_modified": False, "packaging_adaptations": ["src layout", "author metadata", "license filenames", "research README", "five selected-test file-path references"],
+        "construction": "selective exact-commit Git archive with fixed text-newline conversion plus explicit research allowlist; no development history",
+        "git_archive_representation": {
+            "configuration": {"core.autocrlf": "true", "core.eol": "crlf"},
+            "raw_git_blob_byte_identity_claimed": False,
+            "scope": "git: origins identify committed paths; recorded payload hashes identify the Git archive representation with explicit CRLF text checkout conversion, preserving the already tested package bytes across host defaults."},
+        "runtime_modified": current_core is not None,
+        "historical_core_commit": HISTORICAL_CORE,
+        "current_core_commit": current_core or HISTORICAL_CORE,
+        "current_version": current_version,
+        "runtime_change_scope": ("Only run_tests discovery descriptions and version string differ from the preserved 0.5.1 runtime; historical measurements are not reclassified."
+                                 if current_core else "Exact historical 0.5.1 runtime, unchanged."),
+        "historical_runtime_prefix": HISTORICAL_RUNTIME_PREFIX if current_core else None,
+        "packaging_adaptations": ["src layout", "author metadata", "license filenames", "research README", "five selected-test file-path references"],
         "public_repository_destination": "https://github.com/floxy-21/zerorun-research",
         "publication_performed_by_builder": False, "excluded_directory_names": sorted(BLOCKED),
         "archive_binding": "Submission archives, when present, seal an earlier checked pre-archive inventory. This enclosing manifest hashes completed archives; the reviewer archive does not include itself or this later manifest.",
@@ -516,12 +633,12 @@ def record_public_tests(release):
             "tested_files": len(tested_code), "sha256": digest(destination.read_bytes())}
 
 
-def build(directory, refresh=False, paper_files=(), hardlink_identical=False, plan=False):
+def build(directory, refresh=False, paper_files=(), hardlink_identical=False, plan=False, current_core=None):
     directory = directory.absolute()
     require(directory.name.startswith("softwarex-public-release") and directory.parent.resolve() == (ROOT / "tmp").resolve(),
             "output must be a named softwarex-public-release directory immediately under workspace tmp")
     require(not directory.is_symlink() and directory.resolve().is_relative_to((ROOT / "tmp").resolve()), "output escapes workspace tmp")
-    payloads, manifest = collect(paper_files)
+    payloads, manifest = collect(paper_files, current_core=current_core)
     if plan:
         return {"planned_files": len(payloads), "planned_bytes": sum(map(len, payloads.values())), "output": str(directory)}
     if directory.exists():
@@ -564,6 +681,7 @@ def main():
     parser.add_argument("--verify-wheel", type=Path)
     parser.add_argument("--installed-python", type=Path)
     parser.add_argument("--record-public-tests", action="store_true")
+    parser.add_argument("--current-core", help="Explicit reviewed 0.5.2 commit; omitting it builds the historical 0.5.1 package")
     args = parser.parse_args()
     if args.self_test:
         print(json.dumps(self_test()))
@@ -578,7 +696,7 @@ def main():
         manifest = inspect(args.output)
         print(json.dumps({"validated": True, "files": len(manifest["files"]) + 1, "core_commit": manifest["frozen_core_commit"]}))
     else:
-        print(json.dumps(build(args.output, args.refresh, args.paper_file, args.hardlink_identical, args.plan)))
+        print(json.dumps(build(args.output, args.refresh, args.paper_file, args.hardlink_identical, args.plan, args.current_core)))
 
 
 if __name__ == "__main__":

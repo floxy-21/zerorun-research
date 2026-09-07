@@ -1,0 +1,134 @@
+{
+  "bit_identical_recipe_rebuild_claimed": false,
+  "completed_utc": "2026-09-07T04:08:24.718058+00:00",
+  "dependency_provenance": {
+    "build_count": 1,
+    "build_once_ms": 7478.372,
+    "construction_contract": {
+      "extra_requirements": [
+        "pretend"
+      ],
+      "installer": {
+        "arguments": [
+          "install",
+          "--disable-pip-version-check",
+          "--no-input",
+          "--no-cache-dir",
+          "--no-compile",
+          "--require-hashes",
+          "--only-binary=:all:",
+          "--target",
+          "/zerorun-env/site-packages",
+          "--requirement",
+          "/zerorun-env/runtime-requirements.txt"
+        ],
+        "bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+        "capabilities": "drop-all",
+        "container_user": "exact-private-staging-owner",
+        "entrypoint": [
+          "/usr/local/bin/python",
+          "-I",
+          "-c"
+        ],
+        "no_new_privileges": true,
+        "pull_policy": "never",
+        "resource_args": [
+          "--cpus",
+          "2",
+          "--memory",
+          "2g",
+          "--memory-swap",
+          "2g",
+          "--pids-limit",
+          "512"
+        ]
+      },
+      "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+      "methodology_version": "zerorun.product-generalization-counterbalanced-e2e.v2",
+      "requirements": {
+        "path": "ci/generalization-runtime-requirements.txt",
+        "sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+        "size": 1006
+      },
+      "runtime": {
+        "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+        "platform": "linux/amd64",
+        "python_implementation": "CPython",
+        "python_implementation_id": "cpython",
+        "python_version": "3.12.14"
+      },
+      "schema": "zerorun.generalization-dependency-layer.v1",
+      "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+    },
+    "construction_identity_sha256": "b8825dc508c6a1b4a08cb4891ce7a657eeb43d0ea0d69f4a17835d2b3ea8fafb",
+    "content_addressed_directory_name": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+    "content_tree_sha256": "ca6922d02ef91b73033f25ea561f3810a5a9a5074fe4d80c255239b39aa4d8b7",
+    "directory_count": 32,
+    "extra_requirements": [
+      "pretend"
+    ],
+    "file_count": 513,
+    "installer_arguments_sha256": "1917fa826e1df105404a601cb684896322383ed45548bd7199bd0b8c8a368ed5",
+    "installer_bootstrap_sha256": "431be6c9136f8850489a2bd70a5b40c6d88c7a6ab2847b5ff2792c36e6856fbe",
+    "manifest_sha256": "8f76906073db1504ed464aa0416064bffb3c825d9bf2bf5acad26225914d2c11",
+    "path_bytes": 21037,
+    "read_only_mode_and_content_verified": true,
+    "runtime_image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+    "runtime_requirements_sha256": "a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c",
+    "schema": "zerorun.generalization-dependency-layer.v1",
+    "source_hardlinks_rejected": true,
+    "total_bytes": 6579552,
+    "wrapper_sha256": "7219e190ec967b530b48bc9a4ee72fb0b35fbe01d310ad5fdae5411082489d9c"
+  },
+  "error": {
+    "message": "[Errno 104] Connection reset by peer",
+    "type": "ConnectionResetError"
+  },
+  "image": null,
+  "image_publicly_pullable": false,
+  "passed": false,
+  "protocol_sha256": "7ae5d9c34bf922ee31c51254ad63df3f8b4cedd0cec399e5a4282b17160c5ea9",
+  "registry_container_id": "0357f0eea5e04cb06d4df6d399e1e57f1214afa9278f80d3acc42dc9844949bd",
+  "registry_container_removed": true,
+  "registry_store_retained_locally": true,
+  "schema": "zerorun.handoff-image-build-completion.v2",
+  "setup_outer_ms": 24396.20924599876,
+  "source_unchanged": true,
+  "sources_after": [
+    {
+      "bytes": 4969,
+      "path": "PROTOCOL.md",
+      "sha256": "05d6ac1709a142a33fe7a500be3a3660aae6e3ae34dd9f7d25ccd86c7a0294d2"
+    },
+    {
+      "bytes": 77,
+      "path": "__init__.py",
+      "sha256": "192f13326cf5a954fe9fe05c1f06f125aad2c406dc61296a1dba6d7884fac04d"
+    },
+    {
+      "bytes": 13103,
+      "path": "build_image.py",
+      "sha256": "075b0da60fc34e8ccaa71ad8e77813fd194f14ed3de9ba54dba345c3ea3b9349"
+    },
+    {
+      "bytes": 2437,
+      "path": "export.py",
+      "sha256": "f2bd6e6a0945fbdc60cb33dae02af5216db283551d4f599d30bd2d1df2b671dc"
+    },
+    {
+      "bytes": 7583,
+      "path": "run.py",
+      "sha256": "f07ff59ef31ad0aea4b80eb0ab2c6c8103012ef8eea655548147b782b005e4dc"
+    },
+    {
+      "bytes": 12666,
+      "path": "test_image.py",
+      "sha256": "bf70ec8e52068364fa4168e6a1ec4c66b71d175c1308be3dfdc2a0e88eb81fe2"
+    },
+    {
+      "bytes": 9747,
+      "path": "validate.py",
+      "sha256": "969ecd02b5f0902b13b7b8bcec95854f0a287e622ff7f8f3431f0757520a01e1"
+    }
+  ]
+}

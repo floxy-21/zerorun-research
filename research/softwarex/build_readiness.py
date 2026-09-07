@@ -9,15 +9,20 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 
 from research.softwarex.build_paper import build as build_paper
-from research.softwarex.build_public_release import inspect
+from research.softwarex.build_public_release import inspect, HISTORICAL_RUNTIME_PREFIX, CURRENT_CORE, CURRENT_VERSION
 from research.softwarex import build_submission_artifacts as artifacts_builder
 from research.softwarex import build_application_evidence as application_builder
 from research.softwarex import build_highlights as highlights_builder
+from research.softwarex import build_handoff_evidence as handoff_builder
+from research.softwarex import run_publication_tests as publication_runner
 from research.softwarex.build_submission_artifacts import verify, strict_json, read_regular, member_name, SOURCE_FILES
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-four-hour-final-v3"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-five-hour-final-v1"
+CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.2-v5/receipt.json"
+CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-052-v1"
+HOSTED_CI_RECEIPT = "research/softwarex/evidence/hosted-ci-20260907/receipt.json"
 
 
 def require(condition, message):
@@ -36,6 +41,34 @@ def sha(path):
 def matching_public_file(release, relative, local):
     member_name(relative)
     require(read_regular(release / relative) == read_regular(local), "public release file differs: " + relative)
+
+
+def check_hosted_ci_observation(release):
+    """Bind the retained administrative observation without treating it as test evidence."""
+    path = ROOT / HOSTED_CI_RECEIPT
+    if not path.exists():
+        return None
+    receipt = read(path)
+    require(receipt["schema"] == "zerorun.hosted-ci-status.v1"
+            and receipt["repository"] == "https://github.com/floxy-21/zerorun-mvp"
+            and receipt["status"] == "NOT_STARTED_ACCOUNT_BILLING_OR_SPENDING_LIMIT",
+            "hosted CI administrative observation differs")
+    commit = receipt["commit"]
+    require(isinstance(commit, str) and len(commit) == 40
+            and all(value in "0123456789abcdef" for value in commit), "hosted CI commit absent")
+    run_id = receipt["run_id"]
+    require(type(run_id) is int and run_id > 0
+            and receipt["run_url"] == receipt["repository"] + "/actions/runs/" + str(run_id),
+            "hosted CI run identity differs")
+    require(all(receipt[key] is False for key in (
+        "test_execution_observed", "test_failure_observed", "hosted_ci_green",
+        "account_settings_changed", "payment_made")), "hosted CI nonexecution scope differs")
+    require(isinstance(receipt["observed_utc"], str) and isinstance(receipt["observation"], str)
+            and receipt["observation"].strip(), "hosted CI observation absent")
+    matching_public_file(release, HOSTED_CI_RECEIPT, path)
+    return {"receipt": HOSTED_CI_RECEIPT, "receipt_sha256": sha(path), "observation": receipt,
+            "scope": "Retained operator observation of jobs blocked before execution; no new GitHub query, test result, or green hosted CI attestation.",
+            "used_as_passing_test_evidence": False}
 
 
 def check_artifacts(release, evidence):
@@ -108,7 +141,7 @@ def check_targeted_test_amendment(release, original):
     return receipt
 
 
-def check_test_and_install_bindings(release):
+def check_test_and_install_bindings(release, *, historical_runtime_prefix=None):
     install = read(HERE / "generated/public-install-smoke.json")
     tests = read(HERE / "generated/public-release-tests.json")
     require(install["schema"] == "zerorun.softwarex-public-install-smoke.v1" and install["status"] == "PASS"
@@ -127,8 +160,15 @@ def check_test_and_install_bindings(release):
     amendments = []
     for row in checked:
         member_name(row["path"])
-        raw = read_regular(release / row["path"])
+        relative = row["path"]
+        if historical_runtime_prefix is not None and relative.startswith("src/zerorun/"):
+            require(historical_runtime_prefix == HISTORICAL_RUNTIME_PREFIX,
+                    "unexpected preserved historical runtime prefix")
+            relative = historical_runtime_prefix + "/" + relative
+        raw = read_regular(release / relative)
         if len(raw) != row["bytes"] or hashlib.sha256(raw).hexdigest() != row["sha256"]:
+            # A changed historical runtime is never an allowed test amendment.
+            require(relative == row["path"], "preserved historical runtime differs from its tested bytes")
             amendments.append(check_targeted_test_amendment(release, row))
     final_tests = tests["runs"][-1]
     require(final_tests["pytest_failed"] == 0 and final_tests["errors"] == 0
@@ -151,6 +191,47 @@ def check_test_and_install_bindings(release):
     return install, dict(final_tests, targeted_test_amendments=amendments)
 
 
+def check_current_runtime_bindings(release):
+    """Check 0.5.2 independently; old 0.5.1 evidence never certifies this runtime."""
+    from research.softwarex.five_hour_review import current_runtime
+    relative = CURRENT_RUNTIME_RECEIPT
+    matching_public_file(release, relative, ROOT / relative)
+    matching_public_file(release, current_runtime.SELF, ROOT / current_runtime.SELF)
+    require(sha(Path(current_runtime.__file__)) == sha(ROOT / current_runtime.SELF),
+            "loaded current-runtime validator differs")
+    summary = current_runtime.validate(release, ROOT / relative)
+    require(summary["current_core_commit"] == CURRENT_CORE and summary["version"] == CURRENT_VERSION,
+            "current runtime is not the reviewed release commit/version")
+    xml_relative = str(Path(relative).parent / "tests.xml").replace("\\", "/")
+    matching_public_file(release, xml_relative, ROOT / xml_relative)
+    return {"receipt": relative, **summary,
+            "scope": "Fresh wheel installation and direct current public-package regression tests; no model, Docker performance or historical-result reclassification."}
+
+
+def check_current_quickstart(release):
+    """Require the documented 0.5.2 installation and five actual STDIO stages."""
+    from research.softwarex import quickstart_052
+    helper = "research/softwarex/quickstart_052.py"
+    guide = "research/softwarex/QUICKSTART_052.md"
+    install_relative, check_relative = (CURRENT_QUICKSTART_DIR + "/" + name
+                                        for name in ("install.json", "check.json"))
+    require(sha(Path(quickstart_052.__file__)) == sha(ROOT / helper),
+            "loaded current quickstart validator differs")
+    paths = (helper, guide, "research/softwarex/diagnose_mcp_authority_052.py", install_relative, check_relative)
+    for relative in paths:
+        matching_public_file(release, relative, ROOT / relative)
+    pair = quickstart_052.validate_receipt_pair(ROOT, ROOT / install_relative, ROOT / check_relative)
+    install, check = pair["installation"], pair["check"]
+    require(pair["passed"] is True and pair["read_only"] is True
+            and pair["model_called"] is False and pair["real_repository_authorized"] is False
+            and install["passed"] is True and check["passed"] is True
+            and install["source_commit"] == check["source_commit"],
+            "current public guide installation and five-stage workflow must pass on one source commit")
+    return {"version": CURRENT_VERSION, "installation": install, "workflow": check,
+            "public_files_sha256": {relative: sha(ROOT / relative) for relative in paths},
+            "scope": "Fresh 0.5.2 public-source installation and five account-free synthetic STDIO stages; retained raw receipts rechecked, no independent human-user or agent usefulness claim."}
+
+
 def check_extension_tests(release):
     relative = EXTENSION_TESTS + "/receipt.json"
     receipt = read(ROOT / relative)
@@ -162,6 +243,17 @@ def check_extension_tests(release):
             "publication source changed during tests")
     rows = receipt["source_before"]
     require(rows and len({row["path"] for row in rows}) == len(rows), "test-source inventory absent or duplicated")
+    require(rows == publication_runner.inventory(ROOT), "publication test inventory omits or changes current source")
+    selected = publication_runner.test_paths(ROOT)
+    command = receipt.get("command")
+    require(isinstance(command, list) and command[1:4] == ["-B", "-m", "pytest"]
+            and command[4:4 + len(selected)] == selected,
+            "publication test command omits selected offline modules")
+    options = command[4 + len(selected):]
+    require(len(options) == 6 and options[:4] == ["-q", "--import-mode=importlib", "-p", "no:cacheprovider"]
+            and isinstance(options[4], str) and options[4].startswith("--basetemp=")
+            and isinstance(options[5], str) and options[5].startswith("--junitxml="),
+            "publication test command options differ from full direct invocation")
     for row in rows:
         member_name(row["path"])
         raw = read_regular(ROOT / row["path"])
@@ -174,14 +266,13 @@ def check_extension_tests(release):
         require(path.stat().st_size == row["bytes"] and sha(path) == row["sha256"], "test-output bytes differ")
         matching_public_file(release, EXTENSION_TESTS + "/" + name, path)
     require(set(receipt["output_files"]) == {"tests.xml", "pytest.log"}, "test output missing")
-    xml = ET.fromstring(read_regular(ROOT / EXTENSION_TESTS / "tests.xml"))
-    suites = [xml] if xml.tag == "testsuite" else xml.findall(".//testsuite")
-    counts = {key: sum(int(s.attrib[key]) for s in suites) for key in ("tests", "failures", "errors", "skipped")}
-    require(counts == receipt["junit_counts"] and counts["tests"] == receipt["testcases_present"]
-            == len(xml.findall(".//testcase")) and counts["failures"] == counts["errors"] == 0
-            and counts["tests"] > counts["skipped"] >= 0
-            and not xml.findall(".//failure") and not xml.findall(".//error"), "publication JUnit disagrees")
+    accounting = publication_runner.junit_accounting(
+        read_regular(ROOT / EXTENSION_TESTS / "tests.xml"), read_regular(ROOT / EXTENSION_TESTS / "pytest.log"))
+    counts = accounting["counts"]
+    require(accounting == receipt["junit_accounting"] and counts == receipt["junit_counts"]
+            and accounting["testcase_elements"] == receipt["testcases_present"], "publication JUnit disagrees")
     return {"receipt": relative, "sha256": sha(ROOT / relative), "counts": counts,
+            "junit_accounting": accounting,
             "source_files_bound": len(rows), "scope": receipt["scope"]}
 
 
@@ -224,6 +315,34 @@ def check_application_evidence(release, paper_evidence):
                 "application input bytes differ: " + row["path"])
         matching_public_file(release, row["path"], ROOT / row["path"])
     matching_public_file(release, relative, ROOT / relative)
+    return regenerated, len(rows)
+
+
+def check_handoff_evidence(release, paper_evidence):
+    """Require the exact reconciled outcomes and all public inputs, including failures."""
+    relative = handoff_builder.OUTPUT
+    regenerated = handoff_builder.build(ROOT)
+    require(read(ROOT / relative) == regenerated, "handoff evidence is stale")
+    require(paper_evidence.get("handoff") == regenerated,
+            "manuscript handoff evidence differs from reconciled outcomes")
+    require(regenerated.get("schema") == "zerorun.softwarex-handoff-evidence.v1"
+            and regenerated.get("available_completed_runs_reconciled") is True
+            and regenerated.get("acceptance_probability_estimated") is False
+            and regenerated.get("performance_threshold_imposed") is False,
+            "handoff reconciliation or claim scope differs")
+    rows = handoff_builder.source_inputs(ROOT)
+    require(isinstance(rows, list) and rows and len({row["path"] for row in rows}) == len(rows),
+            "handoff input inventory missing or duplicated")
+    for row in rows:
+        member_name(row["path"])
+        raw = read_regular(ROOT / row["path"])
+        require(type(row.get("bytes")) is int and row["bytes"] == len(raw)
+                and row.get("sha256") == hashlib.sha256(raw).hexdigest(),
+                "handoff input binding differs: " + row["path"])
+        matching_public_file(release, row["path"], ROOT / row["path"])
+    matching_public_file(release, relative, ROOT / relative)
+    require(handoff_builder.build(release) == regenerated,
+            "public handoff inputs do not reproduce the private reconciliation")
     return regenerated, len(rows)
 
 
@@ -299,13 +418,14 @@ def check_word_highlights(release):
 
 
 def build(release):
-    inspect(release)
+    release_manifest = inspect(release)
     _, _, regenerated = build_paper()
     evidence = read(HERE / "generated/paper-evidence.json")
     require(evidence == regenerated and evidence["preview"] is False, "article evidence is stale")
     require(evidence["replication"]["completed"] is True and evidence["state_rejoin"]["independent_analysis"]["completed"] is True,
             "completed independently reconciled examples required")
     application, application_files_bound = check_application_evidence(release, evidence)
+    handoff, handoff_files_bound = check_handoff_evidence(release, evidence)
     artifacts, pdf = check_artifacts(release, evidence)
     files = {}
     for name in ("COVER_LETTER.txt", "HIGHLIGHTS.txt", "UPLOAD_GUIDE.md", "SUBMISSION_CHECKLIST.md", "REPRODUCIBILITY.md"):
@@ -316,8 +436,13 @@ def build(release):
     highlights = (HERE / "HIGHLIGHTS.txt").read_text(encoding="utf-8").splitlines()
     require(3 <= len(highlights) <= 5 and all(0 < len(line) <= 85 for line in highlights), "highlight limits not met")
     word_highlights = check_word_highlights(release)
-    install, final_tests = check_test_and_install_bindings(release)
+    has_current_runtime = release_manifest.get("current_version") == CURRENT_VERSION
+    install, final_tests = check_test_and_install_bindings(
+        release, historical_runtime_prefix=HISTORICAL_RUNTIME_PREFIX if has_current_runtime else None)
+    current_runtime = check_current_runtime_bindings(release) if has_current_runtime else None
+    current_quickstart = check_current_quickstart(release) if has_current_runtime else None
     extension_tests = check_extension_tests(release)
+    hosted_ci = check_hosted_ci_observation(release)
     extension = evidence["extension"]
     require(extension["completed"] is True and extension["preview"] is False,
             "recorded extension outcomes required")
@@ -335,7 +460,10 @@ def build(release):
         "journal": "SoftwareX",
         "article_type": "Original Software Publication",
         "public_code_and_evidence": evidence["public_release"],
-        "runtime_core_commit": install["core_commit"],
+        "runtime_core_commit": current_runtime["current_core_commit"] if current_runtime else install["core_commit"],
+        "historical_runtime_core_commit": install["core_commit"],
+        "current_runtime_validation": current_runtime,
+        "current_public_quickstart": current_quickstart,
         "validated_pre_readiness_manifest_sha256": sha(release / "PUBLIC_RELEASE_MANIFEST.json"),
         "manifest_scope": "Checked enclosing stage before adding this readiness file; the later public manifest includes this receipt, avoiding a self-hash cycle.",
         "paper_evidence_sha256": sha(HERE / "generated/paper-evidence.json"),
@@ -343,12 +471,17 @@ def build(release):
         "archives": {key: artifacts[key] for key in ("source_archive", "reviewer_archive")},
         "author_upload_texts_sha256": files,
         "word_highlights": word_highlights,
-        "selected_public_tests": {"passed": final_tests["pytest_passed"], "skipped": final_tests["pytest_skipped"], "additional_passing_subtests": final_tests["subtests_passed"]},
+        "selected_public_tests": {"version": "0.5.1", "scope": "Historical selected public-package tests, bound to preserved historical runtime bytes.",
+                                  "passed": final_tests["pytest_passed"], "skipped": final_tests["pytest_skipped"], "additional_passing_subtests": final_tests["subtests_passed"]},
         "targeted_public_test_amendments": final_tests.get("targeted_test_amendments", []),
         "publication_extension_tests": extension_tests,
+        "hosted_ci_observation": hosted_ci,
         "application_evidence": application,
         "application_evidence_sha256": sha(HERE / "generated/application-evidence-v1.json"),
         "application_files_bound": application_files_bound,
+        "handoff_evidence": handoff,
+        "handoff_evidence_sha256": sha(ROOT / handoff_builder.OUTPUT),
+        "handoff_files_bound": handoff_files_bound,
         "client_extension": {"scripted_cases": extension["scripted_client_conformance"]["scripted_cases"],
                              "live_model_lifecycle_pass": extension["bounded_live_client"]["functional_lifecycle_pass"],
                              "recorded_model_turns": extension["bounded_live_client"]["agent_stages_recorded"],

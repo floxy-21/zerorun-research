@@ -18,6 +18,15 @@ def same(actual, expected, message):
     h.require(h.encoded(actual) == h.encoded(expected), message)
 
 
+def check_archived_final_source(raw, captured_inventory):
+    # Producer inventory uses Path ordering; archive inventory uses path-string
+    # ordering. Compare the same complete rows in one order, retaining every
+    # path, kind, byte count and hash. This matches the producer validator and
+    # reconstruction checks without changing the captured evidence.
+    same(pv.source_archive_inventory(raw), sorted(captured_inventory, key=lambda row: row["path"]),
+         "archived final source bytes differ")
+
+
 def optional_oracle(root, name, capture):
     path = root / (name + ".json")
     if not path.is_file():
@@ -130,7 +139,7 @@ def validate_saved(directory, prepared, image_build=None):
             # Sidecar bytes are independently checked even after workspaces are
             # pruned. Reconciliation does not execute Git to reconstruct again.
             raw = h.bound(prepared / f"case-{index:02d}", session["final_source"], r.MAX_BYTES)
-            same(pv.source_archive_inventory(raw), session["after"], "archived final source bytes differ")
+            check_archived_final_source(raw, session["after"])
         baseline = optional_oracle(root, "baseline-oracle", "baseline-capture")
         final = optional_oracle(root, "compatibility-oracle", "compatibility-capture")
         for name, field in (("baseline-oracle", "baseline_oracle_ms"), ("compatibility-oracle", "final_compatibility_oracle_ms")):

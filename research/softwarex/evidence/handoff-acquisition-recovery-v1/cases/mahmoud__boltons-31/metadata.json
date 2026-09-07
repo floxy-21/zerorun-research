@@ -1,0 +1,70 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "tests/tbutils_test.py::test_normal_tb",
+          "tests/tbutils_test.py::test_eval_tb",
+          "tests/tbutils_test.py::test_last_line_is_eval_like"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [],
+        "base_commit": "c9b3d2452e4ffe43920874f4f6f2e8fe425ebf00",
+        "created_at": "2015-04-19 07:14:14",
+        "docker_image": null,
+        "environment": "name: boltons\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - attrs=21.4.0=pyhd3eb1b0_0\n  - ca-certificates=2025.2.25=h06a4308_0\n  - certifi=2021.5.30=py36h06a4308_0\n  - importlib-metadata=4.8.1=py36h06a4308_0\n  - importlib_metadata=4.8.1=hd3eb1b0_0\n  - iniconfig=1.1.1=pyhd3eb1b0_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.3=he6710b0_2\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - more-itertools=8.12.0=pyhd3eb1b0_0\n  - ncurses=6.4=h6a678d5_0\n  - openssl=1.1.1w=h7f8727e_0\n  - packaging=21.3=pyhd3eb1b0_0\n  - pip=21.2.2=py36h06a4308_0\n  - pluggy=0.13.1=py36h06a4308_0\n  - py=1.11.0=pyhd3eb1b0_0\n  - pyparsing=3.0.4=pyhd3eb1b0_0\n  - pytest=6.2.4=py36h06a4308_2\n  - python=3.6.13=h12debd9_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=58.0.4=py36h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - toml=0.10.2=pyhd3eb1b0_0\n  - typing_extensions=4.1.1=pyh06a4308_0\n  - wheel=0.37.1=pyhd3eb1b0_0\n  - xz=5.6.4=h5eee18b_1\n  - zipp=3.6.0=pyhd3eb1b0_0\n  - zlib=1.2.13=h5eee18b_1\nprefix: /opt/conda/envs/boltons\n",
+        "environment_setup_commit": "c9b3d2452e4ffe43920874f4f6f2e8fe425ebf00",
+        "hints_text": "asottile: I guess I'll fix tbutils to work under python3?  Kinda unfortunate for the build to fail because I added tests :( (when it wouldn't have worked before then!)",
+        "image_name": null,
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "pytest",
+          "pip_packages": [
+            "py",
+            "pytest"
+          ],
+          "pre_install": null,
+          "python": "3.4",
+          "reqs_path": null,
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "mahmoud__boltons-31",
+        "license_name": "BSD License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_many_modified_files",
+            "has_many_hunks"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 0,
+            "test_score": 1
+          },
+          "num_modified_files": 3
+        },
+        "patch": "diff --git a/.travis.yml b/.travis.yml\nindex 9f97722..0df3b47 100644\n--- a/.travis.yml\n+++ b/.travis.yml\n@@ -6,4 +6,4 @@ python:\n   - \"pypy\"\n \n install: \"pip install -r requirements-test.txt\"\n-script: \"py.test --doctest-modules boltons\"\n+script: \"py.test --doctest-modules boltons tests\"\ndiff --git a/boltons/tbutils.py b/boltons/tbutils.py\nindex 2ff476d..6f402e9 100644\n--- a/boltons/tbutils.py\n+++ b/boltons/tbutils.py\n@@ -27,6 +27,12 @@ import sys\n import linecache\n \n \n+if str is bytes:  # py2\n+    text = unicode\n+else:  # py3\n+    text = str\n+\n+\n # TODO: chaining primitives?  what are real use cases where these help?\n \n # TODO: print_* for backwards compatability\n@@ -691,7 +697,7 @@ class ParsedException(object):\n         Args:\n             tb_str (str): The traceback text (:class:`unicode` or UTF-8 bytes)\n         \"\"\"\n-        if not isinstance(tb_str, unicode):\n+        if not isinstance(tb_str, text):\n             tb_str = tb_str.decode('utf-8')\n         tb_lines = tb_str.lstrip().splitlines()\n \n@@ -717,21 +723,35 @@ class ParsedException(object):\n             raise ValueError('unrecognized traceback string format')\n \n         frames = []\n-        for pair_idx in range(start_line, len(tb_lines), 2):\n-            frame_line = tb_lines[pair_idx].strip()\n+        line_no = start_line\n+        while True:\n+            frame_line = tb_lines[line_no].strip()\n             frame_match = frame_re.match(frame_line)\n             if frame_match:\n                 frame_dict = frame_match.groupdict()\n+                next_line = tb_lines[line_no + 1]\n+                next_line_stripped = next_line.strip()\n+                if (\n+                        frame_re.match(next_line_stripped) or\n+                        # The exception message will not be indented\n+                        # This check is to avoid overrunning on eval-like\n+                        # tracebacks where the last frame doesn't have source\n+                        # code in the traceback\n+                        not next_line.startswith(' ')\n+                ):\n+                    frame_dict['source_line'] = ''\n+                else:\n+                    frame_dict['source_line'] = next_line_stripped\n+                    line_no += 1\n             else:\n                 break\n-            frame_dict['source_line'] = tb_lines[pair_idx + 1].strip()\n+            line_no += 1\n             frames.append(frame_dict)\n \n-        exc_line_offset = start_line + len(frames) * 2\n         try:\n-            exc_line = tb_lines[exc_line_offset]\n+            exc_line = tb_lines[line_no]\n             exc_type, _, exc_msg = exc_line.partition(':')\n-        except:\n+        except Exception:\n             exc_type, exc_msg = '', ''\n \n         return cls(exc_type, exc_msg, frames)\ndiff --git a/tox.ini b/tox.ini\nindex 928a1dc..e99092f 100644\n--- a/tox.ini\n+++ b/tox.ini\n@@ -2,4 +2,4 @@\n envlist = py27,py34,pypy\n [testenv]\n deps = -rrequirements-test.txt\n-commands = py.test --doctest-modules boltons\n+commands = py.test --doctest-modules boltons tests\n",
+        "problem_statement": "ParsedException.from_string produces wrong result when a frame is missing source (such as from eval)\nTake this (modified from the original) trace:\r\n\r\n```\r\nTraceback (most recent call last):\r\n  File \"<string>\", line 2, in _some_function\r\n  File \"myfile.py\", line 3, in some_other_function\r\n    return foo(bar, baz)\r\nMyException: ExceptionValue\r\n```\r\n\r\nParsedException gives me an incorrect result:\r\n\r\n```\r\n>>> ParsedException.from_string(x)\r\nParsedException(u'    return foo(bar, baz)', u'', frames=[{'source_line': u'File \"myfile.py\", line 3, in some_other_function', 'filepath': u'<string>', 'lineno': u'2', 'funcname': u'_some_function'}])\r\n```\r\n",
+        "repo": "mahmoud/boltons",
+        "requirements": "attrs @ file:///opt/conda/conda-bld/attrs_1642510447205/work\n-e git+https://github.com/mahmoud/boltons.git@c9b3d2452e4ffe43920874f4f6f2e8fe425ebf00#egg=boltons\ncertifi==2021.5.30\nimportlib-metadata @ file:///tmp/build/80754af9/importlib-metadata_1631916693255/work\niniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work\nmore-itertools @ file:///tmp/build/80754af9/more-itertools_1637733554872/work\npackaging @ file:///tmp/build/80754af9/packaging_1637314298585/work\npluggy @ file:///tmp/build/80754af9/pluggy_1615976315926/work\npy @ file:///opt/conda/conda-bld/py_1644396412707/work\npyparsing @ file:///tmp/build/80754af9/pyparsing_1635766073266/work\npytest==6.2.4\ntoml @ file:///tmp/build/80754af9/toml_1616166611790/work\ntyping_extensions @ file:///opt/conda/conda-bld/typing_extensions_1647553014482/work\nzipp @ file:///tmp/build/80754af9/zipp_1633618647012/work\n",
+        "test_patch": "diff --git a/tests/__init__.py b/tests/__init__.py\nnew file mode 100644\nindex 0000000..e69de29\ndiff --git a/tests/tbutils_test.py b/tests/tbutils_test.py\nnew file mode 100644\nindex 0000000..64eb17a\n--- /dev/null\n+++ b/tests/tbutils_test.py\n@@ -0,0 +1,54 @@\n+from __future__ import absolute_import\n+from __future__ import unicode_literals\n+\n+from boltons.tbutils import ParsedException\n+\n+\n+def test_normal_tb():\n+    tb = '''\\\n+Traceback (most recent call last):\n+  File \"<string>\", line 2, in _some_function\n+    return some_other_function(1)\n+  File \"myfile.py\", line 3, in some_other_function\n+    return foo(bar, baz)\n+MyException: ExceptionValue\n+'''\n+    parsed = ParsedException.from_string(tb)\n+    assert parsed.exc_type == 'MyException'\n+    assert parsed.exc_msg == ' ExceptionValue'\n+    assert parsed.frames == [\n+        {\n+            'source_line': 'return some_other_function(1)',\n+            'filepath': '<string>',\n+            'lineno': '2',\n+            'funcname': '_some_function'\n+        },\n+        {\n+            'source_line': 'return foo(bar, baz)',\n+            'filepath': 'myfile.py',\n+            'lineno': '3',\n+            'funcname': 'some_other_function',\n+        }\n+    ]\n+\n+\n+def test_eval_tb():\n+    tb = '''\\\n+Traceback (most recent call last):\n+  File \"<string>\", line 2, in _some_function\n+  File \"myfile.py\", line 3, in some_other_function\n+    return foo(bar, baz)\n+MyException: ExceptionValue\n+'''\n+    parsed = ParsedException.from_string(tb)\n+    assert parsed.exc_type == 'MyException'\n+\n+\n+def test_last_line_is_eval_like():\n+    tb = '''\\\n+Traceback (most recent call last):\n+  File \"<string>\", line 2, in _some_function\n+MyException: ExceptionValue\n+'''\n+    parsed = ParsedException.from_string(tb)\n+    assert parsed.exc_type == 'MyException'\n",
+        "version": "0.6"
+      },
+      "row_idx": 10968,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

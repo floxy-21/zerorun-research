@@ -1,0 +1,835 @@
+{
+  "arm": "zerorun",
+  "consumer": {
+    "completed_utc": "2026-09-07T04:25:34.603363+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 1517.8800270005013,
+    "result": {
+      "cache_key": "f66f0ce566e80d93e84aefa0517fedec227e0965843c0bc185e614c5511a7003",
+      "execution_ms": 10186.236,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 32.669,
+        "environment": 0.02,
+        "event_append": 22.449,
+        "fingerprint_final": 564.863,
+        "fingerprint_initial": 589.534,
+        "lock_acquire": 4.784,
+        "readonly_hit_path": 1494.18,
+        "runtime_inspect_initial": 271.937,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "restored_outputs": [],
+      "saved_ms": 8692.054,
+      "status": "HIT_REUSED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 1494.183
+    }
+  },
+  "diagnostics": {
+    "completed_utc": "2026-09-07T04:25:56.115422+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 12717.207382000197,
+    "result": {
+      "cache_key": "f66f0ce566e80d93e84aefa0517fedec227e0965843c0bc185e614c5511a7003",
+      "execution_ms": 7065.903,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 50.72,
+        "docker_execution": 7068.383,
+        "environment": 0.044,
+        "event_append": 11.068,
+        "fingerprint_final": 835.104,
+        "fingerprint_initial": 899.416,
+        "lock_acquire": 2.485,
+        "runtime_inspect_initial": 221.667,
+        "snapshot_cleanup": 33.015,
+        "snapshot_prepare": 3563.584
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 424,
+        "emitted_bytes": 424,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 51 items\n\ntests/dialects/test_bigquery.py .............                            [ 25%]\ntests/dialects/test_dialect.py ......................................    [100%]\n\n============================== 51 passed in 2.66s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 12705.993
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-07T04:25:43.380854+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 8753.272128999015,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "440e0eb9ecf9c168ae88abe8aeccf73a9f6297312804edcdfacd8b8bbae8ad6f",
+        "nodeids": [
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_bigquery",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_errors",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_gap_fill",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_group_concat",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_json_object",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_merge",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_mod",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_models",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_pushdown_cte_column_names",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_remove_precision_parameterized_types",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_rename_table",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_user_defined_functions",
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_warnings",
+          "tests/dialects/test_dialect.py::TestDialect::test_alias",
+          "tests/dialects/test_dialect.py::TestDialect::test_array",
+          "tests/dialects/test_dialect.py::TestDialect::test_array_any",
+          "tests/dialects/test_dialect.py::TestDialect::test_cast",
+          "tests/dialects/test_dialect.py::TestDialect::test_cast_to_user_defined_type",
+          "tests/dialects/test_dialect.py::TestDialect::test_compare_dialects",
+          "tests/dialects/test_dialect.py::TestDialect::test_count_if",
+          "tests/dialects/test_dialect.py::TestDialect::test_create_sequence",
+          "tests/dialects/test_dialect.py::TestDialect::test_cross_join",
+          "tests/dialects/test_dialect.py::TestDialect::test_ddl",
+          "tests/dialects/test_dialect.py::TestDialect::test_decode",
+          "tests/dialects/test_dialect.py::TestDialect::test_enum",
+          "tests/dialects/test_dialect.py::TestDialect::test_get_or_raise",
+          "tests/dialects/test_dialect.py::TestDialect::test_hash_comments",
+          "tests/dialects/test_dialect.py::TestDialect::test_heredoc_strings",
+          "tests/dialects/test_dialect.py::TestDialect::test_if_null",
+          "tests/dialects/test_dialect.py::TestDialect::test_json",
+          "tests/dialects/test_dialect.py::TestDialect::test_lateral_subquery",
+          "tests/dialects/test_dialect.py::TestDialect::test_limit",
+          "tests/dialects/test_dialect.py::TestDialect::test_logarithm",
+          "tests/dialects/test_dialect.py::TestDialect::test_merge",
+          "tests/dialects/test_dialect.py::TestDialect::test_nested_ctes",
+          "tests/dialects/test_dialect.py::TestDialect::test_nullsafe_eq",
+          "tests/dialects/test_dialect.py::TestDialect::test_nullsafe_neq",
+          "tests/dialects/test_dialect.py::TestDialect::test_nvl2",
+          "tests/dialects/test_dialect.py::TestDialect::test_operators",
+          "tests/dialects/test_dialect.py::TestDialect::test_order_by",
+          "tests/dialects/test_dialect.py::TestDialect::test_qualify",
+          "tests/dialects/test_dialect.py::TestDialect::test_random",
+          "tests/dialects/test_dialect.py::TestDialect::test_reserved_keywords",
+          "tests/dialects/test_dialect.py::TestDialect::test_safediv",
+          "tests/dialects/test_dialect.py::TestDialect::test_set_operators",
+          "tests/dialects/test_dialect.py::TestDialect::test_substring",
+          "tests/dialects/test_dialect.py::TestDialect::test_time",
+          "tests/dialects/test_dialect.py::TestDialect::test_transactions",
+          "tests/dialects/test_dialect.py::TestDialect::test_truncate",
+          "tests/dialects/test_dialect.py::TestDialect::test_typeddiv",
+          "tests/dialects/test_dialect.py::TestDialect::test_unsupported_null_ordering"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 7111,
+        "path": "raw-outcomes.json",
+        "sha256": "fc14bec4627a9c98ffcea0bcd840b2b3843848172e562423d6733cc15d166ff6"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 51 items\n\ntests/dialects/test_bigquery.py .............                            [ 25%]\ntests/dialects/test_dialect.py ......................................    [100%]\n\n============================== 51 passed in 4.49s ==============================\n",
+        "wall_ms": 8619.20833899967
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_bigquery": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_errors": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_gap_fill": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_group_concat": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_json_object": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_merge": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_mod": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_models": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_pushdown_cte_column_names": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_remove_precision_parameterized_types": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_rename_table": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_user_defined_functions": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_bigquery.py::TestBigQuery::test_warnings": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_alias": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_array": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_array_any": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_cast": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_cast_to_user_defined_type": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_compare_dialects": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_count_if": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_create_sequence": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_cross_join": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_ddl": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_decode": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_enum": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_get_or_raise": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_hash_comments": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_heredoc_strings": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_if_null": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_json": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_lateral_subquery": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_limit": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_logarithm": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_merge": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_nested_ctes": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_nullsafe_eq": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_nullsafe_neq": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_nvl2": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_operators": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_order_by": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_qualify": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_random": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_reserved_keywords": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_safediv": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_set_operators": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_substring": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_time": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_transactions": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_truncate": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_typeddiv": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/dialects/test_dialect.py::TestDialect::test_unsupported_null_ordering": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T04:25:33.076533+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 17164.37526500158,
+    "result": {
+      "cache_key": "f66f0ce566e80d93e84aefa0517fedec227e0965843c0bc185e614c5511a7003",
+      "execution_ms": 10186.236,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 4.586,
+        "cache_publish": 56.646,
+        "docker_execution": 10191.199,
+        "environment": 0.027,
+        "event_append": 10.88,
+        "fingerprint_final": 896.926,
+        "fingerprint_initial": 968.468,
+        "lock_acquire": 4.995,
+        "runtime_inspect_initial": 279.862,
+        "snapshot_cleanup": 29.107,
+        "snapshot_prepare": 3897.56
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 424,
+        "emitted_bytes": 424,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 51 items\n\ntests/dialects/test_bigquery.py .............                            [ 25%]\ntests/dialects/test_dialect.py ......................................    [100%]\n\n============================== 51 passed in 4.08s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 17153.372
+    }
+  },
+  "setup_outer_ms": 138.74543699967035,
+  "source_sha256": "508b963cd0da6dace72d47c504370ae57fb6ab8751067f9a6ebb430a684722bb",
+  "source_unchanged": true
+}

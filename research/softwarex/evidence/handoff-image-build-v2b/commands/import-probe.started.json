@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--network=none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "127.0.0.1:19509/zerorun-handoff-v2@sha256:155eee3ae061fd7ae8546e728f04705d368fccf79f8dd206059d201d478882c9",
+    "python",
+    "-B",
+    "-c",
+    "import json,pytest,sys;print(json.dumps({'python':sys.version,'pytest':pytest.__version__,'pytest_file':pytest.__file__}))"
+  ],
+  "started_utc": "2026-09-07T04:19:47.759894+00:00"
+}

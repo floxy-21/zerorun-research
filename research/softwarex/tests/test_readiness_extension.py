@@ -20,6 +20,91 @@ def binding(raw):
     return {"bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest()}
 
 
+@pytest.fixture
+def hosted_ci(tmp_path, monkeypatch):
+    root, release = tmp_path / "source", tmp_path / "public"
+    monkeypatch.setattr(readiness, "ROOT", root)
+    receipt = {"schema": "zerorun.hosted-ci-status.v1",
+        "repository": "https://github.com/floxy-21/zerorun-mvp", "commit": "a" * 40,
+        "status": "NOT_STARTED_ACCOUNT_BILLING_OR_SPENDING_LIMIT", "run_id": 123,
+        "run_url": "https://github.com/floxy-21/zerorun-mvp/actions/runs/123",
+        "observed_utc": "2026-09-07T05:42:00+00:00", "observation": "Artificial nonexecution observation.",
+        **{key: False for key in ("test_execution_observed", "test_failure_observed", "hosted_ci_green",
+                                 "account_settings_changed", "payment_made")}}
+    for directory in (root, release):
+        put(directory / readiness.HOSTED_CI_RECEIPT, json.dumps(receipt).encode())
+    return root, release, receipt
+
+
+def test_hosted_ci_administrative_block_is_not_passing_test_evidence(hosted_ci):
+    _, release, _ = hosted_ci
+    result = readiness.check_hosted_ci_observation(release)
+    assert result["used_as_passing_test_evidence"] is False
+    assert result["observation"]["hosted_ci_green"] is False
+
+
+@pytest.mark.parametrize("mode", ["execution-claim", "green-claim", "different-run", "public-drift"])
+def test_hosted_ci_observation_cannot_become_a_green_claim(hosted_ci, mode):
+    root, release, receipt = hosted_ci
+    if mode == "execution-claim":
+        receipt["test_execution_observed"] = True
+    elif mode == "green-claim":
+        receipt["hosted_ci_green"] = True
+    elif mode == "different-run":
+        receipt["run_url"] += "9"
+    else:
+        receipt["observation"] = "Changed local observation."
+    raw = json.dumps(receipt).encode()
+    put(root / readiness.HOSTED_CI_RECEIPT, raw)
+    if mode != "public-drift":
+        put(release / readiness.HOSTED_CI_RECEIPT, raw)
+    with pytest.raises(ValueError):
+        readiness.check_hosted_ci_observation(release)
+
+
+@pytest.fixture
+def current_quickstart(tmp_path, monkeypatch):
+    from research.softwarex import quickstart_052
+    root, release = tmp_path / "source", tmp_path / "public"
+    monkeypatch.setattr(readiness, "ROOT", root)
+    helper = "research/softwarex/quickstart_052.py"
+    for directory in (root, release):
+        put(directory / helper, Path(quickstart_052.__file__).read_bytes())
+        put(directory / "research/softwarex/QUICKSTART_052.md", b"Artificial documented procedure.")
+        put(directory / "research/softwarex/diagnose_mcp_authority_052.py", b"# Artificial diagnostic binding.")
+        for name in ("install.json", "check.json"):
+            put(directory / readiness.CURRENT_QUICKSTART_DIR / name, b"{\"artificial\": true}")
+    outcomes = {"install": {"passed": True, "source_commit": "a" * 40},
+                "check": {"passed": True, "source_commit": "a" * 40}}
+    monkeypatch.setattr(quickstart_052, "validate_receipt_pair", lambda *args: {
+        "installation": deepcopy(outcomes["install"]), "check": deepcopy(outcomes["check"]),
+        "passed": outcomes["install"]["passed"] and outcomes["check"]["passed"],
+        "read_only": True, "model_called": False, "real_repository_authorized": False})
+    return root, release, outcomes
+
+
+def test_current_quickstart_has_separate_version_and_public_bindings(current_quickstart):
+    _, release, _ = current_quickstart
+    value = readiness.check_current_quickstart(release)
+    assert value["version"] == "0.5.2"
+    assert len(value["public_files_sha256"]) == 5
+
+
+@pytest.mark.parametrize("mode", ["failed-install", "failed-workflow", "different-commit", "public-guide-drift"])
+def test_current_quickstart_refuses_stale_or_partial_current_evidence(current_quickstart, mode):
+    _, release, outcomes = current_quickstart
+    if mode == "failed-install":
+        outcomes["install"]["passed"] = False
+    elif mode == "failed-workflow":
+        outcomes["check"]["passed"] = False
+    elif mode == "different-commit":
+        outcomes["check"]["source_commit"] = "b" * 40
+    else:
+        (release / "research/softwarex/QUICKSTART_052.md").write_bytes(b"Changed public guide.")
+    with pytest.raises(ValueError):
+        readiness.check_current_quickstart(release)
+
+
 def save_receipt(context, *, public=True):
     raw = (json.dumps(context["receipt"], sort_keys=True) + "\n").encode()
     relative = readiness.EXTENSION_TESTS + "/receipt.json"
@@ -36,12 +121,14 @@ def extension(tmp_path, monkeypatch):
     code = b"# Artificial source identity, not a real executed test.\n"
     xml = (b'<testsuites><testsuite tests="2" failures="0" errors="0" skipped="0">'
            b'<testcase name="one"/><testcase name="two"/></testsuite></testsuites>')
-    outputs = {"tests.xml": xml, "pytest.log": b"Artificial fixture: two cases.\n"}
+    outputs = {"tests.xml": xml, "pytest.log": b"Artificial fixture.\n2 passed in 0.01s\n"}
     for directory in (root, release):
         put(directory / source, code)
         for name, raw in outputs.items():
             put(directory / readiness.EXTENSION_TESTS / name, raw)
     rows = [{"path": source, **binding(code)}]
+    monkeypatch.setattr(readiness.publication_runner, "inventory", lambda candidate: deepcopy(rows))
+    monkeypatch.setattr(readiness.publication_runner, "test_paths", lambda candidate: ["research/softwarex/tests"])
     receipt = {
         "schema": "zerorun.softwarex-publication-tests.v1",
         "passed": True, "returncode": 0, "failure": None,
@@ -49,7 +136,12 @@ def extension(tmp_path, monkeypatch):
         "source_after": deepcopy(rows),
         "output_files": {name: binding(raw) for name, raw in outputs.items()},
         "junit_counts": {"tests": 2, "failures": 0, "errors": 0, "skipped": 0},
+        "junit_accounting": {"counts": {"tests": 2, "failures": 0, "errors": 0, "skipped": 0},
+                             "testcase_elements": 2, "primary_passed": 2,
+                             "reported_passing_subtests": 0, "passing_subtests_without_testcase": 0},
         "testcases_present": 2, "scope": "Artificial unit fixture only",
+        "command": ["python", "-B", "-m", "pytest", "research/softwarex/tests", "-q",
+                    "--import-mode=importlib", "-p", "no:cacheprovider", "--basetemp=fixture", "--junitxml=fixture.xml"],
     }
     context = {"root": root, "release": release, "source": source,
                "receipt": receipt, "xml": xml}
@@ -67,7 +159,7 @@ def test_matching_source_outputs_and_receipt_pass(extension):
 
 @pytest.mark.parametrize("mode", [
     "local-source", "public-source", "public-receipt", "failed-receipt",
-    "output-bytes", "junit-count", "junit-failure-node", "source-after",
+    "output-bytes", "junit-count", "junit-failure-node", "source-after", "test-omission", "test-filter",
 ])
 def test_drift_or_failure_never_becomes_ready(extension, mode):
     receipt = extension["receipt"]
@@ -91,12 +183,67 @@ def test_drift_or_failure_never_becomes_ready(extension, mode):
             receipt["failure"] = {"type": "TimeoutExpired", "message": "Fixture timeout"}
         elif mode == "junit-count":
             receipt["junit_counts"]["tests"] = 3
+        elif mode == "test-omission":
+            receipt["command"][4] = "research/softwarex/tests/one_only.py"
+        elif mode == "test-filter":
+            receipt["command"] += ["-k", "only_one_case"]
         else:
             receipt["source_after"][0]["sha256"] = "0" * 64
         save_receipt(extension)
     with pytest.raises(ValueError):
         readiness.check_extension_tests(extension["release"])
     assert not (extension["root"] / "research/softwarex/generated/final-readiness.json").exists()
+
+
+@pytest.fixture
+def handoff(tmp_path, monkeypatch):
+    root, release = tmp_path / "handoff-source", tmp_path / "handoff-public"
+    monkeypatch.setattr(readiness, "ROOT", root)
+    relative = readiness.handoff_builder.OUTPUT
+    source = "research/softwarex/evidence/agent-producer-pilot-v1/case-00/final-source.tar.gz"
+    raw = b"Artificial archive binding; no experiment was executed."
+    summary = {"schema": "zerorun.softwarex-handoff-evidence.v1",
+               "available_completed_runs_reconciled": True, "acceptance_probability_estimated": False,
+               "performance_threshold_imposed": False,
+               "agent_evaluation": {"pilot": {"producer_completed": 0}},
+               "unavailable_or_incomplete_runs": ["v2_pilot"]}
+    rows = [{"path": source, **binding(raw)}]
+    calls = []
+    def regenerate(candidate):
+        calls.append(candidate)
+        return deepcopy(summary)
+    monkeypatch.setattr(readiness.handoff_builder, "build", regenerate)
+    monkeypatch.setattr(readiness.handoff_builder, "source_inputs", lambda candidate: deepcopy(rows))
+    for directory in (root, release):
+        put(directory / source, raw)
+        put(directory / relative, json.dumps(summary).encode())
+    return {"root": root, "release": release, "source": source, "relative": relative,
+            "summary": summary, "rows": rows, "calls": calls, "paper": {"handoff": deepcopy(summary)}}
+
+
+def test_handoff_reconciles_private_and_public_inputs_without_requiring_positive_results(handoff):
+    result, count = readiness.check_handoff_evidence(handoff["release"], handoff["paper"])
+    assert result == handoff["summary"] and count == 1
+    assert handoff["calls"] == [handoff["root"], handoff["release"]]
+    assert result["unavailable_or_incomplete_runs"] == ["v2_pilot"]
+
+
+@pytest.mark.parametrize("mode", ["paper", "saved", "public-archive", "missing-archive", "false-scope", "inventory-omission"])
+def test_handoff_stale_or_missing_public_evidence_is_not_ready(handoff, mode):
+    if mode == "paper":
+        handoff["paper"]["handoff"]["unavailable_or_incomplete_runs"] = []
+    elif mode == "saved":
+        put(handoff["root"] / handoff["relative"], b"{}")
+    elif mode == "public-archive":
+        put(handoff["release"] / handoff["source"], b"different archive")
+    elif mode == "missing-archive":
+        (handoff["release"] / handoff["source"]).unlink()
+    elif mode == "false-scope":
+        handoff["summary"]["acceptance_probability_estimated"] = True
+    else:
+        handoff["rows"].clear()
+    with pytest.raises((ValueError, FileNotFoundError)):
+        readiness.check_handoff_evidence(handoff["release"], handoff["paper"])
 
 
 @pytest.fixture

@@ -698,8 +698,21 @@ def _tools() -> list[dict[str, Any]]:
         {
             "name": "run_tests",
             "description": (
-                "Run a configured task-level ZeroRun task. Use run_pytest instead when a valid reviewed pytest profile is present."
-                " The task must be hermetic v2, environment-free, and use an already-present pinned image."
+                "Execute or reuse one configured, result-only ZeroRun task. "
+                "Only task, root, and verify are accepted. Omitting verify is the same as false: "
+                "an eligible prior success may be reused, otherwise execution is fresh or refused. "
+                "verify=true requests fresh execution, comparing a matching stored success when present; "
+                "it does not grant permission or guarantee that setup checks pass. "
+                "Read status, exit_code, and isError together: HIT_REUSED identifies prior success, "
+                "MISS_EXECUTED identifies fresh success, VERIFY_MATCH identifies fresh agreement, "
+                "and MISS_FAILED identifies fresh failure. mode=reuse alone does not identify a hit. "
+                "A hit does not replay stdout/stderr or restore output artifacts. Fresh stdout_tail "
+                "and stderr_tail contain at most the last 4000 captured bytes each, decoded as UTF-8; "
+                "they may be empty or truncated, not a complete diagnostic transcript. "
+                "A protocol or argument error is not fresh test evidence or successful validation. "
+                "The task requires an externally authorized exact v2 manifest, no host environment "
+                "forwarding, and an already-present pinned image. This tool does not authorize tasks "
+                "or acquire runtimes. Use run_pytest for separately reviewed node-level reuse."
             ),
             "annotations": {
                 "title": "Run reviewed ZeroRun task",
@@ -711,9 +724,31 @@ def _tools() -> list[dict[str, Any]]:
             "inputSchema": {
                 "type": "object",
                 "properties": {
-                    "task": {"type": "string"},
-                    "root": root_property,
-                    "verify": {"type": "boolean", "default": False},
+                    "task": {
+                        "type": "string",
+                        "description": (
+                            "Non-empty task name already defined in the reviewed v2 manifest, "
+                            "not a shell command or an expected result. list_tasks lists configured names."
+                        ),
+                    },
+                    "root": {
+                        **root_property,
+                        "description": (
+                            "Optional path in the repository already bound to this MCP server. "
+                            "Defaults to the server working directory; cannot select another repository."
+                        ),
+                    },
+                    "verify": {
+                        "type": "boolean",
+                        "default": False,
+                        "description": (
+                            "False or omitted permits eligible prior-success reuse. True requests "
+                            "fresh execution and comparison with a matching stored success; without "
+                            "one it follows the fresh miss path. Use true when newly executed validation "
+                            "is required rather than prior status. Readiness/authority failures can still "
+                            "refuse execution, and fresh output tails can be empty or truncated."
+                        ),
+                    },
                 },
                 "required": ["task"],
                 "additionalProperties": False,

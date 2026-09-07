@@ -1,0 +1,83 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "test.py::FrontmatterTest::test_unicode_post",
+          "test.py::FrontmatterTest::test_with_crlf_string"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "test.py::FrontmatterTest::test_all_the_tests",
+          "test.py::FrontmatterTest::test_custom_handler",
+          "test.py::FrontmatterTest::test_dumping_with_custom_delimiters",
+          "test.py::FrontmatterTest::test_empty_frontmatter",
+          "test.py::FrontmatterTest::test_json",
+          "test.py::FrontmatterTest::test_no_frontmatter",
+          "test.py::FrontmatterTest::test_pretty_dumping",
+          "test.py::FrontmatterTest::test_to_dict",
+          "test.py::FrontmatterTest::test_to_string",
+          "test.py::FrontmatterTest::test_toml",
+          "test.py::FrontmatterTest::test_with_markdown_content"
+        ],
+        "base_commit": "e017a210fc4c9725c36fb970df03a32cd655aa77",
+        "created_at": "2017-01-30 02:41:18",
+        "docker_image": "swerebench/sweb.eval.x86_64.eyeseast_1776_python-frontmatter-31",
+        "environment": "name: python-frontmatter\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.4.4=h6a678d5_1\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=3.0.16=h5eee18b_0\n  - pip=25.0=py39h06a4308_0\n  - python=3.9.21=he870216_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=75.8.0=py39h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - tzdata=2025a=h04d1e81_0\n  - wheel=0.45.1=py39h06a4308_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - exceptiongroup==1.2.2\n      - iniconfig==2.1.0\n      - packaging==24.2\n      - pluggy==1.5.0\n      - pytest==8.3.5\n      - pyyaml==3.11\n      - six==1.10.0\n      - toml==0.9.1\n      - tomli==2.2.1\nprefix: /opt/conda/envs/python-frontmatter\n",
+        "environment_setup_commit": "e017a210fc4c9725c36fb970df03a32cd655aa77",
+        "hints_text": "",
+        "image_name": "swerebench/sweb.eval.x86_64.eyeseast_1776_python-frontmatter-31",
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "requirements.txt",
+          "pip_packages": [
+            "pytest"
+          ],
+          "pre_install": null,
+          "python": "3.9",
+          "reqs_path": [
+            "requirements.txt"
+          ],
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "eyeseast__python-frontmatter-31",
+        "license_name": "MIT License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_short_problem_statement",
+            "has_many_modified_files",
+            "has_many_hunks"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 1,
+            "test_score": 2
+          },
+          "num_modified_files": 3
+        },
+        "patch": "diff --git a/README.md b/README.md\nindex 16153b1..a19316c 100644\n--- a/README.md\n+++ b/README.md\n@@ -76,10 +76,10 @@ Write back to plain text, too:\n \n Or write to a file (or file-like object):\n \n-    >>> from io import StringIO\n-    >>> f = StringIO()\n+    >>> from io import BytesIO\n+    >>> f = BytesIO()\n     >>> frontmatter.dump(post, f)\n-    >>> print(f.getvalue()) # doctest: +NORMALIZE_WHITESPACE\n+    >>> print(f.getvalue().decode('utf-8')) # doctest: +NORMALIZE_WHITESPACE\n     ---\n     excerpt: tl;dr\n     layout: post\ndiff --git a/docs/conf.py b/docs/conf.py\nindex 6fffc9e..1f9fb46 100644\n--- a/docs/conf.py\n+++ b/docs/conf.py\n@@ -16,9 +16,9 @@\n # add these directories to sys.path here. If the directory is relative to the\n # documentation root, use os.path.abspath to make it absolute, like shown here.\n #\n-# import os\n-# import sys\n-# sys.path.insert(0, os.path.abspath('.'))\n+import os\n+import sys\n+sys.path.insert(0, os.path.abspath('..'))\n \n # -- General configuration ------------------------------------------------\n \ndiff --git a/frontmatter/__init__.py b/frontmatter/__init__.py\nindex 889882f..dd31fe3 100644\n--- a/frontmatter/__init__.py\n+++ b/frontmatter/__init__.py\n@@ -40,16 +40,24 @@ if TOMLHandler is not None:\n     handlers['+++'] = TOMLHandler()\n \n \n-def parse(text, **defaults):\n+def parse(text, encoding='utf-8', **defaults):\n     \"\"\"\n     Parse text with frontmatter, return metadata and content.\n     Pass in optional metadata defaults as keyword args.\n \n     If frontmatter is not found, returns an empty metadata dictionary\n     (or defaults) and original text content.\n+\n+    ::\n+\n+        >>> with open('tests/hello-world.markdown') as f:\n+        ...     metadata, content = frontmatter.parse(f.read())\n+        >>> print(metadata['title'])\n+        Hello, world!\n+\n     \"\"\"\n     # ensure unicode first\n-    text = u(text).strip()\n+    text = u(text, encoding).strip()\n \n     # metadata starts with defaults\n     metadata = defaults.copy()\n@@ -76,44 +84,86 @@ def parse(text, **defaults):\n     return metadata, content.strip()\n \n \n-def load(fd, **defaults):\n+def load(fd, encoding='utf-8', **defaults):\n     \"\"\"\n-    Load and parse a file or filename, return a post.\n+    Load and parse a file-like object or filename, \n+    return a :py:class:`post <frontmatter.Post>`.\n+\n+    ::\n+\n+        >>> post = frontmatter.load('tests/hello-world.markdown')\n+        >>> with open('tests/hello-world.markdown') as f:\n+        ...     post = frontmatter.load(f)\n+\n     \"\"\"\n     if hasattr(fd, 'read'):\n         text = fd.read()\n \n     else:\n-        with codecs.open(fd, 'r', 'utf-8') as f:\n+        with codecs.open(fd, 'r', encoding) as f:\n             text = f.read()\n \n-    return loads(text, **defaults)\n+    return loads(text, encoding, **defaults)\n \n \n-def loads(text, **defaults):\n+def loads(text, encoding='utf-8', **defaults):\n     \"\"\"\n-    Parse text and return a post.\n+    Parse text (binary or unicode) and return a :py:class:`post <frontmatter.Post>`.\n+\n+    ::\n+\n+        >>> with open('tests/hello-world.markdown') as f:\n+        ...     post = frontmatter.loads(f.read())\n+\n     \"\"\"\n-    metadata, content = parse(text, **defaults)\n+    metadata, content = parse(text, encoding, **defaults)\n     return Post(content, **metadata)\n \n \n-def dump(post, fd, **kwargs):\n+def dump(post, fd, encoding='utf-8', **kwargs):\n     \"\"\"\n-    Serialize post to a string and dump to a file-like object.\n+    Serialize :py:class:`post <frontmatter.Post>` to a string and write to a file-like object.\n+    Text will be encoded on the way out (utf-8 by default).\n+\n+    ::\n+\n+        >>> from io import StringIO\n+        >>> f = StringIO()\n+        >>> frontmatter.dump(post, f)\n+        >>> print(f.getvalue())\n+        ---\n+        excerpt: tl;dr\n+        layout: post\n+        title: Hello, world!\n+        ---\n+        Well, hello there, world.\n+\n+\n     \"\"\"\n-    content = dumps(post, **kwargs)\n+    content = dumps(post, **kwargs).encode(encoding)\n     if hasattr(fd, 'write'):\n         fd.write(content)\n \n     else:\n-        with codecs.open(fd, 'w', 'utf-8') as f:\n+        with codecs.open(fd, 'w', encoding) as f:\n             f.write(content)\n \n \n def dumps(post, **kwargs):\n     \"\"\"\n-    Serialize post to a string and return text.\n+    Serialize a :py:class:`post <frontmatter.Post>` to a string and return text. \n+    This always returns unicode text, which can then be encoded.\n+\n+    ::\n+\n+        >>> print(frontmatter.dumps(post))\n+        ---\n+        excerpt: tl;dr\n+        layout: post\n+        title: Hello, world!\n+        ---\n+        Well, hello there, world.\n+\n     \"\"\"\n     kwargs.setdefault('Dumper', SafeDumper)\n     kwargs.setdefault('default_flow_style', False)\n",
+        "problem_statement": "Allow user to pass in an encoding when loading and dumping",
+        "repo": "eyeseast/python-frontmatter",
+        "requirements": "exceptiongroup==1.2.2\niniconfig==2.1.0\npackaging==24.2\npluggy==1.5.0\npytest==8.3.5\n-e git+https://github.com/eyeseast/python-frontmatter.git@e017a210fc4c9725c36fb970df03a32cd655aa77#egg=python_frontmatter\nPyYAML==3.11\nsix==1.10.0\ntoml==0.9.1\ntomli==2.2.1\n",
+        "test_patch": "diff --git a/test.py b/test.py\nindex 07b2883..05fdb3c 100644\n--- a/test.py\n+++ b/test.py\n@@ -44,7 +44,7 @@ class FrontmatterTest(unittest.TestCase):\n \n     def test_unicode_post(self):\n         \"Ensure unicode is parsed correctly\"\n-        chinese = frontmatter.load('tests/chinese.txt')\n+        chinese = frontmatter.load('tests/chinese.txt', 'utf-8')\n \n         self.assertTrue(isinstance(chinese.content, six.text_type))\n \n@@ -107,7 +107,7 @@ class FrontmatterTest(unittest.TestCase):\n     def test_with_crlf_string(self):\n         import codecs\n         markdown_bytes = b'---\\r\\ntitle: \"my title\"\\r\\ncontent_type: \"post\"\\r\\npublished: no\\r\\n---\\r\\n\\r\\nwrite your content in markdown here'\n-        loaded = frontmatter.loads(codecs.decode(markdown_bytes, 'utf-8'))\n+        loaded = frontmatter.loads(markdown_bytes, 'utf-8')\n         self.assertEqual(loaded['title'], 'my title')\n \n     def test_dumping_with_custom_delimiters(self):\n",
+        "version": "unknown"
+      },
+      "row_idx": 7385,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

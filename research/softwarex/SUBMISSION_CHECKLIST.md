@@ -32,7 +32,7 @@ Keep the template's C1–C8 labels and fill these values from the released artif
 
 | Field | Required final value/check |
 | --- | --- |
-| C1 version | Exact code release/version and commit; package currently identifies itself as 0.5.1. |
+| C1 version | Submitted distribution 0.5.2 and exact commit; historical 0.5.1 study runtime separately preserved and identified. Current-version installation/regression receipts must pass before finalization. |
 | C2 GitHub pointer | Public immutable commit or release link for the submitted code, with repository access verified. |
 | C3 license | MIT for ZeroRun-owned code; identify separately licensed evidence, templates, and dependencies. |
 | C4 version control | Git. |

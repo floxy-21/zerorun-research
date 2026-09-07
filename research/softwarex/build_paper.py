@@ -26,6 +26,7 @@ HERE = ROOT / "research/softwarex"
 SQJ = ROOT / "research/sqj"
 EVIDENCE = SQJ / "strengthening/evidence"
 PUBLIC = "https://github.com/floxy-21/zerorun-research"
+TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 
 
 def require(value, message):
@@ -86,6 +87,148 @@ def application_evidence(preview=False):
     return evidence
 
 
+def handoff_evidence(preview=False):
+    """Only reconciled, current records can populate application claims."""
+    if preview:
+        return None
+    from research.softwarex.build_handoff_evidence import build as reconcile_handoffs
+    evidence = reconcile_handoffs(ROOT)
+    require(evidence["available_completed_runs_reconciled"] is True
+            and load(HERE / "generated/handoff-evidence-v1.json") == evidence,
+            "handoff evidence is incomplete or stale")
+    return evidence
+
+
+def handoff_text(evidence):
+    if evidence is None:
+        return "[Layout preview: reconciled issue-state and agent handoff evidence pending.]"
+    acquisition = evidence["acquisition"]
+    pilot_repositories = len({row["repo"] for row in acquisition["cases"] if row["phase"] == "pilot"})
+    paragraphs = [(
+        "A separate, prospectively specified study uses public issue-state repositories with supplied regression tests. "
+        f"The frozen shortlist yielded {acquisition['selected_main_cases']} main cases across "
+        f"{acquisition['selected_main_repositories']} repositories and {acquisition['selected_pilot_cases']} pilot cases "
+        f"across {pilot_repositories} {'repository' if pilot_repositories == 1 else 'repositories'}; "
+        f"the original acquisition target was {acquisition['planned_main_cases']} main cases across "
+        f"{acquisition['planned_main_repositories']} repositories. Selection used a fixed repository shortlist, metadata "
+        "validity and hash ordering, not measured outcomes. Selected, unavailable and unexecuted cases remain in the ledger. "
+        "In controlled reference-patch handoffs, both arms validate the same final source: a cold producer followed "
+        "by a consumer, either fresh twice or ZeroRun seed then reuse. Separate fresh oracles check the results; "
+        "a diagnostics request is measured separately. These are imposed handoffs, not observed repetition frequencies.")]
+    labels = {"v1_pilot": "Copy pilot", "v1_main": "Copy main",
+              "v2_pilot": "Image pilot", "v2_pilot_repeat": "Image repeat", "v2_main": "Image main"}
+    interrupted_image = evidence["controlled_runs"].get("v2_pilot", {}).get("timing_context", {}).get("interruption_reported") is True
+    if interrupted_image:
+        labels["v2_pilot"] = "Image recovered"
+    table_rows, outcome_notes = [], []
+    for name, run in evidence["controlled_runs"].items():
+        if run["state"] != "RECONCILED_RECORDED_OUTCOMES":
+            continue
+        require(name in labels, "unrecognized handoff cohort requires an explicit manuscript label")
+        result = run["reconciliation"]
+        if run["version"] == "v2":
+            result = result["controlled_handoffs"]
+        count = result["complete_cases"]
+        if count:
+            times = result["complete_paired_chain_ms"]
+            change = 100 * (times["zerorun"] / times["fresh"] - 1)
+            direction = "slower" if change >= 0 else "faster"
+            costs = run["complete_paired_costs"]
+            blocks = costs["complete_blocks"]
+            require(blocks == result["complete_blocks"] and costs["chain_ms"] == times,
+                    "handoff narrative cost denominators differ")
+            consumer, setup = costs["consumer_ms"], costs["setup_inclusive_chain_ms"]
+            table_rows.append(
+                f"{labels[name]} & {count}/{result['selected_cases']} & {blocks}/{costs['cache_hits']} & "
+                f"{times['fresh']/1000:.2f}/{times['zerorun']/1000:.2f} & "
+                f"{consumer['fresh']/blocks/1000:.2f}/{consumer['zerorun']/blocks/1000:.2f} & "
+                f"{setup['fresh']/1000:.2f}/{setup['zerorun']/1000:.2f}" + r" \\")
+            outcome_notes.append(f"{labels[name]} was {abs(change):.1f}\\% {direction} over the complete chain.")
+        else:
+            table_rows.append(f"{labels[name]} & 0/{result['selected_cases']} & 0/0 & --- & --- & ---" + r" \\")
+        if result["failed_operations"] or result["material_correctness_stop"]:
+            outcome_notes.append(f"{labels[name]} retains {result['failed_operations']} failed operations; "
+                                 f"a material-correctness stop was {'recorded' if result['material_correctness_stop'] else 'not recorded'}.")
+        if run["campaign_error"]:
+            outcome_notes.append(f"{labels[name]} ended with a retained campaign error.")
+    if table_rows:
+        paragraphs.append("\n".join([
+            r"\begin{table}[htbp]\centering\small",
+            r"\begin{tabular}{@{}lrrrrr@{}}\toprule",
+            r"Deployment & Cases & Blocks/hits & Chain (s) & Consumer (s) & With setup (s) \\",
+            r"\midrule", *table_rows, r"\bottomrule\end{tabular}",
+            r"\caption{Fresh/ZeroRun paired costs, without pooling cohorts. Cases are completed/selected; chain and setup-inclusive times are summed across complete blocks, while consumer times are per-request means. Setup includes per-arm source/environment preparation, excluding common image construction and acquisition. Missing complete timings are dashes, not zero.}",
+            r"\label{tab:handoffs}\end{table}"]))
+        paragraphs.append(" ".join(outcome_notes))
+    if interrupted_image:
+        paragraphs.append("The first image pilot resumed after an operator-reported VM pause and host-storage interruption. "
+                          "Its original records and the recovery amendment are retained; it is not certified uninterrupted timing.")
+    image = evidence["image_build"]
+    if image["state"] == "RECONCILED_RECORDED_IMAGE":
+        preparation = image["reconciliation"]
+        paragraphs.append(
+            f"The dependency-image preparation took {preparation['setup_outer_ms']/1000:.2f}~s, separately from chain ratios. "
+            "It packages the frozen dependencies in an inspected container rather than copying them with each source snapshot. "
+            "Image acquisition, preparation and independent-oracle work are not consumer latency. The recorded image "
+            "is locally digest-bound; public pulling and an independent bit-identical recipe rebuild are not established.")
+    else:
+        paragraphs.append("No completed dependency-image preparation is established in the available records.")
+    if evidence["earlier_image_preparation"]["state"] == "RECONCILED_RECORDED_PREPARATION_FAILURE":
+        failed_setup = evidence["earlier_image_preparation"]["setup_outer_ms"]
+        paragraphs.append(f"The earlier failed image preparation took {failed_setup/1000:.2f}~s; "
+                          "its original sources, failure and costs are retained separately.")
+    paragraphs.append("Acquisition and operator-review costs are outside paired totals; unmeasured preparation is not assigned zero. "
+                      "Fresh-oracle and diagnostic timings are retained separately in the reconciled evidence.")
+    observed_phases = []
+    for phase, agent in evidence["agent_evaluation"].items():
+        if not agent["recorded_model_invocations"]:
+            continue
+        observed_phases.append(phase)
+        producers = [row["reconciliation"] for row in agent["producer_cases"] if "reconciliation" in row]
+        models = sorted({row["requested_model"] for row in producers if row.get("requested_model")})
+        model_text = ", ".join(models).replace("_", r"\_") if models else "the recorded model configuration"
+        invocations, completed = agent["recorded_model_invocations"], agent["producer_completed"]
+        text = (f"The separate coding-agent producer {phase} requested {model_text}: "
+                f"{invocations} model {'invocation' if invocations == 1 else 'invocations'} "
+                f"among {agent['selected_cases']} selected cases, with {completed} completed producer "
+                f"{'session' if completed == 1 else 'sessions'}. The public issue and regression tests "
+                "were supplied, while the reference source solution was withheld. Captured transcripts, final source "
+                "snapshots and unsuccessful states are retained. ")
+        if any(row.get("pre_invocation_error") == "ValueError: isolated CODEX_HOME must not contain user config"
+               for row in agent["producer_cases"]):
+            text += ("Another selected case stopped before model invocation because client-isolation preflight "
+                     "found an existing configuration. It remains in the selection denominator, not a failed model patch. ")
+        evaluation = agent["evaluation"]
+        if evaluation["state"] == "RECONCILED_RECORDED_AGENT_EVALUATION":
+            result = evaluation["reconciliation"]
+            fixes, passed = result["completed_verified_fixes"], result["final_fresh_passes"]
+            text += (f"Separate fresh execution verified {fixes} completed {'fix' if fixes == 1 else 'fixes'} "
+                     f"among {result['selected_cases']} selected cases. A verified fix requires previously failing "
+                     "regression nodes to pass with the same collected node set and a source patch within the recorded boundary. "
+                     f"{passed} final {'snapshot' if passed == 1 else 'snapshots'} passed the selected target. "
+                     f"The downstream scripted handoff completed {result['paired_blocks']} paired blocks; "
+                     "its timing excludes model production and does not measure an autonomous consumer decision.")
+            costs = evaluation["complete_paired_costs"]
+            if costs["complete_blocks"]:
+                chain, consumer, setup = (costs[key] for key in
+                                          ("chain_ms", "consumer_ms", "setup_inclusive_chain_ms"))
+                text += (f" Summed fresh/ZeroRun costs were {chain['fresh']/1000:.2f}/{chain['zerorun']/1000:.2f}~s "
+                         f"for the chain, {consumer['fresh']/1000:.2f}/{consumer['zerorun']/1000:.2f}~s for its consumers, "
+                         f"and {setup['fresh']/1000:.2f}/{setup['zerorun']/1000:.2f}~s including per-arm setup, "
+                         "under the same exclusions as Table~\\ref{tab:handoffs}.")
+            if any(row["case_id"] == "tobymao__sqlglot-3425"
+                   and row["classification"]["completed_verified_fix"] is True for row in result["cases"]):
+                text += (" The verified SQLGlot example concerns a MySQL \\code{REPLACE INTO} parsing failure: "
+                         "the production patch preserves the statement as a command, and the original failing "
+                         "regression passes fresh. This verifies the supplied target, not full SQL semantic support.")
+        else:
+            text += "Independent final-patch verification is incomplete, so no resolved issue is claimed."
+        paragraphs.append(text)
+    if not observed_phases:
+        paragraphs.append("No genuine coding-agent producer is established in the available records.")
+    return "\n\n".join(paragraphs)
+
+
 def application_text(evidence):
     if evidence is None:
         return "[Layout preview: application evidence pending.]"
@@ -112,26 +255,18 @@ def application_text(evidence):
             and quickstart["runtime_files"] == 36,
             "passing public quickstart narrative required")
     return (
-        "Client evaluation separated API execution from model-selected use. A scripted consumer passed 14 response cases; "
-        "11 installed-server checks covered eight discovery/diagnostic requests. All model attempts are retained. "
-        "Trial~1 stopped at missing authority. Trial~2 forwarded the authority path and passed readiness, but Codex denied "
-        "its next call because client approval was unavailable. With explicit, tool-specific operator preapproval, "
-        "trial~3 completed four Codex~0.153.3 turns: readiness, fresh success, identified reuse and fresh verification. "
-        "All four interpretations were correct; two separate fresh container executions agreed. The fifth, model-selected "
-        "request invented an unsupported argument and was rejected before execution. The model declined success, "
-        "but the protocol failed and stopped; the remaining decision and six interpretation cases were not run. "
-        "Thus the core lifecycle passed, not the entire trial. "
-        "The sparse input-parameter description motivated a separately recorded documented-use example; "
-        "it does not establish the cause of the model error. "
-        "That prospectively frozen demonstration supplied one neutral API card to both decision prompts. "
-        "After non-model readiness and seeding, the model selected normal reuse for a status-only need and fresh "
-        "verification for a fresh-evidence need; both decisions and two independent fresh checks passed. "
-        "Six fixed no-tool interpretation cases also passed, including fresh failure, refusal, and rejecting a hit "
-        "when fresh diagnostics were required. All eight model turns are retained, without retries. "
-        "This documents bounded use, not a causal documentation effect or population accuracy. "
-        "An account-free laboratory guide additionally exercises missing-authority refusal, authorized readiness, "
-        "fresh success, reuse and verification through the actual server. After an external-adapter check, "
-        "a clean public clone and new external installation reproduced the published procedure with 36 matching runtime modules. "
+        "A scripted consumer passed 14 response cases; 11 installed-server checks covered eight discovery/diagnostic requests. "
+        "Three earlier Codex~0.153.3 configurations remain unsuccessful overall: missing authority, client-side approval "
+        "refusal, and an unsupported model-generated argument after a successful four-turn readiness/execution/reuse/verification "
+        "core. Trial~3's two separate fresh checks agreed, but its later failure prevented the remaining planned checks. "
+        "The full trial ledger and transcripts are retained. "
+        "A separately frozen API-guided demonstration supplied a neutral API card. After non-model readiness and seeding, "
+        "the model selected reuse for a status-only need and fresh verification for a fresh-evidence need; both decisions "
+        "and two separate fresh checks passed. Six fixed no-tool interpretation cases also passed, including failure, refusal "
+        "and rejection of a hit when fresh diagnostics were required. All eight model turns are retained without retries. "
+        "This is bounded documented use, not a causal documentation experiment. "
+        "An account-free guide additionally reproduced refusal, authorized readiness, fresh success, reuse and verification "
+        "through the actual server from a clean public clone and external installation with 36 matching runtime modules. "
         f"The recorded installation took {installation['elapsed_seconds']:.1f}~s and the server check {quickstart['elapsed_seconds']:.1f}~s, "
         "excluding cloning, prior Docker setup and researcher preparation. These are researcher-executed checks, not independent user observations.")
 
@@ -256,10 +391,15 @@ def build(preview=False):
         abstract = "The four-target study, completed through an explicit post-crash recovery, reconciles 168 fresh comparisons and 96 reused successes."
         result = (
             "Across 24 completed planned blocks, all 168 requests agreed with their fresh full-target checks and showed the expected cache behavior, including 96 optimized hits and 72 non-hit requests. "
-            "Table~\\ref{tab:replication} reports full-sequence and setup-inclusive ratios, all-block spread, and conditional median-hit savings separately. No completed block or outlying invocation within those blocks is dropped; interrupted-attempt costs are reported separately. "
-            "The complete-block record contains 504 timed arm invocations and 168 separate fresh-oracle captures. The original five-subject results are not pooled with this extension. "
-            "A VirtualBox host assertion interrupted execution after 21 complete blocks and part of Packaging block four. A recorded amendment reran only the unfinished preselected blocks four through six using the unchanged driver. Original failures, partial records, crash remnants and recovery preflight failures remain available. This is recovered coverage, not uninterrupted completion of the no-retry protocol. Packaging's unflushed original setup total is unavailable, so its setup-inclusive ratio is omitted. "
-            f"The interrupted attempt additionally retains {replication['additional_interrupted_complete_requests']} complete request, {replication['additional_incomplete_requests']} partial request and an outcome-less invocation directory. Including its surviving arm costs changes Packaging's direct/optimized ratio to {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}.")
+            "Table~\\ref{tab:replication} separates full-sequence cost, setup, all-block spread and conditional hit savings. "
+            "All 504 complete-block arm invocations and 168 separate fresh-oracle captures are retained. "
+            "A VirtualBox host assertion interrupted execution after 21 complete blocks and part of Packaging block four. "
+            "A recorded amendment reran only unfinished preselected blocks four through six with the unchanged driver. "
+            "Original failures, partial records and recovery preflight failures remain available; this is recovered coverage, "
+            "not uninterrupted completion. Packaging's unflushed setup total is unavailable, so its setup-inclusive ratio is omitted. "
+            f"The interrupted attempt retains {replication['additional_interrupted_complete_requests']} complete request, "
+            f"{replication['additional_incomplete_requests']} partial request and an outcome-less invocation. Including its surviving "
+            f"arm costs changes Packaging's direct/optimized ratio to {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}.")
         table_rows = []
         for r in compact:
             setup = r['setup_inclusive_direct_to_fast_ratio']
@@ -288,9 +428,19 @@ def build(preview=False):
     _, operating_text = extension_text(extension)
     application = application_evidence(preview)
     client_text = application_text(application)
+    handoff = handoff_evidence(preview)
+    if handoff:
+        pilot = handoff["agent_evaluation"]["pilot"]["evaluation"]
+        if (pilot["state"] == "RECONCILED_RECORDED_AGENT_EVALUATION"
+                and pilot["reconciliation"]["completed_verified_fixes"]):
+            verified = pilot["reconciliation"]
+            fixes = verified["completed_verified_fixes"]
+            abstract += (f" Separate fresh evaluation verified {verified['completed_verified_fixes']} completed agent "
+                         f"{'fix' if fixes == 1 else 'fixes'} among {verified['selected_cases']} selected real-issue pilot cases.")
     slots = {"PUBLIC_COMMIT": commit, "ABSTRACT_RESULT": abstract, "REPLICATION_RESULT": result,
              "REPLICATION_ROWS": table, "STATE_REJOIN": state_text, "ORIGINAL_RESULTS": original_text}
-    slots.update({"CLIENT_EVIDENCE": client_text, "OPERATING_REGION": operating_text})
+    slots.update({"CLIENT_EVIDENCE": client_text, "OPERATING_REGION": operating_text,
+                  "HANDOFF_EVIDENCE": handoff_text(handoff)})
     source = HERE / "paper/submission.tex.in"
     document = source.read_text(encoding="utf-8")
     for key, value in slots.items():
@@ -302,12 +452,12 @@ def build(preview=False):
     abstract_text = document.split("\\begin{abstract}")[1].split("\\end{abstract}")[0]
     require(len(abstract_text.split()) <= 150, "abstract exceeds local short-abstract bound; template requests approximately 100 words")
     refs = bibliography(document)
-    summary = {"schema": "zerorun.softwarex-paper.v1", "preview": preview, "public_release": publication,
+    summary = {"schema": "zerorun.softwarex-paper.v1", "preview": preview, "public_release": publication, "title": TITLE,
         "template_sha256": digest(source), "main_tex_sha256": hashlib.sha256(document.encode()).hexdigest(),
         "bibliography_sha256": hashlib.sha256(refs.encode()).hexdigest(),
         "original_comparison": original, "engineering": engineering, "fine_grained_revision": revision,
         "replication": replication, "state_rejoin": state_binding, "trace_summary_sha256": digest(EVIDENCE / "trace-summary-v1.json"),
-        "inventory": inventory, "extension": extension, "application": application,
+        "inventory": inventory, "extension": extension, "application": application, "handoff": handoff,
         "abstract_whitespace_words": len(abstract_text.split()),
         "meaning": "Evidence and format validation, not an acceptance probability or production qualification."}
     return document, refs, summary

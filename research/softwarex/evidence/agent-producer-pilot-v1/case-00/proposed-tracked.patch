@@ -1,0 +1,21 @@
+diff --git a/sqlglot/dialects/mysql.py b/sqlglot/dialects/mysql.py
+index 37915c8..afa16d9 100644
+--- a/sqlglot/dialects/mysql.py
++++ b/sqlglot/dialects/mysql.py
+@@ -251,7 +251,7 @@ class MySQL(Dialect):
+             "@@": TokenType.SESSION_PARAMETER,
+         }
+ 
+-        COMMANDS = tokens.Tokenizer.COMMANDS - {TokenType.SHOW}
++        COMMANDS = tokens.Tokenizer.COMMANDS - {TokenType.SHOW} | {TokenType.REPLACE}
+ 
+     class Parser(parser.Parser):
+         FUNC_TOKENS = {
+@@ -330,6 +330,7 @@ class MySQL(Dialect):
+ 
+         STATEMENT_PARSERS = {
+             **parser.Parser.STATEMENT_PARSERS,
++            TokenType.REPLACE: lambda self: self._parse_command(),
+             TokenType.SHOW: lambda self: self._parse_show(),
+         }
+ 

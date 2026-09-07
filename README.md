@@ -2,7 +2,9 @@
 
 Software for **ZeroRun: Reproducible test-result reuse for AI coding tools**, by Jishan Kapoor, Independent researcher, Toronto, Canada. Correspondence: kapoorjishan2@gmail.com.
 
-This is a clean research distribution of the runtime at commit `86f42289c2f59a74b1f642f0b20d1a26b3d55e57`, packaged as version 0.5.1. It includes selected runtime regression tests, research drivers, immutable observations, and independently checked summaries. `PUBLIC_RELEASE_MANIFEST.json` records each file's bytes, origin, and SHA256. Runtime source bytes are unchanged; packaging uses a `src/` layout. Five file-path references in two selected tests are adapted to that layout and the relocated skill document; this is recorded in the manifest. The distribution does not contain development history or private operator credentials.
+This clean research distribution packages **ZeroRun 0.5.2**. `PUBLIC_RELEASE_MANIFEST.json` records the exact current runtime commit, package version, and each file's bytes, origin, and SHA256. Version 0.5.2 changes the package/module version and the discoverable MCP `run_tests` descriptions relative to the preserved 0.5.1 runtime at commit `86f42289c2f59a74b1f642f0b20d1a26b3d55e57`; its execution and reuse logic is unchanged. The release includes selected runtime regression tests, research drivers, immutable observations, and independently checked summaries. Packaging uses a `src/` layout, with selected test-path adaptations recorded in the manifest. Historical experiments and their original 0.5.1 installation/test receipts remain identified separately; they do not certify the current 0.5.2 candidate. The distribution does not contain development history or private operator credentials.
+
+Git-derived files preserve the tested archive representation: the builder explicitly fixes `core.autocrlf=true` and `core.eol=crlf`, so text newline conversion is independent of host defaults. Manifest `git:` origins identify committed paths; each payload hash identifies its exported bytes, which can differ from the raw Git blob's line endings.
 
 The analysis helper uses its exact recorded physical bytes; the [public-layout correction](research/softwarex/PUBLIC_LAYOUT_CORRECTION.md) documents the newline-only packaging mismatch caught by clean-copy validation and the separately retested correction. The original refusal and pre-correction test receipts remain available.
 
@@ -10,11 +12,11 @@ ZeroRun can reuse a prior successful **result** for explicitly configured determ
 
 ## Submission package
 
-The completed submission snapshot includes the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence](output/submission/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for exact checked hashes and remaining author-controlled steps. The manuscript's earlier immutable code/evidence pointer is intentionally distinct from this later submission snapshot. No journal submission or payment is performed by publishing these files.
+The submission artifacts, when included in the checked snapshot, are the [manuscript PDF](output/pdf/zerorun-softwarex.pdf), [editable source](output/submission/SoftwareX_source.zip), [reviewer software and evidence](output/submission/ZeroRun_SoftwareX_reviewer.zip), and [author upload guide](research/softwarex/UPLOAD_GUIDE.md). Use [final-readiness.json](research/softwarex/generated/final-readiness.json) for the exact checked version/hashes and remaining author-controlled steps. Completion requires a receipt bound to the actual current distribution; a retained 0.5.1 receipt or the existence of an archive is not sufficient. The manuscript's immutable code/evidence pointer is intentionally distinct from the later submission snapshot. No journal submission or payment is performed by publishing these files.
 
 ## Install
 
-For an account-free runnable Linux example, start with the [laboratory quickstart](research/softwarex/QUICKSTART_LAB.md). It records a new external installation and five actual synthetic STDIO requests; no Codex login or historical evidence bundle is needed.
+For an account-free runnable Linux example, start with the [0.5.2 laboratory quickstart](research/softwarex/QUICKSTART_052.md). It records a new external installation and five actual synthetic STDIO requests; no Codex login or historical evidence bundle is needed.
 
 Python 3.10 or later is required. From this repository root, create a fresh environment outside the checkout. Linux/macOS:
 
@@ -41,7 +43,17 @@ The package has no third-party Python runtime dependency; building uses setuptoo
 
 ## Offline evidence checks
 
-Run these from the repository root with the installed environment's Python. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**; this is separate from the runtime and laboratory quickstart's Python 3.10+ requirement. The older float-aggregation behavior is not byte-identical to the archived canonical analysis. The versioned reproduction check also reconciles one unordered crash-file inventory without changing measurements or permitting numeric tolerances. See [the portability record](research/softwarex/evidence/analysis-portability-v1/README.md). These commands parse local observations and do **not** execute any recorded AI-agent command:
+Run these from the repository root with the installed environment's Python. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**; this is separate from the runtime and laboratory quickstart's Python 3.10+ requirement. The older float-aggregation behavior is not byte-identical to the archived canonical analysis. The versioned reproduction check also reconciles one unordered crash-file inventory without changing measurements or permitting numeric tolerances. See [the portability record](research/softwarex/evidence/analysis-portability-v1/README.md).
+
+**Verify the complete submission snapshot first**, before generating any new test evidence. The offline verifier checks the public file manifest, submission archives and evidence reconciliations, then verifies that the snapshot is unchanged. It does not execute recorded agent commands or rerun repository experiments:
+
+```sh
+"$study_env/bin/python" -B -m research.softwarex.verify_submission
+# Windows PowerShell:
+# & $studyPython -B -m research.softwarex.verify_submission
+```
+
+The individual commands below are useful for investigating a specific analysis check; they do not replace complete snapshot verification:
 
 ```sh
 "$study_env/bin/python" -B -m research.sqj.strengthening.validate_traces --check
@@ -57,20 +69,24 @@ Run these from the repository root with the installed environment's Python. Cano
 To run the included unit tests, install pytest in the same environment and use a new temporary directory for each run:
 
 ```sh
-"$study_env/bin/python" -m pip install pytest==9.0.2
-"$study_env/bin/python" -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp=/tmp/zerorun-research-tests-unique
+"$study_env/bin/python" -m pip install pytest==9.1.1
+"$study_env/bin/python" -B -m pytest tests research/sqj/strengthening/tests -q -p no:cacheprovider --basetemp=/tmp/zerorun-research-tests-unique
 # Windows PowerShell, with a new name on every run:
-# & $studyPython -m pip install pytest==9.0.2
-# & $studyPython -B -m pytest tests research/sqj/strengthening/tests research/softwarex/tests -q --basetemp="$env:TEMP/zerorun-research-tests-unique"
+# & $studyPython -m pip install pytest==9.1.1
+# & $studyPython -B -m pytest tests research/sqj/strengthening/tests -q -p no:cacheprovider --basetemp="$env:TEMP/zerorun-research-tests-unique"
 ```
 
 The temporary directory **must be outside every Git checkout**, on every platform. Some trust tests intentionally create incomplete `.git` fixtures; Git must not discover an ancestor repository. The first staging test attempt used a nested development-repository directory and exposed this harness constraint; its [failure report](research/softwarex/evidence/public-release-tests-1.xml) is retained separately from the corrected-location run. On Windows, use a fresh absolute path under a non-repository temporary directory. POSIX permission checks require a non-root Linux user and are explicitly skipped when the platform cannot express the tested behavior. The included tests are a selected research/runtime set, not a claim that every development-repository test is included.
 
-The `research/softwarex/tests` directory additionally checks publication evidence bindings and archive construction. Its bounded test records, including prior failed attempts and their environment explanations, are retained under `research/softwarex/evidence` and `research/softwarex/generated`; these later publication checks are separate from the earlier 465-pass public-layout regression run. The frozen client receipt validators have separate offline tests:
+The publication runner checks `research/softwarex/tests` and all ten explicitly listed nested offline test modules, including the client, acquisition, handoff, image and agent-evaluation validators. Running only `research/softwarex/tests` omits those nested modules. After complete snapshot verification, use a new output name on every run:
 
 ```sh
-"$study_env/bin/python" -B -m pytest research/softwarex/live_client_v2/test_validation.py research/softwarex/live_client_v3/test_validation.py research/softwarex/guided_client_v1/test_validation.py --import-mode=importlib -q --basetemp=/tmp/zerorun-client-validator-tests-unique
+"$study_env/bin/python" -B -m research.softwarex.run_publication_tests --output research/softwarex/evidence/reviewer-offline-tests-unique
+# Windows PowerShell:
+# & $studyPython -B -m research.softwarex.run_publication_tests --output research/softwarex/evidence/reviewer-offline-tests-unique
 ```
+
+This optional test run creates new evidence files inside the checkout, so it changes the file inventory relative to the distributed manifest. Keep that modified test copy separate from the pristine snapshot used for manifest verification. Retained publication test records, including prior failures and their explanations, remain separate from the historical 465-pass public-layout regression run.
 
 `research/sqj/REEXECUTION.md` documents fresh container experiments separately. Those procedures acquire pinned public dependencies and execute upstream test code, require a suitable isolated laboratory, and create **new** evidence; they are not needed to inspect the recorded data. Preserve the original evidence when rerunning. Balanced short-subject replication is described in `research/sqj/strengthening/PROTOCOL.md`; any subsequently included state-rejoin experiment is a separately labeled bounded example, not a replay of the sampled AI cohort.
 
@@ -91,7 +107,7 @@ The separate public AI-trace cohort contains 128 selected episodes and 122 analy
 
 The [application-results ledger](research/softwarex/APPLICATION_RESULTS.md) preserves three earlier adverse client trials and the successful bounded API-guided demonstration. V3 completed four actual model lifecycle turns and two fresh oracle checks before an unsupported argument stopped its next turn. The guided treatment separately passed two model-selected actions, two fresh oracles, and six no-tool interpretation cases. These are synthetic interface demonstrations, not eight autonomous coding tasks, population accuracy, or a causal evaluation of the documentation.
 
-The literal [public quickstart](research/softwarex/QUICKSTART_LAB.md) passed from a fresh public clone with no intervention: seven installation commands and five actual STDIO stages, with all 36 runtime files bound. The [raw installation](research/softwarex/evidence/quickstart-public-v1/install.json) and [server check](research/softwarex/evidence/quickstart-public-v1/check.json) are separate from model evidence and are internal reproduction, not external user validation. The original fine-grained 5x/50% product gates remain unmet; they are not claims made by this SoftwareX manuscript.
+The historical 0.5.1 [public quickstart](research/softwarex/QUICKSTART_LAB.md) passed from a fresh public clone with no intervention: seven installation commands and five actual STDIO stages, with all 36 runtime files bound. The [raw installation](research/softwarex/evidence/quickstart-public-v1/install.json) and [server check](research/softwarex/evidence/quickstart-public-v1/check.json) are separate from model evidence and are internal reproduction, not external user validation. The original fine-grained 5x/50% product gates remain unmet; they are not claims made by this SoftwareX manuscript.
 
 There are no measured external users, commercial deployments, or established market-demand results in this release. Its contribution is a reusable tool and evaluation artifact with explicit limitations, not a new general caching algorithm or a claim of journal acceptance.
 

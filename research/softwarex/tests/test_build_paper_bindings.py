@@ -46,7 +46,7 @@ def binding(tmp_path, monkeypatch):
     write(review_path, {"verified": True, "text_sha256": paper.digest(text_path), "analysis_sha256": paper.digest(analysis_path)})
     template = "\\begin{abstract}@@ABSTRACT_RESULT@@\\end{abstract}\n"
     template += "\n".join("\\section{" + s + "}" for s in ("Motivation and significance", "Software description", "Illustrative examples", "Impact", "Conclusions"))
-    template += "\n@@PUBLIC_COMMIT@@ @@REPLICATION_RESULT@@ @@REPLICATION_ROWS@@ @@STATE_REJOIN@@ @@ORIGINAL_RESULTS@@ @@CLIENT_EVIDENCE@@ @@OPERATING_REGION@@"
+    template += "\n@@PUBLIC_COMMIT@@ @@REPLICATION_RESULT@@ @@REPLICATION_ROWS@@ @@STATE_REJOIN@@ @@ORIGINAL_RESULTS@@ @@CLIENT_EVIDENCE@@ @@OPERATING_REGION@@ @@HANDOFF_EVIDENCE@@"
     (here / "paper/submission.tex.in").write_text(template, encoding="utf-8")
     return here, evidence, analysis, review_path, text_path, analysis_path
 

@@ -69,6 +69,45 @@ def tar_bytes(prefix, files, special=None):
     return output.getvalue()
 
 
+def differently_ordered_source_inventory():
+    # A sibling HTML file and nested module expose the real Path-vs-string
+    # ordering difference without importing or executing either file.
+    raw = tar_bytes("agent-final", {"docs/sqlglot.html": b"page\n",
+                                    "docs/sqlglot/_typing.html": b"nested page\n"})
+    archive_rows = r.pv.source_archive_inventory(raw)
+    captured_rows = sorted(archive_rows, key=lambda row: Path(row["path"]))
+    assert captured_rows != archive_rows
+    return raw, captured_rows
+
+
+def test_archived_final_source_accepts_complete_inventory_in_producer_path_order():
+    raw, captured = differently_ordered_source_inventory()
+    original = r.h.encoded(captured)
+    v.check_archived_final_source(raw, captured)
+    assert r.h.encoded(captured) == original
+
+
+@pytest.mark.parametrize("change", ["missing", "duplicate", "path", "kind", "bytes", "sha256"])
+def test_order_normalization_does_not_hide_source_inventory_changes(change):
+    raw, captured = differently_ordered_source_inventory()
+    captured = [dict(row) for row in captured]
+    row = next(row for row in captured if row["path"] == "docs/sqlglot.html")
+    if change == "missing":
+        captured.remove(row)
+    elif change == "duplicate":
+        captured.append(dict(row))
+    elif change == "path":
+        row["path"] = "docs/another.html"
+    elif change == "kind":
+        row["kind"] = "directory"
+    elif change == "bytes":
+        row["bytes"] += 1
+    else:
+        row["sha256"] = "0" * 64
+    with pytest.raises(ValueError, match="archived final source bytes differ"):
+        v.check_archived_final_source(raw, captured)
+
+
 def fixture(tmp_path, monkeypatch):
     prepared, output = tmp_path / "producer", tmp_path / "evaluation"
     case_dir = prepared / "case-00"

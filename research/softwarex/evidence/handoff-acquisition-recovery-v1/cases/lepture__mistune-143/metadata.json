@@ -1,0 +1,85 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "tests/test_extra.py::test_parse_nested_html"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "tests/test_extra.py::test_escape",
+          "tests/test_extra.py::test_linebreak",
+          "tests/test_extra.py::test_safe_links",
+          "tests/test_extra.py::test_skip_style",
+          "tests/test_extra.py::test_use_xhtml",
+          "tests/test_extra.py::test_parse_inline_html",
+          "tests/test_extra.py::test_block_html",
+          "tests/test_extra.py::test_parse_block_html",
+          "tests/test_extra.py::test_trigger_more_cases",
+          "tests/test_extra.py::test_not_escape_block_tags",
+          "tests/test_extra.py::test_not_escape_inline_tags",
+          "tests/test_extra.py::test_hard_wrap_renderer"
+        ],
+        "base_commit": "cef69acaa506567595e95ab6ecea25a806de622e",
+        "created_at": "2017-11-29 17:11:39",
+        "docker_image": "swerebench/sweb.eval.x86_64.lepture_1776_mistune-143",
+        "environment": "name: mistune\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - exceptiongroup=1.2.0=py39h06a4308_0\n  - iniconfig=1.1.1=pyhd3eb1b0_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.4.4=h6a678d5_1\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=3.0.16=h5eee18b_0\n  - packaging=24.2=py39h06a4308_0\n  - pip=25.0=py39h06a4308_0\n  - pluggy=1.5.0=py39h06a4308_0\n  - pytest=8.3.4=py39h06a4308_0\n  - python=3.9.21=he870216_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=75.8.0=py39h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - tomli=2.0.1=py39h06a4308_0\n  - tzdata=2025a=h04d1e81_0\n  - wheel=0.45.1=py39h06a4308_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - nose==1.3.7\nprefix: /opt/conda/envs/mistune\n",
+        "environment_setup_commit": "c674108105e3419c6bfdf247c6082a9c6f5852fb",
+        "hints_text": "",
+        "image_name": "swerebench/sweb.eval.x86_64.lepture_1776_mistune-143",
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "pytest",
+          "pip_packages": [
+            "nose",
+            "pytest"
+          ],
+          "pre_install": [
+            "apt-get update",
+            "apt-get install -y gcc"
+          ],
+          "python": "3.9",
+          "reqs_path": null,
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "lepture__mistune-143",
+        "license_name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_short_problem_statement",
+            "has_hyperlinks",
+            "has_issue_reference"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 2,
+            "test_score": 3
+          },
+          "num_modified_files": 1
+        },
+        "patch": "diff --git a/mistune.py b/mistune.py\nindex 5b05fcb..175ff01 100644\n--- a/mistune.py\n+++ b/mistune.py\n@@ -503,7 +503,7 @@ class InlineLexer(object):\n         'linebreak', 'strikethrough', 'text',\n     ]\n     inline_html_rules = [\n-        'escape', 'autolink', 'url', 'link', 'reflink',\n+        'escape', 'inline_html', 'autolink', 'url', 'link', 'reflink',\n         'nolink', 'double_emphasis', 'emphasis', 'code',\n         'linebreak', 'strikethrough', 'text',\n     ]\n",
+        "problem_statement": "nested html links are broken with parse_block_html \nthis is a variant of #81\r\n\r\n    example_in = '<div><a href=\"https://example.com\">Example.com</a></div>'\r\n    mistune.markdown(example_in, escape=False, parse_block_html=True)\r\n\r\nwill generate:\r\n\r\n    <div><a href=\"<a href=\"https://example.com\"&gt;Example.com\">https://example.com\"&gt;Example.com</a></a></div>\r\n\r\nif escape is toggled to True, it is also broken:\r\n\r\n   '&lt;div&gt;&lt;a href=\"&lt;a href=\"https://example.com\"&gt;Example.com\"&gt;https://example.com\"&gt;Example.com&lt;/a&gt;&lt;/a&gt;&lt;/div&gt;\r\n",
+        "repo": "lepture/mistune",
+        "requirements": "exceptiongroup @ file:///croot/exceptiongroup_1706031385326/work\niniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work\n-e git+https://github.com/lepture/mistune.git@cef69acaa506567595e95ab6ecea25a806de622e#egg=mistune\nnose==1.3.7\npackaging @ file:///croot/packaging_1734472117206/work\npluggy @ file:///croot/pluggy_1733169602837/work\npytest @ file:///croot/pytest_1738938843180/work\ntomli @ file:///opt/conda/conda-bld/tomli_1657175507142/work\n",
+        "test_patch": "diff --git a/tests/test_extra.py b/tests/test_extra.py\nindex c1d37d9..3cb9799 100644\n--- a/tests/test_extra.py\n+++ b/tests/test_extra.py\n@@ -116,6 +116,21 @@ def test_parse_block_html():\n     assert '<strong>' not in ret\n \n \n+def test_parse_nested_html():\n+    ret = mistune.markdown(\n+        '<div><a href=\"http://example.org\">**foo**</a></div>',\n+        parse_block_html=True, escape=False\n+    )\n+    assert '<div><a href=\"http://example.org\">' in ret\n+    assert '<strong>' not in ret\n+\n+    ret = mistune.markdown(\n+        '<div><a href=\"http://example.org\">**foo**</a></div>',\n+        parse_block_html=True, parse_inline_html=True, escape=False\n+    )\n+    assert '<div><a href=\"http://example.org\"><strong>' in ret\n+\n+\n def test_trigger_more_cases():\n     markdown = mistune.Markdown(\n         inline=mistune.InlineLexer,\n",
+        "version": "0.8"
+      },
+      "row_idx": 10677,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

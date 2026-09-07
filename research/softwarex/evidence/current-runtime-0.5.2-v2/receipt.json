@@ -1,0 +1,652 @@
+{
+  "authority_changed": false,
+  "commands": [
+    {
+      "command": [
+        "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+        "-m",
+        "venv",
+        "/tmp/zerorun-current-runtime-skv990mr/venv"
+      ],
+      "cwd": "/tmp/zerorun-current-runtime-skv990mr",
+      "error": null,
+      "finished_utc": "2026-09-07T04:09:29.753892+00:00",
+      "label": "create_venv",
+      "returncode": 0,
+      "started_utc": "2026-09-07T04:09:24.660738+00:00",
+      "stderr": {
+        "base64": "",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "base64": "",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "command": [
+        "/tmp/zerorun-current-runtime-skv990mr/venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "pip",
+        "install",
+        "--no-index",
+        "--no-deps",
+        "--disable-pip-version-check",
+        "/home/floxy/zerorun-five-hour-20260907/public-stage-052/output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl"
+      ],
+      "cwd": "/tmp/zerorun-current-runtime-skv990mr",
+      "error": null,
+      "finished_utc": "2026-09-07T04:09:30.802733+00:00",
+      "label": "install_wheel",
+      "returncode": 0,
+      "started_utc": "2026-09-07T04:09:29.753932+00:00",
+      "stderr": {
+        "base64": "",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "base64": "UHJvY2Vzc2luZyAvaG9tZS9mbG94eS96ZXJvcnVuLWZpdmUtaG91ci0yMDI2MDkwNy9wdWJsaWMtc3RhZ2UtMDUyL291dHB1dC9wYWNrYWdlcy96ZXJvcnVuLXNvZnR3YXJleC96ZXJvcnVuLTAuNS4yLXB5My1ub25lLWFueS53aGwKSW5zdGFsbGluZyBjb2xsZWN0ZWQgcGFja2FnZXM6IHplcm9ydW4KU3VjY2Vzc2Z1bGx5IGluc3RhbGxlZCB6ZXJvcnVuLTAuNS4yCg==",
+        "bytes": 208,
+        "sha256": "2e1442733e54bb29291919a2a17f42dc47adcb2e2427bb23a3217e2ce5f2c19a"
+      }
+    },
+    {
+      "command": [
+        "/tmp/zerorun-current-runtime-skv990mr/venv/bin/python",
+        "-I",
+        "-B",
+        "-c",
+        "import json,pathlib,hashlib,zerorun; print(json.dumps({'version':zerorun.__version__,'module':str(pathlib.Path(zerorun.__file__).resolve()),'files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in pathlib.Path(zerorun.__file__).parent.glob('*.py')}}))"
+      ],
+      "cwd": "/tmp/zerorun-current-runtime-skv990mr",
+      "error": null,
+      "finished_utc": "2026-09-07T04:09:30.873764+00:00",
+      "label": "installed_smoke",
+      "returncode": 0,
+      "started_utc": "2026-09-07T04:09:30.802774+00:00",
+      "stderr": {
+        "base64": "",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "base64": "eyJ2ZXJzaW9uIjogIjAuNS4yIiwgIm1vZHVsZSI6ICIvdG1wL3plcm9ydW4tY3VycmVudC1ydW50aW1lLXNrdjk5MG1yL3ZlbnYvbGliL3B5dGhvbjMuMTAvc2l0ZS1wYWNrYWdlcy96ZXJvcnVuL19faW5pdF9fLnB5IiwgImZpbGVzIjogeyJzb3VyY2VfdW5jZXJ0YWludHkucHkiOiAiYWY0ZDQwOTVmYWQ4MWI3OTIyZjhiNTRhOWU4MDRhZTZkMjI5NGZiMTg2MmJmMDdlODNhNjBlYjQwODRhOWQ2YyIsICJweXRlc3RfcmV2aWV3LnB5IjogIjQxMTA3YmVmNDRiYjBiNzc3YTJmOWE4NTI1ZjRkYzBiMjcxZTczM2VkNzJlM2U3MjIwYjJmY2JlMWQ4N2E5ZDYiLCAicHl0ZXN0X3Jldmlld19jbGkucHkiOiAiMGE4M2ZjNWE1YzEzNDljODRhYTE4YTE1Njk4OWM5NDJmMWY4M2EwYzA2MmQxNjg4MjViZjNhZmI1YjNmYTJlMCIsICJzdG9yZS5weSI6ICIzNmExZTJhNzc2YjgyZDAwMjY0M2Q0YWQ0YWM5NzY1OWNjYjQ4NGZhODNlN2EzZDkyOWYwNzE2MGYzNDdiNTdlIiwgIm1hbmlmZXN0LnB5IjogImUxYTI3NmNiYjcxMGI0NThmODVkMjE0M2YyOWM0ODlmNWZkZTcwYWRjYzA2ZDE4NGYzOWMwNDVjNDJhOTMzMTQiLCAiaGVybWV0aWNfYmF0Y2gucHkiOiAiYjdiZGNlOGRiNjNjYTEyMTI2ZjkyMTE5NTQ5Yzc5MjA3NTQ1NDRlMmYyZjUwNzM5ZTdlYTcyNWYxNGQzY2IxMiIsICJmaW5nZXJwcmludC5weSI6ICI2M2M2ZjhhN2RiNjJkYWFlZDA3MTJjNWM3YjFjOThlYWQ0YzVkNTBmZWYyNmYzNWQ0ZDc5M2RjNzBiMmYwMGI4IiwgInB5dGVzdF9zZXR1cC5weSI6ICIyOTY2ZjI3ZDdhMzFkNTMwYjEzZmYyZjVlZjA5ZDZjMjJkYmYzNjE0NGRiYTcxM2QxYTRhNjM2MGZiM2FkYjgwIiwgImFwaS5weSI6ICI0OWU3YTVhMzUzMzNlZDJjNWFlN2I2OTU0OTFmMzA3YWQyMTYxOWNiYWZjZDUyM2I3NzNhMDRkODQ1MThlYTI1IiwgImhlcm1ldGljX2tleS5weSI6ICI4MDNkN2RjYThiMGZmZmM5ZTViYTVlYmIxODgzMDc0MmQxMjI1ZTBhYTBkZTkwNmQ1Y2I2ZjFkYjc2ZGQ4MWFkIiwgIl9faW5pdF9fLnB5IjogIjRlMWVmNjIwNzFhM2FhYjMwYWFiOWFhZTVlODQyNzc2MzNiZjgxNzg1MTA4YjYwYzdlNjQzNmExZmE5OTAwMmEiLCAicHl0ZXN0X3F1YWxpZnkucHkiOiAiNzNhNjZhZjZiZWE3OTU1MGUyMThiMjgxNTU5MDNlOWYwY2NlMDI2NTI1OTkxNDNkYjBhZDlhZDdjMzMxNTAxMCIsICJwaWxvdC5weSI6ICJlYmQzZTQ2MjI4OTFjMzJkNTVmNjc1M2E0YzBiZjk3M2JkOGEyODZjODQ0NDdiZjQ4YTYwYTlmZDMzNmRhYTc2IiwgInB5dGVzdF9ub2RlX2NhY2hlLnB5IjogIjQyNjNkZDcyNTYzYTljMGNjMTg3NzBmYjYwZWExMjI5MjQ2Y2Y2OTM2YjQ1ZWUzZDgwZDBiYjgzM2M1MGE3ZDIiLCAib2NpLnB5IjogIjdhNjRjOTIxODVlMjI1MmRmNGU1NGE5YjlkZTllYzk2NjQ3YjcwMDVjMDY4NGQxNmZlNDJhNzY3ZTM0OTNlMTIiLCAiYm91bmRlZF9qc29uLnB5IjogIjkyM2FkYjQwMDk4MjQ5OTA4YWRmNTA5ZWVjMDZkYjFmODc2YjFiMjFjMjVlNDZjOTdhMWM4NDkwZTQwZGY0ZmYiLCAicHl0ZXN0X3ByZXBhcmVfY2xpLnB5IjogImM2NTZkMGU1Y2Q0MzdhYjViYTVmNjJmOTgzYWRiZGVjNTQ1N2FiYzVlNWJiMzZkMzY4NTBhMTlmOTdmNWVmYjMiLCAicHl0ZXN0X2Nsb3N1cmUucHkiOiAiOTFiYWZkN2M3MjVkYjhmMWJkNTI2ZDUyZGJjYTY3YzM0ODhmMzE1ZDE1NjAwZmE5NGYyNWY3OTI4ODNkMTViZSIsICJweXRlc3RfcHJvZmlsZS5weSI6ICJhZTE4YjA4YTdiOGYzNTk2ZGM4ZGFjZTgxYTMxMzRmOWFkZDg4ZDM0NGI1ZjI5NDFiZjNjZmRlYmI4YTc1MWRiIiwgImNvZGV4LnB5IjogIjZiMmM1ZmU3YTMzZTZkZjhkYTU5NWI4NDY5NDFhNzA1OWFjMjYwMTdkNGZjY2Q2MDZlNzdhNGFkNGRlYTFmMWQiLCAiX19tYWluX18ucHkiOiAiZDIyMGQ4OGRkOWEyNWNkMDYyOWM1MTc2ZGQ2NTMyYTJkYjFkYTQwZWIwMTRhOGU4MDc5NmIwZGRlYjEzNDkxOCIsICJweXRlc3RfcnVudGltZS5weSI6ICJmZjgzNzUxMzZlYTc5OTQ5ZmM2NWYwZjg0NWFjOWQwZTlhNTY3ZTdhNDAyODhiNDIxOTJhNzZkZjZlMDNmNjI2IiwgInB5dGVzdF9ub2RlX2tleS5weSI6ICIyMGI3NWY1MTgxYzU2MmVhNGZhZjQ2NjI2ODNmMWUzOWQ3ZGRhZjA3YjEyMDA5ODY2ZDhmNGNmYzZmZjg2Y2Y0IiwgImNsaS5weSI6ICI3ZDhhNmY1MmJmNGM5NzM5NGViOTQwMGY4ZGM1OTNkN2QyNWNjMTExOTM0N2UzZTQ4OTgzOTUxNTU4MDc3MzBhIiwgInB5dGVzdF9ub2RlX2lkZW50aXR5LnB5IjogImY1MDhkNGMxYTI1ZWJkNjQ0ZmZiNWYwNDliYWRlMjAzMGYxZDk0MTUxYjhjNTZlYmQyOGE3MTYzZWJmNmY5YTIiLCAibWNwLnB5IjogImNmMzJkNDdkYzQwZTkxNGM2ZjJlNDExNTQ4ZGNhNDUyNTAwNWIwOTI4ODIxYzAzNTAxOGZkYzc2YjBjZDYzZjQiLCAicGF0aF9zYWZldHkucHkiOiAiMGU0NjUxOWY2NDIyOGI2OWY1YWFlYTdmY2JkMTZlOWY5ZDYwZDAyNWYxYzEzNmUwMmJkMjM4ZWI1MjI5YThjMSIsICJweXRlc3RfY29sbGVjdGlvbl9jb250cmFjdC5weSI6ICIyYzNlNDEyOWQwNmQ2MDM5YzFmYmYxMTU1ZTk5OWQ1Mjg2MWQyMjU1ZjU4NTg3ZDc4NzJkMTVmMzMzNjRhMzUxIiwgImhlcm1ldGljX3N0b3JlLnB5IjogIjRlZDRmY2I0MWNmYjUxOTFlNTVlOTQzODAyOTQ0NzBiMGI3OWFhZDU0MmZiOTdlM2E1Y2Y1YTNlMWY4NDJkNDIiLCAidHJ1c3QucHkiOiAiYTI2ZDFlMmQxMzAxMTc5OTMxOGYyMTI1MmMwMTcwOGRlMTM1NDcxYzQ0MTcxNmVhMmJjODYyMDJiMTdkODI0NyIsICJtb2RlbC5weSI6ICIwZmY3YWMzMjM5YjM0MzZmYjc4YjIwODVhMGU2YmYwNTUzZjI3ZGVlMzNlYzVkYzE1MzU4NTgzOTZmNTc4Njk1IiwgImhlcm1ldGljLnB5IjogImRlNjNhNzdjYmY3YTM0MmEyM2Y3MTYwNGNiNmFiZGQ5MzE0YWUwMmVjOWRmMzU4NTI3YWI3NWU1ZWU2YTVmMzgiLCAiaGVybWV0aWNfYmF0Y2hfa2V5LnB5IjogImY1MGU0ZTA1NzVhMmRjNmQ0MTVhMDkwY2FiYTFlNjZlYzcyNDY4ZjAxNmI4MDUzNzM5NTAyOGRjOTY0ZDA4NjciLCAicnVubmVyLnB5IjogImEzN2NhYjBjMTk1YzUyNGE2ZGRhZDc2M2ZhMjg2ZTJkZGM5MTM3YjI5N2YzZmVkZWNlMDBmMjEyYmYxYTk0YzUiLCAid29ya3NwYWNlLnB5IjogImE5MWQ2YjU1Yjk2MjdiNGM2YjQ1ZDg0MzgxYzRjYzdiYzY5ZjlmNzQxMzI4OWU5Yzg1M2UwZTAxNTgyZWYyZDMiLCAibm9ybWFsaXphdGlvbi5weSI6ICI3NjU1YmIzMTNiOGEyMTYzZjg3OTZlZmU0OGE2ZmVkMTNjOWI4MWFjYzdkMDZjNzBmNmUzMjk0YTFmY2E0ZGI4In19Cg==",
+        "bytes": 3238,
+        "sha256": "1e2b7b29aa8c55c25a9c1db619fd71c2b2d10d1cd2edbba39ebacc46df6e3fe5"
+      }
+    },
+    {
+      "command": [
+        "/tmp/zerorun-current-runtime-skv990mr/venv/bin/python",
+        "-I",
+        "-B",
+        "-m",
+        "zerorun",
+        "--help"
+      ],
+      "cwd": "/tmp/zerorun-current-runtime-skv990mr",
+      "error": null,
+      "finished_utc": "2026-09-07T04:09:31.014762+00:00",
+      "label": "installed_help",
+      "returncode": 0,
+      "started_utc": "2026-09-07T04:09:30.873804+00:00",
+      "stderr": {
+        "base64": "",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "base64": "dXNhZ2U6IHplcm9ydW4gWy1oXSBbLS12ZXJzaW9uXSBbLS1tYW5pZmVzdCBNQU5JRkVTVF0gWy0tanNvbl0KICAgICAgICAgICAgICAge2luaXQsYXV0aG9yaXplLG1jcC1zZXJ2ZXIscnVuLGV4cGxhaW4sbGlzdCxzdGF0cyxkb2N0b3IscGlsb3QtZXhwb3J0LG9ic2VydmUsY2FjaGV9CiAgICAgICAgICAgICAgIC4uLgoKQ29uc2VydmF0aXZlIGRldGVybWluaXN0aWMgdGVzdC1yZXN1bHQgcmV1c2UgZm9yIEFJIGNvZGluZyBhZ2VudHMgYW5kIENJCgpwb3NpdGlvbmFsIGFyZ3VtZW50czoKICB7aW5pdCxhdXRob3JpemUsbWNwLXNlcnZlcixydW4sZXhwbGFpbixsaXN0LHN0YXRzLGRvY3RvcixwaWxvdC1leHBvcnQsb2JzZXJ2ZSxjYWNoZX0KICAgIGluaXQgICAgICAgICAgICAgICAgaW5zdGFsbCBhZ2VudCBpbnRlZ3JhdGlvbiBmb3IgdGhlIGN1cnJlbnQgcmVwb3NpdG9yeQogICAgYXV0aG9yaXplICAgICAgICAgICBzdG9yZSBleHRlcm5hbCBwZXItdXNlciBhdXRob3JpdHkgZm9yIGV4YWN0IHJldmlld2VkCiAgICAgICAgICAgICAgICAgICAgICAgIGNvbmZpZ3VyYXRpb24KICAgIG1jcC1zZXJ2ZXIgICAgICAgICAgcnVuIHRoZSBaZXJvUnVuIE1DUCBzZXJ2ZXIgb3ZlciBzdGRpbwogICAgcnVuICAgICAgICAgICAgICAgICBydW4gb3Igc2FmZWx5IHJlcGxheSBhIGNvbmZpZ3VyZWQgdGFzawogICAgZXhwbGFpbiAgICAgICAgICAgICBleHBsYWluIHdoZXRoZXIgYSBjb25maWd1cmVkIHRhc2sgaXMgcmV1c2FibGUKICAgIGxpc3QgICAgICAgICAgICAgICAgbGlzdCBjb25maWd1cmVkIHRhc2tzCiAgICBzdGF0cyAgICAgICAgICAgICAgIHN1bW1hcml6ZSBsb2NhbCBleGVjdXRpb24gYW5kIHJldXNlIGV2ZW50cwogICAgZG9jdG9yICAgICAgICAgICAgICB2YWxpZGF0ZSB0aGUgbWFuaWZlc3QgYW5kIHJ1bnRpbWUgY29udHJhY3QKICAgIHBpbG90LWV4cG9ydCAgICAgICAgd3JpdGUgYSBwcml2YWN5LXByZXNlcnZpbmcgYWdncmVnYXRlIHBpbG90IG1ldHJpY3MKICAgICAgICAgICAgICAgICAgICAgICAgcmVwb3J0CiAgICBvYnNlcnZlICAgICAgICAgICAgIG1lYXN1cmUgYW4gdW5jb25maWd1cmVkIGNvbW1hbmQgd2l0aG91dCBjYWNoaW5nIGl0CiAgICBjYWNoZSAgICAgICAgICAgICAgIG1hbmFnZSB0aGUgbG9jYWwgY2FjaGUKCm9wdGlvbnM6CiAgLWgsIC0taGVscCAgICAgICAgICAgIHNob3cgdGhpcyBoZWxwIG1lc3NhZ2UgYW5kIGV4aXQKICAtLXZlcnNpb24gICAgICAgICAgICAgc2hvdyBwcm9ncmFtJ3MgdmVyc2lvbiBudW1iZXIgYW5kIGV4aXQKICAtLW1hbmlmZXN0IE1BTklGRVNUICAgcGF0aCB0byAuemVyb3J1bi5qc29uCiAgLS1qc29uICAgICAgICAgICAgICAgIHByaW50IG1hY2hpbmUtcmVhZGFibGUgcmVzdWx0IEpTT04K",
+        "bytes": 1395,
+        "sha256": "0f11c7660f912f10eaf296af73cc04b96ca0bfd2860f057d97d4e26e20a1afde"
+      }
+    },
+    {
+      "command": [
+        "/home/floxy/.zerorun-final-venv-d7c9764efe3c/bin/python",
+        "-B",
+        "-c",
+        "import pathlib,sys; source=pathlib.Path(sys.argv[1]).resolve(); sys.path.insert(0,str(source/'src')); import zerorun,pytest; assert pathlib.Path(zerorun.__file__).resolve()==source/'src/zerorun/__init__.py'; raise SystemExit(pytest.main(sys.argv[2:]))",
+        "/home/floxy/zerorun-five-hour-20260907/public-stage-052",
+        "tests",
+        "-q",
+        "--import-mode=importlib",
+        "-p",
+        "no:cacheprovider",
+        "--basetemp=/tmp/zerorun-current-runtime-skv990mr/cases",
+        "--junitxml=/home/floxy/zerorun-five-hour-20260907/public-stage-052/research/softwarex/evidence/current-runtime-0.5.2-v2/tests.xml"
+      ],
+      "cwd": "/home/floxy/zerorun-five-hour-20260907/public-stage-052",
+      "error": null,
+      "finished_utc": "2026-09-07T04:09:42.183620+00:00",
+      "label": "public_regression",
+      "returncode": 1,
+      "started_utc": "2026-09-07T04:09:31.014801+00:00",
+      "stderr": {
+        "base64": "",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "base64": "Li4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uIFsgMjYlXQouLi4uLi4uLnMuLi5zLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uIFsgNTAlXQouLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4gWyA3NiVdCi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uLi4uRi4uLkZGLkYuLiAgICAgICAgICBbMTAwJV0KPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gRkFJTFVSRVMgPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0KXyB0ZXN0X2V4YWN0X21hbmlmZXN0X2F1dGhvcml0eV9wZXJzaXN0c19hY3Jvc3NfcHJvY2Vzc2VzX2FuZF9pbnZhbGlkYXRlc19vbl9lZGl0IF8KCnRtcF9wYXRoID0gUG9zaXhQYXRoKCcvdG1wL3plcm9ydW4tY3VycmVudC1ydW50aW1lLXNrdjk5MG1yL2Nhc2VzL3Rlc3RfZXhhY3RfbWFuaWZlc3RfYXV0aG9yaXR5XzAnKQoKICAgIGRlZiB0ZXN0X2V4YWN0X21hbmlmZXN0X2F1dGhvcml0eV9wZXJzaXN0c19hY3Jvc3NfcHJvY2Vzc2VzX2FuZF9pbnZhbGlkYXRlc19vbl9lZGl0KAogICAgICAgIHRtcF9wYXRoOiBQYXRoLAogICAgKSAtPiBOb25lOgogICAgICAgIG1hbmlmZXN0LCBfID0gX3dyaXRlX3YyX3JlcG9zaXRvcnkodG1wX3BhdGggLyAicmVwb3NpdG9yeSIpCiAgICAgICAgZGlnZXN0ID0gdHJ1c3QubWFuaWZlc3Rfc2hhMjU2KG1hbmlmZXN0KQogICAgICAgIHRydXN0LmF1dGhvcml6ZV9tYW5pZmVzdChtYW5pZmVzdCwgZXhwZWN0ZWRfbWFuaWZlc3Rfc2hhMjU2PWRpZ2VzdCkKICAgIAogICAgICAgIHNjcmlwdCA9ICgKICAgICAgICAgICAgImZyb20gcGF0aGxpYiBpbXBvcnQgUGF0aDsgIgogICAgICAgICAgICAiZnJvbSB6ZXJvcnVuLm1hbmlmZXN0IGltcG9ydCBsb2FkX21hbmlmZXN0OyAiCiAgICAgICAgICAgICJmcm9tIHplcm9ydW4udHJ1c3QgaW1wb3J0IG1hbmlmZXN0X2lzX2F1dGhvcml6ZWQ7ICIKICAgICAgICAgICAgZiJtPWxvYWRfbWFuaWZlc3QoUGF0aCh7c3RyKG1hbmlmZXN0LnBhdGgpIXJ9KSk7ICIKICAgICAgICAgICAgInJhaXNlIFN5c3RlbUV4aXQoMCBpZiBtYW5pZmVzdF9pc19hdXRob3JpemVkKG0pIGVsc2UgNykiCiAgICAgICAgKQogICAgICAgIHByb2Nlc3MgPSBzdWJwcm9jZXNzLnJ1bigKICAgICAgICAgICAgW3N5cy5leGVjdXRhYmxlLCAiLWMiLCBzY3JpcHRdLAogICAgICAgICAgICBjd2Q9UFJPSkVDVF9ST09ULAogICAgICAgICAgICBlbnY9ZGljdChvcy5lbnZpcm9uKSwKICAgICAgICAgICAgc3Rkb3V0PXN1YnByb2Nlc3MuUElQRSwKICAgICAgICAgICAgc3RkZXJyPXN1YnByb2Nlc3MuUElQRSwKICAgICAgICAgICAgdGV4dD1UcnVlLAogICAgICAgICAgICBjaGVjaz1GYWxzZSwKICAgICAgICAgICAgdGltZW91dD0zMCwKICAgICAgICApCj4gICAgICAgYXNzZXJ0IHByb2Nlc3MucmV0dXJuY29kZSA9PSAwLCBwcm9jZXNzLnN0ZGVycgpFICAgICAgIEFzc2VydGlvbkVycm9yOiBUcmFjZWJhY2sgKG1vc3QgcmVjZW50IGNhbGwgbGFzdCk6CkUgICAgICAgICAgIEZpbGUgIjxzdHJpbmc+IiwgbGluZSAxLCBpbiA8bW9kdWxlPgpFICAgICAgICAgTW9kdWxlTm90Rm91bmRFcnJvcjogTm8gbW9kdWxlIG5hbWVkICd6ZXJvcnVuJwpFICAgICAgICAgCkUgICAgICAgYXNzZXJ0IDEgPT0gMApFICAgICAgICArICB3aGVyZSAxID0gQ29tcGxldGVkUHJvY2VzcyhhcmdzPVsnL2hvbWUvZmxveHkvLnplcm9ydW4tZmluYWwtdmVudi1kN2M5NzY0ZWZlM2MvYmluL3B5dGhvbicsICctYycsICJmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGg7IGZyby4uLiAobW9zdCByZWNlbnQgY2FsbCBsYXN0KTpcbiAgRmlsZSAiPHN0cmluZz4iLCBsaW5lIDEsIGluIDxtb2R1bGU+XG5Nb2R1bGVOb3RGb3VuZEVycm9yOiBObyBtb2R1bGUgbmFtZWQgXCd6ZXJvcnVuXCdcbicpLnJldHVybmNvZGUKCnRlc3RzL3Rlc3RfdHJ1c3QucHk6MTY3OiBBc3NlcnRpb25FcnJvcgpfX19fX19fXyB0ZXN0X2NhY2hlX3RhbXBlcmluZ19hbmRfY3Jvc3NfY2hlY2tvdXRfY29weV9uZXZlcl95aWVsZF9hX2hpdCBfX19fX19fXwoKdG1wX3BhdGggPSBQb3NpeFBhdGgoJy90bXAvemVyb3J1bi1jdXJyZW50LXJ1bnRpbWUtc2t2OTkwbXIvY2FzZXMvdGVzdF9jYWNoZV90YW1wZXJpbmdfYW5kX2Nyb3NzMCcpCgogICAgZGVmIHRlc3RfY2FjaGVfdGFtcGVyaW5nX2FuZF9jcm9zc19jaGVja291dF9jb3B5X25ldmVyX3lpZWxkX2FfaGl0KAogICAgICAgIHRtcF9wYXRoOiBQYXRoLAogICAgKSAtPiBOb25lOgogICAgICAgIGZpcnN0X21hbmlmZXN0ID0gX3dyaXRlX3YxX3JlcG9zaXRvcnkodG1wX3BhdGggLyAiZmlyc3QiKQo+ICAgICAgIGZpcnN0ID0gX3J1bl9jbGkoZmlyc3RfbWFuaWZlc3QpCgp0ZXN0cy90ZXN0X3RydXN0LnB5OjIyOTogCl8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gCgptYW5pZmVzdCA9IFBvc2l4UGF0aCgnL3RtcC96ZXJvcnVuLWN1cnJlbnQtcnVudGltZS1za3Y5OTBtci9jYXNlcy90ZXN0X2NhY2hlX3RhbXBlcmluZ19hbmRfY3Jvc3MwL2ZpcnN0Ly56ZXJvcnVuLmpzb24nKQoKICAgIGRlZiBfcnVuX2NsaShtYW5pZmVzdDogUGF0aCkgLT4gZGljdDoKICAgICAgICBwcm9jZXNzID0gc3VicHJvY2Vzcy5ydW4oCiAgICAgICAgICAgIFsKICAgICAgICAgICAgICAgIHN5cy5leGVjdXRhYmxlLAogICAgICAgICAgICAgICAgIi1tIiwKICAgICAgICAgICAgICAgICJ6ZXJvcnVuIiwKICAgICAgICAgICAgICAgICItLW1hbmlmZXN0IiwKICAgICAgICAgICAgICAgIHN0cihtYW5pZmVzdCksCiAgICAgICAgICAgICAgICAiLS1qc29uIiwKICAgICAgICAgICAgICAgICJydW4iLAogICAgICAgICAgICAgICAgIndvcmsiLAogICAgICAgICAgICBdLAogICAgICAgICAgICBjd2Q9UFJPSkVDVF9ST09ULAogICAgICAgICAgICBlbnY9ZGljdChvcy5lbnZpcm9uKSwKICAgICAgICAgICAgc3Rkb3V0PXN1YnByb2Nlc3MuUElQRSwKICAgICAgICAgICAgc3RkZXJyPXN1YnByb2Nlc3MuUElQRSwKICAgICAgICAgICAgdGV4dD1UcnVlLAogICAgICAgICAgICBjaGVjaz1GYWxzZSwKICAgICAgICAgICAgdGltZW91dD0zMCwKICAgICAgICApCj4gICAgICAgYXNzZXJ0IHByb2Nlc3MucmV0dXJuY29kZSA9PSAwLCBwcm9jZXNzLnN0ZGVycgpFICAgICAgIEFzc2VydGlvbkVycm9yOiAvaG9tZS9mbG94eS8uemVyb3J1bi1maW5hbC12ZW52LWQ3Yzk3NjRlZmUzYy9iaW4vcHl0aG9uOiBObyBtb2R1bGUgbmFtZWQgemVyb3J1bgpFICAgICAgICAgCkUgICAgICAgYXNzZXJ0IDEgPT0gMApFICAgICAgICArICB3aGVyZSAxID0gQ29tcGxldGVkUHJvY2VzcyhhcmdzPVsnL2hvbWUvZmxveHkvLnplcm9ydW4tZmluYWwtdmVudi1kN2M5NzY0ZWZlM2MvYmluL3B5dGhvbicsICctbScsICd6ZXJvcnVuJywgJy0tbWFuaWZlc3QnLCAnL3RtcC4uLiwgcmV0dXJuY29kZT0xLCBzdGRvdXQ9JycsIHN0ZGVycj0nL2hvbWUvZmxveHkvLnplcm9ydW4tZmluYWwtdmVudi1kN2M5NzY0ZWZlM2MvYmluL3B5dGhvbjogTm8gbW9kdWxlIG5hbWVkIHplcm9ydW5cbicpLnJldHVybmNvZGUKCnRlc3RzL3Rlc3RfdHJ1c3QucHk6MTM5OiBBc3NlcnRpb25FcnJvcgpfX19fX19fX19fX19fXyB0ZXN0X2xlZ2l0aW1hdGVfY2FjaGVfcmV1c2Vfc3Vydml2ZXNfYV9uZXdfcHJvY2VzcyBfX19fX19fX19fX19fXwoKdG1wX3BhdGggPSBQb3NpeFBhdGgoJy90bXAvemVyb3J1bi1jdXJyZW50LXJ1bnRpbWUtc2t2OTkwbXIvY2FzZXMvdGVzdF9sZWdpdGltYXRlX2NhY2hlX3JldXNlX3N1MCcpCgogICAgZGVmIHRlc3RfbGVnaXRpbWF0ZV9jYWNoZV9yZXVzZV9zdXJ2aXZlc19hX25ld19wcm9jZXNzKHRtcF9wYXRoOiBQYXRoKSAtPiBOb25lOgogICAgICAgIG1hbmlmZXN0ID0gX3dyaXRlX3YxX3JlcG9zaXRvcnkodG1wX3BhdGggLyAicmVwb3NpdG9yeSIpCj4gICAgICAgZmlyc3QgPSBfcnVuX2NsaShtYW5pZmVzdCkKCnRlc3RzL3Rlc3RfdHJ1c3QucHk6MjUzOiAKXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyAKCm1hbmlmZXN0ID0gUG9zaXhQYXRoKCcvdG1wL3plcm9ydW4tY3VycmVudC1ydW50aW1lLXNrdjk5MG1yL2Nhc2VzL3Rlc3RfbGVnaXRpbWF0ZV9jYWNoZV9yZXVzZV9zdTAvcmVwb3NpdG9yeS8uemVyb3J1bi5qc29uJykKCiAgICBkZWYgX3J1bl9jbGkobWFuaWZlc3Q6IFBhdGgpIC0+IGRpY3Q6CiAgICAgICAgcHJvY2VzcyA9IHN1YnByb2Nlc3MucnVuKAogICAgICAgICAgICBbCiAgICAgICAgICAgICAgICBzeXMuZXhlY3V0YWJsZSwKICAgICAgICAgICAgICAgICItbSIsCiAgICAgICAgICAgICAgICAiemVyb3J1biIsCiAgICAgICAgICAgICAgICAiLS1tYW5pZmVzdCIsCiAgICAgICAgICAgICAgICBzdHIobWFuaWZlc3QpLAogICAgICAgICAgICAgICAgIi0tanNvbiIsCiAgICAgICAgICAgICAgICAicnVuIiwKICAgICAgICAgICAgICAgICJ3b3JrIiwKICAgICAgICAgICAgXSwKICAgICAgICAgICAgY3dkPVBST0pFQ1RfUk9PVCwKICAgICAgICAgICAgZW52PWRpY3Qob3MuZW52aXJvbiksCiAgICAgICAgICAgIHN0ZG91dD1zdWJwcm9jZXNzLlBJUEUsCiAgICAgICAgICAgIHN0ZGVycj1zdWJwcm9jZXNzLlBJUEUsCiAgICAgICAgICAgIHRleHQ9VHJ1ZSwKICAgICAgICAgICAgY2hlY2s9RmFsc2UsCiAgICAgICAgICAgIHRpbWVvdXQ9MzAsCiAgICAgICAgKQo+ICAgICAgIGFzc2VydCBwcm9jZXNzLnJldHVybmNvZGUgPT0gMCwgcHJvY2Vzcy5zdGRlcnIKRSAgICAgICBBc3NlcnRpb25FcnJvcjogL2hvbWUvZmxveHkvLnplcm9ydW4tZmluYWwtdmVudi1kN2M5NzY0ZWZlM2MvYmluL3B5dGhvbjogTm8gbW9kdWxlIG5hbWVkIHplcm9ydW4KRSAgICAgICAgIApFICAgICAgIGFzc2VydCAxID09IDAKRSAgICAgICAgKyAgd2hlcmUgMSA9IENvbXBsZXRlZFByb2Nlc3MoYXJncz1bJy9ob21lL2Zsb3h5Ly56ZXJvcnVuLWZpbmFsLXZlbnYtZDdjOTc2NGVmZTNjL2Jpbi9weXRob24nLCAnLW0nLCAnemVyb3J1bicsICctLW1hbmlmZXN0JywgJy90bXAuLi4sIHJldHVybmNvZGU9MSwgc3Rkb3V0PScnLCBzdGRlcnI9Jy9ob21lL2Zsb3h5Ly56ZXJvcnVuLWZpbmFsLXZlbnYtZDdjOTc2NGVmZTNjL2Jpbi9weXRob246IE5vIG1vZHVsZSBuYW1lZCB6ZXJvcnVuXG4nKS5yZXR1cm5jb2RlCgp0ZXN0cy90ZXN0X3RydXN0LnB5OjEzOTogQXNzZXJ0aW9uRXJyb3IKX19fX19fX19fIHRlc3RfYXJ0aWZhY3RfYW5kX3N0cmVhbV9zd2FwX2FmdGVyX3ZhbGlkYXRpb25fYXJlX3JlamVjdGVkIF9fX19fX19fX18KCm1vbmtleXBhdGNoID0gPF9weXRlc3QubW9ua2V5cGF0Y2guTW9ua2V5UGF0Y2ggb2JqZWN0IGF0IDB4N2ZiMjI4NThjZmQwPgp0bXBfcGF0aCA9IFBvc2l4UGF0aCgnL3RtcC96ZXJvcnVuLWN1cnJlbnQtcnVudGltZS1za3Y5OTBtci9jYXNlcy90ZXN0X2FydGlmYWN0X2FuZF9zdHJlYW1fc3dhcF8wJykKCiAgICBkZWYgdGVzdF9hcnRpZmFjdF9hbmRfc3RyZWFtX3N3YXBfYWZ0ZXJfdmFsaWRhdGlvbl9hcmVfcmVqZWN0ZWQoCiAgICAgICAgbW9ua2V5cGF0Y2g6IHB5dGVzdC5Nb25rZXlQYXRjaCwgdG1wX3BhdGg6IFBhdGgKICAgICkgLT4gTm9uZToKICAgICAgICBtYW5pZmVzdF9wYXRoID0gX3dyaXRlX3YxX3JlcG9zaXRvcnkodG1wX3BhdGggLyAicmVwb3NpdG9yeSIpCj4gICAgICAgZmlyc3QgPSBfcnVuX2NsaShtYW5pZmVzdF9wYXRoKQoKdGVzdHMvdGVzdF90cnVzdC5weTozMTU6IApfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIF8gXyBfIAoKbWFuaWZlc3QgPSBQb3NpeFBhdGgoJy90bXAvemVyb3J1bi1jdXJyZW50LXJ1bnRpbWUtc2t2OTkwbXIvY2FzZXMvdGVzdF9hcnRpZmFjdF9hbmRfc3RyZWFtX3N3YXBfMC9yZXBvc2l0b3J5Ly56ZXJvcnVuLmpzb24nKQoKICAgIGRlZiBfcnVuX2NsaShtYW5pZmVzdDogUGF0aCkgLT4gZGljdDoKICAgICAgICBwcm9jZXNzID0gc3VicHJvY2Vzcy5ydW4oCiAgICAgICAgICAgIFsKICAgICAgICAgICAgICAgIHN5cy5leGVjdXRhYmxlLAogICAgICAgICAgICAgICAgIi1tIiwKICAgICAgICAgICAgICAgICJ6ZXJvcnVuIiwKICAgICAgICAgICAgICAgICItLW1hbmlmZXN0IiwKICAgICAgICAgICAgICAgIHN0cihtYW5pZmVzdCksCiAgICAgICAgICAgICAgICAiLS1qc29uIiwKICAgICAgICAgICAgICAgICJydW4iLAogICAgICAgICAgICAgICAgIndvcmsiLAogICAgICAgICAgICBdLAogICAgICAgICAgICBjd2Q9UFJPSkVDVF9ST09ULAogICAgICAgICAgICBlbnY9ZGljdChvcy5lbnZpcm9uKSwKICAgICAgICAgICAgc3Rkb3V0PXN1YnByb2Nlc3MuUElQRSwKICAgICAgICAgICAgc3RkZXJyPXN1YnByb2Nlc3MuUElQRSwKICAgICAgICAgICAgdGV4dD1UcnVlLAogICAgICAgICAgICBjaGVjaz1GYWxzZSwKICAgICAgICAgICAgdGltZW91dD0zMCwKICAgICAgICApCj4gICAgICAgYXNzZXJ0IHByb2Nlc3MucmV0dXJuY29kZSA9PSAwLCBwcm9jZXNzLnN0ZGVycgpFICAgICAgIEFzc2VydGlvbkVycm9yOiAvaG9tZS9mbG94eS8uemVyb3J1bi1maW5hbC12ZW52LWQ3Yzk3NjRlZmUzYy9iaW4vcHl0aG9uOiBObyBtb2R1bGUgbmFtZWQgemVyb3J1bgpFICAgICAgICAgCkUgICAgICAgYXNzZXJ0IDEgPT0gMApFICAgICAgICArICB3aGVyZSAxID0gQ29tcGxldGVkUHJvY2VzcyhhcmdzPVsnL2hvbWUvZmxveHkvLnplcm9ydW4tZmluYWwtdmVudi1kN2M5NzY0ZWZlM2MvYmluL3B5dGhvbicsICctbScsICd6ZXJvcnVuJywgJy0tbWFuaWZlc3QnLCAnL3RtcC4uLiwgcmV0dXJuY29kZT0xLCBzdGRvdXQ9JycsIHN0ZGVycj0nL2hvbWUvZmxveHkvLnplcm9ydW4tZmluYWwtdmVudi1kN2M5NzY0ZWZlM2MvYmluL3B5dGhvbjogTm8gbW9kdWxlIG5hbWVkIHplcm9ydW5cbicpLnJldHVybmNvZGUKCnRlc3RzL3Rlc3RfdHJ1c3QucHk6MTM5OiBBc3NlcnRpb25FcnJvcgo9PT09PT09PT09PT09PT09PT09PT09PT09PT0gc2hvcnQgdGVzdCBzdW1tYXJ5IGluZm8gPT09PT09PT09PT09PT09PT09PT09PT09PT09PQpGQUlMRUQgdGVzdHMvdGVzdF90cnVzdC5weTo6dGVzdF9leGFjdF9tYW5pZmVzdF9hdXRob3JpdHlfcGVyc2lzdHNfYWNyb3NzX3Byb2Nlc3Nlc19hbmRfaW52YWxpZGF0ZXNfb25fZWRpdApGQUlMRUQgdGVzdHMvdGVzdF90cnVzdC5weTo6dGVzdF9jYWNoZV90YW1wZXJpbmdfYW5kX2Nyb3NzX2NoZWNrb3V0X2NvcHlfbmV2ZXJfeWllbGRfYV9oaXQKRkFJTEVEIHRlc3RzL3Rlc3RfdHJ1c3QucHk6OnRlc3RfbGVnaXRpbWF0ZV9jYWNoZV9yZXVzZV9zdXJ2aXZlc19hX25ld19wcm9jZXNzCkZBSUxFRCB0ZXN0cy90ZXN0X3RydXN0LnB5Ojp0ZXN0X2FydGlmYWN0X2FuZF9zdHJlYW1fc3dhcF9hZnRlcl92YWxpZGF0aW9uX2FyZV9yZWplY3RlZAo0IGZhaWxlZCwgMjY1IHBhc3NlZCwgMiBza2lwcGVkLCA4IHN1YnRlc3RzIHBhc3NlZCBpbiAxMC42MXMK",
+        "bytes": 7716,
+        "sha256": "4b1abdae05285eb7d90552202a172e1aea4d64a7c67f82284eddac3b6a8c358a"
+      }
+    }
+  ],
+  "completed": false,
+  "docker_called": false,
+  "external_venv": "/tmp/zerorun-current-runtime-skv990mr/venv",
+  "failure": {
+    "message": "command failed: public_regression",
+    "type": "ValueError"
+  },
+  "finished_utc": "2026-09-07T04:09:42.183648+00:00",
+  "historical_evidence_reclassified": false,
+  "model_called": false,
+  "output_directory_absolute": "/home/floxy/zerorun-five-hour-20260907/public-stage-052/research/softwarex/evidence/current-runtime-0.5.2-v2",
+  "passed": false,
+  "platform": "linux",
+  "schema": "zerorun.softwarex-current-runtime.v1",
+  "source_before": {
+    "changed_runtime_modules": [
+      "__init__.py",
+      "mcp.py"
+    ],
+    "current_core_commit": "d02b12e43ece3526566ec69c7516579f8d2fc9dd",
+    "historical_core_commit": "86f42289c2f59a74b1f642f0b20d1a26b3d55e57",
+    "runtime_files": [
+      {
+        "bytes": 56,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/__init__.py",
+        "sha256": "1af5000ed9bbd50e05657d51f12f0a36f415ab8370d93e7e85a2a718c16b8187"
+      },
+      {
+        "bytes": 83,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/__main__.py",
+        "sha256": "d220d88dd9a25cd0629c5176dd6532a2db1da40eb014a8e80796b0ddeb134918"
+      },
+      {
+        "bytes": 2482,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/api.py",
+        "sha256": "49e7a5a35333ed2c5ae7b695491f307ad21619cbafcd523b773a04d84518ea25"
+      },
+      {
+        "bytes": 6620,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/bounded_json.py",
+        "sha256": "923adb40098249908adf509eec06db1f876b1b21c25e46c97a1c8490e40df4ff"
+      },
+      {
+        "bytes": 17782,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/cli.py",
+        "sha256": "7d8a6f52bf4c97394eb9400f8dc593d7d25cc1119347e3e4898395155807730a"
+      },
+      {
+        "bytes": 30489,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/codex.py",
+        "sha256": "6b2c5fe7a33e6df8da595b846941a7059ac26017d4fccd606e77a4ad4dea1f1d"
+      },
+      {
+        "bytes": 52838,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/fingerprint.py",
+        "sha256": "63c6f8a7db62daaed0712c5c7b1c98ead4c5d50fef26f35d4d793dc70b2f00b8"
+      },
+      {
+        "bytes": 20351,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/hermetic.py",
+        "sha256": "de63a77cbf7a342a23f71604cb6abdd9314ae02ec9df358527ab75e5ee6a5f38"
+      },
+      {
+        "bytes": 2694,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/hermetic_batch.py",
+        "sha256": "b7bdce8db63ca12126f92119549c7920754544e2f2f50739e7ea725f14d3cb12"
+      },
+      {
+        "bytes": 8384,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/hermetic_batch_key.py",
+        "sha256": "f50e4e0575a2dc6d415a090caba1e66ec72468f016b80537395028dc964d0867"
+      },
+      {
+        "bytes": 35885,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/hermetic_key.py",
+        "sha256": "803d7dca8b0fffc9e5ba5ebb18830742d1225e0aa0de906d5cb6f1db76dd81ad"
+      },
+      {
+        "bytes": 17674,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/hermetic_store.py",
+        "sha256": "4ed4fcb41cfb5191e55e94380294470b0b79aad542fb97e3a5cf5a3e1f842d42"
+      },
+      {
+        "bytes": 10734,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/manifest.py",
+        "sha256": "e1a276cbb710b458f85d2143f29c489f5fde70adcc06d184f39c045c42a93314"
+      },
+      {
+        "bytes": 47962,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/mcp.py",
+        "sha256": "62c5634e467cf1d494e04e2b2c535f30b7431ab4d133f979c1105595de1432d1"
+      },
+      {
+        "bytes": 8275,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/model.py",
+        "sha256": "0ff7ac3239b3436fb78b2085a0e6bf0553f27dee33ec5dc1535858396f578695"
+      },
+      {
+        "bytes": 3296,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/normalization.py",
+        "sha256": "7655bb313b8a2163f8796efe48a6fed13c9b81acc7d06c70f6e3294a1fca4db8"
+      },
+      {
+        "bytes": 61775,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/oci.py",
+        "sha256": "7a64c92185e2252df4e54a9b9de9ec96647b7005c0684d16fe42a767e3493e12"
+      },
+      {
+        "bytes": 7899,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/path_safety.py",
+        "sha256": "0e46519f64228b69f5aaea7fcbd16e9f9d60d025f1c136e02bd238eb5229a8c1"
+      },
+      {
+        "bytes": 6231,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pilot.py",
+        "sha256": "ebd3e4622891c32d55f6753a4c0bf973bd8a286c84447bf48a60a9fd336daa76"
+      },
+      {
+        "bytes": 70910,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_closure.py",
+        "sha256": "91bafd7c725db8f1bd526d52dbca67c3488f315d15600fa94f25f792883d15be"
+      },
+      {
+        "bytes": 9253,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_collection_contract.py",
+        "sha256": "2c3e4129d06d6039c1fbf1155e999d52861d2255f58587d7872d15f33364a351"
+      },
+      {
+        "bytes": 17239,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_node_cache.py",
+        "sha256": "4263dd72563a9c0cc18770fb60ea1229246cf6936b45ee3d80d0bb833c50a7d2"
+      },
+      {
+        "bytes": 10645,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_node_identity.py",
+        "sha256": "f508d4c1a25ebd644ffb5f049bade2030f1d94151b8c56ebd28a7163ebf6f9a2"
+      },
+      {
+        "bytes": 15943,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_node_key.py",
+        "sha256": "20b75f5181c562ea4faf4662683f1e39d7ddaf07b12009866d8f4cfc6ff86cf4"
+      },
+      {
+        "bytes": 6748,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_prepare_cli.py",
+        "sha256": "c656d0e5cd437ab5ba5f62f983adbdec5457abc5e5bb36d36850a19f97f5efb3"
+      },
+      {
+        "bytes": 33421,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_profile.py",
+        "sha256": "ae18b08a7b8f3596dc8dace81a3134f9add88d344b5f2941bf3cfdebb8a751db"
+      },
+      {
+        "bytes": 210988,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_qualify.py",
+        "sha256": "73a66af6bea79550e218b28155903e9f0cce02652599143db0ad9ad7c3315010"
+      },
+      {
+        "bytes": 13122,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_review.py",
+        "sha256": "41107bef44bb0b777a2f9a8525f4dc0b271e733ed72e3e7220b2fcbe1d87a9d6"
+      },
+      {
+        "bytes": 4088,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_review_cli.py",
+        "sha256": "0a83fc5a5c1349c84aa18a156989c942f1f83a0c062d168825bf3afb5b3fa2e0"
+      },
+      {
+        "bytes": 174340,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_runtime.py",
+        "sha256": "ff8375136ea79949fc65f0f845ac9d0e9a567e7a40288b42192a76df6e03f626"
+      },
+      {
+        "bytes": 25909,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/pytest_setup.py",
+        "sha256": "2966f27d7a31d530b13ff2f5ef09d6c22dbf36144dba713d1a4a6360fb3adb80"
+      },
+      {
+        "bytes": 25978,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/runner.py",
+        "sha256": "a37cab0c195c524a6ddad763fa286e2ddc9137b297f3fedece00f212bf1a94c5"
+      },
+      {
+        "bytes": 1236,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/source_uncertainty.py",
+        "sha256": "af4d4095fad81b7922f8b54a9e804ae6d2294fb1862bf07e83a60eb4084a9d6c"
+      },
+      {
+        "bytes": 36250,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/store.py",
+        "sha256": "36a1e2a776b82d002643d4ad4ac97659ccb484fa83e7a3d929f07160f347b57e"
+      },
+      {
+        "bytes": 35046,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/trust.py",
+        "sha256": "a26d1e2d13011799318f21252c01708de135471c441716ea2bc86202b17d8247"
+      },
+      {
+        "bytes": 19233,
+        "path": "research/softwarex/historical_runtime_0_5_1/src/zerorun/workspace.py",
+        "sha256": "a91d6b55b9627b4c6b45d84381c4cc7bc69f9f7413289e9c853e0e01582ef2d3"
+      },
+      {
+        "bytes": 56,
+        "path": "src/zerorun/__init__.py",
+        "sha256": "4e1ef62071a3aab30aab9aae5e84277633bf81785108b60c7e6436a1fa99002a"
+      },
+      {
+        "bytes": 83,
+        "path": "src/zerorun/__main__.py",
+        "sha256": "d220d88dd9a25cd0629c5176dd6532a2db1da40eb014a8e80796b0ddeb134918"
+      },
+      {
+        "bytes": 2482,
+        "path": "src/zerorun/api.py",
+        "sha256": "49e7a5a35333ed2c5ae7b695491f307ad21619cbafcd523b773a04d84518ea25"
+      },
+      {
+        "bytes": 6620,
+        "path": "src/zerorun/bounded_json.py",
+        "sha256": "923adb40098249908adf509eec06db1f876b1b21c25e46c97a1c8490e40df4ff"
+      },
+      {
+        "bytes": 17782,
+        "path": "src/zerorun/cli.py",
+        "sha256": "7d8a6f52bf4c97394eb9400f8dc593d7d25cc1119347e3e4898395155807730a"
+      },
+      {
+        "bytes": 30489,
+        "path": "src/zerorun/codex.py",
+        "sha256": "6b2c5fe7a33e6df8da595b846941a7059ac26017d4fccd606e77a4ad4dea1f1d"
+      },
+      {
+        "bytes": 52838,
+        "path": "src/zerorun/fingerprint.py",
+        "sha256": "63c6f8a7db62daaed0712c5c7b1c98ead4c5d50fef26f35d4d793dc70b2f00b8"
+      },
+      {
+        "bytes": 20351,
+        "path": "src/zerorun/hermetic.py",
+        "sha256": "de63a77cbf7a342a23f71604cb6abdd9314ae02ec9df358527ab75e5ee6a5f38"
+      },
+      {
+        "bytes": 2694,
+        "path": "src/zerorun/hermetic_batch.py",
+        "sha256": "b7bdce8db63ca12126f92119549c7920754544e2f2f50739e7ea725f14d3cb12"
+      },
+      {
+        "bytes": 8384,
+        "path": "src/zerorun/hermetic_batch_key.py",
+        "sha256": "f50e4e0575a2dc6d415a090caba1e66ec72468f016b80537395028dc964d0867"
+      },
+      {
+        "bytes": 35885,
+        "path": "src/zerorun/hermetic_key.py",
+        "sha256": "803d7dca8b0fffc9e5ba5ebb18830742d1225e0aa0de906d5cb6f1db76dd81ad"
+      },
+      {
+        "bytes": 17674,
+        "path": "src/zerorun/hermetic_store.py",
+        "sha256": "4ed4fcb41cfb5191e55e94380294470b0b79aad542fb97e3a5cf5a3e1f842d42"
+      },
+      {
+        "bytes": 10734,
+        "path": "src/zerorun/manifest.py",
+        "sha256": "e1a276cbb710b458f85d2143f29c489f5fde70adcc06d184f39c045c42a93314"
+      },
+      {
+        "bytes": 50523,
+        "path": "src/zerorun/mcp.py",
+        "sha256": "cf32d47dc40e914c6f2e411548dca4525005b0928821c035018fdc76b0cd63f4"
+      },
+      {
+        "bytes": 8275,
+        "path": "src/zerorun/model.py",
+        "sha256": "0ff7ac3239b3436fb78b2085a0e6bf0553f27dee33ec5dc1535858396f578695"
+      },
+      {
+        "bytes": 3296,
+        "path": "src/zerorun/normalization.py",
+        "sha256": "7655bb313b8a2163f8796efe48a6fed13c9b81acc7d06c70f6e3294a1fca4db8"
+      },
+      {
+        "bytes": 61775,
+        "path": "src/zerorun/oci.py",
+        "sha256": "7a64c92185e2252df4e54a9b9de9ec96647b7005c0684d16fe42a767e3493e12"
+      },
+      {
+        "bytes": 7899,
+        "path": "src/zerorun/path_safety.py",
+        "sha256": "0e46519f64228b69f5aaea7fcbd16e9f9d60d025f1c136e02bd238eb5229a8c1"
+      },
+      {
+        "bytes": 6231,
+        "path": "src/zerorun/pilot.py",
+        "sha256": "ebd3e4622891c32d55f6753a4c0bf973bd8a286c84447bf48a60a9fd336daa76"
+      },
+      {
+        "bytes": 70910,
+        "path": "src/zerorun/pytest_closure.py",
+        "sha256": "91bafd7c725db8f1bd526d52dbca67c3488f315d15600fa94f25f792883d15be"
+      },
+      {
+        "bytes": 9253,
+        "path": "src/zerorun/pytest_collection_contract.py",
+        "sha256": "2c3e4129d06d6039c1fbf1155e999d52861d2255f58587d7872d15f33364a351"
+      },
+      {
+        "bytes": 17239,
+        "path": "src/zerorun/pytest_node_cache.py",
+        "sha256": "4263dd72563a9c0cc18770fb60ea1229246cf6936b45ee3d80d0bb833c50a7d2"
+      },
+      {
+        "bytes": 10645,
+        "path": "src/zerorun/pytest_node_identity.py",
+        "sha256": "f508d4c1a25ebd644ffb5f049bade2030f1d94151b8c56ebd28a7163ebf6f9a2"
+      },
+      {
+        "bytes": 15943,
+        "path": "src/zerorun/pytest_node_key.py",
+        "sha256": "20b75f5181c562ea4faf4662683f1e39d7ddaf07b12009866d8f4cfc6ff86cf4"
+      },
+      {
+        "bytes": 6748,
+        "path": "src/zerorun/pytest_prepare_cli.py",
+        "sha256": "c656d0e5cd437ab5ba5f62f983adbdec5457abc5e5bb36d36850a19f97f5efb3"
+      },
+      {
+        "bytes": 33421,
+        "path": "src/zerorun/pytest_profile.py",
+        "sha256": "ae18b08a7b8f3596dc8dace81a3134f9add88d344b5f2941bf3cfdebb8a751db"
+      },
+      {
+        "bytes": 210988,
+        "path": "src/zerorun/pytest_qualify.py",
+        "sha256": "73a66af6bea79550e218b28155903e9f0cce02652599143db0ad9ad7c3315010"
+      },
+      {
+        "bytes": 13122,
+        "path": "src/zerorun/pytest_review.py",
+        "sha256": "41107bef44bb0b777a2f9a8525f4dc0b271e733ed72e3e7220b2fcbe1d87a9d6"
+      },
+      {
+        "bytes": 4088,
+        "path": "src/zerorun/pytest_review_cli.py",
+        "sha256": "0a83fc5a5c1349c84aa18a156989c942f1f83a0c062d168825bf3afb5b3fa2e0"
+      },
+      {
+        "bytes": 174340,
+        "path": "src/zerorun/pytest_runtime.py",
+        "sha256": "ff8375136ea79949fc65f0f845ac9d0e9a567e7a40288b42192a76df6e03f626"
+      },
+      {
+        "bytes": 25909,
+        "path": "src/zerorun/pytest_setup.py",
+        "sha256": "2966f27d7a31d530b13ff2f5ef09d6c22dbf36144dba713d1a4a6360fb3adb80"
+      },
+      {
+        "bytes": 25978,
+        "path": "src/zerorun/runner.py",
+        "sha256": "a37cab0c195c524a6ddad763fa286e2ddc9137b297f3fedece00f212bf1a94c5"
+      },
+      {
+        "bytes": 1236,
+        "path": "src/zerorun/source_uncertainty.py",
+        "sha256": "af4d4095fad81b7922f8b54a9e804ae6d2294fb1862bf07e83a60eb4084a9d6c"
+      },
+      {
+        "bytes": 36250,
+        "path": "src/zerorun/store.py",
+        "sha256": "36a1e2a776b82d002643d4ad4ac97659ccb484fa83e7a3d929f07160f347b57e"
+      },
+      {
+        "bytes": 35046,
+        "path": "src/zerorun/trust.py",
+        "sha256": "a26d1e2d13011799318f21252c01708de135471c441716ea2bc86202b17d8247"
+      },
+      {
+        "bytes": 19233,
+        "path": "src/zerorun/workspace.py",
+        "sha256": "a91d6b55b9627b4c6b45d84381c4cc7bc69f9f7413289e9c853e0e01582ef2d3"
+      }
+    ],
+    "test_and_helper_files": [
+      {
+        "bytes": 804,
+        "path": "pyproject.toml",
+        "sha256": "47f873fdea9da9a4930ad32af366680d1e22e26953a2e9101dfa1799ee90f586"
+      },
+      {
+        "bytes": 22042,
+        "path": "research/softwarex/five_hour_review/current_runtime.py",
+        "sha256": "db257eb8cefa299abad85c93ddc9f3eabd033fd29b960e70b5d5dce2fa5fd603"
+      },
+      {
+        "bytes": 4196,
+        "path": "tests/conftest.py",
+        "sha256": "5d2c0670ce2216bd93c1d192c1944dc16fcae05f2f9a68f7489b39e4c92c4b78"
+      },
+      {
+        "bytes": 20732,
+        "path": "tests/test_cache_trust_session.py",
+        "sha256": "58d5dca69a7b3bbc80d99d5fc5addd3d2705e33f56ea0d3c249a467ad2201d48"
+      },
+      {
+        "bytes": 28529,
+        "path": "tests/test_codex_integration.py",
+        "sha256": "57d7b548816904c834883f2efe3f89aa7004c37c3fb97921080607fda96d4793"
+      },
+      {
+        "bytes": 13266,
+        "path": "tests/test_fingerprint_safety.py",
+        "sha256": "512e3432aed71de43dd1f934791a5e825ae015cbbbf8f23b994148d8d0f8b532"
+      },
+      {
+        "bytes": 76152,
+        "path": "tests/test_hermetic.py",
+        "sha256": "70eaf193c2b581eb8747653d804387c67b42a98ceda3353efef00fea935af06e"
+      },
+      {
+        "bytes": 5434,
+        "path": "tests/test_manifest_safety.py",
+        "sha256": "6850a18256e8ff9e140467e04bfe171ba6f1e54806b293dbaec8ca473b2979b3"
+      },
+      {
+        "bytes": 33198,
+        "path": "tests/test_mcp.py",
+        "sha256": "9af96225c46f51cd49c3699074e12775bc09d62f11f0b36d7badaaf515937180"
+      },
+      {
+        "bytes": 8752,
+        "path": "tests/test_mcp_discovery_semantics.py",
+        "sha256": "78e91163ac107dac617476e56a20f2b7eecb8057771503f661a200be55575c8f"
+      },
+      {
+        "bytes": 8404,
+        "path": "tests/test_path_safety.py",
+        "sha256": "f2da325ba49ca46b51d14eba0837d297fb1b3ba5bef7b687a3abc7460378a4fc"
+      },
+      {
+        "bytes": 2012,
+        "path": "tests/test_runner_safety.py",
+        "sha256": "8a5d5c58075a523343937afb9c4b284cb4a7123fffa16454c9e7af8bf5ae3d8b"
+      },
+      {
+        "bytes": 8096,
+        "path": "tests/test_security_json_boundaries.py",
+        "sha256": "d17fca2e5e74fec45e32f975a1b786aca6a112be585ce3b54540c96e5d0e6650"
+      },
+      {
+        "bytes": 13905,
+        "path": "tests/test_trust.py",
+        "sha256": "6fb6e5cca22b80770e966b935b7eb7f5de91fa04109b7fdc8d9ae49e7799df13"
+      },
+      {
+        "bytes": 20503,
+        "path": "tools/aggregate_codex_install_evidence.py",
+        "sha256": "a5eafbb44d36751bcf84dc353a6625a02b9dfb08e8a04a95e6b37a3bb689fc21"
+      },
+      {
+        "bytes": 10078,
+        "path": "tools/aggregate_commercial_smoke.py",
+        "sha256": "c6479cdb6068974365cf8913262f8367f27c692a8634d54d45e6783ca733cb1e"
+      },
+      {
+        "bytes": 49401,
+        "path": "tools/codex_agent_integration_smoke.py",
+        "sha256": "53a3c86f88aef0cee7a63571a5c22984b17d92831cb746b434f3e6ed5744f328"
+      },
+      {
+        "bytes": 65120,
+        "path": "tools/codex_agent_lifecycle.py",
+        "sha256": "9db6ac92823ddeb07505d4e982592c28f0e5252c444c890c53e8e26718923805"
+      },
+      {
+        "bytes": 39159,
+        "path": "tools/commercial_repo_smoke.py",
+        "sha256": "f548b5404fade714ed4ed78488c5e9536bfd1919ea84ed77795683abcef45f63"
+      },
+      {
+        "bytes": 39353,
+        "path": "tools/install_verified_codex_cli.py",
+        "sha256": "dfd2eab91d114c6d10847092da338d374b8d7833020a473d9b63edb8bc13fae3"
+      },
+      {
+        "bytes": 212857,
+        "path": "tools/product_generalization_benchmark.py",
+        "sha256": "96588c65ee674597e4c459651345b9e89ac92cbdc0c85baaa3de4f57f6a44359"
+      },
+      {
+        "bytes": 37823,
+        "path": "tools/pytest_batched_executor.py",
+        "sha256": "d907b9aa4fe53ea1b02dc6e953c839d582684e4795dafae2a4be5354d027d1d2"
+      },
+      {
+        "bytes": 119631,
+        "path": "tools/validate_release_prerequisites.py",
+        "sha256": "84b53da817286a96c8f751d33b3da034e014523e7d8ce05145f51357d669fc65"
+      }
+    ],
+    "version": "0.5.2"
+  },
+  "started_utc": "2026-09-07T04:09:24.460566+00:00",
+  "tested_release_absolute": "/home/floxy/zerorun-five-hour-20260907/public-stage-052",
+  "wheel": {
+    "bytes": 245907,
+    "path": "output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl",
+    "sha256": "fb79382e18d707ba40764c1ddff476d301c170b442b369d9a3da74ab42d1e643"
+  },
+  "wheel_input_absolute": "/home/floxy/zerorun-five-hour-20260907/public-stage-052/output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl"
+}
