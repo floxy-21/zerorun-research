@@ -19,14 +19,14 @@ CLI installation needs Python 3.10 or later. The demonstrated whole-task executi
 Use separate locations for the public source, installed tools, and target project. For example, on Linux:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.2-20260907 https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
+git clone --depth 1 --branch softwarex-0.5.2-20260907-r2 https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
 python3 -m venv /absolute/path/zerorun-tools
 /absolute/path/zerorun-tools/bin/python -m pip install --no-index /absolute/path/zerorun-research/output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl
 /absolute/path/zerorun-tools/bin/zerorun --version
 /absolute/path/zerorun-tools/bin/zerorun --help
 ```
 
-The submission tag resolves to `0528905a52b74df78aa4e5a09219df34620282dd`; check it with `git -C /absolute/path/zerorun-research rev-parse HEAD`. The manuscript's earlier immutable C2 pointer identifies the code/evidence stage. The included wheel installs without a source build or network access. Use a separate source working copy if you choose to build with setuptools, because a local source installation creates build artifacts there. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal external installation keeps the tools independent of subsequent checkout edits.
+Check `git -C /absolute/path/zerorun-research rev-parse HEAD` against the commit displayed on the `softwarex-0.5.2-20260907-r2` GitHub Release page. The manuscript's earlier immutable C2 pointer identifies the code/evidence stage. The included wheel installs without a source build or network access. Use a separate source working copy if you choose to build with setuptools, because a local source installation creates build artifacts there. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal external installation keeps the tools independent of subsequent checkout edits.
 
 On Windows, the equivalent external environment has `Scripts\python.exe` and `Scripts\zerorun.exe`. Read-only inspection can be performed there, but the Linux/amd64 execution requirement remains. Research-analysis dependencies are separate from the runtime package, which has no third-party Python runtime dependencies.
 
