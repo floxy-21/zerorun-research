@@ -15,6 +15,8 @@ import os
 from pathlib import Path, PurePosixPath
 import statistics
 
+from research.softwarex import analysis_reproduction
+
 ROOT = Path(__file__).resolve().parents[2]
 HERE = "research/softwarex"
 SQJ = "research/sqj"
@@ -236,6 +238,10 @@ def summarize_rows(rows):
 
 
 def reconcile(root):
+    analysis_reproduction.require_canonical_python()
+    require(Path(analysis_reproduction.__file__).resolve() ==
+            (root / HERE / "analysis_reproduction.py").resolve(),
+            "analysis reproduction policy imported from another checkout")
     anchors = anchored_inputs(root)
     module = importlib.import_module("research.sqj.strengthening.analyze_recovered_replication")
     require(Path(module.__file__).resolve() == (root / SQJ / "strengthening/analyze_recovered_replication.py").resolve(), "reconciliation imported from another checkout")
@@ -247,7 +253,7 @@ def reconcile(root):
             "executed shadow-validation helper differs from archived source")
     result = module.analyze(root / ORIGINAL, root / RECOVERY, root / SQJ / "source-final", sqj=root / SQJ)
     saved = strict_json(read_regular(root, SAVED))
-    same(result, saved, "saved independent reconciliation is stale")
+    result = analysis_reproduction.canonical_reconciliation(result, saved)
     require(result["completed"] is True and result["uninterrupted_original_campaign"] is False, "wrong campaign completion/scope")
     same({key: result["counts"][key] for key in ("complete_blocks", "observed_complete_requests", "fresh_agreements", "expected_cache_behaviors", "optimized_hits")},
          {"complete_blocks": 24, "observed_complete_requests": 168, "fresh_agreements": 168, "expected_cache_behaviors": 168, "optimized_hits": 96}, "frozen overall denominator differs")
@@ -255,7 +261,7 @@ def reconcile(root):
 
 
 def inventory(root, reconciled):
-    names = set(PINNED) | {HERE + "/analyze_operating_region.py", RECOVERY + "/external-incident.txt",
+    names = set(PINNED) | {HERE + "/analyze_operating_region.py", HERE + "/analysis_reproduction.py", RECOVERY + "/external-incident.txt",
                            "tools/product_generalization_benchmark.py"}
     for directory in (ORIGINAL, RECOVERY):
         for parent, dirs, files in os.walk(root / directory, followlinks=False):
@@ -338,7 +344,10 @@ def analyze(root=ROOT):
                 "unmeasured_interruption_cost": reconciled["unmeasured_interruption_cost"]},
             "binding": {"anchors": anchors, "input_files": sources_before,
                 "input_inventory_sha256": hashlib.sha256(canonical(sources_before).encode()).hexdigest(),
-                "source_guard": "exact original/recovery reconciliation and protected source validation before derivation",
+                "source_guard": "Exact original/recovery values and protected source validation before derivation; only the declared unordered zero-byte incident inventory may differ in row order.",
+                "canonical_replay_policy": {"implementation": "CPython", "supported_versions": ["3.12", "3.13", "3.14"],
+                    "order_insensitive_field": "unparseable_zero_byte_receipts", "zero_byte_inventory_order_only": True,
+                    "numeric_tolerance_applied": False},
                 "rounding_tolerance_ms": ROUNDING_TOLERANCE_MS},
             "limitations": ["Nonhits preserve one successful seed and two failures per block; other mixtures can differ.",
                 "Four seen convenience subjects on one shared-host VM; block ranges are not confidence intervals.",

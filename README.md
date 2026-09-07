@@ -41,11 +41,12 @@ The package has no third-party Python runtime dependency; building uses setuptoo
 
 ## Offline evidence checks
 
-Run these from the repository root with the installed environment's Python. Use Python 3.11+ for offline research analysis, or additionally install `tomli` when using Python 3.10. These commands parse local observations and do **not** execute any recorded AI-agent command:
+Run these from the repository root with the installed environment's Python. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**; this is separate from the runtime and laboratory quickstart's Python 3.10+ requirement. The older float-aggregation behavior is not byte-identical to the archived canonical analysis. The versioned reproduction check also reconciles one unordered crash-file inventory without changing measurements or permitting numeric tolerances. See [the portability record](research/softwarex/evidence/analysis-portability-v1/README.md). These commands parse local observations and do **not** execute any recorded AI-agent command:
 
 ```sh
 "$study_env/bin/python" -B -m research.sqj.strengthening.validate_traces --check
 "$study_env/bin/python" -B -m research.sqj.analyze_comparison --check
+"$study_env/bin/python" -B -m research.softwarex.analysis_reproduction --check
 "$study_env/bin/python" -B -m research.softwarex.analyze_operating_region --check
 "$study_env/bin/python" -B -m research.softwarex.build_extension_evidence --check
 "$study_env/bin/python" -B -m research.softwarex.build_application_evidence --check

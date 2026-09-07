@@ -19,6 +19,7 @@ from research.sqj.strengthening.validate_traces import build_summary as trace_an
 from research.sqj.strengthening.analyze_replication import analyze as replication_analysis
 from research.sqj.strengthening.analyze_recovered_replication import analyze as recovered_replication_analysis
 from research.sqj.strengthening.analyze_state_rejoin import analyze as state_analysis
+from research.softwarex import analysis_reproduction
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
@@ -209,6 +210,8 @@ def extension_text(evidence):
 
 
 def build(preview=False):
+    if not preview:
+        analysis_reproduction.require_canonical_python()
     original = original_analysis(SQJ / "evidence/comparison-final-1", SQJ / "source-final")
     engineering = engineering_evidence()
     revision = revision_analysis()
@@ -247,6 +250,7 @@ def build(preview=False):
         replication = (recovered_replication_analysis(EVIDENCE / "short-randomized-replication-v1",
             EVIDENCE / "short-randomized-recovery-v1", SQJ / "source-final") if recovered else
             replication_analysis(EVIDENCE / "short-randomized-replication-v1", SQJ / "source-final"))
+        replication = analysis_reproduction.reconcile_saved_analysis(replication, ROOT)
         require(replication["completed"], "incomplete replication cannot become final paper")
         compact = replication["paper_summary"]["subjects"]
         abstract = "The four-target study, completed through an explicit post-crash recovery, reconciles 168 fresh comparisons and 96 reused successes."

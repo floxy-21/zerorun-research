@@ -22,6 +22,16 @@ The final package is organized as follows:
 
 The receipts under `generated/` identify exact publication commits, file hashes, automated checks, and PDF review. `generated/pdf-review.json` is authoritative for the reviewed PDF's counts and compilation inputs; `generated/final-readiness.json` binds the completed archives and upload files. Earlier receipts remain historical evidence and do not certify later edits. Use only files whose exact hashes match final readiness.
 
+Canonical timing-analysis reproduction and final manuscript generation require
+**CPython 3.12–3.14**, using the route in `REPRODUCIBILITY.md`. This is an analysis
+requirement, not a raised product requirement: ZeroRun and the account-free
+quickstart still support Python 3.10+. `analysis_reproduction.py` compares exact
+archived values, permitting only a different order of the top-level
+`unparseable_zero_byte_receipts` inventory. It rejects duplicate/missing or
+modified rows and changed numbers; it applies no numerical tolerance and does
+not alter frozen analyzers, raw measurements, eligibility rules or performance
+gates.
+
 ## Application evidence
 
 The four-call v3 Codex lifecycle passed: readiness, fresh execution, reuse, and fresh verification, with two separate fresh oracles. Its next model-selected call invented an unsupported argument and was rejected; that full trial remains unsuccessful. The remaining decision and six interpretation cases were not reached.

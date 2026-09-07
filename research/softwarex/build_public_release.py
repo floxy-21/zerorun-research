@@ -59,7 +59,7 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "OPERATING_GUIDE.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
     "LIVE_CLIENT_AMENDMENT_1.md", "support/tools/aggregate_codex_install_evidence.py", "RELATED_SYSTEMS.md",
     "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py", "PUBLIC_LAYOUT_CORRECTION.md",
-    "client_conformance.py", "analyze_operating_region.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
+    "client_conformance.py", "analyze_operating_region.py", "analysis_reproduction.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
     "generated/operating-region-v1.json", "generated/extension-evidence-v1.json",
     "REVIEWER_STRENGTHENING_4H.md", "JOURNAL_REQUIREMENTS_REVIEW.md", "QUICKSTART_RESULTS.md",
     "QUICKSTART_LAB.md", "quickstart_check.py", "CLIENT_API_CARD.md", "APPLICATION_RESULTS.md",

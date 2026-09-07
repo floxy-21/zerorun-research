@@ -22,15 +22,12 @@ The public release uses `src/zerorun` for packaging. The frozen original experim
 
 ## 2. Check recorded evidence without executing agent commands
 
-Run from the completed submission snapshot or extracted reviewer archive using its environment. Offline analysis requires Python 3.11 or later, or the optional `tomli` parser on Python 3.10. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
+Run from the completed submission snapshot or extracted reviewer archive using its environment. Canonical timing-analysis and manuscript reproduction require **CPython 3.12–3.14**, independently of the runtime and account-free quickstart's Python 3.10+ support. Older Python float aggregation is not byte-identical to the archived analysis; adding `tomli` does not fix that difference. The [portability record](evidence/analysis-portability-v1/README.md) explains the separately versioned check and retained earlier outputs. The manuscript's C2 commit pins the code and raw evidence; the later submission snapshot adds the final manuscript and its public-pointer receipt. The raw-evidence validators run at the pinned code/evidence commit; `build_paper --check` additionally needs those later manuscript files.
 
 ```sh
 "$study_env/bin/python" -m research.sqj.strengthening.validate_traces --check
 "$study_env/bin/python" -m research.sqj.analyze_comparison --check
-"$study_env/bin/python" -m research.sqj.strengthening.analyze_recovered_replication \
-  --original research/sqj/strengthening/evidence/short-randomized-replication-v1 \
-  --recovery research/sqj/strengthening/evidence/short-randomized-recovery-v1 \
-  --output research/sqj/strengthening/evidence/replication-analysis-v1.json --check
+"$study_env/bin/python" -m research.softwarex.analysis_reproduction --check
 "$study_env/bin/python" -m research.sqj.strengthening.analyze_state_rejoin \
   --directory research/sqj/strengthening/evidence/agent-state-rejoin-v3 \
   --replication-directory research/sqj/strengthening/evidence/short-randomized-replication-v1 \
@@ -42,6 +39,48 @@ Run from the completed submission snapshot or extracted reviewer archive using i
 ```
 
 These commands verify raw-result consistency, source identities, denominators, original failures, restored source, and generated article inputs. They fail on missing or modified evidence. They do not execute shell strings or code from the downloaded AI trajectories. The original publication snapshot and the new extension are retained separately, not pooled into a new favorable dataset.
+
+### Pinned Linux analysis environment
+
+If the host's default Python is 3.10 or 3.11, keep it for the supported product
+quickstart and use this separate Linux/amd64 route for canonical analysis. From
+the completed release root, the following function uses CPython 3.12.14 from
+the experiment's digest-pinned image, with a read-only source mount, no network,
+and no account or operator credentials. No package installation is required
+inside this analysis container. Acquire the public image once with
+`docker pull` if it is not already present; image acquisition is not an offline
+check or part of the reported quickstart timings.
+
+```sh
+analysis_image='docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef'
+analysis_root="$(pwd -P)"
+analysis_python() {
+  docker run --rm --network none --read-only --cap-drop ALL \
+    --security-opt no-new-privileges --cpus 2 --memory 2g --pids-limit 128 \
+    --mount "type=bind,src=$analysis_root,dst=/artifact,readonly" \
+    -w /artifact -e PYTHONPATH=/artifact/src -e PYTHONDONTWRITEBYTECODE=1 \
+    "$analysis_image" python -B "$@"
+}
+analysis_python -m research.sqj.strengthening.validate_traces --check
+analysis_python -m research.sqj.analyze_comparison --check
+analysis_python -m research.softwarex.analysis_reproduction --check
+analysis_python -m research.sqj.strengthening.analyze_state_rejoin \
+  --directory research/sqj/strengthening/evidence/agent-state-rejoin-v3 \
+  --replication-directory research/sqj/strengthening/evidence/short-randomized-replication-v1 \
+  --output research/sqj/strengthening/evidence/state-rejoin-analysis-v1.json --check
+analysis_python -m research.softwarex.analyze_operating_region --check
+analysis_python -m research.softwarex.build_extension_evidence --check
+analysis_python -m research.softwarex.build_application_evidence --check
+analysis_python -m research.softwarex.build_paper --check
+```
+
+The last command requires the completed submission snapshot, not the earlier
+code-and-evidence pin. It validates article source; LaTeX compilation is a
+separate step below. This optional Docker route does not turn the pure-Python
+recorded-evidence checks into a requirement for Docker when a supported local
+CPython environment is available.
+
+The frozen historical recovery analyzer remains unchanged. Its original `--check` compares a filesystem-discovery list byte-for-byte, so use the versioned `analysis_reproduction --check` above for portable verification. It re-executes that original analyzer and requires exact equality of every value after ordering only the declared zero-byte incident inventory; it does not change numerical equality, ordered experiment sequences, counts, hashes, or any raw observation. The original saved analysis retains its own bytes and order.
 
 The main AI-trace sample has 128 selected rows and 122 valid episodes. Its six exclusions, the separate ten-row pilot, and the original 96 HTTP-429 retrieval failures are all retained. Dataset API snapshots are identified by downloaded bytes and observed revision headers, not falsely described as immutable revision-specific API URLs. Raw source notices retain CC-BY-4.0 attribution.
 

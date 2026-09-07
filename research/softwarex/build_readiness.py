@@ -17,7 +17,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-four-hour-final-v1"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-four-hour-final-v2"
 
 
 def require(condition, message):

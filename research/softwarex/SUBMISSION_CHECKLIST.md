@@ -41,6 +41,16 @@ Keep the template's C1–C8 labels and fill these values from the released artif
 | C7 documentation | Verified public installation, API, operator-review, limitations, and reproduction documentation links. |
 | C8 support | kapoorjishan2@gmail.com. |
 
+Distinguish the two Python requirements in C6 and reviewer instructions:
+ZeroRun and its account-free quickstart support **Python 3.10+**; canonical
+timing-analysis reproduction and final manuscript generation require
+**CPython 3.12–3.14**. Follow `REPRODUCIBILITY.md` for the checked execution route.
+`analysis_reproduction.py` requires exact equality against the source-bound
+archived analysis, allowing only order variation in the top-level
+`unparseable_zero_byte_receipts` inventory. Duplicate, missing or modified rows,
+changed numeric values and changes elsewhere remain failures. It introduces no
+numeric tolerance and changes neither raw evidence, frozen analyzers nor gates.
+
 - [x] Public repository has `README.md`, `LICENSE.txt`, `src/`, and an identical `Licence.txt` alias; exact files are inventoried by the public-release manifest.
 - [x] Historical Windows wheel installation, CLI and public-layout tests passed under their own source bindings and platform skips. Read actual counts from `generated/public-install-smoke.json` and `generated/public-release-tests.json`; do not combine overlapping suites into one test total.
 - [x] The Linux laboratory fresh installation and actual STDIO checks passed under `evidence/quickstart-lab-v1/`. A separate literal public-guide replay also passed under `evidence/quickstart-public-v1/`, pinned to public commit `860675c041c5190dcbae0892d64c8ba82b257bb8`. Non-model installation/server checks are not autonomous Codex tasks or independent-human validation. Their timing excludes clone, image acquisition and researcher preparation.
@@ -86,9 +96,11 @@ with the frozen managed initializer are documented. The runtime is unchanged.
   positive result is not substituted for V3, and does not establish a causal
   documentation effect or general autonomous coding effectiveness.
 
-The final publication suite and source-integrity checks are recorded in
-`evidence/publication-four-hour-final-v1/receipt.json`; retain its actual passed,
-skipped and total counts rather than copying numbers from older suites. These
+The final publication suite and source-integrity checks are indexed by
+`generated/final-readiness.json`; use its exact source-bound receipt after the
+analysis-reproduction repair. Earlier publication-suite receipts remain
+historical. Retain actual passed, skipped and total counts rather than copying
+numbers from older suites. These
 checks do not constitute independent external reproduction or an acceptance
 probability.
 

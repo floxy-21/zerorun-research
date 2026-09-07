@@ -21,6 +21,15 @@ Paste `COVER_LETTER.txt` into the corresponding text field. Upload `HIGHLIGHTS.d
 
 Final PDF counts, visual review, references, and compilation-source hashes come from `generated/pdf-review.json`; archive and public-release bindings come from `generated/final-readiness.json`. Do not copy counts from an earlier checklist into the portal.
 
+For reviewer reproduction of the canonical timing analysis or final manuscript,
+use **CPython 3.12–3.14** and the instructions in `REPRODUCIBILITY.md`, including
+its checked pinned-container route. A default Python 3.10 interpreter is not the
+canonical analysis environment, although it remains supported for ZeroRun and
+the account-free installation/server quickstart. The analysis checker requires
+exact archived values, normalizing only the ordering of one explicitly named
+zero-byte receipt inventory; no numeric tolerance, dropped records or relaxed
+performance criteria are used.
+
 ## Author-controlled steps
 
 1. Read and approve the final article, tables, limitations, public software, methods disclosure of AI assistance, and diagram-caption attribution. Jishan Kapoor is the sole author; AI is not an author. Author review and intellectual responsibility are substantive requirements, not a formality completed by automated checks.
