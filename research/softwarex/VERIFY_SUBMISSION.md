@@ -1,6 +1,6 @@
 # One-command offline submission verification
 
-Use a clean Git checkout and **CPython 3.12â€“3.14**. No package installation is required. For the 0.5.3 submission snapshot, use the following commands once its named release and reviewer asset are available:
+Use a clean Git checkout and **CPython 3.12-3.14**. No package installation is required. For the 0.5.3 submission snapshot, use the following commands once its named release and reviewer asset are available:
 
 ```sh
 git clone --config core.longpaths=true --depth 1 --branch softwarex-0.5.3-20260908-r3 https://github.com/floxy-21/zerorun-research.git zerorun-review

@@ -29,7 +29,7 @@ Read its fixture and authority scope before running it. The example authorizes o
 
 ## 3. Verify the complete evidence package offline
 
-Use **CPython 3.12â€“3.14** and a clean Git checkout. This route needs no installation, Docker, AI account or model execution. Once the release is available:
+Use **CPython 3.12-3.14** and a clean Git checkout. This route needs no installation, Docker, AI account or model execution. Once the release is available:
 
 ```sh
 git clone --config core.longpaths=true --depth 1 --branch softwarex-0.5.3-20260908-r3 https://github.com/floxy-21/zerorun-research.git zerorun-review

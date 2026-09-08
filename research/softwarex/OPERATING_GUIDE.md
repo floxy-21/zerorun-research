@@ -10,7 +10,7 @@ To try the installed server without a Codex account or a real project, use the [
 
 For a deliberate new laboratory attempt after fixing a prerequisite, choose a new tools-environment directory and new installation and check receipt filenames. Preserve the previous attempt and record the intervention as described in the versioned guide; changing only the receipt filename does not make an existing environment new.
 
-For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12â€“3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
+For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12-3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
 
 ## 1. Install outside the repository you will test
 
@@ -293,7 +293,7 @@ Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the
 
 ## Inspect or reproduce the bounded integration experiments
 
-Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12â€“3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.3 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
+Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12-3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.3 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
 
 ### Historical V1 and its non-model diagnostic only
 
