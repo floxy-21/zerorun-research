@@ -27,6 +27,7 @@ HISTORICAL_CORE = CORE
 CURRENT_CORE = "e5194d340a09bccb667d3021a6a4a9a9a054123b"
 CURRENT_VERSION = "0.5.3"
 HISTORICAL_RUNTIME_PREFIX = "research/softwarex/historical_runtime_0_5_1"
+HISTORICAL_TEST_PATHS = ("tests/test_codex_integration.py",)
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
 REVIEWER_ASSET = "output/submission/ZeroRun_SoftwareX_reviewer.zip"
@@ -377,6 +378,10 @@ def collect(paper_files=(), current_core=None):
         require(current_core == CURRENT_CORE and current_core != HISTORICAL_CORE,
                 "only the reviewed current runtime commit is allowed")
         historical = {Path(name).name: raw for name, raw in payloads.items() if name.startswith("src/zerorun/")}
+        # Retain the exact already-adapted 0.5.1 test before installing the
+        # separately tested current integration test at its ordinary path.
+        for relative in HISTORICAL_TEST_PATHS:
+            add(HISTORICAL_RUNTIME_PREFIX + "/" + relative, payloads[relative], origins[relative])
         current = {}
         new_test = "tests/test_mcp_discovery_semantics.py"
         current_test = "tests/test_codex_integration.py"

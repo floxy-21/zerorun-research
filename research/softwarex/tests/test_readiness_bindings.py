@@ -91,6 +91,37 @@ def test_current_wheel_source_and_junit_bindings_pass(install_fixture):
     assert install["status"] == "PASS" and tests["pytest_passed"] == 3
 
 
+@pytest.mark.parametrize("mode", ["exact", "changed-preserved", "missing-preserved", "unexpected-test"])
+def test_historical_receipt_binds_only_the_exact_preserved_named_test(install_fixture, mode):
+    context = install_fixture
+    release = context["release"]
+    prefix = readiness.HISTORICAL_RUNTIME_PREFIX
+    relative = "tests/test_codex_integration.py" if mode != "unexpected-test" else "tests/test_unrelated.py"
+    old = b"# artificial historical integration test\n"
+    current = b"# distinct current test; not certified by historical receipt\n"
+    put(release / prefix / "src/zerorun/core.py", (release / "src/zerorun/core.py").read_bytes())
+    put(release / relative, current)
+    preserved = release / prefix / relative
+    if mode != "missing-preserved":
+        put(preserved, old if mode != "changed-preserved" else old + b"# altered\n")
+    path = context["here"] / "generated/public-release-tests.json"
+    receipt = readiness.read(path)
+    receipt["tested_code"].append({"path": relative, "bytes": len(old), "sha256": artifacts.digest(old)})
+    put_json(path, receipt)
+    put_json(release / "research/softwarex/generated/public-release-tests.json", receipt)
+    if mode == "exact":
+        _, checked = readiness.check_test_and_install_bindings(release, historical_runtime_prefix=prefix)
+        assert checked["preserved_historical_tests"] == [{"tested_path": relative,
+            "preserved_path": prefix + "/" + relative, "bytes": len(old), "sha256": artifacts.digest(old)}]
+        assert checked["targeted_test_amendments"] == []
+        assert (release / relative).read_bytes() == current
+        with pytest.raises(ValueError):
+            readiness.check_test_and_install_bindings(release)
+    else:
+        with pytest.raises((ValueError, FileNotFoundError)):
+            readiness.check_test_and_install_bindings(release, historical_runtime_prefix=prefix)
+
+
 @pytest.mark.parametrize("relative", ["src/zerorun/core.py", "research/softwarex/evidence/tests.xml",
                                        "output/packages/zerorun-softwarex/zerorun-0.5.1-py3-none-any.whl"])
 def test_changed_tested_payload_cannot_become_ready(install_fixture, relative):

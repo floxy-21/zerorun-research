@@ -11,6 +11,7 @@ import xml.etree.ElementTree as ET
 from research.softwarex.build_paper import build as build_paper
 from research.softwarex.build_public_release import inspect, HISTORICAL_RUNTIME_PREFIX, CURRENT_CORE, CURRENT_VERSION
 from research.softwarex.build_public_release import REVIEWER_ASSET, external_archive_identity, external_artifacts
+from research.softwarex.build_public_release import HISTORICAL_TEST_PATHS
 from research.softwarex import build_submission_artifacts as artifacts_builder
 from research.softwarex import build_application_evidence as application_builder
 from research.softwarex import build_highlights as highlights_builder
@@ -20,7 +21,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-final-053-20260908-v2"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-final-053-20260908-v3"
 CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.3-v1/receipt.json"
 CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-053-v1"
 HOSTED_CI_RECEIPT = "research/softwarex/evidence/hosted-ci-20260907/receipt.json"
@@ -153,6 +154,8 @@ def check_targeted_test_amendment(release, original):
 
 
 def check_test_and_install_bindings(release, *, historical_runtime_prefix=None):
+    require(historical_runtime_prefix in (None, HISTORICAL_RUNTIME_PREFIX),
+            "unexpected preserved historical runtime prefix")
     install = read(HERE / "generated/public-install-smoke.json")
     tests = read(HERE / "generated/public-release-tests.json")
     require(install["schema"] == "zerorun.softwarex-public-install-smoke.v1" and install["status"] == "PASS"
@@ -169,18 +172,22 @@ def check_test_and_install_bindings(release, *, historical_runtime_prefix=None):
     require(isinstance(checked, list) and checked and len({row["path"] for row in checked}) == len(checked),
             "missing or duplicate tested-code inventory")
     amendments = []
+    preserved_tests = []
     for row in checked:
         member_name(row["path"])
         relative = row["path"]
-        if historical_runtime_prefix is not None and relative.startswith("src/zerorun/"):
-            require(historical_runtime_prefix == HISTORICAL_RUNTIME_PREFIX,
-                    "unexpected preserved historical runtime prefix")
+        if historical_runtime_prefix is not None and (
+                relative.startswith("src/zerorun/") or relative in HISTORICAL_TEST_PATHS):
             relative = historical_runtime_prefix + "/" + relative
         raw = read_regular(release / relative)
         if len(raw) != row["bytes"] or hashlib.sha256(raw).hexdigest() != row["sha256"]:
             # A changed historical runtime is never an allowed test amendment.
-            require(relative == row["path"], "preserved historical runtime differs from its tested bytes")
+            require(relative == row["path"], "preserved historical runtime differs from its tested bytes"
+                    if row["path"].startswith("src/zerorun/") else "preserved historical test differs from its tested bytes")
             amendments.append(check_targeted_test_amendment(release, row))
+        if relative != row["path"] and row["path"] in HISTORICAL_TEST_PATHS:
+            preserved_tests.append({"tested_path": row["path"], "preserved_path": relative,
+                                    "bytes": row["bytes"], "sha256": row["sha256"]})
     final_tests = tests["runs"][-1]
     require(final_tests["pytest_failed"] == 0 and final_tests["errors"] == 0
             and final_tests["pytest_passed"] > 0, "public-layout tests not passing")
@@ -199,7 +206,8 @@ def check_test_and_install_bindings(release, *, historical_runtime_prefix=None):
                 == run["pytest_passed"] + run["subtests_passed"], "JUnit/receipt counts differ")
     for name in ("public-install-smoke.json", "public-release-tests.json"):
         matching_public_file(release, "research/softwarex/generated/" + name, HERE / "generated" / name)
-    return install, dict(final_tests, targeted_test_amendments=amendments)
+    return install, dict(final_tests, targeted_test_amendments=amendments,
+                         preserved_historical_tests=preserved_tests)
 
 
 def check_current_runtime_bindings(release):
