@@ -1,0 +1,86 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "test.py::HandlerTest::test_sanity_all"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "test.py::FrontmatterTest::test_all_the_tests",
+          "test.py::FrontmatterTest::test_dump_to_file",
+          "test.py::FrontmatterTest::test_dumping_with_custom_delimiters",
+          "test.py::FrontmatterTest::test_empty_frontmatter",
+          "test.py::FrontmatterTest::test_no_frontmatter",
+          "test.py::FrontmatterTest::test_pretty_dumping",
+          "test.py::FrontmatterTest::test_to_dict",
+          "test.py::FrontmatterTest::test_to_string",
+          "test.py::FrontmatterTest::test_unicode_post",
+          "test.py::FrontmatterTest::test_with_crlf_string",
+          "test.py::FrontmatterTest::test_with_markdown_content",
+          "test.py::HandlerTest::test_custom_handler",
+          "test.py::HandlerTest::test_detect_format",
+          "test.py::HandlerTest::test_json",
+          "test.py::HandlerTest::test_json_output",
+          "test.py::HandlerTest::test_no_handler",
+          "test.py::HandlerTest::test_toml"
+        ],
+        "base_commit": "39ac3a6852ccfd0b9c231f8e187243babc344661",
+        "created_at": "2018-11-18 01:04:07",
+        "docker_image": "swerebench/sweb.eval.x86_64.eyeseast_1776_python-frontmatter-56",
+        "environment": "name: python-frontmatter\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - certifi=2021.5.30=py36h06a4308_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.3=he6710b0_2\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=1.1.1w=h7f8727e_0\n  - pip=21.2.2=py36h06a4308_0\n  - python=3.6.13=h12debd9_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=58.0.4=py36h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - wheel=0.37.1=pyhd3eb1b0_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - attrs==22.2.0\n      - importlib-metadata==4.8.3\n      - iniconfig==1.1.1\n      - packaging==21.3\n      - pluggy==1.0.0\n      - py==1.11.0\n      - pyparsing==3.1.4\n      - pytest==7.0.1\n      - pyyaml==6.0.1\n      - six==1.17.0\n      - toml==0.10.2\n      - tomli==1.2.3\n      - typing-extensions==4.1.1\n      - zipp==3.6.0\nprefix: /opt/conda/envs/python-frontmatter\n",
+        "environment_setup_commit": "39ac3a6852ccfd0b9c231f8e187243babc344661",
+        "hints_text": "",
+        "image_name": "swerebench/sweb.eval.x86_64.eyeseast_1776_python-frontmatter-56",
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "requirements.txt",
+          "pip_packages": [
+            "pytest"
+          ],
+          "pre_install": null,
+          "python": "3.6",
+          "reqs_path": [
+            "requirements.txt"
+          ],
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "eyeseast__python-frontmatter-56",
+        "license_name": "MIT License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_short_problem_statement"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 1,
+            "test_score": 3
+          },
+          "num_modified_files": 1
+        },
+        "patch": "diff --git a/frontmatter/default_handlers.py b/frontmatter/default_handlers.py\nindex dc2e3aa..9c32d2d 100644\n--- a/frontmatter/default_handlers.py\n+++ b/frontmatter/default_handlers.py\n@@ -225,8 +225,8 @@ class JSONHandler(BaseHandler):\n     Note that changing ``START_DELIMITER`` or ``END_DELIMITER`` may break JSON parsing.\n     \"\"\"\n     FM_BOUNDARY = re.compile(r'^(?:{|})$', re.MULTILINE)\n-    START_DELIMITER = \"{\"\n-    END_DELIMITER = \"}\"\n+    START_DELIMITER = \"\"\n+    END_DELIMITER = \"\"\n \n     def split(self, text):\n         _, fm, content = self.FM_BOUNDARY.split(text, 2)\n@@ -237,6 +237,7 @@ class JSONHandler(BaseHandler):\n \n     def export(self, metadata, **kwargs):\n         \"Turn metadata into JSON\"\n+        kwargs.setdefault('indent', 4)\n         metadata = json.dumps(metadata, **kwargs)\n         return u(metadata)\n \n",
+        "problem_statement": "JSONHandler produces broken output\nExporting in JSON format gives you this:\r\n\r\n```\r\n{\r\n{\"test\": \"tester\", \"author\": \"bob\", \"something\": \"else\"}\r\n}\r\n\r\nTitle\r\n=====\r\n\r\ntitle2\r\n------\r\n\r\nHello.\r\n\r\nJust need three dashes\r\n---\r\n\r\nAnd this might break.\r\n```\r\n\r\nSo that's unfortunate.",
+        "repo": "eyeseast/python-frontmatter",
+        "requirements": "attrs==22.2.0\ncertifi==2021.5.30\nimportlib-metadata==4.8.3\niniconfig==1.1.1\npackaging==21.3\npluggy==1.0.0\npy==1.11.0\npyparsing==3.1.4\npytest==7.0.1\n-e git+https://github.com/eyeseast/python-frontmatter.git@39ac3a6852ccfd0b9c231f8e187243babc344661#egg=python_frontmatter\nPyYAML==6.0.1\nsix==1.17.0\ntoml==0.10.2\ntomli==1.2.3\ntyping_extensions==4.1.1\nzipp==3.6.0\n",
+        "test_patch": "diff --git a/test.py b/test.py\nindex 26d1830..154fe6f 100644\n--- a/test.py\n+++ b/test.py\n@@ -150,19 +150,38 @@ class HandlerTest(unittest.TestCase):\n     \"\"\"\n     Tests for custom handlers and formatting\n     \"\"\"\n+    TEST_FILES = {\n+        'tests/hello-world.markdown': YAMLHandler, \n+        'tests/hello-json.markdown': JSONHandler,\n+        'tests/hello-toml.markdown': TOMLHandler\n+    }\n+\n+    def sanity_check(self, filename, handler_type):\n+        \"Ensure we can load -> dump -> load\"\n+        post = frontmatter.load(filename)\n+\n+        self.assertIsInstance(post.handler, handler_type)\n+\n+        # dump and reload\n+        repost = frontmatter.loads(frontmatter.dumps(post))\n+\n+        self.assertEqual(post.metadata, repost.metadata)\n+        self.assertEqual(post.content, repost.content)\n+        self.assertEqual(post.handler, repost.handler)\n+\n     def test_detect_format(self):\n         \"detect format based on default handlers\"\n-        test_files = {\n-            'tests/hello-world.markdown': YAMLHandler, \n-            'tests/hello-json.markdown': JSONHandler,\n-            'tests/hello-toml.markdown': TOMLHandler\n-        }\n-\n-        for fn, Handler in test_files.items():\n-            with codecs.open(fn, 'r', 'utf-8') as f:\n+\n+        for filename, Handler in self.TEST_FILES.items():\n+            with codecs.open(filename, 'r', 'utf-8') as f:\n                 format = frontmatter.detect_format(f.read(), frontmatter.handlers)\n                 self.assertIsInstance(format, Handler)\n \n+    def test_sanity_all(self):\n+        \"Run sanity check on all handlers\"\n+        for filename, Handler in self.TEST_FILES.items():\n+            self.sanity_check(filename, Handler)\n+\n     def test_no_handler(self):\n         \"default to YAMLHandler when no handler is attached\"\n         post = frontmatter.load('tests/hello-world.markdown')\n@@ -217,6 +236,10 @@ class HandlerTest(unittest.TestCase):\n             self.assertEqual(post[k], v)\n \n \n+    def test_json_output(self):\n+        \"load, export, and reload\"\n+\n+\n if __name__ == \"__main__\":\n     doctest.testfile('README.md')\n     doctest.testmod(frontmatter.default_handlers, extraglobs={'frontmatter': frontmatter})\n",
+        "version": "0.4"
+      },
+      "row_idx": 7387,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

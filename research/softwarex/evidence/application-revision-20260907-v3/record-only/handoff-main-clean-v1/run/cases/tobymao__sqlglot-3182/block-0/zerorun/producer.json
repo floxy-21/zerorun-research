@@ -1,0 +1,43 @@
+{
+  "completed_utc": "2026-09-07T09:56:03.673591+00:00",
+  "error": null,
+  "operation": "producer",
+  "outer_ms": 22014.728294999943,
+  "result": {
+    "cache_key": "53342a46bf7020301434926dfaabf81734838970b10154bb5b5efb479f8304bd",
+    "execution_ms": 14255.088,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 1.638,
+      "cache_publish": 53.823,
+      "docker_execution": 14256.875,
+      "environment": 0.038,
+      "event_append": 121.468,
+      "fingerprint_final": 760.176,
+      "fingerprint_initial": 1267.072,
+      "lock_acquire": 1.834,
+      "runtime_inspect_initial": 382.915,
+      "snapshot_cleanup": 47.529,
+      "snapshot_prepare": 3961.515
+    },
+    "reason": "fresh hermetic result stored",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "MISS_EXECUTED",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 932,
+      "emitted_bytes": 932,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 4.73s =========================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": false,
+    "wall_ms": 21893.043
+  }
+}

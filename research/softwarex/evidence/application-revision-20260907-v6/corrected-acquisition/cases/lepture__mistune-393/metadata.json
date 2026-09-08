@@ -1,0 +1,85 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "tests/test_misc.py::TestMiscCases::test_ast_output"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "tests/test_misc.py::TestMiscCases::test_allow_data_protocols",
+          "tests/test_misc.py::TestMiscCases::test_allow_harmful_protocols",
+          "tests/test_misc.py::TestMiscCases::test_before_parse_hooks",
+          "tests/test_misc.py::TestMiscCases::test_emsp",
+          "tests/test_misc.py::TestMiscCases::test_escape_html",
+          "tests/test_misc.py::TestMiscCases::test_hard_wrap",
+          "tests/test_misc.py::TestMiscCases::test_harmful_links",
+          "tests/test_misc.py::TestMiscCases::test_html_tag_text_following_list",
+          "tests/test_misc.py::TestMiscCases::test_markdown_func",
+          "tests/test_misc.py::TestMiscCases::test_none",
+          "tests/test_misc.py::TestMiscCases::test_ref_link",
+          "tests/test_misc.py::TestMiscCases::test_use_plugin"
+        ],
+        "base_commit": "0772c78bc0a62771768278263ef740345f58c0f0",
+        "created_at": "2024-10-31 15:31:28",
+        "docker_image": "swerebench/sweb.eval.x86_64.lepture_1776_mistune-393",
+        "environment": "name: mistune\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - exceptiongroup=1.2.0=py39h06a4308_0\n  - iniconfig=1.1.1=pyhd3eb1b0_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.4.4=h6a678d5_1\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=3.0.16=h5eee18b_0\n  - packaging=24.2=py39h06a4308_0\n  - pip=25.0=py39h06a4308_0\n  - pluggy=1.5.0=py39h06a4308_0\n  - pytest=8.3.4=py39h06a4308_0\n  - python=3.9.21=he870216_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=75.8.0=py39h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - tomli=2.0.1=py39h06a4308_0\n  - tzdata=2025a=h04d1e81_0\n  - wheel=0.45.1=py39h06a4308_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - coverage==7.8.0\n      - mistune==3.0.2\n      - mypy==1.15.0\n      - mypy-extensions==1.0.0\n      - pytest-cov==6.0.0\n      - typing-extensions==4.13.0\nprefix: /opt/conda/envs/mistune\n",
+        "environment_setup_commit": "0772c78bc0a62771768278263ef740345f58c0f0",
+        "hints_text": "",
+        "image_name": "swerebench/sweb.eval.x86_64.lepture_1776_mistune-393",
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "pytest",
+          "pip_packages": [
+            "pytest",
+            "pytest-cov",
+            "mypy"
+          ],
+          "pre_install": [
+            "apt-get update",
+            "apt-get install -y gcc"
+          ],
+          "python": "3.9",
+          "reqs_path": null,
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "lepture__mistune-393",
+        "license_name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_short_problem_statement",
+            "has_many_modified_files"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 0,
+            "test_score": 0
+          },
+          "num_modified_files": 2
+        },
+        "patch": "diff --git a/src/mistune/inline_parser.py b/src/mistune/inline_parser.py\nindex 21b04c1..97423db 100644\n--- a/src/mistune/inline_parser.py\n+++ b/src/mistune/inline_parser.py\n@@ -19,7 +19,7 @@ from .helpers import (\n     parse_link_text,\n     unescape_char,\n )\n-from .util import escape, escape_url, unikey\n+from .util import escape_url, unikey\n \n PAREN_END_RE = re.compile(r'\\s*\\)')\n \n@@ -310,7 +310,7 @@ class InlineParser(Parser[InlineState]):\n             if len(code.strip()):\n                 if code.startswith(' ') and code.endswith(' '):\n                     code = code[1:-1]\n-            state.append_token({'type': 'codespan', 'raw': escape(code)})\n+            state.append_token({'type': 'codespan', 'raw': code})\n             return end_pos\n         else:\n             state.append_token({'type': 'text', 'raw': marker})\ndiff --git a/src/mistune/renderers/html.py b/src/mistune/renderers/html.py\nindex 0d999a7..a8d2c47 100644\n--- a/src/mistune/renderers/html.py\n+++ b/src/mistune/renderers/html.py\n@@ -91,7 +91,7 @@ class HTMLRenderer(BaseRenderer):\n         return s + ' />'\n \n     def codespan(self, text: str) -> str:\n-        return '<code>' + text + '</code>'\n+        return '<code>' + escape_text(text) + '</code>'\n \n     def linebreak(self) -> str:\n         return '<br />\\n'\n",
+        "problem_statement": "Certain characters in inline code incorrectly parsed (e.g., `&`)\nMWE:\r\n\r\n```python\r\nimport mistune\r\nfrom mistune.core import BlockState\r\nmarkdown = mistune.create_markdown(renderer=\"ast\")\r\n\r\nmd = r\"`&<>`\"\r\ntokens = markdown(md)\r\n\r\nprint(tokens)\r\n```\r\n\r\nOutput:\r\n\r\n```python\r\n[{'type': 'paragraph', 'children': [{'type': 'codespan', 'raw': '&amp;&lt;&gt;'}]}]\r\n```",
+        "repo": "lepture/mistune",
+        "requirements": "coverage==7.8.0\nexceptiongroup @ file:///croot/exceptiongroup_1706031385326/work\niniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work\n-e git+https://github.com/lepture/mistune.git@0772c78bc0a62771768278263ef740345f58c0f0#egg=mistune\nmypy==1.15.0\nmypy-extensions==1.0.0\npackaging @ file:///croot/packaging_1734472117206/work\npluggy @ file:///croot/pluggy_1733169602837/work\npytest @ file:///croot/pytest_1738938843180/work\npytest-cov==6.0.0\ntomli @ file:///opt/conda/conda-bld/tomli_1657175507142/work\ntyping_extensions==4.13.0\n",
+        "test_patch": "diff --git a/tests/test_misc.py b/tests/test_misc.py\nindex f57c53b..5e21a1a 100644\n--- a/tests/test_misc.py\n+++ b/tests/test_misc.py\n@@ -77,7 +77,7 @@ class TestMiscCases(TestCase):\n \n     def test_ast_output(self):\n         md = mistune.create_markdown(escape=False, renderer=None)\n-        text = '# h1\\n\\nfoo **bar**'\n+        text = '# h1\\n\\nfoo **bar**\\n\\n`&<>\"`'\n         result = md(text)\n         expected = [\n             {\n@@ -94,6 +94,13 @@ class TestMiscCases(TestCase):\n                     {'type': 'strong', 'children': [{'type': 'text', 'raw': 'bar'}]}\n                 ]\n             },\n+            {'type': 'blank_line'},\n+            {\n+                'type': 'paragraph',\n+                'children': [\n+                    {'type': 'codespan', 'raw': '&<>\"'},\n+                ]\n+            },\n         ]\n         self.assertEqual(result, expected)\n \n",
+        "version": "3.0"
+      },
+      "row_idx": 10679,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "docker",
+    "build",
+    "--no-cache",
+    "--pull=false",
+    "--network=none",
+    "--tag",
+    "127.0.0.1:19559/zerorun-compatible-v2:755d176c196241b2abd79e3581600980",
+    "/home/floxy/zerorun-compatibility-preflight-20260907-v2/image-repair-v2/context"
+  ],
+  "completed_utc": "2026-09-07T14:41:06.868835+00:00",
+  "error": null,
+  "outer_ms": 57719.734393999715,
+  "returncode": 0,
+  "stderr": "DEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\n",
+  "stderr_truncated": false,
+  "stdout": "Sending build context to Docker daemon  11.13MB\r\r\nStep 1/6 : FROM python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a\n ---> 68d914ec641a\nStep 2/6 : COPY wheelhouse/ /opt/zerorun-wheelhouse/\n ---> 1db4e391618d\nStep 3/6 : COPY requirements.lock /opt/zerorun-requirements.lock\n ---> 3e1f0256fca9\nStep 4/6 : RUN python -m pip install --disable-pip-version-check --no-cache-dir --no-index --find-links=/opt/zerorun-wheelhouse --require-hashes -r /opt/zerorun-requirements.lock\n ---> Running in a9c7fad27b9a\nLooking in links: /opt/zerorun-wheelhouse\nProcessing /opt/zerorun-wheelhouse/Django-3.2.25-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl\nProcessing /opt/zerorun-wheelhouse/asgiref-3.12.1-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/exceptiongroup-1.3.1-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/iniconfig-2.3.0-py3-none-any.whl\nRequirement already satisfied: packaging==26.3 in /usr/local/lib/python3.10/site-packages (from -r /opt/zerorun-requirements.lock (line 6)) (26.3)\nProcessing /opt/zerorun-wheelhouse/pluggy-1.6.0-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/pretend-1.0.9-py2.py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/pygments-2.21.0-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/pytest-8.4.2-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/pytz-2026.3.post1-py2.py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/six-1.17.0-py2.py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/sqlparse-0.6.0-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/toml-0.10.2-py2.py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/tomli-2.4.1-py3-none-any.whl\nProcessing /opt/zerorun-wheelhouse/typing_extensions-4.16.0-py3-none-any.whl\nInstalling collected packages: pytz, pretend, typing_extensions, tomli, toml, sqlparse, six, PyYAML, Pygments, pluggy, iniconfig, exceptiongroup, asgiref, pytest, Django\nSuccessfully installed Django-3.2.25 PyYAML-6.0.2 Pygments-2.21.0 asgiref-3.12.1 exceptiongroup-1.3.1 iniconfig-2.3.0 pluggy-1.6.0 pretend-1.0.9 pytest-8.4.2 pytz-2026.3.post1 six-1.17.0 sqlparse-0.6.0 toml-0.10.2 tomli-2.4.1 typing_extensions-4.16.0\n\u001b[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n\u001b[0m ---> Removed intermediate container a9c7fad27b9a\n ---> c9cb8bed5809\nStep 5/6 : ENV PYTHONPATH=/workspace/src:/workspace\n ---> Running in ab83b3ca521d\n ---> Removed intermediate container ab83b3ca521d\n ---> 15c5de127e12\nStep 6/6 : LABEL org.opencontainers.image.title=ZeroRun-compatible-handoff-dependencies\n ---> Running in 7e3690724609\n ---> Removed intermediate container 7e3690724609\n ---> 78039048251e\nSuccessfully built 78039048251e\nSuccessfully tagged 127.0.0.1:19559/zerorun-compatible-v2:755d176c196241b2abd79e3581600980\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 600
+}

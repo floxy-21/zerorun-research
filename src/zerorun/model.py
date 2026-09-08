@@ -168,6 +168,15 @@ class Manifest:
 
 @dataclass
 class RunResult:
+    """A status receipt, with execution provenance determined by ``status``.
+
+    Whole-task ``wall_ms`` measures the current runner interval, not client or
+    model latency. On HIT_REUSED, ``execution_ms`` is the stored historical
+    execution duration; it does not imply that tests ran during this request.
+    ``saved_ms`` is a nonnegative per-hit estimate, not net workflow savings.
+    Phase timings are diagnostics and are not an exhaustive time partition.
+    """
+
     task: str
     status: str
     exit_code: int

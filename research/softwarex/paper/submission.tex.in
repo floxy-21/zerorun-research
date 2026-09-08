@@ -20,7 +20,7 @@
 ZeroRun provides auditable validation handoffs for AI coding tools. It distinguishes an earlier successful test status under a declared source/runtime identity from fresh execution for diagnostics. The software combines repository-bound CLI/MCP interfaces, authenticated records, a hit path without source staging, and an executable evaluation kit. @@ABSTRACT_RESULT@@ These observations support qualified status handoffs, not general workflow acceleration. Input completeness and determinism remain operator assumptions; reused status neither replays output nor proves patch correctness.
 \end{abstract}
 \begin{keyword}
-AI coding tools \sep test-result reuse \sep research software \sep reproducibility \sep software testing
+AI coding tools \sep test-result reuse \sep reproducibility \sep software testing
 \end{keyword}
 \end{frontmatter}
 \clearpage
@@ -57,7 +57,7 @@ C8 & Support email for questions & \href{mailto:kapoorjishan2@gmail.com}{kapoorj
 \section{Motivation and significance}
 AI coding tools use test results to assess edits, as illustrated by SWE-bench and SWE-agent \cite{jimenez2024swebench,yang2024sweagent}. After a producer validates a patch, another tool or reviewer needs to distinguish identified earlier success from newly executed evidence: identical commands can observe different source, dependencies or external state.
 
-ZeroRun serves testing-tool integrators and researchers evaluating these handoffs. It exposes a deterministic command's previous successful status under an unchanged declared identity. Consumers can request that status or fresh diagnostics, with separate provenance and costs. ZeroRun neither learns a caching policy nor predicts patch correctness.
+ZeroRun exposes a deterministic command's previous successful status under an unchanged declared identity. Testing-tool integrators and researchers can request that status or fresh diagnostics, with separate provenance and costs.
 
 Regression-test selection avoids tests considered unaffected by a change \cite{rothermel1997safe,yoo2012regression}. Existing build and LLM-tool caches already address result reuse (Table~\ref{tab:contracts}); eidos provides adjacent LLM function-integration software \cite{aldanamartin2025eidos}. LabChain combines hash-based intermediate-result reuse with modular scientific pipelines and JSON configuration \cite{couto2026labchain}. ZeroRun instead exposes an earlier test-status decision under an operator-qualified execution identity. Neither content hashing nor attaching a cache to an AI interface is a new algorithm here.
 
@@ -112,7 +112,7 @@ This is conditional correctness, not a soundness proof for arbitrary Python. An 
 \subsection{Interfaces and functionality}
 The CLI exposes structured results identifying reused success, fresh success, fresh failure, uncertainty, and refusal. The Codex skill and repository-bound MCP server expose the same distinction. Normal agent-facing reuse additionally requires exact-configuration authorization outside repository-controlled files; generating observation candidates does not authorize reuse. Laboratory fixtures used by the experiments authenticate cache records but are not production operator reviews, and their private keys are excluded from the artifact.
 
-The package also contains a fine-grained pytest path. Because omitted tests can affect fixtures, callbacks, shared state, or ordering, it conservatively requires fresh execution when qualification is incomplete. That path is included for reproducibility, but it is not the demonstrated acceleration mechanism in this article. Whole-task reuse does not require individual tests to be independent; it requires the complete requested command to satisfy the stated contract.
+The included fine-grained pytest path requires fresh execution when qualification is incomplete, because omitted tests can affect fixtures, callbacks, shared state or ordering. It is not this article's demonstrated acceleration mechanism. Whole-task reuse requires the complete command to satisfy the contract, not independence of individual tests.
 
 Hits do not reconstruct stdout or stderr. Clients requiring new diagnostics, coverage, or generated files must execute fresh. The public operating guide and manifest reference document installation, operator review, authorization, and this boundary; automated interface checks do not establish external adoption.
 
@@ -140,10 +140,10 @@ zerorun --manifest .zerorun.json --json explain tests
 zerorun --manifest .zerorun.json --json run tests
 zerorun --manifest .zerorun.json --json run tests --verify
 \end{verbatim}
-These commands inspect eligibility, request execution/reuse, and verify fresh. The operator guide supplies review and authorization; running the commands does not establish input completeness. The quickstart retains a disposable target's response JSON.
+These commands inspect eligibility, request execution/reuse, and verify fresh. The operator guide supplies review and authorization; commands alone cannot establish input completeness.
 
 \subsection{Client decisions and integration evidence}
-The reference consumer checks response consistency, \code{status}, \code{exit\_code}, and tool/protocol errors: \code{mode=reuse} alone is not success. It labels previous success explicitly, routes fresh failures to diagnostics, and requests fresh execution when required; it does not authorize tasks or execute its recommended fallback.
+The reference consumer checks response consistency, \code{status}, \code{exit\_code} and protocol errors; \code{mode=reuse} alone is not success. It labels historical success and routes fresh failures or requests to execution, without authorizing tasks or executing its recommended fallback.
 
 For the same configured task, MCP \code{run\_tests} takes the following arguments for ordinary reuse eligibility and fresh verification, respectively:
 \begin{verbatim}
@@ -152,10 +152,12 @@ For the same configured task, MCP \code{run\_tests} takes the following argument
 \end{verbatim}
 The server is bound to the target repository and receives the operator's external authority location. Requesting reuse does not imply that the response is a hit.
 
+Abbreviated fields from the \href{https://github.com/floxy-21/zerorun-research/blob/@@PUBLIC_COMMIT@@/research/softwarex/evidence/quickstart-public-052-v1/check.json}{synthetic 0.5.2 quickstart receipt} make the choice inspectable: \code{\{"status":"HIT\_REUSED","exit\_code":0\}} identifies earlier success; \code{\{"status":"VERIFY\_MATCH","exit\_code":0\}} reports fresh agreement. A consumer accepting prior status can continue; one needing fresh diagnostics requests verification and inspects its fresh output.
+
 The following client-decision trials use one deterministic two-file synthetic fixture, separately from the issue-fix producer below. @@CLIENT_EVIDENCE@@
 These installation timings describe the historical 0.5.1 guide. Separate source-bound receipts verify the current 0.5.2 public installation and five-stage server workflow.
 
-These synthetic trials used the CLI's default model without an identified backing model. They describe the recorded client configuration, not a model-population accuracy estimate. The operating guide separates laboratory examples from operator-approved application use.
+These synthetic trials used the CLI's default model without an identified backing model; they do not estimate model-population accuracy.
 
 \subsection{Issue-state validation handoffs}
 \begingroup\setlength{\tabcolsep}{2.8pt}
@@ -172,7 +174,7 @@ Repeated command text cannot establish source/runtime identity, even after appar
 
 \section{Impact}
 \subsection{Reproducible validation and measured cost}
-The kit lets researchers vary targets and input boundaries while retaining fresh-oracle comparisons, source identities, failures, setup costs and explicit denominators. This supports repeatable investigation of when result-only handoffs are worthwhile.
+Researchers can vary targets and input boundaries while retaining fresh-oracle comparisons, source identities, failures, setup costs and explicit denominators.
 
 Codex assisted software, experiment and analysis implementation and manuscript preparation. Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached outcomes for their reference. These are automated cross-checks, not independent human replication.
 
@@ -204,12 +206,12 @@ The supplement retains historical Python 3.10--3.14 CI, Windows and public-packa
 \subsection{Scope, reuse, and limitations}
 Integrators can inspect the result contract and review boundary before enabling reuse; researchers can audit responses against implementation bytes, fresh outcomes, and full cost. The MIT release permits adaptation and commercial reuse of ZeroRun-owned code; third-party licenses remain separate.
 
-No prevalence of reusable tasks, population speedup, token savings, improved patch quality or user productivity is established. The descriptive trajectory audit reports clustering; zero barrier-free pairs neither establish eligibility nor exclude restoration opportunities. Library targets are convenience workloads on one constrained VM; original and replicated observations are not independent datasets. The shared Windows host was not fully isolated from publication and validation activity. Block spreads and influential observations are retained; nested test nodes are not independent samples.
+No task-reuse prevalence, population speedup, token savings, improved patch quality or productivity is established. Zero barrier-free trajectory pairs neither establish eligibility nor exclude restoration. Library targets are convenience workloads on one constrained VM; original and replicated observations are not independent datasets. The shared Windows host was not fully isolated. Block spreads and influential observations are retained; nested test nodes are not independent samples.
 
 No external users, production deployments, commercial demand or third-party publications using ZeroRun are claimed. Model sessions and controlled handoffs are separate; generalization across clients/models and end-to-end workflow benefit remain unmeasured.
 
 \section{Conclusions}
-ZeroRun contributes an auditable validation handoff: operator-qualified execution identity, explicit historical-versus-fresh status, external authorization, a staging-free hit path and an executable evaluation kit. The worked application shows how a consumer can inspect earlier validation or request new diagnostics. Consumer waiting can fall while chain time rises; the partial favorable cohort establishes feasibility only. Qualification effort and broader autonomous-workflow benefit remain open research questions.
+ZeroRun contributes an inspectable validation handoff for operator-qualified, result-only tests: explicit historical-versus-fresh status, external authorization, a staging-free hit path and an executable evaluation kit. Consumer waiting can fall while chain time rises; selected application cases establish bounded feasibility rather than population acceleration. Qualification effort and broader autonomous-workflow benefit remain open research questions.
 
 \section*{Data and software availability}
 Code, research data and reproduction instructions are deposited in the public ZeroRun repository \cite{kapoor2026zerorunartifact}. Table 1 pins the submitted distribution. Its manifest separately retains the historical 0.5.1 study runtime at revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}; the 0.5.2 distribution changes version metadata and MCP discovery descriptions, with separate source and installation checks. Historical timings are not relabeled as a 0.5.2 replication. Supplementary material 1, \code{ZeroRun\_SoftwareX\_reviewer.zip}, contains inventoried software, raw evidence and analysis tools. Public trajectory responses retain CC-BY-4.0 notices and source attribution. Private cache-authentication keys and operator authority are excluded.
@@ -217,11 +219,14 @@ Code, research data and reproduction instructions are deposited in the public Ze
 \section*{Funding}
 This research received no specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
 
+\section*{CRediT authorship contribution statement}
+Jishan Kapoor: Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Writing--original draft, Writing--review \& editing, Resources, Project administration.
+
 \section*{Declaration of competing interests}
-Jishan Kapoor develops ZeroRun and has an interest in its potential commercialization. No external funding or established commercial adoption is reported.
+Jishan Kapoor develops ZeroRun and may explore future commercialization if the research progresses. No external funding or established commercial adoption is reported.
 
 \section*{Declaration of generative AI and AI-assisted technologies}
-OpenAI Codex was used extensively to assist software and experiment implementation, analysis, literature checking, manuscript drafting, and document preparation. It is not an author. The sole human author is responsible for reviewing the evidence, verifying references and claims, and approving the submitted version.
+OpenAI Codex assisted software and experiment implementation, analysis, literature checking, manuscript drafting, and document preparation. The sole human author reviewed and approved the article and its disclosures and takes responsibility for the evidence, references and claims.
 
 \begingroup
 \footnotesize

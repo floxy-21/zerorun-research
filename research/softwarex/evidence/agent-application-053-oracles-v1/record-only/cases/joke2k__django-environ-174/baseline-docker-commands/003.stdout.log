@@ -1,0 +1,70 @@
+      pg_config = self.env.db()
+        self.assertEqual(pg_config['ENGINE'], 'django.db.backends.postgresql_psycopg2')
+        self.assertEqual(pg_config['NAME'], 'd8r82722')
+        self.assertEqual(pg_config['HOST'], 'ec2-107-21-253-135.compute-1.amazonaws.com')
+        self.assertEqual(pg_config['USER'], 'uf07k1')
+        self.assertEqual(pg_config['PASSWORD'], 'wegauwhg')
+        self.assertEqual(pg_config['PORT'], 5431)
+    
+        mysql_config = self.env.db('DATABASE_MYSQL_URL')
+        self.assertEqual(mysql_config['ENGINE'], 'django.db.backends.mysql')
+        self.assertEqual(mysql_config['NAME'], 'heroku_97681')
+        self.assertEqual(mysql_config['HOST'], 'us-cdbr-east.cleardb.com')
+        self.assertEqual(mysql_config['USER'], 'bea6eb0')
+        self.assertEqual(mysql_config['PASSWORD'], '69772142')
+        self.assertEqual(mysql_config['PORT'], '')
+    
+        mysql_gis_config = self.env.db('DATABASE_MYSQL_GIS_URL')
+        self.assertEqual(mysql_gis_config['ENGINE'], 'django.contrib.gis.db.backends.mysql')
+        self.assertEqual(mysql_gis_config['NAME'], 'some_database')
+        self.assertEqual(mysql_gis_config['HOST'], '127.0.0.1')
+        self.assertEqual(mysql_gis_config['USER'], 'user')
+        self.assertEqual(mysql_gis_config['PASSWORD'], 'password')
+        self.assertEqual(mysql_gis_config['PORT'], '')
+    
+        oracle_config = self.env.db('DATABASE_ORACLE_TNS_URL')
+        self.assertEqual(oracle_config['ENGINE'], 'django.db.backends.oracle')
+        self.assertEqual(oracle_config['NAME'], 'sid')
+        self.assertEqual(oracle_config['HOST'], '')
+        self.assertEqual(oracle_config['USER'], 'user')
+        self.assertEqual(oracle_config['PASSWORD'], 'password')
+        self.assertFalse('PORT' in oracle_config)
+    
+        oracle_config = self.env.db('DATABASE_ORACLE_URL')
+        self.assertEqual(oracle_config['ENGINE'], 'django.db.backends.oracle')
+        self.assertEqual(oracle_config['NAME'], 'sid')
+        self.assertEqual(oracle_config['HOST'], 'host')
+        self.assertEqual(oracle_config['USER'], 'user')
+        self.assertEqual(oracle_config['PASSWORD'], 'password')
+        self.assertEqual(oracle_config['PORT'], '1521')
+    
+        redshift_config = self.env.db('DATABASE_REDSHIFT_URL')
+        self.assertEqual(redshift_config['ENGINE'], 'django_redshift_backend')
+        self.assertEqual(redshift_config['NAME'], 'dev')
+        self.assertEqual(redshift_config['HOST'], 'examplecluster.abc123xyz789.us-west-2.redshift.amazonaws.com')
+        self.assertEqual(redshift_config['USER'], 'user')
+        self.assertEqual(redshift_config['PASSWORD'], 'password')
+        self.assertEqual(redshift_config['PORT'], 5439)
+    
+        sqlite_config = self.env.db('DATABASE_SQLITE_URL')
+        self.assertEqual(sqlite_config['ENGINE'], 'django.db.backends.sqlite3')
+        self.assertEqual(sqlite_config['NAME'], '/full/path/to/your/database/file.sqlite')
+    
+        custom_backend_config = self.env.db('DATABASE_CUSTOM_BACKEND_URL')
+>       self.assertEqual(custom_backend_config['ENGINE'], 'custom.backend')
+E       KeyError: 'ENGINE'
+
+environ/test.py:226: KeyError
+=============================== warnings summary ===============================
+environ/test.py::EnvTests::test_db_url_value
+environ/test.py::FileEnvTests::test_db_url_value
+environ/test.py::SubClassTests::test_db_url_value
+  /workspace/environ/environ.py:429: UserWarning: Engine not recognized from url: {'NAME': 'database', 'USER': 'user', 'PASSWORD': 'password', 'HOST': 'example.com', 'PORT': 5430}
+    warnings.warn("Engine not recognized from url: {0}".format(config))
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED environ/test.py::EnvTests::test_db_url_value - KeyError: 'ENGINE'
+FAILED environ/test.py::FileEnvTests::test_db_url_value - KeyError: 'ENGINE'
+FAILED environ/test.py::SubClassTests::test_db_url_value - KeyError: 'ENGINE'
+================== 3 failed, 111 passed, 3 warnings in 0.56s ===================

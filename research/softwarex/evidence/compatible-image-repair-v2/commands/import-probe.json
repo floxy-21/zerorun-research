@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--read-only",
+    "--network=none",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "127.0.0.1:19559/zerorun-compatible-v2:755d176c196241b2abd79e3581600980",
+    "python",
+    "-B",
+    "-c",
+    "import importlib.metadata as m,json,sys; print(json.dumps({'python':sys.version,'packages':{d.metadata['Name']:d.version for d in m.distributions()}}))"
+  ],
+  "completed_utc": "2026-09-07T14:41:09.497853+00:00",
+  "error": null,
+  "outer_ms": 2311.208166999677,
+  "returncode": 0,
+  "stderr": "",
+  "stderr_truncated": false,
+  "stdout": "{\"python\": \"3.10.21 (main, Sep  1 2026, 00:15:42) [GCC 12.2.0]\", \"packages\": {\"wheel\": \"0.46.3\", \"packaging\": \"26.3\", \"pip\": \"23.0.1\", \"setuptools\": \"79.0.1\", \"typing_extensions\": \"4.16.0\", \"iniconfig\": \"2.3.0\", \"Pygments\": \"2.21.0\", \"toml\": \"0.10.2\", \"sqlparse\": \"0.6.0\", \"pretend\": \"1.0.9\", \"Django\": \"3.2.25\", \"PyYAML\": \"6.0.2\", \"six\": \"1.17.0\", \"pluggy\": \"1.6.0\", \"asgiref\": \"3.12.1\", \"pytz\": \"2026.3.post1\", \"tomli\": \"2.4.1\", \"pytest\": \"8.4.2\", \"exceptiongroup\": \"1.3.1\"}}\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 60
+}

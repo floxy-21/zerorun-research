@@ -1,0 +1,53 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0
+rootdir: /workspace
+collected 18 items
+
+test.py ................F.                                               [100%]
+
+=================================== FAILURES ===================================
+_________________________ HandlerTest.test_sanity_all __________________________
+
+self = <test.HandlerTest testMethod=test_sanity_all>
+
+    def test_sanity_all(self):
+        "Run sanity check on all handlers"
+        for filename, Handler in self.TEST_FILES.items():
+>           self.sanity_check(filename, Handler)
+
+test.py:183: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+test.py:166: in sanity_check
+    repost = frontmatter.loads(frontmatter.dumps(post))
+frontmatter/__init__.py:129: in loads
+    metadata, content = parse(text, encoding, handler, **defaults)
+frontmatter/__init__.py:87: in parse
+    fm = handler.load(fm)
+frontmatter/default_handlers.py:236: in load
+    return json.loads(fm, **kwargs)
+/usr/local/lib/python3.10/json/__init__.py:346: in loads
+    return _default_decoder.decode(s)
+/usr/local/lib/python3.10/json/decoder.py:337: in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <json.decoder.JSONDecoder object at 0x7faec442dc00>
+s = '{\n{"test": "tester", "author": "bob", "something": "else"}\n}', idx = 0
+
+    def raw_decode(self, s, idx=0):
+        """Decode a JSON document from ``s`` (a ``str`` beginning with
+        a JSON document) and return a 2-tuple of the Python
+        representation and the index in ``s`` where the document ended.
+    
+        This can be used to decode a JSON document from a string that may
+        have extraneous data at the end.
+    
+        """
+        try:
+>           obj, end = self.scan_once(s, idx)
+E           json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 1 (char 2)
+
+/usr/local/lib/python3.10/json/decoder.py:353: JSONDecodeError
+=========================== short test summary info ============================
+FAILED test.py::HandlerTest::test_sanity_all - json.decoder.JSONDecodeError: ...
+========================= 1 failed, 17 passed in 0.44s =========================

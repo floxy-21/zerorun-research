@@ -1,5 +1,6 @@
 """Artificial offline receipts test reconciliation, not experimental outcomes."""
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 
@@ -199,7 +200,7 @@ def test_acquisition_reconciliation_refuses_missing_or_false_green_data(acquisit
 def test_absent_runs_and_incomplete_runs_are_never_success(acquisition_fixture):
     root, _ = acquisition_fixture
     value = evidence.build(root)
-    assert set(value["unavailable_or_incomplete_runs"]) == {"v1_pilot", "v1_main", "v2_pilot", "v2_pilot_repeat", "v2_main", "v2_main_extended"}
+    assert set(value["unavailable_or_incomplete_runs"]) == {"v1_pilot", "v1_main", "v2_pilot", "v2_pilot_repeat", "v2_main", "v2_main_extended", "v3_main_clean", "v4_main_full", "v5_main_compatible", "v6_main_corrected"}
     assert all(run["state"] == "NOT_AVAILABLE" and run["execution_success_claimed"] is False
                for run in value["controlled_runs"].values())
     path = root / evidence.RUNS["v1_pilot"][0]
@@ -664,3 +665,140 @@ def test_publication_inputs_include_external_host_event(acquisition_fixture):
     save(root, evidence.HOST_INTERRUPTION, {"artificial": "separate host observation"})
     paths = {row["path"] for row in evidence.source_inputs(root)}
     assert evidence.HOST_INTERRUPTION in paths
+
+
+def clean_amendment_fixture(root, monkeypatch):
+    raw = b'Artificial prospective clean main amendment.\n'
+    a.save_new(root / evidence.AMENDMENTS[3], raw)
+    monkeypatch.setattr(evidence, 'CLEAN_AMENDMENT_SHA', hashlib.sha256(raw).hexdigest())
+
+
+def test_clean_main_uses_actual_new_image_and_keeps_unsealed_provenance_unqualified(acquisition_fixture, monkeypatch):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    clean_amendment_fixture(root, monkeypatch)
+    directory = fake_revision_run(root, evidence.RUNS['v3_main_clean'][0], manifests, 'main', 1200)
+    image = root / evidence.CLEAN_IMAGE
+    mock_revision_image_boundary(monkeypatch, {directory: image})
+    result = evidence.build(root)
+    run = result['controlled_runs']['v3_main_clean']
+    assert run['reconciliation']['bound_image'] == str(image)
+    assert run['repeat_context']['pooled_with_original'] is False
+    assert run['timing_context']['uninterrupted_timing_certified'] is False
+    assert result['clean_public_source_reproduction']['fresh_image_main_reproduction_confirmed'] is False
+    assert result['application_revision_attempts']['clean_v3']['state'] == 'INCOMPLETE_RECORD'
+    assert result['controlled_runs']['v2_main_extended']['state'] == 'NOT_AVAILABLE'
+    with pytest.raises(ValueError, match='image binding'):
+        evidence.run_summary(directory, 'v2', 'main', base, manifests, root / evidence.IMAGE)
+
+
+@pytest.mark.parametrize('mode', ['budget', 'execution', 'subset', 'reordered', 'pilot-ledger'])
+def test_clean_main_rejects_scope_drift_despite_lower_adapter_pass(acquisition_fixture, monkeypatch, mode):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    clean_amendment_fixture(root, monkeypatch)
+    directory = fake_revision_run(root, evidence.RUNS['v3_main_clean'][0], manifests, 'main', 1200)
+    mock_revision_image_boundary(monkeypatch, {directory: root / evidence.CLEAN_IMAGE})
+    protocol = json.loads((directory / 'run/protocol.json').read_bytes())
+    if mode == 'budget':
+        protocol['budget_seconds'] = 1080
+    elif mode == 'execution':
+        protocol['execution_seconds'] = 121
+    elif mode == 'subset':
+        protocol['selection']['cases'].pop()
+    elif mode == 'reordered':
+        protocol['selection']['cases'].reverse()
+    else:
+        protocol['selection'] = deepcopy(manifests['pilot'])
+    replace(directory, 'run/protocol.json', protocol)
+    with pytest.raises(ValueError):
+        evidence.build(root)
+
+
+def test_clean_presence_requires_its_new_amendment_not_the_old_plan(acquisition_fixture):
+    root, _ = acquisition_fixture
+    a.save_new(root / evidence.AMENDMENTS[2], b'Artificial historical amendment.')
+    (root / evidence.CLEAN_RECORDS).mkdir(parents=True)
+    with pytest.raises(ValueError, match='clean main requires its prospective amendment'):
+        evidence.build(root)
+
+
+def test_clean_publication_inputs_bind_host_streams_and_separate_guest_envelope(acquisition_fixture):
+    root, _ = acquisition_fixture
+    a.save_new(root / 'research/softwarex/build_handoff_evidence.py', b'# Artificial builder')
+    for name in ('continuity.log', 'observer.py', 'protocol.json'):
+        a.save_new(root / evidence.CLEAN_HOST / name, b'Artificial separate host record')
+    a.save_new(root / evidence.CLEAN_RECORDS / 'provenance/driver.py', b'# Artificial new guest observer')
+    paths = {row['path'] for row in evidence.source_inputs(root)}
+    assert {evidence.CLEAN_HOST + '/' + name for name in ('continuity.log', 'observer.py', 'protocol.json')} <= paths
+    assert evidence.CLEAN_RECORDS + '/provenance/driver.py' in paths
+
+
+def full_amendment_fixture(root, monkeypatch):
+    raw = b'Artificial prospective full cohort amendment.\n'
+    a.save_new(root / evidence.AMENDMENTS[4], raw)
+    monkeypatch.setattr(evidence, 'FULL_AMENDMENT_SHA', hashlib.sha256(raw).hexdigest())
+
+
+def mock_full_image_boundary(monkeypatch, expected_images):
+    mock_revision_image_boundary(monkeypatch, expected_images)
+    previous = evidence.v2.validate_saved
+    def validate_saved(directory, image_build, acquisition_base):
+        result = previous(directory, image_build, acquisition_base)
+        result['controlled_handoffs'].update(selected_cases=24, dispositions={
+            'COMPLETE': 0, 'INCOMPLETE_OR_UNSUPPORTED': 0, 'MATERIAL_CORRECTNESS_STOP': 0,
+            'NOT_RUN_BUDGET': 24, 'NOT_RUN_CAMPAIGN_FAILURE': 0, 'NOT_RUN_CORRECTNESS_STOP': 0,
+            'UNAVAILABLE_ACQUISITION': 0})
+        return result
+    monkeypatch.setattr(evidence.v2, 'validate_saved', validate_saved)
+
+
+def test_full_cohort_uses_its_exact_image_binding_without_promoting_unattempted_cases(acquisition_fixture, monkeypatch):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    full_amendment_fixture(root, monkeypatch)
+    directory = fake_revision_run(root, evidence.RUNS['v4_main_full'][0], manifests, 'main', 7200)
+    image = root / evidence.FULL_IMAGE
+    mock_full_image_boundary(monkeypatch, {directory: image})
+    result = evidence.build(root)
+    run = result['controlled_runs']['v4_main_full']
+    assert run['reconciliation']['bound_image'] == str(image)
+    assert run['full_attempt_gate']['attempted_cases'] == 0
+    assert run['full_attempt_gate']['all_selected_cases_attempted'] is False
+    assert run['repeat_context']['pooled_with_original'] is False
+    full = result['full_cohort_public_source_reproduction']
+    assert full['new_image_built_in_this_attempt'] is False
+    assert full['full_cohort_reproduction_confirmed'] is False
+    assert full['all_selected_cases_attempted'] is False
+    assert result['controlled_runs']['v3_main_clean']['state'] == 'NOT_AVAILABLE'
+    with pytest.raises(ValueError, match='image binding'):
+        evidence.run_summary(directory, 'v2', 'main', base, manifests, root / evidence.CLEAN_IMAGE)
+
+
+@pytest.mark.parametrize('mode', ['old-budget', 'execution', 'subset', 'reordered'])
+def test_full_cohort_cannot_silently_inherit_old_budget_or_change_selection(acquisition_fixture, monkeypatch, mode):
+    root, base = acquisition_fixture
+    _, manifests = evidence.acquisition_summary(base)
+    full_amendment_fixture(root, monkeypatch)
+    directory = fake_revision_run(root, evidence.RUNS['v4_main_full'][0], manifests, 'main', 7200)
+    mock_full_image_boundary(monkeypatch, {directory: root / evidence.FULL_IMAGE})
+    protocol = json.loads((directory / 'run/protocol.json').read_bytes())
+    if mode == 'old-budget':
+        protocol['budget_seconds'] = 1200
+    elif mode == 'execution':
+        protocol['execution_seconds'] = 121
+    elif mode == 'subset':
+        protocol['selection']['cases'].pop()
+    else:
+        protocol['selection']['cases'].reverse()
+    replace(directory, 'run/protocol.json', protocol)
+    with pytest.raises(ValueError):
+        evidence.build(root)
+
+
+def test_full_cohort_cannot_reuse_only_the_previous_amendment(acquisition_fixture, monkeypatch):
+    root, _ = acquisition_fixture
+    clean_amendment_fixture(root, monkeypatch)
+    (root / evidence.FULL_RECORDS).mkdir(parents=True)
+    with pytest.raises(ValueError, match='full cohort requires its prospective amendment'):
+        evidence.build(root)

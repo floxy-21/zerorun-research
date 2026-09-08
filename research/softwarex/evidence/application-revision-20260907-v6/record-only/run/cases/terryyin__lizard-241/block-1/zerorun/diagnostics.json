@@ -1,0 +1,42 @@
+{
+  "completed_utc": "2026-09-07T21:16:26.913612+00:00",
+  "error": null,
+  "operation": "diagnostics",
+  "outer_ms": 11534.128294000084,
+  "result": {
+    "cache_key": "81d6aaa6299fce2e0f13b2f56d7480bca7799bdc60b212d9414f609907aff606",
+    "execution_ms": 5370.352,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 155.609,
+      "docker_execution": 5380.332,
+      "environment": 0.047,
+      "event_append": 44.284,
+      "fingerprint_final": 689.893,
+      "fingerprint_initial": 1018.424,
+      "lock_acquire": 12.749,
+      "runtime_inspect_initial": 290.974,
+      "snapshot_cleanup": 46.13,
+      "snapshot_prepare": 3825.175
+    },
+    "reason": "fresh hermetic execution matched cached successful result",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "VERIFY_MATCH",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 875,
+      "emitted_bytes": 875,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: setup.cfg\ncollected 21 items\n\ntest/test_languages/testSwift.py .....................                   [100%]\n\n=============================== warnings summary ===============================\ntest/test_languages/testSwift.py:18\n  /workspace/test/test_languages/testSwift.py:18: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\ntest/test_languages/testSwift.py:185\n  /workspace/test/test_languages/testSwift.py:185: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 21 passed, 2 warnings in 0.28s ========================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": true,
+    "wall_ms": 11489.54
+  }
+}

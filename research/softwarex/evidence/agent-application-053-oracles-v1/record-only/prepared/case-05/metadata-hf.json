@@ -1,0 +1,121 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "tests/test_parser.py::test_parse_list_with_space_delimited_hyphen"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "tests/test_parser.py::test_tokens__repr__",
+          "tests/test_parser.py::test_init_parser_index_starts_at_zero",
+          "tests/test_parser.py::test_init_parser_has_tokens",
+          "tests/test_parser.py::test_init_all_tokens_must_be_tokens",
+          "tests/test_parser.py::test_peek_does_not_advance_index",
+          "tests/test_parser.py::test_peek_default_returns_one_token",
+          "tests/test_parser.py::test_advance_does_not_return_a_token",
+          "tests/test_parser.py::test_advance_increases_index_by_length",
+          "tests/test_parser.py::test_consume_advances_index_by_one",
+          "tests/test_parser.py::test_consume_returns_current_token",
+          "tests/test_parser.py::test_consume_token_value_does_not_return_token",
+          "tests/test_parser.py::test_consume_token_value_raises_error_if_not_found",
+          "tests/test_parser.py::test_check_returns_true_for_single_valid_type",
+          "tests/test_parser.py::test_check_returns_false_for_single_invalid_type",
+          "tests/test_parser.py::test_check_returns_true_for_mix_of_valid_and_invalid_types",
+          "tests/test_parser.py::test_check_returns_false_for_all_invalid_types",
+          "tests/test_parser.py::test_check_raises_if_token_types_arg_is_not_a_token",
+          "tests/test_parser.py::test_parse_value_quoted_literal",
+          "tests/test_parser.py::test_parse_value_literal",
+          "tests/test_parser.py::test_parse_value_literal_with_sql_block",
+          "tests/test_parser.py::test_parse_value_invalid_tokens",
+          "tests/test_parser.py::test_parse_value_quoted_literal_with_leftovers",
+          "tests/test_parser.py::test_parse_value_without_closing_double_semicolons",
+          "tests/test_parser.py::test_parse_key_normal_returns_token_value",
+          "tests/test_parser.py::test_parse_key_without_literal_token",
+          "tests/test_parser.py::test_parse_key_without_value_token",
+          "tests/test_parser.py::test_parse_key_with_many_value_tokens",
+          "tests/test_parser.py::test_debug_logging_statements_execute_successfully",
+          "tests/test_parser.py::test_parse_block_without_closing_curly_brace",
+          "tests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error",
+          "tests/test_parser.py::test_parse_pair_with_literal",
+          "tests/test_parser.py::test_parse_pair_with_quoted_literal",
+          "tests/test_parser.py::test_parse_pair_with_sql_block",
+          "tests/test_parser.py::test_parse_pair_with_bad_key",
+          "tests/test_parser.py::test_parse_pair_without_value_token",
+          "tests/test_parser.py::test_parse_list_with_literals",
+          "tests/test_parser.py::test_parse_list_with_pairs",
+          "tests/test_parser.py::test_parse_list_with_trailing_comma",
+          "tests/test_parser.py::test_parse_list_with_leading_comma",
+          "tests/test_parser.py::test_parse_list_with_missing_comma",
+          "tests/test_parser.py::test_parse_list_with_no_contents",
+          "tests/test_parser.py::test_parse_list_with_no_opening_bracket",
+          "tests/test_parser.py::test_parse_list_with_bad_token",
+          "tests/test_parser.py::test_parse_list_with_only_commas",
+          "tests/test_parser.py::test_parse_list_with_trailing_comment",
+          "tests/test_parser.py::test_parse_list_with_inner_comment",
+          "tests/test_parser.py::test_parse_list_with_only_comment",
+          "tests/test_parser.py::test_parse_block_with_no_expression"
+        ],
+        "base_commit": "9133f9a54bbae9d7ad0baab969eeb73301a9ebcb",
+        "created_at": "2024-01-15 15:19:30",
+        "docker_image": "swerebench/sweb.eval.x86_64.joshtemple_1776_lkml-87",
+        "environment": "name: lkml\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.4.4=h6a678d5_1\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=3.0.16=h5eee18b_0\n  - pip=25.0=py39h06a4308_0\n  - python=3.9.21=he870216_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=75.8.0=py39h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - tzdata=2025a=h04d1e81_0\n  - wheel=0.45.1=py39h06a4308_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - attrs==25.3.0\n      - black==22.3.0\n      - certifi==2025.1.31\n      - chardet==3.0.4\n      - click==8.1.8\n      - coverage==7.8.0\n      - distlib==0.3.9\n      - filelock==3.18.0\n      - flake8==3.8.3\n      - idna==2.10\n      - iniconfig==2.1.0\n      - isort==4.3.20\n      - lkml==1.3.3\n      - mccabe==0.6.1\n      - more-itertools==10.6.0\n      - mypy==0.782\n      - mypy-extensions==0.4.4\n      - packaging==24.2\n      - pathspec==0.12.1\n      - platformdirs==4.3.7\n      - pluggy==0.13.1\n      - py==1.11.0\n      - pycodestyle==2.6.0\n      - pyflakes==2.2.0\n      - pytest==6.0.1\n      - pytest-cov==2.7.1\n      - requests==2.24.0\n      - six==1.17.0\n      - toml==0.10.2\n      - tomli==2.2.1\n      - tox==3.20.1\n      - typed-ast==1.4.3\n      - typing-extensions==4.13.0\n      - urllib3==1.25.11\n      - virtualenv==20.29.3\nprefix: /opt/conda/envs/lkml\n",
+        "environment_setup_commit": "3b08d65c6d083dc44648735e96f14a796a84ba13",
+        "hints_text": "",
+        "image_name": "swerebench/sweb.eval.x86_64.joshtemple_1776_lkml-87",
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .[dev]",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "requirements.txt",
+          "pip_packages": [
+            "pytest"
+          ],
+          "pre_install": [
+            "apt-get update",
+            "apt-get install -y gcc"
+          ],
+          "python": "3.9",
+          "reqs_path": [
+            "requirements.txt"
+          ],
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "joshtemple__lkml-87",
+        "license_name": "MIT License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_short_problem_statement",
+            "has_many_modified_files"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 0,
+            "issue_text_score": 1,
+            "test_score": 2
+          },
+          "num_modified_files": 2
+        },
+        "patch": "diff --git a/lkml/parser.py b/lkml/parser.py\nindex cbf25ca..3a69dbb 100644\n--- a/lkml/parser.py\n+++ b/lkml/parser.py\n@@ -406,6 +406,13 @@ class Parser:\n \n         if self.check(tokens.LiteralToken):\n             token = self.consume()\n+            # Handle special case where a hyphen can be preceded by whitspace\n+            if token.value == \"-\" and self.consume_trivia():\n+                if self.check(tokens.LiteralToken):\n+                    token = self.consume()\n+                    token.value = \"-\" + token.value\n+                else:\n+                    return None\n             suffix = self.consume_trivia() if parse_suffix else \"\"\n             if self.log_debug:\n                 logger.debug(\"%sSuccessfully parsed value.\", self.depth * DELIMITER)\ndiff --git a/setup.py b/setup.py\nindex 7b7726c..23e9bf8 100644\n--- a/setup.py\n+++ b/setup.py\n@@ -2,7 +2,7 @@ from pathlib import Path\n \n from setuptools import find_packages, setup\n \n-__version__ = \"1.3.3\"\n+__version__ = \"1.3.4\"\n \n here = Path(__file__).parent.resolve()\n \n",
+        "problem_statement": "Failure to parse sets with space-delimited leading hypens\nlkml can't parse, this, which is valid lkml:\r\n\r\n```lookml\r\nfields: [- view.dimension_name]\r\n```\r\n\r\nThe issue seems to be with the space between the hyphen and the field name.",
+        "repo": "joshtemple/lkml",
+        "requirements": "attrs==25.3.0\nblack==22.3.0\ncertifi==2025.1.31\nchardet==3.0.4\nclick==8.1.8\ncoverage==7.8.0\ndistlib==0.3.9\nfilelock==3.18.0\nflake8==3.8.3\nidna==2.10\niniconfig==2.1.0\nisort==4.3.20\n-e git+https://github.com/joshtemple/lkml.git@9133f9a54bbae9d7ad0baab969eeb73301a9ebcb#egg=lkml\nmccabe==0.6.1\nmore-itertools==10.6.0\nmypy==0.782\nmypy_extensions==0.4.4\npackaging==24.2\npathspec==0.12.1\nplatformdirs==4.3.7\npluggy==0.13.1\npy==1.11.0\npycodestyle==2.6.0\npyflakes==2.2.0\npytest==6.0.1\npytest-cov==2.7.1\nrequests==2.24.0\nsix==1.17.0\ntoml==0.10.2\ntomli==2.2.1\ntox==3.20.1\ntyped-ast==1.4.3\ntyping_extensions==4.13.0\nurllib3==1.25.11\nvirtualenv==20.29.3\n",
+        "test_patch": "diff --git a/tests/test_parser.py b/tests/test_parser.py\nindex 421b82d..bd63c89 100644\n--- a/tests/test_parser.py\n+++ b/tests/test_parser.py\n@@ -703,6 +703,30 @@ def test_parse_list_with_only_comment():\n     )\n \n \n+def test_parse_list_with_space_delimited_hyphen():\n+    stream = (\n+        tokens.LiteralToken(\"fields\", 1),\n+        tokens.ValueToken(1),\n+        tokens.WhitespaceToken(\" \", 1),\n+        tokens.ListStartToken(1),\n+        tokens.WhitespaceToken(\" \", 1),\n+        tokens.LiteralToken(\"-\", 1),\n+        tokens.WhitespaceToken(\" \", 1),\n+        tokens.LiteralToken(\"view.dimension_name\", 1),\n+        tokens.ListEndToken(1),\n+        tokens.StreamEndToken(1),\n+    )\n+    parser = lkml.parser.Parser(stream)\n+    result = parser.parse_list()\n+    assert result == ListNode(\n+        type=SyntaxToken(\"fields\", 1),\n+        colon=Colon(line_number=1, suffix=\" \"),\n+        left_bracket=LeftBracket(),\n+        items=(SyntaxToken(\"-view.dimension_name\", 1, prefix=\" \"),),\n+        right_bracket=RightBracket(),\n+    )\n+\n+\n def test_parse_block_with_no_expression():\n     stream = (\n         tokens.LiteralToken(\"dimension\", 1),\n",
+        "version": "1.3"
+      },
+      "row_idx": 10033,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

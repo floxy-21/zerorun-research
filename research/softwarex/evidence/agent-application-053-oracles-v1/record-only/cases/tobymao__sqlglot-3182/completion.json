@@ -1,0 +1,58 @@
+{
+  "case_id": "tobymao__sqlglot-3182",
+  "case_index": 2,
+  "classification": {
+    "baseline_available": true,
+    "baseline_exit_code": 1,
+    "baseline_nonxfail_failed_calls": [
+      "tests/dialects/test_duckdb.py::TestDuckDB::test_duckdb",
+      "tests/dialects/test_snowflake.py::TestSnowflake::test_timestamps",
+      "tests/test_expressions.py::TestExpressions::test_transform_with_parent_mutation"
+    ],
+    "classification": "NOT_VERIFIED_FIXED",
+    "completed_verified_fix": false,
+    "final_available": false,
+    "final_exit_code": null,
+    "final_fresh_pass": false,
+    "fresh_regression_repaired": false,
+    "same_collected_node_set": false
+  },
+  "error": null,
+  "producer": {
+    "boundary_pass": true,
+    "case_id": "tobymao__sqlglot-3182",
+    "fresh_oracle_required": true,
+    "model_invocation_attempted": true,
+    "observed_model_identifiers": [],
+    "patch_correctness_established": false,
+    "producer_completed": true,
+    "requested_model": "gpt-6-astra",
+    "source_patch_present": true,
+    "usage": {
+      "cache_write_input_tokens": 0,
+      "cached_input_tokens": 102912,
+      "input_tokens": 116737,
+      "output_tokens": 1902,
+      "reasoning_output_tokens": 458
+    }
+  },
+  "states": {
+    "baseline": {
+      "attempted": true,
+      "error": null,
+      "source_sha256": "564b46a56f416c15a04744c5ee7a7299e109615630acdb80477da13be062c8c5",
+      "source_unchanged": true,
+      "workspace": "/home/floxy/zerorun-agent-application-053-oracles-20260908-v1/workspaces/case-02/baseline"
+    },
+    "final": {
+      "attempted": true,
+      "error": {
+        "message": "plain-pytest baseline requires an unlinked .git marker",
+        "type": "ConfigurationError"
+      },
+      "source_sha256": "2c2a722515018dde8fcfabea5b4bc34346912fc9e5e2d7cd719f1b96f442749b",
+      "source_unchanged": true,
+      "workspace": "/home/floxy/zerorun-agent-application-053-oracles-20260908-v1/workspaces/case-02/final"
+    }
+  }
+}

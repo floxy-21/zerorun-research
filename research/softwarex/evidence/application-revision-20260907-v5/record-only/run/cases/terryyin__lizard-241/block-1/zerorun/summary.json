@@ -1,0 +1,445 @@
+{
+  "arm": "zerorun",
+  "consumer": {
+    "completed_utc": "2026-09-07T15:04:17.875355+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 845.4783810002482,
+    "result": {
+      "cache_key": "81d6aaa6299fce2e0f13b2f56d7480bca7799bdc60b212d9414f609907aff606",
+      "execution_ms": 3755.778,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 54.941,
+        "environment": 0.016,
+        "event_append": 12.562,
+        "fingerprint_final": 256.808,
+        "fingerprint_initial": 313.921,
+        "lock_acquire": 2.953,
+        "readonly_hit_path": 832.396,
+        "runtime_inspect_initial": 170.827,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "restored_outputs": [],
+      "saved_ms": 2923.38,
+      "status": "HIT_REUSED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 832.397
+    }
+  },
+  "diagnostics": {
+    "completed_utc": "2026-09-07T15:04:26.850315+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 5685.172948999934,
+    "result": {
+      "cache_key": "81d6aaa6299fce2e0f13b2f56d7480bca7799bdc60b212d9414f609907aff606",
+      "execution_ms": 2992.372,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 53.73,
+        "docker_execution": 2995.038,
+        "environment": 0.015,
+        "event_append": 26.529,
+        "fingerprint_final": 322.51,
+        "fingerprint_initial": 263.4,
+        "lock_acquire": 2.153,
+        "runtime_inspect_initial": 173.928,
+        "snapshot_cleanup": 9.634,
+        "snapshot_prepare": 1806.437
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 875,
+        "emitted_bytes": 875,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: setup.cfg\ncollected 21 items\n\ntest/test_languages/testSwift.py .....................                   [100%]\n\n=============================== warnings summary ===============================\ntest/test_languages/testSwift.py:18\n  /workspace/test/test_languages/testSwift.py:18: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\ntest/test_languages/testSwift.py:185\n  /workspace/test/test_languages/testSwift.py:185: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 21 passed, 2 warnings in 0.15s ========================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 5658.476
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-07T15:04:21.131799+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 3236.721144000512,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "2f2cf5f380e635d1a4ea0a6d80ed29968a7136d897a14196605dcbddc7b72ed1",
+        "nodeids": [
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_coalescing_operator",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_deinit",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_empty",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_getter_setter",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_willset_didset",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_generic_function",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_getter_setter",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_init",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface_followed_by_a_class",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface_with_var",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_keyword_declarations",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_labeled_subscript",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_no_function",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function_with_complexity",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function_with_return_value",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_with_parameter",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_optional",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_subscript",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_willset_didset"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 3389,
+        "path": "raw-outcomes.json",
+        "sha256": "105565f61a24f41cca20d584144a9a04b9b503a434ab7c48e87f7d4d1a1db6bf"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: setup.cfg\ncollected 21 items\n\ntest/test_languages/testSwift.py .....................                   [100%]\n\n=============================== warnings summary ===============================\ntest/test_languages/testSwift.py:18\n  /workspace/test/test_languages/testSwift.py:18: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\ntest/test_languages/testSwift.py:185\n  /workspace/test/test_languages/testSwift.py:185: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 21 passed, 2 warnings in 0.13s ========================\n",
+        "wall_ms": 3162.6087210006517
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_coalescing_operator": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_deinit": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_empty": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_getter_setter": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_willset_didset": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_generic_function": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_getter_setter": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_init": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface_followed_by_a_class": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface_with_var": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_keyword_declarations": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_labeled_subscript": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_no_function": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function_with_complexity": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function_with_return_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_with_parameter": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_optional": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_subscript": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_willset_didset": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T15:04:17.017855+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 7085.310923000179,
+    "result": {
+      "cache_key": "81d6aaa6299fce2e0f13b2f56d7480bca7799bdc60b212d9414f609907aff606",
+      "execution_ms": 3755.778,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 2.033,
+        "cache_publish": 43.436,
+        "docker_execution": 3759.875,
+        "environment": 0.022,
+        "event_append": 25.635,
+        "fingerprint_final": 401.691,
+        "fingerprint_initial": 291.478,
+        "lock_acquire": 3.864,
+        "runtime_inspect_initial": 172.989,
+        "snapshot_cleanup": 10.27,
+        "snapshot_prepare": 1922.46
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 875,
+        "emitted_bytes": 875,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: setup.cfg\ncollected 21 items\n\ntest/test_languages/testSwift.py .....................                   [100%]\n\n=============================== warnings summary ===============================\ntest/test_languages/testSwift.py:18\n  /workspace/test/test_languages/testSwift.py:18: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\ntest/test_languages/testSwift.py:185\n  /workspace/test/test_languages/testSwift.py:185: DeprecationWarning: invalid escape sequence '\\('\n    result = get_swift_function_list('''\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 21 passed, 2 warnings in 0.11s ========================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 7059.511
+    }
+  },
+  "setup_outer_ms": 52.01634900004137,
+  "source_sha256": "3911b14976a3a239fa12a33cc59638b97eb730d75846f7ad9cd5823d306ef4aa",
+  "source_unchanged": true
+}

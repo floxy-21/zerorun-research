@@ -1,0 +1,1209 @@
+{
+  "arm": "fresh",
+  "consumer": {
+    "completed_utc": "2026-09-07T21:30:35.283735+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 6550.102827000046,
+    "result": {
+      "collection_sha256": null,
+      "exit_code": 0,
+      "instrumented": false,
+      "node_count": null,
+      "runner": "independent-docker-plain-pytest",
+      "stderr_tail": "",
+      "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 87 items\n\ntests/test_ioutils.py .................................................. [ 57%]\n................................                                         [ 94%]\ntests/test_timeutils.py .....                                            [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 87 passed, 1 warning in 0.74s =========================\n",
+      "wall_ms": 6419.322564999675
+    }
+  },
+  "diagnostics": null,
+  "oracle": {
+    "completed_utc": "2026-09-07T21:30:42.257250+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 6948.794065999664,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "ef6bc35cdf30b969ee8f99258b0f7ed553c0ed64d2cb02ce1788bbd93634948d",
+        "nodeids": [
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_auto_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_buf_property",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_closed_file_method_valueerrors",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_closed_property",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_different_instances",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_err",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_not_equal_instances",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_two_equal_instances",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_unequal_instances",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_flush_after_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_getvalue_norollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_getvalue_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_instance_check",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_invalid_type",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_io_error_negative_truncate",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_isatty",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_iter",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_len_no_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_len_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_next",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_pos_property",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_readline",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_readlines",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_rollover_custom_directory",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_set_softspace_attribute",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_set_softspace_attribute_rolled",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_noargs_norollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_noargs_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_with_args_norollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_with_args_rollover",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truthy",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_type_error_too_many_args",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_use_as_context_mgr",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_writelines",
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_zip_compat",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_auto_rollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_buf_property",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_closed_file_method_valueerrors",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_closed_property",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_codepoints_all_enc",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_different_instances",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_err",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_not_equal_instances",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_two_equal_instances",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_unequal_instances",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_getvalue_norollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_getvalue_rollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_instance_check",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_invalid_type",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_io_error_negative_truncate",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_isatty",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_iter",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_len_no_rollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_len_rollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_next",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_pos_property",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_readline",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_readlines",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_rollover_custom_directory",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_SEEK_CUR",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_SEEK_END",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_SEEK_SET",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_large_SEEK_CUR",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_large_SEEK_END",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_large_SEEK_SET",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_encoded",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_set_softspace_attribute",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_set_softspace_attribute_rolled",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_tell_codepoints",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_noargs_norollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_noargs_rollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_with_args_norollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_with_args_rollover",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truthy",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_type_error_too_many_args",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_use_as_context_mgr",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_writelines",
+          "tests/test_ioutils.py::TestSpooledStringIO::test_x80_codepoint",
+          "tests/test_ioutils.py::TestMultiFileReader::test_no_mixed_bytes_and_text",
+          "tests/test_ioutils.py::TestMultiFileReader::test_open",
+          "tests/test_ioutils.py::TestMultiFileReader::test_read_seek_bytes",
+          "tests/test_ioutils.py::TestMultiFileReader::test_read_seek_text",
+          "tests/test_timeutils.py::test_float_total_seconds",
+          "tests/test_timeutils.py::test_daterange_years",
+          "tests/test_timeutils.py::test_daterange_years_step",
+          "tests/test_timeutils.py::test_daterange_infinite",
+          "tests/test_timeutils.py::test_daterange_with_same_start_stop"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 12421,
+        "path": "raw-outcomes.json",
+        "sha256": "721ab86592513e7155d4bafad538a5f68440518d7fa7bf722bffbbfc186d6513"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 87 items\n\ntests/test_ioutils.py .................................................. [ 57%]\n................................                                         [ 94%]\ntests/test_timeutils.py .....                                            [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 87 passed, 1 warning in 0.99s =========================\n",
+        "wall_ms": 6853.975268999875
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "tests/test_ioutils.py::TestMultiFileReader::test_no_mixed_bytes_and_text": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestMultiFileReader::test_open": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestMultiFileReader::test_read_seek_bytes": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestMultiFileReader::test_read_seek_text": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_auto_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_buf_property": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_closed_file_method_valueerrors": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_closed_property": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_different_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_err": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_not_equal_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_two_equal_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_compare_unequal_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_flush_after_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_getvalue_norollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_getvalue_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_instance_check": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_invalid_type": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_io_error_negative_truncate": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_isatty": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_iter": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_len_no_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_len_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_next": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_pos_property": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_readline": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_readlines": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_rollover_custom_directory": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_set_softspace_attribute": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_set_softspace_attribute_rolled": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_noargs_norollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_noargs_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_with_args_norollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truncate_with_args_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_truthy": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_type_error_too_many_args": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_use_as_context_mgr": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_writelines": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledBytesIO::test_zip_compat": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_auto_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_buf_property": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_closed_file_method_valueerrors": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_closed_property": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_codepoints_all_enc": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_different_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_err": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_not_equal_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_two_equal_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_compare_unequal_instances": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_getvalue_norollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_getvalue_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_instance_check": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_invalid_type": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_io_error_negative_truncate": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_isatty": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_iter": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_len_no_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_len_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_next": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_pos_property": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_readline": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_readlines": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_rollover_custom_directory": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_SEEK_CUR": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_SEEK_END": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_SEEK_SET": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_large_SEEK_CUR": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_large_SEEK_END": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_codepoints_large_SEEK_SET": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_seek_encoded": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_set_softspace_attribute": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_set_softspace_attribute_rolled": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_tell_codepoints": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_noargs_norollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_noargs_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_with_args_norollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truncate_with_args_rollover": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_truthy": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_type_error_too_many_args": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_use_as_context_mgr": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_writelines": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_ioutils.py::TestSpooledStringIO::test_x80_codepoint": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_timeutils.py::test_daterange_infinite": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_timeutils.py::test_daterange_with_same_start_stop": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_timeutils.py::test_daterange_years": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_timeutils.py::test_daterange_years_step": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_timeutils.py::test_float_total_seconds": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T21:30:28.709304+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 7546.151636000104,
+    "result": {
+      "collection_sha256": null,
+      "exit_code": 0,
+      "instrumented": false,
+      "node_count": null,
+      "runner": "independent-docker-plain-pytest",
+      "stderr_tail": "",
+      "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 87 items\n\ntests/test_ioutils.py .................................................. [ 57%]\n................................                                         [ 94%]\ntests/test_timeutils.py .....                                            [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 87 passed, 1 warning in 0.81s =========================\n",
+      "wall_ms": 7397.150551000323
+    }
+  },
+  "setup_outer_ms": 41.58727599997292,
+  "source_sha256": "a565084fae9ebc6c339359c0b61f6197e2b3586a744c3ce0b17783c2239dd977",
+  "source_unchanged": true
+}

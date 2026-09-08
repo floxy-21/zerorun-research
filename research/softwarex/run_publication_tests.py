@@ -24,6 +24,8 @@ NESTED_TEST_MODULES = (
     "handoff_acquisition_recovery_v1/test_recover.py", "handoff_v1/test_run.py",
     "handoff_v1/test_validate.py", "agent_handoff_v1/test_agent.py", "handoff_image_v2/test_image.py",
     "agent_handoff_evaluation_v1/test_evaluation.py",
+    "agent_application_053/test_consumer.py", "agent_application_053/test_oracles.py",
+    "agent_application_053/test_oracles_v2.py",
 )
 
 

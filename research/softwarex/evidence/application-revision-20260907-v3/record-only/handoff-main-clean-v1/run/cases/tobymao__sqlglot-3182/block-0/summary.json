@@ -1,0 +1,2854 @@
+{
+  "arms": {
+    "fresh": {
+      "arm": "fresh",
+      "consumer": {
+        "completed_utc": "2026-09-07T09:56:49.801980+00:00",
+        "error": null,
+        "operation": "consumer",
+        "outer_ms": 8219.166016999907,
+        "result": {
+          "collection_sha256": null,
+          "exit_code": 0,
+          "instrumented": false,
+          "node_count": null,
+          "runner": "independent-docker-plain-pytest",
+          "stderr_tail": "",
+          "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 4.05s =========================\n",
+          "wall_ms": 8148.091366000017
+        }
+      },
+      "diagnostics": null,
+      "oracle": {
+        "completed_utc": "2026-09-07T09:56:59.008209+00:00",
+        "error": null,
+        "operation": "oracle",
+        "outer_ms": 9177.210356999922,
+        "result": {
+          "capture": {
+            "all_nodes_non_failing": true,
+            "complete_per_node_outcomes": true,
+            "exit_code": 0,
+            "failing_nodeids": [],
+            "nodeid_sha256": "4aedaf5ed4626190cb5d2545a649b0c6b19564fddf35345a62fb30fe902af5f2",
+            "nodeids": [
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array_index",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_bool_or",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_cast",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_duckdb",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_encode_decode",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isinf",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isnan",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_parameter_token",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_rename_table",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_sample",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_time",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_timestamps_with_units",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_ddl",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_describe_table",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_flatten",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_historical_data",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_match_recognize",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_minus",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_null_treatment",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_parse_like_any",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_replace",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_substr",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_sample",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_semi_structured_types",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_columns",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_imported_keys",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_objects",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_primary_keys",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_schemas",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_sequences",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_tables",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_unique_keys",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_users",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_views",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_snowflake",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_staged_files",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_storage_integration",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_stored_procedures",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_swap",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_table_literal",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_timestamps",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_try_cast",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_user_defined_functions",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_values",
+              "tests/test_expressions.py::TestExpressions::test_alias",
+              "tests/test_expressions.py::TestExpressions::test_alias_column_names",
+              "tests/test_expressions.py::TestExpressions::test_alias_or_name",
+              "tests/test_expressions.py::TestExpressions::test_arg_deletion",
+              "tests/test_expressions.py::TestExpressions::test_arg_key",
+              "tests/test_expressions.py::TestExpressions::test_assert_is",
+              "tests/test_expressions.py::TestExpressions::test_column",
+              "tests/test_expressions.py::TestExpressions::test_comment_alias",
+              "tests/test_expressions.py::TestExpressions::test_convert",
+              "tests/test_expressions.py::TestExpressions::test_ctes",
+              "tests/test_expressions.py::TestExpressions::test_data_type_builder",
+              "tests/test_expressions.py::TestExpressions::test_depth",
+              "tests/test_expressions.py::TestExpressions::test_eq",
+              "tests/test_expressions.py::TestExpressions::test_expand",
+              "tests/test_expressions.py::TestExpressions::test_find",
+              "tests/test_expressions.py::TestExpressions::test_find_all",
+              "tests/test_expressions.py::TestExpressions::test_find_ancestor",
+              "tests/test_expressions.py::TestExpressions::test_function_building",
+              "tests/test_expressions.py::TestExpressions::test_function_normalizer",
+              "tests/test_expressions.py::TestExpressions::test_functions",
+              "tests/test_expressions.py::TestExpressions::test_hash",
+              "tests/test_expressions.py::TestExpressions::test_identifier",
+              "tests/test_expressions.py::TestExpressions::test_is_star",
+              "tests/test_expressions.py::TestExpressions::test_is_type",
+              "tests/test_expressions.py::TestExpressions::test_iter",
+              "tests/test_expressions.py::TestExpressions::test_named_selects",
+              "tests/test_expressions.py::TestExpressions::test_properties_from_dict",
+              "tests/test_expressions.py::TestExpressions::test_rename_table",
+              "tests/test_expressions.py::TestExpressions::test_replace",
+              "tests/test_expressions.py::TestExpressions::test_replace_placeholders",
+              "tests/test_expressions.py::TestExpressions::test_replace_tables",
+              "tests/test_expressions.py::TestExpressions::test_root",
+              "tests/test_expressions.py::TestExpressions::test_selects",
+              "tests/test_expressions.py::TestExpressions::test_set_meta",
+              "tests/test_expressions.py::TestExpressions::test_set_metadata",
+              "tests/test_expressions.py::TestExpressions::test_sql",
+              "tests/test_expressions.py::TestExpressions::test_table",
+              "tests/test_expressions.py::TestExpressions::test_table_name",
+              "tests/test_expressions.py::TestExpressions::test_text",
+              "tests/test_expressions.py::TestExpressions::test_to_column",
+              "tests/test_expressions.py::TestExpressions::test_to_dot",
+              "tests/test_expressions.py::TestExpressions::test_to_interval",
+              "tests/test_expressions.py::TestExpressions::test_to_table",
+              "tests/test_expressions.py::TestExpressions::test_transform_multiple_children",
+              "tests/test_expressions.py::TestExpressions::test_transform_no_infinite_recursion",
+              "tests/test_expressions.py::TestExpressions::test_transform_node_removal",
+              "tests/test_expressions.py::TestExpressions::test_transform_simple",
+              "tests/test_expressions.py::TestExpressions::test_transform_with_arguments",
+              "tests/test_expressions.py::TestExpressions::test_transform_with_parent_mutation",
+              "tests/test_expressions.py::TestExpressions::test_union",
+              "tests/test_expressions.py::TestExpressions::test_unit",
+              "tests/test_expressions.py::TestExpressions::test_unnest",
+              "tests/test_expressions.py::TestExpressions::test_values",
+              "tests/test_expressions.py::TestExpressions::test_walk"
+            ],
+            "outcomes": [
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              }
+            ],
+            "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+          },
+          "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+          "raw_outcomes": {
+            "bytes": 13685,
+            "path": "raw-outcomes.json",
+            "sha256": "fcd658ebfdcc6ac8487aab13f3a74159f849d1fa5faebe4790efad5a4460763b"
+          },
+          "runner": {
+            "exit_code": 0,
+            "instrumented": true,
+            "runner": "independent-docker-plain-pytest",
+            "stderr_tail": "",
+            "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 3.60s =========================\n",
+            "wall_ms": 9029.339771000195
+          },
+          "verdict": {
+            "exit_code": 0,
+            "nodes": {
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array_index": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_bool_or": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_cast": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_duckdb": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_encode_decode": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isinf": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isnan": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_parameter_token": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_rename_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_sample": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_time": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_timestamps_with_units": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_ddl": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_describe_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_flatten": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_historical_data": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_match_recognize": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_minus": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_null_treatment": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_parse_like_any": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_replace": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_substr": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_sample": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_semi_structured_types": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_columns": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_imported_keys": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_objects": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_primary_keys": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_schemas": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_sequences": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_tables": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_unique_keys": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_users": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_views": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_snowflake": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_staged_files": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_storage_integration": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_stored_procedures": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_swap": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_table_literal": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_timestamps": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_try_cast": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_user_defined_functions": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_values": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_alias": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_alias_column_names": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_alias_or_name": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_arg_deletion": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_arg_key": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_assert_is": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_column": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_comment_alias": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_convert": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_ctes": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_data_type_builder": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_depth": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_eq": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_expand": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_find": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_find_all": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_find_ancestor": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_function_building": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_function_normalizer": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_functions": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_hash": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_identifier": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_is_star": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_is_type": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_iter": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_named_selects": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_properties_from_dict": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_rename_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_replace": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_replace_placeholders": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_replace_tables": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_root": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_selects": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_set_meta": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_set_metadata": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_sql": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_table_name": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_text": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_column": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_dot": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_interval": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_multiple_children": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_no_infinite_recursion": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_node_removal": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_simple": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_with_arguments": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_with_parent_mutation": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_union": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_unit": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_unnest": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_values": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_walk": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              }
+            }
+          }
+        }
+      },
+      "producer": {
+        "completed_utc": "2026-09-07T09:56:41.568659+00:00",
+        "error": null,
+        "operation": "producer",
+        "outer_ms": 9973.703690000093,
+        "result": {
+          "collection_sha256": null,
+          "exit_code": 0,
+          "instrumented": false,
+          "node_count": null,
+          "runner": "independent-docker-plain-pytest",
+          "stderr_tail": "",
+          "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 3.59s =========================\n",
+          "wall_ms": 9845.382621999988
+        }
+      },
+      "setup_outer_ms": 199.62419400008002,
+      "source_sha256": "80e58e5a94411da17ce9160664182d7db3cfb7d5da58f22d2f05f3f194a90fe7",
+      "source_unchanged": true
+    },
+    "zerorun": {
+      "arm": "zerorun",
+      "consumer": {
+        "completed_utc": "2026-09-07T09:56:05.909513+00:00",
+        "error": null,
+        "operation": "consumer",
+        "outer_ms": 2221.9849849998354,
+        "result": {
+          "cache_key": "53342a46bf7020301434926dfaabf81734838970b10154bb5b5efb479f8304bd",
+          "execution_ms": 14255.088,
+          "exit_code": 0,
+          "phase_ms": {
+            "cache_lookup": 83.769,
+            "environment": 0.048,
+            "event_append": 100.637,
+            "fingerprint_final": 656.354,
+            "fingerprint_initial": 989.791,
+            "lock_acquire": 4.616,
+            "readonly_hit_path": 2120.24,
+            "runtime_inspect_initial": 335.06,
+            "snapshot_cleanup": 0.0,
+            "snapshot_prepare": 0.0
+          },
+          "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+          "restored_outputs": [],
+          "saved_ms": 12134.847,
+          "status": "HIT_REUSED",
+          "stderr": {
+            "captured_bytes": 0,
+            "emitted_bytes": 0,
+            "text": "",
+            "truncated": false
+          },
+          "stdout": {
+            "captured_bytes": 0,
+            "emitted_bytes": 0,
+            "text": "",
+            "truncated": false
+          },
+          "task": "handoff-tests",
+          "verified": false,
+          "wall_ms": 2120.241
+        }
+      },
+      "diagnostics": {
+        "completed_utc": "2026-09-07T09:56:30.263678+00:00",
+        "error": null,
+        "operation": "diagnostics",
+        "outer_ms": 15318.446937999852,
+        "result": {
+          "cache_key": "53342a46bf7020301434926dfaabf81734838970b10154bb5b5efb479f8304bd",
+          "execution_ms": 8817.856,
+          "exit_code": 0,
+          "phase_ms": {
+            "cache_lookup": 57.348,
+            "docker_execution": 8820.836,
+            "environment": 0.014,
+            "event_append": 55.823,
+            "fingerprint_final": 899.926,
+            "fingerprint_initial": 852.399,
+            "lock_acquire": 3.653,
+            "runtime_inspect_initial": 193.734,
+            "snapshot_cleanup": 25.235,
+            "snapshot_prepare": 4382.333
+          },
+          "reason": "fresh hermetic execution matched cached successful result",
+          "restored_outputs": [],
+          "saved_ms": 0.0,
+          "status": "VERIFY_MATCH",
+          "stderr": {
+            "captured_bytes": 0,
+            "emitted_bytes": 0,
+            "text": "",
+            "truncated": false
+          },
+          "stdout": {
+            "captured_bytes": 932,
+            "emitted_bytes": 932,
+            "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 3.90s =========================\n",
+            "truncated": false
+          },
+          "task": "handoff-tests",
+          "verified": true,
+          "wall_ms": 15262.454
+        }
+      },
+      "oracle": {
+        "completed_utc": "2026-09-07T09:56:14.930185+00:00",
+        "error": null,
+        "operation": "oracle",
+        "outer_ms": 9009.897097000021,
+        "result": {
+          "capture": {
+            "all_nodes_non_failing": true,
+            "complete_per_node_outcomes": true,
+            "exit_code": 0,
+            "failing_nodeids": [],
+            "nodeid_sha256": "4aedaf5ed4626190cb5d2545a649b0c6b19564fddf35345a62fb30fe902af5f2",
+            "nodeids": [
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array_index",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_bool_or",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_cast",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_duckdb",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_encode_decode",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isinf",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isnan",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_parameter_token",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_rename_table",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_sample",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_time",
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_timestamps_with_units",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_ddl",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_describe_table",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_flatten",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_historical_data",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_match_recognize",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_minus",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_null_treatment",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_parse_like_any",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_replace",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_substr",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_sample",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_semi_structured_types",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_columns",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_imported_keys",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_objects",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_primary_keys",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_schemas",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_sequences",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_tables",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_unique_keys",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_users",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_views",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_snowflake",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_staged_files",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_storage_integration",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_stored_procedures",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_swap",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_table_literal",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_timestamps",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_try_cast",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_user_defined_functions",
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_values",
+              "tests/test_expressions.py::TestExpressions::test_alias",
+              "tests/test_expressions.py::TestExpressions::test_alias_column_names",
+              "tests/test_expressions.py::TestExpressions::test_alias_or_name",
+              "tests/test_expressions.py::TestExpressions::test_arg_deletion",
+              "tests/test_expressions.py::TestExpressions::test_arg_key",
+              "tests/test_expressions.py::TestExpressions::test_assert_is",
+              "tests/test_expressions.py::TestExpressions::test_column",
+              "tests/test_expressions.py::TestExpressions::test_comment_alias",
+              "tests/test_expressions.py::TestExpressions::test_convert",
+              "tests/test_expressions.py::TestExpressions::test_ctes",
+              "tests/test_expressions.py::TestExpressions::test_data_type_builder",
+              "tests/test_expressions.py::TestExpressions::test_depth",
+              "tests/test_expressions.py::TestExpressions::test_eq",
+              "tests/test_expressions.py::TestExpressions::test_expand",
+              "tests/test_expressions.py::TestExpressions::test_find",
+              "tests/test_expressions.py::TestExpressions::test_find_all",
+              "tests/test_expressions.py::TestExpressions::test_find_ancestor",
+              "tests/test_expressions.py::TestExpressions::test_function_building",
+              "tests/test_expressions.py::TestExpressions::test_function_normalizer",
+              "tests/test_expressions.py::TestExpressions::test_functions",
+              "tests/test_expressions.py::TestExpressions::test_hash",
+              "tests/test_expressions.py::TestExpressions::test_identifier",
+              "tests/test_expressions.py::TestExpressions::test_is_star",
+              "tests/test_expressions.py::TestExpressions::test_is_type",
+              "tests/test_expressions.py::TestExpressions::test_iter",
+              "tests/test_expressions.py::TestExpressions::test_named_selects",
+              "tests/test_expressions.py::TestExpressions::test_properties_from_dict",
+              "tests/test_expressions.py::TestExpressions::test_rename_table",
+              "tests/test_expressions.py::TestExpressions::test_replace",
+              "tests/test_expressions.py::TestExpressions::test_replace_placeholders",
+              "tests/test_expressions.py::TestExpressions::test_replace_tables",
+              "tests/test_expressions.py::TestExpressions::test_root",
+              "tests/test_expressions.py::TestExpressions::test_selects",
+              "tests/test_expressions.py::TestExpressions::test_set_meta",
+              "tests/test_expressions.py::TestExpressions::test_set_metadata",
+              "tests/test_expressions.py::TestExpressions::test_sql",
+              "tests/test_expressions.py::TestExpressions::test_table",
+              "tests/test_expressions.py::TestExpressions::test_table_name",
+              "tests/test_expressions.py::TestExpressions::test_text",
+              "tests/test_expressions.py::TestExpressions::test_to_column",
+              "tests/test_expressions.py::TestExpressions::test_to_dot",
+              "tests/test_expressions.py::TestExpressions::test_to_interval",
+              "tests/test_expressions.py::TestExpressions::test_to_table",
+              "tests/test_expressions.py::TestExpressions::test_transform_multiple_children",
+              "tests/test_expressions.py::TestExpressions::test_transform_no_infinite_recursion",
+              "tests/test_expressions.py::TestExpressions::test_transform_node_removal",
+              "tests/test_expressions.py::TestExpressions::test_transform_simple",
+              "tests/test_expressions.py::TestExpressions::test_transform_with_arguments",
+              "tests/test_expressions.py::TestExpressions::test_transform_with_parent_mutation",
+              "tests/test_expressions.py::TestExpressions::test_union",
+              "tests/test_expressions.py::TestExpressions::test_unit",
+              "tests/test_expressions.py::TestExpressions::test_unnest",
+              "tests/test_expressions.py::TestExpressions::test_values",
+              "tests/test_expressions.py::TestExpressions::test_walk"
+            ],
+            "outcomes": [
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              }
+            ],
+            "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+          },
+          "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+          "raw_outcomes": {
+            "bytes": 13685,
+            "path": "raw-outcomes.json",
+            "sha256": "fcd658ebfdcc6ac8487aab13f3a74159f849d1fa5faebe4790efad5a4460763b"
+          },
+          "runner": {
+            "exit_code": 0,
+            "instrumented": true,
+            "runner": "independent-docker-plain-pytest",
+            "stderr_tail": "",
+            "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 3.89s =========================\n",
+            "wall_ms": 8933.503648999931
+          },
+          "verdict": {
+            "exit_code": 0,
+            "nodes": {
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_array_index": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_bool_or": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_cast": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_duckdb": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_encode_decode": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isinf": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_isnan": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_parameter_token": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_rename_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_sample": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_time": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_duckdb.py::TestDuckDB::test_timestamps_with_units": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_ddl": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_describe_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_flatten": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_historical_data": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_match_recognize": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_minus": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_null_treatment": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_parse_like_any": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_replace": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_regexp_substr": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_sample": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_semi_structured_types": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_columns": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_imported_keys": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_objects": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_primary_keys": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_schemas": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_sequences": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_tables": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_unique_keys": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_users": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_show_views": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_snowflake": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_staged_files": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_storage_integration": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_stored_procedures": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_swap": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_table_literal": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_timestamps": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_try_cast": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_user_defined_functions": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/dialects/test_snowflake.py::TestSnowflake::test_values": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_alias": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_alias_column_names": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_alias_or_name": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_arg_deletion": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_arg_key": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_assert_is": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_column": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_comment_alias": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_convert": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_ctes": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_data_type_builder": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_depth": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_eq": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_expand": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_find": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_find_all": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_find_ancestor": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_function_building": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_function_normalizer": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_functions": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_hash": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_identifier": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_is_star": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_is_type": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_iter": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_named_selects": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_properties_from_dict": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_rename_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_replace": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_replace_placeholders": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_replace_tables": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_root": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_selects": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_set_meta": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_set_metadata": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_sql": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_table_name": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_text": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_column": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_dot": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_interval": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_to_table": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_multiple_children": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_no_infinite_recursion": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_node_removal": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_simple": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_with_arguments": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_transform_with_parent_mutation": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_union": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_unit": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_unnest": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_values": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              },
+              "tests/test_expressions.py::TestExpressions::test_walk": {
+                "call": "passed",
+                "setup": "passed",
+                "teardown": "passed",
+                "wasxfail": false
+              }
+            }
+          }
+        }
+      },
+      "producer": {
+        "completed_utc": "2026-09-07T09:56:03.673591+00:00",
+        "error": null,
+        "operation": "producer",
+        "outer_ms": 22014.728294999943,
+        "result": {
+          "cache_key": "53342a46bf7020301434926dfaabf81734838970b10154bb5b5efb479f8304bd",
+          "execution_ms": 14255.088,
+          "exit_code": 0,
+          "phase_ms": {
+            "cache_lookup": 1.638,
+            "cache_publish": 53.823,
+            "docker_execution": 14256.875,
+            "environment": 0.038,
+            "event_append": 121.468,
+            "fingerprint_final": 760.176,
+            "fingerprint_initial": 1267.072,
+            "lock_acquire": 1.834,
+            "runtime_inspect_initial": 382.915,
+            "snapshot_cleanup": 47.529,
+            "snapshot_prepare": 3961.515
+          },
+          "reason": "fresh hermetic result stored",
+          "restored_outputs": [],
+          "saved_ms": 0.0,
+          "status": "MISS_EXECUTED",
+          "stderr": {
+            "captured_bytes": 0,
+            "emitted_bytes": 0,
+            "text": "",
+            "truncated": false
+          },
+          "stdout": {
+            "captured_bytes": 932,
+            "emitted_bytes": 932,
+            "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\ncollected 99 items\n\ntests/dialects/test_duckdb.py .............                              [ 13%]\ntests/dialects/test_snowflake.py ................................        [ 45%]\ntests/test_expressions.py .............................................. [ 91%]\n........                                                                 [100%]\n\n=============================== warnings summary ===============================\ntests/test_expressions.py:1080\n  /workspace/tests/test_expressions.py:1080: SyntaxWarning: invalid escape sequence '\\.'\n    AssertionError, \"x is not <class 'sqlglot.expressions.Identifier'>\\.\"\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 99 passed, 1 warning in 4.73s =========================\n",
+            "truncated": false
+          },
+          "task": "handoff-tests",
+          "verified": false,
+          "wall_ms": 21893.043
+        }
+      },
+      "setup_outer_ms": 659.9901219999538,
+      "source_sha256": "80e58e5a94411da17ce9160664182d7db3cfb7d5da58f22d2f05f3f194a90fe7",
+      "source_unchanged": true
+    }
+  },
+  "block": 0,
+  "measurements": {
+    "cache_hit_observed": true,
+    "chain_ms": {
+      "fresh": 18192.869706999998,
+      "zerorun": 24236.713279999778
+    },
+    "chain_saved_fraction": -0.3322094683432111,
+    "consumer_ms": {
+      "fresh": 8219.166016999907,
+      "zerorun": 2221.9849849998354
+    },
+    "consumer_saved_fraction": 0.7296580966482429,
+    "fresh_diagnostics_ms": 15318.446937999852,
+    "oracle_ms": 18187.107453999943,
+    "setup_inclusive_chain_ms": {
+      "fresh": 18392.493901000078,
+      "zerorun": 24896.70340199973
+    },
+    "setup_inclusive_saved_fraction": -0.3536339082676543,
+    "setup_inclusive_scope": "per-arm source/environment preparation; common once-only dependency build and acquisition remain separate"
+  },
+  "order": [
+    "zerorun",
+    "fresh"
+  ]
+}

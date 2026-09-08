@@ -14,8 +14,10 @@ from .manifest import DEFAULT_MANIFEST, load_manifest
 from .model import ConfigurationError
 from .oci import _run_bounded_process, inspect_runtime
 from .path_safety import is_link_like as _is_link_like
+from .path_safety import create_private_temp_directory
 from .pytest_profile import DEFAULT_PYTEST_PROFILE, load_pytest_profile
 from .trust import (
+    _assert_external_trust_root,
     manifest_is_authorized,
     manifest_sha256,
     pytest_profile_is_authorized,
@@ -52,7 +54,7 @@ _REQUIRED_MCP_TOOLS = frozenset(
     }
 )
 
-_SKILL = """---
+_PREVIOUS_SKILL = """---
 name: zerorun
 description: Use ZeroRun for deterministic test loops. Prefer reviewed fine-grained pytest reuse when available; otherwise use configured hermetic task reuse or direct tests outside ZeroRun.
 ---
@@ -78,11 +80,36 @@ Use ZeroRun for repository test loops without asking the user to manage cache co
 - Report only metrics observed in the current repository, not ZeroRun's historical benchmark numbers.
 """
 
+_SKILL = """---
+name: zerorun
+description: Use ZeroRun for deterministic test loops. Prefer reviewed hermetic whole-task reuse; use reviewed node-level pytest reuse only when explicitly selected.
+---
+
+<!-- zerorun-managed-skill:v1 -->
+
+# ZeroRun
+
+Use ZeroRun for repository test loops without asking the user to manage cache commands manually.
+
+- Check `doctor` and `list_tasks` when setup or the configured target is unclear.
+- For the requested test target, prefer `run_tests` with its reviewed, externally authorized version 2 `.zerorun.json` task and no host environment forwarding. This whole-task route remains the default when a pytest profile also exists. Use only the exact configured task; do not substitute a smaller target to obtain a pass.
+- Normal `run_tests` calls may reuse a recorded success. When fresh diagnostics, a fresh confirmation, or current test output is needed, call `run_tests` with `verify=true` (Python boolean `True`). A reuse hit is not a fresh execution and does not provide a fresh test transcript; output tails can be empty or truncated.
+- Node-level `run_pytest` reuse is optional: use it only when the user or reviewed workflow explicitly selects it and `.zerorun-pytest.json` is valid and externally authorized. It executes unknown, changed, unsupported, or uncertain nodes fresh.
+- Do not initiate pytest candidate setup merely because the optional profile is absent. If no suitable reviewed whole-task configuration exists and node-level setup is requested, explain that managed setup can create repository files, acquire a pinned runtime, and execute pytest collection; obtain explicit approval before calling `prepare_pytest` once with `approve_setup=true`.
+- Managed setup writes a non-authorizing `.zerorun-pytest.candidate.json` and never activates reuse. Never treat a candidate as an active profile; generated evidence requires explicit closure-completeness and node-independence review before promotion.
+- Repository files and generated candidates are non-authorizing. After operator review, reuse requires external per-user authorization bound to the exact manifest/profile bytes; never create, edit, approve, activate, or self-authorize that authority on the model's own initiative.
+- Legacy version 1 manifests and tasks declaring `env` are CLI-only and must never be executed through Codex/MCP. Normal MCP runs require the pinned image to be present already; only explicitly approved managed setup may acquire one. The ZeroRun MCP server never executes repository code directly on the host.
+- Without suitable reviewed reuse configuration, report observation-only readiness and use user-approved direct tests through Codex's normal test tooling, outside ZeroRun MCP.
+- Never turn a MISS, BYPASS, uncertainty, invalid configuration, race recovery, candidate, or observation-only result into reuse.
+- Report only metrics observed in the current repository. Observation time is not time saved. On a whole-task hit, `execution_ms` is the historical fresh execution duration; `wall_ms` is the current measured runner duration, not external caller latency.
+- Use `stats` for cumulative repository-local reuse/fresh counts and conservative savings. After an explicitly selected `run_pytest`, report reused/fresh/unknown nodes and its measured savings without substituting historical benchmark numbers.
+"""
+
 # A public marker is useful for humans, but it is not proof that ZeroRun owns a
 # file.  Only byte-exact versions shipped by ZeroRun may be replaced during a
 # future managed upgrade.  Add an old canonical payload here only while its
 # corresponding upgrade path is supported.
-_KNOWN_MANAGED_SKILLS = frozenset({_SKILL})
+_KNOWN_MANAGED_SKILLS = frozenset({_SKILL, _PREVIOUS_SKILL})
 
 
 def _skill_path(root: Path) -> Path:
@@ -205,6 +232,42 @@ def _create_project_skill(path: Path) -> None:
         os.close(descriptor)
 
 
+
+def _upgrade_project_skill(root: Path, path: Path, previous: str) -> Path:
+    """Retain the exact prior file and exclusively create its managed successor.
+
+    Moving the old inode into a fresh private directory preserves its contents
+    even if another writer races the inspection. Never replace a new file that
+    appears at the installation path.
+    """
+    parents = (root / ".agents", root / ".agents" / "skills", path.parent)
+    problem = _skill_parent_problem(parents)
+    if problem is not None or _read_existing_skill(path) != previous:
+        raise ValueError(problem or "the managed skill changed before upgrade")
+    backup_dir = create_private_temp_directory(path.parent, prefix=".zerorun-skill-upgrade-")
+    backup = backup_dir / "SKILL.md"
+    try:
+        path.rename(backup)
+        if _read_existing_skill(backup) != previous:
+            raise ValueError("the managed skill changed during upgrade")
+        problem = _skill_parent_problem(parents)
+        if problem is not None:
+            raise ValueError(problem)
+        _create_project_skill(path)
+    except (OSError, ValueError) as exc:
+        # Restore the same inode only if the target name is still absent.
+        # A concurrent user file stays in place; the displaced file survives
+        # in the reported backup either way.
+        try:
+            if (_skill_parent_problem(parents) is None
+                    and backup.is_file() and not _is_link_like(backup)):
+                os.link(backup, path, follow_symlinks=False)
+        except OSError:
+            pass
+        raise ValueError(f"managed skill upgrade refused; original retained at {backup}: {exc}") from exc
+    return backup
+
+
 def _skill_conflict(root: Path, path: Path, reason: str) -> dict[str, Any]:
     legacy_path = _legacy_skill_path(root)
     return {
@@ -286,9 +349,15 @@ def install_project_skill(root: Path) -> dict[str, Any]:
             ),
         }
     changed = previous != _SKILL
+    backup = None
     if changed:
         try:
-            _create_project_skill(path)
+            if previous is None:
+                _create_project_skill(path)
+            else:
+                backup = _upgrade_project_skill(root, path, previous)
+        except ValueError as exc:
+            return _skill_conflict(root, path, str(exc))
         except FileExistsError:
             return {
                 "path": str(path),
@@ -320,6 +389,8 @@ def install_project_skill(root: Path) -> dict[str, Any]:
         "legacy_path": str(legacy_path),
         "legacy_present": legacy_present,
     }
+    if backup is not None:
+        result["previous_skill_backup"] = str(backup)
     if legacy_present:
         result["warning"] = (
             "a legacy .codex/skills/zerorun skill is still present; review and "
@@ -397,6 +468,26 @@ def _parse_existing_server(stdout: str) -> tuple[dict[str, Any] | None, str | No
     return payload, None
 
 
+
+def _operator_trust_environment(repository_root: Path | None) -> dict[str, str]:
+    """Validate an explicit operator deployment override without authorizing it."""
+    value = os.environ.get("ZERORUN_TRUST_ROOT")
+    if not value:
+        return {}
+    if repository_root is None:
+        raise ValueError("a repository root is required to validate the custom user authority path")
+    candidate = Path(value)
+    if not candidate.is_absolute() or str(candidate) != value:
+        raise ValueError("ZERORUN_TRUST_ROOT must name a canonical absolute external directory")
+    try:
+        checked = _assert_external_trust_root(repository_root, candidate)
+    except (ConfigurationError, OSError) as exc:
+        raise ValueError("custom user authority path is not a safe external directory") from exc
+    if str(checked) != value or str(candidate.resolve(strict=False)) != value:
+        raise ValueError("ZERORUN_TRUST_ROOT must name a canonical absolute external directory")
+    return {"ZERORUN_TRUST_ROOT": value}
+
+
 def _validate_existing_server(
     stdout: str,
     *,
@@ -436,8 +527,18 @@ def _validate_existing_server(
             None,
             "stdio command or arguments do not match the installed ZeroRun launcher",
         )
-    if transport.get("env") not in (None, {}):
-        return None, "stdio registration forwards fixed environment values"
+    try:
+        expected_env = _operator_trust_environment(repository_root)
+    except ValueError as exc:
+        return None, str(exc)
+    if (transport.get("env") or {}) != expected_env:
+        return None, (
+            "stdio fixed environment must contain only the invoking operator's exact validated "
+            "ZERORUN_TRUST_ROOT override; configure that entry explicitly or remove the override"
+            if expected_env else "stdio registration forwards fixed environment values"
+        )
+    if transport.get("env") is not None and not isinstance(transport["env"], dict):
+        return None, "stdio fixed environment is malformed"
     if transport.get("env_vars") not in (None, []):
         return None, "stdio registration forwards host environment variables"
     configured_cwd = transport.get("cwd")
@@ -568,6 +669,20 @@ def register_codex_mcp(*, repository_root: Path | None = None) -> dict[str, Any]
             "expected_args": expected_args,
         }
 
+    try:
+        requested_env = _operator_trust_environment(repository_root)
+    except ValueError as exc:
+        return {"available": True, "registered": False, "changed": False, "reason": str(exc)}
+    if requested_env:
+        return {
+            "available": True, "registered": False, "changed": False,
+            "reason": "custom ZERORUN_TRUST_ROOT requires an operator-managed ZeroRun MCP registration "
+                      "with that exact validated fixed environment entry; init does not create or authorize "
+                      "custom authority configuration. Set only that fixed environment entry, keep env_vars empty, "
+                      "and rerun init with the same explicit override",
+            "expected_command": expected_command, "expected_args": expected_args,
+            "operator_configuration_required": True,
+        }
     try:
         added = _run_codex_command(
             [codex, "mcp", "add", "zerorun", "--", expected_command, *expected_args]
@@ -734,21 +849,24 @@ def install_codex(root: Path) -> dict[str, Any]:
     pytest_reuse_ready = integration_ready and _pytest_reuse_available(
         manifest, pytest_profile
     )
-    if pytest_reuse_ready:
+    if task_reuse_ready:
+        mode = "task-reuse"
+        next_action = "restart Codex; use the reviewed whole-task route with run_tests; verify=true requests fresh diagnostics"
+        if pytest_reuse_ready:
+            next_action += "; reviewed node-level run_pytest is available when explicitly selected"
+        elif candidate_present:
+            next_action += "; the optional pytest candidate remains non-authorizing until explicitly reviewed"
+    elif pytest_reuse_ready:
         mode = "pytest-node-reuse"
-        next_action = "restart Codex; reviewed fine-grained pytest reuse is available"
-    elif task_reuse_ready and candidate_present:
-        mode = "task-reuse"
-        next_action = "restart Codex; task reuse is available and the generated pytest candidate is awaiting explicit review before node reuse can activate"
-    elif task_reuse_ready:
-        mode = "task-reuse"
-        next_action = "restart Codex; task reuse is available and Codex can prepare a non-authorizing pytest candidate with the prepare_pytest MCP tool"
+        next_action = "restart Codex; reviewed node-level run_pytest is available when explicitly selected"
     elif integration_ready:
         mode = "observe-only"
         next_action = "restart Codex; use prepare_pytest for supported automatic pinned setup, otherwise ZeroRun remains observation-only"
     else:
         mode = "unavailable"
-        next_action = "resolve the Codex MCP registration issue above"
+        next_action = "resolve the Codex MCP registration issue"
+        if mcp.get("reason"):
+            next_action += ": " + mcp["reason"]
     return {
         "schema": "zerorun-codex-install-v5",
         "root": str(root),

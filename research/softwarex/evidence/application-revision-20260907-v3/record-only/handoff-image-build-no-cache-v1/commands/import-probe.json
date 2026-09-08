@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "/usr/bin/docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--network=none",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "127.0.0.1:19529/zerorun-handoff-v2@sha256:4684c5606a3cc79f9755bdde2ea364543a2fd2db2019e298ea70b411dae88c09",
+    "python",
+    "-B",
+    "-c",
+    "import json,pytest,sys;print(json.dumps({'python':sys.version,'pytest':pytest.__version__,'pytest_file':pytest.__file__}))"
+  ],
+  "completed_utc": "2026-09-07T09:48:12.686500+00:00",
+  "error": null,
+  "outer_ms": 3296.060091000072,
+  "returncode": 0,
+  "stderr": "",
+  "stderr_truncated": false,
+  "stdout": "{\"python\": \"3.12.14 (main, Sep  1 2026, 00:10:15) [GCC 12.2.0]\", \"pytest\": \"9.1.1\", \"pytest_file\": \"/usr/local/lib/python3.12/site-packages/pytest/__init__.py\"}\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 60
+}

@@ -1,0 +1,42 @@
+{
+  "completed_utc": "2026-09-07T15:10:33.823430+00:00",
+  "error": null,
+  "operation": "diagnostics",
+  "outer_ms": 4468.093989999943,
+  "result": {
+    "cache_key": "7078e9098bb90fe2aed61f408944064522bcb70ccb52868761044988a3451133",
+    "execution_ms": 3579.976,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 38.045,
+      "docker_execution": 3581.492,
+      "environment": 0.026,
+      "event_append": 9.058,
+      "fingerprint_final": 116.936,
+      "fingerprint_initial": 76.213,
+      "lock_acquire": 1.68,
+      "runtime_inspect_initial": 170.669,
+      "snapshot_cleanup": 2.911,
+      "snapshot_prepare": 439.411
+    },
+    "reason": "fresh hermetic execution matched cached successful result",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "VERIFY_MATCH",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 1017,
+      "emitted_bytes": 1017,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 87 items\n\ntests/test_ioutils.py .................................................. [ 57%]\n................................                                         [ 94%]\ntests/test_timeutils.py .....                                            [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 87 passed, 1 warning in 0.35s =========================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": true,
+    "wall_ms": 4458.92
+  }
+}

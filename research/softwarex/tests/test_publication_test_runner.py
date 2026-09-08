@@ -96,11 +96,33 @@ def test_unlisted_nested_test_refused(tmp_path):
 
 
 def test_new_study_sources_explicitly_allowlisted():
-    folders = ("handoff_acquisition_v1", "handoff_acquisition_recovery_v1", "handoff_v1", "agent_handoff_v1", "handoff_image_v2", "agent_handoff_evaluation_v1")
+    folders = ("handoff_acquisition_v1", "handoff_acquisition_recovery_v1", "handoff_v1", "agent_handoff_v1", "handoff_image_v2", "agent_handoff_evaluation_v1", "agent_application_053")
     for name in folders:
         for source in (runner.ROOT / "research/softwarex" / name).iterdir():
             if source.is_file() and source.suffix in {".py", ".md"}:
                 assert name + "/" + source.name in release.PAPER_OPTIONAL_FILES
+
+
+def test_current_application_selection_is_exact_and_offline():
+    selected = {path for path in runner.NESTED_TEST_MODULES if path.startswith("agent_application_053/")}
+    assert selected == {"agent_application_053/test_consumer.py", "agent_application_053/test_oracles.py",
+                        "agent_application_053/test_oracles_v2.py"}
+    assert not any(Path(path).name in {"consumer.py", "producer_campaign.py", "oracles.py", "oracles_v2.py"}
+                   for path in runner.NESTED_TEST_MODULES)
+
+
+@pytest.mark.parametrize("mutation", ["missing-known", "unlisted-added"])
+def test_current_application_cannot_silently_drop_or_add_nested_tests(tmp_path, mutation):
+    folder = tmp_path / "research/softwarex/agent_application_053"
+    folder.mkdir(parents=True)
+    for name in ("test_consumer.py", "test_oracles.py", "test_oracles_v2.py"):
+        if mutation == "missing-known" and name == "test_oracles_v2.py":
+            continue
+        (folder / name).write_bytes(b"# artificial offline test inventory")
+    if mutation == "unlisted-added":
+        (folder / "test_unreviewed.py").write_bytes(b"# never implicitly selected")
+    with pytest.raises(ValueError, match="added/omitted"):
+        runner.test_paths(tmp_path)
 
 
 def test_selection_failure_preserved_before_any_subprocess(prepared, monkeypatch):

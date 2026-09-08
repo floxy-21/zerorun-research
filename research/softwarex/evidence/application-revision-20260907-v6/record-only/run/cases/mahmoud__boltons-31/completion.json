@@ -1,0 +1,725 @@
+{
+  "agent_session": false,
+  "all_blocks_complete": true,
+  "blocks": [
+    {
+      "arms": {
+        "fresh": {
+          "arm": "fresh",
+          "consumer": {
+            "completed_utc": "2026-09-07T21:33:38.808492+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 5897.708247000082,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.05s ===============================\n",
+              "wall_ms": 5765.133093000259
+            }
+          },
+          "diagnostics": null,
+          "oracle": {
+            "completed_utc": "2026-09-07T21:33:44.427201+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 5589.954633000161,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "b564e88df552baa0692351fbbf03934b326a6f4dc5a101b77ea16d080bf73f0e",
+                "nodeids": [
+                  "tests/tbutils_test.py::test_normal_tb",
+                  "tests/tbutils_test.py::test_eval_tb",
+                  "tests/tbutils_test.py::test_last_line_is_eval_like"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 528,
+                "path": "raw-outcomes.json",
+                "sha256": "7b5377b6ad9ed56b431347cd0592104efe4542192d7422243042a03bb14680bf"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.15s ===============================\n",
+                "wall_ms": 5457.889279000028
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/tbutils_test.py::test_eval_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_last_line_is_eval_like": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_normal_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T21:33:32.876609+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 5873.668700000053,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.08s ===============================\n",
+              "wall_ms": 5744.954989999769
+            }
+          },
+          "setup_outer_ms": 34.141263000037725,
+          "source_sha256": "d485bf66c642431ca7b605cf3b55d020726f88fb3c0d45e7cbaf9951e1bb1773",
+          "source_unchanged": true
+        },
+        "zerorun": {
+          "arm": "zerorun",
+          "consumer": {
+            "completed_utc": "2026-09-07T21:33:13.529573+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 817.0831299999008,
+            "result": {
+              "cache_key": "cb76f07bdd19ee9c634d0ef707af4be68cdb7fff52ffb1ad609bbb2e958cc11c",
+              "execution_ms": 5501.534,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 76.338,
+                "environment": 0.028,
+                "event_append": 112.982,
+                "fingerprint_final": 134.983,
+                "fingerprint_initial": 92.241,
+                "lock_acquire": 5.977,
+                "readonly_hit_path": 703.409,
+                "runtime_inspect_initial": 333.198,
+                "snapshot_cleanup": 0.0,
+                "snapshot_prepare": 0.0
+              },
+              "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+              "restored_outputs": [],
+              "saved_ms": 4798.122,
+              "status": "HIT_REUSED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 703.412
+            }
+          },
+          "diagnostics": {
+            "completed_utc": "2026-09-07T21:33:26.853122+00:00",
+            "error": null,
+            "operation": "diagnostics",
+            "outer_ms": 6699.593507999907,
+            "result": {
+              "cache_key": "cb76f07bdd19ee9c634d0ef707af4be68cdb7fff52ffb1ad609bbb2e958cc11c",
+              "execution_ms": 5257.791,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 80.189,
+                "docker_execution": 5262.07,
+                "environment": 0.046,
+                "event_append": 32.19,
+                "fingerprint_final": 162.099,
+                "fingerprint_initial": 154.791,
+                "lock_acquire": 6.291,
+                "runtime_inspect_initial": 367.797,
+                "snapshot_cleanup": 10.348,
+                "snapshot_prepare": 558.176
+              },
+              "reason": "fresh hermetic execution matched cached successful result",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "VERIFY_MATCH",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 343,
+                "emitted_bytes": 343,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.06s ===============================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": true,
+              "wall_ms": 6667.199
+            }
+          },
+          "oracle": {
+            "completed_utc": "2026-09-07T21:33:20.114178+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 6550.921645000017,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "b564e88df552baa0692351fbbf03934b326a6f4dc5a101b77ea16d080bf73f0e",
+                "nodeids": [
+                  "tests/tbutils_test.py::test_normal_tb",
+                  "tests/tbutils_test.py::test_eval_tb",
+                  "tests/tbutils_test.py::test_last_line_is_eval_like"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 528,
+                "path": "raw-outcomes.json",
+                "sha256": "7b5377b6ad9ed56b431347cd0592104efe4542192d7422243042a03bb14680bf"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.18s ===============================\n",
+                "wall_ms": 6422.544620999815
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/tbutils_test.py::test_eval_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_last_line_is_eval_like": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_normal_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T21:33:12.690506+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 7506.19943699985,
+            "result": {
+              "cache_key": "cb76f07bdd19ee9c634d0ef707af4be68cdb7fff52ffb1ad609bbb2e958cc11c",
+              "execution_ms": 5501.534,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 3.977,
+                "cache_publish": 71.53,
+                "docker_execution": 5503.977,
+                "environment": 0.047,
+                "event_append": 114.226,
+                "fingerprint_final": 157.468,
+                "fingerprint_initial": 183.389,
+                "lock_acquire": 6.178,
+                "runtime_inspect_initial": 331.527,
+                "snapshot_cleanup": 5.732,
+                "snapshot_prepare": 624.54
+              },
+              "reason": "fresh hermetic result stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "MISS_EXECUTED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 343,
+                "emitted_bytes": 343,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.06s ===============================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 7391.761
+            }
+          },
+          "setup_outer_ms": 39.33963299959942,
+          "source_sha256": "d485bf66c642431ca7b605cf3b55d020726f88fb3c0d45e7cbaf9951e1bb1773",
+          "source_unchanged": true
+        }
+      },
+      "block": 0,
+      "measurements": {
+        "cache_hit_observed": true,
+        "chain_ms": {
+          "fresh": 11771.376947000135,
+          "zerorun": 8323.282566999751
+        },
+        "chain_saved_fraction": 0.2929219237074139,
+        "consumer_ms": {
+          "fresh": 5897.708247000082,
+          "zerorun": 817.0831299999008
+        },
+        "consumer_saved_fraction": 0.861457519466902,
+        "fresh_diagnostics_ms": 6699.593507999907,
+        "oracle_ms": 12140.876278000178,
+        "setup_inclusive_chain_ms": {
+          "fresh": 11805.518210000173,
+          "zerorun": 8362.62219999935
+        },
+        "setup_inclusive_saved_fraction": 0.29163446692957773,
+        "setup_inclusive_scope": "per-arm source/environment preparation; common once-only dependency build and acquisition remain separate"
+      },
+      "order": [
+        "zerorun",
+        "fresh"
+      ]
+    },
+    {
+      "arms": {
+        "fresh": {
+          "arm": "fresh",
+          "consumer": {
+            "completed_utc": "2026-09-07T21:33:55.785550+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 5724.266053000065,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.07s ===============================\n",
+              "wall_ms": 5596.019544000228
+            }
+          },
+          "diagnostics": null,
+          "oracle": {
+            "completed_utc": "2026-09-07T21:34:02.193092+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 6374.695770000017,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "b564e88df552baa0692351fbbf03934b326a6f4dc5a101b77ea16d080bf73f0e",
+                "nodeids": [
+                  "tests/tbutils_test.py::test_normal_tb",
+                  "tests/tbutils_test.py::test_eval_tb",
+                  "tests/tbutils_test.py::test_last_line_is_eval_like"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 528,
+                "path": "raw-outcomes.json",
+                "sha256": "7b5377b6ad9ed56b431347cd0592104efe4542192d7422243042a03bb14680bf"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.07s ===============================\n",
+                "wall_ms": 6245.387881999704
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/tbutils_test.py::test_eval_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_last_line_is_eval_like": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_normal_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T21:33:50.030411+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 5401.011687999926,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.06s ===============================\n",
+              "wall_ms": 5272.940388999814
+            }
+          },
+          "setup_outer_ms": 41.07963900014511,
+          "source_sha256": "d485bf66c642431ca7b605cf3b55d020726f88fb3c0d45e7cbaf9951e1bb1773",
+          "source_unchanged": true
+        },
+        "zerorun": {
+          "arm": "zerorun",
+          "consumer": {
+            "completed_utc": "2026-09-07T21:34:10.753695+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 772.2424359999422,
+            "result": {
+              "cache_key": "cb76f07bdd19ee9c634d0ef707af4be68cdb7fff52ffb1ad609bbb2e958cc11c",
+              "execution_ms": 5702.713,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 77.966,
+                "environment": 0.048,
+                "event_append": 121.139,
+                "fingerprint_final": 93.683,
+                "fingerprint_initial": 138.915,
+                "lock_acquire": 3.453,
+                "readonly_hit_path": 650.605,
+                "runtime_inspect_initial": 282.37,
+                "snapshot_cleanup": 0.0,
+                "snapshot_prepare": 0.0
+              },
+              "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+              "restored_outputs": [],
+              "saved_ms": 5052.106,
+              "status": "HIT_REUSED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 650.606
+            }
+          },
+          "diagnostics": {
+            "completed_utc": "2026-09-07T21:34:22.705228+00:00",
+            "error": null,
+            "operation": "diagnostics",
+            "outer_ms": 6705.194920999929,
+            "result": {
+              "cache_key": "cb76f07bdd19ee9c634d0ef707af4be68cdb7fff52ffb1ad609bbb2e958cc11c",
+              "execution_ms": 5400.586,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 61.687,
+                "docker_execution": 5401.838,
+                "environment": 0.03,
+                "event_append": 20.621,
+                "fingerprint_final": 91.738,
+                "fingerprint_initial": 115.397,
+                "lock_acquire": 3.852,
+                "runtime_inspect_initial": 346.151,
+                "snapshot_cleanup": 8.256,
+                "snapshot_prepare": 603.939
+              },
+              "reason": "fresh hermetic execution matched cached successful result",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "VERIFY_MATCH",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 343,
+                "emitted_bytes": 343,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.08s ===============================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": true,
+              "wall_ms": 6684.416
+            }
+          },
+          "oracle": {
+            "completed_utc": "2026-09-07T21:34:15.977842+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 5198.672157000146,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "b564e88df552baa0692351fbbf03934b326a6f4dc5a101b77ea16d080bf73f0e",
+                "nodeids": [
+                  "tests/tbutils_test.py::test_normal_tb",
+                  "tests/tbutils_test.py::test_eval_tb",
+                  "tests/tbutils_test.py::test_last_line_is_eval_like"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 528,
+                "path": "raw-outcomes.json",
+                "sha256": "7b5377b6ad9ed56b431347cd0592104efe4542192d7422243042a03bb14680bf"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.10s ===============================\n",
+                "wall_ms": 5071.277149000252
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/tbutils_test.py::test_eval_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_last_line_is_eval_like": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/tbutils_test.py::test_normal_tb": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T21:34:09.960271+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 7594.838070000151,
+            "result": {
+              "cache_key": "cb76f07bdd19ee9c634d0ef707af4be68cdb7fff52ffb1ad609bbb2e958cc11c",
+              "execution_ms": 5702.713,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 4.164,
+                "cache_publish": 64.471,
+                "docker_execution": 5705.207,
+                "environment": 0.029,
+                "event_append": 16.272,
+                "fingerprint_final": 92.838,
+                "fingerprint_initial": 158.725,
+                "lock_acquire": 6.263,
+                "runtime_inspect_initial": 358.949,
+                "snapshot_cleanup": 5.064,
+                "snapshot_prepare": 674.886
+              },
+              "reason": "fresh hermetic result stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "MISS_EXECUTED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 343,
+                "emitted_bytes": 343,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 3 items\n\ntests/tbutils_test.py ...                                                [100%]\n\n============================== 3 passed in 0.05s ===============================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 7577.722
+            }
+          },
+          "setup_outer_ms": 33.27097800001866,
+          "source_sha256": "d485bf66c642431ca7b605cf3b55d020726f88fb3c0d45e7cbaf9951e1bb1773",
+          "source_unchanged": true
+        }
+      },
+      "block": 1,
+      "measurements": {
+        "cache_hit_observed": true,
+        "chain_ms": {
+          "fresh": 11125.27774099999,
+          "zerorun": 8367.080506000093
+        },
+        "chain_saved_fraction": 0.24792165186448445,
+        "consumer_ms": {
+          "fresh": 5724.266053000065,
+          "zerorun": 772.2424359999422
+        },
+        "consumer_saved_fraction": 0.8650931964290491,
+        "fresh_diagnostics_ms": 6705.194920999929,
+        "oracle_ms": 11573.367927000163,
+        "setup_inclusive_chain_ms": {
+          "fresh": 11166.357380000136,
+          "zerorun": 8400.351484000112
+        },
+        "setup_inclusive_saved_fraction": 0.24770888140784109,
+        "setup_inclusive_scope": "per-arm source/environment preparation; common once-only dependency build and acquisition remain separate"
+      },
+      "order": [
+        "fresh",
+        "zerorun"
+      ]
+    }
+  ],
+  "case_id": "mahmoud__boltons-31",
+  "disposition": "COMPLETE",
+  "repo": "mahmoud/boltons"
+}

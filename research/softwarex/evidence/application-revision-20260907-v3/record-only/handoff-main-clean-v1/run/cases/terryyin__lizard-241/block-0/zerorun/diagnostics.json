@@ -1,0 +1,42 @@
+{
+  "completed_utc": "2026-09-07T10:05:05.383450+00:00",
+  "error": null,
+  "operation": "diagnostics",
+  "outer_ms": 10521.7531159999,
+  "result": {
+    "cache_key": "daed1db8705775bb4fba6ab7009a6a52eaa38c702efca9f1758006f530a1da72",
+    "execution_ms": 5869.342,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 104.461,
+      "docker_execution": 5875.799,
+      "environment": 0.027,
+      "event_append": 18.403,
+      "fingerprint_final": 586.777,
+      "fingerprint_initial": 661.314,
+      "lock_acquire": 4.164,
+      "runtime_inspect_initial": 229.929,
+      "snapshot_cleanup": 21.764,
+      "snapshot_prepare": 2965.712
+    },
+    "reason": "fresh hermetic execution matched cached successful result",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "VERIFY_MATCH",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 869,
+      "emitted_bytes": 869,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.12.14, pytest-9.1.1, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: setup.cfg\ncollected 21 items\n\ntest/test_languages/testSwift.py .....................                   [100%]\n\n=============================== warnings summary ===============================\ntest/test_languages/testSwift.py:20\n  /workspace/test/test_languages/testSwift.py:20: SyntaxWarning: invalid escape sequence '\\('\n    print(\"Hello, \\(name)!\")\n\ntest/test_languages/testSwift.py:189\n  /workspace/test/test_languages/testSwift.py:189: SyntaxWarning: invalid escape sequence '\\('\n    print(\"About to set totalSteps to \\(newTotalSteps)\")\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 21 passed, 2 warnings in 0.82s ========================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": true,
+    "wall_ms": 10503.196
+  }
+}

@@ -10,7 +10,8 @@ import time
 
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[2]
-CURRENT_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.2-v5/receipt.json"
+CURRENT_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.3-v1/receipt.json"
+CURRENT_QUICKSTART = "research/softwarex/evidence/quickstart-public-053-v1"
 MAX_OUTPUT = 16000
 CHECK_TIMEOUT_SECONDS = 120
 
@@ -28,7 +29,7 @@ def manifest_check(root):
     rows = saved["files"]
     require(isinstance(rows, list) and rows and len(rows) == len({r["path"] for r in rows}), "public manifest rows absent/duplicated")
     require(saved.get("current_version") != release.CURRENT_VERSION or len(release.external_artifacts(saved)) == 1,
-            "complete 0.5.2 submission requires its exact external reviewer ZIP declaration")
+            "complete " + release.CURRENT_VERSION + " submission requires its exact external reviewer ZIP declaration")
     actual = release.inspect(root, require_external=True)
     require(actual == saved, "public manifest changed during verification")
     return {"manifest_sha256": release.digest(raw), "payload_files": len(rows),
@@ -86,10 +87,9 @@ def commands():
         ("extension", "research.softwarex.build_extension_evidence", ["--check"]),
         ("application", "research.softwarex.build_application_evidence", ["--check"]),
         ("handoff", "research.softwarex.build_handoff_evidence", ["--check"]),
-        ("current_runtime", "research.softwarex.five_hour_review.current_runtime", ["--release", ".", "--check", CURRENT_RECEIPT]),
-        ("current_quickstart", "research.softwarex.quickstart_052", ["--source-root", ".", "--check",
-            "research/softwarex/evidence/quickstart-public-052-v1/check.json", "--installation-receipt",
-            "research/softwarex/evidence/quickstart-public-052-v1/install.json"]),
+        ("current_runtime", "research.softwarex.five_hour_review.current_runtime_053", ["--release", ".", "--check", CURRENT_RECEIPT]),
+        ("current_quickstart", "research.softwarex.quickstart_053", ["--source-root", ".", "--check",
+            CURRENT_QUICKSTART + "/check.json", "--installation-receipt", CURRENT_QUICKSTART + "/install.json"]),
         ("paper", "research.softwarex.build_paper", ["--check"]),
     ]
 

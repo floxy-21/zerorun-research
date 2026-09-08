@@ -1,0 +1,80 @@
+{
+  "manifest": {
+    "tasks": {
+      "handoff-tests": {
+        "cache_streams": false,
+        "cacheable": true,
+        "closure_reviewed": true,
+        "command": [
+          "/usr/local/bin/python",
+          "-m",
+          "pytest",
+          "-p",
+          "no:cacheprovider",
+          "test/test_languages/testCAndCPP.py"
+        ],
+        "env": [],
+        "image": "127.0.0.1:19559/zerorun-compatible-v2@sha256:78039048251ecf889454509c6ef203f922d9dae9fa3b570a4ade3a9d4b552465",
+        "inputs": [
+          ".appveyor.yml",
+          ".bowerrc",
+          ".gitignore",
+          ".travis.yml",
+          "CHANGELOG.md",
+          "LICENSE.txt",
+          "Makefile",
+          "README.rst",
+          "app.yaml",
+          "appengine_config.py",
+          "bower.json",
+          "dev_requirements.txt",
+          "index.html",
+          "lizard.py",
+          "lizard.xsl",
+          "lizard_ext",
+          "lizard_languages",
+          "profile.py",
+          "pylintrc",
+          "setup.cfg",
+          "setup.py",
+          "test",
+          "theory.rst",
+          "website"
+        ],
+        "outputs": [],
+        "platform": "linux/amd64",
+        "result_only": true,
+        "unsafe_effects": []
+      }
+    },
+    "version": 2
+  },
+  "setup": {
+    "dependency_provenance": {
+      "image": {
+        "config_sha256": "b3a8632a1f903b463526c0f59377f8a447b2f90bba920871d1da816fb198a198",
+        "image_id": "sha256:78039048251ecf889454509c6ef203f922d9dae9fa3b570a4ade3a9d4b552465",
+        "repo_digests": [
+          "127.0.0.1:19559/zerorun-compatible-v2@sha256:78039048251ecf889454509c6ef203f922d9dae9fa3b570a4ade3a9d4b552465"
+        ],
+        "requested": "127.0.0.1:19559/zerorun-compatible-v2@sha256:78039048251ecf889454509c6ef203f922d9dae9fa3b570a4ade3a9d4b552465",
+        "rootfs": {
+          "Layers": [
+            "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+            "sha256:bc08d63eb54f5b356e84c8dd9880ffd0133e4afee9ce504dc7903eae7452ac30",
+            "sha256:7ef08dc5bba795ade698c25496041300ff0794999d26f6a2f4bba0901a378614",
+            "sha256:61496c170ab8b68fb6d154b388ee9e890c8000f1995ac487261769e7dbcfafb6",
+            "sha256:b836c3a7e7e761b69f22482a3d28839fa1b6985642a45f447b481469c8065ec7",
+            "sha256:ca235f7751c5610c05cd2487c2b895784549aabec27f4d389381c99e183dda79",
+            "sha256:75fcf91c64907c5b8a409110d25821e5231c8534eb276c050696818422ae4e9d"
+          ],
+          "Type": "layers"
+        }
+      },
+      "preflight_only": true
+    },
+    "deployment": "image-contained locked dependencies",
+    "mutable_dependency_directory_materialized": false,
+    "runtime_image": "127.0.0.1:19559/zerorun-compatible-v2@sha256:78039048251ecf889454509c6ef203f922d9dae9fa3b570a4ade3a9d4b552465"
+  }
+}

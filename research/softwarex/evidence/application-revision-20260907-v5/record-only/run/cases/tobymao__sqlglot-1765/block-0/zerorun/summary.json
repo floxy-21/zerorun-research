@@ -1,0 +1,549 @@
+{
+  "arm": "zerorun",
+  "consumer": {
+    "completed_utc": "2026-09-07T14:59:53.677004+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 1003.1399219997184,
+    "result": {
+      "cache_key": "9c22fcbed222bdbdad50f130ba2feabf62c5383db60ad774194b0d79491d2d6f",
+      "execution_ms": 5896.654,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 48.581,
+        "environment": 0.017,
+        "event_append": 28.876,
+        "fingerprint_final": 377.051,
+        "fingerprint_initial": 342.305,
+        "lock_acquire": 1.866,
+        "readonly_hit_path": 973.724,
+        "runtime_inspect_initial": 171.416,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "restored_outputs": [],
+      "saved_ms": 4922.929,
+      "status": "HIT_REUSED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 973.725
+    }
+  },
+  "diagnostics": {
+    "completed_utc": "2026-09-07T15:00:05.933887+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 7694.475293000323,
+    "result": {
+      "cache_key": "9c22fcbed222bdbdad50f130ba2feabf62c5383db60ad774194b0d79491d2d6f",
+      "execution_ms": 4936.169,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 50.466,
+        "docker_execution": 4937.832,
+        "environment": 0.016,
+        "event_append": 19.481,
+        "fingerprint_final": 327.507,
+        "fingerprint_initial": 346.485,
+        "lock_acquire": 2.832,
+        "runtime_inspect_initial": 170.665,
+        "snapshot_cleanup": 19.074,
+        "snapshot_prepare": 1787.609
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 424,
+        "emitted_bytes": 424,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 29 items\n\ntests/test_tokens.py .....                                               [ 17%]\ntests/test_transpile.py ........................                         [100%]\n\n============================== 29 passed in 1.26s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 7674.772
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-07T14:59:58.224279+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 4535.350617999939,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "81287d2980416432d4ff6ca787109881b4aac1b37b60f58e097610a5abbd88ae",
+        "nodeids": [
+          "tests/test_tokens.py::TestTokens::test_command",
+          "tests/test_tokens.py::TestTokens::test_comment_attachment",
+          "tests/test_tokens.py::TestTokens::test_error_msg",
+          "tests/test_tokens.py::TestTokens::test_jinja",
+          "tests/test_tokens.py::TestTokens::test_token_line_col",
+          "tests/test_transpile.py::TestTranspile::test_alias",
+          "tests/test_transpile.py::TestTranspile::test_alter",
+          "tests/test_transpile.py::TestTranspile::test_asc",
+          "tests/test_transpile.py::TestTranspile::test_comments",
+          "tests/test_transpile.py::TestTranspile::test_error_level",
+          "tests/test_transpile.py::TestTranspile::test_extract",
+          "tests/test_transpile.py::TestTranspile::test_identify_lambda",
+          "tests/test_transpile.py::TestTranspile::test_identity",
+          "tests/test_transpile.py::TestTranspile::test_if",
+          "tests/test_transpile.py::TestTranspile::test_index_offset",
+          "tests/test_transpile.py::TestTranspile::test_leading_comma",
+          "tests/test_transpile.py::TestTranspile::test_normalize_name",
+          "tests/test_transpile.py::TestTranspile::test_not_range",
+          "tests/test_transpile.py::TestTranspile::test_paren",
+          "tests/test_transpile.py::TestTranspile::test_partial",
+          "tests/test_transpile.py::TestTranspile::test_pretty",
+          "tests/test_transpile.py::TestTranspile::test_pretty_line_breaks",
+          "tests/test_transpile.py::TestTranspile::test_some",
+          "tests/test_transpile.py::TestTranspile::test_space",
+          "tests/test_transpile.py::TestTranspile::test_time",
+          "tests/test_transpile.py::TestTranspile::test_types",
+          "tests/test_transpile.py::TestTranspile::test_unary",
+          "tests/test_transpile.py::TestTranspile::test_unsupported_level",
+          "tests/test_transpile.py::TestTranspile::test_with"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 3876,
+        "path": "raw-outcomes.json",
+        "sha256": "e74c84ccd1e9aa502ddfef7b9d847581ebc59e469de842892084ce0868758cac"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 29 items\n\ntests/test_tokens.py .....                                               [ 17%]\ntests/test_transpile.py ........................                         [100%]\n\n============================== 29 passed in 1.45s ==============================\n",
+        "wall_ms": 4496.539615999609
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "tests/test_tokens.py::TestTokens::test_command": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_tokens.py::TestTokens::test_comment_attachment": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_tokens.py::TestTokens::test_error_msg": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_tokens.py::TestTokens::test_jinja": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_tokens.py::TestTokens::test_token_line_col": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_alias": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_alter": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_asc": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_comments": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_error_level": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_extract": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_identify_lambda": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_identity": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_if": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_index_offset": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_leading_comma": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_normalize_name": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_not_range": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_paren": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_partial": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_pretty": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_pretty_line_breaks": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_some": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_space": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_time": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_types": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_unary": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_unsupported_level": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_transpile.py::TestTranspile::test_with": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T14:59:52.660526+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 9170.324216999688,
+    "result": {
+      "cache_key": "9c22fcbed222bdbdad50f130ba2feabf62c5383db60ad774194b0d79491d2d6f",
+      "execution_ms": 5896.654,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 2.092,
+        "cache_publish": 85.576,
+        "docker_execution": 5899.678,
+        "environment": 0.027,
+        "event_append": 10.491,
+        "fingerprint_final": 369.015,
+        "fingerprint_initial": 394.363,
+        "lock_acquire": 2.988,
+        "runtime_inspect_initial": 177.911,
+        "snapshot_cleanup": 22.587,
+        "snapshot_prepare": 1688.629
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 424,
+        "emitted_bytes": 424,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 29 items\n\ntests/test_tokens.py .....                                               [ 17%]\ntests/test_transpile.py ........................                         [100%]\n\n============================== 29 passed in 1.35s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 9159.701
+    }
+  },
+  "setup_outer_ms": 69.48159499916073,
+  "source_sha256": "8bebc1ba3ce81a133ae6ac86728f2c8f63f63cb228c21c2074b3ef4f2cbd3ec1",
+  "source_unchanged": true
+}

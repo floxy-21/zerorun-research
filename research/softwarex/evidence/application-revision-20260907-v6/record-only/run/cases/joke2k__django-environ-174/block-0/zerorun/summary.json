@@ -1,0 +1,1654 @@
+{
+  "arm": "zerorun",
+  "consumer": {
+    "completed_utc": "2026-09-07T21:06:25.160519+00:00",
+    "error": null,
+    "operation": "consumer",
+    "outer_ms": 273.3702749999338,
+    "result": {
+      "cache_key": "95ad19754b9cc276963170836fd5194c546b93d039b965611e10f577ec806800",
+      "execution_ms": 3208.523,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 32.413,
+        "environment": 0.016,
+        "event_append": 8.186,
+        "fingerprint_final": 18.874,
+        "fingerprint_initial": 18.084,
+        "lock_acquire": 2.013,
+        "readonly_hit_path": 264.937,
+        "runtime_inspect_initial": 170.999,
+        "snapshot_cleanup": 0.0,
+        "snapshot_prepare": 0.0
+      },
+      "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+      "restored_outputs": [],
+      "saved_ms": 2943.584,
+      "status": "HIT_REUSED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 264.938
+    }
+  },
+  "diagnostics": {
+    "completed_utc": "2026-09-07T21:06:32.202080+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 3617.8259339999386,
+    "result": {
+      "cache_key": "95ad19754b9cc276963170836fd5194c546b93d039b965611e10f577ec806800",
+      "execution_ms": 3258.787,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 29.708,
+        "docker_execution": 3259.404,
+        "environment": 0.014,
+        "event_append": 8.972,
+        "fingerprint_final": 19.666,
+        "fingerprint_initial": 18.338,
+        "lock_acquire": 1.54,
+        "runtime_inspect_initial": 178.631,
+        "snapshot_cleanup": 1.232,
+        "snapshot_prepare": 70.585
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 425,
+        "emitted_bytes": 425,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 114 items\n\nenviron/test.py ........................................................ [ 49%]\n..........................................................               [100%]\n\n============================= 114 passed in 0.32s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 3608.758
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-07T21:06:28.567621+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 3394.6129990001737,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "2f80258223304e291702107e3c9acb98ed3fcf5ade474715c28172e72fdd2209",
+        "nodeids": [
+          "environ/test.py::EnvTests::test_bool_false",
+          "environ/test.py::EnvTests::test_bool_true",
+          "environ/test.py::EnvTests::test_bytes",
+          "environ/test.py::EnvTests::test_cache_url_value",
+          "environ/test.py::EnvTests::test_contains",
+          "environ/test.py::EnvTests::test_db_url_value",
+          "environ/test.py::EnvTests::test_dict_parsing",
+          "environ/test.py::EnvTests::test_dict_value",
+          "environ/test.py::EnvTests::test_email_url_value",
+          "environ/test.py::EnvTests::test_empty_list",
+          "environ/test.py::EnvTests::test_exported",
+          "environ/test.py::EnvTests::test_float",
+          "environ/test.py::EnvTests::test_int",
+          "environ/test.py::EnvTests::test_int_list",
+          "environ/test.py::EnvTests::test_int_tuple",
+          "environ/test.py::EnvTests::test_int_with_none_default",
+          "environ/test.py::EnvTests::test_json_value",
+          "environ/test.py::EnvTests::test_not_present_with_default",
+          "environ/test.py::EnvTests::test_not_present_without_default",
+          "environ/test.py::EnvTests::test_path",
+          "environ/test.py::EnvTests::test_proxied_value",
+          "environ/test.py::EnvTests::test_str",
+          "environ/test.py::EnvTests::test_str_list_with_spaces",
+          "environ/test.py::EnvTests::test_url_encoded_parts",
+          "environ/test.py::EnvTests::test_url_value",
+          "environ/test.py::FileEnvTests::test_bool_false",
+          "environ/test.py::FileEnvTests::test_bool_true",
+          "environ/test.py::FileEnvTests::test_bytes",
+          "environ/test.py::FileEnvTests::test_cache_url_value",
+          "environ/test.py::FileEnvTests::test_contains",
+          "environ/test.py::FileEnvTests::test_db_url_value",
+          "environ/test.py::FileEnvTests::test_dict_parsing",
+          "environ/test.py::FileEnvTests::test_dict_value",
+          "environ/test.py::FileEnvTests::test_email_url_value",
+          "environ/test.py::FileEnvTests::test_empty_list",
+          "environ/test.py::FileEnvTests::test_exported",
+          "environ/test.py::FileEnvTests::test_float",
+          "environ/test.py::FileEnvTests::test_int",
+          "environ/test.py::FileEnvTests::test_int_list",
+          "environ/test.py::FileEnvTests::test_int_tuple",
+          "environ/test.py::FileEnvTests::test_int_with_none_default",
+          "environ/test.py::FileEnvTests::test_json_value",
+          "environ/test.py::FileEnvTests::test_not_present_with_default",
+          "environ/test.py::FileEnvTests::test_not_present_without_default",
+          "environ/test.py::FileEnvTests::test_path",
+          "environ/test.py::FileEnvTests::test_proxied_value",
+          "environ/test.py::FileEnvTests::test_str",
+          "environ/test.py::FileEnvTests::test_str_list_with_spaces",
+          "environ/test.py::FileEnvTests::test_url_encoded_parts",
+          "environ/test.py::FileEnvTests::test_url_value",
+          "environ/test.py::SubClassTests::test_bool_false",
+          "environ/test.py::SubClassTests::test_bool_true",
+          "environ/test.py::SubClassTests::test_bytes",
+          "environ/test.py::SubClassTests::test_cache_url_value",
+          "environ/test.py::SubClassTests::test_contains",
+          "environ/test.py::SubClassTests::test_db_url_value",
+          "environ/test.py::SubClassTests::test_dict_parsing",
+          "environ/test.py::SubClassTests::test_dict_value",
+          "environ/test.py::SubClassTests::test_email_url_value",
+          "environ/test.py::SubClassTests::test_empty_list",
+          "environ/test.py::SubClassTests::test_exported",
+          "environ/test.py::SubClassTests::test_float",
+          "environ/test.py::SubClassTests::test_int",
+          "environ/test.py::SubClassTests::test_int_list",
+          "environ/test.py::SubClassTests::test_int_tuple",
+          "environ/test.py::SubClassTests::test_int_with_none_default",
+          "environ/test.py::SubClassTests::test_json_value",
+          "environ/test.py::SubClassTests::test_not_present_with_default",
+          "environ/test.py::SubClassTests::test_not_present_without_default",
+          "environ/test.py::SubClassTests::test_path",
+          "environ/test.py::SubClassTests::test_proxied_value",
+          "environ/test.py::SubClassTests::test_singleton_environ",
+          "environ/test.py::SubClassTests::test_str",
+          "environ/test.py::SubClassTests::test_str_list_with_spaces",
+          "environ/test.py::SubClassTests::test_url_encoded_parts",
+          "environ/test.py::SubClassTests::test_url_value",
+          "environ/test.py::SchemaEnvTests::test_schema",
+          "environ/test.py::DatabaseTestSuite::test_cleardb_parsing",
+          "environ/test.py::DatabaseTestSuite::test_database_ldap_url",
+          "environ/test.py::DatabaseTestSuite::test_database_options_parsing",
+          "environ/test.py::DatabaseTestSuite::test_empty_sqlite_url",
+          "environ/test.py::DatabaseTestSuite::test_memory_sqlite_url",
+          "environ/test.py::DatabaseTestSuite::test_mysql_gis_parsing",
+          "environ/test.py::DatabaseTestSuite::test_mysql_no_password",
+          "environ/test.py::DatabaseTestSuite::test_postgis_parsing",
+          "environ/test.py::DatabaseTestSuite::test_postgres_parsing",
+          "environ/test.py::CacheTestSuite::test_custom_backend",
+          "environ/test.py::CacheTestSuite::test_dbcache_parsing",
+          "environ/test.py::CacheTestSuite::test_dummycache_parsing",
+          "environ/test.py::CacheTestSuite::test_filecache_parsing",
+          "environ/test.py::CacheTestSuite::test_filecache_windows_parsing",
+          "environ/test.py::CacheTestSuite::test_locmem_named_parsing",
+          "environ/test.py::CacheTestSuite::test_locmem_parsing",
+          "environ/test.py::CacheTestSuite::test_memcache_multiple_parsing",
+          "environ/test.py::CacheTestSuite::test_memcache_parsing",
+          "environ/test.py::CacheTestSuite::test_memcache_pylib_parsing",
+          "environ/test.py::CacheTestSuite::test_memcache_socket_parsing",
+          "environ/test.py::CacheTestSuite::test_options_parsing",
+          "environ/test.py::CacheTestSuite::test_redis_multi_location_parsing",
+          "environ/test.py::CacheTestSuite::test_redis_parsing",
+          "environ/test.py::CacheTestSuite::test_redis_socket_parsing",
+          "environ/test.py::CacheTestSuite::test_redis_socket_url",
+          "environ/test.py::CacheTestSuite::test_redis_with_password_parsing",
+          "environ/test.py::SearchTestSuite::test_common_args_parsing",
+          "environ/test.py::SearchTestSuite::test_elasticsearch_parsing",
+          "environ/test.py::SearchTestSuite::test_simple_parsing",
+          "environ/test.py::SearchTestSuite::test_solr_multicore_parsing",
+          "environ/test.py::SearchTestSuite::test_solr_parsing",
+          "environ/test.py::SearchTestSuite::test_whoosh_parsing",
+          "environ/test.py::SearchTestSuite::test_xapian_parsing",
+          "environ/test.py::EmailTests::test_smtp_parsing",
+          "environ/test.py::PathTests::test_comparison",
+          "environ/test.py::PathTests::test_path_class",
+          "environ/test.py::PathTests::test_required_path"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 14379,
+        "path": "raw-outcomes.json",
+        "sha256": "222480277bac63c2505fd30ed4e9d0022cf8d91f099a2980627cd2a134a2c01f"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 114 items\n\nenviron/test.py ........................................................ [ 49%]\n..........................................................               [100%]\n\n============================= 114 passed in 0.39s ==============================\n",
+        "wall_ms": 3314.295597999944
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "environ/test.py::CacheTestSuite::test_custom_backend": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_dbcache_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_dummycache_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_filecache_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_filecache_windows_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_locmem_named_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_locmem_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_memcache_multiple_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_memcache_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_memcache_pylib_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_memcache_socket_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_options_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_redis_multi_location_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_redis_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_redis_socket_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_redis_socket_url": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::CacheTestSuite::test_redis_with_password_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_cleardb_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_database_ldap_url": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_database_options_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_empty_sqlite_url": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_memory_sqlite_url": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_mysql_gis_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_mysql_no_password": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_postgis_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::DatabaseTestSuite::test_postgres_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EmailTests::test_smtp_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_bool_false": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_bool_true": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_bytes": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_cache_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_contains": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_db_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_dict_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_dict_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_email_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_empty_list": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_exported": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_float": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_int": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_int_list": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_int_tuple": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_int_with_none_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_json_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_not_present_with_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_not_present_without_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_path": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_proxied_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_str": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_str_list_with_spaces": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_url_encoded_parts": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::EnvTests::test_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_bool_false": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_bool_true": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_bytes": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_cache_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_contains": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_db_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_dict_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_dict_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_email_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_empty_list": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_exported": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_float": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_int": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_int_list": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_int_tuple": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_int_with_none_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_json_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_not_present_with_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_not_present_without_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_path": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_proxied_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_str": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_str_list_with_spaces": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_url_encoded_parts": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::FileEnvTests::test_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::PathTests::test_comparison": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::PathTests::test_path_class": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::PathTests::test_required_path": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SchemaEnvTests::test_schema": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_common_args_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_elasticsearch_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_simple_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_solr_multicore_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_solr_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_whoosh_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SearchTestSuite::test_xapian_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_bool_false": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_bool_true": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_bytes": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_cache_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_contains": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_db_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_dict_parsing": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_dict_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_email_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_empty_list": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_exported": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_float": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_int": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_int_list": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_int_tuple": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_int_with_none_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_json_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_not_present_with_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_not_present_without_default": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_path": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_proxied_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_singleton_environ": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_str": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_str_list_with_spaces": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_url_encoded_parts": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "environ/test.py::SubClassTests::test_url_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-07T21:06:24.869499+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 3819.337904999884,
+    "result": {
+      "cache_key": "95ad19754b9cc276963170836fd5194c546b93d039b965611e10f577ec806800",
+      "execution_ms": 3208.523,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 1.773,
+        "cache_publish": 37.756,
+        "docker_execution": 3209.301,
+        "environment": 0.015,
+        "event_append": 15.457,
+        "fingerprint_final": 18.986,
+        "fingerprint_initial": 19.45,
+        "lock_acquire": 1.521,
+        "runtime_inspect_initial": 171.988,
+        "snapshot_cleanup": 1.374,
+        "snapshot_prepare": 79.698
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 425,
+        "emitted_bytes": 425,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 114 items\n\nenviron/test.py ........................................................ [ 49%]\n..........................................................               [100%]\n\n============================= 114 passed in 0.32s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 3803.745
+    }
+  },
+  "setup_outer_ms": 20.453524999993533,
+  "source_sha256": "ddefbdf0df0a6ff45d172430ca3cee9ea72498a45e5746b3fc9f6096015914be",
+  "source_unchanged": true
+}

@@ -81,7 +81,7 @@ def prepare_verifier(monkeypatch):
     monkeypatch.setattr(verifier, "artifact_check", lambda root: {"synthetic": True})
 
 
-def test_all_ten_saved_evidence_routes_are_invoked(tmp_path, monkeypatch):
+def test_all_eleven_saved_evidence_routes_are_invoked(tmp_path, monkeypatch):
     prepare_verifier(monkeypatch)
     called = []
     monkeypatch.setattr(verifier, "check_command", lambda root, module, args: called.append((module, args)) or {"returncode": 0})
@@ -92,7 +92,43 @@ def test_all_ten_saved_evidence_routes_are_invoked(tmp_path, monkeypatch):
     assert all("--check" in args for _, args in called)
     assert not any("build_readiness" in module for module, _ in called)
     assert "research.softwarex.build_handoff_evidence" in {module for module, _ in called}
-    assert "research.softwarex.quickstart_052" in {module for module, _ in called}
+    assert "research.softwarex.quickstart_053" in {module for module, _ in called}
+
+
+def test_current_routes_require_053_receipts_without_relabeling_052():
+    selected = {name: (module, args) for name, module, args in verifier.commands()}
+    assert selected["current_runtime"] == (
+        "research.softwarex.five_hour_review.current_runtime_053",
+        ["--release", ".", "--check", "research/softwarex/evidence/current-runtime-0.5.3-v1/receipt.json"])
+    assert selected["current_quickstart"] == (
+        "research.softwarex.quickstart_053",
+        ["--source-root", ".", "--check", "research/softwarex/evidence/quickstart-public-053-v1/check.json",
+         "--installation-receipt", "research/softwarex/evidence/quickstart-public-053-v1/install.json"])
+    assert all("--output" not in args and "--create-tools-env" not in args
+               for _, args in selected.values())
+
+
+@pytest.mark.parametrize("name,legacy", [
+    ("current_runtime", "research/softwarex/five_hour_review/current_runtime.py"),
+    ("current_quickstart", "research/softwarex/quickstart_052.py"),
+])
+def test_missing_053_checker_does_not_fall_back_to_historical_helper(tmp_path, monkeypatch, name, legacy):
+    old = tmp_path / legacy
+    old.parent.mkdir(parents=True, exist_ok=True)
+    old.write_bytes(b"# retained historical checker fixture")
+    monkeypatch.setattr(verifier.subprocess, "run", lambda *a, **kw: pytest.fail("must not execute a historical fallback"))
+    module, args = next((module, args) for label, module, args in verifier.commands() if label == name)
+    with pytest.raises(ValueError, match="required offline checker is missing"):
+        verifier.check_command(tmp_path, module, args)
+
+
+def test_current_manifest_requires_external_asset_before_other_checks(tmp_path, monkeypatch):
+    from research.softwarex import build_public_release as release
+    save(tmp_path, release.MANIFEST, {"current_version": "0.5.3", "files": [{"path": "fixture"}]})
+    monkeypatch.setattr(release, "external_artifacts", lambda saved: [])
+    monkeypatch.setattr(release, "inspect", lambda *a, **kw: pytest.fail("incomplete current release cannot pass"))
+    with pytest.raises(ValueError, match="complete 0.5.3 submission requires"):
+        verifier.manifest_check(tmp_path)
 
 
 def test_one_failed_checker_is_nonpassing_but_other_checks_retained(tmp_path, monkeypatch):

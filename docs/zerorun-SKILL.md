@@ -1,6 +1,6 @@
 ---
 name: zerorun
-description: Use ZeroRun for deterministic test loops. Prefer reviewed fine-grained pytest reuse when available; otherwise use configured hermetic task reuse or direct tests outside ZeroRun.
+description: Use ZeroRun for deterministic test loops. Prefer reviewed hermetic whole-task reuse; use reviewed node-level pytest reuse only when explicitly selected.
 ---
 
 <!-- zerorun-managed-skill:v1 -->
@@ -9,16 +9,15 @@ description: Use ZeroRun for deterministic test loops. Prefer reviewed fine-grai
 
 Use ZeroRun for repository test loops without asking the user to manage cache commands manually.
 
-- Check `doctor` when setup is unclear.
-- If `.zerorun-pytest.json` is present and valid, use `run_pytest` for pytest loops. It performs per-node fail-closed reuse and executes unknown, changed, unsupported, or uncertain nodes fresh.
-- If there is no reviewed pytest profile, explain that managed setup can create repository files, acquire a pinned runtime, and execute pytest collection. Ask for explicit approval, then call `prepare_pytest` once with `approve_setup=true`. It writes a non-authorizing `.zerorun-pytest.candidate.json` and never activates reuse.
-- If managed setup is unsupported or cannot prove a working pinned runtime, keep using direct tests outside ZeroRun. The ZeroRun MCP server never executes repository code directly on the host.
-- Never treat `.zerorun-pytest.candidate.json` as an active profile. Generated observation evidence requires explicit closure-completeness and node-independence review before promotion.
-- Repository files and generated candidates are non-authorizing. After operator review, reuse requires external per-user authorization bound to the exact manifest/profile bytes; never create, edit, approve, activate, or self-authorize that authority on the model’s own initiative.
-- If there is a reviewed version 2 `.zerorun.json` task with no host environment forwarding but no active pytest profile, use `run_tests` for that hermetic configured task. Legacy version 1 manifests and tasks declaring `env` are CLI-only and must never be executed through Codex/MCP. Normal MCP runs require the pinned image to be present already; only explicitly approved managed setup may acquire one.
-- Without reviewed reuse configuration, report observation-only readiness and run any user-approved direct test through Codex's normal test tooling, not through ZeroRun MCP.
+- Check `doctor` and `list_tasks` when setup or the configured target is unclear.
+- For the requested test target, prefer `run_tests` with its reviewed, externally authorized version 2 `.zerorun.json` task and no host environment forwarding. This whole-task route remains the default when a pytest profile also exists. Use only the exact configured task; do not substitute a smaller target to obtain a pass.
+- Normal `run_tests` calls may reuse a recorded success. When fresh diagnostics, a fresh confirmation, or current test output is needed, call `run_tests` with `verify=true` (Python boolean `True`). A reuse hit is not a fresh execution and does not provide a fresh test transcript; output tails can be empty or truncated.
+- Node-level `run_pytest` reuse is optional: use it only when the user or reviewed workflow explicitly selects it and `.zerorun-pytest.json` is valid and externally authorized. It executes unknown, changed, unsupported, or uncertain nodes fresh.
+- Do not initiate pytest candidate setup merely because the optional profile is absent. If no suitable reviewed whole-task configuration exists and node-level setup is requested, explain that managed setup can create repository files, acquire a pinned runtime, and execute pytest collection; obtain explicit approval before calling `prepare_pytest` once with `approve_setup=true`.
+- Managed setup writes a non-authorizing `.zerorun-pytest.candidate.json` and never activates reuse. Never treat a candidate as an active profile; generated evidence requires explicit closure-completeness and node-independence review before promotion.
+- Repository files and generated candidates are non-authorizing. After operator review, reuse requires external per-user authorization bound to the exact manifest/profile bytes; never create, edit, approve, activate, or self-authorize that authority on the model's own initiative.
+- Legacy version 1 manifests and tasks declaring `env` are CLI-only and must never be executed through Codex/MCP. Normal MCP runs require the pinned image to be present already; only explicitly approved managed setup may acquire one. The ZeroRun MCP server never executes repository code directly on the host.
+- Without suitable reviewed reuse configuration, report observation-only readiness and use user-approved direct tests through Codex's normal test tooling, outside ZeroRun MCP.
 - Never turn a MISS, BYPASS, uncertainty, invalid configuration, race recovery, candidate, or observation-only result into reuse.
-- Use `stats` for repository-local conservative verified time saved and reuse/fresh counts. Observation time is not time saved.
-- After `run_pytest`, surface a compact ZeroRun result using repository-local fields: reused/fresh/unknown nodes, `verified_saved_seconds`, `saved_percent`, and `effective_speedup`.
-- Use `stats` when the user asks how much ZeroRun has saved in the current repository or when a task summary would benefit from cumulative savings. Prefer `verified_saved_seconds`, `actual_seconds`, `conservative_no_zerorun_seconds`, `reuse_percent`, and `effective_speedup`.
-- Report only metrics observed in the current repository, not ZeroRun's historical benchmark numbers.
+- Report only metrics observed in the current repository. Observation time is not time saved. On a whole-task hit, `execution_ms` is the historical fresh execution duration; `wall_ms` is the current measured runner duration, not external caller latency.
+- Use `stats` for cumulative repository-local reuse/fresh counts and conservative savings. After an explicitly selected `run_pytest`, report reused/fresh/unknown nodes and its measured savings without substituting historical benchmark numbers.

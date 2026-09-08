@@ -1,0 +1,96 @@
+                           print("Added \(totalSteps - oldValue) steps")
+                        }
+                    }
+                }
+            }
+                ''')
+>       self.assertEqual("willSet", result[0].name)
+E       IndexError: list index out of range
+
+test/test_languages/testSwift.py:199: IndexError
+_______________ Test_parser_for_Swift.test_keyword_declarations ________________
+
+self = <test.test_languages.testSwift.Test_parser_for_Swift testMethod=test_keyword_declarations>
+
+    def test_keyword_declarations(self):
+        result = get_swift_function_list('''
+            enum Func {
+                static var `init`: Bool?, willSet: Bool?
+                static let `deinit` = 0, didSet = 0
+                case `func`; case get, set
+                func `default`() {}
+            }
+                ''')
+>       self.assertEqual("default", result[0].name)
+E       AssertionError: 'default' != 'init'
+E       - default
+E       + init
+
+test/test_languages/testSwift.py:211: AssertionError
+_________________ Test_parser_for_Swift.test_labeled_subscript _________________
+
+self = <test.test_languages.testSwift.Test_parser_for_Swift testMethod=test_labeled_subscript>
+
+    def test_labeled_subscript(self):
+        result = get_swift_function_list('''
+            extension Collection {
+                /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+                subscript (safe index: Index) -> Iterator.Element? {
+                    return indices.contains(index) ? self[index] : nil
+                }
+            }
+                ''')
+>       self.assertEqual("subscript", result[0].name)
+E       IndexError: list index out of range
+
+test/test_languages/testSwift.py:127: IndexError
+_____________________ Test_parser_for_Swift.test_subscript _____________________
+
+self = <test.test_languages.testSwift.Test_parser_for_Swift testMethod=test_subscript>
+
+    def test_subscript(self):
+        result = get_swift_function_list('''
+            override subscript(index: Int) -> Int {}
+                ''')
+>       self.assertEqual("subscript", result[0].name)
+E       IndexError: list index out of range
+
+test/test_languages/testSwift.py:115: IndexError
+__________________ Test_parser_for_Swift.test_willset_didset ___________________
+
+self = <test.test_languages.testSwift.Test_parser_for_Swift testMethod=test_willset_didset>
+
+    def test_willset_didset(self):
+        result = get_swift_function_list('''
+            var cue = -1 {
+                willSet {
+                    if newValue != cue {
+                        tableView.reloadData()
+                    }
+                }
+                didSet {
+                    tableView.scrollToRow(at: IndexPath(row: cue, section: 0), at: .bottom, animated: true)
+                }
+            }
+                ''')
+>       self.assertEqual("willSet", result[0].name)
+E       IndexError: list index out of range
+
+test/test_languages/testSwift.py:180: IndexError
+=============================== warnings summary ===============================
+test/test_languages/testSwift.py:18
+  /workspace/test/test_languages/testSwift.py:18: DeprecationWarning: invalid escape sequence '\('
+    result = get_swift_function_list('''
+
+test/test_languages/testSwift.py:185
+  /workspace/test/test_languages/testSwift.py:185: DeprecationWarning: invalid escape sequence '\('
+    result = get_swift_function_list('''
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_willset_didset
+FAILED test/test_languages/testSwift.py::Test_parser_for_Swift::test_keyword_declarations
+FAILED test/test_languages/testSwift.py::Test_parser_for_Swift::test_labeled_subscript
+FAILED test/test_languages/testSwift.py::Test_parser_for_Swift::test_subscript
+FAILED test/test_languages/testSwift.py::Test_parser_for_Swift::test_willset_didset
+=================== 5 failed, 16 passed, 2 warnings in 0.23s ===================

@@ -1,0 +1,54 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0
+rootdir: /workspace
+collected 46 items
+
+tests/test_c_parser.py ....................F.........................    [100%]
+
+=================================== FAILURES ===================================
+____________ TestCParser_fundamentals.test_pragmacomp_or_statement _____________
+
+self = <test_c_parser.TestCParser_fundamentals testMethod=test_pragmacomp_or_statement>
+
+    def test_pragmacomp_or_statement(self):
+        s1 = r'''
+            void main() {
+                int sum = 0;
+                for (int i; i < 3; i++)
+                    #pragma omp critical
+                    sum += 1;
+    
+                while(sum < 10)
+                    #pragma omp critical
+                    sum += 1;
+    
+                mylabel:
+                    #pragma foo
+                    sum += 10;
+    
+                if (sum > 10)
+                    #pragma bar
+                    sum = 10;
+    
+                switch (sum)
+                case 10:
+                    #pragma foo
+                    sum = 20;
+            }
+        '''
+        s1_ast = self.parse(s1)
+        self.assertTrue(isinstance(s1_ast.ext[0].body.block_items[1], For))
+>       self.assertTrue(isinstance(s1_ast.ext[0].body.block_items[1].stmt, Compound))
+E       AssertionError: False is not true
+
+tests/test_c_parser.py:1400: AssertionError
+=============================== warnings summary ===============================
+tests/test_c_parser.py::TestCParser_whole_code::test_whole_file
+tests/test_c_parser.py::TestCParser_whole_code::test_whole_file_with_stdio
+  /workspace/tests/test_c_parser.py:1747: DeprecationWarning: 'U' mode is deprecated
+    return open(name, 'rU')
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/test_c_parser.py::TestCParser_fundamentals::test_pragmacomp_or_statement
+=================== 1 failed, 45 passed, 2 warnings in 1.10s ===================

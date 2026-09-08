@@ -1,0 +1,92 @@
+ST(a AS TIMESTAMPLTZ)",
+            },
+        )
+        self.validate_all(
+            "SELECT a::TIMESTAMP WITH LOCAL TIME ZONE",
+            write={
+                "snowflake": "SELECT CAST(a AS TIMESTAMPLTZ)",
+            },
+        )
+        self.validate_all(
+            "SELECT EXTRACT('month', a)",
+            write={
+                "snowflake": "SELECT DATE_PART('month', a)",
+            },
+        )
+        self.validate_all(
+            "SELECT DATE_PART('month', a)",
+            write={
+                "snowflake": "SELECT DATE_PART('month', a)",
+            },
+        )
+        self.validate_all(
+            "SELECT DATE_PART(month, a::DATETIME)",
+            write={
+                "snowflake": "SELECT DATE_PART(month, CAST(a AS DATETIME))",
+            },
+        )
+        self.validate_all(
+            "SELECT DATE_PART(epoch_second, foo) as ddate from table_name",
+            write={
+                "snowflake": "SELECT EXTRACT(epoch_second FROM CAST(foo AS TIMESTAMPNTZ)) AS ddate FROM table_name",
+                "presto": "SELECT TO_UNIXTIME(CAST(foo AS TIMESTAMP)) AS ddate FROM table_name",
+            },
+        )
+        self.validate_all(
+            "SELECT DATE_PART(epoch_milliseconds, foo) as ddate from table_name",
+            write={
+                "snowflake": "SELECT EXTRACT(epoch_second FROM CAST(foo AS TIMESTAMPNTZ)) * 1000 AS ddate FROM table_name",
+                "presto": "SELECT TO_UNIXTIME(CAST(foo AS TIMESTAMP)) * 1000 AS ddate FROM table_name",
+            },
+        )
+>       self.validate_all(
+            "DATEADD(DAY, 5, CAST('2008-12-25' AS DATE))",
+            read={
+                "snowflake": "TIMESTAMPADD(DAY, 5, CAST('2008-12-25' AS DATE))",
+            },
+            write={
+                "bigquery": "DATE_ADD(CAST('2008-12-25' AS DATE), INTERVAL 5 DAY)",
+                "snowflake": "DATEADD(DAY, 5, CAST('2008-12-25' AS DATE))",
+            },
+        )
+
+tests/dialects/test_snowflake.py:958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/dialects/test_dialect.py:51: in validate_all
+    self.assertEqual(
+E   AssertionError: "TIMESTAMPADD(DAY, 5, CAST('2008-12-25' AS DATE))" != "DATEADD(DAY, 5, CAST('2008-12-25' AS DATE))"
+E   - TIMESTAMPADD(DAY, 5, CAST('2008-12-25' AS DATE))
+E   ?  -- -----
+E   + DATEADD(DAY, 5, CAST('2008-12-25' AS DATE))
+E   ? ++
+_____________ TestExpressions.test_transform_with_parent_mutation ______________
+
+self = <tests.test_expressions.TestExpressions testMethod=test_transform_with_parent_mutation>
+
+    def test_transform_with_parent_mutation(self):
+        expression = parse_one("SELECT COUNT(1) FROM table")
+    
+        def fun(node):
+            if str(node) == "COUNT(1)":
+                # node gets silently mutated here - its parent points to the filter node
+                return exp.Filter(this=node, expression=exp.Where(this=exp.true()))
+            return node
+    
+        transformed = expression.transform(fun)
+>       self.assertEqual(transformed.sql(), "SELECT COUNT(1) FILTER(WHERE TRUE) FROM table")
+E       AssertionError: 'SELECT COUNT(1) FROM table' != 'SELECT COUNT(1) FILTER(WHERE TRUE) FROM table'
+E       - SELECT COUNT(1) FROM table
+E       + SELECT COUNT(1) FILTER(WHERE TRUE) FROM table
+
+tests/test_expressions.py:514: AssertionError
+=============================== warnings summary ===============================
+tests/test_expressions.py:1080
+  /workspace/tests/test_expressions.py:1080: DeprecationWarning: invalid escape sequence '\.'
+    AssertionError, "x is not <class 'sqlglot.expressions.Identifier'>\."
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/dialects/test_duckdb.py::TestDuckDB::test_duckdb - AssertionErro...
+FAILED tests/dialects/test_snowflake.py::TestSnowflake::test_timestamps - Ass...
+FAILED tests/test_expressions.py::TestExpressions::test_transform_with_parent_mutation
+=================== 3 failed, 96 passed, 1 warning in 2.30s ====================

@@ -1,0 +1,96 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_willset_didset",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_keyword_declarations",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_labeled_subscript",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_subscript",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_willset_didset"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_coalescing_operator",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_deinit",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_empty",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_explicit_getter_setter",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_generic_function",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_getter_setter",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_init",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface_followed_by_a_class",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_interface_with_var",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_no_function",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function_with_complexity",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_function_with_return_value",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_one_with_parameter",
+          "test/test_languages/testSwift.py::Test_parser_for_Swift::test_optional"
+        ],
+        "base_commit": "b631dfd3561366539633a7279f755e237541f3bf",
+        "created_at": "2018-10-23 11:19:34",
+        "docker_image": "swerebench/sweb.eval.x86_64.terryyin_1776_lizard-241",
+        "environment": "name: lizard\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.4.4=h6a678d5_1\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=3.0.16=h5eee18b_0\n  - pip=25.0=py39h06a4308_0\n  - python=3.9.21=he870216_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=75.8.0=py39h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - tzdata=2025a=h04d1e81_0\n  - wheel=0.45.1=py39h06a4308_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - exceptiongroup==1.2.2\n      - flake8==7.2.0\n      - iniconfig==2.1.0\n      - isort==6.0.1\n      - mccabe==0.7.0\n      - mypy==1.15.0\n      - mypy-extensions==1.0.0\n      - packaging==24.2\n      - pluggy==1.5.0\n      - pycodestyle==2.13.0\n      - pyflakes==3.3.1\n      - pytest==8.3.5\n      - tomli==2.2.1\n      - typing-extensions==4.13.0\nprefix: /opt/conda/envs/lizard\n",
+        "environment_setup_commit": "b631dfd3561366539633a7279f755e237541f3bf",
+        "hints_text": "Coeur: There is a Travis test failing on:\r\n\r\n                class Time\r\n                {\r\n                    var minutes: Double\r\n                    {\r\n                        get\r\n                        {\r\n                            return (seconds / 60)\r\n                        }\r\n                        set\r\n                        {\r\n                            self.seconds = (newValue * 60)\r\n                        }\r\n                    }\r\n                }\r\n\r\nThe reason may be that `'\\n'` isn't the correct way to identify a newline token?\r\n\nCoeur: If a newline can't be tokenized, an alternative may be to leave the state on `:` and `=`.",
+        "image_name": "swerebench/sweb.eval.x86_64.terryyin_1776_lizard-241",
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .[sidecar]",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "requirements.txt",
+          "pip_packages": [
+            "pytest",
+            "flake8",
+            "isort",
+            "mypy"
+          ],
+          "pre_install": [
+            "apt-get update",
+            "apt-get install -y gcc"
+          ],
+          "python": "3.9",
+          "reqs_path": [
+            "requirements/base.txt"
+          ],
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "terryyin__lizard-241",
+        "license_name": "MIT License",
+        "meta": {
+          "commit_name": "head_commit",
+          "failed_lite_validators": [
+            "has_hyperlinks",
+            "has_git_commit_hash"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 0,
+            "test_score": 3
+          },
+          "num_modified_files": 1
+        },
+        "patch": "diff --git a/lizard_languages/swift.py b/lizard_languages/swift.py\nindex 8aea377..a7f4795 100644\n--- a/lizard_languages/swift.py\n+++ b/lizard_languages/swift.py\n@@ -30,17 +30,24 @@ class SwiftStates(CodeStateMachine):  # pylint: disable=R0903\n     def _state_global(self, token):\n         if token == 'func':\n             self._state = self._function_name\n-        if token == 'init':\n+        if token in ('init', 'subscript'):\n             self._function_name(token)\n-        if token in ('get', 'set', 'deinit'):\n+        if token in ('get', 'set', 'willSet', 'didSet', 'deinit'):\n             self.context.start_new_function(token)\n             self._state = self._expect_function_impl\n         if token == 'protocol':\n             self._state = self._protocol\n+        if token in ('let', 'var', 'case', ','):\n+            self._state = self._expect_declaration_name\n+\n+    def _expect_declaration_name(self, token):\n+        if token != '`':\n+            self._state = self._state_global\n \n     def _function_name(self, token):\n-        self.context.start_new_function(token)\n-        self._state = self._expect_function_dec\n+        if token != '`':\n+            self.context.start_new_function(token)\n+            self._state = self._expect_function_dec\n \n     def _expect_function_dec(self, token):\n         if token == '(':\n",
+        "problem_statement": "Incorrect behavior when a variable named `get` is used in Swift\nI have the following Swift file, but lizard (master branch at b631dfd3561366539633a7279f755e237541f3bf) believes it is one single giant getter:\r\n\r\n```\r\n//  AFNetworkingWrapper.swift\r\n//  Created by Antoine Cœur on 20/10/2016.\r\n//  Copyright © 2016 EF Education. All rights reserved.\r\n\r\n/*...*/\r\n\r\n/// HTTP method definitions.\r\n///\r\n/// See https://tools.ietf.org/html/rfc7231#section-4.3\r\npublic enum HTTPMethod: String {\r\n    case options = \"OPTIONS\"\r\n    case get     = \"GET\"\r\n    case head    = \"HEAD\"\r\n    case post    = \"POST\"\r\n    case put     = \"PUT\"\r\n    case patch   = \"PATCH\"\r\n    case delete  = \"DELETE\"\r\n    case trace   = \"TRACE\"\r\n    case connect = \"CONNECT\"\r\n}\r\n\r\nextension AFHTTPSessionManager {\r\n    \r\n    convenience init(baseURL url: URL?, requestEncoding: ParameterSerializer?, responseEncoding: ParameterSerializer? = nil) {\r\n        self.init(baseURL: url)\r\n        /*...*/\r\n    }\r\n    \r\n    func foo(_ requestHeaders: [String:String]) {\r\n        /*...*/\r\n    }\r\n    \r\n    func bar(_ requestHeaders: [String:String]) {\r\n        /*...*/\r\n    }\r\n    /*...*/\r\n}\r\n```\r\n\r\nlizard output:\r\n```\r\n$ python lizard.py AFNetworkingWrapper.swift \r\n================================================\r\n  NLOC    CCN   token  PARAM  length  location  \r\n------------------------------------------------\r\n     106     29    714      0     118 get@29-146@/coeur/AFNetworkingWrapper.swift\r\n1 file analyzed.\r\n==============================================================\r\nNLOC    Avg.NLOC  AvgCCN  Avg.token  function_cnt    file\r\n--------------------------------------------------------------\r\n    115     106.0    29.0      714.0         1     /coeur/AFNetworkingWrapper.swift\r\n\r\n=========================================================================================\r\n!!!! Warnings (cyclomatic_complexity > 15 or length > 1000 or parameter_count > 100) !!!!\r\n================================================\r\n  NLOC    CCN   token  PARAM  length  location  \r\n------------------------------------------------\r\n     106     29    714      0     118 get@29-146@/coeur/AFNetworkingWrapper.swift\r\n==========================================================================================\r\nTotal nloc   Avg.NLOC  AvgCCN  Avg.token   Fun Cnt  Warning cnt   Fun Rt   nloc Rt\r\n------------------------------------------------------------------------------------------\r\n       115     106.0    29.0      714.0        1            1      1.00    1.00\r\n```",
+        "repo": "terryyin/lizard",
+        "requirements": "exceptiongroup==1.2.2\nflake8==7.2.0\niniconfig==2.1.0\nisort==6.0.1\n-e git+https://github.com/terryyin/lizard.git@b631dfd3561366539633a7279f755e237541f3bf#egg=lizard\nmccabe==0.7.0\nmypy==1.15.0\nmypy-extensions==1.0.0\npackaging==24.2\npluggy==1.5.0\npycodestyle==2.13.0\npyflakes==3.3.1\npytest==8.3.5\ntomli==2.2.1\ntyping_extensions==4.13.0\n",
+        "test_patch": "diff --git a/test/test_languages/testSwift.py b/test/test_languages/testSwift.py\nindex 06bed37..0fec26e 100644\n--- a/test/test_languages/testSwift.py\n+++ b/test/test_languages/testSwift.py\n@@ -93,18 +93,39 @@ class Test_parser_for_Swift(unittest.TestCase):\n                 ''')\n         self.assertEqual(0, len(result))\n \n+#https://docs.swift.org/swift-book/LanguageGuide/Initialization.html\n     def test_init(self):\n         result = get_swift_function_list('''\n             init() {}\n                 ''')\n         self.assertEqual(\"init\", result[0].name)\n \n+#https://docs.swift.org/swift-book/LanguageGuide/Deinitialization.html\n     def test_deinit(self):\n         result = get_swift_function_list('''\n             deinit {}\n                 ''')\n         self.assertEqual(\"deinit\", result[0].name)\n \n+#https://docs.swift.org/swift-book/LanguageGuide/Subscripts.html\n+    def test_subscript(self):\n+        result = get_swift_function_list('''\n+            override subscript(index: Int) -> Int {}\n+                ''')\n+        self.assertEqual(\"subscript\", result[0].name)\n+\n+#https://stackoverflow.com/a/30593673\n+    def test_labeled_subscript(self):\n+        result = get_swift_function_list('''\n+            extension Collection {\n+                /// Returns the element at the specified index iff it is within bounds, otherwise nil.\n+                subscript (safe index: Index) -> Iterator.Element? {\n+                    return indices.contains(index) ? self[index] : nil\n+                }\n+            }\n+                ''')\n+        self.assertEqual(\"subscript\", result[0].name)\n+\n     def test_getter_setter(self):\n         result = get_swift_function_list('''\n             class Time\n@@ -125,6 +146,70 @@ class Test_parser_for_Swift(unittest.TestCase):\n         self.assertEqual(\"get\", result[0].name)\n         self.assertEqual(\"set\", result[1].name)\n \n+#https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID259\n+    def test_explicit_getter_setter(self):\n+        result = get_swift_function_list('''\n+            var center: Point {\n+                get {\n+                    let centerX = origin.x + (size.width / 2)\n+                    let centerY = origin.y + (size.height / 2)\n+                    return Point(x: centerX, y: centerY)\n+                }\n+                set(newCenter) {\n+                    origin.x = newCenter.x - (size.width / 2)\n+                    origin.y = newCenter.y - (size.height / 2)\n+                }\n+            }\n+                ''')\n+        self.assertEqual(\"get\", result[0].name)\n+        self.assertEqual(\"set\", result[1].name)\n+\n+    def test_willset_didset(self):\n+        result = get_swift_function_list('''\n+            var cue = -1 {\n+                willSet {\n+                    if newValue != cue {\n+                        tableView.reloadData()\n+                    }\n+                }\n+                didSet {\n+                    tableView.scrollToRow(at: IndexPath(row: cue, section: 0), at: .bottom, animated: true)\n+                }\n+            }\n+                ''')\n+        self.assertEqual(\"willSet\", result[0].name)\n+        self.assertEqual(\"didSet\", result[1].name)\n+\n+#https://docs.swift.org/swift-book/LanguageGuide/Properties.html#ID262\n+    def test_explicit_willset_didset(self):\n+        result = get_swift_function_list('''\n+            class StepCounter {\n+                var totalSteps: Int = 0 {\n+                    willSet(newTotalSteps) {\n+                        print(\"About to set totalSteps to \\(newTotalSteps)\")\n+                    }\n+                    didSet {\n+                        if totalSteps > oldValue  {\n+                            print(\"Added \\(totalSteps - oldValue) steps\")\n+                        }\n+                    }\n+                }\n+            }\n+                ''')\n+        self.assertEqual(\"willSet\", result[0].name)\n+        self.assertEqual(\"didSet\", result[1].name)\n+\n+    def test_keyword_declarations(self):\n+        result = get_swift_function_list('''\n+            enum Func {\n+                static var `init`: Bool?, willSet: Bool?\n+                static let `deinit` = 0, didSet = 0\n+                case `func`; case get, set\n+                func `default`() {}\n+            }\n+                ''')\n+        self.assertEqual(\"default\", result[0].name)\n+\n     def test_generic_function(self):\n         result = get_swift_function_list('''\n             func f<T>() {}\n",
+        "version": "1.15"
+      },
+      "row_idx": 19226,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

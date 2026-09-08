@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import json
+import hashlib
 import os
 from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
-from zerorun import codex
+from zerorun import codex, trust
 from zerorun.manifest import load_manifest
 from zerorun.pytest_profile import load_pytest_profile
 from zerorun.trust import (
@@ -15,6 +16,18 @@ from zerorun.trust import (
     authorize_pytest_profile,
     manifest_sha256,
 )
+
+
+
+@pytest.fixture(autouse=True)
+def _authority_isolation_is_not_an_operator_mcp_override(
+    monkeypatch, _isolated_zerorun_user_authority,
+):
+    # The suite's trust sandbox is independent of a deployment override. Tests
+    # below set the latter explicitly when exercising custom MCP configuration.
+    isolated = Path(os.environ["ZERORUN_TRUST_ROOT"])
+    monkeypatch.setattr(trust, "_default_trust_root", lambda: isolated)
+    monkeypatch.delenv("ZERORUN_TRUST_ROOT")
 
 
 def test_bundled_skill_matches_the_repository_codex_skill() -> None:
@@ -224,7 +237,7 @@ def test_install_codex_creates_project_skill_and_registers_mcp(monkeypatch, tmp_
     contents = skill.read_text(encoding="utf-8")
     assert "name: zerorun" in contents
     assert "observe_test" not in contents
-    assert "direct tests outside ZeroRun" in contents
+    assert "outside ZeroRun MCP" in contents
     assert "run_pytest" in contents
     assert result["ready"] is True
     assert result["integration_ready"] is True
@@ -718,7 +731,7 @@ def test_install_codex_refuses_oversized_or_non_utf8_existing_skill(
     assert calls == []
 
 
-def test_install_codex_reports_pytest_node_reuse_when_profile_exists(monkeypatch, tmp_path: Path):
+def test_install_codex_prefers_whole_task_when_optional_profile_exists(monkeypatch, tmp_path: Path):
     _write_valid_pytest_profile_pair(tmp_path)
     _authorize_reuse(tmp_path, profile=True)
     calls = []
@@ -729,8 +742,10 @@ def test_install_codex_reports_pytest_node_reuse_when_profile_exists(monkeypatch
     assert result["task_reuse_ready"] is True
     assert result["pytest_reuse_ready"] is True
     assert result["reuse_ready"] is True
-    assert result["mode"] == "pytest-node-reuse"
-    assert "fine-grained pytest" in result["next_action"]
+    assert result["mode"] == "task-reuse"
+    assert "run_tests" in result["next_action"]
+    assert "verify=true" in result["next_action"]
+    assert "when explicitly selected" in result["next_action"]
 
 
 def test_install_codex_does_not_claim_reuse_when_pinned_runtime_is_absent(
@@ -849,3 +864,185 @@ def test_install_codex_refuses_a_non_repository_before_writing(
 
     assert not (tmp_path / ".agents").exists()
     assert calls == []
+
+
+def test_skill_routes_fresh_diagnostics_and_optional_node_setup_explicitly():
+    assert "whole-task route remains the default when a pytest profile also exists" in codex._SKILL
+    assert "run_tests` with `verify=true`" in codex._SKILL
+    assert "A reuse hit is not a fresh execution" in codex._SKILL
+    assert "Do not initiate pytest candidate setup merely because the optional profile is absent" in codex._SKILL
+    assert "never create, edit, approve, activate, or self-authorize" in codex._SKILL
+
+
+def test_exact_previous_skill_migrates_with_backup_and_is_idempotent(tmp_path):
+    path = codex._skill_path(tmp_path)
+    path.parent.mkdir(parents=True)
+    previous = codex._PREVIOUS_SKILL.encode("utf-8")
+    path.write_bytes(previous)
+    result = codex.install_project_skill(tmp_path)
+    assert result["installed"] and result["changed"] and not result["conflict"]
+    assert path.read_bytes() == codex._SKILL.encode("utf-8")
+    backup = Path(result["previous_skill_backup"])
+    assert backup.read_bytes() == previous
+    again = codex.install_project_skill(tmp_path)
+    assert again["installed"] and not again["changed"]
+    assert "previous_skill_backup" not in again
+    assert backup.read_bytes() == previous
+
+
+@pytest.mark.parametrize("change", ["append", "crlf"])
+def test_previous_skill_with_user_changes_is_not_migrated(tmp_path, change):
+    path = codex._skill_path(tmp_path)
+    path.parent.mkdir(parents=True)
+    payload = (codex._PREVIOUS_SKILL + "# User instructions\n").encode("utf-8")
+    if change == "crlf":
+        payload = codex._PREVIOUS_SKILL.replace("\n", "\r\n").encode("utf-8")
+    path.write_bytes(payload)
+    result = codex.install_project_skill(tmp_path)
+    assert result["conflict"] and not result["installed"]
+    assert path.read_bytes() == payload
+    assert not list(path.parent.glob(".zerorun-skill-upgrade-*"))
+
+
+def test_skill_upgrade_preserves_a_raced_replacement_and_original(tmp_path, monkeypatch):
+    path = codex._skill_path(tmp_path)
+    path.parent.mkdir(parents=True)
+    path.write_bytes(codex._PREVIOUS_SKILL.encode("utf-8"))
+    create = codex._create_project_skill
+    authored = b"# New user file during upgrade\n"
+    def raced_create(target):
+        with target.open("xb") as stream:
+            stream.write(authored)
+        create(target)
+    monkeypatch.setattr(codex, "_create_project_skill", raced_create)
+    result = codex.install_project_skill(tmp_path)
+    assert result["conflict"] and not result["installed"]
+    assert path.read_bytes() == authored
+    backups = list(path.parent.glob(".zerorun-skill-upgrade-*/SKILL.md"))
+    assert len(backups) == 1
+    assert backups[0].read_bytes() == codex._PREVIOUS_SKILL.encode("utf-8")
+
+
+def test_skill_upgrade_restores_changed_file_without_overwrite(tmp_path, monkeypatch):
+    path = codex._skill_path(tmp_path)
+    path.parent.mkdir(parents=True)
+    path.write_bytes(codex._PREVIOUS_SKILL.encode("utf-8"))
+    rename = Path.rename
+    authored = b"# Edited while migration began\n"
+    def raced_rename(source, target):
+        if source == path:
+            source.write_bytes(authored)
+        return rename(source, target)
+    monkeypatch.setattr(Path, "rename", raced_rename)
+    result = codex.install_project_skill(tmp_path)
+    assert result["conflict"] and not result["installed"]
+    assert path.read_bytes() == authored
+    assert list(path.parent.glob(".zerorun-skill-upgrade-*/SKILL.md"))[0].read_bytes() == authored
+
+
+def _trust_root_registration(environment):
+    return {
+        "name": "zerorun", "enabled": True, "disabled_reason": None,
+        "transport": {"type": "stdio", "command": str(Path("/usr/bin/zerorun").resolve()),
+                      "args": ["mcp-server"], "env": environment, "env_vars": [], "cwd": None},
+    }
+
+
+def test_operator_managed_external_trust_registration_is_accepted_idempotently(tmp_path, monkeypatch):
+    external = (tmp_path.parent / "explicit-operator-authority").resolve()
+    assert not external.exists()
+    monkeypatch.setenv("ZERORUN_TRUST_ROOT", str(external))
+    payload = _trust_root_registration({"ZERORUN_TRUST_ROOT": str(external)})
+    calls = []
+    monkeypatch.setattr(codex.shutil, "which", lambda name: "/usr/bin/" + name)
+    def get(command):
+        calls.append(command)
+        assert command[1:5] == ["mcp", "get", "zerorun", "--json"]
+        return SimpleNamespace(returncode=0, stdout=json.dumps(payload), stderr="")
+    monkeypatch.setattr(codex, "_run_codex_command", get)
+    for _ in range(2):
+        result = codex.register_codex_mcp(repository_root=tmp_path)
+        assert result["registered"] and not result["changed"]
+    assert len(calls) == 2
+    assert not external.exists()  # Reading integration settings never authorizes or creates trust.
+
+
+@pytest.mark.parametrize("problem", ["missing", "other", "extra", "forwarded", "unrequested"])
+def test_custom_trust_root_never_allows_other_environment_configuration(tmp_path, monkeypatch, problem):
+    external = (tmp_path.parent / "explicit-trust").resolve()
+    monkeypatch.setenv("ZERORUN_TRUST_ROOT", str(external))
+    payload = _trust_root_registration({"ZERORUN_TRUST_ROOT": str(external)})
+    if problem == "missing": payload["transport"]["env"] = None
+    elif problem == "other": payload["transport"]["env"]["ZERORUN_TRUST_ROOT"] = str(external) + "-other"
+    elif problem == "extra": payload["transport"]["env"]["SECRET"] = "do-not-echo"
+    elif problem == "forwarded": payload["transport"]["env_vars"] = ["ZERORUN_TRUST_ROOT"]
+    elif problem == "unrequested": monkeypatch.delenv("ZERORUN_TRUST_ROOT")
+    registration, error = codex._validate_existing_server(json.dumps(payload),
+        expected_command=payload["transport"]["command"], expected_args=["mcp-server"], repository_root=tmp_path)
+    assert registration is None and error
+    assert "do-not-echo" not in error
+    assert not external.exists()
+
+
+@pytest.mark.parametrize("problem", ["relative", "inside", "ancestor", "dotdot", "file", "link"])
+def test_operator_trust_root_must_be_canonical_external_and_unlinked(tmp_path, monkeypatch, problem):
+    external = (tmp_path.parent / (tmp_path.name + "-trust")).resolve()
+    value = str(external)
+    if problem == "relative": value = "relative-trust"
+    elif problem == "inside": value = str(tmp_path / "trust")
+    elif problem == "ancestor": value = str(tmp_path.parent)
+    elif problem == "dotdot": value = str(external / ".." / "other")
+    elif problem == "file": external.write_bytes(b"regular file")
+    elif problem == "link":
+        original = codex._is_link_like
+        monkeypatch.setattr(trust, "_is_link_like", lambda path: Path(path) == external or original(path))
+    monkeypatch.setenv("ZERORUN_TRUST_ROOT", value)
+    with pytest.raises(ValueError):
+        codex._operator_trust_environment(tmp_path)
+
+
+def test_custom_override_requires_operator_registration_without_automatic_add(tmp_path, monkeypatch):
+    external = (tmp_path.parent / "operator-registration-needed").resolve()
+    monkeypatch.setenv("ZERORUN_TRUST_ROOT", str(external))
+    calls = []
+    monkeypatch.setattr(codex.shutil, "which", lambda name: "/usr/bin/" + name)
+    monkeypatch.setattr(codex, "_run_codex_command", lambda command:
+        calls.append(command) or SimpleNamespace(returncode=1, stdout="", stderr="not found"))
+    result = codex.register_codex_mcp(repository_root=tmp_path)
+    assert not result["registered"] and not result["changed"]
+    assert result["operator_configuration_required"] is True
+    assert len(calls) == 1 and calls[0][1:5] == ["mcp", "get", "zerorun", "--json"]
+    assert not external.exists()
+
+
+def test_pending_candidate_does_not_displace_default_task_route(tmp_path, monkeypatch):
+    _write_reusable_manifest(tmp_path)
+    _authorize_reuse(tmp_path)
+    (tmp_path / ".zerorun-pytest.candidate.json").write_text("{}", encoding="utf-8")
+    calls = []
+    _installable_codex(monkeypatch, calls)
+    result = codex.install_codex(tmp_path)
+    assert result["mode"] == "task-reuse"
+    assert "run_tests" in result["next_action"] and "verify=true" in result["next_action"]
+    assert "non-authorizing" in result["next_action"]
+    assert result["pytest_reuse_ready"] is False
+
+
+def test_custom_trust_configuration_action_is_visible_in_install_summary(tmp_path, monkeypatch):
+    (tmp_path / ".git").mkdir()
+    external = (tmp_path.parent / "custom-root-needing-registration").resolve()
+    monkeypatch.setenv("ZERORUN_TRUST_ROOT", str(external))
+    _installable_codex(monkeypatch, [])
+    result = codex.install_codex(tmp_path)
+    assert result["ready"] is False and result["mode"] == "unavailable"
+    assert "operator-managed" in result["next_action"]
+    assert "keep env_vars empty" in result["next_action"]
+    assert not external.exists()
+
+
+def test_previous_skill_has_the_frozen_utf8_payload_digest():
+    # Frozen0.5.2 _SKILL decoded from its committed UTF-8 source. Comparing a
+    # migration with its own constant cannot detect a mojibake regression.
+    assert hashlib.sha256(codex._PREVIOUS_SKILL.encode("utf-8")).hexdigest() == (
+        "564a9804d2587d8164a509a864e31e9ca5320f8d2af18648be4094eff9ae9b96"
+    )

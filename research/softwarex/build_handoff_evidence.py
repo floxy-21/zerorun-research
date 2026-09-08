@@ -35,6 +35,21 @@ REVISION_DRIVER_SHA = "486e5bd331e0fae780c6792ea4d669b8406cfafced6370f735538a92b
 REVISION_AMENDMENT_SHA = "af90688f3f03c7bd9d19436f3233f981208a05ed1655b0ff2bef17593a80d74c"
 PREFLIGHT_DRIVER_SHA = "391af8fd86a605520b66d5b1a094087a31a14e7dcca30d8e97fa009ed5164e34"
 PREFLIGHT_AMENDMENT_SHA = "df82a9914742367826886389657066ae00fb41e586de019c4da824892928c72d"
+CLEAN_RECORDS = EVIDENCE + "application-revision-20260907-v3/record-only"
+CLEAN_HOST = EVIDENCE + "application-revision-20260907-v3/host-observation"
+CLEAN_IMAGE = CLEAN_RECORDS + "/handoff-image-build-no-cache-v1"
+CLEAN_DRIVER_SHA = "36435fc5f72bc5b583d4a6868062996c5519c53f9e5073c1ff1b71967dee789d"
+CLEAN_AMENDMENT_SHA = "1d244d15104facf47e727c385943a2687e55568a600d4cc83b16ad32adc479b0"
+CLEAN_OBSERVER_SHA = "d7a9c6b9ef3f3e7af1c495e01f3c995be0edce5c69f8e0eeb756a66d62b492af"
+FULL_RECORDS = EVIDENCE + "application-revision-20260907-v4/record-only"
+FULL_HOST = EVIDENCE + "application-revision-20260907-v4/host-observation"
+FULL_IMAGE = FULL_RECORDS + "/image-v3-no-cache"
+FULL_DRIVER_SHA = "2035f58def73abc67a2465bc44ed5a37afe4de63fae8d31b521bd6dad2bdc192"
+FULL_AMENDMENT_SHA = "1cc8c14a031b815e76f71138fb292c541f07fd04a62043a7a4e5e38405b844a6"
+FULL_OBSERVER_SHA = "4e863a24e711649e5c4bd105e0452482b1d1ff65a68ee24a63a9bef01eaadec4"
+COMPATIBLE_V5 = EVIDENCE + "application-revision-20260907-v5"
+CORRECTED_V6 = EVIDENCE + "application-revision-20260907-v6"
+COMPATIBLE_IMAGE = EVIDENCE + "compatible-image-repair-v2"
 RUNS = {
     "v1_pilot": (EVIDENCE + "handoff-pilot-v1", "v1", "pilot"),
     "v1_main": (EVIDENCE + "handoff-main-v1", "v1", "main"),
@@ -42,6 +57,10 @@ RUNS = {
     "v2_pilot_repeat": (EVIDENCE + "handoff-pilot-v2-repeat-20260907", "v2", "pilot"),
     "v2_main": (EVIDENCE + "handoff-main-v2", "v2", "main"),
     "v2_main_extended": (REVISION_RECORDS + "/handoff-main-repeat-v1", "v2", "main"),
+    "v3_main_clean": (CLEAN_RECORDS + "/handoff-main-clean-v1", "v2", "main"),
+    "v4_main_full": (FULL_RECORDS + "/handoff-main-full-v1", "v2", "main"),
+    "v5_main_compatible": (COMPATIBLE_V5 + "/record-only", "v5", "main"),
+    "v6_main_corrected": (CORRECTED_V6 + "/record-only", "v6", "main"),
 }
 FRESH_IMAGE = REVISION_RECORDS + "/handoff-image-build-fresh-v1"
 FRESH_PILOT = REVISION_RECORDS + "/handoff-pilot-fresh-image-v1"
@@ -51,7 +70,9 @@ AGENTS = {"pilot": (EVIDENCE + "agent-producer-pilot-v1", EVIDENCE + "agent-eval
 PREVIOUS_AGENT_EVALUATION = EVIDENCE + "agent-evaluation-pilot-v1"
 AMENDMENTS = ("research/softwarex/HANDOFF_IMAGE_RECOVERY_AMENDMENT.md",
               "research/softwarex/AGENT_AUTHENTICATION_AMENDMENT.md",
-              "research/softwarex/APPLICATION_REVISION_AMENDMENT.md")
+              "research/softwarex/APPLICATION_REVISION_AMENDMENT.md",
+              "research/softwarex/APPLICATION_REVISION_V3_AMENDMENT.md",
+              "research/softwarex/APPLICATION_REVISION_V4_AMENDMENT.md")
 
 
 def source_inputs(root=ROOT):
@@ -69,6 +90,18 @@ def source_inputs(root=ROOT):
     verifier = "research/softwarex/verify_application_revision.py"
     if (root / verifier).is_file():
         paths.add(verifier)
+    recovered_verifier = "research/softwarex/verify_recovered_handoff_v6.py"
+    if (root / recovered_verifier).is_file():
+        paths.add(recovered_verifier)
+    image_verifier = "research/softwarex/validate_compatible_image.py"
+    if (root / image_verifier).is_file():
+        paths.add(image_verifier)
+    if (root / COMPATIBLE_IMAGE).exists():
+        from research.softwarex.validate_compatible_image import exact_inventory
+        # Exactly the independently pinned 52-file recovered build, including
+        # its 16 locked wheels. Do not walk arbitrary private context trees.
+        paths.update(COMPATIBLE_IMAGE + "/" + row["path"]
+                     for row in exact_inventory(root / COMPATIBLE_IMAGE))
     if (root / HOST_INTERRUPTION).is_file():
         paths.add(HOST_INTERRUPTION)
     paths.update(relative for relative in AMENDMENTS if (root / relative).is_file())
@@ -82,6 +115,8 @@ def source_inputs(root=ROOT):
                          if path.suffix in {".py", ".md"} and path.is_file())
     excluded = set(EXCLUDED) | {"data", "workspaces", ".codex", "private", "authority", "authorities"}
     record_dirs = {ACQUISITION, IMAGE, FAILED_IMAGE, FRESH_IMAGE, FRESH_PILOT, REVISION_RECORDS, REVISION_PREFLIGHT,
+                   CLEAN_RECORDS, CLEAN_HOST, CLEAN_IMAGE, FULL_RECORDS, FULL_HOST, FULL_IMAGE,
+                   COMPATIBLE_V5, CORRECTED_V6,
                    PREVIOUS_AGENT_EVALUATION, *(spec[0] for spec in RUNS.values()),
                    *(spec[1] for spec in AGENTS.values())}
     for relative in sorted(record_dirs):
@@ -96,7 +131,8 @@ def source_inputs(root=ROOT):
                 h.require(not (Path(current) / name).is_symlink(), "linked handoff evidence directory")
             for name in sorted(files):
                 path = Path(current) / name
-                if path.suffix in {".json", ".xml", ".log", ".py", ".md", ".txt"} or name == "LICENSE":
+                if path.suffix in {".json", ".xml", ".log", ".py", ".md", ".txt"} or name == "LICENSE" or (
+                        relative == CORRECTED_V6 and (path.suffix == ".patch" or name == "source.tar.gz")):
                     paths.add(path.relative_to(root).as_posix())
     if (root / ACQUISITION / "receipt.json").is_file():
         acquisition, _ = acquisition_summary(root / ACQUISITION)
@@ -321,10 +357,21 @@ def run_summary(directory, version, phase, acquisition_base, manifests, image_bu
     if not directory.exists():
         return {"state": "NOT_AVAILABLE", "phase": phase, "version": version,
                 "execution_success_claimed": False, "reason": "No run directory is present."}
-    if not (directory / "completion.json").is_file():
+    receipt_root = directory / "provenance" if version in {"v5", "v6"} else directory
+    if not (receipt_root / "completion.json").is_file():
         return {"state": "INCOMPLETE_RECORD", "phase": phase, "version": version,
                 "execution_success_claimed": False, "reason": "No completion receipt is present."}
-    if version == "v1":
+    selected_manifest = manifests[phase]
+    if version in {"v5", "v6"}:
+        from research.softwarex.verify_recovered_handoff_v6 import verify
+        reconciliation = verify(directory, acquisition_base, version=int(version[1:]))
+        raw_root = directory / "run"
+        inner = reconciliation["controlled_handoffs"]
+        if version == "v6":
+            # The checker proves the only derived change against the original
+            # acquisition. Do not relabel this as the unmodified ledger.
+            selected_manifest = v1.read(directory.parent / "corrected-acquisition/main.json")
+    elif version == "v1":
         raw_root = directory
         reconciliation = v1.validate_saved(directory, acquisition_base)
         inner = reconciliation
@@ -333,7 +380,7 @@ def run_summary(directory, version, phase, acquisition_base, manifests, image_bu
         reconciliation = v2.validate_saved(directory, image_build, acquisition_base)
         inner = reconciliation["controlled_handoffs"]
     protocol = v1.read(raw_root / "protocol.json")
-    v1.exact(protocol["selection"], manifests[phase], "run selected a subset or changed frozen acquisition ledger")
+    v1.exact(protocol["selection"], selected_manifest, "run selected a subset or changed frozen acquisition ledger")
     h.require(protocol["phase"] == phase and protocol["blocks_per_case"] == 2
               and protocol["natural_hit_frequency_study"] is False, "controlled run scope changed")
     completion = v1.read(raw_root / "completion.json")
@@ -356,7 +403,7 @@ def run_summary(directory, version, phase, acquisition_base, manifests, image_bu
         rows.append(row)
     v1.exact({arm: sum(values) for arm, values in block_costs.items()}, inner["complete_paired_chain_ms"],
              "case totals differ from independently reconstructed operation totals")
-    h.require([row["case_id"] for row in rows] == [case["case_id"] for case in manifests[phase]["cases"]],
+    h.require([row["case_id"] for row in rows] == [case["case_id"] for case in selected_manifest["cases"]],
               "run case denominator differs")
     return {"state": "RECONCILED_RECORDED_OUTCOMES", "phase": phase, "version": version,
         "reconciliation": reconciliation, "cases": rows,
@@ -369,7 +416,8 @@ def run_summary(directory, version, phase, acquisition_base, manifests, image_bu
         "producer_reported_material_correctness_stop": completion["material_correctness_stop"],
         "operation_cost_scope": "cold producer plus consumer in both arms; diagnostics and independent oracles reported separately; incomplete costs never imputed as zero",
         "natural_repeat_prevalence_established": False, "live_agent_speedup_established": False,
-        "protocol": filename_record(directory, "protocol.json"), "completion": filename_record(directory, "completion.json")}
+        "protocol": filename_record(directory, "provenance/protocol.json" if version in {"v5", "v6"} else "protocol.json"),
+        "completion": filename_record(directory, "provenance/completion.json" if version in {"v5", "v6"} else "completion.json")}
 
 
 def failed_image_summary(directory):
@@ -565,9 +613,10 @@ def host_interruption_summary(root):
         "host_event_record": filename_record(root, HOST_INTERRUPTION)}
 
 
-def application_revision_attempt(root, directory, driver_sha, amendment_sha):
+def application_revision_attempt(root, directory, driver_sha, amendment_sha, *, clean_v3=False, full_v4=False):
     """Require the bound public-checkout wrapper before confirming its provenance."""
     directory = Path(directory)
+    h.require(not (clean_v3 and full_v4), "application wrapper version is ambiguous")
     missing = {"state": "NOT_AVAILABLE", "sequence_completed": False,
         "checkout_execution_binding_confirmed": False,
         "completed_workload_outcomes_reconciled": False,
@@ -576,8 +625,9 @@ def application_revision_attempt(root, directory, driver_sha, amendment_sha):
         return missing
     if not all((directory / name).is_file() for name in ("completion.json", "RECORD_MANIFEST.json")):
         return {**missing, "state": "INCOMPLETE_RECORD"}
-    from research.softwarex.verify_application_revision import verify
-    return verify(root, directory, driver_sha, amendment_sha)
+    from research.softwarex.verify_application_revision import verify, verify_clean_v3, verify_full_v4
+    function = verify_full_v4 if full_v4 else verify_clean_v3 if clean_v3 else verify
+    return function(root, directory, driver_sha, amendment_sha)
 
 
 def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_paths=None):
@@ -588,8 +638,21 @@ def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_path
     if run_paths is not None:
         h.require(set(run_paths) <= set(RUNS), "unrecognized run name")
         paths.update(run_paths)
-    runs = {key: {"path": paths[key], **run_summary(root / paths[key], version, phase, base, manifests, root / image_path)}
+    runs = {key: {"path": paths[key], **run_summary(root / paths[key], version, phase, base, manifests,
+                root / ({"v3_main_clean": CLEAN_IMAGE, "v4_main_full": FULL_IMAGE}.get(key, image_path)))}
             for key, (_, version, phase) in RUNS.items()}
+    for key in ("v5_main_compatible", "v6_main_corrected"):
+        recovered = runs[key]
+        recovered["timing_context"] = recovered.get("reconciliation", {}).get("host_continuity", {
+            "state": "ORIGINAL_HOST_MONITOR_NOT_RECOVERED", "sampled_continuity_checks_passed": False,
+            "uninterrupted_timing_certified": False})
+        recovered["repeat_context"] = {
+            "original_run": "v5_main_compatible" if key == "v6_main_corrected" else "v4_main_full",
+            "same_original_case_ids_order_targets_and_runtime_patches": True,
+            "same_frozen_selection_bytes": key == "v5_main_compatible",
+            "fixture_corrected_repeat": key == "v6_main_corrected",
+            "pooled_with_original": False, "new_independent_subjects_claimed": False,
+            "new_image_built_in_this_attempt": False}
     amendments = [filename_record(root, relative) for relative in AMENDMENTS if (root / relative).is_file()]
     recovery_amendment = next((row for row in amendments if row["path"] == AMENDMENTS[0]), None)
     if recovery_amendment is not None:
@@ -626,7 +689,83 @@ def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_path
         "preflight": {"path": REVISION_PREFLIGHT, **application_revision_attempt(
             root, root / REVISION_PREFLIGHT, PREFLIGHT_DRIVER_SHA, PREFLIGHT_AMENDMENT_SHA)},
         "revision": {"path": REVISION_RECORDS, **application_revision_attempt(
-            root, root / REVISION_RECORDS, REVISION_DRIVER_SHA, REVISION_AMENDMENT_SHA)}}
+            root, root / REVISION_RECORDS, REVISION_DRIVER_SHA, REVISION_AMENDMENT_SHA)},
+        "clean_v3": {"path": CLEAN_RECORDS, **application_revision_attempt(
+            root, root / CLEAN_RECORDS, CLEAN_DRIVER_SHA, CLEAN_AMENDMENT_SHA, clean_v3=True)},
+        "full_v4": {"path": FULL_RECORDS, **application_revision_attempt(
+            root, root / FULL_RECORDS, FULL_DRIVER_SHA, FULL_AMENDMENT_SHA, full_v4=True)}}
+    clean_amendment = next((row for row in amendments if row["path"] == AMENDMENTS[3]), None)
+    h.require(not any((root / path).exists() for path in (CLEAN_RECORDS, CLEAN_HOST, paths["v3_main_clean"]))
+              or clean_amendment is not None, "clean main requires its prospective amendment")
+    if clean_amendment is not None:
+        h.require(clean_amendment["sha256"] == CLEAN_AMENDMENT_SHA,
+                  "clean main prospective amendment differs from independent pin")
+    clean_run = runs["v3_main_clean"]
+    clean_run["timing_context"] = {
+        "basis": "Separate prospective main rerun; host continuity requires its recorded observations.",
+        "uninterrupted_timing_certified": False, "amendment": clean_amendment}
+    clean_run["repeat_context"] = {"original_run": "v2_main_extended", "same_frozen_selection": True,
+        "pooled_with_original": False, "new_independent_subjects_claimed": False, "amendment": clean_amendment}
+    if clean_run["state"] == "RECONCILED_RECORDED_OUTCOMES":
+        clean_protocol = v1.read(root / paths["v3_main_clean"] / "run/protocol.json")
+        h.require(type(clean_protocol["budget_seconds"]) is int and clean_protocol["budget_seconds"] == 1200
+                  and type(clean_protocol["execution_seconds"]) is int and clean_protocol["execution_seconds"] == 120,
+                  "clean main changed its prospective execution budget")
+    from research.softwarex.verify_application_revision import host_continuity
+    continuity = host_continuity(root / CLEAN_HOST, root / CLEAN_RECORDS, CLEAN_OBSERVER_SHA,
+        CLEAN_DRIVER_SHA, CLEAN_AMENDMENT_SHA, revision_attempts["clean_v3"].get("main_command"))
+    clean_run["timing_context"].update(continuity)
+    clean_reproduction = {"state": revision_attempts["clean_v3"]["state"],
+        "image_path": CLEAN_IMAGE, "run_path": paths["v3_main_clean"], "main": clean_run,
+        "public_source_provenance": revision_attempts["clean_v3"],
+        "fresh_image_main_reproduction_confirmed": revision_attempts["clean_v3"].get(
+            "fresh_image_main_reproduction_confirmed", False),
+        "independent_human_replication": False, "pooled_with_historical_measurements": False,
+        "amendment": clean_amendment, "host_continuity": continuity}
+    if (root / CLEAN_IMAGE / "completion.json").is_file():
+        clean_image_completion = v1.read(root / CLEAN_IMAGE / "completion.json")
+        if clean_image_completion.get("passed") is True:
+            from research.softwarex.verify_application_revision import no_cache_binding
+            clean_reproduction.update(image=v2.validate_image(root / CLEAN_IMAGE),
+                                      no_cache_build=no_cache_binding(root / CLEAN_IMAGE))
+        else:
+            clean_reproduction["image_failure"] = failed_image_summary(root / CLEAN_IMAGE)
+    full_amendment = next((row for row in amendments if row["path"] == AMENDMENTS[4]), None)
+    h.require(not any((root / path).exists() for path in (FULL_RECORDS, FULL_HOST, paths["v4_main_full"]))
+              or full_amendment is not None, "full cohort requires its prospective amendment")
+    if full_amendment is not None:
+        h.require(full_amendment["sha256"] == FULL_AMENDMENT_SHA,
+                  "full cohort prospective amendment differs from independent pin")
+    full_run = runs["v4_main_full"]
+    full_gate = None
+    if full_run["state"] == "RECONCILED_RECORDED_OUTCOMES":
+        full_protocol = v1.read(root / paths["v4_main_full"] / "run/protocol.json")
+        h.require(type(full_protocol["budget_seconds"]) is int and full_protocol["budget_seconds"] == 7200
+                  and type(full_protocol["execution_seconds"]) is int and full_protocol["execution_seconds"] == 120,
+                  "full cohort changed its prospective execution budget")
+        from research.softwarex.verify_application_revision import full_attempt_gate
+        full_gate = full_attempt_gate(full_run["reconciliation"]["controlled_handoffs"])
+    full_continuity = host_continuity(root / FULL_HOST, root / FULL_RECORDS, FULL_OBSERVER_SHA,
+        FULL_DRIVER_SHA, FULL_AMENDMENT_SHA, revision_attempts["full_v4"].get("main_command"), version=4)
+    full_run["timing_context"] = {**full_continuity, "amendment": full_amendment}
+    full_run["repeat_context"] = {"original_run": "v3_main_clean", "same_frozen_selection": True,
+        "pooled_with_original": False, "new_independent_subjects_claimed": False,
+        "new_image_built_in_this_attempt": False, "amendment": full_amendment}
+    full_run["full_attempt_gate"] = full_gate
+    full_reproduction = {"state": revision_attempts["full_v4"]["state"],
+        "image_path": FULL_IMAGE, "run_path": paths["v4_main_full"], "main": full_run,
+        "public_source_provenance": revision_attempts["full_v4"],
+        "full_cohort_reproduction_confirmed": revision_attempts["full_v4"].get(
+            "full_cohort_reproduction_confirmed", False),
+        "all_selected_cases_attempted": revision_attempts["full_v4"].get("all_selected_cases_attempted", False),
+        "full_attempt_gate": full_gate, "host_continuity": full_continuity,
+        "new_image_built_in_this_attempt": False, "independent_human_replication": False,
+        "pooled_with_historical_measurements": False, "amendment": full_amendment}
+    if (root / FULL_IMAGE / "completion.json").is_file():
+        from research.softwarex.verify_application_revision import no_cache_binding
+        full_reproduction.update(image=v2.validate_image(root / FULL_IMAGE),
+            prior_no_cache_build=no_cache_binding(root / FULL_IMAGE),
+            image_setup_scope="Image construction belongs to the prior v3 attempt, not a newly incurred v4 build.")
     fresh_reproduction = {"image_path": FRESH_IMAGE, "run_path": FRESH_PILOT,
         "state": "NOT_AVAILABLE", "independent_human_replication": False,
         "pooled_with_historical_measurements": False,
@@ -672,6 +811,8 @@ def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_path
         "agent_evaluation": agents,
         "earlier_agent_evaluation": previous_agent,
         "fresh_public_source_reproduction": fresh_reproduction,
+        "clean_public_source_reproduction": clean_reproduction,
+        "full_cohort_public_source_reproduction": full_reproduction,
         "application_revision_attempts": revision_attempts,
         "protocol_amendments": amendments,
         "acceptance_probability_estimated": False, "performance_threshold_imposed": False,

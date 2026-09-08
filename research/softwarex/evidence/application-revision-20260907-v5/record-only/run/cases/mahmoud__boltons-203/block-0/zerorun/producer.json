@@ -1,0 +1,43 @@
+{
+  "completed_utc": "2026-09-07T15:11:23.297563+00:00",
+  "error": null,
+  "operation": "producer",
+  "outer_ms": 4130.66282499949,
+  "result": {
+    "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+    "execution_ms": 2856.681,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 2.179,
+      "cache_publish": 33.212,
+      "docker_execution": 2858.057,
+      "environment": 0.026,
+      "event_append": 9.223,
+      "fingerprint_final": 76.447,
+      "fingerprint_initial": 123.467,
+      "lock_acquire": 3.203,
+      "runtime_inspect_initial": 222.459,
+      "snapshot_cleanup": 2.854,
+      "snapshot_prepare": 507.559
+    },
+    "reason": "fresh hermetic result stored",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "MISS_EXECUTED",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 1979,
+      "emitted_bytes": 1979,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.06s ========================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": false,
+    "wall_ms": 4121.326
+  }
+}

@@ -10,7 +10,7 @@ To try the installed server without a Codex account or a real project, use the [
 
 For a deliberate new laboratory attempt after fixing a prerequisite, choose a new tools-environment directory and new installation and check receipt filenames. Preserve the previous attempt and record the intervention as described in the versioned guide; changing only the receipt filename does not make an existing environment new.
 
-For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12–3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
+For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12â€“3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
 
 ## 1. Install outside the repository you will test
 
@@ -97,6 +97,32 @@ Success returns `status: "AUTHORIZED"` and the exact manifest digest. The receip
 
 The direct CLI is a trusted-operator interface and does **not** substitute for the external-authority enforcement on MCP. A successful direct CLI run is not proof that the MCP task is authorized.
 
+### Keep qualification valid as source changes
+
+Record the reviewed source revision and dirty-file inventory, the command and
+test target, declared inputs, runtime/dependencies, exclusions and the reason
+the task is deterministic and result-only. Record who performed the review;
+separate automated inventory time from actual human review time. The software
+does not measure or certify that review. Do not retrospectively assign a human
+review duration to an existing receipt.
+
+For a bounded producer-to-consumer handoff, review the producer's final source
+state and keep that state frozen through consumer inspection and verification.
+A source edit changes the declared identity when it affects a declared input,
+but a passing fresh miss does not prove the edited program remains deterministic
+or that its input declaration is complete. An unchanged manifest authorization
+does not certify arbitrary future source edits.
+
+Renew the operator review when edits introduce a new input, import/dependency,
+environment access, time/randomness/network dependence, side effect, test target
+or execution behavior outside the reviewed assumptions. New top-level files
+outside the declared inventory need inspection even when the old key is
+unchanged. Review can continue across edits only when the operator's documented
+qualification explicitly covers those edits and its assumptions still hold.
+While qualification is uncertain, request approved fresh execution outside the
+reuse workflow; do not infer eligibility from one passing execution. Changed
+manifest bytes also require the explicit authorization step above.
+
 ## 5. Run, identify reuse, and verify
 
 For the reviewed task `tests`:
@@ -151,9 +177,20 @@ cwd = "/absolute/reviewed/repository"
 env = { ZERORUN_TRUST_ROOT = "/absolute/operator-owned/zerorun-trust" }
 ```
 
-Replace each path with the reviewed local value. The authority directory must be the exact one used for manual exact-hash authorization, outside the repository and not containing it. Keep it operator-controlled and non-linked. Merge the settings into the existing server entry; do not create duplicate TOML tables or silently replace another registration. An alternative is `env_vars = ["ZERORUN_TRUST_ROOT"]`, with that single value already set in the client's host environment. Use one explicit method and restart the server/client. The [official OpenAI MCP guide](https://learn.chatgpt.com/docs/extend/mcp) documents both `env` and `env_vars`.
+Replace each path with the reviewed local value. The authority directory must be the exact one used for manual exact-hash authorization, outside the repository and not containing it. Keep it operator-controlled and non-linked. Merge the settings into the existing server entry; do not create duplicate TOML tables or silently replace another registration. Restart the server/client after an operator configuration change.
 
-**Managed-initialization limitation:** the `init --codex` registration checker inherited from 0.5.1 remains unchanged in 0.5.2 and deliberately rejects nonempty `env` or `env_vars`. The custom setting above is therefore an operator-managed MCP route, not a correction implemented by managed initialization. Rerunning `init --codex` can report a conflict; do not remove the necessary authority setting merely to make that checker green. Check readiness through the actual MCP `doctor` result instead. Do not put the override into task `env`, forward arbitrary host variables, copy authority keys into a checkout, or let the AI agent authorize itself.
+**Repeatable operator-managed configuration in 0.5.3:** before invoking
+`init --codex`, explicitly set `ZERORUN_TRUST_ROOT` in the operator's invocation
+environment to that same canonical external directory. Initialization accepts
+the existing registration only when its sole fixed environment entry is the
+matching `ZERORUN_TRUST_ROOT` and the path passes the external-directory checks.
+It does not create authority or silently replace the registration. Missing or
+mismatched settings return an explicit corrective action; arbitrary fixed
+variables and nonempty `env_vars` remain refused. The earlier 0.5.2 checker
+rejected even this exact custom configuration; its historical records remain
+unchanged. Check the actual MCP `doctor` response after setup. Do not put the
+override into task `env`, copy authority keys into a checkout, or let the AI
+agent authorize itself.
 
 The original [V1 Codex trial](evidence/live-client-v1/receipt.json) stopped after one doctor call: the tool reported `UNTRUSTED`, and extra agent commentary violated that trial's fixed completion-marker rule. Its separate [non-model diagnostic](evidence/live-client-v1/non-model-diagnostic.json) passed five STDIO checks, but did not itself establish a model-backed lifecycle. Both records remain unchanged. Later prospective trials separately exposed client-side approval refusal (V2) and an unsupported model-generated argument after a successful four-turn lifecycle (V3). The final API-guided demonstration passed two model-selected actions, two separate fresh oracle checks, and six no-tool interpretation cases. Read [all application results and their exact denominators](APPLICATION_RESULTS.md); these bounded synthetic observations establish neither production reliability nor an AI workflow speedup.
 
@@ -207,6 +244,23 @@ For whole-task `run_tests`, `mode: "reuse"` identifies the interface path even w
 
 The `run_tests` MCP response includes `stdout_tail` and `stderr_tail`, each decoded from at most the last 4,000 captured bytes. They can be incomplete. A hit normally has empty tails because it does not execute the tests or replay saved streams. For per-node `run_pytest`, inspect its own node counts and exit status; do not reuse the whole-task status table as a node-level hit classifier.
 
+### Read timing fields with their provenance
+
+| Whole-task field | Meaning and boundary |
+| --- | --- |
+| `wall_ms` | Current runner interval. It excludes client/model work and final event append/response delivery; measure outside the tool call for consumer waiting. |
+| `execution_ms` | Execution duration from this invocation when execution occurred. On `HIT_REUSED`, it is the stored historical duration, not execution during the hit. |
+| `saved_ms` | On a hit, `max(0, historical execution_ms - wall_ms)`. It is an estimate clipped at zero, not measured net savings or proof that the hit was faster. |
+| `phase_ms` | Diagnostic phase clocks. They are not a complete or necessarily additive partition; preliminary hit-lookup work on a miss is not separately returned. |
+
+Use `status`, exit code and error classification to decide what happened. Do not
+use a positive duration or `mode: "reuse"` as evidence of a hit or fresh tests.
+For an economic comparison, retain signed differences in externally measured
+producer-plus-consumer totals and show qualification, acquisition and common
+setup separately. Report oracle/diagnostic costs separately when they are
+research instrumentation. Adding clipped per-hit savings cannot establish net
+workflow benefit.
+
 ## 7. Optional, separately reviewed pytest-node reuse
 
 This is not needed for the demonstrated whole-task path. The supplied five-library fine-grained evaluation accepted no node reuse; installation is not evidence that a project's nodes can be safely omitted.
@@ -239,7 +293,7 @@ Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the
 
 ## Inspect or reproduce the bounded integration experiments
 
-Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12–3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.2 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
+Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12â€“3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.2 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
 
 ### Historical V1 and its non-model diagnostic only
 
@@ -267,6 +321,10 @@ These use a distinct immutable public source, `ebf2884df12573d63f45813200e067528
 Read [V2](live_client_v2/PROTOCOL.md), [V3](live_client_v3/PROTOCOL.md), and the [guided protocol](guided_client_v1/PROTOCOL.md) before considering new execution. Each runner's `--help` describes its explicit consent and identity arguments. Use a separate external adapter directory and new evidence paths, preserving the required frozen helper hierarchy; do not patch a frozen source or change its expected hashes. Model execution requires the operator's own authorized account and the applicable fixture-only decisions. The API card was frozen before the guided trial and supplied as neutral interface documentation, not as expected answers. That trial does not establish a causal benefit from the card.
 
 For first use without model credentials or historical client installer artifacts, prefer the [account-free quickstart](QUICKSTART_LAB.md). Its literal public-guide replay passed from a clean public clone, using a new installation and five actual STDIO stages. It is an internal reproduction, not an external developer study.
+
+## Real-workload reproduction
+
+The [fresh-workload guide](FRESH_REAL_WORKLOAD_REPRODUCTION.md) provides the separately bound image recipes and fixed case ledgers. The v3 author-side build disabled Docker build-step cache reuse, used the observed new image for the unchanged 24-case main ledger, and completed ten cases with twenty fresh-oracle-agreeing reused successes. Six cases were incomplete/unsupported and eight remained unrun within the fixed budget. Complete-chain totals were near break-even while consumer waiting fell 79.1%; common image preparation took an additional 66.070 seconds. Existing public base layers and the author VM were retained. This is controlled reproduction, not automatic qualification of your repository or independent human validation.
 
 ## Resource limits, troubleshooting, and support
 

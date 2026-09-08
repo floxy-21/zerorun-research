@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--read-only",
+    "--network=none",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "127.0.0.1:19559/zerorun-compatible-v2:755d176c196241b2abd79e3581600980",
+    "python",
+    "-B",
+    "-c",
+    "import importlib.metadata as m,json,sys; print(json.dumps({'python':sys.version,'packages':{d.metadata['Name']:d.version for d in m.distributions()}}))"
+  ],
+  "started_utc": "2026-09-07T14:41:07.173881+00:00"
+}

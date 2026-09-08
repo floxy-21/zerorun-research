@@ -24,13 +24,13 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[2]
 CORE = "86f42289c2f59a74b1f642f0b20d1a26b3d55e57"
 HISTORICAL_CORE = CORE
-CURRENT_CORE = "d02b12e43ece3526566ec69c7516579f8d2fc9dd"
-CURRENT_VERSION = "0.5.2"
+CURRENT_CORE = "e5194d340a09bccb667d3021a6a4a9a9a054123b"
+CURRENT_VERSION = "0.5.3"
 HISTORICAL_RUNTIME_PREFIX = "research/softwarex/historical_runtime_0_5_1"
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
 REVIEWER_ASSET = "output/submission/ZeroRun_SoftwareX_reviewer.zip"
-REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.2-20260907-r2/ZeroRun_SoftwareX_reviewer.zip"
+REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r1/ZeroRun_SoftwareX_reviewer.zip"
 MAX_EXTERNAL_ARCHIVE_BYTES = 600 * 1024 * 1024
 VM_REGRESSION_EVIDENCE_DIRS = (
     "full-product-vm-20260907", "full-product-vm-20260907-v2",
@@ -69,14 +69,14 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "generated/artifact-builder-unit-v2.xml", "generated/artifact-builder-unit-v3.xml",
     "generated/artifact-builder-sandbox-diagnostic-v1.xml", "generated/artifact-builder-test-attempts.md",
     "generated/readiness-bindings-unit-v1.xml",
-    "OPERATING_GUIDE.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
+    "OPERATING_GUIDE.md", "SAVED_RECEIPT_COMPARISON.md", "REAL_AGENT_APPLICATION_053_PROTOCOL.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
     "LIVE_CLIENT_AMENDMENT_1.md", "support/tools/aggregate_codex_install_evidence.py", "RELATED_SYSTEMS.md",
     "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py", "PUBLIC_LAYOUT_CORRECTION.md",
     "client_conformance.py", "analyze_operating_region.py", "analysis_reproduction.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
     "generated/operating-region-v1.json", "generated/extension-evidence-v1.json",
     "REVIEWER_STRENGTHENING_4H.md", "JOURNAL_REQUIREMENTS_REVIEW.md", "QUICKSTART_RESULTS.md",
     "QUICKSTART_LAB.md", "quickstart_check.py", "CLIENT_API_CARD.md", "APPLICATION_RESULTS.md",
-    "QUICKSTART_052.md", "quickstart_052.py", "diagnose_mcp_authority_052.py",
+    "QUICKSTART_052.md", "quickstart_052.py", "QUICKSTART_053.md", "quickstart_053.py", "diagnose_mcp_authority_052.py",
     "build_application_evidence.py", "generated/application-evidence-v1.json",
     "live_client_v2/__init__.py", "live_client_v2/PROTOCOL.md", "live_client_v2/run.py",
     "live_client_v2/validation.py", "live_client_v2/test_validation.py",
@@ -84,7 +84,7 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "live_client_v3/validation.py", "live_client_v3/test_validation.py",
     "guided_client_v1/__init__.py", "guided_client_v1/PROTOCOL.md", "guided_client_v1/run.py",
     "guided_client_v1/validation.py", "guided_client_v1/test_validation.py",
-    "five_hour_review/__init__.py", "five_hour_review/current_runtime.py",
+    "five_hour_review/__init__.py", "five_hour_review/current_runtime.py", "five_hour_review/current_runtime_053.py",
     "five_hour_review/INTEGRATION_CHECKLIST.md", "five_hour_review/REVIEWER_MATRIX.md",
     "FIVE_HOUR_FINALIZATION_PLAN.md",
     "verify_submission.py", "VERIFY_SUBMISSION.md",
@@ -98,7 +98,7 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "agent_handoff_evaluation_v1/__init__.py", "agent_handoff_evaluation_v1/PROTOCOL.md",
     "agent_handoff_evaluation_v1/run.py", "agent_handoff_evaluation_v1/validate.py",
     "agent_handoff_evaluation_v1/test_evaluation.py", "AGENT_AUTHENTICATION_AMENDMENT.md",
-    "HANDOFF_IMAGE_RECOVERY_AMENDMENT.md", "APPLICATION_REVISION_AMENDMENT.md",
+    "HANDOFF_IMAGE_RECOVERY_AMENDMENT.md", "APPLICATION_REVISION_AMENDMENT.md", "APPLICATION_REVISION_V3_AMENDMENT.md", "APPLICATION_REVISION_V4_AMENDMENT.md",
     "APPLICATION_COVERAGE_AUDIT.md", "FRESH_REAL_WORKLOAD_REPRODUCTION.md", "verify_application_revision.py",
     "handoff_image_v2/__init__.py", "handoff_image_v2/PROTOCOL.md", "handoff_image_v2/build_image.py",
     "handoff_image_v2/run.py", "handoff_image_v2/validate.py", "handoff_image_v2/export.py", "handoff_image_v2/test_image.py",
@@ -354,13 +354,15 @@ def collect(paper_files=(), current_core=None):
     require(core_count == 36, "unexpected frozen core file denominator")
     current_version = "0.5.1"
     if current_core is not None:
-        from research.softwarex.five_hour_review.current_runtime import validate_metadata_only
+        from research.softwarex.five_hour_review.current_runtime_053 import validate_integration_changes
         require(current_core == CURRENT_CORE and current_core != HISTORICAL_CORE,
                 "only the reviewed current runtime commit is allowed")
         historical = {Path(name).name: raw for name, raw in payloads.items() if name.startswith("src/zerorun/")}
         current = {}
         new_test = "tests/test_mcp_discovery_semantics.py"
-        current_tar = archive_source(current_core, ["zerorun", new_test])
+        current_test = "tests/test_codex_integration.py"
+        current_skill = ".agents/skills/zerorun/SKILL.md"
+        current_tar = archive_source(current_core, ["zerorun", new_test, current_test, "tests/test_mcp.py", current_skill])
         with tarfile.open(fileobj=io.BytesIO(current_tar), mode="r:") as archive:
             for member in archive.getmembers():
                 if member.isdir():
@@ -370,10 +372,22 @@ def collect(paper_files=(), current_core=None):
                 if member.name.startswith("zerorun/"):
                     require(member.name.count("/") == 1 and member.name.endswith(".py"), "unexpected current runtime member")
                     current[Path(member.name).name] = raw
-                else:
-                    require(member.name == new_test, "unexpected current test member")
+                elif member.name == new_test:
                     add(new_test, raw, "git:" + current_core + ":" + new_test)
-        validate_metadata_only(historical, current)
+                elif member.name == "tests/test_mcp.py":
+                    payloads[member.name] = raw
+                    origins[member.name] = "git:" + current_core + ":" + member.name
+                elif member.name == current_test:
+                    before = b'root / ".agents" / "skills" / "zerorun" / "SKILL.md"'
+                    require(raw.count(before) == 1, "unexpected current skill-test adaptation boundary")
+                    payloads[current_test] = raw.replace(before, b'root / "docs" / "zerorun-SKILL.md"')
+                    origins[current_test] = "git:" + current_core + ":" + current_test + "; one bundled-skill path adapted to research docs"
+                elif member.name == current_skill:
+                    payloads["docs/zerorun-SKILL.md"] = raw
+                    origins["docs/zerorun-SKILL.md"] = "git:" + current_core + ":" + current_skill
+                else:
+                    raise ValueError("unexpected current source member")
+        validate_integration_changes(historical, current)
         require(new_test in payloads, "current discovery regression test missing")
         for name, old_raw in sorted(historical.items()):
             old_relative = "src/zerorun/" + name
@@ -435,7 +449,7 @@ def collect(paper_files=(), current_core=None):
     if (ROOT / public_wheel).is_file():
         local(public_wheel)
     if current_core is not None:
-        current_wheel = "output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl"
+        current_wheel = f"output/packages/zerorun-softwarex/zerorun-{CURRENT_VERSION}-py3-none-any.whl"
         if (ROOT / current_wheel).is_file():
             local(current_wheel)
     for path in entries(ROOT / "docs/evidence/softwarex-regression/windows-20260906-readonly-hit-final"):
@@ -799,7 +813,7 @@ def main():
     parser.add_argument("--verify-wheel", type=Path)
     parser.add_argument("--installed-python", type=Path)
     parser.add_argument("--record-public-tests", action="store_true")
-    parser.add_argument("--current-core", help="Explicit reviewed 0.5.2 commit; omitting it builds the historical 0.5.1 package")
+    parser.add_argument("--current-core", help="Explicit reviewed 0.5.3 integration commit; omitting it builds the historical 0.5.1 package")
     args = parser.parse_args()
     if args.self_test:
         print(json.dumps(self_test()))

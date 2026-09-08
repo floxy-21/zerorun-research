@@ -1,0 +1,42 @@
+{
+  "completed_utc": "2026-09-07T14:54:48.269105+00:00",
+  "error": null,
+  "operation": "diagnostics",
+  "outer_ms": 5553.857319999224,
+  "result": {
+    "cache_key": "ab3b8d46c13101b38334919b1ece70b440ce464d890a3b8ea0535ca4ae63bfe3",
+    "execution_ms": 4125.847,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 49.747,
+      "docker_execution": 4128.227,
+      "environment": 0.017,
+      "event_append": 11.044,
+      "fingerprint_final": 184.511,
+      "fingerprint_initial": 197.148,
+      "lock_acquire": 1.674,
+      "runtime_inspect_initial": 170.686,
+      "snapshot_cleanup": 9.484,
+      "snapshot_prepare": 768.297
+    },
+    "reason": "fresh hermetic execution matched cached successful result",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "VERIFY_MATCH",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 750,
+      "emitted_bytes": 750,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\ncollected 46 items\n\ntests/test_c_parser.py ..............................................    [100%]\n\n=============================== warnings summary ===============================\ntests/test_c_parser.py::TestCParser_whole_code::test_whole_file\ntests/test_c_parser.py::TestCParser_whole_code::test_whole_file_with_stdio\n  /workspace/tests/test_c_parser.py:1747: DeprecationWarning: 'U' mode is deprecated\n    return open(name, 'rU')\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================== 46 passed, 2 warnings in 1.27s ========================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": true,
+    "wall_ms": 5542.689
+  }
+}

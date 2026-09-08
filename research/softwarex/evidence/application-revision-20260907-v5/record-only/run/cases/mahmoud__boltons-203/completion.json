@@ -1,0 +1,1245 @@
+{
+  "agent_session": false,
+  "all_blocks_complete": true,
+  "blocks": [
+    {
+      "arms": {
+        "fresh": {
+          "arm": "fresh",
+          "consumer": {
+            "completed_utc": "2026-09-07T15:11:16.089155+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 2839.0816310002265,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.06s ========================\n",
+              "wall_ms": 2766.7417399998158
+            }
+          },
+          "diagnostics": null,
+          "oracle": {
+            "completed_utc": "2026-09-07T15:11:19.001170+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 2897.6938839996365,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "e56caf94a88bba2b1f2ee65967d43a3b5557ab18cf7cf0f659f2b0c975b8b5f7",
+                "nodeids": [
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3",
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 2146,
+                "path": "raw-outcomes.json",
+                "sha256": "f8193f452de6076c4a12cc2fed18dcadd36b91b7e4354639dfb620ac890174d2"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.14s ========================\n",
+                "wall_ms": 2825.4830910000237
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T15:11:13.234466+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 2889.744829999472,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.06s ========================\n",
+              "wall_ms": 2819.8472539997965
+            }
+          },
+          "setup_outer_ms": 27.058255999691028,
+          "source_sha256": "58ce9f43495c0c8c260016ba48fd05c3f4ccfee5ada38dbe116b4fdb270a3873",
+          "source_unchanged": true
+        },
+        "zerorun": {
+          "arm": "zerorun",
+          "consumer": {
+            "completed_utc": "2026-09-07T15:11:23.807776+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 498.22921800023323,
+            "result": {
+              "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+              "execution_ms": 2856.681,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 44.179,
+                "environment": 0.027,
+                "event_append": 28.948,
+                "fingerprint_final": 108.424,
+                "fingerprint_initial": 111.222,
+                "lock_acquire": 3.217,
+                "readonly_hit_path": 468.85,
+                "runtime_inspect_initial": 171.333,
+                "snapshot_cleanup": 0.0,
+                "snapshot_prepare": 0.0
+              },
+              "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+              "restored_outputs": [],
+              "saved_ms": 2387.829,
+              "status": "HIT_REUSED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 468.852
+            }
+          },
+          "diagnostics": {
+            "completed_utc": "2026-09-07T15:11:30.499147+00:00",
+            "error": null,
+            "operation": "diagnostics",
+            "outer_ms": 3494.698876000257,
+            "result": {
+              "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+              "execution_ms": 2603.436,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 36.64,
+                "docker_execution": 2604.343,
+                "environment": 0.016,
+                "event_append": 9.786,
+                "fingerprint_final": 122.73,
+                "fingerprint_initial": 72.374,
+                "lock_acquire": 1.752,
+                "runtime_inspect_initial": 173.087,
+                "snapshot_cleanup": 5.014,
+                "snapshot_prepare": 434.626
+              },
+              "reason": "fresh hermetic execution matched cached successful result",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "VERIFY_MATCH",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 1979,
+                "emitted_bytes": 1979,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.08s ========================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": true,
+              "wall_ms": 3484.776
+            }
+          },
+          "oracle": {
+            "completed_utc": "2026-09-07T15:11:26.942282+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 3122.671366999384,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "e56caf94a88bba2b1f2ee65967d43a3b5557ab18cf7cf0f659f2b0c975b8b5f7",
+                "nodeids": [
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3",
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 2146,
+                "path": "raw-outcomes.json",
+                "sha256": "f8193f452de6076c4a12cc2fed18dcadd36b91b7e4354639dfb620ac890174d2"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.10s ========================\n",
+                "wall_ms": 3051.6177180006707
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T15:11:23.297563+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 4130.66282499949,
+            "result": {
+              "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+              "execution_ms": 2856.681,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 2.179,
+                "cache_publish": 33.212,
+                "docker_execution": 2858.057,
+                "environment": 0.026,
+                "event_append": 9.223,
+                "fingerprint_final": 76.447,
+                "fingerprint_initial": 123.467,
+                "lock_acquire": 3.203,
+                "runtime_inspect_initial": 222.459,
+                "snapshot_cleanup": 2.854,
+                "snapshot_prepare": 507.559
+              },
+              "reason": "fresh hermetic result stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "MISS_EXECUTED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 1979,
+                "emitted_bytes": 1979,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.06s ========================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 4121.326
+            }
+          },
+          "setup_outer_ms": 28.089829000236932,
+          "source_sha256": "58ce9f43495c0c8c260016ba48fd05c3f4ccfee5ada38dbe116b4fdb270a3873",
+          "source_unchanged": true
+        }
+      },
+      "block": 0,
+      "measurements": {
+        "cache_hit_observed": true,
+        "chain_ms": {
+          "fresh": 5728.826460999699,
+          "zerorun": 4628.892042999723
+        },
+        "chain_saved_fraction": 0.19199995417700844,
+        "consumer_ms": {
+          "fresh": 2839.0816310002265,
+          "zerorun": 498.22921800023323
+        },
+        "consumer_saved_fraction": 0.824510428809085,
+        "fresh_diagnostics_ms": 3494.698876000257,
+        "oracle_ms": 6020.365250999021,
+        "setup_inclusive_chain_ms": {
+          "fresh": 5755.88471699939,
+          "zerorun": 4656.98187199996
+        },
+        "setup_inclusive_saved_fraction": 0.19091814708413768,
+        "setup_inclusive_scope": "per-arm source/environment preparation; common once-only dependency build and acquisition remain separate"
+      },
+      "order": [
+        "fresh",
+        "zerorun"
+      ]
+    },
+    {
+      "arms": {
+        "fresh": {
+          "arm": "fresh",
+          "consumer": {
+            "completed_utc": "2026-09-07T15:11:48.344847+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 2801.8695290002142,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.06s ========================\n",
+              "wall_ms": 2731.44179800056
+            }
+          },
+          "diagnostics": null,
+          "oracle": {
+            "completed_utc": "2026-09-07T15:11:51.390007+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 3030.1048879991868,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "e56caf94a88bba2b1f2ee65967d43a3b5557ab18cf7cf0f659f2b0c975b8b5f7",
+                "nodeids": [
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3",
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 2146,
+                "path": "raw-outcomes.json",
+                "sha256": "f8193f452de6076c4a12cc2fed18dcadd36b91b7e4354639dfb620ac890174d2"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.09s ========================\n",
+                "wall_ms": 2957.428393000555
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T15:11:45.529601+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 3076.207457000237,
+            "result": {
+              "collection_sha256": null,
+              "exit_code": 0,
+              "instrumented": false,
+              "node_count": null,
+              "runner": "independent-docker-plain-pytest",
+              "stderr_tail": "",
+              "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.09s ========================\n",
+              "wall_ms": 3006.0032339997633
+            }
+          },
+          "setup_outer_ms": 23.28950100036309,
+          "source_sha256": "58ce9f43495c0c8c260016ba48fd05c3f4ccfee5ada38dbe116b4fdb270a3873",
+          "source_unchanged": true
+        },
+        "zerorun": {
+          "arm": "zerorun",
+          "consumer": {
+            "completed_utc": "2026-09-07T15:11:35.265296+00:00",
+            "error": null,
+            "operation": "consumer",
+            "outer_ms": 450.64152699978877,
+            "result": {
+              "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+              "execution_ms": 3010.194,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 37.388,
+                "environment": 0.026,
+                "event_append": 19.469,
+                "fingerprint_final": 100.023,
+                "fingerprint_initial": 87.034,
+                "lock_acquire": 1.731,
+                "readonly_hit_path": 430.8,
+                "runtime_inspect_initial": 172.316,
+                "snapshot_cleanup": 0.0,
+                "snapshot_prepare": 0.0
+              },
+              "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+              "restored_outputs": [],
+              "saved_ms": 2579.393,
+              "status": "HIT_REUSED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 430.801
+            }
+          },
+          "diagnostics": {
+            "completed_utc": "2026-09-07T15:11:42.349924+00:00",
+            "error": null,
+            "operation": "diagnostics",
+            "outer_ms": 4052.269779999733,
+            "result": {
+              "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+              "execution_ms": 3120.863,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 40.958,
+                "docker_execution": 3121.67,
+                "environment": 0.015,
+                "event_append": 8.164,
+                "fingerprint_final": 62.483,
+                "fingerprint_initial": 127.815,
+                "lock_acquire": 2.948,
+                "runtime_inspect_initial": 178.502,
+                "snapshot_cleanup": 2.861,
+                "snapshot_prepare": 475.797
+              },
+              "reason": "fresh hermetic execution matched cached successful result",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "VERIFY_MATCH",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 1979,
+                "emitted_bytes": 1979,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.32s ========================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": true,
+              "wall_ms": 4043.993
+            }
+          },
+          "oracle": {
+            "completed_utc": "2026-09-07T15:11:38.277469+00:00",
+            "error": null,
+            "operation": "oracle",
+            "outer_ms": 3000.150678999489,
+            "result": {
+              "capture": {
+                "all_nodes_non_failing": true,
+                "complete_per_node_outcomes": true,
+                "exit_code": 0,
+                "failing_nodeids": [],
+                "nodeid_sha256": "e56caf94a88bba2b1f2ee65967d43a3b5557ab18cf7cf0f659f2b0c975b8b5f7",
+                "nodeids": [
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3",
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]",
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly"
+                ],
+                "outcomes": [
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                ],
+                "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+              },
+              "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+              "raw_outcomes": {
+                "bytes": 2146,
+                "path": "raw-outcomes.json",
+                "sha256": "f8193f452de6076c4a12cc2fed18dcadd36b91b7e4354639dfb620ac890174d2"
+              },
+              "runner": {
+                "exit_code": 0,
+                "instrumented": true,
+                "runner": "independent-docker-plain-pytest",
+                "stderr_tail": "",
+                "stdout_tail": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.08s ========================\n",
+                "wall_ms": 2928.8590599999225
+              },
+              "verdict": {
+                "exit_code": 0,
+                "nodes": {
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[*args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, * , b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *, b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *,\\nb-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *\\n,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args, **kwargs-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, *args-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a, b-False]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_KWONLY_MARKER[a,*,b-True]": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_remove_kwonly_arg": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  },
+                  "tests/test_funcutils_fb_py3.py::test_wraps_py3": {
+                    "call": "passed",
+                    "setup": "passed",
+                    "teardown": "passed",
+                    "wasxfail": false
+                  }
+                }
+              }
+            }
+          },
+          "producer": {
+            "completed_utc": "2026-09-07T15:11:34.763064+00:00",
+            "error": null,
+            "operation": "producer",
+            "outer_ms": 4140.401353000016,
+            "result": {
+              "cache_key": "68fd5e280ebad7f7c416c33a986c9008cfddf5747a2c9365cc5e239f5b5e6d4a",
+              "execution_ms": 3010.194,
+              "exit_code": 0,
+              "phase_ms": {
+                "cache_lookup": 1.133,
+                "cache_publish": 32.835,
+                "docker_execution": 3011.009,
+                "environment": 0.017,
+                "event_append": 24.756,
+                "fingerprint_final": 64.399,
+                "fingerprint_initial": 84.409,
+                "lock_acquire": 1.771,
+                "runtime_inspect_initial": 177.752,
+                "snapshot_cleanup": 5.209,
+                "snapshot_prepare": 412.789
+              },
+              "reason": "fresh hermetic result stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "status": "MISS_EXECUTED",
+              "stderr": {
+                "captured_bytes": 0,
+                "emitted_bytes": 0,
+                "text": "",
+                "truncated": false
+              },
+              "stdout": {
+                "captured_bytes": 1979,
+                "emitted_bytes": 1979,
+                "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0\nrootdir: /workspace\nconfigfile: pytest.ini\ncollected 13 items\n\ntests/test_funcutils_fb_py3.py .............                             [100%]\n\n=============================== warnings summary ===============================\ntests/conftest.py:5\n  /workspace/tests/conftest.py:5: DeprecationWarning: invalid escape sequence '\\d'\n    _VERSION_MARKER = re.compile('_py(?P<major_version>\\d)(?P<minor_version>\\d)?')\n\ntests/conftest.py:8\n  /workspace/tests/conftest.py:8: PytestRemovedIn9Warning: The (path: py.path.local) argument is deprecated, please use (collection_path: pathlib.Path)\n  see https://docs.pytest.org/en/latest/deprecations.html#py-path-local-arguments-for-hooks-replaced-with-pathlib-path\n    def pytest_ignore_collect(path, config):\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\n  /workspace/boltons/funcutils.py:545: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    sig = inspect.formatargspec(self.args,\n\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_wraps_py3\ntests/test_funcutils_fb_py3.py::test_remove_kwonly_arg\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\ntests/test_funcutils_fb_py3.py::test_FunctionBuilder_add_arg_kwonly\n  /workspace/boltons/funcutils.py:522: DeprecationWarning: `formatargspec` is deprecated since Python 3.5. Use `signature` and the `Signature` object directly\n    return inspect.formatargspec(self.args,\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n======================= 13 passed, 12 warnings in 0.07s ========================\n",
+                "truncated": false
+              },
+              "task": "handoff-tests",
+              "verified": false,
+              "wall_ms": 4115.521
+            }
+          },
+          "setup_outer_ms": 27.140834999954677,
+          "source_sha256": "58ce9f43495c0c8c260016ba48fd05c3f4ccfee5ada38dbe116b4fdb270a3873",
+          "source_unchanged": true
+        }
+      },
+      "block": 1,
+      "measurements": {
+        "cache_hit_observed": true,
+        "chain_ms": {
+          "fresh": 5878.076986000451,
+          "zerorun": 4591.042879999804
+        },
+        "chain_saved_fraction": 0.21895495909051843,
+        "consumer_ms": {
+          "fresh": 2801.8695290002142,
+          "zerorun": 450.64152699978877
+        },
+        "consumer_saved_fraction": 0.8391639859260005,
+        "fresh_diagnostics_ms": 4052.269779999733,
+        "oracle_ms": 6030.255566998676,
+        "setup_inclusive_chain_ms": {
+          "fresh": 5901.366487000814,
+          "zerorun": 4618.183714999759
+        },
+        "setup_inclusive_saved_fraction": 0.21743824499420183,
+        "setup_inclusive_scope": "per-arm source/environment preparation; common once-only dependency build and acquisition remain separate"
+      },
+      "order": [
+        "zerorun",
+        "fresh"
+      ]
+    }
+  ],
+  "case_id": "mahmoud__boltons-203",
+  "disposition": "COMPLETE",
+  "repo": "mahmoud/boltons"
+}

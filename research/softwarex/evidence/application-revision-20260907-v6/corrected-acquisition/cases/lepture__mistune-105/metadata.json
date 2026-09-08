@@ -1,0 +1,82 @@
+{
+  "config": "default",
+  "dataset": "nebius/SWE-rebench",
+  "metadata_origin": "one complete row decoded from retained revision-pinned parquet",
+  "partial": false,
+  "revision": "89cdfbab4ab1bd8f5a658bb212d1b63624f4f881",
+  "rows": [
+    {
+      "row": {
+        "FAIL_TO_FAIL": [],
+        "FAIL_TO_PASS": [
+          "tests/test_extra.py::test_safe_links",
+          "tests/test_extra.py::test_block_html"
+        ],
+        "PASS_TO_FAIL": [],
+        "PASS_TO_PASS": [
+          "tests/test_extra.py::test_escape",
+          "tests/test_extra.py::test_linebreak",
+          "tests/test_extra.py::test_skip_style",
+          "tests/test_extra.py::test_use_xhtml",
+          "tests/test_extra.py::test_parse_inline_html",
+          "tests/test_extra.py::test_parse_block_html",
+          "tests/test_extra.py::test_trigger_more_cases",
+          "tests/test_extra.py::test_not_escape_block_tags",
+          "tests/test_extra.py::test_not_escape_inline_tags",
+          "tests/test_extra.py::test_hard_wrap_renderer"
+        ],
+        "base_commit": "715046fe4b5f3642b24edc7fdd62ba8915228498",
+        "created_at": "2016-07-11 21:55:35",
+        "docker_image": null,
+        "environment": "name: mistune\nchannels:\n  - defaults\n  - https://repo.anaconda.com/pkgs/main\n  - https://repo.anaconda.com/pkgs/r\n  - conda-forge\ndependencies:\n  - _libgcc_mutex=0.1=main\n  - _openmp_mutex=5.1=1_gnu\n  - ca-certificates=2025.2.25=h06a4308_0\n  - exceptiongroup=1.2.0=py39h06a4308_0\n  - iniconfig=1.1.1=pyhd3eb1b0_0\n  - ld_impl_linux-64=2.40=h12ee557_0\n  - libffi=3.4.4=h6a678d5_1\n  - libgcc-ng=11.2.0=h1234567_1\n  - libgomp=11.2.0=h1234567_1\n  - libstdcxx-ng=11.2.0=h1234567_1\n  - ncurses=6.4=h6a678d5_0\n  - openssl=3.0.16=h5eee18b_0\n  - packaging=24.2=py39h06a4308_0\n  - pip=25.0=py39h06a4308_0\n  - pluggy=1.5.0=py39h06a4308_0\n  - pytest=8.3.4=py39h06a4308_0\n  - python=3.9.21=he870216_1\n  - readline=8.2=h5eee18b_0\n  - setuptools=75.8.0=py39h06a4308_0\n  - sqlite=3.45.3=h5eee18b_0\n  - tk=8.6.14=h39e8969_0\n  - tomli=2.0.1=py39h06a4308_0\n  - tzdata=2025a=h04d1e81_0\n  - wheel=0.45.1=py39h06a4308_0\n  - xz=5.6.4=h5eee18b_1\n  - zlib=1.2.13=h5eee18b_1\n  - pip:\n      - nose==1.3.7\nprefix: /opt/conda/envs/mistune\n",
+        "environment_setup_commit": "715046fe4b5f3642b24edc7fdd62ba8915228498",
+        "hints_text": "nsfmc: Hello, i'm not sure what the protocol is for this. \r\n\r\nI ran into this bug from a strangely formed embed code i got from gyfcat, but i suspect others could run into it too.\r\n\r\nthe `test_safe_links` test is currently failing in master, but the test that this adds passes.\r\n\r\nLet me know if you have any questions!\nlepture: @nsfmc a test case failed.\nnsfmc: Hi @lepture, I believe that test case is failing in master as well. If there is a branch I can fork off of that is building successfully I'm happy to rebase my pull request off that one. I'm afraid I don't understand well enough the changes needed to fix the link sanitization issues :(",
+        "image_name": null,
+        "install_config": {
+          "env_vars": null,
+          "env_yml_path": null,
+          "install": "pip install -e .[dev]",
+          "log_parser": "parse_log_pytest",
+          "no_use_env": null,
+          "packages": "pytest",
+          "pip_packages": [
+            "nose",
+            "pytest"
+          ],
+          "pre_install": [
+            "apt-get update",
+            "apt-get install -y gcc"
+          ],
+          "python": "3.9",
+          "reqs_path": null,
+          "test_cmd": "pytest --no-header -rA --tb=line --color=no -p no:cacheprovider -W ignore::DeprecationWarning"
+        },
+        "instance_id": "lepture__mistune-105",
+        "license_name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "meta": {
+          "commit_name": "merge_commit",
+          "failed_lite_validators": [
+            "has_hyperlinks"
+          ],
+          "has_test_patch": true,
+          "is_lite": false,
+          "llm_score": {
+            "difficulty_score": 1,
+            "issue_text_score": 0,
+            "test_score": 0
+          },
+          "num_modified_files": 1
+        },
+        "patch": "diff --git a/mistune.py b/mistune.py\nindex b341cf2..67b0880 100644\n--- a/mistune.py\n+++ b/mistune.py\n@@ -74,7 +74,7 @@ def escape(text, quote=False, smart_amp=True):\n \n def escape_link(url, **kwargs):\n     \"\"\"Remove dangerous URL schemes like javascript: and escape afterwards.\"\"\"\n-    lower_url = url.lower()\n+    lower_url = url.lower().strip('\\x00\\x1a \\n\\r\\t')\n     for scheme in _scheme_blacklist:\n         if lower_url.startswith(scheme):\n             return ''\n@@ -157,7 +157,7 @@ class BlockGrammar(object):\n     block_html = re.compile(\n         r'^ *(?:%s|%s|%s) *(?:\\n{2,}|\\s*$)' % (\n             r'<!--[\\s\\S]*?-->',\n-            r'<(%s)((?:%s)*?)>([\\s\\S]+?)<\\/\\1>' % (_block_tag, _valid_attr),\n+            r'<(%s)((?:%s)*?)\\s*>([\\s\\S]+?)<\\/\\1>' % (_block_tag, _valid_attr),\n             r'<%s(?:%s)*?\\s*\\/?>' % (_block_tag, _valid_attr),\n         )\n     )\n@@ -447,7 +447,7 @@ class InlineGrammar(object):\n     inline_html = re.compile(\n         r'^(?:%s|%s|%s)' % (\n             r'<!--[\\s\\S]*?-->',\n-            r'<(\\w+%s)((?:%s)*?)>([\\s\\S]*?)<\\/\\1>' % (_valid_end, _valid_attr),\n+            r'<(\\w+%s)((?:%s)*?)\\s*>([\\s\\S]*?)<\\/\\1>' % (_valid_end, _valid_attr),\n             r'<\\w+%s(?:%s)*?\\s*\\/?>' % (_valid_end, _valid_attr),\n         )\n     )\n",
+        "problem_statement": "parsing html can fail to close tag correctly\nnoticed while debugging an issue in https://github.com/lektor/lektor/issues/241#issuecomment-231819694 i noticed that raw html handling can be broken if there is a space before the closing `>` of the opening tag. i.e.\r\n\r\n```\r\nIn [38]: mistune.markdown('<iframe src=\"http://gfycat.com\" ></iframe>', escape=False)\r\nOut[38]: '<p><iframe src=\"http://gfycat.com\" >&lt;/iframe&gt;</p>\\n'\r\n```\r\n\r\nbut\r\n\r\n```\r\nIn [39]: mistune.markdown('<iframe src=\"http://gfycat.com\"></iframe>', escape=False)\r\nOut[39]: '<p><iframe src=\"http://gfycat.com\"></iframe></p>\\n'\r\n```\r\n\r\nin the case of the iframe, this causes the opening iframe to gobble up the rest of the page content. this seems to hold for any tag, though, e.g.\r\n```\r\nIn [40]: mistune.markdown('<a href=\"http://gfycat.com\" ></a>', escape=False)\r\nOut[40]: '<p><a href=\"http://gfycat.com\" >&lt;/a&gt;</p>\\n'\r\n```\r\n",
+        "repo": "lepture/mistune",
+        "requirements": "exceptiongroup @ file:///croot/exceptiongroup_1706031385326/work\niniconfig @ file:///home/linux1/recipes/ci/iniconfig_1610983019677/work\n-e git+https://github.com/lepture/mistune.git@715046fe4b5f3642b24edc7fdd62ba8915228498#egg=mistune\nnose==1.3.7\npackaging @ file:///croot/packaging_1734472117206/work\npluggy @ file:///croot/pluggy_1733169602837/work\npytest @ file:///croot/pytest_1738938843180/work\ntomli @ file:///opt/conda/conda-bld/tomli_1657175507142/work\n",
+        "test_patch": "diff --git a/tests/test_extra.py b/tests/test_extra.py\nindex 7318444..07c1ca3 100644\n--- a/tests/test_extra.py\n+++ b/tests/test_extra.py\n@@ -77,6 +77,12 @@ def test_parse_inline_html():\n     assert 'href' not in ret\n \n \n+def test_block_html():\n+    ret = mistune.markdown(\n+        '<div ></div>', escape=False\n+    )\n+    assert '<div ></div>' in ret\n+\n def test_parse_block_html():\n     ret = mistune.markdown(\n         '<div>**foo**</div>', parse_block_html=True, escape=False\n",
+        "version": "0.7"
+      },
+      "row_idx": 10676,
+      "truncated_cells": []
+    }
+  ],
+  "split": "test"
+}

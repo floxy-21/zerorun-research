@@ -1,7 +1,6 @@
 # Application coverage audit
 
-This audit separates the original completed observations from the completed
-expanded-budget campaign and its incomplete cases. It does not treat an
+This audit keeps the original observations, interrupted expanded-budget campaign and separate v3 no-cache-build campaign distinct. It does not treat an
 unattempted case as a passing or failing test, and does not establish natural
 reuse frequency.
 
@@ -27,24 +26,24 @@ It reports no material correctness stop or campaign-level exception.
 | --- | --- | --- | --- |
 | 1 | `eliben__pycparser-364` | COMPLETE | COMPLETE |
 | 2 | `eliben__pycparser-346` | COMPLETE | COMPLETE |
-| 3 | `eliben__pycparser-236` | INCOMPLETE_OR_UNSUPPORTED (compatibility) | INCOMPLETE_OR_UNSUPPORTED — C1 |
+| 3 | `eliben__pycparser-236` | INCOMPLETE_OR_UNSUPPORTED (compatibility) | INCOMPLETE_OR_UNSUPPORTED â€” C1 |
 | 4 | `joke2k__django-environ-329` | INCOMPLETE_OR_UNSUPPORTED (budget before paired block) | COMPLETE |
 | 5 | `joke2k__django-environ-450` | NOT_RUN_BUDGET | COMPLETE |
-| 6 | `joke2k__django-environ-174` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
+| 6 | `joke2k__django-environ-174` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
 | 7 | `tobymao__sqlglot-3182` | NOT_RUN_BUDGET | COMPLETE |
-| 8 | `tobymao__sqlglot-1765` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C3 |
+| 8 | `tobymao__sqlglot-1765` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C3 |
 | 9 | `tobymao__sqlglot-2658` | NOT_RUN_BUDGET | COMPLETE |
 | 10 | `terryyin__lizard-174` | NOT_RUN_BUDGET | COMPLETE |
 | 11 | `terryyin__lizard-241` | NOT_RUN_BUDGET | COMPLETE |
-| 12 | `terryyin__lizard-191` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C4 |
-| 13 | `eyeseast__python-frontmatter-34` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
-| 14 | `eyeseast__python-frontmatter-56` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
-| 15 | `eyeseast__python-frontmatter-31` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
+| 12 | `terryyin__lizard-191` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C4 |
+| 13 | `eyeseast__python-frontmatter-34` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
+| 14 | `eyeseast__python-frontmatter-56` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
+| 15 | `eyeseast__python-frontmatter-31` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
 | 16 | `joshtemple__lkml-85` | NOT_RUN_BUDGET | COMPLETE |
 | 17 | `joshtemple__lkml-97` | NOT_RUN_BUDGET | COMPLETE |
 | 18 | `joshtemple__lkml-87` | NOT_RUN_BUDGET | COMPLETE |
-| 19 | `mahmoud__boltons-302` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C5 |
-| 20 | `mahmoud__boltons-203` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C5 |
+| 19 | `mahmoud__boltons-302` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C5 |
+| 20 | `mahmoud__boltons-203` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C5 |
 | 21 | `mahmoud__boltons-31` | NOT_RUN_BUDGET | COMPLETE |
 | 22 | `lepture__mistune-393` | NOT_RUN_BUDGET | COMPLETE |
 | 23 | `lepture__mistune-143` | NOT_RUN_BUDGET | COMPLETE |
@@ -107,23 +106,23 @@ original 30-case acquisition target.
 The [repeat completion ledger](evidence/application-revision-20260907-v2/record-only/handoff-main-repeat-v1/run/completion.json)
 retains these exact error classes and messages. The codes in the table mean:
 
-- **C1 — runtime/test compatibility:** `ValueError: repaired-state compatibility
+- **C1 â€” runtime/test compatibility:** `ValueError: repaired-state compatibility
   oracle failed`. The fresh record has 44 passing tests and two failures caused
   by `open(..., 'rU')`.
-- **C2 — collection without usable node outcomes:** `ValueError: oracle node
+- **C2 â€” collection without usable node outcomes:** `ValueError: oracle node
   identity absent/duplicate`. Each of the four raw captures has exit code 2,
   zero node IDs and zero outcomes. The static dependency limits above are
   relevant, but the receipt does not establish a specific missing-import error.
-- **C3 — container lifecycle uncertainty:** `ConfigurationError: independent
+- **C3 â€” container lifecycle uncertainty:** `ConfigurationError: independent
   plain-pytest cleanup was not confirmed for uncertain create name ...`. The
   SQLGlot-1765 compatibility capture is empty. This occurred during the campaign
   affected by the host interruption; the records do not independently prove
   that the pause was its sole cause.
-- **C4 — repaired-state assertion failure:** `ValueError: repaired-state
+- **C4 â€” repaired-state assertion failure:** `ValueError: repaired-state
   compatibility oracle failed`. Lizard-191 has 86 passing tests and one failure:
   `Test_Big::test_typedef` expected cyclomatic complexity 2 and observed 3.
   The cause beyond that observed assertion is not established.
-- **C5 — missing usable capture:** `JSONDecodeError: Expecting value: line 1
+- **C5 â€” missing usable capture:** `JSONDecodeError: Expecting value: line 1
   column 1 (char 0)`. Both Boltons captures are zero bytes. Their underlying
   execution failure is not diagnosed by the retained record.
 
@@ -134,7 +133,7 @@ budget exclusion. Per-case raw records are under the linked completion ledger's
 
 The [host interruption record](evidence/application-revision-20260907-v2/host-interruption.json)
 is outside the frozen wrapper bundle. The operator observed a VM pause at
-08:07:57 UTC and issued the resume command within 08:24:17–08:24:30 UTC. The
+08:07:57 UTC and issued the resume command within 08:24:17â€“08:24:30 UTC. The
 exact resume instant is not established. At host 08:25:22 UTC the guest reported
 08:08:51.915852 UTC. Raw guest timestamps were preserved and no clock
 synchronization was requested during the run. Therefore the repeat is an
@@ -174,3 +173,40 @@ operating-system installation, independent human replication, a publicly
 pullable historical derived image or a general bit-identical rebuild guarantee.
 Natural demand for repeated validation and end-to-end coding-agent acceleration
 remain separate questions that these controlled experiments do not measure.
+
+## v3 full-ledger campaign on the no-cache build
+
+A subsequent public-source run disabled Docker build-cache reuse and evaluated the unchanged 24-case ledger. It completed 10 cases across five repositories and 20 paired blocks, with six incomplete or unsupported cases and eight cases not run within the fixed budget. All 20 reused successes agreed with fresh oracles. Complete producer-consumer cost was near break-even (0.12% lower), while consumer waiting was 79.1% lower; five completed cases were slower. Image preparation added 66.070 seconds. Host continuity checks passed within the recorded sampling bounds. This author-side run used the existing VM and pre-existing public base images; it is not independent human replication or a clean operating-system installation.
+
+The earlier 15-case result across seven repositories remains separate; it is not pooled with these ten cases. The six incomplete cases comprise two repaired-state compatibility failures and four records lacking usable oracle node identities. The eight budget exclusions remain unattempted. No substitute cases or retries were used.
+
+| Order | Frozen case | v3 disposition |
+| --- | --- | --- |
+| 1 | `eliben__pycparser-364` | COMPLETE |
+| 2 | `eliben__pycparser-346` | COMPLETE |
+| 3 | `eliben__pycparser-236` | INCOMPLETE_OR_UNSUPPORTED |
+| 4 | `joke2k__django-environ-329` | COMPLETE |
+| 5 | `joke2k__django-environ-450` | COMPLETE |
+| 6 | `joke2k__django-environ-174` | INCOMPLETE_OR_UNSUPPORTED |
+| 7 | `tobymao__sqlglot-3182` | COMPLETE |
+| 8 | `tobymao__sqlglot-1765` | COMPLETE |
+| 9 | `tobymao__sqlglot-2658` | COMPLETE |
+| 10 | `terryyin__lizard-174` | COMPLETE |
+| 11 | `terryyin__lizard-241` | COMPLETE |
+| 12 | `terryyin__lizard-191` | INCOMPLETE_OR_UNSUPPORTED |
+| 13 | `eyeseast__python-frontmatter-34` | INCOMPLETE_OR_UNSUPPORTED |
+| 14 | `eyeseast__python-frontmatter-56` | INCOMPLETE_OR_UNSUPPORTED |
+| 15 | `eyeseast__python-frontmatter-31` | INCOMPLETE_OR_UNSUPPORTED |
+| 16 | `joshtemple__lkml-85` | COMPLETE |
+| 17 | `joshtemple__lkml-97` | NOT_RUN_BUDGET |
+| 18 | `joshtemple__lkml-87` | NOT_RUN_BUDGET |
+| 19 | `mahmoud__boltons-302` | NOT_RUN_BUDGET |
+| 20 | `mahmoud__boltons-203` | NOT_RUN_BUDGET |
+| 21 | `mahmoud__boltons-31` | NOT_RUN_BUDGET |
+| 22 | `lepture__mistune-393` | NOT_RUN_BUDGET |
+| 23 | `lepture__mistune-143` | NOT_RUN_BUDGET |
+| 24 | `lepture__mistune-105` | NOT_RUN_BUDGET |
+
+Exact complete-pair totals were 281.329 s fresh versus 280.985 s ZeroRun, consumer totals 135.856 s versus 28.353 s, and per-arm setup-inclusive totals 283.951 s versus 283.812 s. Common image preparation was 66.070 s separately. Five of ten complete cases were slower (SQLGlot 3182 and 2658, lizard 174 and 241, lkml 85); the median complete case was 1.707% slower. Thus aggregate near break-even behavior is not a universal case-level benefit.
+
+The [v3 ledger](evidence/application-revision-20260907-v3/record-only/handoff-main-clean-v1/run/completion.json), [host records](evidence/application-revision-20260907-v3/host-observation/) and [reproduction guide](FRESH_REAL_WORKLOAD_REPRODUCTION.md) bind the full scope. Host reconciliation passed 132 samples with zero errors and a maximum gap of 16.737447 s; no pause was detected within those checks. Existing VM, pre-existing public base layers, external storage and shared-host limits remain disclosed.

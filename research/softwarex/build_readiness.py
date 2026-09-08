@@ -20,9 +20,9 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-application-revision-20260907-v3"
-CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.2-v5/receipt.json"
-CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-052-v1"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-full-cohort-20260907-v1"
+CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.3-v1/receipt.json"
+CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-053-v1"
 HOSTED_CI_RECEIPT = "research/softwarex/evidence/hosted-ci-20260907/receipt.json"
 
 
@@ -203,8 +203,8 @@ def check_test_and_install_bindings(release, *, historical_runtime_prefix=None):
 
 
 def check_current_runtime_bindings(release):
-    """Check 0.5.2 independently; old 0.5.1 evidence never certifies this runtime."""
-    from research.softwarex.five_hour_review import current_runtime
+    """Require separate 0.5.3 checks; historical receipts never certify this runtime."""
+    from research.softwarex.five_hour_review import current_runtime_053 as current_runtime
     relative = CURRENT_RUNTIME_RECEIPT
     matching_public_file(release, relative, ROOT / relative)
     matching_public_file(release, current_runtime.SELF, ROOT / current_runtime.SELF)
@@ -220,18 +220,18 @@ def check_current_runtime_bindings(release):
 
 
 def check_current_quickstart(release):
-    """Require the documented 0.5.2 installation and five actual STDIO stages."""
-    from research.softwarex import quickstart_052
-    helper = "research/softwarex/quickstart_052.py"
-    guide = "research/softwarex/QUICKSTART_052.md"
+    """Require the documented 0.5.3 installation and five actual STDIO stages."""
+    from research.softwarex import quickstart_053
+    helper = "research/softwarex/quickstart_053.py"
+    guide = "research/softwarex/QUICKSTART_053.md"
     install_relative, check_relative = (CURRENT_QUICKSTART_DIR + "/" + name
                                         for name in ("install.json", "check.json"))
-    require(sha(Path(quickstart_052.__file__)) == sha(ROOT / helper),
+    require(sha(Path(quickstart_053.__file__)) == sha(ROOT / helper),
             "loaded current quickstart validator differs")
     paths = (helper, guide, "research/softwarex/diagnose_mcp_authority_052.py", install_relative, check_relative)
     for relative in paths:
         matching_public_file(release, relative, ROOT / relative)
-    pair = quickstart_052.validate_receipt_pair(ROOT, ROOT / install_relative, ROOT / check_relative)
+    pair = quickstart_053.validate_receipt_pair(ROOT, ROOT / install_relative, ROOT / check_relative)
     install, check = pair["installation"], pair["check"]
     require(pair["passed"] is True and pair["read_only"] is True
             and pair["model_called"] is False and pair["real_repository_authorized"] is False
@@ -240,7 +240,7 @@ def check_current_quickstart(release):
             "current public guide installation and five-stage workflow must pass on one source commit")
     return {"version": CURRENT_VERSION, "installation": install, "workflow": check,
             "public_files_sha256": {relative: sha(ROOT / relative) for relative in paths},
-            "scope": "Fresh 0.5.2 public-source installation and five account-free synthetic STDIO stages; retained raw receipts rechecked, no independent human-user or agent usefulness claim."}
+            "scope": "Fresh 0.5.3 public-source installation and five account-free synthetic STDIO stages; retained raw receipts rechecked, no independent human-user or agent usefulness claim."}
 
 
 def check_extension_tests(release):
@@ -503,7 +503,8 @@ def build(release):
         "replication": {"completed": True, "planned_requests": planned["requests"],
                         "fresh_agreements": replication["counts"]["fresh_agreements"], "optimized_hits": replication["counts"]["optimized_hits"]},
         "state_case": {"completed": True, "requests": state["requests"], "optimized_hits": state["optimized_hits"], "autonomous_agent_evaluation": False},
-        "author_actions_remaining": ["Read and approve manuscript and evidence", "Confirm originality and no concurrent submission", "Complete publisher competing-interest tool and upload its generated Word document; confirm actual CRediT contributions", "Supply the required full postal address privately", "Upload files and approve the publisher-generated review PDF"],
+        "author_actions_remaining": ["Complete final journal-file upload and inspect the publisher-generated review PDF before submission"],
+        "author_confirmations_reported": ["Sole author approved article and AI-assistance disclosure", "Original work, not under consideration elsewhere", "Contributions and possible future commercialization supplied by the author", "Required contact details supplied privately"],
         "journal_submitted": False,
         "payment_made": False,
         "acceptance_probability_estimated": False,

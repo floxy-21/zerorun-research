@@ -115,7 +115,7 @@ def qualification_example(agent, commit):
             and task["image"] == setup["setup"]["runtime_image"], "worked-example contract differs")
     link = PUBLIC + "/blob/" + commit + "/" + relative.as_posix()
     return (
-        r"\paragraph{Worked qualification.} The SQLGlot laboratory's \code{handoff-tests} manifest invokes:"
+        r"\paragraph{Worked qualification} The SQLGlot laboratory's \code{handoff-tests} manifest invokes:"
         "\n\\begin{verbatim}\n/usr/local/bin/python -m pytest -p no:cacheprovider \\\n"
         "    tests/dialects/test_mysql.py\n\\end{verbatim}\n"
         "The \\href{" + link + "}{manifest} declares all 18 materialized top-level entries, including "
@@ -147,13 +147,22 @@ def handoff_text(evidence, commit="main"):
         "a diagnostics request is measured separately. These are imposed handoffs, not observed repetition frequencies.")]
     labels = {"v1_pilot": "Copy pilot", "v1_main": "Copy main",
               "v2_pilot": "Image pilot", "v2_pilot_repeat": "Image repeat", "v2_main": "Image main",
-              "v2_main_extended": "Image extended", "v2_fresh_pilot": "Image rebuild"}
+              "v2_main_extended": "Image extended", "v2_fresh_pilot": "Image rebuild",
+              "v3_main_clean": "Clean image main", "v4_main_full": "Full image main"}
     interrupted_image = evidence["controlled_runs"].get("v2_pilot", {}).get("timing_context", {}).get("interruption_reported") is True
     if interrupted_image:
-        labels["v2_pilot"] = "Image recovered"
+        labels["v2_pilot"] = "Image recovered$^{*}$"
     interrupted_extended = evidence["controlled_runs"].get("v2_main_extended", {}).get("timing_context", {}).get("interruption_reported") is True
     if interrupted_extended:
         labels["v2_main_extended"] = "Main repeat$^{*}$"
+    clean_main = evidence["controlled_runs"].get("v3_main_clean", {})
+    clean_timing_qualified = clean_main.get("timing_context", {}).get("sampled_continuity_checks_passed") is True
+    if clean_main.get("state") == "RECONCILED_RECORDED_OUTCOMES" and not clean_timing_qualified:
+        labels["v3_main_clean"] = "New main$^{*}$"
+    full_main = evidence["controlled_runs"].get("v4_main_full", {})
+    full_timing_qualified = full_main.get("timing_context", {}).get("sampled_continuity_checks_passed") is True
+    if full_main.get("state") == "RECONCILED_RECORDED_OUTCOMES" and not full_timing_qualified:
+        labels["v4_main_full"] = "Full main$^{*}$"
     table_rows, outcome_notes = [], []
     table_runs = dict(evidence["controlled_runs"])
     rebuilt = evidence.get("fresh_public_source_reproduction", {})
@@ -181,10 +190,11 @@ def handoff_text(evidence, commit="main"):
                 f"{times['fresh']/1000:.2f}/{times['zerorun']/1000:.2f} & "
                 f"{consumer['fresh']/blocks/1000:.2f}/{consumer['zerorun']/blocks/1000:.2f} & "
                 f"{setup['fresh']/1000:.2f}/{setup['zerorun']/1000:.2f}" + r" \\")
-            outcome_notes.append(f"{labels[name]} was {abs(change):.1f}\\% {direction} over the complete chain.")
+            # The table retains every measured total. Do not turn small observed
+            # differences or interrupted timings into standalone speedup claims.
         else:
             table_rows.append(f"{labels[name]} & 0/{result['selected_cases']} & 0/0 & --- & --- & ---" + r" \\")
-        if result["failed_operations"] or result["material_correctness_stop"]:
+        if result["material_correctness_stop"] or (result["failed_operations"] and name not in {"v2_main_extended", "v3_main_clean", "v4_main_full"}):
             outcome_notes.append(f"{labels[name]} retains {result['failed_operations']} failed operations; "
                                  f"a material-correctness stop was {'recorded' if result['material_correctness_stop'] else 'not recorded'}.")
         if run["campaign_error"]:
@@ -195,9 +205,10 @@ def handoff_text(evidence, commit="main"):
             r"\begin{tabular}{@{}lrrrrr@{}}\toprule",
             r"Deployment & Cases & Blocks/hits & Chain (s) & Consumer (s) & With setup (s) \\",
             r"\midrule", *table_rows, r"\bottomrule\end{tabular}",
-            r"\caption{Fresh/ZeroRun paired costs, without pooling cohorts. Cases are completed/selected; chain and setup-inclusive times are summed across complete blocks, while consumer times are per-request means. Setup includes per-arm source/environment preparation, excluding common image construction and acquisition. Missing complete timings are dashes, not zero.}",
+            r"\caption{Fresh/ZeroRun costs, without pooling cohorts. Cases are completed/selected; chain and setup-inclusive times sum complete blocks; consumer times are request means. Setup excludes common image construction/acquisition. Dashes denote missing timings. $^{*}$Recovered image pilot and Main repeat were interrupted by host disk exhaustion/VM pauses. Guest-clock operation durations omit the host pause and are descriptive audit values, not uninterrupted performance measurements. Any other starred run lacks qualifying continuity observations.}",
             r"\label{tab:handoffs}\end{table}"]))
-        paragraphs.append(" ".join(outcome_notes))
+        if outcome_notes:
+            paragraphs.append(" ".join(outcome_notes))
         repeat = evidence["controlled_runs"].get("v2_pilot_repeat")
         if repeat and repeat["state"] == "RECONCILED_RECORDED_OUTCOMES":
             costs = repeat["complete_paired_costs"]
@@ -219,14 +230,8 @@ def handoff_text(evidence, commit="main"):
                 == [row["case_id"] for row in main["cases"]], "original main stopping ledger differs")
         require(dispositions[:4] == ["COMPLETE", "COMPLETE", "INCOMPLETE_OR_UNSUPPORTED", "INCOMPLETE_OR_UNSUPPORTED"]
                 and dispositions[4:] == ["NOT_RUN_BUDGET"] * 20, "original main dispositions differ")
-        paragraphs.append(
-            "The original image main followed ledger order, pycparser first, with a 300-second monotonic budget "
-            "checked before cases/blocks/arms and a 120-second command cap. Two cases completed; the third failed "
-            "repaired-state compatibility. Budget expired before django-environ's paired block; 20 selections were "
-            "not run. These 2/24 pycparser cases establish bounded feasibility, not a representative favorable region.")
-    if interrupted_image:
-        paragraphs.append("The first image pilot resumed after a VM pause and storage interruption; its retained "
-                          "recovery ledger does not certify uninterrupted timing.")
+        paragraphs.append("The original 300-second main completed two pycparser cases; compatibility and "
+                          "budget limits prevented further pairs, leaving 20 unrun. It establishes bounded feasibility only.")
     extended = evidence["controlled_runs"].get("v2_main_extended", {})
     if extended.get("state") == "RECONCILED_RECORDED_OUTCOMES":
         cases = extended["cases"]
@@ -235,16 +240,12 @@ def handoff_text(evidence, commit="main"):
         unrun = sum(row["disposition"] == "NOT_RUN_BUDGET" for row in cases)
         repositories = len({row["repo"] for row in completed})
         paragraphs.append(
-            f"The separately amended 1,200-second repeat retained all {len(cases)} cases in the same order: "
+            f"The interrupted repeat attempted all {len(cases)} cases in frozen order: "
             f"{len(completed)} completed across {repositories} repositories, {unsupported} were incomplete/unsupported, "
-            f"and {unrun} were not run within budget. Dependencies were not changed after outcomes. "
-            "Repeated cases are not additional independent subjects; the original run remains separate. "
-            "The coverage ledger preserves each stopping reason; completed cases do not estimate population benefit.")
-        if interrupted_extended:
-            paragraphs.append("The extended repeat ($^{*}$) was interrupted by host disk exhaustion and a VM pause. "
-                              "Recovery moved subsequent VM disk writes to external storage. Its guest-clock timings "
-                              "are retained for audit, not treated as uninterrupted performance replication; host "
-                              "pause time is not represented by those operation durations.")
+            f"and {unrun} were unrun. The nine incomplete cases stopped before paired handoffs: runtime/test "
+            "compatibility, unusable collection, cleanup uncertainty, repaired-state assertion failure or empty "
+            "captures. These case dispositions are distinct from failed-operation counts and incorrect reuses. "
+            "The coverage audit retains every stopping reason and unresolved cause.")
     image = evidence["image_build"]
     if image["state"] == "RECONCILED_RECORDED_IMAGE":
         preparation = image["reconciliation"]
@@ -258,12 +259,46 @@ def handoff_text(evidence, commit="main"):
             and rebuilt.get("fresh_real_workload_reproduction_confirmed") is True):
         fresh = rebuilt["pilot"]
         paragraphs.append(
-            f"From fresh public checkouts, an author-side recipe rebuild took {rebuilt['image']['setup_outer_ms']/1000:.2f}~s "
-            f"and supported {fresh['complete_case_count']}/{fresh['selected_case_count']} original pilot cases with "
-            "fresh oracles (Image rebuild). It returned the historical image digest using cached Docker layers "
-            "on the existing VM. This establishes the documented public-source route, not a clean-OS, uncached "
-            "bit-identical or independent-laboratory rebuild. The old derived image remains locally hosted; "
-            "the new recipe route does not require that registry. Build and paired costs remain separate.")
+            f"An author-side public-source recipe rebuild took {rebuilt['image']['setup_outer_ms']/1000:.2f}~s "
+            f"and supported {fresh['complete_case_count']}/{fresh['selected_case_count']} original pilot cases "
+            "with fresh oracles (Image rebuild). Existing Docker layers returned the historical digest; "
+            "this was not an uncached or independent-laboratory rebuild.")
+    clean_rebuild = evidence.get("clean_public_source_reproduction", {})
+    if clean_rebuild.get("fresh_image_main_reproduction_confirmed") is True:
+        clean = clean_rebuild["main"]
+        complete = [row for row in clean["cases"] if row["disposition"] == "COMPLETE"]
+        incomplete = sum(row["disposition"] == "INCOMPLETE_OR_UNSUPPORTED" for row in clean["cases"])
+        unrun = sum(row["disposition"] == "NOT_RUN_BUDGET" for row in clean["cases"])
+        paragraphs.append(
+            f"A subsequent public-source build used Docker \\code{{--no-cache}} "
+            f"({clean_rebuild['image']['setup_outer_ms']/1000:.2f}~s), binding the actual new image identity "
+            f"to the same ordered cohort. Under the 1,200-second budget, {len(complete)} cases completed across "
+            f"{len({row['repo'] for row in complete})} repositories, {incomplete} were incomplete/unsupported "
+            f"and {unrun} unrun. Every completed handoff had a fresh oracle. Existing VM/base layers and "
+            "dependency caches were allowed; clean-OS and independent-human replication are not established.")
+        if clean_timing_qualified:
+            paragraphs.append("Host/guest samples bracketed the command with no observed interruption; "
+                              "shorter pauses cannot be excluded. Monitoring is part of the measured environment.")
+        else:
+            paragraphs.append("Host observations do not qualify this rerun's timing as uninterrupted; "
+                              "the retained qualification reasons constrain interpretation to feasibility.")
+    if full_main.get("state") == "RECONCILED_RECORDED_OUTCOMES":
+        full_cases = full_main["cases"]
+        complete = sum(row["disposition"] == "COMPLETE" for row in full_cases)
+        incomplete = sum(row["disposition"] == "INCOMPLETE_OR_UNSUPPORTED" for row in full_cases)
+        attempted = sum(not row["disposition"].startswith("NOT_RUN")
+                        and row["disposition"] != "UNAVAILABLE_ACQUISITION" for row in full_cases)
+        paragraphs.append(
+            f"A subsequent full-cohort rerun attempted {attempted}/{len(full_cases)} selected cases in the original "
+            f"order using that same rebuilt image: {complete} completed and {incomplete} were incomplete/unsupported. "
+            "The 20-minute campaign cutoff was removed; 120-second command safeguards remained. This is a "
+            "separate repeat, not additional independent subjects or a new image rebuild.")
+        if full_timing_qualified:
+            paragraphs.append("Host/guest samples cover the full command with no observed interruption. "
+                              "Small cost differences are descriptive, not statistically established acceleration.")
+        else:
+            paragraphs.append("Its host observations do not qualify uninterrupted timing; retained durations "
+                              "therefore support no uninterrupted performance claim.")
     if evidence["earlier_image_preparation"]["state"] == "RECONCILED_RECORDED_PREPARATION_FAILURE":
         failed_setup = evidence["earlier_image_preparation"]["setup_outer_ms"]
         paragraphs.append(f"The earlier failed image preparation ({failed_setup/1000:.2f}~s) is retained.")
@@ -520,7 +555,11 @@ def build(preview=False):
     if handoff:
         repeat = handoff["controlled_runs"]["v2_pilot_repeat"]["complete_paired_costs"]
         extended_main = handoff["controlled_runs"].get("v2_main_extended", {})
-        main = extended_main if extended_main.get("complete_case_count", 0) else handoff["controlled_runs"]["v2_main"]
+        clean_main = handoff["controlled_runs"].get("v3_main_clean", {})
+        full_main = handoff["controlled_runs"].get("v4_main_full", {})
+        main = (full_main if full_main.get("complete_case_count", 0) else
+                clean_main if clean_main.get("complete_case_count", 0) else
+                extended_main if extended_main.get("complete_case_count", 0) else handoff["controlled_runs"]["v2_main"])
         consumer_saving = 100 * (1 - repeat["consumer_ms"]["zerorun"] / repeat["consumer_ms"]["fresh"])
         chain_overhead = 100 * (repeat["chain_ms"]["zerorun"] / repeat["chain_ms"]["fresh"] - 1)
         main_saving = 100 * main["complete_paired_costs"]["chain_saved_fraction"]
@@ -528,8 +567,10 @@ def build(preview=False):
         repositories = len({row["repo"] for row in main["cases"] if row["disposition"] == "COMPLETE"})
         abstract += (f" An image pilot repeat reduced consumer latency {consumer_saving:.1f}\\% but increased "
                      f"producer-plus-consumer time {chain_overhead:.1f}\\%.")
-        if main.get("timing_context", {}).get("interruption_reported") is True:
-            abstract += (f" An interrupted feasibility repeat completed {main['complete_case_count']}/"
+        if (main.get("timing_context", {}).get("interruption_reported") is True
+                or (main is clean_main or main is full_main)
+                and not main.get("timing_context", {}).get("sampled_continuity_checks_passed")):
+            abstract += (f" A feasibility repeat completed {main['complete_case_count']}/"
                          f"{main['selected_case_count']} selected cases across {repositories} repositories; "
                          "its timings do not establish uninterrupted acceleration.")
         else:
