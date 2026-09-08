@@ -150,10 +150,12 @@ def handoff_text(evidence, commit="main"):
         "then requests identified prior status. Each arm is checked against an independently fresh full-target "
         "oracle. Two blocks reverse arm order. These imposed handoffs do not measure natural repetition frequency.",
         f"The corrected-fixture V6 repeat completed all 24 cases across {repos} repositories: 48 paired blocks, "
-        f"48 reused successes and 96 agreeing fresh-oracle checks. Complete chain time was {chain_saving:.1f}\\% "
-        f"lower, and mean scripted consumer-request latency {consumer_saving:.1f}\\% lower. Aggregate chains improved in {faster}/24 "
-        f"cases and worsened in {24-faster}/24. This demonstrates bounded operation and workload-dependent costs, "
-        "not population-wide acceleration. Source inventories and the actual runtime image are bound before and after execution."]
+        f"48 reused successes and 96 agreeing fresh-oracle checks. Descriptively, complete chain time was {chain_saving:.1f}\\% "
+        f"lower and mean scripted consumer-request latency {consumer_saving:.1f}\\% lower. The original fine-grained "
+        "host monitor was not recovered; a retained VirtualBox log records a 5.53~s heartbeat lapse in the nominal "
+        "window with conditional clock association. These percentages do not certify uninterrupted or quiet-host "
+        f"performance. Chains improved in {faster}/24 cases and worsened in {24-faster}/24. "
+        "Source and runtime identities are bound before and after execution."]
     table = []
     for name,label in (("v1_pilot","Copy pilot"),("v2_pilot_repeat","Image repeat"),
                        ("v5_main_compatible","Compatible V5"),("v6_main_corrected","Corrected V6")):
@@ -170,7 +172,7 @@ def handoff_text(evidence, commit="main"):
         r" & Cases & \multicolumn{2}{c}{Chain sum (s)} & \multicolumn{2}{c}{Consumer mean (s)} \\",
         r"Deployment & complete/selected & Fresh & ZeroRun & Fresh & ZeroRun \\",
         r"\midrule", *table, r"\bottomrule\end{tabular}",
-        r"\caption{Separate cohorts, without pooling. Chain includes cold producer plus consumer, excluding per-arm setup, common image construction, operator review, fresh oracles and diagnostics. Measured setup, oracle and diagnostic costs are retained separately; operator review is unmeasured. Earlier interrupted campaigns remain in the supplement. V6 timings are descriptive, with the host-monitor qualification below. Its corrected Lizard fixture and original V5 failure are retained.}",
+        r"\caption{Separate cohorts, without pooling. Chain includes cold producer plus consumer; setup, image construction, review, fresh oracles and diagnostics are excluded. Their measured costs are separate; operator review is unmeasured. V6 is descriptive: its original host monitor is missing, and a 5.53~s heartbeat lapse has conditional clock association. No uninterrupted or quiet-host timing is certified. V5's original Lizard failure and V6's correction remain separate.}",
         r"\label{tab:handoffs}\end{table}"]))
     paragraphs.append(
         f"Adding per-arm setup gives V6 totals of {costs['setup_inclusive_chain_ms']['fresh']/1000:.2f}~s fresh "
@@ -180,28 +182,23 @@ def handoff_text(evidence, commit="main"):
         "author-side recipe build, not clean-OS or independent-human replication, and the loopback-derived image "
         "is not a publicly pullable artifact.")
     paragraphs.append(
-        "V5 completed 23 cases and retained Lizard-191 as unsupported. V6 preserves every selected case, command "
-        "and source patch, changing only its stale expected complexity from two to three; the exact public upstream "
-        "method supports that correction. This intervention is explicit, not a replacement of an unfavorable case. "
-        "The original 2/24 partial main campaign and interrupted 15/24 repeat remain separate in the coverage audit, "
-        "with compatibility, collection, lifecycle, assertion and capture failures distinguished from reuse errors. "
-        "No incomplete case contributes a zero-cost observation. The original fine-grained V6 host-monitor files "
-        "were not recovered. The retained VirtualBox log contains a 5.53~s heartbeat lapse within the nominal run "
-        "window, without an explicit pause transition. Its clock association is conditional; V6 does not certify "
-        "uninterrupted or quiet-host performance.")
+        "V5 completed 23 cases and retained Lizard-191 as unsupported. V6 preserves selection, command and source "
+        "patch, changing only the stale expected complexity in \\code{Test\\_Big.test\\_typedef} from two to three. "
+        "The \\href{https://github.com/terryyin/lizard/blob/67d87968e9fecd459c9a9a1dcb01cf6ceac5721d/test/test_languages/testCAndCPP.py#L685}"
+        "{pinned upstream method} supports this explicit correction. The original 2/24 campaign, interrupted "
+        "15/24 repeat and all compatibility, collection, lifecycle, assertion and capture failures remain in the "
+        "coverage audit. Incomplete cases contribute no zero-cost observations.")
     repeat = runs["v2_pilot_repeat"]["complete_paired_costs"]
     paragraphs.append(
         f"The image repeat reduced consumer waiting {100*(1-repeat['consumer_ms']['zerorun']/repeat['consumer_ms']['fresh']):.1f}\\% "
         f"while increasing chain time {100*(repeat['chain_ms']['zerorun']/repeat['chain_ms']['fresh']-1):.1f}\\%. "
-        "A consumer needing an identified earlier status can benefit after producer work has finished; a consumer "
-        "requiring newly executed diagnostics must pay for fresh validation. Qualification and acquisition are "
-        "additional costs, not assumed free. The operating guide specifies declared inventory, exclusions and "
-        "re-review triggers; an unchanged manifest does not qualify arbitrary future implementation changes.")
+        "Identified earlier status can reduce waiting after producer work; newly executed diagnostics require "
+        "fresh validation. Qualification and acquisition add costs. The operating guide specifies declared "
+        "inputs and re-review triggers; an unchanged manifest does not qualify arbitrary future source changes.")
     paragraphs.append(
         r"The \href{https://github.com/floxy-21/zerorun-research/blob/" + commit +
         r"/research/softwarex/APPLICATION_COVERAGE_AUDIT.md}{coverage audit} and reproduction guide index every cohort, "
-        "raw outcome, setup cost and intervention. The earlier single verified model-producer pilot remains separate "
-        "from these reference-patch comparisons and the new installed-client application.")
+        "raw outcome, setup cost and intervention, including the separate earlier single-producer pilot.")
     exploratory = evidence["exploratory_amortization"]["reconciliation"]
     require(exploratory["reconciled"] and exploratory["all_six_blocks_complete"]
             and not exploratory["material_correctness_stop"], "amortization observations differ")
@@ -230,6 +227,73 @@ def actual_agent_evidence(preview=False):
     return result
 
 
+def consumer_lizard_audit_evidence(application, handoff, preview=False):
+    """Reuse strict study reconciliations and bind the new reader-facing audit."""
+    if preview:
+        return None
+    from research.softwarex import build_consumer_lizard_audit as audit
+    recovered = {version: handoff["controlled_runs"][key]["reconciliation"]
+                 for version, key in ((5, "v5_main_compatible"), (6, "v6_main_corrected"))}
+    value = audit.build(ROOT, application=application, recovered=recovered)
+    require(load(ROOT / audit.JSON_PATH) == value
+            and (ROOT / audit.MARKDOWN_PATH).read_bytes() == audit.markdown(value).encode(),
+            "consumer/Lizard reader audit is stale")
+    counts = value["summary"]
+    require(counts["consumer_rows"] == counts["literal_freshness_matches"]
+            == counts["literal_outcome_matches"] == 15
+            and counts["messages_with_unverifiable_wire_assertions"] == 13,
+            "literal consumer audit interpretation differs")
+    return {"path": audit.JSON_PATH, "sha256": digest(ROOT / audit.JSON_PATH),
+            "markdown_path": audit.MARKDOWN_PATH, "markdown_sha256": digest(ROOT / audit.MARKDOWN_PATH),
+            "summary": counts, "independent_human_review": False}
+
+
+def agent_case_table(evidence):
+    """Keep every original producer outcome and its actual consumer disposition."""
+    from research.softwarex.agent_application_053.validation import CASES, STAGES
+    producers = evidence["producer"]["cases"]
+    require([row["case_id"] for row in producers] == list(CASES),
+            "actual-case table selection or order differs")
+    consumers = evidence["consumer"]["cases"]
+    by_case = {row["case_id"]: row for row in consumers}
+    eligible = [row["case_id"] for row in producers if row["classification"]["completed_verified_fix"]]
+    require(len(by_case) == len(consumers) == 5 and list(by_case) == eligible,
+            "actual-case table consumer eligibility differs")
+    extra = evidence["additive_client_event_audit"]["rows"]
+    table = []
+    for row in producers:
+        classification = row["classification"]
+        fixed = classification["completed_verified_fix"]
+        failed = classification["baseline_nonxfail_failed_calls"]
+        require(classification["baseline_available"] and classification["final_available"]
+                and classification["same_collected_node_set"] and classification["baseline_exit_code"] == 1
+                and failed and len(failed) == len(set(failed))
+                and classification["final_exit_code"] == (0 if fixed else 1),
+                "actual-case table baseline/final meaning differs")
+        disposition = "Ineligible"
+        if fixed:
+            stages = by_case[row["case_id"]]["stages"]
+            require([item["stage"] for item in stages] == list(STAGES)
+                    and all(item["model_invoked"] and item["process_completed_successfully"]
+                            and item["analysis"]["model_turn_completed"] and item["analysis"]["boundary_pass"]
+                            for item in stages), "actual-case table consumer turn incomplete")
+            restored = [item for item in extra if item["case_id"] == row["case_id"] and item["stage"] == "restored"]
+            require(stages[0]["analysis"]["reuse_observed"]
+                    and any(item["classification"] == "FRESH_SUCCESS" for item in stages[1]["analysis"]["completed_mcp_results"])
+                    and len(restored) == 1 and restored[0]["additional_fresh_failures"] == 1,
+                    "actual-case table cannot infer unrecorded consumer results")
+            disposition = "H / V / F"
+        label = row["case_id"].split("__", 1)[1]
+        table.append(f"{label} & {len(failed)} & {classification['final_exit_code']} & {disposition}" + r" \\")
+    return "\n".join([
+        r"\begin{table}[htbp]\centering\small",
+        r"\begin{tabular}{@{}lrrl@{}}\toprule",
+        r"Original case & Baseline failures & Final exit & Consumers \\", r"\midrule",
+        *table, r"\bottomrule\end{tabular}",
+        r"\caption{Six actual model-produced patches, separate from scripted reference-patch timing. Baseline failures are non-xfail failed test calls; final exit zero means the complete configured target passed. H/V/F denotes identified prior success, fresh agreement, then fresh failure after operator restoration. SQLGlot remains a primary failure; its separately assisted repair is excluded.}",
+        r"\label{tab:actual-cases}\end{table}"])
+
+
 def agent_application_text(evidence, commit):
     result = evidence["producer"]
     require(result["selected_cases"] == 6 and result["attempted_states"] == 12
@@ -251,27 +315,32 @@ def agent_application_text(evidence, commit):
             and qualification["inspection"]["human_review_seconds"] is None,
             "actual qualification example differs")
     guide = PUBLIC + "/blob/" + commit + "/research/softwarex/REAL_AGENT_APPLICATION_053_RESULTS.md"
+    audit = PUBLIC + "/blob/" + commit + "/research/softwarex/CONSUMER_LIZARD_AUDIT.md"
     return "\n\n".join([
         "A prospective application selected six issues across six repositories. Each producer received the issue "
         "and unchanged supplied tests, without the reference production fix, for one bounded model attempt. "
         "Fresh container checks of each baseline and actual final snapshot verified five fixes with identical "
         "collected-node sets. SQLGlot's primary patch retained two failing dialect tests; a separately assisted "
         "production repair subsequently passed the same 99-node target without changing the original 5/6 outcome. "
-        "Requests specified gpt-6-astra, medium effort, through Codex CLI 0.153.3; captured events did not identify "
+        "Table~\\ref{tab:actual-cases} retains every primary case. Requests specified gpt-6-astra, medium effort, "
+        "through Codex CLI 0.153.3; captured events did not identify "
         "the backing model independently.",
+        agent_case_table(evidence),
         "Laboratory scripts qualified, externally authorized and seeded the five eligible patched states. "
         "Actual model consumers then received task-level requests about available evidence, newly executed "
         "diagnostics, and an operator-restored original buggy state. All 15 turns completed, each with one MCP "
         "request: five \\code{HIT\\_REUSED}, five \\code{VERIFY\\_MATCH}, and five fresh \\code{MISS\\_FAILED} "
-        "results after restoration. Every model correctly distinguished historical status from new execution "
-        "and success from failure within the configured target. This is a guided application using model-produced "
-        "patches, with scripted preparation and restoration; it is not a wholly autonomous workflow.",
-        "The frozen parser left five failed client envelopes unclassified; a separate additive audit verifies "
-        "their intact fresh-failure payloads without rewriting original records. Internal AI-assisted review "
-        "confirmed all 15 core status/freshness interpretations. Thirteen messages additionally asserted wire "
+        "results after restoration. In these 15 turns, recorded core interpretations matched historical/fresh "
+        "and success/failure status within the configured target. Preparation and restoration were scripted; "
+        "this is a guided application, not a wholly autonomous workflow.",
+        "The frozen parser left five failed client envelopes unclassified; an additive audit verifies "
+        "their intact payloads without rewriting records. A reproducible comparison matches literal model "
+        "status/freshness fields to the recorded results; internal AI-assisted review assessed stated limits. "
+        "Neither is independent human review. Thirteen messages additionally asserted wire "
         "error flags omitted from the CLI archive; those details remain unverifiable, not certified or established "
-        "false. Complete prompts, transcripts, preparation failures and separate cost intervals are in the "
-        "\\href{" + guide + "}{application ledger}. The 415.91~s consumer-model total includes 60.68~s runner "
+        "false. The \\href{" + audit + "}{15-row response audit} links each request, payload and interpretation "
+        "with exact record locators; the \\href{" + guide + "}{application ledger} retains prompts, preparation failures and "
+        "separate costs. The 415.91~s consumer-model total includes 60.68~s runner "
         "time; neither is a controlled end-to-end saving.",
         r"\paragraph{Worked qualification} The \href{" + PUBLIC + "/blob/" + commit + "/" + relative +
         "}{Pycparser record} binds \\code{tests/test\\_c\\_parser.py}, parser modules, generated tables, fixtures "
@@ -315,12 +384,35 @@ def application_text(evidence):
         "Three Codex configurations failed overall through missing authority, approval refusal or unsupported arguments. "
         "A separate API-guided demonstration passed two model decisions and six interpretations without retries; "
         "neither an identified backing model nor a causal documentation effect was established. Full trial "
-        "denominators, failures, scripted checks and fresh oracles remain in the supplement. "
-        "Separately, a fresh anonymous 0.5.3 public clone passed external installation and five actual MCP stages: "
-        "refusal, readiness, fresh execution, reuse and fresh verification, with 36 matching runtime files. "
-        f"Installation took {current['installation']['elapsed_seconds']:.1f}~s and server checks "
-        f"{current['check']['elapsed_seconds']:.1f}~s, excluding cloning, Docker setup and preparation. "
-        "This account-free synthetic check is not an independent user study.")
+        "denominators, failures, scripted checks and fresh oracles remain in the supplement.")
+
+
+def fresh_public_evidence(preview=False):
+    if preview:
+        return None
+    from research.softwarex import verify_fresh_public_053 as reader
+    relative = "research/softwarex/evidence/public-fresh-linux-053-v1"
+    result = reader.verify(ROOT, ROOT / relative)
+    require(result["passed"] is True and result["new_docker_empty_inventory"] is True
+            and result["normal_mcp_requests"] == 10 and result["fresh_failure_requests"] == 2
+            and result["original_pre_mcp_failure_preserved"] is True
+            and result["source_installation_and_mcp"]["passed"] is True
+            and result["source_installation_and_mcp"]["check"]["stages_recorded"] == 5
+            and result["wheel_mcp"]["passed"] is True and result["wheel_mcp"]["stages_recorded"] == 5
+            and result["model_called"] is False and result["independent_human_replication"] is False,
+            "fresh public userland narrative differs from strict replay")
+    return {"path": relative, "reader_sha256": digest(Path(reader.__file__)), "reconciliation": result}
+
+
+def fresh_public_text(evidence, commit):
+    if evidence is None:
+        return ""
+    guide = PUBLIC + "/blob/" + commit + "/research/softwarex/FRESH_LINUX_053_REPRODUCTION.md"
+    return (
+        "A new Alpine userland and empty Docker store on the shared Windows/WSL host pulled the public image. "
+        "The original helper's metadata-limit refusal is retained. A versioned metadata-only correction outside "
+        "the anonymous checkout then passed source/wheel checks (ten MCP stages), plus two expected fresh failures. "
+        "This \\href{" + guide + "}{synthetic reproduction} is author-run, not independent human or hardware replication.")
 
 
 def extension_text(evidence):
@@ -444,13 +536,12 @@ def build(preview=False):
         result = (
             "All 168 requests in 24 completed planned blocks agreed with fresh full-target checks: 96 optimized hits "
             "and 72 non-hits. All 504 arm invocations and 168 fresh-oracle captures are retained. "
-            "A VM crash after 21 complete blocks required an explicit recovery of only unfinished preselected "
-            "Packaging blocks four through six, using the unchanged driver. The supplement retains failures and "
-            "recovery records; coverage is recovered, not uninterrupted. Packaging's unflushed setup total is "
-            "unavailable and its setup-inclusive ratio omitted. "
+            "After a VM crash at 21 complete blocks, the unchanged driver recovered only unfinished preselected "
+            "Packaging blocks four through six. Coverage is recovered, not uninterrupted; missing setup totals "
+            "exclude Packaging's setup-inclusive ratio. "
             f"The interrupted attempt retains {replication['additional_interrupted_complete_requests']} complete request, "
             f"{replication['additional_incomplete_requests']} partial request and an outcome-less invocation. Including its surviving "
-            f"arm costs changes Packaging's direct/optimized ratio to {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}.")
+            f"costs gives Packaging's direct/optimized ratio {next(r for r in replication['subjects'] if r['workload'] == 'packaging')['all_recorded_attempt_direct_to_fast_ratio']:.3f}; all attempts remain archived.")
         table_rows = []
         for r in compact:
             setup = r['setup_inclusive_direct_to_fast_ratio']
@@ -479,8 +570,12 @@ def build(preview=False):
     _, operating_text = extension_text(extension)
     application = application_evidence(preview)
     client_text = application_text(application)
+    fresh_public = fresh_public_evidence(preview)
+    if fresh_public:
+        client_text += "\n\n" + fresh_public_text(fresh_public, commit)
     handoff = handoff_evidence(preview)
     actual_agent = actual_agent_evidence(preview)
+    reader_audit = consumer_lizard_audit_evidence(actual_agent, handoff, preview)
     if handoff:
         main = handoff["controlled_runs"]["v6_main_corrected"]
         c = main["complete_paired_costs"]
@@ -513,6 +608,8 @@ def build(preview=False):
         "replication": replication, "state_rejoin": state_binding, "trace_summary_sha256": digest(EVIDENCE / "trace-summary-v1.json"),
         "inventory": inventory, "extension": extension, "application": application, "handoff": handoff,
         "actual_agent_application": actual_agent,
+        "consumer_lizard_audit": reader_audit,
+        "fresh_public_userland": fresh_public,
         "abstract_whitespace_words": len(abstract_text.split()),
         "meaning": "Evidence and format validation, not an acceptance probability or production qualification."}
     return document, refs, summary

@@ -1,0 +1,23 @@
+{
+  "authority_scope": "Explicitly user-authorized synthetic laboratory operation; separately created external exact-manifest authority. This record is an operator review assertion, not automated proof for arbitrary code.",
+  "command": [
+    "python",
+    "fixture.py"
+  ],
+  "environment_forwarded": [],
+  "image": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+  "inputs": [
+    "fixture.py",
+    "fixture.txt"
+  ],
+  "negative_data_sha256": "0f5d6f43e3ee9e21b2bcb984d00104e72a1b421f7c0e0497565adcd67e63dbcd",
+  "network": "none",
+  "original_data_sha256": "cfcde9dbfb73c6d8e519237e71b765dcee83fce1de32740a6b4e21b70fc00cf8",
+  "outputs": [],
+  "program": {
+    "bytes": 184,
+    "sha256": "1c274f1039a200282830b76a9911b3fdb2a83fde6817d954d3214b4c68663a0e"
+  },
+  "review_reason": "The inspected program only reads the one UTF-8 data file, compares against one fixed literal and raises SystemExit(73) on inequality. Neither state reads external input, time or random data.",
+  "scope": "Only the original fixed program and two literal data states; no real project or inferred input closure."
+}

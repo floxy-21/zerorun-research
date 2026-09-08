@@ -15,7 +15,7 @@ The final package is organized as follows:
 - `output/submission/ZeroRun_SoftwareX_reviewer.zip`: inventoried reviewer artifact.
 - `COVER_LETTER.txt`: canonical cover letter for the submission portal.
 - `HIGHLIGHTS.docx`: separate Word highlights; `HIGHLIGHTS.txt` is its matching source.
-- `OPERATING_GUIDE.md`, `CLIENT_API_CARD.md`, and `QUICKSTART_053.md`: operator instructions, the configured-task API reference, and the current account-free laboratory walkthrough. `QUICKSTART_LAB.md` preserves the historical 0.5.1 guide.
+- `OPERATING_GUIDE.md`, `CLIENT_API_CARD.md`, and `QUICKSTART_053_METADATA_V2.md`: operator instructions, the configured-task API reference, and the current account-free laboratory walkthrough. `QUICKSTART_LAB.md` preserves the historical 0.5.1 guide.
 - `REPRODUCIBILITY.md`: installation, offline checks, and separate fresh-execution instructions.
 - `SUBMISSION_CHECKLIST.md`: verified preparation checks and author-controlled declarations.
 - `UPLOAD_GUIDE.md`: exact upload files and the remaining author-controlled portal steps.

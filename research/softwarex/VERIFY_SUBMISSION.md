@@ -3,19 +3,19 @@
 Use a clean Git checkout and **CPython 3.12–3.14**. No package installation is required. For the 0.5.3 submission snapshot, use the following commands once its named release and reviewer asset are available:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.3-20260908-r1 https://github.com/floxy-21/zerorun-research.git zerorun-review
+git clone --depth 1 --branch softwarex-0.5.3-20260908-r2 https://github.com/floxy-21/zerorun-research.git zerorun-review
 cd zerorun-review
 git rev-parse HEAD
 ```
 
-Compare the printed commit with the commit shown on the `softwarex-0.5.3-20260908-r1` GitHub Release page. The tagged release and its archives remain unchanged when later navigation corrections are published on `main`; each checkout is checked against its own complete manifest. The 0.5.3 software binding is `e5194d340a09bccb667d3021a6a4a9a9a054123b`; the publication checkout has its own commit and includes the separately retained historical runtime.
+Compare the printed commit with the commit shown on the `softwarex-0.5.3-20260908-r2` GitHub Release page. The tagged release and its archives remain unchanged when later navigation corrections are published on `main`; each checkout is checked against its own complete manifest. The 0.5.3 software binding is `e5194d340a09bccb667d3021a6a4a9a9a054123b`; the publication checkout has its own commit and includes the separately retained historical runtime.
 
 **Do not run this complete verifier from an extracted reviewer ZIP.** That archive seals an earlier inventory and does not contain itself or the later artifact receipt. Its README remains bound to that inventory. Use these instructions with the Git checkout; individual evidence checkers can still inspect the extracted archive.
 
 First download the complete reviewer ZIP. It is a GitHub Release asset because it exceeds the repository-file size limit; the source ZIP is already in Git. Run from the checkout root:
 
 ```sh
-curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r1/ZeroRun_SoftwareX_reviewer.zip
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r2/ZeroRun_SoftwareX_reviewer.zip
 # Windows PowerShell: use curl.exe with the same arguments.
 ```
 
@@ -30,16 +30,19 @@ Use the executable that reports CPython **3.12, 3.13, or 3.14**; replace `python
 network access or model subscription. This checks saved evidence;
 it does not execute downloaded AI commands or run a new experiment. Product
 installation and the account-free laboratory remain separate workflows in
-[REPRODUCIBILITY.md](REPRODUCIBILITY.md) and [QUICKSTART_053.md](QUICKSTART_053.md).
+[REPRODUCIBILITY.md](REPRODUCIBILITY.md), [QUICKSTART_053_METADATA_V2.md](QUICKSTART_053_METADATA_V2.md),
+and the [fresh Linux procedure](FRESH_LINUX_053_REPRODUCTION.md).
 The retained [0.5.2 guide](QUICKSTART_052.md), its version-specific validators and receipts,
 and the [0.5.1 laboratory guide](QUICKSTART_LAB.md) describe historical evidence.
 
 The command validates the complete public manifest before and after checking,
 the current PDF and both ZIPs against their artifact receipt, eight existing
 analysis/manuscript checks, the separately reconciled actual model application and
-hash-bound internal interpretation review, the current 0.5.3 installation/test receipt, the
+hash-bound internal interpretation review, a direct 15-row consumer/fixture audit, the current 0.5.3 installation/test receipt, the
 handoff-evidence reconciliation, and the current public-guide installation
-and five-stage STDIO receipts. Archive members are checked without being
+and five-stage STDIO receipts. It also replays the sealed fresh-Linux source/wheel
+checks and failure responses, retaining the original pre-MCP metadata failure.
+Archive members are checked without being
 extracted or executed. A saved visual-review receipt binds the PDF; this command
 does not perform a fresh visual review.
 
@@ -64,3 +67,5 @@ release does not validate this snapshot; run the command for the files you are r
 
 This verification does not submit to a journal, claim independent human use,
 predict acceptance, regenerate the paper, or call the readiness builder.
+
+The [consumer and fixture audit](CONSUMER_LIZARD_AUDIT.md) exposes the exact archived fields and transcript locators behind the core 15-turn comparison. Its read-only checker regenerates both the JSON and Markdown table; missing or altered evidence fails. Uncaptured wire-level assertions remain unverified, and author review is not replaced by the checker.

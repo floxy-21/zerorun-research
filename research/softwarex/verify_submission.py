@@ -88,6 +88,8 @@ def commands():
         ("application", "research.softwarex.build_application_evidence", ["--check"]),
         ("handoff", "research.softwarex.build_handoff_evidence", ["--check"]),
         ("actual_agent_application", "research.softwarex.build_agent_application_evidence", ["--check"]),
+        ("consumer_and_fixture_audit", "research.softwarex.build_consumer_lizard_audit", ["--check"]),
+        ("fresh_public_environment", "research.softwarex.verify_fresh_public_053", ["--source-root", ".", "--evidence-dir", "research/softwarex/evidence/public-fresh-linux-053-v1", "--check"]),
         ("current_runtime", "research.softwarex.five_hour_review.current_runtime_053", ["--release", ".", "--check", CURRENT_RECEIPT]),
         ("current_quickstart", "research.softwarex.quickstart_053", ["--source-root", ".", "--check",
             CURRENT_QUICKSTART + "/check.json", "--installation-receipt", CURRENT_QUICKSTART + "/install.json"]),

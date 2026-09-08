@@ -1,0 +1,8 @@
+PID   USER     TIME  COMMAND
+    1 root      0:00 {init(ZeroRunFre} /init
+    5 root      0:00 {init} plan9 --control-socket 6 --log-level 4 --server-fd 7 --pipe-fd 9 --log-truncate
+    8 root      0:00 {SessionLeader} /init
+    9 root      0:00 {Relay(10)} /init
+   10 root      0:00 /bin/sh -c ps -ef; command -v dockerd; ls -ld /var/lib/docker /run/docker /var/run/docker.sock 2>/dev/null; cat /var/log/zerorun-fresh-dockerd.log; true
+   11 root      0:00 ps -ef
+/usr/bin/dockerd

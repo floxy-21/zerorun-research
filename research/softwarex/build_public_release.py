@@ -31,7 +31,7 @@ HISTORICAL_TEST_PATHS = ("tests/test_codex_integration.py",)
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
 REVIEWER_ASSET = "output/submission/ZeroRun_SoftwareX_reviewer.zip"
-REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r1/ZeroRun_SoftwareX_reviewer.zip"
+REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r2/ZeroRun_SoftwareX_reviewer.zip"
 MAX_EXTERNAL_ARCHIVE_BYTES = 600 * 1024 * 1024
 VM_REGRESSION_EVIDENCE_DIRS = (
     "full-product-vm-20260907", "full-product-vm-20260907-v2",
@@ -107,6 +107,9 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "verify_recovered_handoff_v6.py", "validate_compatible_image.py", "sqlglot_supplement_053.py",
     "build_agent_application_evidence.py", "generated/agent-application-053-v1.json",
     "amortization_followup_v1.py", "AMORTIZATION_FOLLOWUP_V1.md",
+    "build_consumer_lizard_audit.py", "CONSUMER_LIZARD_AUDIT.md", "generated/consumer-lizard-audit-v1.json",
+    "quickstart_053_metadata_v2.py", "QUICKSTART_053_METADATA_V2.md",
+    "verify_fresh_public_053.py", "FRESH_LINUX_053_REPRODUCTION.md",
     "agent_application_053/producer_campaign.py", "agent_application_053/consumer.py",
     "agent_application_053/validation.py", "agent_application_053/test_consumer.py",
     "agent_application_053/seed.py", "agent_application_053/test_seed.py",
@@ -522,6 +525,7 @@ def collect(paper_files=(), current_core=None):
         "agent-application-053-consumers-v2/record-only",
         "agent-application-053-sqlglot-supplement-v1/record-only",
         "quickstart-public-053-v1",
+        "public-fresh-linux-053-v1",
     )
     for directory in sealed_directories:
         prefix = "research/softwarex/evidence/" + directory

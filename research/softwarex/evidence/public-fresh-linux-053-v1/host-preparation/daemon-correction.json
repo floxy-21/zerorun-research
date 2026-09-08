@@ -1,0 +1,25 @@
+{
+  "argv": [
+    "wsl.exe",
+    "-d",
+    "ZeroRunFresh053_20260908v1",
+    "-u",
+    "root",
+    "--exec",
+    "dockerd",
+    "--data-root=/var/lib/docker",
+    "--exec-root=/run/docker",
+    "--pidfile=/run/zerorun-fresh-dockerd.pid",
+    "--host=unix:///var/run/docker.sock",
+    "--iptables=false",
+    "--bridge=none"
+  ],
+  "failure": null,
+  "finished_utc": "2026-09-08T07:52:20.461896+00:00",
+  "host_pid": 24568,
+  "intervention": "Retain a hidden foreground WSL client for dockerd because the initial shell-background launch did not leave a usable daemon. No ZeroRun code, fixture, source pin or image digest is changed.",
+  "passed": true,
+  "prior_attempt": "prerequisites.json",
+  "schema": "zerorun.fresh-wsl-daemon-lifecycle-correction.v2",
+  "started_utc": "2026-09-08T07:52:18.351854+00:00"
+}

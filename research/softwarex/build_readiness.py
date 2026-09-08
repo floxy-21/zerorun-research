@@ -21,7 +21,7 @@ from research.softwarex.build_submission_artifacts import verify, strict_json, r
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "research/softwarex"
-EXTENSION_TESTS = "research/softwarex/evidence/publication-final-053-20260908-v3"
+EXTENSION_TESTS = "research/softwarex/evidence/publication-focused-053-20260908-r2-v1"
 CURRENT_RUNTIME_RECEIPT = "research/softwarex/evidence/current-runtime-0.5.3-v1/receipt.json"
 CURRENT_QUICKSTART_DIR = "research/softwarex/evidence/quickstart-public-053-v1"
 HOSTED_CI_RECEIPT = "research/softwarex/evidence/hosted-ci-20260907/receipt.json"
@@ -511,8 +511,8 @@ def build(release):
         "replication": {"completed": True, "planned_requests": planned["requests"],
                         "fresh_agreements": replication["counts"]["fresh_agreements"], "optimized_hits": replication["counts"]["optimized_hits"]},
         "state_case": {"completed": True, "requests": state["requests"], "optimized_hits": state["optimized_hits"], "autonomous_agent_evaluation": False},
-        "author_actions_remaining": ["Complete final journal-file upload and inspect the publisher-generated review PDF before submission"],
-        "author_confirmations_reported": ["Sole author approved article and AI-assistance disclosure", "Original work, not under consideration elsewhere", "Contributions and possible future commercialization supplied by the author", "Required contact details supplied privately"],
+        "author_actions_remaining": ["Author must review this exact revised article and approve resuming portal preparation", "Then complete final journal-file upload and inspect the publisher-generated review PDF before a separate submission approval"],
+        "author_confirmations_reported": ["Sole author approved the earlier article and AI-assistance disclosure; this revision awaits fresh approval", "Original work, not under consideration elsewhere", "Contributions and possible future commercialization supplied by the author", "Required contact details supplied privately"],
         "journal_submitted": False,
         "payment_made": False,
         "acceptance_probability_estimated": False,

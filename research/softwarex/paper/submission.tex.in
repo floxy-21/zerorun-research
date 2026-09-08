@@ -61,9 +61,9 @@ ZeroRun exposes a deterministic command's previous successful status under an un
 
 Regression-test selection avoids tests considered unaffected by a change \cite{rothermel1997safe,yoo2012regression}. Existing build and LLM-tool caches already address result reuse (Table~\ref{tab:contracts}); eidos provides adjacent LLM function-integration software \cite{aldanamartin2025eidos}. LabChain combines hash-based intermediate-result reuse with modular scientific pipelines and JSON configuration \cite{couto2026labchain}. ZeroRun instead exposes an earlier test-status decision under an operator-qualified execution identity. Neither content hashing nor attaching a cache to an AI interface is a new algorithm here.
 
-The contribution is an inspectable validation handoff for operator-qualified, result-only tests: a repository-bound interface distinguishing historical from fresh evidence, external authorization, a hit path avoiding source staging, and an evaluation kit connecting input boundaries, independent fresh outcomes and full request cost. Researchers can therefore investigate qualification and downstream waiting without conflating a cached success with a fresh test.
+The contribution is an inspectable validation handoff for operator-qualified, result-only tests: a repository-bound historical/fresh interface, external authorization, a hit path avoiding source staging, and an evaluation kit linking input boundaries, fresh outcomes and full request cost. Researchers can investigate qualification and downstream waiting while distinguishing cached success from fresh testing.
 
-A saved receipt can document a past run. ZeroRun additionally packages declared-input revalidation, authenticated lookup, authorization, and explicit fresh-verification behavior through one interface. A receipt system implementing the same checks could provide comparable functionality; no performance advantage over such an implementation is claimed.
+A saved receipt documents a past run. ZeroRun packages input revalidation, authenticated lookup, authorization and fresh verification. A receipt system implementing these checks could provide comparable functionality; no performance advantage over it is claimed.
 
 \begin{table}[htbp]
 \centering\small
@@ -177,9 +177,9 @@ Repeated command text cannot establish source/runtime identity, even after appar
 \subsection{Reproducible validation and measured cost}
 Researchers can vary targets and input boundaries while retaining fresh-oracle comparisons, source identities, failures, setup costs and explicit denominators.
 
-Codex assisted software, experiment and analysis implementation and manuscript preparation. Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached outcomes for their reference. These are automated cross-checks, not independent human replication.
+Separately implemented validators recompute outcomes from retained raw records; input-inventory and fresh-execution oracles do not substitute cached reference outcomes. These AI-assisted automated cross-checks are not independent human replication.
 
-The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation, not an independent competing cache. @@ORIGINAL_RESULTS@@ These results are retained, including large lifecycle delays and their order sensitivity.
+The original comparison used five pinned Python libraries: packaging, pycparser, Colorama, Click, and more-itertools. Ordinary pytest is the uncached reference; disabling only the optimized hit path gives a snapshot-first ablation. @@ORIGINAL_RESULTS@@ Lifecycle delays and order sensitivity remain in the records.
 
 The replication used six independently initialized blocks on each previously observed short subject, covering every ordering of direct pytest, snapshot-first and optimized reuse. Seven request states, the 900-second bound and container limits were unchanged. Timings include complete helper/API and Docker lifecycle costs; telemetry and receipt writing are excluded, and preparation retained separately. These are seen workloads, not a holdout or replacement for more-itertools.
 
@@ -187,14 +187,15 @@ The replication used six independently initialized blocks on each previously obs
 
 \begin{table}[htbp]
 \centering\small
-\begin{tabular}{lrrrr}
+\begin{tabular}{@{}lrrrr@{}}
 \toprule
-Subject & $D/F$ & $D/F$ + setup & Block range & Hit vs. snapshot (\%) \\
+ & \multicolumn{3}{c}{Ordinary pytest / optimized reuse} & Hit latency saving \\
+Subject & Sequence & With setup & Block range & vs. snapshot-first (\%) \\
 \midrule
 @@REPLICATION_ROWS@@
 \bottomrule
 \end{tabular}
-\caption{Complete replicated sequence cost versus conditional hit benefit. $D/F$ is summed direct time divided by summed optimized time; above one favors reuse. Setup-inclusive ratios allocate common dependency preparation and each block's materialization to both arms. Block range retains all six complete sequences. Hit saving compares median optimized and snapshot-first hit latency, not end-to-end agent time.}
+\caption{Complete-sequence timing ratios versus conditional hit benefit. Ratio above one favors optimized reuse. Setup-inclusive ratios allocate common dependency preparation and each block's materialization to both arms; the range retains all six complete sequences. The final column compares median optimized and snapshot-first hit latency, not end-to-end agent time.}
 \label{tab:replication}
 \end{table}
 
@@ -209,7 +210,7 @@ Integrators can inspect the result contract and review boundary before enabling 
 
 No task-reuse prevalence, population speedup, token savings, improved patch quality or productivity is established. Zero barrier-free trajectory pairs neither establish eligibility nor exclude restoration. Library targets are convenience workloads on one constrained VM; original and replicated observations are not independent datasets. The shared Windows host was not fully isolated. Block spreads and influential observations are retained; nested test nodes are not independent samples.
 
-No external users, production deployments, commercial demand or third-party publications using ZeroRun are claimed. Model sessions and controlled handoffs are separate; generalization across clients/models and end-to-end workflow benefit remain unmeasured.
+External adoption, generalization across clients/models and end-to-end workflow benefit remain unmeasured. Model sessions and controlled handoffs are separate.
 
 \section{Conclusions}
 ZeroRun contributes an inspectable validation handoff for operator-qualified, result-only tests: explicit historical-versus-fresh status, external authorization, a staging-free hit path and an executable evaluation kit. Consumer waiting can fall while chain time rises; selected application cases establish bounded feasibility rather than population acceleration. Qualification effort and broader autonomous-workflow benefit remain open research questions.

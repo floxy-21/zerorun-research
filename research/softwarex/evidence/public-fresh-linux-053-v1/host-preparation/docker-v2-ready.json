@@ -1,0 +1,29 @@
+{
+  "argv": [
+    "wsl.exe",
+    "-d",
+    "ZeroRunFresh053_20260908v1",
+    "-u",
+    "root",
+    "--exec",
+    "/bin/sh",
+    "-c",
+    "i=0; while [ \"$i\" -lt 30 ]; do if docker info >/dev/null 2>&1; then docker version; docker image ls --digests; cat /run/zerorun-fresh-dockerd.pid; exit 0; fi; i=$((i+1)); sleep 1; done; exit 1"
+  ],
+  "elapsed_seconds": 1.456209800002398,
+  "error": null,
+  "finished_utc": "2026-09-08T07:52:20.205740+00:00",
+  "label": "docker-v2-ready",
+  "returncode": 0,
+  "started_utc": "2026-09-08T07:52:18.749549+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "docker-v2-ready.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 859,
+    "path": "docker-v2-ready.stdout.txt",
+    "sha256": "332c336e39f43ef5ad1a86c3c0cebd51641bf6ed7e0c48a84e7095a1232be636"
+  }
+}

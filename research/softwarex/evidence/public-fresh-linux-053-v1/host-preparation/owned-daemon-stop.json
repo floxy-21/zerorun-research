@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "wsl.exe",
+    "-d",
+    "ZeroRunFresh053_20260908v1",
+    "-u",
+    "root",
+    "--exec",
+    "python3",
+    "-I",
+    "-B",
+    "-c",
+    "import os,pathlib,signal,time; p=int(pathlib.Path('/run/zerorun-fresh-dockerd.pid').read_text()); cmd=pathlib.Path(f'/proc/{p}/cmdline').read_bytes(); assert b'dockerd' in cmd and b'--data-root=/var/lib/docker' in cmd; print(p,cmd.decode().replace(chr(0),' ')); os.kill(p,signal.SIGTERM); time.sleep(2); print('process_present_after2sec',pathlib.Path(f'/proc/{p}').exists())"
+  ],
+  "elapsed_seconds": 2.119733700004872,
+  "error": null,
+  "finished_utc": "2026-09-08T08:11:27.298313+00:00",
+  "label": "owned-daemon-stop",
+  "returncode": 0,
+  "started_utc": "2026-09-08T08:11:25.178599+00:00",
+  "stderr": {
+    "bytes": 0,
+    "path": "owned-daemon-stop.stderr.txt",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "bytes": 203,
+    "path": "owned-daemon-stop.stdout.txt",
+    "sha256": "abaa4e1bbe8ba52444b31de20b58e1277801f3a445b9e540051eda6a0c2dc01b"
+  }
+}
