@@ -64,19 +64,19 @@ def test_hosted_ci_observation_cannot_become_a_green_claim(hosted_ci, mode):
 
 @pytest.fixture
 def current_quickstart(tmp_path, monkeypatch):
-    from research.softwarex import quickstart_052
+    from research.softwarex import quickstart_053
     root, release = tmp_path / "source", tmp_path / "public"
     monkeypatch.setattr(readiness, "ROOT", root)
-    helper = "research/softwarex/quickstart_052.py"
+    helper = "research/softwarex/quickstart_053.py"
     for directory in (root, release):
-        put(directory / helper, Path(quickstart_052.__file__).read_bytes())
-        put(directory / "research/softwarex/QUICKSTART_052.md", b"Artificial documented procedure.")
+        put(directory / helper, Path(quickstart_053.__file__).read_bytes())
+        put(directory / "research/softwarex/QUICKSTART_053.md", b"Artificial documented procedure.")
         put(directory / "research/softwarex/diagnose_mcp_authority_052.py", b"# Artificial diagnostic binding.")
         for name in ("install.json", "check.json"):
             put(directory / readiness.CURRENT_QUICKSTART_DIR / name, b"{\"artificial\": true}")
     outcomes = {"install": {"passed": True, "source_commit": "a" * 40},
                 "check": {"passed": True, "source_commit": "a" * 40}}
-    monkeypatch.setattr(quickstart_052, "validate_receipt_pair", lambda *args: {
+    monkeypatch.setattr(quickstart_053, "validate_receipt_pair", lambda *args: {
         "installation": deepcopy(outcomes["install"]), "check": deepcopy(outcomes["check"]),
         "passed": outcomes["install"]["passed"] and outcomes["check"]["passed"],
         "read_only": True, "model_called": False, "real_repository_authorized": False})
@@ -86,7 +86,7 @@ def current_quickstart(tmp_path, monkeypatch):
 def test_current_quickstart_has_separate_version_and_public_bindings(current_quickstart):
     _, release, _ = current_quickstart
     value = readiness.check_current_quickstart(release)
-    assert value["version"] == "0.5.2"
+    assert value["version"] == "0.5.3"
     assert len(value["public_files_sha256"]) == 5
 
 
@@ -100,7 +100,7 @@ def test_current_quickstart_refuses_stale_or_partial_current_evidence(current_qu
     elif mode == "different-commit":
         outcomes["check"]["source_commit"] = "b" * 40
     else:
-        (release / "research/softwarex/QUICKSTART_052.md").write_bytes(b"Changed public guide.")
+        (release / "research/softwarex/QUICKSTART_053.md").write_bytes(b"Changed public guide.")
     with pytest.raises(ValueError):
         readiness.check_current_quickstart(release)
 

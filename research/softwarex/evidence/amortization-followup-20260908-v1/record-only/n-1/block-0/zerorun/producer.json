@@ -1,0 +1,43 @@
+{
+  "completed_utc": "2026-09-08T04:22:57.318313+00:00",
+  "error": null,
+  "operation": "producer",
+  "outer_ms": 30742.109690000234,
+  "result": {
+    "cache_key": "ccd6c335f00d98325339a33bf2b67db6c47d0ba94e95c0a0e343a30fb89d6371",
+    "execution_ms": 26109.481,
+    "exit_code": 0,
+    "phase_ms": {
+      "cache_lookup": 1.122,
+      "cache_publish": 72.12,
+      "docker_execution": 26111.759,
+      "environment": 0.019,
+      "event_append": 23.215,
+      "fingerprint_final": 451.424,
+      "fingerprint_initial": 523.328,
+      "lock_acquire": 1.94,
+      "runtime_inspect_initial": 238.031,
+      "snapshot_cleanup": 22.366,
+      "snapshot_prepare": 2541.347
+    },
+    "reason": "fresh hermetic result stored",
+    "restored_outputs": [],
+    "saved_ms": 0.0,
+    "status": "MISS_EXECUTED",
+    "stderr": {
+      "captured_bytes": 0,
+      "emitted_bytes": 0,
+      "text": "",
+      "truncated": false
+    },
+    "stdout": {
+      "captured_bytes": 4236,
+      "emitted_bytes": 4236,
+      "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /workspace\nconfigfile: setup.cfg\ncollecting ... collected 48 items\n\ntests/test_parser.py::test_tokens__repr__ PASSED                         [  2%]\ntests/test_parser.py::test_init_parser_index_starts_at_zero PASSED       [  4%]\ntests/test_parser.py::test_init_parser_has_tokens PASSED                 [  6%]\ntests/test_parser.py::test_init_all_tokens_must_be_tokens PASSED         [  8%]\ntests/test_parser.py::test_peek_does_not_advance_index PASSED            [ 10%]\ntests/test_parser.py::test_peek_default_returns_one_token PASSED         [ 12%]\ntests/test_parser.py::test_advance_does_not_return_a_token PASSED        [ 14%]\ntests/test_parser.py::test_advance_increases_index_by_length PASSED      [ 16%]\ntests/test_parser.py::test_consume_advances_index_by_one PASSED          [ 18%]\ntests/test_parser.py::test_consume_returns_current_token PASSED          [ 20%]\ntests/test_parser.py::test_consume_token_value_does_not_return_token PASSED [ 22%]\ntests/test_parser.py::test_consume_token_value_raises_error_if_not_found PASSED [ 25%]\ntests/test_parser.py::test_check_returns_true_for_single_valid_type PASSED [ 27%]\ntests/test_parser.py::test_check_returns_false_for_single_invalid_type PASSED [ 29%]\ntests/test_parser.py::test_check_returns_true_for_mix_of_valid_and_invalid_types PASSED [ 31%]\ntests/test_parser.py::test_check_returns_false_for_all_invalid_types PASSED [ 33%]\ntests/test_parser.py::test_check_raises_if_token_types_arg_is_not_a_token PASSED [ 35%]\ntests/test_parser.py::test_parse_value_quoted_literal PASSED             [ 37%]\ntests/test_parser.py::test_parse_value_literal PASSED                    [ 39%]\ntests/test_parser.py::test_parse_value_literal_with_sql_block PASSED     [ 41%]\ntests/test_parser.py::test_parse_value_invalid_tokens PASSED             [ 43%]\ntests/test_parser.py::test_parse_value_quoted_literal_with_leftovers PASSED [ 45%]\ntests/test_parser.py::test_parse_value_without_closing_double_semicolons PASSED [ 47%]\ntests/test_parser.py::test_parse_key_normal_returns_token_value PASSED   [ 50%]\ntests/test_parser.py::test_parse_key_without_literal_token PASSED        [ 52%]\ntests/test_parser.py::test_parse_key_without_value_token PASSED          [ 54%]\ntests/test_parser.py::test_parse_key_with_many_value_tokens PASSED       [ 56%]\ntests/test_parser.py::test_debug_logging_statements_execute_successfully PASSED [ 58%]\ntests/test_parser.py::test_parse_block_without_closing_curly_brace PASSED [ 60%]\ntests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error PASSED [ 62%]\ntests/test_parser.py::test_parse_pair_with_literal PASSED                [ 64%]\ntests/test_parser.py::test_parse_pair_with_quoted_literal PASSED         [ 66%]\ntests/test_parser.py::test_parse_pair_with_sql_block PASSED              [ 68%]\ntests/test_parser.py::test_parse_pair_with_bad_key PASSED                [ 70%]\ntests/test_parser.py::test_parse_pair_without_value_token PASSED         [ 72%]\ntests/test_parser.py::test_parse_list_with_literals PASSED               [ 75%]\ntests/test_parser.py::test_parse_list_with_pairs PASSED                  [ 77%]\ntests/test_parser.py::test_parse_list_with_trailing_comma PASSED         [ 79%]\ntests/test_parser.py::test_parse_list_with_leading_comma PASSED          [ 81%]\ntests/test_parser.py::test_parse_list_with_missing_comma PASSED          [ 83%]\ntests/test_parser.py::test_parse_list_with_no_contents PASSED            [ 85%]\ntests/test_parser.py::test_parse_list_with_no_opening_bracket PASSED     [ 87%]\ntests/test_parser.py::test_parse_list_with_bad_token PASSED              [ 89%]\ntests/test_parser.py::test_parse_list_with_only_commas PASSED            [ 91%]\ntests/test_parser.py::test_parse_list_with_trailing_comment PASSED       [ 93%]\ntests/test_parser.py::test_parse_list_with_inner_comment PASSED          [ 95%]\ntests/test_parser.py::test_parse_list_with_only_comment PASSED           [ 97%]\ntests/test_parser.py::test_parse_block_with_no_expression PASSED         [100%]\n\n============================== 48 passed in 0.39s ==============================\n",
+      "truncated": false
+    },
+    "task": "handoff-tests",
+    "verified": false,
+    "wall_ms": 30714.352
+  }
+}

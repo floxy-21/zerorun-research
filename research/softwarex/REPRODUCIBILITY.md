@@ -6,19 +6,19 @@ Start with [complete offline submission verification](VERIFY_SUBMISSION.md) usin
 
 ## 1. Install and inspect the submitted software
 
-Clone the public `floxy-21/zerorun-research` repository at submission tag `softwarex-0.5.2-20260907-r2`; compare its commit with the versioned GitHub Release page. The earlier manuscript metadata pointer identifies its code/evidence stage, rather than the later completed submission. Use a fresh external Python environment. The package has no third-party runtime Python dependencies; the included wheel avoids a source build and network installation. The release's root `README.md` supplies Linux and Windows commands. Do not accidentally substitute a globally installed ZeroRun for this version.
+Clone the public `floxy-21/zerorun-research` repository at submission tag `softwarex-0.5.3-20260908-r1`; compare its commit with the versioned GitHub Release page. The earlier manuscript metadata pointer identifies its code/evidence stage, rather than the later completed submission. Use a fresh external Python environment. The package has no third-party runtime Python dependencies; the included wheel avoids a source build and network installation. The release's root `README.md` supplies Linux and Windows commands. Do not accidentally substitute a globally installed ZeroRun for this version.
 
 On Linux, from the release root:
 
 ```sh
 study_env="$(mktemp -d)/venv"
 python3 -m venv "$study_env"
-"$study_env/bin/python" -m pip install --no-index output/packages/zerorun-softwarex/zerorun-0.5.2-py3-none-any.whl
+"$study_env/bin/python" -m pip install --no-index output/packages/zerorun-softwarex/zerorun-0.5.3-py3-none-any.whl
 "$study_env/bin/python" -m zerorun --version
 "$study_env/bin/python" -m zerorun --help
 ```
 
-Keep the environment outside the source checkout. If building from source with setuptools, use a separate working copy: local source installation can create build and `.egg-info` files even when its virtual environment is external. For Windows PowerShell commands, use the root README's external-environment example. CLI inspection is cross-platform; the demonstrated whole-task result-reuse mode requires Linux/amd64 and Docker. An unsupported host is not evidence that Linux reuse works there. The operating workflow and exact manifest contract are documented in `OPERATING_GUIDE.md` and `MANIFEST_REFERENCE.md`. A new account-free server demonstration uses [QUICKSTART_052.md](QUICKSTART_052.md).
+Keep the environment outside the source checkout. If building from source with setuptools, use a separate working copy: local source installation can create build and `.egg-info` files even when its virtual environment is external. For Windows PowerShell commands, use the root README's external-environment example. CLI inspection is cross-platform; the demonstrated whole-task result-reuse mode requires Linux/amd64 and Docker. An unsupported host is not evidence that Linux reuse works there. The operating workflow and exact manifest contract are documented in `OPERATING_GUIDE.md` and `MANIFEST_REFERENCE.md`. A new account-free server demonstration uses [QUICKSTART_053.md](QUICKSTART_053.md).
 
 The public release uses `src/zerorun` for packaging. The frozen original experiment source is separately included under `research/sqj/source-final`, and exact Git source bytes under `source-ci-final`. The binding manifest records physical newline differences. Do not silently replace the frozen experiment source with an installed version when reproducing timings.
 
@@ -40,7 +40,7 @@ Run from the completed submission snapshot or extracted reviewer archive using i
 "$study_env/bin/python" -B -m research.softwarex.build_paper --check
 ```
 
-These individual diagnostics verify raw-result consistency, source identities, denominators, original failures, restored source, and generated article inputs. They do not replace the complete verifier, which also checks the current runtime, 0.5.2 quickstart, handoff evidence, and archives. They fail on missing or modified evidence. Use `-B` to avoid adding bytecode files to the exact release inventory. No shell strings or code from the downloaded AI trajectories are executed. The original publication snapshot and the new extension are retained separately, not pooled into a new favorable dataset.
+These individual diagnostics verify raw-result consistency, source identities, denominators, original failures, restored source, and generated article inputs. They do not replace the complete verifier, which also checks the current runtime, 0.5.3 quickstart, handoff evidence, and archives. They fail on missing or modified evidence. Use `-B` to avoid adding bytecode files to the exact release inventory. No shell strings or code from the downloaded AI trajectories are executed. The original publication snapshot and the new extension are retained separately, not pooled into a new favorable dataset.
 
 ### Pinned Linux analysis environment
 

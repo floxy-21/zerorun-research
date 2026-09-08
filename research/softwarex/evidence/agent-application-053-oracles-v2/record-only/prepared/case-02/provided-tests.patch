@@ -1,0 +1,67 @@
+diff --git a/tests/dialects/test_duckdb.py b/tests/dialects/test_duckdb.py
+index 917230b2..5cfcfea2 100644
+--- a/tests/dialects/test_duckdb.py
++++ b/tests/dialects/test_duckdb.py
+@@ -15,6 +15,17 @@ class TestDuckDB(Validator):
+             "WITH _data AS (SELECT [STRUCT(1 AS a, 2 AS b), STRUCT(2 AS a, 3 AS b)] AS col) SELECT col.b FROM _data, UNNEST(_data.col) AS col WHERE col.a = 1",
+         )
+ 
++        self.validate_all(
++            "SELECT CAST('09:05:03' AS TIME) + INTERVAL 2 HOUR",
++            read={
++                "bigquery": "SELECT TIME_ADD(CAST('09:05:03' AS TIME), INTERVAL 2 HOUR)",
++                "snowflake": "SELECT TIMEADD(HOUR, 2, TO_TIME('09:05:03'))",
++            },
++            write={
++                "duckdb": "SELECT CAST('09:05:03' AS TIME) + INTERVAL '2' HOUR",
++                "snowflake": "SELECT CAST('09:05:03' AS TIME) + INTERVAL '2 HOUR'",
++            },
++        )
+         self.validate_all(
+             'STRUCT_PACK("a b" := 1)',
+             write={
+diff --git a/tests/dialects/test_snowflake.py b/tests/dialects/test_snowflake.py
+index 00e6169a..4d7d97c5 100644
+--- a/tests/dialects/test_snowflake.py
++++ b/tests/dialects/test_snowflake.py
+@@ -40,6 +40,7 @@ WHERE
+   )""",
+         )
+ 
++        self.validate_identity("SELECT TIMEADD(HOUR, 2, CAST('09:05:03' AS TIME))")
+         self.validate_identity("SELECT CAST(OBJECT_CONSTRUCT('a', 1) AS MAP(VARCHAR, INT))")
+         self.validate_identity("SELECT CAST(OBJECT_CONSTRUCT('a', 1) AS OBJECT(a CHAR NOT NULL))")
+         self.validate_identity("SELECT CAST([1, 2, 3] AS ARRAY(INT))")
+@@ -956,6 +957,9 @@ WHERE
+         )
+         self.validate_all(
+             "DATEADD(DAY, 5, CAST('2008-12-25' AS DATE))",
++            read={
++                "snowflake": "TIMESTAMPADD(DAY, 5, CAST('2008-12-25' AS DATE))",
++            },
+             write={
+                 "bigquery": "DATE_ADD(CAST('2008-12-25' AS DATE), INTERVAL 5 DAY)",
+                 "snowflake": "DATEADD(DAY, 5, CAST('2008-12-25' AS DATE))",
+diff --git a/tests/test_expressions.py b/tests/test_expressions.py
+index 547f6356..54bc223c 100644
+--- a/tests/test_expressions.py
++++ b/tests/test_expressions.py
+@@ -501,6 +501,18 @@ class TestExpressions(unittest.TestCase):
+ 
+         self.assertEqual(expression.transform(fun).sql(), "FUN(a)")
+ 
++    def test_transform_with_parent_mutation(self):
++        expression = parse_one("SELECT COUNT(1) FROM table")
++
++        def fun(node):
++            if str(node) == "COUNT(1)":
++                # node gets silently mutated here - its parent points to the filter node
++                return exp.Filter(this=node, expression=exp.Where(this=exp.true()))
++            return node
++
++        transformed = expression.transform(fun)
++        self.assertEqual(transformed.sql(), "SELECT COUNT(1) FILTER(WHERE TRUE) FROM table")
++
+     def test_transform_multiple_children(self):
+         expression = parse_one("SELECT * FROM x")
+ 

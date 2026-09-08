@@ -64,6 +64,21 @@ def current_check():
 
 
 class CurrentQuickstartTests(unittest.TestCase):
+    def test_expanded_manifest_has_an_exact_bounded_metadata_limit(self):
+        with tempfile.TemporaryDirectory() as directory, patch.object(q, "HELPERS", {}):
+            root = Path(directory)
+            manifest = root / "PUBLIC_RELEASE_MANIFEST.json"
+            for size in (4_453_585, 8 * 1024 * 1024):
+                with self.subTest(accepted_bytes=size):
+                    manifest.write_bytes(b'{"padding":"' + b" " * (size - 14) + b'"}')
+                    self.assertEqual(manifest.stat().st_size, size)
+                    self.assertEqual(q.source_bindings(root)["public_manifest_sha256"], q.digest(manifest))
+            with manifest.open("ab") as stream:
+                stream.write(b" ")
+            with self.assertRaisesRegex(ValueError, "manifest exceeds bound"):
+                q.source_bindings(root)
+        self.assertEqual(q.LIMIT, 2 * 1024 * 1024)
+
     @staticmethod
     def replace_stage(value, index, mutate):
         stage = value["stages"][index]

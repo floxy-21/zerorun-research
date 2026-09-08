@@ -1,0 +1,797 @@
+{
+  "arm": "zerorun",
+  "consumers": [
+    {
+      "completed_utc": "2026-09-08T04:22:58.655373+00:00",
+      "error": null,
+      "operation": "consumer-00",
+      "outer_ms": 1323.5002010001153,
+      "result": {
+        "cache_key": "ccd6c335f00d98325339a33bf2b67db6c47d0ba94e95c0a0e343a30fb89d6371",
+        "execution_ms": 26109.481,
+        "exit_code": 0,
+        "phase_ms": {
+          "cache_lookup": 91.122,
+          "environment": 0.019,
+          "event_append": 26.987,
+          "fingerprint_final": 492.409,
+          "fingerprint_initial": 448.367,
+          "lock_acquire": 1.88,
+          "readonly_hit_path": 1295.787,
+          "runtime_inspect_initial": 224.85,
+          "snapshot_cleanup": 0.0,
+          "snapshot_prepare": 0.0
+        },
+        "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+        "restored_outputs": [],
+        "saved_ms": 24813.692,
+        "status": "HIT_REUSED",
+        "stderr": {
+          "captured_bytes": 0,
+          "emitted_bytes": 0,
+          "text": "",
+          "truncated": false
+        },
+        "stdout": {
+          "captured_bytes": 0,
+          "emitted_bytes": 0,
+          "text": "",
+          "truncated": false
+        },
+        "task": "handoff-tests",
+        "verified": false,
+        "wall_ms": 1295.789
+      }
+    }
+  ],
+  "diagnostics": {
+    "completed_utc": "2026-09-08T04:24:50.599994+00:00",
+    "error": null,
+    "operation": "diagnostics",
+    "outer_ms": 10047.904907999964,
+    "result": {
+      "cache_key": "ccd6c335f00d98325339a33bf2b67db6c47d0ba94e95c0a0e343a30fb89d6371",
+      "execution_ms": 4508.217,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 116.227,
+        "docker_execution": 4512.109,
+        "environment": 0.019,
+        "event_append": 24.138,
+        "fingerprint_final": 816.057,
+        "fingerprint_initial": 772.857,
+        "lock_acquire": 3.899,
+        "runtime_inspect_initial": 326.786,
+        "snapshot_cleanup": 24.188,
+        "snapshot_prepare": 3415.449
+      },
+      "reason": "fresh hermetic execution matched cached successful result",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "VERIFY_MATCH",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 4236,
+        "emitted_bytes": 4236,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /workspace\nconfigfile: setup.cfg\ncollecting ... collected 48 items\n\ntests/test_parser.py::test_tokens__repr__ PASSED                         [  2%]\ntests/test_parser.py::test_init_parser_index_starts_at_zero PASSED       [  4%]\ntests/test_parser.py::test_init_parser_has_tokens PASSED                 [  6%]\ntests/test_parser.py::test_init_all_tokens_must_be_tokens PASSED         [  8%]\ntests/test_parser.py::test_peek_does_not_advance_index PASSED            [ 10%]\ntests/test_parser.py::test_peek_default_returns_one_token PASSED         [ 12%]\ntests/test_parser.py::test_advance_does_not_return_a_token PASSED        [ 14%]\ntests/test_parser.py::test_advance_increases_index_by_length PASSED      [ 16%]\ntests/test_parser.py::test_consume_advances_index_by_one PASSED          [ 18%]\ntests/test_parser.py::test_consume_returns_current_token PASSED          [ 20%]\ntests/test_parser.py::test_consume_token_value_does_not_return_token PASSED [ 22%]\ntests/test_parser.py::test_consume_token_value_raises_error_if_not_found PASSED [ 25%]\ntests/test_parser.py::test_check_returns_true_for_single_valid_type PASSED [ 27%]\ntests/test_parser.py::test_check_returns_false_for_single_invalid_type PASSED [ 29%]\ntests/test_parser.py::test_check_returns_true_for_mix_of_valid_and_invalid_types PASSED [ 31%]\ntests/test_parser.py::test_check_returns_false_for_all_invalid_types PASSED [ 33%]\ntests/test_parser.py::test_check_raises_if_token_types_arg_is_not_a_token PASSED [ 35%]\ntests/test_parser.py::test_parse_value_quoted_literal PASSED             [ 37%]\ntests/test_parser.py::test_parse_value_literal PASSED                    [ 39%]\ntests/test_parser.py::test_parse_value_literal_with_sql_block PASSED     [ 41%]\ntests/test_parser.py::test_parse_value_invalid_tokens PASSED             [ 43%]\ntests/test_parser.py::test_parse_value_quoted_literal_with_leftovers PASSED [ 45%]\ntests/test_parser.py::test_parse_value_without_closing_double_semicolons PASSED [ 47%]\ntests/test_parser.py::test_parse_key_normal_returns_token_value PASSED   [ 50%]\ntests/test_parser.py::test_parse_key_without_literal_token PASSED        [ 52%]\ntests/test_parser.py::test_parse_key_without_value_token PASSED          [ 54%]\ntests/test_parser.py::test_parse_key_with_many_value_tokens PASSED       [ 56%]\ntests/test_parser.py::test_debug_logging_statements_execute_successfully PASSED [ 58%]\ntests/test_parser.py::test_parse_block_without_closing_curly_brace PASSED [ 60%]\ntests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error PASSED [ 62%]\ntests/test_parser.py::test_parse_pair_with_literal PASSED                [ 64%]\ntests/test_parser.py::test_parse_pair_with_quoted_literal PASSED         [ 66%]\ntests/test_parser.py::test_parse_pair_with_sql_block PASSED              [ 68%]\ntests/test_parser.py::test_parse_pair_with_bad_key PASSED                [ 70%]\ntests/test_parser.py::test_parse_pair_without_value_token PASSED         [ 72%]\ntests/test_parser.py::test_parse_list_with_literals PASSED               [ 75%]\ntests/test_parser.py::test_parse_list_with_pairs PASSED                  [ 77%]\ntests/test_parser.py::test_parse_list_with_trailing_comma PASSED         [ 79%]\ntests/test_parser.py::test_parse_list_with_leading_comma PASSED          [ 81%]\ntests/test_parser.py::test_parse_list_with_missing_comma PASSED          [ 83%]\ntests/test_parser.py::test_parse_list_with_no_contents PASSED            [ 85%]\ntests/test_parser.py::test_parse_list_with_no_opening_bracket PASSED     [ 87%]\ntests/test_parser.py::test_parse_list_with_bad_token PASSED              [ 89%]\ntests/test_parser.py::test_parse_list_with_only_commas PASSED            [ 91%]\ntests/test_parser.py::test_parse_list_with_trailing_comment PASSED       [ 93%]\ntests/test_parser.py::test_parse_list_with_inner_comment PASSED          [ 95%]\ntests/test_parser.py::test_parse_list_with_only_comment PASSED           [ 97%]\ntests/test_parser.py::test_parse_block_with_no_expression PASSED         [100%]\n\n============================== 48 passed in 0.33s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": true,
+      "wall_ms": 10023.536
+    }
+  },
+  "oracle": {
+    "completed_utc": "2026-09-08T04:24:40.516803+00:00",
+    "error": null,
+    "operation": "oracle",
+    "outer_ms": 101846.83406800014,
+    "result": {
+      "capture": {
+        "all_nodes_non_failing": true,
+        "complete_per_node_outcomes": true,
+        "exit_code": 0,
+        "failing_nodeids": [],
+        "nodeid_sha256": "03eca56dd704dea969eb21e8356ce190ff51af120d200c6477ddaea815144fa9",
+        "nodeids": [
+          "tests/test_parser.py::test_tokens__repr__",
+          "tests/test_parser.py::test_init_parser_index_starts_at_zero",
+          "tests/test_parser.py::test_init_parser_has_tokens",
+          "tests/test_parser.py::test_init_all_tokens_must_be_tokens",
+          "tests/test_parser.py::test_peek_does_not_advance_index",
+          "tests/test_parser.py::test_peek_default_returns_one_token",
+          "tests/test_parser.py::test_advance_does_not_return_a_token",
+          "tests/test_parser.py::test_advance_increases_index_by_length",
+          "tests/test_parser.py::test_consume_advances_index_by_one",
+          "tests/test_parser.py::test_consume_returns_current_token",
+          "tests/test_parser.py::test_consume_token_value_does_not_return_token",
+          "tests/test_parser.py::test_consume_token_value_raises_error_if_not_found",
+          "tests/test_parser.py::test_check_returns_true_for_single_valid_type",
+          "tests/test_parser.py::test_check_returns_false_for_single_invalid_type",
+          "tests/test_parser.py::test_check_returns_true_for_mix_of_valid_and_invalid_types",
+          "tests/test_parser.py::test_check_returns_false_for_all_invalid_types",
+          "tests/test_parser.py::test_check_raises_if_token_types_arg_is_not_a_token",
+          "tests/test_parser.py::test_parse_value_quoted_literal",
+          "tests/test_parser.py::test_parse_value_literal",
+          "tests/test_parser.py::test_parse_value_literal_with_sql_block",
+          "tests/test_parser.py::test_parse_value_invalid_tokens",
+          "tests/test_parser.py::test_parse_value_quoted_literal_with_leftovers",
+          "tests/test_parser.py::test_parse_value_without_closing_double_semicolons",
+          "tests/test_parser.py::test_parse_key_normal_returns_token_value",
+          "tests/test_parser.py::test_parse_key_without_literal_token",
+          "tests/test_parser.py::test_parse_key_without_value_token",
+          "tests/test_parser.py::test_parse_key_with_many_value_tokens",
+          "tests/test_parser.py::test_debug_logging_statements_execute_successfully",
+          "tests/test_parser.py::test_parse_block_without_closing_curly_brace",
+          "tests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error",
+          "tests/test_parser.py::test_parse_pair_with_literal",
+          "tests/test_parser.py::test_parse_pair_with_quoted_literal",
+          "tests/test_parser.py::test_parse_pair_with_sql_block",
+          "tests/test_parser.py::test_parse_pair_with_bad_key",
+          "tests/test_parser.py::test_parse_pair_without_value_token",
+          "tests/test_parser.py::test_parse_list_with_literals",
+          "tests/test_parser.py::test_parse_list_with_pairs",
+          "tests/test_parser.py::test_parse_list_with_trailing_comma",
+          "tests/test_parser.py::test_parse_list_with_leading_comma",
+          "tests/test_parser.py::test_parse_list_with_missing_comma",
+          "tests/test_parser.py::test_parse_list_with_no_contents",
+          "tests/test_parser.py::test_parse_list_with_no_opening_bracket",
+          "tests/test_parser.py::test_parse_list_with_bad_token",
+          "tests/test_parser.py::test_parse_list_with_only_commas",
+          "tests/test_parser.py::test_parse_list_with_trailing_comment",
+          "tests/test_parser.py::test_parse_list_with_inner_comment",
+          "tests/test_parser.py::test_parse_list_with_only_comment",
+          "tests/test_parser.py::test_parse_block_with_no_expression"
+        ],
+        "outcomes": [
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        ],
+        "schema": "zerorun.benchmark-independent-pytest-shadow.v1"
+      },
+      "plugin_sha256": "c8dc3e3aeb485a1545f5e2075b14ff5f1c1743fefb4241675238f2917f24a535",
+      "raw_outcomes": {
+        "bytes": 6609,
+        "path": "raw-outcomes.json",
+        "sha256": "4f3af02657fe46afd5a58e8d10b6073f293ac2cd9d2abbb06a9ce5b67ac1cb44"
+      },
+      "runner": {
+        "exit_code": 0,
+        "instrumented": true,
+        "runner": "independent-docker-plain-pytest",
+        "stderr_tail": "",
+        "stdout_tail": "y::test_parse_key_without_literal_token PASSED        [ 52%]\ntests/test_parser.py::test_parse_key_without_value_token PASSED          [ 54%]\ntests/test_parser.py::test_parse_key_with_many_value_tokens PASSED       [ 56%]\ntests/test_parser.py::test_debug_logging_statements_execute_successfully PASSED [ 58%]\ntests/test_parser.py::test_parse_block_without_closing_curly_brace PASSED [ 60%]\ntests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error PASSED [ 62%]\ntests/test_parser.py::test_parse_pair_with_literal PASSED                [ 64%]\ntests/test_parser.py::test_parse_pair_with_quoted_literal PASSED         [ 66%]\ntests/test_parser.py::test_parse_pair_with_sql_block PASSED              [ 68%]\ntests/test_parser.py::test_parse_pair_with_bad_key PASSED                [ 70%]\ntests/test_parser.py::test_parse_pair_without_value_token PASSED         [ 72%]\ntests/test_parser.py::test_parse_list_with_literals PASSED               [ 75%]\ntests/test_parser.py::test_parse_list_with_pairs PASSED                  [ 77%]\ntests/test_parser.py::test_parse_list_with_trailing_comma PASSED         [ 79%]\ntests/test_parser.py::test_parse_list_with_leading_comma PASSED          [ 81%]\ntests/test_parser.py::test_parse_list_with_missing_comma PASSED          [ 83%]\ntests/test_parser.py::test_parse_list_with_no_contents PASSED            [ 85%]\ntests/test_parser.py::test_parse_list_with_no_opening_bracket PASSED     [ 87%]\ntests/test_parser.py::test_parse_list_with_bad_token PASSED              [ 89%]\ntests/test_parser.py::test_parse_list_with_only_commas PASSED            [ 91%]\ntests/test_parser.py::test_parse_list_with_trailing_comment PASSED       [ 93%]\ntests/test_parser.py::test_parse_list_with_inner_comment PASSED          [ 95%]\ntests/test_parser.py::test_parse_list_with_only_comment PASSED           [ 97%]\ntests/test_parser.py::test_parse_block_with_no_expression PASSED         [100%]\n\n============================== 48 passed in 0.39s ==============================\n",
+        "wall_ms": 101765.93629300033
+      },
+      "verdict": {
+        "exit_code": 0,
+        "nodes": {
+          "tests/test_parser.py::test_advance_does_not_return_a_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_advance_increases_index_by_length": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_check_raises_if_token_types_arg_is_not_a_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_check_returns_false_for_all_invalid_types": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_check_returns_false_for_single_invalid_type": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_check_returns_true_for_mix_of_valid_and_invalid_types": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_check_returns_true_for_single_valid_type": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_consume_advances_index_by_one": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_consume_returns_current_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_consume_token_value_does_not_return_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_consume_token_value_raises_error_if_not_found": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_debug_logging_statements_execute_successfully": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_init_all_tokens_must_be_tokens": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_init_parser_has_tokens": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_init_parser_index_starts_at_zero": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_block_with_no_expression": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_block_without_closing_curly_brace": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_key_normal_returns_token_value": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_key_with_many_value_tokens": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_key_without_literal_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_key_without_value_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_bad_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_inner_comment": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_leading_comma": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_literals": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_missing_comma": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_no_contents": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_no_opening_bracket": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_only_commas": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_only_comment": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_pairs": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_trailing_comma": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_list_with_trailing_comment": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_pair_with_bad_key": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_pair_with_literal": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_pair_with_quoted_literal": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_pair_with_sql_block": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_pair_without_value_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_value_invalid_tokens": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_value_literal": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_value_literal_with_sql_block": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_value_quoted_literal": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_value_quoted_literal_with_leftovers": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_parse_value_without_closing_double_semicolons": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_peek_default_returns_one_token": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_peek_does_not_advance_index": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          },
+          "tests/test_parser.py::test_tokens__repr__": {
+            "call": "passed",
+            "setup": "passed",
+            "teardown": "passed",
+            "wasxfail": false
+          }
+        }
+      }
+    }
+  },
+  "producer": {
+    "completed_utc": "2026-09-08T04:22:57.318313+00:00",
+    "error": null,
+    "operation": "producer",
+    "outer_ms": 30742.109690000234,
+    "result": {
+      "cache_key": "ccd6c335f00d98325339a33bf2b67db6c47d0ba94e95c0a0e343a30fb89d6371",
+      "execution_ms": 26109.481,
+      "exit_code": 0,
+      "phase_ms": {
+        "cache_lookup": 1.122,
+        "cache_publish": 72.12,
+        "docker_execution": 26111.759,
+        "environment": 0.019,
+        "event_append": 23.215,
+        "fingerprint_final": 451.424,
+        "fingerprint_initial": 523.328,
+        "lock_acquire": 1.94,
+        "runtime_inspect_initial": 238.031,
+        "snapshot_cleanup": 22.366,
+        "snapshot_prepare": 2541.347
+      },
+      "reason": "fresh hermetic result stored",
+      "restored_outputs": [],
+      "saved_ms": 0.0,
+      "status": "MISS_EXECUTED",
+      "stderr": {
+        "captured_bytes": 0,
+        "emitted_bytes": 0,
+        "text": "",
+        "truncated": false
+      },
+      "stdout": {
+        "captured_bytes": 4236,
+        "emitted_bytes": 4236,
+        "text": "============================= test session starts ==============================\nplatform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0 -- /usr/local/bin/python\nrootdir: /workspace\nconfigfile: setup.cfg\ncollecting ... collected 48 items\n\ntests/test_parser.py::test_tokens__repr__ PASSED                         [  2%]\ntests/test_parser.py::test_init_parser_index_starts_at_zero PASSED       [  4%]\ntests/test_parser.py::test_init_parser_has_tokens PASSED                 [  6%]\ntests/test_parser.py::test_init_all_tokens_must_be_tokens PASSED         [  8%]\ntests/test_parser.py::test_peek_does_not_advance_index PASSED            [ 10%]\ntests/test_parser.py::test_peek_default_returns_one_token PASSED         [ 12%]\ntests/test_parser.py::test_advance_does_not_return_a_token PASSED        [ 14%]\ntests/test_parser.py::test_advance_increases_index_by_length PASSED      [ 16%]\ntests/test_parser.py::test_consume_advances_index_by_one PASSED          [ 18%]\ntests/test_parser.py::test_consume_returns_current_token PASSED          [ 20%]\ntests/test_parser.py::test_consume_token_value_does_not_return_token PASSED [ 22%]\ntests/test_parser.py::test_consume_token_value_raises_error_if_not_found PASSED [ 25%]\ntests/test_parser.py::test_check_returns_true_for_single_valid_type PASSED [ 27%]\ntests/test_parser.py::test_check_returns_false_for_single_invalid_type PASSED [ 29%]\ntests/test_parser.py::test_check_returns_true_for_mix_of_valid_and_invalid_types PASSED [ 31%]\ntests/test_parser.py::test_check_returns_false_for_all_invalid_types PASSED [ 33%]\ntests/test_parser.py::test_check_raises_if_token_types_arg_is_not_a_token PASSED [ 35%]\ntests/test_parser.py::test_parse_value_quoted_literal PASSED             [ 37%]\ntests/test_parser.py::test_parse_value_literal PASSED                    [ 39%]\ntests/test_parser.py::test_parse_value_literal_with_sql_block PASSED     [ 41%]\ntests/test_parser.py::test_parse_value_invalid_tokens PASSED             [ 43%]\ntests/test_parser.py::test_parse_value_quoted_literal_with_leftovers PASSED [ 45%]\ntests/test_parser.py::test_parse_value_without_closing_double_semicolons PASSED [ 47%]\ntests/test_parser.py::test_parse_key_normal_returns_token_value PASSED   [ 50%]\ntests/test_parser.py::test_parse_key_without_literal_token PASSED        [ 52%]\ntests/test_parser.py::test_parse_key_without_value_token PASSED          [ 54%]\ntests/test_parser.py::test_parse_key_with_many_value_tokens PASSED       [ 56%]\ntests/test_parser.py::test_debug_logging_statements_execute_successfully PASSED [ 58%]\ntests/test_parser.py::test_parse_block_without_closing_curly_brace PASSED [ 60%]\ntests/test_parser.py::test_parse_nonmatching_container_raises_syntax_error PASSED [ 62%]\ntests/test_parser.py::test_parse_pair_with_literal PASSED                [ 64%]\ntests/test_parser.py::test_parse_pair_with_quoted_literal PASSED         [ 66%]\ntests/test_parser.py::test_parse_pair_with_sql_block PASSED              [ 68%]\ntests/test_parser.py::test_parse_pair_with_bad_key PASSED                [ 70%]\ntests/test_parser.py::test_parse_pair_without_value_token PASSED         [ 72%]\ntests/test_parser.py::test_parse_list_with_literals PASSED               [ 75%]\ntests/test_parser.py::test_parse_list_with_pairs PASSED                  [ 77%]\ntests/test_parser.py::test_parse_list_with_trailing_comma PASSED         [ 79%]\ntests/test_parser.py::test_parse_list_with_leading_comma PASSED          [ 81%]\ntests/test_parser.py::test_parse_list_with_missing_comma PASSED          [ 83%]\ntests/test_parser.py::test_parse_list_with_no_contents PASSED            [ 85%]\ntests/test_parser.py::test_parse_list_with_no_opening_bracket PASSED     [ 87%]\ntests/test_parser.py::test_parse_list_with_bad_token PASSED              [ 89%]\ntests/test_parser.py::test_parse_list_with_only_commas PASSED            [ 91%]\ntests/test_parser.py::test_parse_list_with_trailing_comment PASSED       [ 93%]\ntests/test_parser.py::test_parse_list_with_inner_comment PASSED          [ 95%]\ntests/test_parser.py::test_parse_list_with_only_comment PASSED           [ 97%]\ntests/test_parser.py::test_parse_block_with_no_expression PASSED         [100%]\n\n============================== 48 passed in 0.39s ==============================\n",
+        "truncated": false
+      },
+      "task": "handoff-tests",
+      "verified": false,
+      "wall_ms": 30714.352
+    }
+  },
+  "setup_outer_ms": 121.31863500007967,
+  "source_sha256": "2208613b998cacf13e99a26c86055f4ca992aa9e25f373e28a44c9085dc33895"
+}

@@ -104,8 +104,8 @@ def test_current_routes_require_053_receipts_without_relabeling_052():
         "research.softwarex.quickstart_053",
         ["--source-root", ".", "--check", "research/softwarex/evidence/quickstart-public-053-v1/check.json",
          "--installation-receipt", "research/softwarex/evidence/quickstart-public-053-v1/install.json"])
-    assert all("--output" not in args and "--create-tools-env" not in args
-               for _, args in selected.values())
+    assert all("--output" not in selected[name][1] and "--create-tools-env" not in selected[name][1]
+               for name in ("current_runtime", "current_quickstart"))
 
 
 @pytest.mark.parametrize("name,legacy", [

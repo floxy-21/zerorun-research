@@ -1,0 +1,13 @@
+diff --git a/environ/environ.py b/environ/environ.py
+index 9a9f906..9cd864e 100644
+--- a/environ/environ.py
++++ b/environ/environ.py
+@@ -424,6 +424,8 @@ class Env(object):
+             config['ENGINE'] = engine
+         if url.scheme in Env.DB_SCHEMES:
+             config['ENGINE'] = Env.DB_SCHEMES[url.scheme]
++        elif not engine:
++            config['ENGINE'] = url.scheme
+ 
+         if not config.get('ENGINE', False):
+             warnings.warn("Engine not recognized from url: {0}".format(config))

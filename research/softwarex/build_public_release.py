@@ -102,7 +102,15 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "APPLICATION_COVERAGE_AUDIT.md", "FRESH_REAL_WORKLOAD_REPRODUCTION.md", "verify_application_revision.py",
     "handoff_image_v2/__init__.py", "handoff_image_v2/PROTOCOL.md", "handoff_image_v2/build_image.py",
     "handoff_image_v2/run.py", "handoff_image_v2/validate.py", "handoff_image_v2/export.py", "handoff_image_v2/test_image.py",
-    "handoff_image_v2/TRANSPORT_AMENDMENT_1.md", "build_handoff_evidence.py", "generated/handoff-evidence-v1.json")
+    "handoff_image_v2/TRANSPORT_AMENDMENT_1.md", "build_handoff_evidence.py", "generated/handoff-evidence-v1.json",
+    "verify_recovered_handoff_v6.py", "validate_compatible_image.py",
+    "amortization_followup_v1.py", "AMORTIZATION_FOLLOWUP_V1.md",
+    "agent_application_053/producer_campaign.py", "agent_application_053/consumer.py",
+    "agent_application_053/validation.py", "agent_application_053/test_consumer.py",
+    "agent_application_053/seed.py", "agent_application_053/test_seed.py",
+    "agent_application_053/oracles.py", "agent_application_053/oracles_v2.py",
+    "agent_application_053/test_oracles.py", "agent_application_053/test_oracles_v2.py",
+    "agent_application_053/ORACLE_PROTOCOL.md", "agent_application_053/ORACLE_V2_CORRECTION.md")
 SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
 BLOCKED = {".git", "__pycache__", ".pytest_cache", ".venv", ".zerorun-env", "node_modules", "workspace", "workspaces",
     "private-cache-authentication-NOT-FOR-PUBLICATION", "pytest-temp", "testmon-runtime", "testmon-state",
@@ -491,6 +499,22 @@ def collect(paper_files=(), current_core=None):
         require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
                 "VM regression output changed during release assembly")
         add(row["path"], raw, "workspace:retained-vm-regression-output:" + row["path"])
+    for version in ("v1", "v2"):
+        prefix = "research/softwarex/evidence/agent-application-053-oracles-" + version + "/record-only"
+        index = ROOT / prefix / "RECORD_MANIFEST.json"
+        if index.is_file():
+            rows = json.loads(read_local(index))["files"]
+            require(len(rows) == len({row["path"] for row in rows}), "duplicate agent oracle record")
+            for row in rows:
+                safe_name(row["path"])
+                relative = prefix + "/" + row["path"]
+                raw = read_local(ROOT / relative)
+                require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
+                        "sealed actual-agent oracle record changed")
+                if relative in payloads:
+                    require(payloads[relative] == raw, "agent oracle representations differ")
+                else:
+                    local(relative)
     for relative, row in selected_acquisition_archives():
         raw = read_local(ROOT / relative)
         require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
@@ -544,7 +568,7 @@ def collect(paper_files=(), current_core=None):
         "historical_core_commit": HISTORICAL_CORE,
         "current_core_commit": current_core or HISTORICAL_CORE,
         "current_version": current_version,
-        "runtime_change_scope": ("Only run_tests discovery descriptions and version string differ from the preserved 0.5.1 runtime; historical measurements are not reclassified."
+        "runtime_change_scope": ("Current 0.5.3 changes version/discovery metadata, managed whole-task skill routing and narrow custom-authority configuration, plus result-timing documentation; the computational engine is unchanged and historical measurements are not reclassified."
                                  if current_core else "Exact historical 0.5.1 runtime, unchanged."),
         "historical_runtime_prefix": HISTORICAL_RUNTIME_PREFIX if current_core else None,
         "packaging_adaptations": ["src layout", "author metadata", "license filenames", "research README", "five selected-test file-path references"],

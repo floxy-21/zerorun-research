@@ -33,7 +33,7 @@ AI coding tools \sep test-result reuse \sep reproducibility \sep software testin
 \hline
 \textbf{Nr.} & \textbf{Code metadata description} & \textbf{Value} \\
 \hline
-C1 & Current code version & ZeroRun 0.5.2; research release 2026-09-07; historical study runtime 0.5.1 retained separately \\
+C1 & Current code version & ZeroRun 0.5.3; research release 2026-09-08; historical study runtime 0.5.1 retained separately \\
 \hline
 C2 & Permanent GitHub link to code/repository used for this code version & \href{https://github.com/floxy-21/zerorun-research/tree/@@PUBLIC_COMMIT@@}{\texttt{floxy-21/zerorun-research}}; linked immutable source/evidence snapshot \\
 \hline
@@ -43,7 +43,7 @@ C4 & Code versioning system used & Git \\
 \hline
 C5 & Software code languages, tools, and services used & Python; pytest; Docker; CLI; Model Context Protocol (MCP); Codex skill \\
 \hline
-C6 & Compilation requirements, operating environments \& dependencies & Runtime: Python $\geq$3.10; no core Python dependencies. Whole-task reuse: Linux/amd64 and Docker. Canonical analysis: CPython 3.12--3.14. Experiments: digest-pinned Python 3.12 container and frozen dependencies. \\
+C6 & Compilation requirements, operating environments \& dependencies & Runtime: Python $\geq$3.10; no core Python dependencies. Whole-task reuse: Linux/amd64 and Docker. Canonical analysis: CPython 3.12--3.14. Experiments: digest-pinned Python 3.10/3.12 containers and frozen dependencies. \\
 \hline
 C7 & If available Link to developer documentation/manual & \href{https://github.com/floxy-21/zerorun-research/blob/@@PUBLIC_COMMIT@@/README.md}{Version-pinned README: installation, interfaces, reproduction, and limitations} \\
 \hline
@@ -61,7 +61,7 @@ ZeroRun exposes a deterministic command's previous successful status under an un
 
 Regression-test selection avoids tests considered unaffected by a change \cite{rothermel1997safe,yoo2012regression}. Existing build and LLM-tool caches already address result reuse (Table~\ref{tab:contracts}); eidos provides adjacent LLM function-integration software \cite{aldanamartin2025eidos}. LabChain combines hash-based intermediate-result reuse with modular scientific pipelines and JSON configuration \cite{couto2026labchain}. ZeroRun instead exposes an earlier test-status decision under an operator-qualified execution identity. Neither content hashing nor attaching a cache to an AI interface is a new algorithm here.
 
-The contribution is an inspectable handoff for operator-qualified, result-only tests: a repository-bound interface distinguishing historical from fresh evidence, external authorization, a hit path avoiding source staging, and an evaluation kit connecting input boundaries, independent fresh outcomes and full request cost. Researchers can therefore investigate qualification and downstream waiting without conflating a cached success with a fresh test.
+The contribution is an inspectable validation handoff for operator-qualified, result-only tests: a repository-bound interface distinguishing historical from fresh evidence, external authorization, a hit path avoiding source staging, and an evaluation kit connecting input boundaries, independent fresh outcomes and full request cost. Researchers can therefore investigate qualification and downstream waiting without conflating a cached success with a fresh test.
 
 \begin{table}[htbp]
 \centering\small
@@ -112,9 +112,9 @@ This is conditional correctness, not a soundness proof for arbitrary Python. An 
 \subsection{Interfaces and functionality}
 The CLI exposes structured results identifying reused success, fresh success, fresh failure, uncertainty, and refusal. The Codex skill and repository-bound MCP server expose the same distinction. Normal agent-facing reuse additionally requires exact-configuration authorization outside repository-controlled files; generating observation candidates does not authorize reuse. Laboratory fixtures used by the experiments authenticate cache records but are not production operator reviews, and their private keys are excluded from the artifact.
 
-The included fine-grained pytest path requires fresh execution when qualification is incomplete, because omitted tests can affect fixtures, callbacks, shared state or ordering. It is not this article's demonstrated acceleration mechanism. Whole-task reuse requires the complete command to satisfy the contract, not independence of individual tests.
+The current skill routes reviewed whole-task configurations first; optional fine-grained pytest reuse requires fresh execution when qualification is incomplete, because omitted tests can affect fixtures, callbacks, shared state or ordering. It is not this article's demonstrated acceleration mechanism. Whole-task reuse requires the complete command to satisfy the contract, not independence of individual tests.
 
-Hits do not reconstruct stdout or stderr. Clients requiring new diagnostics, coverage, or generated files must execute fresh. The public operating guide and manifest reference document installation, operator review, authorization, and this boundary; automated interface checks do not establish external adoption.
+Hits do not reconstruct stdout or stderr. Clients requiring new diagnostics, coverage, or generated files must execute fresh. The public operating guide and manifest reference document installation, operator review, authorization, and this boundary; automated interface checks do not establish external adoption. On a hit, \code{execution\_ms} describes the earlier execution; \code{wall\_ms} describes this runner request. Clipped \code{saved\_ms} is an estimate, not measured net workflow savings.
 
 \section{Illustrative examples}
 \subsection{Repeat, failure, and restoration}
@@ -155,9 +155,12 @@ The server is bound to the target repository and receives the operator's externa
 Abbreviated fields from the \href{https://github.com/floxy-21/zerorun-research/blob/@@PUBLIC_COMMIT@@/research/softwarex/evidence/quickstart-public-052-v1/check.json}{synthetic 0.5.2 quickstart receipt} make the choice inspectable: \code{\{"status":"HIT\_REUSED","exit\_code":0\}} identifies earlier success; \code{\{"status":"VERIFY\_MATCH","exit\_code":0\}} reports fresh agreement. A consumer accepting prior status can continue; one needing fresh diagnostics requests verification and inspects its fresh output.
 
 The following client-decision trials use one deterministic two-file synthetic fixture, separately from the issue-fix producer below. @@CLIENT_EVIDENCE@@
-These installation timings describe the historical 0.5.1 guide. Separate source-bound receipts verify the current 0.5.2 public installation and five-stage server workflow.
+These timings describe the historical 0.5.1 guide; the supplement separately retains the 0.5.2 public-installation checks.
 
 These synthetic trials used the CLI's default model without an identified backing model; they do not estimate model-population accuracy.
+
+\subsection{Actual model-produced regression repairs}
+@@AGENT_EVIDENCE@@
 
 \subsection{Issue-state validation handoffs}
 \begingroup\setlength{\tabcolsep}{2.8pt}
@@ -188,7 +191,7 @@ The replication used six independently initialized blocks on each previously obs
 \centering\small
 \begin{tabular}{lrrrr}
 \toprule
-Subject & $D/F$ & $D/F$ + setup & Block range & Hit saving (\%) \\
+Subject & $D/F$ & $D/F$ + setup & Block range & Hit vs. snapshot (\%) \\
 \midrule
 @@REPLICATION_ROWS@@
 \bottomrule
@@ -214,7 +217,7 @@ No external users, production deployments, commercial demand or third-party publ
 ZeroRun contributes an inspectable validation handoff for operator-qualified, result-only tests: explicit historical-versus-fresh status, external authorization, a staging-free hit path and an executable evaluation kit. Consumer waiting can fall while chain time rises; selected application cases establish bounded feasibility rather than population acceleration. Qualification effort and broader autonomous-workflow benefit remain open research questions.
 
 \section*{Data and software availability}
-Code, research data and reproduction instructions are deposited in the public ZeroRun repository \cite{kapoor2026zerorunartifact}. Table 1 pins the submitted distribution. Its manifest separately retains the historical 0.5.1 study runtime at revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}; the 0.5.2 distribution changes version metadata and MCP discovery descriptions, with separate source and installation checks. Historical timings are not relabeled as a 0.5.2 replication. Supplementary material 1, \code{ZeroRun\_SoftwareX\_reviewer.zip}, contains inventoried software, raw evidence and analysis tools. Public trajectory responses retain CC-BY-4.0 notices and source attribution. Private cache-authentication keys and operator authority are excluded.
+Code, research data and reproduction instructions are deposited in the public ZeroRun repository \cite{kapoor2026zerorunartifact}. Table 1 pins the submitted distribution. Its manifest separately retains the historical 0.5.1 study runtime at revision \code{86f42289c2f59a74b1f642f0b20d1a26b3d55e57}; the current 0.5.3 distribution adds whole-task-first integration, narrow custom-authority configuration and timing documentation. Its computational engine is unchanged, with separate source, installation and interface checks. Historical timings are not relabeled as a 0.5.3 replication. Supplementary material 1, \code{ZeroRun\_SoftwareX\_reviewer.zip}, contains inventoried software, raw evidence and analysis tools. Public trajectory responses retain CC-BY-4.0 notices and source attribution. Private cache-authentication keys and operator authority are excluded.
 
 \section*{Funding}
 This research received no specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
@@ -234,5 +237,5 @@ OpenAI Codex assisted software and experiment implementation, analysis, literatu
 \bibliography{references}
 \endgroup
 \section*{Current executable software version}
-ZeroRun 0.5.2, Python command-line package. The public release includes installation instructions, automated checks, and the separately identified historical 0.5.1 study runtime. Linux/amd64 Docker execution is required for the demonstrated whole-task reuse mode.
+ZeroRun 0.5.3, Python command-line package. The public release includes installation instructions, automated checks, and the separately identified historical 0.5.1 study runtime. Linux/amd64 Docker execution is required for the demonstrated whole-task reuse mode.
 \end{document}

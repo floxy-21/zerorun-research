@@ -50,6 +50,9 @@ FULL_OBSERVER_SHA = "4e863a24e711649e5c4bd105e0452482b1d1ff65a68ee24a63a9bef01ea
 COMPATIBLE_V5 = EVIDENCE + "application-revision-20260907-v5"
 CORRECTED_V6 = EVIDENCE + "application-revision-20260907-v6"
 COMPATIBLE_IMAGE = EVIDENCE + "compatible-image-repair-v2"
+AMORTIZATION = EVIDENCE + "amortization-followup-20260908-v1"
+AMORTIZATION_MANIFEST_SHA = "7fd77a2aa8625814b8fc38cc675d0ff34daf5b5f5b00bbfe86770d084094369e"
+AMORTIZATION_TIMING_SHA = "ad873555bd1477741a5a6a1ec0266e7e6a3e90c814cdbc7c7c48ebdfee4eadb7"
 RUNS = {
     "v1_pilot": (EVIDENCE + "handoff-pilot-v1", "v1", "pilot"),
     "v1_main": (EVIDENCE + "handoff-main-v1", "v1", "main"),
@@ -102,6 +105,16 @@ def source_inputs(root=ROOT):
         # its 16 locked wheels. Do not walk arbitrary private context trees.
         paths.update(COMPATIBLE_IMAGE + "/" + row["path"]
                      for row in exact_inventory(root / COMPATIBLE_IMAGE))
+    for relative in ("research/softwarex/amortization_followup_v1.py",
+                     "research/softwarex/AMORTIZATION_FOLLOWUP_V1.md"):
+        if (root / relative).is_file():
+            paths.add(relative)
+    if (root / AMORTIZATION).exists():
+        # Exact sealed capture inventory, including the selected source archive;
+        # never generalize this to a walk of arbitrary experimental workspaces.
+        paths.update(AMORTIZATION + "/record-only/" + row["path"]
+                     for row in amortization_inventory(root / AMORTIZATION / "record-only"))
+        paths.add(AMORTIZATION + "/timing-context.json")
     if (root / HOST_INTERRUPTION).is_file():
         paths.add(HOST_INTERRUPTION)
     paths.update(relative for relative in AMENDMENTS if (root / relative).is_file())
@@ -630,6 +643,54 @@ def application_revision_attempt(root, directory, driver_sha, amendment_sha, *, 
     return function(root, directory, driver_sha, amendment_sha)
 
 
+def amortization_inventory(directory):
+    """Bind the entire sealed follow-up, including its unchanged source archive."""
+    directory = Path(directory)
+    manifest = filename_record(directory, "RECORD_MANIFEST.json")
+    h.require(manifest["sha256"] == AMORTIZATION_MANIFEST_SHA, "follow-up sealed manifest differs")
+    document = v1.read(directory / "RECORD_MANIFEST.json")
+    h.require(isinstance(document, dict) and set(document) == {"files"}, "follow-up manifest fields differ")
+    rows = document["files"]
+    h.require(isinstance(rows, list) and len(rows) == 196
+              and len({row["path"] for row in rows}) == 196, "follow-up manifest denominator differs")
+    expected = {"RECORD_MANIFEST.json"}
+    for row in rows:
+        h.require(isinstance(row, dict) and set(row) == {"path", "bytes", "sha256"},
+                  "follow-up manifest row differs")
+        h.bound(directory, row)
+        expected.add(row["path"])
+    actual = set()
+    for current, dirs, files in os.walk(directory, followlinks=False):
+        for name in dirs:
+            h.require(not (Path(current) / name).is_symlink(), "linked follow-up directory")
+        for name in files:
+            path = Path(current) / name
+            h.require(not path.is_symlink(), "linked follow-up file")
+            actual.add(path.relative_to(directory).as_posix())
+    h.require(actual == expected, "follow-up has missing or unrecorded files")
+    return [*rows, manifest]
+
+
+def amortization_summary(root):
+    root = Path(root)
+    directory = root / AMORTIZATION
+    result = {"path": AMORTIZATION, "state": "NOT_AVAILABLE",
+              "pooled_with_controlled_cohort": False, "independent_subject_sample": False,
+              "host_continuity_certified": False, "quiet_host_certified": False}
+    if not directory.exists():
+        return result
+    inventory = amortization_inventory(directory / "record-only")
+    from research.softwarex.amortization_followup_v1 import validate
+    reconciliation = validate(directory / "record-only")
+    timing_record = filename_record(directory, "timing-context.json")
+    h.require(timing_record["sha256"] == AMORTIZATION_TIMING_SHA, "follow-up timing qualification differs")
+    timing = v1.read(directory / "timing-context.json")
+    result.update(state="RECONCILED_RECORDED_OUTCOMES", reconciliation=reconciliation,
+                  record_file_count=len(inventory), record_manifest=filename_record(directory / "record-only", "RECORD_MANIFEST.json"),
+                  timing_context=timing, timing_context_record=timing_record)
+    return result
+
+
 def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_paths=None):
     root = Path(root)
     base = root / acquisition_path
@@ -805,6 +866,7 @@ def build(root=ROOT, *, acquisition_path=ACQUISITION, image_path=IMAGE, run_path
         "builder_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "acquisition_path": acquisition_path, "acquisition": acq, "controlled_runs": runs, "image_build": image,
         "earlier_image_preparation": failed_image,
+        "exploratory_amortization": amortization_summary(root),
         "available_completed_runs_reconciled": True,
         "reconciled_run_count": sum(value["state"] == "RECONCILED_RECORDED_OUTCOMES" for value in runs.values()),
         "unavailable_or_incomplete_runs": [key for key, value in runs.items() if value["state"] != "RECONCILED_RECORDED_OUTCOMES"],

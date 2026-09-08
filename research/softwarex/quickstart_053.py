@@ -33,6 +33,9 @@ CORE_IDENTITY = "42f1f43433872bc80dd5f44a87505fef4d3e08b974cd5415514a74093952f7a
 PACKAGING = ("pyproject.toml", "README.md", "LICENSE.txt", "Licence.txt", "THIRD_PARTY_NOTICES.md")
 STAGES = ("negative_doctor", "explicit_doctor", "miss", "hit", "verify")
 LIMIT = 2 * 1024 * 1024
+# The expanded public evidence manifest is 4.45 MB; retain a bounded metadata
+# read without excluding the complete distribution. Stream limits stay 2 MiB.
+PUBLIC_MANIFEST_LIMIT = 8 * 1024 * 1024
 HELPERS = {
     "tools/codex_agent_lifecycle.py": "9db6ac92823ddeb07505d4e982592c28f0e5252c444c890c53e8e26718923805",
     "tools/codex_agent_integration_smoke.py": "53a3c86f88aef0cee7a63571a5c22984b17d92831cb746b434f3e6ed5744f328",
@@ -79,7 +82,7 @@ def source_bindings(root):
         if path.stat().st_size > 512 * 1024 or digest(path) != expected:
             raise ValueError("public helper bytes differ: " + relative)
     manifest = real_path(root / "PUBLIC_RELEASE_MANIFEST.json")
-    if manifest.stat().st_size > 4 * 1024 * 1024:
+    if manifest.stat().st_size > PUBLIC_MANIFEST_LIMIT:
         raise ValueError("public release manifest exceeds bound")
     return {"public_manifest_sha256": digest(manifest), "helpers_sha256": HELPERS.copy()}
 

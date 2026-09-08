@@ -126,3 +126,53 @@ def test_refusing_existing_output_never_adds_records(tmp_path, monkeypatch):
         "--protocol", str(tmp_path / "protocol"), "--output", str(out)])
     with pytest.raises(ValueError, match="new external output"): a.main()
     assert [p.name for p in out.iterdir()] == ["original.txt"]
+
+
+def test_sealed_followup_preserves_all_blocks_and_extreme_costs():
+    from research.softwarex import build_handoff_evidence as b
+    root = Path(__file__).resolve().parents[3]
+    row = b.amortization_summary(root)
+    assert row["state"] == "RECONCILED_RECORDED_OUTCOMES"
+    result = row["reconciliation"]
+    assert result["all_six_blocks_complete"] and result["complete_blocks"] == 6
+    assert sum(block["measurements"]["cache_hits"] for block in result["blocks"]) == 14
+    first = result["blocks"][0]["measurements"]
+    assert first["chain_saved_fraction"] < -3
+    assert first["producer_ms"]["zerorun"] > 30000
+    assert first["oracle_ms"]["zerorun"] > 100000
+    assert [block["consumer_requests"] for block in result["blocks"]] == [1, 1, 2, 2, 4, 4]
+    assert not row["pooled_with_controlled_cohort"] and not row["quiet_host_certified"]
+    assert row["timing_context"]["all_original_measurements_retained"] is True
+
+
+@pytest.mark.parametrize("mutation", ["extra", "missing", "changed", "manifest"])
+def test_sealed_followup_inventory_rejects_tampering(tmp_path, mutation):
+    import shutil
+    from research.softwarex import build_handoff_evidence as b
+    root = Path(__file__).resolve().parents[3]
+    source = root / b.AMORTIZATION / "record-only"
+    copy = tmp_path / "records"
+    shutil.copytree(source, copy)
+    if mutation == "extra": (copy / "unrecorded.json").write_text("{}", encoding="utf-8")
+    elif mutation == "missing": (copy / "protocol.json").unlink()
+    elif mutation == "changed": (copy / "protocol.json").write_text("{}", encoding="utf-8")
+    else: (copy / "RECORD_MANIFEST.json").write_text("{}", encoding="utf-8")
+    with pytest.raises((ValueError, FileNotFoundError)):
+        b.amortization_inventory(copy)
+
+
+def test_sealed_followup_absence_is_not_success(tmp_path):
+    from research.softwarex import build_handoff_evidence as b
+    result = b.amortization_summary(tmp_path)
+    assert result["state"] == "NOT_AVAILABLE"
+    assert "reconciliation" not in result
+
+
+def test_followup_input_inventory_includes_selected_source_archive():
+    from research.softwarex import build_handoff_evidence as b
+    root = Path(__file__).resolve().parents[3]
+    base = root / b.AMORTIZATION / "record-only"
+    rows = b.amortization_inventory(base)
+    protocol = a.v.read(base / "protocol.json")
+    assert protocol["selected_source_archive"] in rows
+    assert len(rows) == 197

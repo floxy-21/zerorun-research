@@ -1,0 +1,14 @@
+diff --git a/frontmatter/default_handlers.py b/frontmatter/default_handlers.py
+index dc2e3aa..79840e0 100644
+--- a/frontmatter/default_handlers.py
++++ b/frontmatter/default_handlers.py
+@@ -238,7 +238,8 @@ class JSONHandler(BaseHandler):
+     def export(self, metadata, **kwargs):
+         "Turn metadata into JSON"
+         metadata = json.dumps(metadata, **kwargs)
+-        return u(metadata)
++        # The post template supplies the outer object braces as delimiters.
++        return u(metadata[1:-1])
+ 
+ 
+ if toml:

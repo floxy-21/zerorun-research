@@ -22,7 +22,7 @@ The public repository is `https://github.com/floxy-21/zerorun-research.git`.
 | Dependency lock SHA-256 | `a04f815c62754114a0f0a4b7db15d02c920e7c7d006d813ac9955be00482c02c` |
 | Unchanged two-case pilot ledger SHA-256 | `2017a0414475b7a0bc19da04cc824c5d49c23b7713e6940865c5e87985756b59` |
 
-The separate engine checkout matters. `handoff_v1.run.load_engine` requires the exact historical runtime and helper, so passing the current 0.5.2 package root fails. The earlier `6819078` public checkout also has different physical helper newline bytes and does not satisfy this experiment's helper digest. Use the verified `ebf2884` engine above; do not patch the runtime, rewrite the expected digest, or normalize the helper to make admission pass.
+The separate engine checkout matters. `handoff_v1.run.load_engine` requires the exact historical runtime and helper, so passing the current 0.5.3 package root fails. The earlier `6819078` public checkout also has different physical helper newline bytes and does not satisfy this experiment's helper digest. Use the verified `ebf2884` engine above; do not patch the runtime, rewrite the expected digest, or normalize the helper to make admission pass.
 
 ## 1. Obtain clean, separately pinned public checkouts
 

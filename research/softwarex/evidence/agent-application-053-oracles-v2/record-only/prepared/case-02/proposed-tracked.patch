@@ -1,0 +1,30 @@
+diff --git a/sqlglot/expressions.py b/sqlglot/expressions.py
+index c24fdff..52553be 100644
+--- a/sqlglot/expressions.py
++++ b/sqlglot/expressions.py
+@@ -579,11 +579,24 @@ class Expression(metaclass=_Expression):
+         new_node = None
+ 
+         for node in (self.copy() if copy else self).dfs(prune=lambda n: n is not new_node):
++            parent, arg_key, index = node.parent, node.arg_key, node.index
+             new_node = fun(node, *args, **kwargs)
+ 
+             if root:
+                 if new_node is not node:
+-                    node.replace(new_node)
++                    if parent is node.parent:
++                        node.replace(new_node)
++                    elif parent is not None:
++                        # Wrapping a node changes its parent, so replace it at its original location.
++                        value = parent.args.get(arg_key)
++                        if type(value) is list:
++                            replacement = new_node if type(new_node) is list else [new_node]
++                            value[index : index + 1] = replacement if new_node is not None else []
++                            parent.set(arg_key, value)
++                        elif type(new_node) is list:
++                            parent.replace(new_node)
++                        else:
++                            parent.set(arg_key, new_node)
+             else:
+                 root = new_node
+ 

@@ -1,0 +1,56 @@
+diff --git a/lkml/parser.py b/lkml/parser.py
+index cbf25ca..5eeadeb 100644
+--- a/lkml/parser.py
++++ b/lkml/parser.py
+@@ -388,7 +388,10 @@ class Parser:
+ 
+     @backtrack_if_none
+     def parse_value(
+-        self, parse_prefix: bool = False, parse_suffix: bool = False
++        self,
++        parse_prefix: bool = False,
++        parse_suffix: bool = False,
++        allow_spaced_hyphen: bool = False,
+     ) -> Optional[tree.SyntaxToken]:
+         """Returns a syntax token that represents a value.
+ 
+@@ -406,10 +409,16 @@ class Parser:
+ 
+         if self.check(tokens.LiteralToken):
+             token = self.consume()
++            value = token.value
++            if allow_spaced_hyphen and value == "-":
++                # A set exclusion may separate the hyphen from its field name.
++                if self.check(tokens.LiteralToken, skip_trivia=True):
++                    self.consume_trivia()
++                    value += self.consume_token_value()
+             suffix = self.consume_trivia() if parse_suffix else ""
+             if self.log_debug:
+                 logger.debug("%sSuccessfully parsed value.", self.depth * DELIMITER)
+-            return tree.SyntaxToken(token.value, token.line_number, prefix, suffix)
++            return tree.SyntaxToken(value, token.line_number, prefix, suffix)
+         elif self.check(tokens.QuotedLiteralToken):
+             token = self.consume()
+             suffix = self.consume_trivia() if parse_suffix else ""
+@@ -516,7 +525,9 @@ class Parser:
+         elif self.check(
+             tokens.LiteralToken, tokens.QuotedLiteralToken, skip_trivia=True
+         ):
+-            value = self.parse_value(parse_prefix=True, parse_suffix=True)
++            value = self.parse_value(
++                parse_prefix=True, parse_suffix=True, allow_spaced_hyphen=True
++            )
+             csv.append(value)
+         else:
+             return None
+@@ -543,7 +554,9 @@ class Parser:
+                 if self.check(
+                     tokens.LiteralToken, tokens.QuotedLiteralToken, skip_trivia=True
+                 ):
+-                    value = self.parse_value(parse_prefix=True, parse_suffix=True)
++                    value = self.parse_value(
++                        parse_prefix=True, parse_suffix=True, allow_spaced_hyphen=True
++                    )
+                     csv.append(value)
+                 elif self.check(tokens.ListEndToken, skip_trivia=True):
+                     break
