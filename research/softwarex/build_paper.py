@@ -151,7 +151,7 @@ def handoff_text(evidence, commit="main"):
         "oracle. Two blocks reverse arm order. These imposed handoffs do not measure natural repetition frequency.",
         f"The corrected-fixture V6 repeat completed all 24 cases across {repos} repositories: 48 paired blocks, "
         f"48 reused successes and 96 agreeing fresh-oracle checks. Complete chain time was {chain_saving:.1f}\\% "
-        f"lower, and mean consumer waiting {consumer_saving:.1f}\\% lower. Aggregate chains improved in {faster}/24 "
+        f"lower, and mean scripted consumer-request latency {consumer_saving:.1f}\\% lower. Aggregate chains improved in {faster}/24 "
         f"cases and worsened in {24-faster}/24. This demonstrates bounded operation and workload-dependent costs, "
         "not population-wide acceleration. Source inventories and the actual runtime image are bound before and after execution."]
     table = []
@@ -170,7 +170,7 @@ def handoff_text(evidence, commit="main"):
         r" & Cases & \multicolumn{2}{c}{Chain sum (s)} & \multicolumn{2}{c}{Consumer mean (s)} \\",
         r"Deployment & complete/selected & Fresh & ZeroRun & Fresh & ZeroRun \\",
         r"\midrule", *table, r"\bottomrule\end{tabular}",
-        r"\caption{Separate cohorts, without pooling. Chain includes cold producer plus consumer, but excludes per-arm setup, common image construction, operator review, fresh oracles and diagnostic instrumentation. All those costs are retained separately. Earlier interrupted campaigns appear in the indexed supplementary ledger; their guest-clock timings are audit values, not uninterrupted performance measurements. V6 uses one explicitly corrected Lizard fixture; its original V5 failure remains retained.}",
+        r"\caption{Separate cohorts, without pooling. Chain includes cold producer plus consumer, excluding per-arm setup, common image construction, operator review, fresh oracles and diagnostics. Measured setup, oracle and diagnostic costs are retained separately; operator review is unmeasured. Earlier interrupted campaigns remain in the supplement. V6 timings are descriptive, with the host-monitor qualification below. Its corrected Lizard fixture and original V5 failure are retained.}",
         r"\label{tab:handoffs}\end{table}"]))
     paragraphs.append(
         f"Adding per-arm setup gives V6 totals of {costs['setup_inclusive_chain_ms']['fresh']/1000:.2f}~s fresh "
@@ -183,10 +183,12 @@ def handoff_text(evidence, commit="main"):
         "V5 completed 23 cases and retained Lizard-191 as unsupported. V6 preserves every selected case, command "
         "and source patch, changing only its stale expected complexity from two to three; the exact public upstream "
         "method supports that correction. This intervention is explicit, not a replacement of an unfavorable case. "
-        "The original 2/24 favorable pilot and interrupted 15/24 repeat remain separate in the coverage audit, "
+        "The original 2/24 partial main campaign and interrupted 15/24 repeat remain separate in the coverage audit, "
         "with compatibility, collection, lifecycle, assertion and capture failures distinguished from reuse errors. "
         "No incomplete case contributes a zero-cost observation. The original fine-grained V6 host-monitor files "
-        "were not recovered; the retained VirtualBox log and source-bound guest records constrain timing interpretation.")
+        "were not recovered. The retained VirtualBox log contains a 5.53~s heartbeat lapse within the nominal run "
+        "window, without an explicit pause transition. Its clock association is conditional; V6 does not certify "
+        "uninterrupted or quiet-host performance.")
     repeat = runs["v2_pilot_repeat"]["complete_paired_costs"]
     paragraphs.append(
         f"The image repeat reduced consumer waiting {100*(1-repeat['consumer_ms']['zerorun']/repeat['consumer_ms']['fresh']):.1f}\\% "
@@ -200,26 +202,84 @@ def handoff_text(evidence, commit="main"):
         r"/research/softwarex/APPLICATION_COVERAGE_AUDIT.md}{coverage audit} and reproduction guide index every cohort, "
         "raw outcome, setup cost and intervention. The earlier single verified model-producer pilot remains separate "
         "from these reference-patch comparisons and the new installed-client application.")
+    exploratory = evidence["exploratory_amortization"]["reconciliation"]
+    require(exploratory["reconciled"] and exploratory["all_six_blocks_complete"]
+            and not exploratory["material_correctness_stop"], "amortization observations differ")
+    blocks = exploratory["blocks"]
+    require([(b["consumer_requests"], b["block"]) for b in blocks]
+            == [(1,0),(1,1),(2,0),(2,1),(4,0),(4,1)], "amortization conditions differ")
+    one = [100 * -b["measurements"]["chain_saved_fraction"] for b in blocks[:2]]
+    four = [100 * b["measurements"]["chain_saved_fraction"] for b in blocks[4:]]
+    paragraphs.append(
+        "An exploratory follow-up selected LKML-85 after observing V6's cold overhead. With one consumer, "
+        f"both chains were slower ({min(one):.1f}--{max(one):.1f}\\%); two consumers gave mixed results; "
+        f"four gave {min(four):.1f}--{max(four):.1f}\\% lower chain cost. All six blocks and fresh checks are retained. "
+        "Fixed condition order and concurrent host I/O prevent separating repetition from warm-up and host effects. "
+        "This sensitivity example is not pooled with V6 or evidence of natural demand. Net time benefit must "
+        "subtract additional setup, qualification and execution costs from avoided repeat execution.")
     return "\n\n".join(paragraphs)
 
 
-def agent_application_text():
-    from research.softwarex.agent_application_053.oracles_v2 import verify
-    directory = HERE / "evidence/agent-application-053-oracles-v2/record-only"
-    result = verify(directory)
+def actual_agent_evidence(preview=False):
+    if preview:
+        return None
+    from research.softwarex.build_agent_application_evidence import build
+    result = build(ROOT)
+    require(load(HERE / "generated/agent-application-053-v1.json") == result,
+            "actual agent evidence is stale")
+    return result
+
+
+def agent_application_text(evidence, commit):
+    result = evidence["producer"]
     require(result["selected_cases"] == 6 and result["attempted_states"] == 12
             and result["completed_verified_fixes"] == 5 and result["error"] is None,
             "actual model-producer narrative differs")
-    return (
-        "A separate prospective test-assisted application selected six real issues across six repositories. "
-        "Each producer received the public issue and unchanged supplied tests, without the reference source fix, "
-        "and one bounded model attempt. All six ran; independent fresh container execution of each baseline and "
-        "actual final snapshot verified five fixes with identical collected-node sets. SQLGlot's transform "
-        "regression passed after its patch, but two supplied dialect tests still failed, so the complete target "
-        "remains unsuccessful in the primary denominator. The requested model was gpt-6-astra, medium effort, "
-        "through Codex CLI 0.153.3; events did not expose an independently observed backing-model identifier. "
-        "Model production, qualification, validation and consumer costs are reported separately; these six "
-        "applications are not a population reliability estimate.")
+    consumer = evidence["consumer"]
+    review = evidence["consumer_interpretation_review"]
+    require(consumer["eligible"] == 5 and consumer["stage_counts"]["available"]["reuse"] == 5
+            and consumer["stage_counts"]["fresh"]["fresh_success"] == 5
+            and evidence["additive_client_event_audit"]["additional_fresh_failures"] == 5
+            and review["assessed_messages"] == review["supported_core_status_freshness_and_limits"] == 15
+            and review["messages_with_unverifiable_details"] == 13,
+            "actual consumer observations differ")
+    relative = "research/softwarex/evidence/agent-application-053-consumers-v2/record-only/cases/eliben__pycparser-236/plan/qualification.json"
+    qualification = load(ROOT / relative)
+    require(qualification["command"] == ["/usr/local/bin/python", "-m", "pytest", "-p", "no:cacheprovider", "tests/test_c_parser.py"]
+            and set(qualification["states"]) == {"final", "restored"}
+            and qualification["restoration"]["changed_paths"] == ["pycparser/c_parser.py"]
+            and qualification["inspection"]["human_review_seconds"] is None,
+            "actual qualification example differs")
+    guide = PUBLIC + "/blob/" + commit + "/research/softwarex/REAL_AGENT_APPLICATION_053_RESULTS.md"
+    return "\n\n".join([
+        "A prospective application selected six issues across six repositories. Each producer received the issue "
+        "and unchanged supplied tests, without the reference production fix, for one bounded model attempt. "
+        "Fresh container checks of each baseline and actual final snapshot verified five fixes with identical "
+        "collected-node sets. SQLGlot's primary patch retained two failing dialect tests; a separately assisted "
+        "production repair subsequently passed the same 99-node target without changing the original 5/6 outcome. "
+        "Requests specified gpt-6-astra, medium effort, through Codex CLI 0.153.3; captured events did not identify "
+        "the backing model independently.",
+        "Laboratory scripts qualified, externally authorized and seeded the five eligible patched states. "
+        "Actual model consumers then received task-level requests about available evidence, newly executed "
+        "diagnostics, and an operator-restored original buggy state. All 15 turns completed, each with one MCP "
+        "request: five \\code{HIT\\_REUSED}, five \\code{VERIFY\\_MATCH}, and five fresh \\code{MISS\\_FAILED} "
+        "results after restoration. Every model correctly distinguished historical status from new execution "
+        "and success from failure within the configured target. This is a guided application using model-produced "
+        "patches, with scripted preparation and restoration; it is not a wholly autonomous workflow.",
+        "The frozen parser left five failed client envelopes unclassified; a separate additive audit verifies "
+        "their intact fresh-failure payloads without rewriting original records. Internal AI-assisted review "
+        "confirmed all 15 core status/freshness interpretations. Thirteen messages additionally asserted wire "
+        "error flags omitted from the CLI archive; those details remain unverifiable, not certified or established "
+        "false. Complete prompts, transcripts, preparation failures and separate cost intervals are in the "
+        "\\href{" + guide + "}{application ledger}. The 415.91~s consumer-model total includes 60.68~s runner "
+        "time; neither is a controlled end-to-end saving.",
+        r"\paragraph{Worked qualification} The \href{" + PUBLIC + "/blob/" + commit + "/" + relative +
+        "}{Pycparser record} binds \\code{tests/test\\_c\\_parser.py}, parser modules, generated tables, fixtures "
+        "and configuration under the fixed image, with no forwarded host environment or reusable outputs. "
+        "Inspection covers exactly the actual patched state and restoration of \\code{pycparser/c\\_parser.py}; "
+        "tests remain unchanged. Any other source, command, dependency or contract change requires renewed review. "
+        "\\code{closure\\_reviewed} records an assertion, not proven completeness or determinism. "
+        "Expert review effort remains unmeasured."])
 
 
 def application_text(evidence):
@@ -247,18 +307,20 @@ def application_text(evidence):
     require(installation["passed"] is True and quickstart["passed"] is True
             and quickstart["runtime_files"] == 36,
             "passing public quickstart narrative required")
+    from research.softwarex.quickstart_053 import validate_receipt_pair
+    directory = HERE / "evidence/quickstart-public-053-v1"
+    current = validate_receipt_pair(ROOT, directory / "install.json", directory / "check.json")
+    require(current["passed"] and current["check"]["stages_recorded"] == 5, "current public quickstart differs")
     return (
-        "A scripted consumer passed 14 response cases; 11 installed-server checks covered eight discovery/diagnostic requests. "
-        "Three Codex~0.153.3 configurations failed overall: missing authority, approval refusal, and an unsupported "
-        "argument after four passing lifecycle turns and two agreeing fresh checks. A separate API-guided demonstration, "
-        "after non-model setup, passed two model decisions (reuse for earlier status; verification for fresh evidence), "
-        "two fresh oracles and six no-tool interpretations including failure and refusal. These eight turns had no retries. "
-        "The supplement's complete trial ledger retains failures and transcripts; "
-        "the guided result is not a causal documentation experiment. "
-        "A researcher-executed public-clone guide passed refusal, readiness, execution, reuse and verification "
-        "through the installed server with 36 matching runtime modules. "
-        f"The recorded installation took {installation['elapsed_seconds']:.1f}~s and the server check {quickstart['elapsed_seconds']:.1f}~s, "
-        "excluding cloning, Docker setup and researcher preparation; no independent user observation is claimed.")
+        "Three Codex configurations failed overall through missing authority, approval refusal or unsupported arguments. "
+        "A separate API-guided demonstration passed two model decisions and six interpretations without retries; "
+        "neither an identified backing model nor a causal documentation effect was established. Full trial "
+        "denominators, failures, scripted checks and fresh oracles remain in the supplement. "
+        "Separately, a fresh anonymous 0.5.3 public clone passed external installation and five actual MCP stages: "
+        "refusal, readiness, fresh execution, reuse and fresh verification, with 36 matching runtime files. "
+        f"Installation took {current['installation']['elapsed_seconds']:.1f}~s and server checks "
+        f"{current['check']['elapsed_seconds']:.1f}~s, excluding cloning, Docker setup and preparation. "
+        "This account-free synthetic check is not an independent user study.")
 
 
 def extension_text(evidence):
@@ -418,21 +480,21 @@ def build(preview=False):
     application = application_evidence(preview)
     client_text = application_text(application)
     handoff = handoff_evidence(preview)
+    actual_agent = actual_agent_evidence(preview)
     if handoff:
         main = handoff["controlled_runs"]["v6_main_corrected"]
         c = main["complete_paired_costs"]
         require(main["all_selected_cases_completed"] and main["complete_case_count"] == 24,
                 "final abstract needs full V6 coverage")
-        abstract = (f"A corrected-fixture repeat completed 24 selected cases across eight repositories, "
-                    f"with 48 reused successes agreeing with fresh checks. Consumer waiting was "
-                    f"{100*(1-c['consumer_ms']['zerorun']/c['consumer_ms']['fresh']):.1f}\\% lower and combined "
-                    f"producer-consumer time {100*c['chain_saved_fraction']:.1f}\\% lower; nine cases were slower. "
-                    "Independent checks verified five of six actual model-produced fixes.")
+        abstract = ("A corrected-fixture study completed 24 selected cases across eight repositories, with "
+                    "48 reused successes agreeing with fresh checks. Scripted request latency decreased; total "
+                    "cost varied and host timing remains qualified. Fresh checks verified five of six model-produced "
+                    "fixes; 15 guided model-consumer turns distinguished prior status, fresh success and fresh failure.")
     slots = {"PUBLIC_COMMIT": commit, "ABSTRACT_RESULT": abstract, "REPLICATION_RESULT": result,
              "REPLICATION_ROWS": table, "STATE_REJOIN": state_text, "ORIGINAL_RESULTS": original_text}
     slots.update({"CLIENT_EVIDENCE": client_text, "OPERATING_REGION": operating_text,
                   "HANDOFF_EVIDENCE": handoff_text(handoff, commit),
-                  "AGENT_EVIDENCE": agent_application_text() if not preview else "[Actual client application pending.]"})
+                  "AGENT_EVIDENCE": agent_application_text(actual_agent, commit) if not preview else "[Actual client application pending.]"})
     source = HERE / "paper/submission.tex.in"
     document = source.read_text(encoding="utf-8")
     for key, value in slots.items():
@@ -450,6 +512,7 @@ def build(preview=False):
         "original_comparison": original, "engineering": engineering, "fine_grained_revision": revision,
         "replication": replication, "state_rejoin": state_binding, "trace_summary_sha256": digest(EVIDENCE / "trace-summary-v1.json"),
         "inventory": inventory, "extension": extension, "application": application, "handoff": handoff,
+        "actual_agent_application": actual_agent,
         "abstract_whitespace_words": len(abstract_text.split()),
         "meaning": "Evidence and format validation, not an acceptance probability or production qualification."}
     return document, refs, summary

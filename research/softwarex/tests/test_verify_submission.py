@@ -81,18 +81,19 @@ def prepare_verifier(monkeypatch):
     monkeypatch.setattr(verifier, "artifact_check", lambda root: {"synthetic": True})
 
 
-def test_all_eleven_saved_evidence_routes_are_invoked(tmp_path, monkeypatch):
+def test_all_twelve_saved_evidence_routes_are_invoked(tmp_path, monkeypatch):
     prepare_verifier(monkeypatch)
     called = []
     monkeypatch.setattr(verifier, "check_command", lambda root, module, args: called.append((module, args)) or {"returncode": 0})
     result = verifier.verify(tmp_path)
     assert result["passed"] is True
     assert called == [(module, args) for _, module, args in verifier.commands()]
-    assert len(called) == 11
+    assert len(called) == 12
     assert all("--check" in args for _, args in called)
     assert not any("build_readiness" in module for module, _ in called)
     assert "research.softwarex.build_handoff_evidence" in {module for module, _ in called}
     assert "research.softwarex.quickstart_053" in {module for module, _ in called}
+    assert "research.softwarex.build_agent_application_evidence" in {module for module, _ in called}
 
 
 def test_current_routes_require_053_receipts_without_relabeling_052():
@@ -140,7 +141,7 @@ def test_one_failed_checker_is_nonpassing_but_other_checks_retained(tmp_path, mo
     monkeypatch.setattr(verifier, "check_command", check)
     result = verifier.verify(tmp_path)
     assert result["passed"] is False
-    assert len(result["checks"]) == 15
+    assert len(result["checks"]) == 16
     assert next(r for r in result["checks"] if r["check"] == "handoff")["error"]["type"] == "FileNotFoundError"
 
 

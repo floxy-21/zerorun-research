@@ -36,7 +36,8 @@ and the [0.5.1 laboratory guide](QUICKSTART_LAB.md) describe historical evidence
 
 The command validates the complete public manifest before and after checking,
 the current PDF and both ZIPs against their artifact receipt, eight existing
-analysis/manuscript checks, the current 0.5.3 installation/test receipt, the
+analysis/manuscript checks, the separately reconciled actual model application and
+hash-bound internal interpretation review, the current 0.5.3 installation/test receipt, the
 handoff-evidence reconciliation, and the current public-guide installation
 and five-stage STDIO receipts. Archive members are checked without being
 extracted or executed. A saved visual-review receipt binds the PDF; this command

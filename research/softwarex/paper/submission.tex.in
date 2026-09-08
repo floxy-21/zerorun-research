@@ -63,6 +63,8 @@ Regression-test selection avoids tests considered unaffected by a change \cite{r
 
 The contribution is an inspectable validation handoff for operator-qualified, result-only tests: a repository-bound interface distinguishing historical from fresh evidence, external authorization, a hit path avoiding source staging, and an evaluation kit connecting input boundaries, independent fresh outcomes and full request cost. Researchers can therefore investigate qualification and downstream waiting without conflating a cached success with a fresh test.
 
+A saved receipt can document a past run. ZeroRun additionally packages declared-input revalidation, authenticated lookup, authorization, and explicit fresh-verification behavior through one interface. A receipt system implementing the same checks could provide comparable functionality; no performance advantage over such an implementation is claimed.
+
 \begin{table}[htbp]
 \centering\small
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.17\linewidth}>{\raggedright\arraybackslash}p{0.35\linewidth}>{\raggedright\arraybackslash}p{0.38\linewidth}@{}}
@@ -152,21 +154,17 @@ For the same configured task, MCP \code{run\_tests} takes the following argument
 \end{verbatim}
 The server is bound to the target repository and receives the operator's external authority location. Requesting reuse does not imply that the response is a hit.
 
-Abbreviated fields from the \href{https://github.com/floxy-21/zerorun-research/blob/@@PUBLIC_COMMIT@@/research/softwarex/evidence/quickstart-public-052-v1/check.json}{synthetic 0.5.2 quickstart receipt} make the choice inspectable: \code{\{"status":"HIT\_REUSED","exit\_code":0\}} identifies earlier success; \code{\{"status":"VERIFY\_MATCH","exit\_code":0\}} reports fresh agreement. A consumer accepting prior status can continue; one needing fresh diagnostics requests verification and inspects its fresh output.
+Abbreviated fields from the \href{https://github.com/floxy-21/zerorun-research/blob/@@PUBLIC_COMMIT@@/research/softwarex/evidence/quickstart-public-053-v1/check.json}{synthetic 0.5.3 quickstart receipt} make the choice inspectable: \code{\{"status":"HIT\_REUSED","exit\_code":0\}} identifies earlier success; \code{\{"status":"VERIFY\_MATCH","exit\_code":0\}} reports fresh agreement. A consumer accepting prior status can continue; one needing fresh diagnostics requests verification and inspects its fresh output.
 
-The following client-decision trials use one deterministic two-file synthetic fixture, separately from the issue-fix producer below. @@CLIENT_EVIDENCE@@
-These timings describe the historical 0.5.1 guide; the supplement separately retains the 0.5.2 public-installation checks.
+The historical client-decision trials use a deterministic two-file synthetic fixture, separately from the real issues below. @@CLIENT_EVIDENCE@@
 
-These synthetic trials used the CLI's default model without an identified backing model; they do not estimate model-population accuracy.
-
-\subsection{Actual model-produced regression repairs}
+\subsection{Actual model-produced repairs and consumer handoffs}
 @@AGENT_EVIDENCE@@
 
 \subsection{Issue-state validation handoffs}
 \begingroup\setlength{\tabcolsep}{2.8pt}
 @@HANDOFF_EVIDENCE@@
 \endgroup
-Unsupported and unexecuted selections do not contribute zero-cost observations.
 
 \subsection{Real AI-workflow observations}
 The read-only audit uses public SWE-rebench OpenHands records \cite{swerebenchtrajectories,badertdinov2025swerebench}. After ten pilot rows, fixed SHA-256 ordering selected 128 of 67,064 remaining rows without outcome or performance filtering. Raw responses, exclusions, the parser and same-selection rate-limit recovery are retained.

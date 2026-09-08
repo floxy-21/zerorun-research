@@ -1,5 +1,132 @@
 # Fresh dependency image and real-workload reproduction
 
+## Current compatible-image recipe and recovered full cohort
+
+The current controlled cohort is the **V6 corrected-fixture repeat: 24/24
+selected cases, eight repositories, 48 paired blocks/hits and 96 agreeing paired
+fresh-oracle captures**. Its full-chain total is 4.1438% lower and consumer
+waiting 78.9045% lower, with 15 cases faster and nine slower. V5 retained one
+Lizard-191 failure and completed 23/24; V6 changes only its stale supplied
+`Test_Big.test_typedef` expectation from 2 to 3, independently checked against
+the pinned public upstream method AST. All other selected inputs remain fixed.
+See the [coverage audit](APPLICATION_COVERAGE_AUDIT.md) for exact ledgers,
+negative history, all six separate amortization rows and source links.
+
+These measurements use historical **0.5.1**, harness
+`0528905a52b74df78aa4e5a09219df34620282dd` and public engine
+`ebf2884df12573d63f45813200e0675288d12096`, not the new **0.5.3 integration
+release**. Use the separate current-release quickstart for 0.5.3 verification.
+The commands and identities in the older v2/v3 sections below remain historical
+recipes; their Python3.12 image does not describe the compatible V5/V6 image.
+
+The recovered [compatible image records](evidence/compatible-image-repair-v2/)
+contain exactly **52 files**, including the executed `driver.py`, its amendment,
+all commands, `context/Dockerfile`, the full hash lock and **16 wheels**.
+[The independent image checker](validate_compatible_image.py) verifies inventory
+SHA-256 `14983e2184a95da8b81bc3d7500a829c13653b381ed6e5e5acb32ee427f12910`
+and completion SHA-256
+`ffce2613a7b7305df307b3b811c6b8ed6c8f818af7cf0addbd4534bd34f75045`.
+The Dockerfile SHA-256 is
+`3b88de3e45a1ab466f42fc697b74d36536c4ae3a63d59f2d0fbf21bbab78312c`;
+the lock SHA-256 is
+`6ef092ca749e7ea2169da20b99df11fe789023cba7f5f59ae176528beedb3c12`.
+
+The actual build used **`--no-cache --pull=false --network=none`** and installed
+the retained wheels using **`--no-index --require-hashes`**. Its Python base is
+`docker.io/library/python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a`.
+The recorded derived reference is
+`127.0.0.1:19559/zerorun-compatible-v2@sha256:78039048251ecf889454509c6ef203f922d9dae9fa3b570a4ade3a9d4b552465`,
+configuration SHA-256
+`b3a8632a1f903b463526c0f59377f8a447b2f90bba920871d1da816fb198a198`.
+This loopback registry image is **not a public download**. The author-side
+preparation took **82.289 s**, including the overlapping **57.720 s** build
+clock. Wheel acquisition used network access; the pinned public base was
+already present. Disabling derived-layer build-cache reuse does not rebuild the
+base image or constitute a clean operating-system experiment. The recorded
+runtime probe enumerates distribution metadata/versions; it does not import
+every application module. The full workload evidence comes from the separate
+fresh oracles.
+
+### Portable replay of the sealed build inputs
+
+From the root of this verified publication checkout, the following Bash commands
+copy only the public build context to a **new external directory** and reuse the
+executed driver's offline build recipe. Use a non-root Linux/amd64 Docker
+operator account. The original `driver.py` is retained as provenance; it has
+historical laboratory paths and would re-resolve dependency downloads if run
+unchanged. The replay uses the already retained exact 16-wheel closure instead,
+so it needs no old local registry or private path. These documented portable
+commands have not themselves been presented as another completed experiment.
+
+```bash
+set -euo pipefail
+repro_public=$PWD
+repro_lab=$(mktemp -d -t zerorun-compatible-replay-XXXXXXXX)
+export repro_public repro_lab
+python3 -B -m research.softwarex.validate_compatible_image \
+  research/softwarex/evidence/compatible-image-repair-v2 \
+  > "$repro_lab/retained-image-audit.json"
+cp -R research/softwarex/evidence/compatible-image-repair-v2/context "$repro_lab/context"
+cp research/softwarex/evidence/compatible-image-repair-v2/driver.py \
+  "$repro_lab/historical-driver.py"
+repro_base=docker.io/library/python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a
+repro_tag=zerorun-compatible-replay:$(python3 -c 'import uuid; print(uuid.uuid4().hex)')
+docker pull --platform linux/amd64 "$repro_base" \
+  > "$repro_lab/base-pull.log" 2>&1
+docker build --no-cache --pull=false --network=none \
+  --tag "$repro_tag" "$repro_lab/context" \
+  > "$repro_lab/offline-build.log" 2>&1
+docker image inspect "$repro_tag" > "$repro_lab/new-image-inspect.json"
+docker run --rm --pull=never --read-only --network=none "$repro_tag" \
+  python -B -m pip check > "$repro_lab/pip-check.log" 2>&1
+docker run --rm --pull=never --read-only --network=none "$repro_tag" \
+  python -B -c 'import importlib.metadata as m,json,sys; print(json.dumps({"python":sys.version,"packages":{d.metadata["Name"]:d.version for d in m.distributions()}}))' \
+  > "$repro_lab/runtime-versions.json" 2>&1
+```
+
+Keep the newly observed image ID and logs even if the identity or outcome
+differs. A functional rebuild is the goal; no bit-identical digest guarantee is
+made. For a new paired study, create a new operator-controlled loopback digest
+reference as in the retained driver's `registry-create`, `push`, `pull-digest`
+and `derived-inspect` commands. Bind **that new identity and new build receipt**
+to the run; do not substitute the historical completion or relax any identity
+check. Keep all failed preparation and build records as separate attempts.
+
+### Rechecking the recovered workload evidence
+
+The following commands only reconstruct existing records and do not launch
+containers or models:
+
+```bash
+python3 -B -m research.softwarex.verify_recovered_handoff_v6 \
+  --root "$repro_public" --version 5 > "$repro_lab/v5-reconciliation.json"
+python3 -B -m research.softwarex.verify_recovered_handoff_v6 \
+  --root "$repro_public" --version 6 > "$repro_lab/v6-reconciliation.json"
+```
+
+The corrected ledger is
+`evidence/application-revision-20260907-v6/corrected-acquisition/main.json`,
+SHA-256 `e6453b256f80e0eb79d280acc6bb8a143c006e56854f1702300cdc6550ab9ee2`.
+The [actual V6 wrapper](evidence/application-revision-20260907-v6/record-only/provenance/driver.py)
+shows the exact immutable-image preparation adapter and `h.run` invocation:
+120-second individual caps, two counterbalanced blocks per case and a
+14,400-second operational guard. It is bound to its historical preflight and
+boot gate and is not a relocatable CLI. A new timed repeat must prepare a new
+external wrapper/gate and preserve the same selection, targets, oracles,
+source-checking and all 24 dispositions; the old gate must not authorize it.
+The original ledger, original V5 failure and corrected ledger remain distinct.
+
+**The original V6 230-sample host monitor is not recovered.** The recovered
+1,381-file guest bundle and surviving monitor hash do not establish sampled
+continuity. Any separately supplied VirtualBox event-log audit has its narrower
+logged-state scope. These author-side records use an existing VM and Docker
+daemon; they do not prove quiet-host timing, independent human replication or a
+clean OS. The separate lkml-85 repeated-consumer follow-up also reports
+concurrent Windows host I/O, preserves its extreme 30.742 s producer and
+101.847 s oracle, and does not replace or pool with V6.
+
+## Earlier v2/v3 reproduction history
+
 Status after sealed-record verification on 7 September 2026: **author-side public-source recipe build and real-workload reruns completed, including a separate v3 build with Docker build-cache reuse disabled**. This procedure was fixed before execution. Its completed attempt, measured outcomes and environment limits are recorded below; earlier image-build and handoff receipts remain separate.
 
 This is a fresh reproduction of the controlled reference-patch handoff experiment. It rebuilds dependencies from the public recipe and runs both frozen SQLGlot pilot cases, including an independent fresh oracle and both counterbalanced paired blocks. It makes no model calls and is not a new autonomous coding-agent study. It uses the study's historical 0.5.1 runtime; it does not substitute for regression verification of a subsequently revised product release.

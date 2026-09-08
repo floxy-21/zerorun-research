@@ -1,6 +1,6 @@
 # ZeroRun manifest v2 reference
 
-This reference covers the evaluated **whole-task, result-only** mode of ZeroRun 0.5.1. Its manifest is executable policy, not a declaration an AI agent may approve automatically. See the [operating guide](OPERATING_GUIDE.md) for installation, exact-byte operator authorization, CLI/MCP use, and response handling.
+This reference covers the **whole-task, result-only** contract of ZeroRun 0.5.3, unchanged from the evaluated 0.5.1 computational engine. Its manifest is executable policy, not a declaration an AI agent may approve automatically. See the [operating guide](OPERATING_GUIDE.md) for installation, exact-byte operator authorization, CLI/MCP use, and response handling.
 
 ## Example shape, not an approved configuration
 

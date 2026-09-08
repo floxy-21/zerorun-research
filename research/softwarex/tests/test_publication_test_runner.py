@@ -105,8 +105,13 @@ def test_new_study_sources_explicitly_allowlisted():
 
 def test_current_application_selection_is_exact_and_offline():
     selected = {path for path in runner.NESTED_TEST_MODULES if path.startswith("agent_application_053/")}
-    assert selected == {"agent_application_053/test_consumer.py", "agent_application_053/test_oracles.py",
-                        "agent_application_053/test_oracles_v2.py"}
+    assert selected == {
+        "agent_application_053/test_consumer.py", "agent_application_053/test_oracles.py",
+        "agent_application_053/test_oracles_v2.py", "agent_application_053/test_seed.py",
+        "agent_application_053/test_prepare_consumers.py", "agent_application_053/test_consumer_campaign.py",
+        "agent_application_053/test_consumer_v2.py", "agent_application_053/test_consumer_continuation_v2.py",
+        "agent_application_053/test_consumer_event_audit_v1.py",
+    }
     assert not any(Path(path).name in {"consumer.py", "producer_campaign.py", "oracles.py", "oracles_v2.py"}
                    for path in runner.NESTED_TEST_MODULES)
 
@@ -115,7 +120,9 @@ def test_current_application_selection_is_exact_and_offline():
 def test_current_application_cannot_silently_drop_or_add_nested_tests(tmp_path, mutation):
     folder = tmp_path / "research/softwarex/agent_application_053"
     folder.mkdir(parents=True)
-    for name in ("test_consumer.py", "test_oracles.py", "test_oracles_v2.py"):
+    for name in ("test_consumer.py", "test_oracles.py", "test_oracles_v2.py", "test_seed.py",
+                 "test_prepare_consumers.py", "test_consumer_campaign.py", "test_consumer_v2.py",
+                 "test_consumer_continuation_v2.py", "test_consumer_event_audit_v1.py"):
         if mutation == "missing-known" and name == "test_oracles_v2.py":
             continue
         (folder / name).write_bytes(b"# artificial offline test inventory")

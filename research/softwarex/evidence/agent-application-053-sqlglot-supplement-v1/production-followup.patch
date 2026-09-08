@@ -1,0 +1,50 @@
+--- a/sqlglot/dialects/duckdb.py
++++ b/sqlglot/dialects/duckdb.py
+@@ -38,10 +38,10 @@
+     return f"CAST({this} AS {self.sql(expression.return_type)}) + {interval}"
+ 
+ 
+-def _date_delta_sql(self: DuckDB.Generator, expression: exp.DateAdd | exp.DateSub) -> str:
++def _date_delta_sql(self: DuckDB.Generator, expression: exp.DateAdd | exp.DateSub | exp.TimeAdd) -> str:
+     this = self.sql(expression, "this")
+     unit = self.sql(expression, "unit").strip("'") or "DAY"
+-    op = "+" if isinstance(expression, exp.DateAdd) else "-"
++    op = "+" if isinstance(expression, (exp.DateAdd, exp.TimeAdd)) else "-"
+     return f"{this} {op} {self.sql(exp.Interval(this=expression.expression, unit=unit))}"
+ 
+ 
+@@ -373,6 +373,7 @@
+             exp.DataType: _datatype_sql,
+             exp.Date: _date_sql,
+             exp.DateAdd: _date_delta_sql,
++            exp.TimeAdd: _date_delta_sql,
+             exp.DateFromParts: rename_func("MAKE_DATE"),
+             exp.DateSub: _date_delta_sql,
+             exp.DateDiff: lambda self, e: self.func(
+--- a/sqlglot/dialects/snowflake.py
++++ b/sqlglot/dialects/snowflake.py
+@@ -350,6 +350,16 @@
+                 expression=seq_get(args, 1),
+                 unit=_map_date_part(seq_get(args, 0)),
+             ),
++            "TIMEADD": lambda args: exp.TimeAdd(
++                this=seq_get(args, 2),
++                expression=seq_get(args, 1),
++                unit=_map_date_part(seq_get(args, 0)),
++            ),
++            "TIMESTAMPADD": lambda args: exp.DateAdd(
++                this=seq_get(args, 2),
++                expression=seq_get(args, 1),
++                unit=_map_date_part(seq_get(args, 0)),
++            ),
+             "DATEDIFF": _build_datediff,
+             "DIV0": _build_if_from_div0,
+             "FLATTEN": exp.Explode.from_arg_list,
+@@ -741,6 +751,7 @@
+             exp.BitwiseXor: rename_func("BITXOR"),
+             exp.Create: transforms.preprocess([_flatten_structured_types_unless_iceberg]),
+             exp.DateAdd: date_delta_sql("DATEADD"),
++            exp.TimeAdd: date_delta_sql("TIMEADD"),
+             exp.DateDiff: date_delta_sql("DATEDIFF"),
+             exp.DateStrToDate: datestrtodate_sql,
+             exp.DayOfMonth: rename_func("DAYOFMONTH"),

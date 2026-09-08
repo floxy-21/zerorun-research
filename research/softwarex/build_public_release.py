@@ -69,7 +69,7 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "generated/artifact-builder-unit-v2.xml", "generated/artifact-builder-unit-v3.xml",
     "generated/artifact-builder-sandbox-diagnostic-v1.xml", "generated/artifact-builder-test-attempts.md",
     "generated/readiness-bindings-unit-v1.xml",
-    "OPERATING_GUIDE.md", "SAVED_RECEIPT_COMPARISON.md", "REAL_AGENT_APPLICATION_053_PROTOCOL.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
+    "OPERATING_GUIDE.md", "SAVED_RECEIPT_COMPARISON.md", "REAL_AGENT_APPLICATION_053_PROTOCOL.md", "REAL_AGENT_APPLICATION_053_RESULTS.md", "MANIFEST_REFERENCE.md", "OPERATING_REGION.md", "LIVE_CLIENT_PROTOCOL.md",
     "LIVE_CLIENT_AMENDMENT_1.md", "support/tools/aggregate_codex_install_evidence.py", "RELATED_SYSTEMS.md",
     "NON_MODEL_DIAGNOSTIC_PROTOCOL.md", "diagnose_mcp_authority.py", "PUBLIC_LAYOUT_CORRECTION.md",
     "client_conformance.py", "analyze_operating_region.py", "analysis_reproduction.py", "run_public_lifecycle.py", "build_extension_evidence.py", "run_publication_tests.py",
@@ -103,14 +103,23 @@ PAPER_OPTIONAL_FILES = ("main.tex", "main.bib", "manuscript.md", "REPRODUCIBILIT
     "handoff_image_v2/__init__.py", "handoff_image_v2/PROTOCOL.md", "handoff_image_v2/build_image.py",
     "handoff_image_v2/run.py", "handoff_image_v2/validate.py", "handoff_image_v2/export.py", "handoff_image_v2/test_image.py",
     "handoff_image_v2/TRANSPORT_AMENDMENT_1.md", "build_handoff_evidence.py", "generated/handoff-evidence-v1.json",
-    "verify_recovered_handoff_v6.py", "validate_compatible_image.py",
+    "verify_recovered_handoff_v6.py", "validate_compatible_image.py", "sqlglot_supplement_053.py",
+    "build_agent_application_evidence.py", "generated/agent-application-053-v1.json",
     "amortization_followup_v1.py", "AMORTIZATION_FOLLOWUP_V1.md",
     "agent_application_053/producer_campaign.py", "agent_application_053/consumer.py",
     "agent_application_053/validation.py", "agent_application_053/test_consumer.py",
     "agent_application_053/seed.py", "agent_application_053/test_seed.py",
+    "agent_application_053/prepare_consumers.py", "agent_application_053/test_prepare_consumers.py",
+    "agent_application_053/consumer_campaign.py", "agent_application_053/test_consumer_campaign.py",
+    "agent_application_053/consumer_v2.py", "agent_application_053/test_consumer_v2.py",
+    "agent_application_053/consumer_continuation_v2.py", "agent_application_053/test_consumer_continuation_v2.py",
+    "agent_application_053/consumer_event_audit_v1.py", "agent_application_053/test_consumer_event_audit_v1.py",
+    "agent_application_053/fixtures/restored-failed-client-v1.log",
+    "agent_application_053/CONSUMER_V2_READER_CORRECTION.md",
     "agent_application_053/oracles.py", "agent_application_053/oracles_v2.py",
     "agent_application_053/test_oracles.py", "agent_application_053/test_oracles_v2.py",
-    "agent_application_053/ORACLE_PROTOCOL.md", "agent_application_053/ORACLE_V2_CORRECTION.md")
+    "agent_application_053/ORACLE_PROTOCOL.md", "agent_application_053/ORACLE_V2_CORRECTION.md",
+    "agent_application_053/CONSUMER_PRELAUNCH_CORRECTION.md")
 SUBMISSION_ARCHIVES = ("output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip")
 BLOCKED = {".git", "__pycache__", ".pytest_cache", ".venv", ".zerorun-env", "node_modules", "workspace", "workspaces",
     "private-cache-authentication-NOT-FOR-PUBLICATION", "pytest-temp", "testmon-runtime", "testmon-state",
@@ -206,7 +215,9 @@ def entries(directory, suffixes=TEXT_SUFFIXES, excluded=()):
 
 
 def pyproject(version="0.5.1"):
-    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+    # Historical metadata remains reproducible after the current release advances.
+    # This does not broaden collect()'s exact current-runtime commit gate.
+    require(version in {"0.5.1", "0.5.2", CURRENT_VERSION}, "unsupported publication package version")
     return '''[build-system]
 requires = ["setuptools==84.0.0"]
 build-backend = "setuptools.build_meta"
@@ -499,22 +510,35 @@ def collect(paper_files=(), current_core=None):
         require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
                 "VM regression output changed during release assembly")
         add(row["path"], raw, "workspace:retained-vm-regression-output:" + row["path"])
-    for version in ("v1", "v2"):
-        prefix = "research/softwarex/evidence/agent-application-053-oracles-" + version + "/record-only"
+    sealed_directories = (
+        "agent-application-053-oracles-v1/record-only",
+        "agent-application-053-oracles-v2/record-only",
+        "agent-application-053-consumers-v1/record-only",
+        "agent-application-053-consumers-v2/record-only",
+        "agent-application-053-sqlglot-supplement-v1/record-only",
+        "quickstart-public-053-v1",
+    )
+    for directory in sealed_directories:
+        prefix = "research/softwarex/evidence/" + directory
         index = ROOT / prefix / "RECORD_MANIFEST.json"
         if index.is_file():
             rows = json.loads(read_local(index))["files"]
-            require(len(rows) == len({row["path"] for row in rows}), "duplicate agent oracle record")
+            require(len(rows) == len({row["path"] for row in rows}), "duplicate sealed application record")
             for row in rows:
                 safe_name(row["path"])
                 relative = prefix + "/" + row["path"]
                 raw = read_local(ROOT / relative)
                 require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],
-                        "sealed actual-agent oracle record changed")
+                        "sealed application record changed")
                 if relative in payloads:
-                    require(payloads[relative] == raw, "agent oracle representations differ")
+                    require(payloads[relative] == raw, "sealed application representations differ")
                 else:
                     local(relative)
+    supplement_prefix = "research/softwarex/evidence/agent-application-053-sqlglot-supplement-v1/"
+    for name in ("SUPPLEMENT_PROTOCOL.md", "production-followup.patch", "executed-driver.py", "independent-reconciliation.json"):
+        relative = supplement_prefix + name
+        if (ROOT / relative).is_file() and relative not in payloads:
+            local(relative)
     for relative, row in selected_acquisition_archives():
         raw = read_local(ROOT / relative)
         require(len(raw) == row["bytes"] and digest(raw) == row["sha256"],

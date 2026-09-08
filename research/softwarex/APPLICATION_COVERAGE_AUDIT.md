@@ -1,5 +1,102 @@
 # Application coverage audit
 
+## Current recovered V5/V6 evidence (8 September 2026)
+
+The current [V6 raw ledger](evidence/application-revision-20260907-v6/record-only/run/completion.json)
+completes **24 of 24 selected cases across eight repositories**, with **48 paired
+blocks, 48 reused successes and 96 agreeing paired fresh-oracle captures**.
+There is no remaining unattempted or unsupported selected case in this corrected
+repeat. The original acquisition goal of 30 cases from ten repositories remains
+unmet. [The versioned checker](verify_recovered_handoff_v6.py) independently
+rechecks all **1,381 files** bound by the recovered V6 record manifest, source
+inventories, full target outcomes, case order and costs. This is a purposive
+controlled reference-patch cohort, separate from actual coding-agent outcomes.
+
+| Current V6 complete-pair measure | Fresh execution | ZeroRun |
+| --- | ---: | ---: |
+| Producer plus consumer | 564.565 s | 541.170 s |
+| Consumer waiting | 270.386 s | 57.039 s |
+| Per-arm setup-inclusive chain | 572.541 s | 545.457 s |
+
+Aggregate chain cost is **4.1438% lower** and consumer waiting **78.9045% lower**;
+**15 cases are faster and nine are slower**. The 48 blocks are repeated
+measurements of 24 selected cases, not 48 independent subjects. Acquisition,
+shared image preparation, fresh diagnostics and oracle instrumentation retain
+separate clocks. No general speedup, natural reuse frequency or agent
+productivity effect follows from these totals.
+
+V5 completed **23 of 24 cases** in the compatible environment, retaining the
+Lizard-191 `Test_Big.test_typedef` failure (expected complexity 2, observed 3).
+V6 uses the explicitly [corrected acquisition](evidence/application-revision-20260907-v6/corrected-acquisition/):
+only that supplied test expectation changes **2 to 3**. Its corrected method AST
+matches the [independently retrieved public upstream method](https://github.com/terryyin/lizard/blob/67d87968e9fecd459c9a9a1dcb01cf6ceac5721d/test/test_languages/testCAndCPP.py),
+with exact retained source and retrieval hashes in
+[upstream-fixture-reference](evidence/application-revision-20260907-v6/upstream-fixture-reference/).
+All other selected test content, case IDs, order, targets, base archives and
+supplied production patches remain unchanged. The original ledger SHA-256 is
+`4767391ca8f99ba3ad698bf1577b0e66c9dccc97fbd78565447ba1a4b1281997`;
+the explicitly derived V6 ledger SHA-256 is
+`e6453b256f80e0eb79d280acc6bb8a143c006e56854f1702300cdc6550ab9ee2`.
+V5's failure is preserved; V6 is not relabeled as an unchanged V5 run. The two
+historical Lizard-174 skips remain skips. The preliminary extra no-skip
+preflight refusal is also retained.
+
+Both cohorts use historical **ZeroRun 0.5.1**, public harness
+`0528905a52b74df78aa4e5a09219df34620282dd` and engine
+`ebf2884df12573d63f45813200e0675288d12096`. The new **0.5.3 integration release**
+and its install/regression receipts are separate. The
+[compatible-image audit](validate_compatible_image.py) checks the exact 52-file
+build record and complete 16-wheel hash-locked closure: Python 3.10.21, pytest
+8.4.2 and the recorded application dependencies. The actual build used
+`--no-cache --pull=false --network=none`; wheel acquisition used the network and
+the public base pull reported an existing image up to date. Image preparation
+was 82.289 s, including a nested 57.720 s build clock. It occurred before V5/V6
+and is not newly incurred V6 setup. The
+[reproduction guide](FRESH_REAL_WORKLOAD_REPRODUCTION.md) provides the sealed
+recipe and distinguishes a reader's new image identity from the historical
+loopback image, which is not publicly pullable.
+
+**The original V6 230-sample host monitor has not been recovered.** Its surviving
+hash does not substitute for those observations. The restored guest archive and
+source records do not certify uninterrupted or quiet-host timing. A separately
+retained VirtualBox event-log analysis, if supplied, supports only its stated
+logged-state interval; it cannot recreate the missing sampled monitor. These
+are recovered author-side experiments in an existing VM, not independent human
+replication or a clean operating-system reproduction. Earlier unfavorable
+results, partial campaigns and interruptions remain below.
+
+### Separate outcome-informed repeated-consumer follow-up
+
+The [prospective follow-up](AMORTIZATION_FOLLOWUP_V1.md) selected **lkml-85** by
+its largest summed V6 cold-producer snapshot-preparation cost. It then fixed
+N=1,2,4 consumers in that order, with two counterbalanced blocks per N. All six
+blocks and all 14 reused successes reconcile; this is one selected case, not
+six new subjects. Historical lkml-85 one-consumer slowdowns of 64.96% and 57.47%
+remain part of V6. The new full-chain observations are all shown here:
+
+| Consumers | Block | Fresh chain | ZeroRun chain | Chain saving |
+| ---: | ---: | ---: | ---: | ---: |
+| 1 | 0 | 6.886 s | 32.066 s | -365.64% |
+| 1 | 1 | 6.743 s | 10.560 s | -56.62% |
+| 2 | 0 | 10.406 s | 9.157 s | 12.00% |
+| 2 | 1 | 11.717 s | 11.801 s | -0.71% |
+| 4 | 0 | 17.304 s | 11.663 s | 32.60% |
+| 4 | 1 | 16.505 s | 11.390 s | 30.99% |
+
+The first ZeroRun producer took **30.742 s** and its separate oracle took
+**101.847 s**; neither is removed. Per-arm setup, every consumer, both oracles
+and fresh diagnostics are in the
+[sealed records](evidence/amortization-followup-20260908-v1/record-only/).
+The operator reported concurrent Windows publication-export I/O at approximately
+04:22–04:24 UTC, recorded in the separate
+[timing qualification](evidence/amortization-followup-20260908-v1/timing-context.json).
+This does not establish the cause of an individual timing anomaly. The
+follow-up is not pooled with V6 or presented as quiet-host performance
+replication. Reused identified status and a fresh execution transcript are
+different services; no coding-agent speedup is inferred.
+
+## Earlier evidence retained in its original scope
+
 This audit keeps the original observations, interrupted expanded-budget campaign and separate v3 no-cache-build campaign distinct. It does not treat an
 unattempted case as a passing or failing test, and does not establish natural
 reuse frequency.
@@ -26,24 +123,24 @@ It reports no material correctness stop or campaign-level exception.
 | --- | --- | --- | --- |
 | 1 | `eliben__pycparser-364` | COMPLETE | COMPLETE |
 | 2 | `eliben__pycparser-346` | COMPLETE | COMPLETE |
-| 3 | `eliben__pycparser-236` | INCOMPLETE_OR_UNSUPPORTED (compatibility) | INCOMPLETE_OR_UNSUPPORTED â€” C1 |
+| 3 | `eliben__pycparser-236` | INCOMPLETE_OR_UNSUPPORTED (compatibility) | INCOMPLETE_OR_UNSUPPORTED — C1 |
 | 4 | `joke2k__django-environ-329` | INCOMPLETE_OR_UNSUPPORTED (budget before paired block) | COMPLETE |
 | 5 | `joke2k__django-environ-450` | NOT_RUN_BUDGET | COMPLETE |
-| 6 | `joke2k__django-environ-174` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
+| 6 | `joke2k__django-environ-174` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
 | 7 | `tobymao__sqlglot-3182` | NOT_RUN_BUDGET | COMPLETE |
-| 8 | `tobymao__sqlglot-1765` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C3 |
+| 8 | `tobymao__sqlglot-1765` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C3 |
 | 9 | `tobymao__sqlglot-2658` | NOT_RUN_BUDGET | COMPLETE |
 | 10 | `terryyin__lizard-174` | NOT_RUN_BUDGET | COMPLETE |
 | 11 | `terryyin__lizard-241` | NOT_RUN_BUDGET | COMPLETE |
-| 12 | `terryyin__lizard-191` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C4 |
-| 13 | `eyeseast__python-frontmatter-34` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
-| 14 | `eyeseast__python-frontmatter-56` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
-| 15 | `eyeseast__python-frontmatter-31` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C2 |
+| 12 | `terryyin__lizard-191` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C4 |
+| 13 | `eyeseast__python-frontmatter-34` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
+| 14 | `eyeseast__python-frontmatter-56` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
+| 15 | `eyeseast__python-frontmatter-31` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C2 |
 | 16 | `joshtemple__lkml-85` | NOT_RUN_BUDGET | COMPLETE |
 | 17 | `joshtemple__lkml-97` | NOT_RUN_BUDGET | COMPLETE |
 | 18 | `joshtemple__lkml-87` | NOT_RUN_BUDGET | COMPLETE |
-| 19 | `mahmoud__boltons-302` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C5 |
-| 20 | `mahmoud__boltons-203` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED â€” C5 |
+| 19 | `mahmoud__boltons-302` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C5 |
+| 20 | `mahmoud__boltons-203` | NOT_RUN_BUDGET | INCOMPLETE_OR_UNSUPPORTED — C5 |
 | 21 | `mahmoud__boltons-31` | NOT_RUN_BUDGET | COMPLETE |
 | 22 | `lepture__mistune-393` | NOT_RUN_BUDGET | COMPLETE |
 | 23 | `lepture__mistune-143` | NOT_RUN_BUDGET | COMPLETE |
@@ -106,23 +203,23 @@ original 30-case acquisition target.
 The [repeat completion ledger](evidence/application-revision-20260907-v2/record-only/handoff-main-repeat-v1/run/completion.json)
 retains these exact error classes and messages. The codes in the table mean:
 
-- **C1 â€” runtime/test compatibility:** `ValueError: repaired-state compatibility
+- **C1 — runtime/test compatibility:** `ValueError: repaired-state compatibility
   oracle failed`. The fresh record has 44 passing tests and two failures caused
   by `open(..., 'rU')`.
-- **C2 â€” collection without usable node outcomes:** `ValueError: oracle node
+- **C2 — collection without usable node outcomes:** `ValueError: oracle node
   identity absent/duplicate`. Each of the four raw captures has exit code 2,
   zero node IDs and zero outcomes. The static dependency limits above are
   relevant, but the receipt does not establish a specific missing-import error.
-- **C3 â€” container lifecycle uncertainty:** `ConfigurationError: independent
+- **C3 — container lifecycle uncertainty:** `ConfigurationError: independent
   plain-pytest cleanup was not confirmed for uncertain create name ...`. The
   SQLGlot-1765 compatibility capture is empty. This occurred during the campaign
   affected by the host interruption; the records do not independently prove
   that the pause was its sole cause.
-- **C4 â€” repaired-state assertion failure:** `ValueError: repaired-state
+- **C4 — repaired-state assertion failure:** `ValueError: repaired-state
   compatibility oracle failed`. Lizard-191 has 86 passing tests and one failure:
   `Test_Big::test_typedef` expected cyclomatic complexity 2 and observed 3.
   The cause beyond that observed assertion is not established.
-- **C5 â€” missing usable capture:** `JSONDecodeError: Expecting value: line 1
+- **C5 — missing usable capture:** `JSONDecodeError: Expecting value: line 1
   column 1 (char 0)`. Both Boltons captures are zero bytes. Their underlying
   execution failure is not diagnosed by the retained record.
 
@@ -133,7 +230,7 @@ budget exclusion. Per-case raw records are under the linked completion ledger's
 
 The [host interruption record](evidence/application-revision-20260907-v2/host-interruption.json)
 is outside the frozen wrapper bundle. The operator observed a VM pause at
-08:07:57 UTC and issued the resume command within 08:24:17â€“08:24:30 UTC. The
+08:07:57 UTC and issued the resume command within 08:24:17–08:24:30 UTC. The
 exact resume instant is not established. At host 08:25:22 UTC the guest reported
 08:08:51.915852 UTC. Raw guest timestamps were preserved and no clock
 synchronization was requested during the run. Therefore the repeat is an

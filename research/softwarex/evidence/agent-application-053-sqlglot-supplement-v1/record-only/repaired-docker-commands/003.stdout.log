@@ -1,0 +1,17 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.21, pytest-8.4.2, pluggy-1.6.0
+rootdir: /workspace
+collected 99 items
+
+tests/dialects/test_duckdb.py .............                              [ 13%]
+tests/dialects/test_snowflake.py ................................        [ 45%]
+tests/test_expressions.py .............................................. [ 91%]
+........                                                                 [100%]
+
+=============================== warnings summary ===============================
+tests/test_expressions.py:1080
+  /workspace/tests/test_expressions.py:1080: DeprecationWarning: invalid escape sequence '\.'
+    AssertionError, "x is not <class 'sqlglot.expressions.Identifier'>\."
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 99 passed, 1 warning in 2.19s =========================

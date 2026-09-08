@@ -14,7 +14,7 @@ from research.softwarex import verify_submission as verifier
 def external(tmp_path):
     raw = b"Opaque artifact fixture, not a verified ZIP."
     (tmp_path / "payload.py").write_bytes(b"# payload\n")
-    manifest = {"current_version": "0.5.2", "files": [{"path": "payload.py", "bytes": 10,
+    manifest = {"current_version": release.CURRENT_VERSION, "files": [{"path": "payload.py", "bytes": 10,
         "sha256": hashlib.sha256(b"# payload\n").hexdigest()}], "external_artifacts": [
         {"path": release.REVIEWER_ASSET, "bytes": len(raw), "sha256": hashlib.sha256(raw).hexdigest(),
          "url": release.REVIEWER_ASSET_URL}]}
@@ -48,6 +48,16 @@ def test_known_whole_asset_uses_stream_hash_not_member_read_limit(external, monk
     assert archives.MAX_MEMBER_BYTES == 1
     with pytest.raises(ValueError, match="oversized"):
         archives.read_regular(root / release.REVIEWER_ASSET)
+
+
+@pytest.mark.parametrize("version", ["0.5.1", "0.5.2"])
+def test_historical_inventory_inspection_preserves_its_declared_scope(external, version):
+    root, manifest, _ = external
+    manifest["current_version"] = version
+    manifest["external_artifacts"] = []
+    (root / release.MANIFEST).write_text(json.dumps(manifest))
+    # Inspecting an earlier payload does not assert current submission completeness.
+    assert release.inspect(root) == manifest
 
 
 @pytest.mark.parametrize("mode", ["changed", "missing", "unlisted", "bad-url", "outside-path", "duplicate",

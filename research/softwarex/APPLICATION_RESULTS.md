@@ -1,5 +1,9 @@
 # Bounded AI-client application results
 
+For the current release, read [the actual ZeroRun 0.5.3 agent application](REAL_AGENT_APPLICATION_053_RESULTS.md): six original producer attempts, five verified fixes, five eligible consumer cases and fifteen actual consumer stages. Its internal review supports the core status, freshness and coverage-limit interpretations, while thirteen messages contain wire error-flag details not captured in the archive. The two remaining messages omit that detail. Original unsuccessful attempts and the separate SQLGlot repair retain their own denominators.
+
+The sections below preserve the **historical 0.5.1 synthetic-fixture studies** and their original installation bindings; they are separate from that current real-repository application.
+
 ZeroRun completed an actual Codex core lifecycle and, in a separately frozen API-guided demonstration, both model-selected validation actions and all six fixed interpretation cases. Earlier failures remain part of the evidence. These results show a usable result-only interface on the explicitly approved synthetic fixture; they are not autonomous coding-task, external-user, or workflow-speedup measurements.
 
 ## Complete attempt ledger

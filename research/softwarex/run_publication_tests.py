@@ -26,6 +26,10 @@ NESTED_TEST_MODULES = (
     "agent_handoff_evaluation_v1/test_evaluation.py",
     "agent_application_053/test_consumer.py", "agent_application_053/test_oracles.py",
     "agent_application_053/test_oracles_v2.py",
+    "agent_application_053/test_seed.py", "agent_application_053/test_prepare_consumers.py",
+    "agent_application_053/test_consumer_campaign.py",
+    "agent_application_053/test_consumer_v2.py", "agent_application_053/test_consumer_continuation_v2.py",
+    "agent_application_053/test_consumer_event_audit_v1.py",
 )
 
 

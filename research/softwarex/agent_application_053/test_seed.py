@@ -97,6 +97,25 @@ def fixture(directory):
 
 
 class SeedWireTests(unittest.TestCase):
+    def test_real_fresh_diagnostics_are_preserved_with_runtime_character_bound(self):
+        for stdout, stderr in (("99 passed in 1.23s\n", "a warning\n"), ("\ufffd" * 4000, "")):
+            value = wire()
+            payload = value[1]["result"]["structuredContent"]
+            payload.update(stdout_tail=stdout, stderr_tail=stderr)
+            value[1]["result"]["content"][0]["text"] = v.canonical(payload).decode()
+            result = s.parse_exchange(stage(value), ROOT, TASK)
+            self.assertEqual(result["payload"], payload)
+            self.assertEqual(result["responses"], value)
+        for tail in (None, 42, "x" * 4001):
+            value = wire(); payload = value[1]["result"]["structuredContent"]
+            payload["stdout_tail"] = tail
+            value[1]["result"]["content"][0]["text"] = v.canonical(payload).decode()
+            with self.subTest(invalid_tail=type(tail).__name__), self.assertRaises(ValueError):
+                s.parse_exchange(stage(value), ROOT, TASK)
+
+    def test_portable_source_closure_includes_diagnostics_transitive_adapter(self):
+        self.assertEqual(s.sources()["run_public_lifecycle.py"], Path(s.diagnostic.adapter.__file__))
+
     def test_exact_single_miss_uses_unchanged_original_parser(self):
         original = s.quickstart.validate_exchange.__code__
         self.assertEqual(s.parse_exchange(stage(), ROOT, TASK)["payload"]["status"], "MISS_EXECUTED")

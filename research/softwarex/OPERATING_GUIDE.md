@@ -10,7 +10,7 @@ To try the installed server without a Codex account or a real project, use the [
 
 For a deliberate new laboratory attempt after fixing a prerequisite, choose a new tools-environment directory and new installation and check receipt filenames. Preserve the previous attempt and record the intervention as described in the versioned guide; changing only the receipt filename does not make an existing environment new.
 
-For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12â€“3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
+For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12–3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
 
 ## 1. Install outside the repository you will test
 
@@ -293,7 +293,7 @@ Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the
 
 ## Inspect or reproduce the bounded integration experiments
 
-Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12â€“3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.3 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
+Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12–3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.3 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
 
 ### Historical V1 and its non-model diagnostic only
 
@@ -320,11 +320,11 @@ These use a distinct immutable public source, `ebf2884df12573d63f45813200e067528
 
 Read [V2](live_client_v2/PROTOCOL.md), [V3](live_client_v3/PROTOCOL.md), and the [guided protocol](guided_client_v1/PROTOCOL.md) before considering new execution. Each runner's `--help` describes its explicit consent and identity arguments. Use a separate external adapter directory and new evidence paths, preserving the required frozen helper hierarchy; do not patch a frozen source or change its expected hashes. Model execution requires the operator's own authorized account and the applicable fixture-only decisions. The API card was frozen before the guided trial and supplied as neutral interface documentation, not as expected answers. That trial does not establish a causal benefit from the card.
 
-For first use without model credentials or historical client installer artifacts, prefer the [account-free quickstart](QUICKSTART_LAB.md). Its literal public-guide replay passed from a clean public clone, using a new installation and five actual STDIO stages. It is an internal reproduction, not an external developer study.
+For first use without model credentials or historical client installer artifacts, prefer the [current 0.5.3 account-free quickstart](QUICKSTART_053.md). The records in `evidence/quickstart-public-053-v1/` bind an actual fresh anonymous checkout, external installation and five STDIO stages to their original public source commit. Installation and server-check times are separate; neither measures all user preparation, cloning or Docker acquisition. This is an internal reproduction, not an external developer study or installation of a later release commit.
 
 ## Real-workload reproduction
 
-The [fresh-workload guide](FRESH_REAL_WORKLOAD_REPRODUCTION.md) provides the separately bound image recipes and fixed case ledgers. The v3 author-side build disabled Docker build-step cache reuse, used the observed new image for the unchanged 24-case main ledger, and completed ten cases with twenty fresh-oracle-agreeing reused successes. Six cases were incomplete/unsupported and eight remained unrun within the fixed budget. Complete-chain totals were near break-even while consumer waiting fell 79.1%; common image preparation took an additional 66.070 seconds. Existing public base layers and the author VM were retained. This is controlled reproduction, not automatic qualification of your repository or independent human validation.
+The [fresh-workload guide](FRESH_REAL_WORKLOAD_REPRODUCTION.md) identifies the separately bound image recipes, fixed case ledgers, final full-cohort results, compatibility corrections and retained partial attempts. Follow its source, dependency, fresh-oracle and timing qualifications together; neither a dependency image nor a passing example automatically qualifies your repository. Original failed, budget-limited and interrupted records remain part of the evidence. Author-side controlled reproduction does not establish independent human validation.
 
 ## Resource limits, troubleshooting, and support
 
@@ -338,7 +338,7 @@ Execution uses network-disabled containers with a read-only source view, 2 CPUs,
 | Client requires approval before sending a tool call | Stop and obtain the operator's scoped decision. Do not treat client refusal as server execution or silently relax global approval policy. |
 | Unexpected `run_tests` argument | Consult the [API card](CLIENT_API_CARD.md); only `task`, `root`, and `verify` are allowed. Preserve the failed response rather than treating it as validation. |
 | Missing image | Ask the operator to acquire the reviewed exact runtime; do not let a normal execution call pull a different one. |
-| Launcher or skill conflict | Inspect executable resolution and existing client/skill configuration. Initialization intentionally does not overwrite it. |
+| Launcher or skill conflict | Inspect executable resolution and existing client/skill configuration. Initialization refuses unrecognized user configuration or skill content. It can migrate only an exactly recognized older managed skill, retaining the prior file. |
 | Missing input, link, unsupported platform, or unsafe effect | Correct the actual scope/setup or execute through a separately approved fresh workflow; do not weaken the declaration to obtain a hit. |
 | Empty or truncated diagnostic tails | Request fresh execution as above. A cached success never supplies the old transcript. |
 

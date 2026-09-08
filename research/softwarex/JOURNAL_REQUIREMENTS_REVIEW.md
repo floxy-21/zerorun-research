@@ -1,5 +1,26 @@
 # SoftwareX requirements review
 
+## Current 0.5.3 review — 8 September 2026
+
+The coordinating assistant again read the complete live official author guide
+in the browser, the official reviewer form and current Elsevier AI policy.
+The journal still specifies 4,000 words with the exclusions below, at most six
+figures, a 250-word abstract maximum, the prescribed template and public GitHub
+software with README, LICENSE.txt and src/. The exact final PDF count and
+source hashes must come from the newly regenerated PDF-review receipt.
+
+The current distribution is 0.5.3. The author has supplied private contact
+details, contributions and originality/AI-disclosure approvals, and authorized
+the US$1,920 plus tax acceptance-contingent APC. No payment has been made.
+Private address details belong in the journal account/author information, not
+this public operational audit. Final declaration-tool Word output and the
+portal-generated review PDF must still be inspected before submission.
+
+Three author-side review passes cover journal requirements, scientific evidence,
+and usability/software quality. These internal AI-assisted checks are not the
+journal's independent peer review. The earlier observations below retain their
+original dates and counts; they do not describe the final 0.5.3 PDF.
+
 Reviewed 7 September 2026 (UTC). This is an author-side, AI-assisted preparation
 audit, not external peer review, an acceptance estimate, or a submission receipt.
 The manuscript and final package are being revised concurrently; observations

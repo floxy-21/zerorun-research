@@ -87,6 +87,7 @@ def commands():
         ("extension", "research.softwarex.build_extension_evidence", ["--check"]),
         ("application", "research.softwarex.build_application_evidence", ["--check"]),
         ("handoff", "research.softwarex.build_handoff_evidence", ["--check"]),
+        ("actual_agent_application", "research.softwarex.build_agent_application_evidence", ["--check"]),
         ("current_runtime", "research.softwarex.five_hour_review.current_runtime_053", ["--release", ".", "--check", CURRENT_RECEIPT]),
         ("current_quickstart", "research.softwarex.quickstart_053", ["--source-root", ".", "--check",
             CURRENT_QUICKSTART + "/check.json", "--installation-receipt", CURRENT_QUICKSTART + "/install.json"]),

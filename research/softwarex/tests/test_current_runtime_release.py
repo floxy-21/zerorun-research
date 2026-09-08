@@ -84,6 +84,9 @@ def test_historical_checker_reads_exact_preserved_bytes_not_current_runtime(inst
 def test_current_packaging_version_is_explicit_and_legacy_default_preserved():
     assert b'version = "0.5.1"' in public.pyproject()
     assert b'version = "0.5.2"' in public.pyproject("0.5.2")
+    assert public.CURRENT_VERSION == "0.5.3"
+    assert b'version = "0.5.3"' in public.pyproject(public.CURRENT_VERSION)
+    assert current.VERSION == "0.5.2"  # The historical validator stays version-specific.
     with pytest.raises(ValueError):
         public.pyproject("9.9.9")
 

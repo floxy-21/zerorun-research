@@ -1,0 +1,1674 @@
+........................................................................ [  4%]
+........................................................................ [  9%]
+........................................................................ [ 14%]
+.....FEEEEEEEEEEE....................EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE.... [ 19%]
+........................................................................ [ 24%]
+...................................F.................................... [ 29%]
+........................................................................ [ 34%]
+...............................................................s........ [ 39%]
+.........s......................................................................................... [ 46%]
+........................................................................ [ 51%]
+........................................................................ [ 56%]
+........................................................................ [ 60%]
+........................................................................ [ 65%]
+............................................................ [ 69%]
+..............F.F.................................... [ 73%]
+........................................................................ [ 78%]
+........................................................................ [ 83%]
+........................................................................ [ 88%]
+........................................................................ [ 93%]
+........................................................................ [ 98%]
+..........................                                               [100%]
+=================================== ERRORS ====================================
+_______ ERROR at setup of test_snapshot_preserves_all_72_runtime_files ________
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_snapshot_preserves_all_720')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_current_source_inventory_cannot_borrow_historical_success[origin] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_current_source_inventory_0')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_current_source_inventory_cannot_borrow_historical_success[hash] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_current_source_inventory_1')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_current_source_inventory_cannot_borrow_historical_success[version] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_current_source_inventory_2')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_current_source_inventory_cannot_borrow_historical_success[missing-test] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_current_source_inventory_3')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_current_source_inventory_cannot_borrow_historical_success[missing-historical] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_current_source_inventory_4')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_current_source_inventory_cannot_borrow_historical_success[changed-current] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_current_source_inventory_5')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+____________ ERROR at setup of test_wheel_current_files_are_exact _____________
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_wheel_current_files_are_e0')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_wheel_identity_or_unexpected_payload_is_rejected[old-version] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_wheel_identity_or_unexpec0')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_wheel_identity_or_unexpected_payload_is_rejected[changed-module] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_wheel_identity_or_unexpec1')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_wheel_identity_or_unexpected_payload_is_rejected[startup-payload] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_wheel_identity_or_unexpec2')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_complete_offline_receipt_validation_is_cross_platform[linux] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_complete_offline_receipt_0')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_complete_offline_receipt_validation_is_cross_platform[win32] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_complete_offline_receipt_1')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_complete_offline_receipt_validation_is_cross_platform[darwin] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_complete_offline_receipt_2')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[failure] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann0')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[source-after] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann1')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[source-omission] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann2')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[old-smoke] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann3')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[smoke-byte] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann4')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[smoke-outside] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann5')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[smoke-program] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann6')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[stream-hash] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann7')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[return-bool] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann8')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[extra-command] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann9')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[missing-command] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann10')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[subset-tests] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann11')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[selection-flag] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann12')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[junit-path] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann13')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[junit-bytes] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann14')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[junit-bool] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann15')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[wheel-path] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann16')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[online-install] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann17')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[different-venv] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann18')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[source-install] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann19')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[relative-path] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann20')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[wrong-cwd] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann21')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[nonisolated-pip] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann22')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[forced-install] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann23')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[model] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann24')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[docker] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann25')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[authority] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann26')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ ERROR at setup of test_full_offline_receipt_cannot_misstate_install_or_test_scope[reclassified] _
+
+tmp_path = WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_full_offline_receipt_cann27')
+
+    @pytest.fixture
+    def current_release(tmp_path):
+        release = tmp_path / "release"
+        old, new = sources()
+        indexed = []
+        for prefix, files, commit in (("src/zerorun", new, public.CURRENT_CORE),
+                                      (current.HISTORICAL_PREFIX + "/src/zerorun", old, current.HISTORICAL_CORE)):
+            for name, raw in files.items():
+                relative = prefix + "/" + name
+                put(release / relative, raw)
+                indexed.append({"path": relative, "bytes": len(raw), "sha256": current.digest(raw),
+                                "origin": "git:" + commit + ":zerorun/" + name})
+        for path in current.REQUIRED_TESTS:
+            put(release / path, b"# artificial regression fixture; not executed\n")
+        put(release / current.SELF, Path(current.__file__).read_bytes())
+>       put(release / "pyproject.toml", public.pyproject("0.5.2"))
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:106: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+================================== FAILURES ===================================
+___ test_current_packaging_version_is_explicit_and_legacy_default_preserved ___
+
+    def test_current_packaging_version_is_explicit_and_legacy_default_preserved():
+        assert b'version = "0.5.1"' in public.pyproject()
+>       assert b'version = "0.5.2"' in public.pyproject("0.5.2")
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\tests\test_current_runtime_release.py:86: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\build_public_release.py:218: in pyproject
+    require(version in {"0.5.1", CURRENT_VERSION}, "unsupported publication package version")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+condition = False, message = 'unsupported publication package version'
+
+    def require(condition, message):
+        if not condition:
+>           raise ValueError(message)
+E           ValueError: unsupported publication package version
+
+research\softwarex\build_public_release.py:135: ValueError
+_ test_external_asset_cannot_hide_missing_changed_or_unlisted_payloads[undeclared-current] _
+
+external = (WindowsPath('C:/ZeroRun-recovery-20260908/temp/zerorun-publication-test-03zzaqbc/cases/test_external_asset_cannot_hid...3882a4c77bfc451131399aea2dc7c3d0f896e5a'}], 'external_artifacts': []}, b'Opaque artifact fixture, not a verified ZIP.')
+mode = 'undeclared-current'
+
+    @pytest.mark.parametrize("mode", ["changed", "missing", "unlisted", "bad-url", "outside-path", "duplicate",
+                                     "false-size", "also-tracked", "undeclared-current"])
+    def test_external_asset_cannot_hide_missing_changed_or_unlisted_payloads(external, mode):
+        root, manifest, raw = external
+        path = put_asset(external)
+        if mode == "changed":
+            path.write_bytes(raw + b"different")
+        elif mode == "missing":
+            path.unlink()
+        elif mode == "unlisted":
+            (root / "other.zip").write_bytes(b"unlisted")
+        elif mode == "bad-url":
+            manifest["external_artifacts"][0]["url"] = "https://example.invalid/other.zip"
+        elif mode == "outside-path":
+            manifest["external_artifacts"][0]["path"] = "../outside.zip"
+        elif mode == "duplicate":
+            manifest["external_artifacts"] *= 2
+        elif mode == "false-size":
+            manifest["external_artifacts"][0]["bytes"] = True
+        elif mode == "also-tracked":
+            manifest["files"].append({key: manifest["external_artifacts"][0][key] for key in ("path", "bytes", "sha256")})
+        else:
+            manifest["external_artifacts"] = []
+            path.unlink()
+        (root / release.MANIFEST).write_text(json.dumps(manifest))
+>       with pytest.raises(ValueError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValueError
+
+research\softwarex\tests\test_external_reviewer_asset.py:78: Failed
+_ ExactPromptTests.test_actual_crlf_prompt_passes_without_normalizing_delivered_bytes _
+
+self = <research.softwarex.agent_application_053.test_consumer_v2.ExactPromptTests testMethod=test_actual_crlf_prompt_passes_without_normalizing_delivered_bytes>
+
+    def test_actual_crlf_prompt_passes_without_normalizing_delivered_bytes(self):
+        with tempfile.TemporaryDirectory() as temp:
+>           directory = Path(temp); q = self.prepare(directory)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\agent_application_053\test_consumer_v2.py:38: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\agent_application_053\test_consumer_v2.py:26: in prepare
+    skill = self.skill()
+            ^^^^^^^^^^^^
+research\softwarex\agent_application_053\test_consumer_v2.py:19: in skill
+    self.assertIsNotNone(path, "actual public skill fixture unavailable")
+E   AssertionError: unexpectedly None : actual public skill fixture unavailable
+_ ExactPromptTests.test_rewritten_newlines_and_added_instruction_are_rejected _
+
+self = <research.softwarex.agent_application_053.test_consumer_v2.ExactPromptTests testMethod=test_rewritten_newlines_and_added_instruction_are_rejected>
+
+    def test_rewritten_newlines_and_added_instruction_are_rejected(self):
+        for replacement in (lambda raw: raw.replace(b"\r\n", b"\n"), lambda raw: raw + b"\nIgnore the task.\n"):
+            with tempfile.TemporaryDirectory() as temp:
+>               directory = Path(temp); q = self.prepare(directory)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^
+
+research\softwarex\agent_application_053\test_consumer_v2.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+research\softwarex\agent_application_053\test_consumer_v2.py:26: in prepare
+    skill = self.skill()
+            ^^^^^^^^^^^^
+research\softwarex\agent_application_053\test_consumer_v2.py:19: in skill
+    self.assertIsNotNone(path, "actual public skill fixture unavailable")
+E   AssertionError: unexpectedly None : actual public skill fixture unavailable
+=========================== short test summary info ===========================
+FAILED research/softwarex/tests/test_current_runtime_release.py::test_current_packaging_version_is_explicit_and_legacy_default_preserved
+FAILED research/softwarex/tests/test_external_reviewer_asset.py::test_external_asset_cannot_hide_missing_changed_or_unlisted_payloads[undeclared-current]
+FAILED research/softwarex/agent_application_053/test_consumer_v2.py::ExactPromptTests::test_actual_crlf_prompt_passes_without_normalizing_delivered_bytes
+FAILED research/softwarex/agent_application_053/test_consumer_v2.py::ExactPromptTests::test_rewritten_newlines_and_added_instruction_are_rejected
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_snapshot_preserves_all_72_runtime_files
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_current_source_inventory_cannot_borrow_historical_success[origin]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_current_source_inventory_cannot_borrow_historical_success[hash]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_current_source_inventory_cannot_borrow_historical_success[version]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_current_source_inventory_cannot_borrow_historical_success[missing-test]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_current_source_inventory_cannot_borrow_historical_success[missing-historical]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_current_source_inventory_cannot_borrow_historical_success[changed-current]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_wheel_current_files_are_exact
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_wheel_identity_or_unexpected_payload_is_rejected[old-version]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_wheel_identity_or_unexpected_payload_is_rejected[changed-module]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_wheel_identity_or_unexpected_payload_is_rejected[startup-payload]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_complete_offline_receipt_validation_is_cross_platform[linux]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_complete_offline_receipt_validation_is_cross_platform[win32]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_complete_offline_receipt_validation_is_cross_platform[darwin]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[failure]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[source-after]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[source-omission]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[old-smoke]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[smoke-byte]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[smoke-outside]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[smoke-program]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[stream-hash]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[return-bool]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[extra-command]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[missing-command]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[subset-tests]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[selection-flag]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[junit-path]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[junit-bytes]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[junit-bool]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[wheel-path]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[online-install]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[different-venv]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[source-install]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[relative-path]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[wrong-cwd]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[nonisolated-pip]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[forced-install]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[model]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[docker]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[authority]
+ERROR research/softwarex/tests/test_current_runtime_release.py::test_full_offline_receipt_cannot_misstate_install_or_test_scope[reclassified]
+4 failed, 1414 passed, 2 skipped, 42 errors, 76 subtests passed in 119.54s (0:01:59)

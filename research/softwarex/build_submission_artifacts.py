@@ -22,7 +22,10 @@ SOURCE_FILES = ("main.tex", "references.bib", "main.bbl", "elsarticle.cls", "els
 ARCHIVE_MANIFEST = "SUBMISSION_ARCHIVE_MANIFEST.json"
 MAX_MEMBERS = 20_000
 MAX_MEMBER_BYTES = 80 * 1024 * 1024
-MAX_TOTAL_BYTES = 512 * 1024 * 1024
+# The separately preserved producer/oracle/consumer campaigns and source
+# archives exceed the original 512 MiB expansion budget. Keep an explicit
+# 1 GiB ceiling; exact file/hash/type checks and per-member limits are unchanged.
+MAX_TOTAL_BYTES = 1024 * 1024 * 1024
 MAX_MANIFEST_BYTES = 8 * 1024 * 1024
 KINDS = {"flat-editable-manuscript", "reviewer-software-and-evidence"}
 PRIOR_ARTIFACTS = {"output/submission/SoftwareX_source.zip", "output/submission/ZeroRun_SoftwareX_reviewer.zip",
