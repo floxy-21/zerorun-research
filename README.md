@@ -4,7 +4,7 @@ Software for **ZeroRun: Reproducible test-result reuse for AI coding tools**, by
 
 ZeroRun 0.5.3 provides CLI and MCP interfaces for reusing a prior successful test result under an explicitly reviewed input and runtime contract. Start with a **whole-task handoff**: validate a qualified task once, then let another coding tool check its status against the same declared state. A `HIT_REUSED` reports earlier success; it does not supply fresh stdout, stderr, or generated artifacts. Request `run_tests` with `verify: true` when you need a new execution and diagnostics.
 
-Choose one of the three routes below. Release `softwarex-0.5.3-20260908-r2` is the target distribution; use its assets once they are available on the [release page](https://github.com/floxy-21/zerorun-research/releases/tag/softwarex-0.5.3-20260908-r2). Availability and validation are established by that snapshot's [manifest](PUBLIC_RELEASE_MANIFEST.json) and [readiness report](research/softwarex/generated/final-readiness.json), not by this README or a historical test receipt.
+Choose one of the three routes below. Release `softwarex-0.5.3-20260908-r3` is the target distribution; use its assets once they are available on the [release page](https://github.com/floxy-21/zerorun-research/releases/tag/softwarex-0.5.3-20260908-r3). Availability and validation are established by that snapshot's [manifest](PUBLIC_RELEASE_MANIFEST.json) and [readiness report](research/softwarex/generated/final-readiness.json), not by this README or a historical test receipt.
 
 ## 1. Install the wheel
 
@@ -29,13 +29,13 @@ Read its fixture and authority scope before running it. The example authorizes o
 
 ## 3. Verify the complete evidence package offline
 
-Use **CPython 3.12–3.14** and a clean Git checkout. This route needs no installation, Docker, AI account or model execution. Once the release is available:
+Use **CPython 3.12â€“3.14** and a clean Git checkout. This route needs no installation, Docker, AI account or model execution. Once the release is available:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.3-20260908-r2 https://github.com/floxy-21/zerorun-research.git zerorun-review
+git clone --config core.longpaths=true --depth 1 --branch softwarex-0.5.3-20260908-r3 https://github.com/floxy-21/zerorun-research.git zerorun-review
 cd zerorun-review
 git rev-parse HEAD
-curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r2/ZeroRun_SoftwareX_reviewer.zip
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r3/ZeroRun_SoftwareX_reviewer.zip
 python3 -B -m research.softwarex.verify_submission
 ```
 
@@ -51,6 +51,8 @@ Use the manuscript and [application results](research/softwarex/APPLICATION_RESU
 
 ZeroRun-owned code is MIT licensed; [LICENSE.txt](LICENSE.txt) and [Licence.txt](Licence.txt) contain the same license. Included trajectory data and upstream projects retain their own licenses, including CC-BY-4.0 where specified. See [third-party notices](THIRD_PARTY_NOTICES.md) and the evidence collections' source notices. Report reproducible issues with the exact commit, platform and command, excluding credentials and private repository content.
 
-The [15-row consumer and Lizard fixture audit](research/softwarex/CONSUMER_LIZARD_AUDIT.md) links recorded responses, model interpretations, unavailable protocol details and the exact upstream-backed fixture correction. The current article revision uses the unchanged, tested 0.5.3 wheel; its embedded package description still identifies the original r1 distribution of those same wheel bytes. This checkout and its evidence archives use the r2 publication identity above.
+The [15-row consumer and Lizard fixture audit](research/softwarex/CONSUMER_LIZARD_AUDIT.md) links recorded responses, model interpretations, unavailable protocol details and the exact upstream-backed fixture correction. The current article revision uses the unchanged, tested 0.5.3 wheel; its embedded package description still identifies the original r1 distribution of those same wheel bytes. This checkout and its evidence archives use the r3 publication identity above.
 
 The [fresh Linux reproduction procedure](research/softwarex/FRESH_LINUX_053_REPRODUCTION.md) gives public prerequisite acquisition, an isolated source/wheel installation and actual server execution. It preserves the original metadata-capture failure and the narrowly corrected research helper; the new Linux userland shares the Windows host and is not an independent human replication.
+
+Windows: use a short parent directory for the checkout, such as `C:/work`. The clone command enables Git long-path handling only for that repository. If an earlier deep-path checkout failed, preserve it and create a new short-path checkout; do not omit evidence files to make verification pass.

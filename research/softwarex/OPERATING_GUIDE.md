@@ -6,11 +6,11 @@ The commands below are **operator instructions, not evidence that they have been
 
 First-use path: [install](#1-install-outside-the-repository-you-will-test), [inspect](#2-inspect-the-target-before-executing-anything), [configure](#3-configure-one-reviewed-whole-task-command), [review and authorize](#4-make-the-manual-authorization-decision), [run and verify](#5-run-identify-reuse-and-verify), then [connect the client](#6-connect-an-mcp-client-or-codex). The [tool and response reference](#the-seven-shipped-tools) and [optional node-level workflow](#7-optional-separately-reviewed-pytest-node-reuse) are separate.
 
-To try the installed server without a Codex account or a real project, use the [current 0.5.3 Linux laboratory quickstart](QUICKSTART_053.md). It creates only the explicitly approved built-in synthetic fixture and records fresh-install and actual STDIO results separately. The retained `QUICKSTART_LAB.md` describes the historical 0.5.1 procedure; its frozen checker is not the current installation route.
+To try the installed server without a Codex account or a real project, use the [current 0.5.3 Linux laboratory quickstart](QUICKSTART_053_METADATA_V2.md). It creates only the explicitly approved built-in synthetic fixture and records fresh-install and actual STDIO results separately. The original `QUICKSTART_053.md` and historical 0.5.1 `QUICKSTART_LAB.md` remain frozen with their original records; the current helper separately corrects the expanded repository's bounded Git-metadata capture.
 
 For a deliberate new laboratory attempt after fixing a prerequisite, choose a new tools-environment directory and new installation and check receipt filenames. Preserve the previous attempt and record the intervention as described in the versioned guide; changing only the receipt filename does not make an existing environment new.
 
-For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12–3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
+For submission review, run [complete offline verification](VERIFY_SUBMISSION.md) first, using CPython 3.12â€“3.14 and a pristine Git checkout. The extracted reviewer ZIP contains an earlier sealed inventory and its original documentation; use the current verification instructions rather than trying to run the complete final-snapshot verifier inside that extraction.
 
 ## 1. Install outside the repository you will test
 
@@ -19,14 +19,14 @@ CLI installation needs Python 3.10 or later. The demonstrated whole-task executi
 Use separate locations for the public source, installed tools, and target project. For example, on Linux:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.3-20260908-r2 https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
+git clone --depth 1 --branch softwarex-0.5.3-20260908-r3 https://github.com/floxy-21/zerorun-research.git /absolute/path/zerorun-research
 python3 -m venv /absolute/path/zerorun-tools
 /absolute/path/zerorun-tools/bin/python -m pip install --no-index /absolute/path/zerorun-research/output/packages/zerorun-softwarex/zerorun-0.5.3-py3-none-any.whl
 /absolute/path/zerorun-tools/bin/zerorun --version
 /absolute/path/zerorun-tools/bin/zerorun --help
 ```
 
-Check `git -C /absolute/path/zerorun-research rev-parse HEAD` against the commit displayed on the `softwarex-0.5.3-20260908-r2` GitHub Release page. The manuscript's earlier immutable C2 pointer identifies the code/evidence stage. The included wheel installs without a source build or network access. Use a separate source working copy if you choose to build with setuptools, because a local source installation creates build artifacts there. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal external installation keeps the tools independent of subsequent checkout edits.
+Check `git -C /absolute/path/zerorun-research rev-parse HEAD` against the commit displayed on the `softwarex-0.5.3-20260908-r3` GitHub Release page. The manuscript's earlier immutable C2 pointer identifies the code/evidence stage. The included wheel installs without a source build or network access. Use a separate source working copy if you choose to build with setuptools, because a local source installation creates build artifacts there. The public package uses `src/zerorun`; do not copy modules into the target project or rely on imports from the source checkout. A normal external installation keeps the tools independent of subsequent checkout edits.
 
 On Windows, the equivalent external environment has `Scripts\python.exe` and `Scripts\zerorun.exe`. Read-only inspection can be performed there, but the Linux/amd64 execution requirement remains. Research-analysis dependencies are separate from the runtime package, which has no third-party Python runtime dependencies.
 
@@ -293,7 +293,7 @@ Use MCP `doctor` to confirm `manifest_authorized`, `pytest_reuse_ready`, and the
 
 ## Inspect or reproduce the bounded integration experiments
 
-Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12–3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.3 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
+Offline inspection needs no Codex account or model credits. From the release root with CPython 3.12â€“3.14, run `python -B -m research.softwarex.build_extension_evidence --check` for the historical extension and `python -B -m research.softwarex.build_application_evidence --check` for the later client and clean-installation records. Use `python3` instead when that names your supported interpreter. These are individual diagnostics; the [complete verifier](VERIFY_SUBMISSION.md) also checks the current runtime, 0.5.3 public quickstart, handoffs, and archives. The commands validate archived evidence without replaying agent commands. [Application results](APPLICATION_RESULTS.md) links each prospective protocol, raw receipt, and checked summary; it reports earlier failures alongside the successful guided treatment.
 
 ### Historical V1 and its non-model diagnostic only
 
@@ -320,7 +320,7 @@ These use a distinct immutable public source, `ebf2884df12573d63f45813200e067528
 
 Read [V2](live_client_v2/PROTOCOL.md), [V3](live_client_v3/PROTOCOL.md), and the [guided protocol](guided_client_v1/PROTOCOL.md) before considering new execution. Each runner's `--help` describes its explicit consent and identity arguments. Use a separate external adapter directory and new evidence paths, preserving the required frozen helper hierarchy; do not patch a frozen source or change its expected hashes. Model execution requires the operator's own authorized account and the applicable fixture-only decisions. The API card was frozen before the guided trial and supplied as neutral interface documentation, not as expected answers. That trial does not establish a causal benefit from the card.
 
-For first use without model credentials or historical client installer artifacts, prefer the [current 0.5.3 account-free quickstart](QUICKSTART_053.md). The records in `evidence/quickstart-public-053-v1/` bind an actual fresh anonymous checkout, external installation and five STDIO stages to their original public source commit. Installation and server-check times are separate; neither measures all user preparation, cloning or Docker acquisition. This is an internal reproduction, not an external developer study or installation of a later release commit.
+For first use without model credentials or historical client installer artifacts, prefer the [current 0.5.3 account-free quickstart](QUICKSTART_053_METADATA_V2.md) and [fresh Linux procedure](FRESH_LINUX_053_REPRODUCTION.md). The original `evidence/quickstart-public-053-v1/` records remain bound to their original anonymous checkout and helper; the corrected helper and new source/wheel demonstration have separate records in `evidence/public-fresh-linux-053-v1/`. Installation and server-check times are separate; neither measures all preparation, cloning or image acquisition. These are author-side reproductions, not independent human studies.
 
 ## Real-workload reproduction
 

@@ -31,7 +31,7 @@ HISTORICAL_TEST_PATHS = ("tests/test_codex_integration.py",)
 TITLE = "ZeroRun: Reproducible test-result reuse for AI coding tools"
 MANIFEST = "PUBLIC_RELEASE_MANIFEST.json"
 REVIEWER_ASSET = "output/submission/ZeroRun_SoftwareX_reviewer.zip"
-REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r2/ZeroRun_SoftwareX_reviewer.zip"
+REVIEWER_ASSET_URL = "https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r3/ZeroRun_SoftwareX_reviewer.zip"
 MAX_EXTERNAL_ARCHIVE_BYTES = 600 * 1024 * 1024
 VM_REGRESSION_EVIDENCE_DIRS = (
     "full-product-vm-20260907", "full-product-vm-20260907-v2",

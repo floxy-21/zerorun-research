@@ -1,21 +1,21 @@
 # One-command offline submission verification
 
-Use a clean Git checkout and **CPython 3.12–3.14**. No package installation is required. For the 0.5.3 submission snapshot, use the following commands once its named release and reviewer asset are available:
+Use a clean Git checkout and **CPython 3.12â€“3.14**. No package installation is required. For the 0.5.3 submission snapshot, use the following commands once its named release and reviewer asset are available:
 
 ```sh
-git clone --depth 1 --branch softwarex-0.5.3-20260908-r2 https://github.com/floxy-21/zerorun-research.git zerorun-review
+git clone --config core.longpaths=true --depth 1 --branch softwarex-0.5.3-20260908-r3 https://github.com/floxy-21/zerorun-research.git zerorun-review
 cd zerorun-review
 git rev-parse HEAD
 ```
 
-Compare the printed commit with the commit shown on the `softwarex-0.5.3-20260908-r2` GitHub Release page. The tagged release and its archives remain unchanged when later navigation corrections are published on `main`; each checkout is checked against its own complete manifest. The 0.5.3 software binding is `e5194d340a09bccb667d3021a6a4a9a9a054123b`; the publication checkout has its own commit and includes the separately retained historical runtime.
+Compare the printed commit with the commit shown on the `softwarex-0.5.3-20260908-r3` GitHub Release page. The tagged release and its archives remain unchanged when later navigation corrections are published on `main`; each checkout is checked against its own complete manifest. The 0.5.3 software binding is `e5194d340a09bccb667d3021a6a4a9a9a054123b`; the publication checkout has its own commit and includes the separately retained historical runtime.
 
 **Do not run this complete verifier from an extracted reviewer ZIP.** That archive seals an earlier inventory and does not contain itself or the later artifact receipt. Its README remains bound to that inventory. Use these instructions with the Git checkout; individual evidence checkers can still inspect the extracted archive.
 
 First download the complete reviewer ZIP. It is a GitHub Release asset because it exceeds the repository-file size limit; the source ZIP is already in Git. Run from the checkout root:
 
 ```sh
-curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r2/ZeroRun_SoftwareX_reviewer.zip
+curl --fail --location --output output/submission/ZeroRun_SoftwareX_reviewer.zip https://github.com/floxy-21/zerorun-research/releases/download/softwarex-0.5.3-20260908-r3/ZeroRun_SoftwareX_reviewer.zip
 # Windows PowerShell: use curl.exe with the same arguments.
 ```
 
@@ -69,3 +69,5 @@ This verification does not submit to a journal, claim independent human use,
 predict acceptance, regenerate the paper, or call the readiness builder.
 
 The [consumer and fixture audit](CONSUMER_LIZARD_AUDIT.md) exposes the exact archived fields and transcript locators behind the core 15-turn comparison. Its read-only checker regenerates both the JSON and Markdown table; missing or altered evidence fails. Uncaptured wire-level assertions remain unverified, and author review is not replaced by the checker.
+
+Windows: use a short parent directory for the checkout, such as `C:/work`. The clone command enables Git long-path handling only for that repository. If an earlier deep-path checkout failed, preserve it and create a new short-path checkout; do not omit evidence files to make verification pass.
