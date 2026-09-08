@@ -3876,6 +3876,21 @@
     ]
   },
   "bibliography_sha256": "150865a7a36d910c1a759ac0b01aea81445e58b10b59c5160a68028675c3445b",
+  "consumer_lizard_audit": {
+    "independent_human_review": false,
+    "markdown_path": "research/softwarex/CONSUMER_LIZARD_AUDIT.md",
+    "markdown_sha256": "e32ed682b64aef3222c9b07ff60b8ab4db11d49ba4d30c21278d85f183377714",
+    "path": "research/softwarex/generated/consumer-lizard-audit-v1.json",
+    "sha256": "0ea760c96d01065f60c5fcf656dd45c8b4f494ad65f00a4568104094393ac21a",
+    "summary": {
+      "consumer_rows": 15,
+      "eligible_cases": 5,
+      "literal_freshness_matches": 15,
+      "literal_outcome_matches": 15,
+      "messages_with_unverifiable_wire_assertions": 13,
+      "selected_producers": 6
+    }
+  },
   "engineering": {
     "github_matrix": {
       "3.10": {
@@ -4931,6 +4946,82 @@
     ],
     "schema": "zerorun.current-revision-analysis.v1",
     "separate_hardware_from_controlled_experiment": true
+  },
+  "fresh_public_userland": {
+    "path": "research/softwarex/evidence/public-fresh-linux-053-v1",
+    "reader_sha256": "5e70485813be330ab53533fd401321e511715957b52b9576b9101daabf4b6523",
+    "reconciliation": {
+      "fresh_failure_requests": 2,
+      "image": {
+        "Architecture": "amd64",
+        "Id": "sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+        "Os": "linux",
+        "RepoDigests": [
+          "python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef"
+        ]
+      },
+      "independent_human_replication": false,
+      "manifest_sha256": "740c0391547516c3917e83029fe1bfd6aa0bd0ca746c30627b7f50600ea63ba7",
+      "model_called": false,
+      "new_docker_empty_inventory": true,
+      "normal_mcp_requests": 10,
+      "original_installation": {
+        "commands_recorded": 7,
+        "elapsed_seconds": 9.921332,
+        "external_developer_study": false,
+        "model_called": false,
+        "passed": true,
+        "source_commit": "13a3ceae84913a1ddbed412bdad9cd6fbf7e2e54"
+      },
+      "original_pre_mcp_failure_preserved": true,
+      "passed": true,
+      "public_image_digest": "docker.io/library/python@sha256:9c47360a2a0355e2da18516d0b1c2126ec22c195d2185e97347c9d98398c5bef",
+      "public_manifest_sha256": "2e9d3960d252d6ee3d27f85662dc3cd6a67cbbfcaa705021d2c059001deb7651",
+      "read_only": true,
+      "record_files": 139,
+      "rootfs_archive_rehashed_offline": false,
+      "rootfs_sha256": "41f73e3cf5fa919b8aa5ca6b30dc48f0da2720776d7423e2a7748211456fe081",
+      "schema": "zerorun.fresh-public-linux-reconciliation.v1",
+      "scope": "Author-side new Linux userland and Docker data store on an existing shared Windows/WSL host; fixed synthetic fixture only; no timing benefit or independent human trial.",
+      "source_commit": "13a3ceae84913a1ddbed412bdad9cd6fbf7e2e54",
+      "source_install_commands": 7,
+      "source_installation_and_mcp": {
+        "check": {
+          "elapsed_seconds": 4.180704,
+          "external_developer_study": false,
+          "model_called": false,
+          "passed": true,
+          "runtime_files": 36,
+          "source_commit": "13a3ceae84913a1ddbed412bdad9cd6fbf7e2e54",
+          "stages_recorded": 5
+        },
+        "installation": {
+          "commands_recorded": 7,
+          "elapsed_seconds": 7.439507,
+          "external_developer_study": false,
+          "model_called": false,
+          "passed": true,
+          "source_commit": "13a3ceae84913a1ddbed412bdad9cd6fbf7e2e54"
+        },
+        "model_called": false,
+        "passed": true,
+        "read_only": true,
+        "real_repository_authorized": false
+      },
+      "wheel": {
+        "bytes": 244550,
+        "sha256": "dbac896587365b010b6c1c2c5913e1f75e79da99cfdb00c407e67f3442deddb9"
+      },
+      "wheel_mcp": {
+        "elapsed_seconds": 4.721561,
+        "external_developer_study": false,
+        "model_called": false,
+        "passed": true,
+        "runtime_files": 36,
+        "source_commit": "13a3ceae84913a1ddbed412bdad9cd6fbf7e2e54",
+        "stages_recorded": 5
+      }
+    }
   },
   "handoff": {
     "acceptance_probability_estimated": false,
@@ -15981,7 +16072,7 @@
     "inventory_cases": 38,
     "junit_sha256": "e4dd67ae43b0daa50ea8f2c75668b284e0235a907e3ab6ec102c663ba83c9f2c"
   },
-  "main_tex_sha256": "e34000df6d5c434de3d1ba222c0eefd34acd4e983e58fd2d3fdfe6843b53bdd6",
+  "main_tex_sha256": "b00363e3c2988f13bdd9005158b22a726c12b3836589554d201e91a2547ec6f1",
   "meaning": "Evidence and format validation, not an acceptance probability or production qualification.",
   "original_comparison": {
     "agent_effect_measured": false,
@@ -16397,21 +16488,21 @@
   },
   "preview": false,
   "public_release": {
-    "anonymous_verification_url": "https://raw.githubusercontent.com/floxy-21/zerorun-research/9b11515d9b9a0f209bae670943d149b47896d0c4/PUBLIC_RELEASE_MANIFEST.json",
-    "branch": "codex/softwarex-053-finalization",
-    "code_commit": "9b11515d9b9a0f209bae670943d149b47896d0c4",
+    "anonymous_verification_url": "https://raw.githubusercontent.com/floxy-21/zerorun-research/9a1c2f0147f931ba02cd68acff5dd3f99ed87dde/PUBLIC_RELEASE_MANIFEST.json",
+    "branch": "codex/softwarex-053-focused-r2",
+    "code_commit": "9a1c2f0147f931ba02cd68acff5dd3f99ed87dde",
     "current_runtime_commit": "e5194d340a09bccb667d3021a6a4a9a9a054123b",
     "final_manuscript_added_in_later_submission_snapshot": true,
     "journal_submitted": false,
     "payment_made": false,
     "private_history_published": false,
     "public_verified": true,
-    "release_manifest_sha256": "4dcd463fe893d3f8548e091825a1eab55c1de4154aad976695798c8cf9fe1cc8",
+    "release_manifest_sha256": "6b07a54cff003afff13db2e09909dccbc8a9dc80e46df4339c0b518649071641",
     "repository_url": "https://github.com/floxy-21/zerorun-research",
     "schema": "zerorun.softwarex-public-code-release.v1",
     "source_and_raw_evidence_published": true,
-    "verification": "An anonymous HTTPS GET of the immutable source/evidence commit manifest exactly matched the inspected local manifest. The final article and archives are added in the later submission snapshot, preserving non-circular source binding.",
-    "verified_utc": "2026-09-08T06:42:06.834720+00:00"
+    "verification": "Anonymous immutable source/evidence manifest equals the staged bytes. Later publication commit adds the final PDF and archives, preserving non-circular binding.",
+    "verified_utc": "2026-09-08T08:24:20.218638+00:00"
   },
   "replication": {
     "additional_incomplete_requests": 1,
@@ -20917,7 +21008,7 @@
     "review_sha256": "7bf8d06279e264a0f536858e5cfcddd4a4f216f9555c892168a1eeb12a74ccbd",
     "text_sha256": "9d752d0a800d4e0c7417bff1028b78a951985f5a1e2c964954ead7a9b3e603fa"
   },
-  "template_sha256": "127ce508feae69d5b0f2b1046344b822bcdec26203aa361b858c5ae9c86e0c1c",
+  "template_sha256": "7afc663c8a50e2e46db43c6137fc2c311b5133fb934d3fef3893480b62c09f0a",
   "title": "ZeroRun: Reproducible test-result reuse for AI coding tools",
   "trace_summary_sha256": "62e8fbbea979c6f19ea07e4185ade2d064634356a3d0b87364fac7ef889a6152"
 }
