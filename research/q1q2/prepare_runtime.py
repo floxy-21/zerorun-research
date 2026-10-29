@@ -64,20 +64,17 @@ def prepare(output, *, main=False):
                 requirements[name] = value
             lock.write_text("\n".join(requirements[k] for k in sorted(requirements)) + "\n")
             result["main_wheel_acquisition_seconds"] = time.perf_counter() - main_started
-            # Upstream natsort requires en_US; retain all three upstream locales.
-            # Download package bytes first, then use an offline image build.
+            # Hash-locked bytes obtained in preserved preflight attempt 3.
+            # Upstream natsort requires en_US; all three tested locales retained.
             (context / "debs").mkdir()
-            # Capability-dropped container root cannot bypass the host runner's
-            # directory ownership. Expose only this empty package destination.
-            (context / "debs").chmod(0o777)
-            script = ("set -eu; mkdir -p /tmp/q1q2-apt-cache/partial; "
-                "apt-get -o APT::Sandbox::User=root update; "
-                "apt-get -o APT::Sandbox::User=root -o Dir::Cache::archives=/tmp/q1q2-apt-cache --download-only -y install locales; "
-                "cp /tmp/q1q2-apt-cache/*.deb /out/")
-            command("locale-acquisition", ["docker", "run", "--rm", "--pull=never", "--cap-drop", "ALL",
-                "--security-opt", "no-new-privileges", "--mount", "type=bind,src=" + str(context / "debs") + ",dst=/out",
-                BASE, "sh", "-c", script])
-            (context / "debs").chmod(0o755)
+            for row in json.loads((Path(__file__).parent / "runtime-main/debs.json").read_text()):
+                data = urllib.request.urlopen(row["url"], timeout=60).read(row["bytes"] + 1)
+                assert len(data) == row["bytes"] and hashlib.sha256(data).hexdigest() == row["sha256"]
+                (context / "debs" / row["filename"]).write_bytes(data)
+            # Exact console-script target declared by the pinned ftfy source.
+            # Imports resolve the mounted source, never a separately installed ftfy.
+            (context / "ftfy").write_text("#!/usr/local/bin/python\nimport sys\nfrom ftfy.cli import main\nsys.exit(main())\n")
+            dockerfile += "COPY --chmod=755 ftfy /usr/local/bin/ftfy\n"
             deb_bytes = sum(p.stat().st_size for p in (context / "debs").glob("*.deb"))
             assert deb_bytes <= 50_000_000, "locale package acquisition exceeds 50 MB bound"
             dockerfile += ("COPY debs/ /opt/q1q2-debs/\n"

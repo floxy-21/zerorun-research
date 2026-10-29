@@ -80,15 +80,16 @@ def acquire(target, destination, output):
                 raise RuntimeError("source acquisition failed")
         actual = subprocess.check_output(["git", "-C", str(destination), "rev-parse", "HEAD"], text=True).strip()
         assert actual == target["sha"]
-        inventory = gate.inventory(destination)
-        size = sum(x.get("bytes", 0) for x in inventory)
-        if size > 50_000_000:
-            raise ValueError("source budget exceeded")
         archive = output / "source.tar.gz"
         with tarfile.open(archive, "w:gz") as package:
             for child in sorted(destination.iterdir()):
                 if child.name != ".git":
                     package.add(child, arcname=child.name, recursive=True)
+        row["archive_sha256"] = hashlib.sha256(archive.read_bytes()).hexdigest()
+        inventory = gate.inventory(destination)
+        size = sum(x.get("bytes", 0) for x in inventory)
+        if size > 50_000_000:
+            raise ValueError("source budget exceeded")
         row.update(status="acquired", inventory=inventory, bytes=size,
                    archive_sha256=hashlib.sha256(archive.read_bytes()).hexdigest())
         return True

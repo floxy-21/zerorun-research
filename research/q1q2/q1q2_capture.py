@@ -4,6 +4,7 @@ import hashlib
 
 COLLECTED = []
 REPORTS = []
+EXIT_STATUS = None
 
 
 def pytest_collection_finish(session):
@@ -16,8 +17,15 @@ def pytest_runtest_logreport(report):
 
 
 def pytest_sessionfinish(session, exitstatus):
+    global EXIT_STATUS
+    EXIT_STATUS = int(exitstatus)
+
+
+def pytest_unconfigure(config):
+    if EXIT_STATUS is None:
+        return
     payload = {"collected": sorted(COLLECTED), "reports": sorted(REPORTS, key=lambda r: (r[0], r[1])),
-               "exit_code": int(exitstatus)}
+               "exit_code": int(EXIT_STATUS)}
     encoded = json.dumps(payload, sort_keys=True, separators=(",", ":"))
     print("\nQ1Q2_OUTCOMES=" + encoded, flush=True)
     # ZeroRun's actual MCP API intentionally returns only a 4,000-byte tail.
@@ -25,4 +33,4 @@ def pytest_sessionfinish(session, exitstatus):
     # retains the complete node/phase record to which it can be compared.
     print("Q1Q2_SUMMARY=" + json.dumps({"sha256": hashlib.sha256(encoded.encode()).hexdigest(),
           "collected_count": len(COLLECTED), "reports_count": len(REPORTS),
-          "exit_code": int(exitstatus)}, sort_keys=True), flush=True)
+          "exit_code": int(EXIT_STATUS)}, sort_keys=True), flush=True)

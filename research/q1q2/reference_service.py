@@ -16,6 +16,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 
 FIXED_ENV = {"LANG": "C", "LC_ALL": "C", "PYTHONHASHSEED": "0",
@@ -62,7 +63,49 @@ def runtime(image):
             "requested": image, "fixed_env": FIXED_ENV, "resources": RESOURCE}
 
 
-def fresh(root, task):
+def attach(name, timeout, capture=None):
+    """Drain both streams with bounded tails; optional bounded research capture."""
+    proc = subprocess.Popen(["docker", "start", "--attach", name], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    streams, errors = {}, []
+    def drain(label, pipe):
+        tail, total = b"", 0
+        output = open(capture, "wb") if label == "stdout" and capture else None
+        try:
+            while chunk := pipe.read(65536):
+                total += len(chunk)
+                tail = (tail + chunk)[-4000:]
+                if output:
+                    if total <= 50_000_000:
+                        output.write(chunk)
+                    elif not errors:
+                        errors.append(ValueError("research oracle capture exceeds 50 MB"))
+        except Exception as error:
+            errors.append(error)
+        finally:
+            pipe.close()
+            if output:
+                output.close()
+            streams[label] = (tail, total)
+    threads = [threading.Thread(target=drain, args=(label, pipe), daemon=True)
+               for label, pipe in (("stdout", proc.stdout), ("stderr", proc.stderr))]
+    for thread in threads:
+        thread.start()
+    try:
+        code = proc.wait(timeout=timeout)
+    finally:
+        if proc.poll() is None:
+            proc.kill()
+        proc.wait(timeout=10)
+        for thread in threads:
+            thread.join(timeout=10)
+        if any(t.is_alive() for t in threads):
+            raise RuntimeError("output drain did not finish")
+    if errors:
+        raise errors[0]
+    return code, streams
+
+
+def fresh(root, task, timeout=900):
     name = "q1q2-reference-" + secrets.token_hex(8)
     command = ["docker", "create", "--name", name, "--pull", "never", "--platform", "linux/amd64",
                "--network", "none", "--read-only", "--cap-drop", "ALL", "--security-opt", "no-new-privileges",
@@ -80,29 +123,26 @@ def fresh(root, task):
         container_id = created.stdout.decode().strip()
         if len(container_id) != 64 or any(c not in "0123456789abcdef" for c in container_id):
             raise ValueError("container identity missing")
-        proc = subprocess.run(["docker", "start", "--attach", name], capture_output=True, timeout=900)
+        code, streams = attach(name, timeout, os.environ.get("Q1Q2_ORACLE_CAPTURE"))
         witness, = json.loads(subprocess.check_output(["docker", "container", "inspect", name], timeout=60))
         state = witness["State"]
         if witness["Id"] != container_id or state["Running"] or state["Status"] != "exited" or state["Error"] or state["OOMKilled"]:
             raise ValueError("container did not finish normally")
-        if proc.returncode != state["ExitCode"]:
+        if code != state["ExitCode"]:
             raise ValueError("CLI and container exit status differ")
-        capture = os.environ.get("Q1Q2_ORACLE_CAPTURE")
-        if capture:
-            # Research-only host capture, never mounted inside the task. Timed
-            # requests do not set this variable or pay for this evidence write.
-            Path(capture).write_bytes(proc.stdout)
         result = {"status": "FRESH_EXECUTED", "exit_code": state["ExitCode"],
-                "stdout_tail": proc.stdout[-4000:].decode(errors="replace"),
-                "stderr_tail": proc.stderr[-4000:].decode(errors="replace"),
-                "output_truncated": len(proc.stdout) > 4000 or len(proc.stderr) > 4000,
+                "stdout_tail": streams["stdout"][0].decode(errors="replace"),
+                "stderr_tail": streams["stderr"][0].decode(errors="replace"),
+                "output_bytes": {k: v[1] for k, v in streams.items()},
+                "output_truncated": any(v[1] > 4000 for v in streams.values()),
                 "historical": False, "container_state": state, "container_id": container_id}
         return result
     finally:
         # Even a failed CLI create may have allocated the uniquely named container.
         cleanup = subprocess.run(["docker", "rm", "--force", name], capture_output=True, timeout=60)
         if cleanup.returncode and b"No such container" not in cleanup.stderr:
-            raise RuntimeError("task-owned container cleanup failed: " + cleanup.stderr.decode(errors="replace"))
+            raise RuntimeError("task-owned container cleanup failed: " + cleanup.stderr.decode(errors="replace")
+                               + "; primary error: " + repr(sys.exc_info()[1]))
         if result is not None:
             result["execution_and_cleanup_seconds"] = time.perf_counter() - started
 
@@ -142,7 +182,19 @@ def request(root, arm, key_path, verify=False):
     if hit is None:
         with tempfile.TemporaryDirectory(prefix="q1q2-reference-snapshot-") as folder:
             snapshot = Path(folder) / "source"
-            shutil.copytree(root, snapshot, ignore=lambda folder, names: EXCLUDE.intersection(names) if Path(folder) == root else set())
+            # Copy bytes and keyed modes only. copytree/copy2 can copy xattrs or
+            # ACLs, which are outside both staged execution identities.
+            snapshot.mkdir(mode=stat.S_IMODE(root.stat().st_mode))
+            for path, mode, kind in before:
+                if path == ".":
+                    continue
+                destination = snapshot / path
+                if kind == "dir":
+                    destination.mkdir()
+                else:
+                    shutil.copyfile(root / path, destination)
+                destination.chmod(mode)
+            snapshot.chmod(stat.S_IMODE(root.stat().st_mode))
             (snapshot / ".git").mkdir()
             (snapshot / ".zerorun").mkdir()
             # Match ZeroRun's execution normalization; input timestamps are not

@@ -26,6 +26,8 @@ def oracle(source, image, folder, command):
     summary = extract_outcomes(response.get("payload", {}))
     full = capture.read_text() if capture.exists() else ""
     full_verified = bool(summary and summary["collected_count"] and "Q1Q2_OUTCOMES=" in full
+                         and summary["exit_code"] == response.get("payload", {}).get("exit_code")
+                         and response.get("disposition") == "completed"
                          and extract_outcomes({"stdout_tail": full}) == summary)
     return {"setup": setup, "response": response, "summary": summary, "full_verified": full_verified}
 
@@ -39,7 +41,8 @@ def preflight(target, source, image, folder):
         row = invoke(root, arm, authority)
         records[arm] = {"setup": setup, "response": row, "summary": extract_outcomes(row.get("payload", {}))}
     valid = bool(records["fresh"]["full_verified"] and expected["exit_code"] == 0 and all(
-        records[arm]["summary"] == expected for arm in records))
+        records[arm]["summary"] == expected and records[arm]["response"].get("payload", {}).get("exit_code") == 0
+        for arm in records))
     return {"records": records, "equal_nonempty_success": valid}
 
 
@@ -104,6 +107,11 @@ def main():
     try:
         image = prepare(output / "runtime", main=True)
         report["image"] = image
+        if args.block == "B1":
+            from research.q1q2.correctness_matrix import run as run_matrix
+            matrix = run_matrix(image, output / "correctness")
+            report["correctness_matrix"] = {"passed": matrix["passed"], "rows": [
+                {"name": r["name"], "passed": r["passed"], "error": r.get("error")} for r in matrix["rows"]]}
         selection = json.loads((here / "MAIN_SELECTION.json").read_text())
         schedules = json.loads((here / "MAIN_SCHEDULE.json").read_text())["schedule"]
         for target in selection["targets"]:
