@@ -1,0 +1,161 @@
+{
+  "schema": "zerorun.q1q2.main-selection.v1",
+  "frozen_utc": "2026-10-29T21:28:59.727562+00:00",
+  "evidence_class": "prospective selected-case evaluation after separate pilots",
+  "cutoff_utc": "2026-10-29T20:00:00Z",
+  "targets": [
+    {
+      "repo": "jmespath/jmespath.py",
+      "sha": "2812594e69d43098ef60f81f4efc404c071b0418",
+      "source_bytes": 274352,
+      "workflows": [
+        ".github/workflows/codeql.yml",
+        ".github/workflows/run-tests.yml"
+      ],
+      "id": "jmespath-py",
+      "test_workflow": ".github/workflows/run-tests.yml",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-p",
+        "q1q2_capture",
+        "tests",
+        "--hypothesis-seed=20261029"
+      ]
+    },
+    {
+      "repo": "mahmoud/boltons",
+      "sha": "d31d821d56c8f7756af9c30a864077f2e5855321",
+      "source_bytes": 1051518,
+      "workflows": [
+        ".github/workflows/publish.yml",
+        ".github/workflows/tests.yaml"
+      ],
+      "id": "boltons",
+      "test_workflow": ".github/workflows/tests.yaml",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-p",
+        "q1q2_capture",
+        "tests",
+        "--hypothesis-seed=20261029"
+      ]
+    },
+    {
+      "repo": "pallets/itsdangerous",
+      "sha": "672971d66a2ef9f85151e53283113f33d642dabd",
+      "source_bytes": 282547,
+      "workflows": [
+        ".github/workflows/tests.yaml",
+        ".github/workflows/publish.yaml",
+        ".github/workflows/lock.yaml",
+        ".github/workflows/pre-commit.yaml"
+      ],
+      "id": "itsdangerous",
+      "test_workflow": ".github/workflows/tests.yaml",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-p",
+        "q1q2_capture",
+        "tests",
+        "--hypothesis-seed=20261029"
+      ]
+    },
+    {
+      "repo": "rspeer/python-ftfy",
+      "sha": "74dd0452b48286a3770013b3a02755313bd5575e",
+      "source_bytes": 627550,
+      "workflows": [
+        ".github/workflows/publish.yml"
+      ],
+      "id": "python-ftfy",
+      "test_workflow": null,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-p",
+        "q1q2_capture",
+        "tests",
+        "--hypothesis-seed=20261029"
+      ]
+    },
+    {
+      "repo": "theskumar/python-dotenv",
+      "sha": "bad5771ce54fd643538f177aab1465e4375e2039",
+      "source_bytes": 192520,
+      "workflows": [
+        ".github/workflows/test.yml",
+        ".github/workflows/release.yml"
+      ],
+      "id": "python-dotenv",
+      "test_workflow": ".github/workflows/test.yml",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-p",
+        "q1q2_capture",
+        "tests",
+        "--hypothesis-seed=20261029"
+      ]
+    },
+    {
+      "repo": "SethMMorton/natsort",
+      "sha": "e9a3a2a307580a1f2be8c57bba50fba45789ada0",
+      "source_bytes": 283896,
+      "workflows": [
+        ".github/workflows/tests.yml",
+        ".github/workflows/code-quality.yml",
+        ".github/workflows/deploy.yml"
+      ],
+      "id": "natsort",
+      "test_workflow": ".github/workflows/tests.yml",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "-p",
+        "q1q2_capture",
+        "tests",
+        "--hypothesis-profile=slow-tests",
+        "--hypothesis-seed=20261029"
+      ]
+    }
+  ],
+  "selection_rule": "Keep all six previously listed candidates. Controlled targets use their current default-branch source pins, all commits preceding cutoff, selected without test outcomes or durations. Source and workflow/dependency declarations have been read. Standardized full tests/ directory, not all upstream CI jobs, docs or optional extras.",
+  "trace_rule": "From the most recent 60 completed runs created at/before cutoff, retain at most 20 most recent runs of the identified test workflow, all conclusions; order by created_at,id ascending. No test workflow means zero observed requests, not zero project test use. No additional pages or favorable replacements. Source content must be materialized; SHA-only repeat estimates are not hits. These are latest workflow-run record snapshots, ordered by original record creation, not separate execution attempts. Intermediate retry attempts and their exact chronology are unknown; run_attempt is retained. No actual rerun-demand prevalence is inferred.",
+  "main_measurement": "12 complete paired blocks per supported target, each of 6 arm permutations once in each of 2 sequential hosted jobs. Same-source producer + 4 constructed consumers. N=1 primary; N=0,2,4 secondary. Pilot targets excluded.",
+  "qualification": "Explicit conditional outcome-determinism hypothesis; machine-scoped decisions are not human certification. Full-tree/staged outcome equivalence is checked at every selected source before admitting mechanical reuse. Unknown human qualification effort is retained as a cost variable; no population estimate of expert labor.",
+  "exclusions": "No source/assertion edits or test-name exclusions. Missing dependencies can be added and locked before main; known unsupported effects and dependency/locale failures remain in selected-case ledger. Repairs after performance begins require a versioned protocol and retain all attempts.",
+  "qualification_cost_policy": "Primary controlled-chain cost includes one additional actually executed full-tree oracle per reuse-arm qualification, source materialization and arm authority setup, then one producer and N consumers. The producer is counted once. Human review is unknown q. A separate prequalified-source sensitivity omits the extra oracle; no amortization over measurement replicates."
+}

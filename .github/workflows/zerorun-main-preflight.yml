@@ -1,0 +1,36 @@
+name: ZeroRun main qualification preflight
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/q1q2-20261029]
+    paths:
+      - .github/workflows/zerorun-main-preflight.yml
+      - research/q1q2/run_main.py
+      - research/q1q2/runtime-main/wheels.json
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Execute all selected main preflights
+        run: python3 -B research/q1q2/run_main.py --block B1 --output "$RUNNER_TEMP/q1q2-main-preflight"
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1q2-main-preflight
+          path: |
+            ${{ runner.temp }}/q1q2-main-preflight/summary.json
+            ${{ runner.temp }}/q1q2-main-preflight/host.jsonl
+            ${{ runner.temp }}/q1q2-main-preflight/*/acquisition.json
+            ${{ runner.temp }}/q1q2-main-preflight/*/preflight.json
+            ${{ runner.temp }}/q1q2-main-preflight/*/oracle-full-stdout.txt
+            ${{ runner.temp }}/q1q2-main-preflight/*/source.tar.gz
+            ${{ runner.temp }}/q1q2-main-preflight/runtime/completion.json
+            ${{ runner.temp }}/q1q2-main-preflight/runtime/commands/*.json
+          retention-days: 90

@@ -1,15 +1,6 @@
 name: ZeroRun qualification and full-cost pilot
 on:
   workflow_dispatch:
-  push:
-    branches: [research/q1q2-20261029]
-    paths:
-      - research/q1q2/run_pilot.py
-      - research/q1q2/reference_service.py
-      - research/q1q2/prepare_runtime.py
-      - research/q1q2/q1q2_capture.py
-      - research/q1q2/pilot_targets.json
-      - .github/workflows/zerorun-cost-pilot.yml
 permissions:
   contents: read
 jobs:
@@ -34,6 +25,7 @@ jobs:
             ${{ runner.temp }}/q1q2-pilot/*/preflight-*.json
             ${{ runner.temp }}/q1q2-pilot/*/block-*.json
             ${{ runner.temp }}/q1q2-pilot/*/source.tar.gz
+            ${{ runner.temp }}/q1q2-pilot/*/oracle-full-stdout.txt
             ${{ runner.temp }}/q1q2-pilot/runtime/completion.json
             ${{ runner.temp }}/q1q2-pilot/runtime/commands/*.json
           retention-days: 90

@@ -87,10 +87,15 @@ def fresh(root, task):
             raise ValueError("container did not finish normally")
         if proc.returncode != state["ExitCode"]:
             raise ValueError("CLI and container exit status differ")
+        capture = os.environ.get("Q1Q2_ORACLE_CAPTURE")
+        if capture:
+            # Research-only host capture, never mounted inside the task. Timed
+            # requests do not set this variable or pay for this evidence write.
+            Path(capture).write_bytes(proc.stdout)
         result = {"status": "FRESH_EXECUTED", "exit_code": state["ExitCode"],
-                "stdout_tail": proc.stdout[-1024 * 1024:].decode(errors="replace"),
-                "stderr_tail": proc.stderr[-1024 * 1024:].decode(errors="replace"),
-                "output_truncated": len(proc.stdout) > 1024 * 1024 or len(proc.stderr) > 1024 * 1024,
+                "stdout_tail": proc.stdout[-4000:].decode(errors="replace"),
+                "stderr_tail": proc.stderr[-4000:].decode(errors="replace"),
+                "output_truncated": len(proc.stdout) > 4000 or len(proc.stderr) > 4000,
                 "historical": False, "container_state": state, "container_id": container_id}
         return result
     finally:
@@ -107,9 +112,9 @@ def request(root, arm, key_path, verify=False):
     task = json.loads(raw)["tasks"]["tests"]
     if task["env"] or task["outputs"] or task["unsafe_effects"] or not task["result_only"]:
         raise ValueError("unsupported service contract")
-    image = runtime(task["image"])
     if arm == "fresh" or verify:
         return fresh(root, task)
+    image = runtime(task["image"])
     before = tree(root)
     descriptor = {"schema": 1, "root": str(root), "tree": before,
                   "manifest_sha256": hashlib.sha256(raw).hexdigest(), "runtime": image}

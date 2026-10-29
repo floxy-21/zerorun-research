@@ -100,13 +100,13 @@ def acquire(target, destination, output):
         save(output / "acquisition.json", row)
 
 
-def initialize(source, root, image, arm, authority):
+def initialize(source, root, image, arm, authority, command=None):
     started = time.perf_counter()
     shutil.copytree(source, root, ignore=lambda folder, names: {".git", ".zerorun"}.intersection(names) if Path(folder) == source else set())
     subprocess.run(["git", "init", "-q", str(root)], check=True)
     (root / ".zerorun").mkdir()
     inputs = sorted(p.name for p in root.iterdir() if p.name not in gate.EXCLUDED_ROOT)
-    task = {"command": COMMAND, "inputs": inputs, "outputs": [], "env": [],
+    task = {"command": command or COMMAND, "inputs": inputs, "outputs": [], "env": [],
             "cacheable": True, "unsafe_effects": [], "cache_streams": False,
             "image": image, "platform": "linux/amd64", "result_only": True, "closure_reviewed": True}
     manifest_path = root / ".zerorun.json"
@@ -131,7 +131,7 @@ def initialize(source, root, image, arm, authority):
             "manifest": task, "authority": str(authority), "root": str(root)}
 
 
-def invoke(root, arm, authority, verify=False):
+def invoke(root, arm, authority, verify=False, oracle_capture=None):
     started = time.perf_counter()
     row = {"utc": utc(), "arm": arm, "verify": verify}
     try:
@@ -144,6 +144,9 @@ def invoke(root, arm, authority, verify=False):
         argv = [sys.executable, "-B", "-m", "zerorun", "mcp-server"] if arm == "zerorun" else [
             sys.executable, "-B", str(Path(__file__).with_name("reference_service.py")), arm, str(authority / "receipt.key")]
         env = {**os.environ, "PYTHONPATH": str(ROOT / "src"), "ZERORUN_TRUST_ROOT": str(authority / "native")}
+        env.pop("Q1Q2_ORACLE_CAPTURE", None)
+        if oracle_capture is not None:
+            env["Q1Q2_ORACLE_CAPTURE"] = str(oracle_capture)
         p = subprocess.run(argv, input="\n".join(map(json.dumps, request)) + "\n", cwd=root, env=env,
                            capture_output=True, text=True, timeout=1100)
         row.update(argv=argv, returncode=p.returncode, stdout=p.stdout, stderr=p.stderr)
@@ -191,7 +194,8 @@ def main():
                 root = folder / ("preflight-" + arm)
                 authority = folder / ("authority-preflight-" + arm)
                 setup = initialize(source, root, image, arm, authority)
-                response = invoke(root, arm, authority)
+                capture = folder / "oracle-full-stdout.txt" if arm == "fresh" else None
+                response = invoke(root, arm, authority, oracle_capture=capture)
                 preflight[arm] = {"setup": setup, "response": response,
                                   "outcomes": extract_outcomes(response.get("payload", {}))}
                 save(folder / ("preflight-" + arm + ".json"), preflight[arm])
@@ -202,7 +206,8 @@ def main():
             expected = preflight["fresh"]["outcomes"]
             valid = bool(expected and expected["collected_count"] and expected["exit_code"] == 0 and all(
                 preflight[arm]["outcomes"] == expected for arm in preflight))
-            valid = valid and "Q1Q2_OUTCOMES=" in preflight["fresh"]["response"].get("payload", {}).get("stdout_tail", "")
+            full_oracle = (folder / "oracle-full-stdout.txt").read_text() if (folder / "oracle-full-stdout.txt").exists() else ""
+            valid = valid and "Q1Q2_OUTCOMES=" in full_oracle and extract_outcomes({"stdout_tail": full_oracle}) == expected
             target_report["preflight_equal_nonempty_success"] = valid
             if not valid:
                 target_report["status"] = "preflight_failed"

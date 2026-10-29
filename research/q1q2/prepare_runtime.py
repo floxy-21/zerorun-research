@@ -10,6 +10,8 @@ import sys
 import time
 import urllib.request
 import uuid
+import email
+import zipfile
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
@@ -21,7 +23,7 @@ ASYNCIO_URL = "https://files.pythonhosted.org/packages/30/05/ce271016e351fddc839
 ASYNCIO_SHA = "4f024da9f1ef945e680dc68610b52550e36590a67fd31bb3b4943979a1f90ef3"
 
 
-def prepare(output):
+def prepare(output, *, main=False):
     started = time.perf_counter()
     output.mkdir(parents=True, exist_ok=False)
     commands = output / "commands"
@@ -44,6 +46,40 @@ def prepare(output):
     try:
         command("base-pull", ["docker", "pull", "--platform", "linux/amd64", BASE])
         command("registry-pull", ["docker", "pull", REGISTRY])
+        if main:
+            main_started = time.perf_counter()
+            rows = json.loads((Path(__file__).parent / "runtime-main/wheels.json").read_text())
+            for row in rows:
+                data = urllib.request.urlopen(row["url"], timeout=60).read(row["bytes"] + 1)
+                assert len(data) == row["bytes"] and hashlib.sha256(data).hexdigest() == row["sha256"]
+                (context / "wheelhouse" / row["filename"]).write_bytes(data)
+            requirements = {}
+            for wheel in sorted((context / "wheelhouse").glob("*.whl")):
+                with zipfile.ZipFile(wheel) as archive:
+                    metadata_path, = [n for n in archive.namelist() if n.endswith(".dist-info/METADATA")]
+                    metadata = email.message_from_bytes(archive.read(metadata_path))
+                name = metadata["Name"].lower().replace("_", "-")
+                value = metadata["Name"] + "==" + metadata["Version"] + " --hash=sha256:" + hashlib.sha256(wheel.read_bytes()).hexdigest()
+                assert name not in requirements or requirements[name] == value
+                requirements[name] = value
+            lock.write_text("\n".join(requirements[k] for k in sorted(requirements)) + "\n")
+            result["main_wheel_acquisition_seconds"] = time.perf_counter() - main_started
+            # Upstream natsort requires en_US; retain all three upstream locales.
+            # Download package bytes first, then use an offline image build.
+            (context / "debs").mkdir()
+            script = "set -eu; apt-get -o APT::Sandbox::User=root update; apt-get -o APT::Sandbox::User=root --download-only -y install locales; cp /var/cache/apt/archives/*.deb /out/debs/"
+            command("locale-acquisition", ["docker", "run", "--rm", "--pull=never", "--cap-drop", "ALL",
+                "--security-opt", "no-new-privileges", "--mount", "type=bind,src=" + str(context) + ",dst=/out",
+                BASE, "sh", "-c", script])
+            deb_bytes = sum(p.stat().st_size for p in (context / "debs").glob("*.deb"))
+            assert deb_bytes <= 50_000_000, "locale package acquisition exceeds 50 MB bound"
+            dockerfile += ("COPY debs/ /opt/q1q2-debs/\n"
+                "RUN DEBIAN_FRONTEND=noninteractive dpkg -i /opt/q1q2-debs/*.deb && "
+                "localedef -i en_US -f UTF-8 en_US.UTF-8 && localedef -i de_DE -f UTF-8 de_DE.UTF-8 && localedef -i cs_CZ -f UTF-8 cs_CZ.UTF-8\n"
+                "ENV HOME=/tmp HYPOTHESIS_STORAGE_DIRECTORY=/tmp/hypothesis\n")
+            (context / "Dockerfile").write_text(dockerfile)
+            result["main_runtime"] = True
+            result["locale_deb_bytes"] = deb_bytes
         token = uuid.uuid4().hex
         tag = "127.0.0.1:19559/zerorun-q1q2:" + token
         command("build", ["docker", "build", "--no-cache", "--pull=false", "--network=none", "--tag", tag, str(context)])
