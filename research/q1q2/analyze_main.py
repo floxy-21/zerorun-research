@@ -44,7 +44,7 @@ def interval(draws):
     return np.quantile(draws, [0.025, 0.975]).tolist()
 
 
-def analyze_target(records, target):
+def analyze_target(records, target, common_by_session=None):
     blocks = sorted(records, key=lambda b: (b['session'], b['block']))
     valid = (len(blocks) == 12 and all(b['status'] == 'completed' for b in blocks)
              and [b['session'] for b in blocks] == [0] * 6 + [1] * 6
@@ -59,10 +59,14 @@ def analyze_target(records, target):
               'raw_components': [{k: b[k] for k in ('session', 'block', 'order')} | {
                   'arms': {a: {str(n): components(b['arms'][a], n) for n in PREFIXES} for a in ARMS}}
                   for b in blocks]}
-    for scenario in SCENARIOS:
+    for scenario in (*SCENARIOS, 'first_use'):
+        if scenario == 'first_use' and (common_by_session is None or any(common_by_session.get(s) is None for s in (0, 1))):
+            result['scenarios'][scenario] = {'status': 'common_preparation_unknown'}
+            continue
         output = result['scenarios'][scenario] = {}
         for n in PREFIXES:
-            values = np.array([[cost(b['arms'][a], n, scenario) for a in ARMS] for b in blocks])
+            values = np.array([[cost(b['arms'][a], n, 'operational_qualification' if scenario == 'first_use' else scenario)
+                + (common_by_session[b['session']] if scenario == 'first_use' else 0) for a in ARMS] for b in blocks])
             means = values.mean(axis=0)
             bootstrap = values[indices].mean(axis=1)
             row = {'means_seconds': dict(zip(ARMS, means.tolist())),
@@ -112,7 +116,9 @@ def main():
             'allocation_rule': 'First use of one selected target charges this full runtime preparation plus that target acquisition equally to each arm; no amortization over measurement blocks.'})
     for target in selection['targets']:
         blocks = [b for summary in summaries for t in summary['targets'] if t['id'] == target['id'] for b in t.get('blocks', [])]
-        result = analyze_target(blocks, target['id'])
+        common = {p['session']: p['runtime_seconds'] + p['acquisition_seconds'][target['id']]
+                  for p in out['common_preparation'] if target['id'] in p['acquisition_seconds']}
+        result = analyze_target(blocks, target['id'], common)
         result['selected_target_dispositions'] = [{'session': s['session'], 'status': next((t['status'] for t in s['targets'] if t['id'] == target['id']), 'not_started')} for s in summaries]
         out['targets'].append(result)
     args.output.parent.mkdir(parents=True, exist_ok=True)

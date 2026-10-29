@@ -42,3 +42,11 @@ def test_incomplete_or_invalid_blocks_do_not_become_complete_cases():
     x[0]['arms']['fresh']['calls'][0]['correctness_passed'] = False
     with pytest.raises(ValueError):
         analyze_target(x, 'artificial')
+
+
+def test_common_first_use_cost_cancels_budget_but_changes_percentage():
+    r = analyze_target(fixture(), 'artificial', {0: 1000, 1: 1000})['scenarios']
+    c = r['first_use']['4']['contrasts']['fresh_minus_receipt']
+    assert c['ci95_seconds'] == [21, 21]
+    assert not c['five_percent_improvement_supported']
+    assert r['operational_qualification']['4']['contrasts']['fresh_minus_receipt']['five_percent_improvement_supported']

@@ -1,0 +1,64 @@
+name: ZeroRun frozen paired main study
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/q1q2-20261029]
+    paths: [.github/workflows/zerorun-main-cost.yml]
+permissions:
+  contents: read
+jobs:
+  session0:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run frozen session 0
+        run: python3 -B research/q1q2/run_main.py --block B2 --session 0 --output "$RUNNER_TEMP/q1q2-main-session-0"
+      - name: Preserve every begun block
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1q2-main-session-0
+          retention-days: 90
+          path: |
+            ${{ runner.temp }}/q1q2-main-session-0/summary.json
+            ${{ runner.temp }}/q1q2-main-session-0/host.jsonl
+            ${{ runner.temp }}/q1q2-main-session-0/*/acquisition.json
+            ${{ runner.temp }}/q1q2-main-session-0/*/source.tar.gz
+            ${{ runner.temp }}/q1q2-main-session-0/*/block-*/record.json
+            ${{ runner.temp }}/q1q2-main-session-0/*/block-*/started.json
+            ${{ runner.temp }}/q1q2-main-session-0/*/block-*/*/request-*.json
+            ${{ runner.temp }}/q1q2-main-session-0/*/block-*/*/oracle-full-stdout.txt
+            ${{ runner.temp }}/q1q2-main-session-0/runtime/completion.json
+            ${{ runner.temp }}/q1q2-main-session-0/runtime/commands/*.json
+            ${{ runner.temp }}/q1q2-main-session-0/runtime/context/**
+  session1:
+    needs: session0
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Run frozen session 1
+        run: python3 -B research/q1q2/run_main.py --block B2 --session 1 --output "$RUNNER_TEMP/q1q2-main-session-1"
+      - name: Preserve every begun block
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1q2-main-session-1
+          retention-days: 90
+          path: |
+            ${{ runner.temp }}/q1q2-main-session-1/summary.json
+            ${{ runner.temp }}/q1q2-main-session-1/host.jsonl
+            ${{ runner.temp }}/q1q2-main-session-1/*/acquisition.json
+            ${{ runner.temp }}/q1q2-main-session-1/*/source.tar.gz
+            ${{ runner.temp }}/q1q2-main-session-1/*/block-*/record.json
+            ${{ runner.temp }}/q1q2-main-session-1/*/block-*/started.json
+            ${{ runner.temp }}/q1q2-main-session-1/*/block-*/*/request-*.json
+            ${{ runner.temp }}/q1q2-main-session-1/*/block-*/*/oracle-full-stdout.txt
+            ${{ runner.temp }}/q1q2-main-session-1/runtime/completion.json
+            ${{ runner.temp }}/q1q2-main-session-1/runtime/commands/*.json
+            ${{ runner.temp }}/q1q2-main-session-1/runtime/context/**

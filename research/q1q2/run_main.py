@@ -48,6 +48,7 @@ def preflight(target, source, image, folder):
 
 def timed_block(target, source, image, folder, schedule):
     block = {**schedule, "started_utc": utc(), "arms": {}, "status": "begun"}
+    save(folder / "started.json", block)
     for arm in schedule["order"]:
         armfolder = folder / arm
         armfolder.mkdir()
@@ -93,10 +94,17 @@ def main():
     parser.add_argument("--session", type=int, choices=[0, 1], default=0)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
+    here = Path(__file__).parent
+    eligibility = None
+    if args.block == "B2":
+        freeze = json.loads((here / "MAIN_FREEZE.json").read_text())
+        for name, digest in freeze["sha256"].items():
+            if hashlib.sha256((ROOT / name).read_bytes()).hexdigest() != digest:
+                raise ValueError("frozen input changed: " + name)
+        eligibility = json.loads((here / "MAIN_ELIGIBILITY.json").read_text())
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     begin = time.perf_counter()
-    here = Path(__file__).parent
     report = {"schema": "zerorun.q1q2.main.v1", "block": args.block, "session": args.session,
               "started_utc": utc(), "status": "begun", "targets": [], "host": platform.uname()._asdict(),
               "python": sys.version, "commit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip(),
@@ -119,6 +127,11 @@ def main():
             folder.mkdir()
             record = {**target, "status": "begun", "blocks": []}
             report["targets"].append(record)
+            if eligibility is not None and target["id"] not in eligibility["eligible_ids"]:
+                record["status"] = "preflight_refused"
+                record["reason"] = eligibility["dispositions"][target["id"]]
+                save(output / "summary.json", report)
+                continue
             source = folder / "acquired"
             if not acquire(target, source, folder):
                 record["status"] = "acquisition_failed"
