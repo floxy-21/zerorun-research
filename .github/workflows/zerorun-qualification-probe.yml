@@ -1,0 +1,28 @@
+name: ZeroRun live qualification probe
+on:
+  push:
+    branches: [research/q1q2-20261029]
+    paths:
+      - research/q1q2/qualification_docker_probe.py
+      - .github/workflows/zerorun-qualification-probe.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Acquire frozen runtime
+        run: docker pull python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a
+      - name: Execute unmodified MCP service
+        run: python3 -B research/q1q2/qualification_docker_probe.py "$RUNNER_TEMP/qualification-probe.json"
+      - name: Preserve complete evidence in logs
+        if: always()
+        run: |
+          echo ZERORUN_PROBE_JSON_BEGIN
+          cat "$RUNNER_TEMP/qualification-probe.json"
+          echo ZERORUN_PROBE_JSON_END

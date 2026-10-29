@@ -1,0 +1,49 @@
+{
+  "schema": "zerorun.q1q2.qualification-component-probe.v1",
+  "utc": "2026-10-29T20:50:43.886526+00:00",
+  "python": "3.12.14",
+  "source_commit": "6ff64c3b447358ada1e7f43b0a12de2bde7fa4f9",
+  "component_sha256": {
+    "src/zerorun/trust.py": "a26d1e2d13011799318f21252c01708de135471c441716ea2bc86202b17d8247",
+    "src/zerorun/manifest.py": "e1a276cbb710b458f85d2143f29c489f5fde70adcc06d184f39c045c42a93314",
+    "research/q1q2/qualification_probe.py": "fbe6c0094a0087f37ff3b5fab4f69dff7cdc8040f3645cb2f6d6984d9708436b"
+  },
+  "rows": [
+    {
+      "state": "reviewed_A",
+      "source_sha256": "f23bedc9e3cbc65b975144b5c0853f1e6ef47869125888fa2d350c9c1755d165",
+      "manifest_sha256": "dd2bc563576b107834b938e59276d8341ada50fe9894bd29fe5b002316ecdbdf",
+      "authorized_before": false,
+      "authorized_after": true
+    },
+    {
+      "state": "unreviewed_deterministic_B",
+      "source_sha256": "ce217d29ab52aec8da1f69d077d673ab4b4219d2bf24d0fc03658b6453bc77b5",
+      "manifest_sha256": "dd2bc563576b107834b938e59276d8341ada50fe9894bd29fe5b002316ecdbdf",
+      "authorized_before": true,
+      "authorized_after": true
+    },
+    {
+      "state": "unreviewed_nondeterministic_C",
+      "source_sha256": "5ea730f52e8a911662d9b15a921af780558f7b01136147b0499022202ee2b7fe",
+      "manifest_sha256": "dd2bc563576b107834b938e59276d8341ada50fe9894bd29fe5b002316ecdbdf",
+      "authorized_before": true,
+      "authorized_after": true
+    },
+    {
+      "state": "restored_A",
+      "source_sha256": "f23bedc9e3cbc65b975144b5c0853f1e6ef47869125888fa2d350c9c1755d165",
+      "manifest_sha256": "dd2bc563576b107834b938e59276d8341ada50fe9894bd29fe5b002316ecdbdf",
+      "authorized_before": true,
+      "authorized_after": true
+    }
+  ],
+  "observation": "Exact-manifest authority remains valid after declared program edits, including a newly nondeterministic program.",
+  "scope": "Authority component only; no program, Docker task or cache lookup was executed.",
+  "interpretation": "A qualification limited to reviewed source states needs an additional state guard. Manifest authentication alone does not enforce that policy.",
+  "not_established": [
+    "an in-contract false hit",
+    "a violation of the original frozen-state handoff claim",
+    "population incidence"
+  ]
+}
