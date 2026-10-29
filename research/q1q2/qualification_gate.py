@@ -25,7 +25,7 @@ def canonical(value):
 
 def inventory(root):
     root = Path(root).resolve(strict=True)
-    rows = []
+    rows = [{"path": ".", "mode": stat.S_IMODE(root.stat().st_mode), "type": "directory"}]
     for directory, subdirs, files in os.walk(root, followlinks=False):
         base = Path(directory)
         if base == root:
@@ -109,7 +109,8 @@ def require(root, manifest_path, authority_path):
     if path.stat().st_mode & 0o022:
         raise QualificationRequired("qualification authority is group/world writable")
     key, payload = identity(root, manifest_path)
-    raw = path.read_bytes()
+    with path.open("rb") as stream:
+        raw = stream.read(16 * 1024 * 1024 + 1)
     if len(raw) > 16 * 1024 * 1024:
         raise QualificationRequired("qualification authority exceeds bound")
     entries = json.loads(raw)

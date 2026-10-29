@@ -1,0 +1,39 @@
+name: ZeroRun qualification and full-cost pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/q1q2-20261029]
+    paths:
+      - research/q1q2/run_pilot.py
+      - research/q1q2/reference_service.py
+      - research/q1q2/prepare_runtime.py
+      - research/q1q2/q1q2_capture.py
+      - research/q1q2/pilot_targets.json
+      - .github/workflows/zerorun-cost-pilot.yml
+permissions:
+  contents: read
+jobs:
+  pilot:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Execute exploratory pilot
+        run: python3 -B research/q1q2/run_pilot.py "$RUNNER_TEMP/q1q2-pilot"
+      - name: Preserve evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1q2-cost-pilot
+          path: |
+            ${{ runner.temp }}/q1q2-pilot/**/*.json
+            ${{ runner.temp }}/q1q2-pilot/**/*.jsonl
+            ${{ runner.temp }}/q1q2-pilot/**/source.tar.gz
+            !${{ runner.temp }}/q1q2-pilot/**/acquired/**
+            !${{ runner.temp }}/q1q2-pilot/**/authority-*/**
+            !${{ runner.temp }}/q1q2-pilot/**/registry-store/**
+            !${{ runner.temp }}/q1q2-pilot/**/block-*/**
+            !${{ runner.temp }}/q1q2-pilot/**/preflight-*/**
+          retention-days: 90
