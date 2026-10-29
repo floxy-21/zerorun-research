@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "docker",
+    "build",
+    "--no-cache",
+    "--pull=false",
+    "--network=none",
+    "--tag",
+    "127.0.0.1:19559/zerorun-q1q2:898964c3529f4ba38e9f75e1fa88f4e2",
+    "/home/runner/work/_temp/q1q2-pilot/runtime/context"
+  ],
+  "completed_utc": "2026-10-29T21:25:11.758217+00:00",
+  "error": null,
+  "outer_ms": 6665.083368000012,
+  "returncode": 0,
+  "stderr": "#0 building with \"default\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile\n#1 transferring dockerfile: 562B done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a\n#2 DONE 0.0s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 2B done\n#3 DONE 0.0s\n\n#4 [1/5] FROM docker.io/library/python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 transferring context: 11.13MB 0.0s done\n#5 DONE 0.1s\n\n#6 [2/5] COPY wheelhouse/ /opt/zerorun-wheelhouse/\n#6 DONE 0.0s\n\n#7 [3/5] COPY requirements.lock /opt/zerorun-requirements.lock\n#7 DONE 0.0s\n\n#8 [4/5] RUN python -m pip install --disable-pip-version-check --no-cache-dir --no-index --find-links=/opt/zerorun-wheelhouse --require-hashes -r /opt/zerorun-requirements.lock\n#8 1.413 Looking in links: /opt/zerorun-wheelhouse\n#8 1.422 Processing /opt/zerorun-wheelhouse/Django-3.2.25-py3-none-any.whl\n#8 1.464 Processing /opt/zerorun-wheelhouse/PyYAML-6.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl\n#8 1.470 Processing /opt/zerorun-wheelhouse/asgiref-3.12.1-py3-none-any.whl\n#8 1.474 Processing /opt/zerorun-wheelhouse/exceptiongroup-1.3.1-py3-none-any.whl\n#8 1.478 Processing /opt/zerorun-wheelhouse/iniconfig-2.3.0-py3-none-any.whl\n#8 1.480 Requirement already satisfied: packaging==26.3 in /usr/local/lib/python3.10/site-packages (from -r /opt/zerorun-requirements.lock (line 6)) (26.3)\n#8 1.483 Processing /opt/zerorun-wheelhouse/pluggy-1.6.0-py3-none-any.whl\n#8 1.487 Processing /opt/zerorun-wheelhouse/pretend-1.0.9-py2.py3-none-any.whl\n#8 1.490 Processing /opt/zerorun-wheelhouse/pygments-2.21.0-py3-none-any.whl\n#8 1.499 Processing /opt/zerorun-wheelhouse/pytest-8.4.2-py3-none-any.whl\n#8 1.505 Processing /opt/zerorun-wheelhouse/pytz-2026.3.post1-py2.py3-none-any.whl\n#8 1.513 Processing /opt/zerorun-wheelhouse/six-1.17.0-py2.py3-none-any.whl\n#8 1.517 Processing /opt/zerorun-wheelhouse/sqlparse-0.6.0-py3-none-any.whl\n#8 1.522 Processing /opt/zerorun-wheelhouse/toml-0.10.2-py2.py3-none-any.whl\n#8 1.525 Processing /opt/zerorun-wheelhouse/tomli-2.4.1-py3-none-any.whl\n#8 1.529 Processing /opt/zerorun-wheelhouse/typing_extensions-4.16.0-py3-none-any.whl\n#8 1.533 Processing /opt/zerorun-wheelhouse/pytest_asyncio-1.0.0-py3-none-any.whl\n#8 1.702 Installing collected packages: pytz, pretend, typing_extensions, tomli, toml, sqlparse, six, PyYAML, Pygments, pluggy, iniconfig, exceptiongroup, asgiref, pytest, Django, pytest-asyncio\n#8 4.571 Successfully installed Django-3.2.25 PyYAML-6.0.2 Pygments-2.21.0 asgiref-3.12.1 exceptiongroup-1.3.1 iniconfig-2.3.0 pluggy-1.6.0 pretend-1.0.9 pytest-8.4.2 pytest-asyncio-1.0.0 pytz-2026.3.post1 six-1.17.0 sqlparse-0.6.0 toml-0.10.2 tomli-2.4.1 typing_extensions-4.16.0\n#8 4.571 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n#8 DONE 4.8s\n\n#9 [5/5] COPY q1q2_capture.py /opt/q1q2/q1q2_capture.py\n#9 DONE 0.0s\n\n#10 exporting to image\n#10 exporting layers\n#10 exporting layers 1.4s done\n#10 writing image sha256:ddb612430501690091a8dc08c3614152f7c0f7a965ddedb8f2e8488f1a843876 done\n#10 naming to 127.0.0.1:19559/zerorun-q1q2:898964c3529f4ba38e9f75e1fa88f4e2 done\n#10 DONE 1.4s\n",
+  "stderr_truncated": false,
+  "stdout": "",
+  "stdout_truncated": false,
+  "timeout_seconds": 600
+}

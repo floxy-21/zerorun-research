@@ -1,0 +1,23 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--network=none",
+    "--read-only",
+    "127.0.0.1:19559/zerorun-q1q2:d017f28758e44b7f9f5bde7c9a9c960a",
+    "python",
+    "-B",
+    "-c",
+    "import json,sys,pytest,pytest_asyncio,q1q2_capture;print(json.dumps({'python':sys.version,'pytest':pytest.__version__,'pytest_asyncio':pytest_asyncio.__version__}))"
+  ],
+  "completed_utc": "2026-10-29T21:21:45.889428+00:00",
+  "error": null,
+  "outer_ms": 296.959729000001,
+  "returncode": 0,
+  "stderr": "",
+  "stderr_truncated": false,
+  "stdout": "{\"python\": \"3.10.21 (main, Sep  1 2026, 00:15:42) [GCC 12.2.0]\", \"pytest\": \"8.4.2\", \"pytest_asyncio\": \"1.0.0\"}\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 600
+}

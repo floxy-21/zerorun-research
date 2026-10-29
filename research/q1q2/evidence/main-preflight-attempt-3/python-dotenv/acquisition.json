@@ -1,0 +1,87 @@
+{
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "-p",
+    "q1q2_capture",
+    "tests",
+    "--hypothesis-seed=20261029"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q",
+        "/home/runner/work/_temp/q1q2-main-preflight/python-dotenv/acquired"
+      ],
+      "outer_seconds": 0.0032997199999726945,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/runner/work/_temp/q1q2-main-preflight/python-dotenv/acquired",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/theskumar/python-dotenv.git"
+      ],
+      "outer_seconds": 0.002332970999987083,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/runner/work/_temp/q1q2-main-preflight/python-dotenv/acquired",
+        "fetch",
+        "--depth",
+        "1",
+        "origin",
+        "bad5771ce54fd643538f177aab1465e4375e2039"
+      ],
+      "outer_seconds": 0.5285071560000176,
+      "returncode": 0,
+      "stderr": "From https://github.com/theskumar/python-dotenv\n * branch            bad5771ce54fd643538f177aab1465e4375e2039 -> FETCH_HEAD\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/runner/work/_temp/q1q2-main-preflight/python-dotenv/acquired",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "outer_seconds": 0.005098043999993251,
+      "returncode": 0,
+      "stderr": "HEAD is now at bad5771 Handle CRLF invalid lines in parser recovery (#669)\n",
+      "stdout": ""
+    }
+  ],
+  "error": "QualificationRequired: linked or special source: docs/changelog.md",
+  "id": "python-dotenv",
+  "outer_seconds": 0.5420205099999862,
+  "repo": "theskumar/python-dotenv",
+  "sha": "bad5771ce54fd643538f177aab1465e4375e2039",
+  "source_bytes": 192520,
+  "started_utc": "2026-10-29T22:04:22.350585+00:00",
+  "status": "source_failure",
+  "test_workflow": ".github/workflows/test.yml",
+  "workflows": [
+    ".github/workflows/test.yml",
+    ".github/workflows/release.yml"
+  ]
+}

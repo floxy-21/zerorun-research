@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--mount",
+    "type=bind,src=/home/runner/work/_temp/q1q2-main-preflight/runtime/context,dst=/out",
+    "python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a",
+    "sh",
+    "-c",
+    "set -eu; mkdir -p /tmp/q1q2-apt-cache/partial; apt-get -o APT::Sandbox::User=root update; apt-get -o APT::Sandbox::User=root -o Dir::Cache::archives=/tmp/q1q2-apt-cache --download-only -y install locales; cp /tmp/q1q2-apt-cache/*.deb /out/debs/"
+  ],
+  "started_utc": "2026-10-29T21:54:09.937237+00:00"
+}

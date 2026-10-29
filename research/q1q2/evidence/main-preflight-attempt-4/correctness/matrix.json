@@ -1,0 +1,1223 @@
+{
+  "completed_utc": "2026-10-29T22:10:23.487141+00:00",
+  "fixtures": {
+    "normal": "from pathlib import Path\nimport json, os, stat\nassert Path('input.txt').read_text() == 'A'\nassert list(Path('.git').iterdir()) == []\nassert list(Path('.zerorun').iterdir()) == []\nprint(json.dumps({'file_mtime':Path('input.txt').stat().st_mtime_ns,\n 'root_mtime':Path('.').stat().st_mtime_ns,\n 'root_mode':stat.S_IMODE(Path('.').stat().st_mode),\n 'file_xattrs':os.listxattr('input.txt'), 'root_xattrs':os.listxattr('.')}))\n"
+  },
+  "image": "127.0.0.1:19559/zerorun-q1q2@sha256:b4ed6d14eff5fa09e890d856be6f3136c7ecc5fff84805490dd1c404ef0a565a",
+  "passed": true,
+  "rows": [
+    {
+      "evidence": {
+        "interpretation": "Staged metadata matches; direct metadata differs, so metadata-dependent tasks need qualification.",
+        "observations": {
+          "fresh": {
+            "file_mtime": 1793311792533264139,
+            "file_xattrs": [
+              "user.q1q2"
+            ],
+            "root_mode": 493,
+            "root_mtime": 1793311792536618757,
+            "root_xattrs": [
+              "user.q1q2"
+            ]
+          },
+          "receipt": {
+            "file_mtime": 0,
+            "file_xattrs": [],
+            "root_mode": 493,
+            "root_mtime": 0,
+            "root_xattrs": []
+          },
+          "zerorun": {
+            "file_mtime": 0,
+            "file_xattrs": [],
+            "root_mode": 493,
+            "root_mtime": 0,
+            "root_xattrs": []
+          }
+        },
+        "responses": {
+          "fresh": {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "fresh",
+              "/tmp/q1q2-matrix-umeex1a_/authority-1/receipt.key"
+            ],
+            "arm": "fresh",
+            "disposition": "completed",
+            "outer_seconds": 0.38352090199998656,
+            "payload": {
+              "container_id": "21d929480a80145bbd1e2f583463068cc44ddbc9f12c5125cd480e5420f82ae3",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 0,
+                "FinishedAt": "2026-10-29T22:09:52.799313523Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:52.628970001Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.33961192099997106,
+              "exit_code": 0,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 149
+              },
+              "output_truncated": false,
+              "status": "FRESH_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 1793311792533264139, \"root_mtime\": 1793311792536618757, \"root_mode\": 493, \"file_xattrs\": [\"user.q1q2\"], \"root_xattrs\": [\"user.q1q2\"]}\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"FRESH_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 1793311792533264139, \\\\\\\"root_mtime\\\\\\\": 1793311792536618757, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [\\\\\\\"user.q1q2\\\\\\\"], \\\\\\\"root_xattrs\\\\\\\": [\\\\\\\"user.q1q2\\\\\\\"]}\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 149}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:52.628970001Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:52.799313523Z\\\"}, \\\"container_id\\\": \\\"21d929480a80145bbd1e2f583463068cc44ddbc9f12c5125cd480e5420f82ae3\\\", \\\"execution_and_cleanup_seconds\\\": 0.33961192099997106}\"}]}}\n",
+            "utc": "2026-10-29T22:09:52.536767+00:00",
+            "verify": false
+          },
+          "receipt": {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-2/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.38593849799997315,
+            "payload": {
+              "cache_key": "57713f2cb0f69086dc5db728aca78a7cf87c575e7d4d2d61c10bad9f17fecced",
+              "container_id": "6b3945c70d5733e0c13362a79a9d34683b29afe75f365bb1c8da82b3d53e85ab",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 0,
+                "FinishedAt": "2026-10-29T22:09:53.202359909Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:53.027349396Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.3210889419999603,
+              "exit_code": 0,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 91
+              },
+              "output_truncated": false,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 91}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:53.027349396Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:53.202359909Z\\\"}, \\\"container_id\\\": \\\"6b3945c70d5733e0c13362a79a9d34683b29afe75f365bb1c8da82b3d53e85ab\\\", \\\"execution_and_cleanup_seconds\\\": 0.3210889419999603, \\\"cache_key\\\": \\\"57713f2cb0f69086dc5db728aca78a7cf87c575e7d4d2d61c10bad9f17fecced\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:09:52.926205+00:00",
+            "verify": false
+          },
+          "zerorun": {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.6777895650000119,
+            "payload": {
+              "cache_key": "19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c",
+              "execution_ms": 362.513,
+              "exit_code": 0,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 0.788,
+                "cache_publish": 6.44,
+                "docker_execution": 362.877,
+                "environment": 0.013,
+                "event_append": 1.798,
+                "fingerprint_final": 1.411,
+                "fingerprint_initial": 1.654,
+                "lock_acquire": 1.322,
+                "runtime_inspect_initial": 16.598,
+                "snapshot_cleanup": 0.465,
+                "snapshot_prepare": 3.781
+              },
+              "reason": "fresh hermetic result stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "saved_seconds": 0.0,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 421.456
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\\\",\\n  \\\"execution_ms\\\": 362.513,\\n  \\\"exit_code\\\": 0,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 0.788,\\n    \\\"cache_publish\\\": 6.44,\\n    \\\"docker_execution\\\": 362.877,\\n    \\\"environment\\\": 0.013,\\n    \\\"event_append\\\": 1.798,\\n    \\\"fingerprint_final\\\": 1.411,\\n    \\\"fingerprint_initial\\\": 1.654,\\n    \\\"lock_acquire\\\": 1.322,\\n    \\\"runtime_inspect_initial\\\": 16.598,\\n    \\\"snapshot_cleanup\\\": 0.465,\\n    \\\"snapshot_prepare\\\": 3.781\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic result stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_EXECUTED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 421.456\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_EXECUTED\",\"exit_code\":0,\"wall_ms\":421.456,\"execution_ms\":362.513,\"saved_ms\":0.0,\"cache_key\":\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\",\"reason\":\"fresh hermetic result stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":0.788,\"cache_publish\":6.44,\"docker_execution\":362.877,\"environment\":0.013,\"event_append\":1.798,\"fingerprint_final\":1.411,\"fingerprint_initial\":1.654,\"lock_acquire\":1.322,\"runtime_inspect_initial\":16.598,\"snapshot_cleanup\":0.465,\"snapshot_prepare\":3.781},\"mode\":\"reuse\",\"stdout_tail\":\"{\\\"file_mtime\\\": 0, \\\"root_mtime\\\": 0, \\\"root_mode\\\": 493, \\\"file_xattrs\\\": [], \\\"root_xattrs\\\": []}\\n\",\"stderr_tail\":\"\",\"saved_seconds\":0.0},\"isError\":false}}\n",
+            "utc": "2026-10-29T22:09:53.323641+00:00",
+            "verify": false
+          }
+        }
+      },
+      "name": "normalized_metadata_and_empty_control_masks",
+      "passed": true,
+      "started_utc": "2026-10-29T22:09:52.533134+00:00"
+    },
+    {
+      "evidence": {
+        "receipt": [
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-4/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.4030440889999909,
+            "payload": {
+              "cache_key": "340d69a11d8497e4fe4d2672e8fd116e517173885b0cbbccb2eb5eb5a76275e0",
+              "container_id": "7dc82779663c21126f04989855843620bb4924c62b1eb5bd2104c28f0e39cb26",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 0,
+                "FinishedAt": "2026-10-29T22:09:54.282328659Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:54.113955533Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.33348250900002085,
+              "exit_code": 0,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 91
+              },
+              "output_truncated": false,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stdout\\\": 91, \\\"stderr\\\": 0}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:54.113955533Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:54.282328659Z\\\"}, \\\"container_id\\\": \\\"7dc82779663c21126f04989855843620bb4924c62b1eb5bd2104c28f0e39cb26\\\", \\\"execution_and_cleanup_seconds\\\": 0.33348250900002085, \\\"cache_key\\\": \\\"340d69a11d8497e4fe4d2672e8fd116e517173885b0cbbccb2eb5eb5a76275e0\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:09:54.007289+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-4/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.06830641699997386,
+            "payload": {
+              "cache_key": "340d69a11d8497e4fe4d2672e8fd116e517173885b0cbbccb2eb5eb5a76275e0",
+              "exit_code": 0,
+              "historical": true,
+              "status": "HIT_REUSED",
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"HIT_REUSED\\\", \\\"exit_code\\\": 0, \\\"historical\\\": true, \\\"stdout_tail\\\": \\\"\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"cache_key\\\": \\\"340d69a11d8497e4fe4d2672e8fd116e517173885b0cbbccb2eb5eb5a76275e0\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:09:54.410347+00:00",
+            "verify": false
+          },
+          {
+            "arm": "receipt",
+            "disposition": "request_error",
+            "error": "QualificationRequired: source state requires qualification",
+            "outer_seconds": 0.0006399289999876601,
+            "utc": "2026-10-29T22:09:54.479056+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-4/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.06303374699996311,
+            "payload": {
+              "cache_key": "340d69a11d8497e4fe4d2672e8fd116e517173885b0cbbccb2eb5eb5a76275e0",
+              "exit_code": 0,
+              "historical": true,
+              "status": "HIT_REUSED",
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"HIT_REUSED\\\", \\\"exit_code\\\": 0, \\\"historical\\\": true, \\\"stdout_tail\\\": \\\"\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"cache_key\\\": \\\"340d69a11d8497e4fe4d2672e8fd116e517173885b0cbbccb2eb5eb5a76275e0\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:09:54.480084+00:00",
+            "verify": false
+          },
+          {
+            "arm": "receipt",
+            "disposition": "request_error",
+            "error": "QualificationRequired: source state requires qualification",
+            "outer_seconds": 0.0006375140000045576,
+            "utc": "2026-10-29T22:09:54.543151+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-4/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.3661396649999915,
+            "payload": {
+              "container_id": "ab6577693ad91225646e50951e259ef8fefb4ad22c22f363ec71e55792ce7875",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 0,
+                "FinishedAt": "2026-10-29T22:09:54.796386237Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:54.623397111Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.32174076400002605,
+              "exit_code": 0,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 149
+              },
+              "output_truncated": false,
+              "status": "FRESH_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 1793311794480044051, \"root_mtime\": 1793311794005333841, \"root_mode\": 493, \"file_xattrs\": [\"user.q1q2\"], \"root_xattrs\": [\"user.q1q2\"]}\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"FRESH_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 1793311794480044051, \\\\\\\"root_mtime\\\\\\\": 1793311794005333841, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [\\\\\\\"user.q1q2\\\\\\\"], \\\\\\\"root_xattrs\\\\\\\": [\\\\\\\"user.q1q2\\\\\\\"]}\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stdout\\\": 149, \\\"stderr\\\": 0}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:54.623397111Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:54.796386237Z\\\"}, \\\"container_id\\\": \\\"ab6577693ad91225646e50951e259ef8fefb4ad22c22f363ec71e55792ce7875\\\", \\\"execution_and_cleanup_seconds\\\": 0.32174076400002605}\"}]}}\n",
+            "utc": "2026-10-29T22:09:54.543799+00:00",
+            "verify": true
+          }
+        ],
+        "zerorun": [
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.6694765180000104,
+            "payload": {
+              "cache_key": "19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c",
+              "execution_ms": 346.497,
+              "exit_code": 0,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 0.836,
+                "cache_publish": 8.669,
+                "docker_execution": 346.827,
+                "environment": 0.011,
+                "event_append": 4.177,
+                "fingerprint_final": 1.328,
+                "fingerprint_initial": 1.703,
+                "lock_acquire": 1.236,
+                "runtime_inspect_initial": 17.196,
+                "snapshot_cleanup": 0.529,
+                "snapshot_prepare": 3.78
+              },
+              "reason": "fresh hermetic result stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "saved_seconds": 0.0,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 408.559
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\\\",\\n  \\\"execution_ms\\\": 346.497,\\n  \\\"exit_code\\\": 0,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 0.836,\\n    \\\"cache_publish\\\": 8.669,\\n    \\\"docker_execution\\\": 346.827,\\n    \\\"environment\\\": 0.011,\\n    \\\"event_append\\\": 4.177,\\n    \\\"fingerprint_final\\\": 1.328,\\n    \\\"fingerprint_initial\\\": 1.703,\\n    \\\"lock_acquire\\\": 1.236,\\n    \\\"runtime_inspect_initial\\\": 17.196,\\n    \\\"snapshot_cleanup\\\": 0.529,\\n    \\\"snapshot_prepare\\\": 3.78\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic result stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_EXECUTED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 408.559\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_EXECUTED\",\"exit_code\":0,\"wall_ms\":408.559,\"execution_ms\":346.497,\"saved_ms\":0.0,\"cache_key\":\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\",\"reason\":\"fresh hermetic result stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":0.836,\"cache_publish\":8.669,\"docker_execution\":346.827,\"environment\":0.011,\"event_append\":4.177,\"fingerprint_final\":1.328,\"fingerprint_initial\":1.703,\"lock_acquire\":1.236,\"runtime_inspect_initial\":17.196,\"snapshot_cleanup\":0.529,\"snapshot_prepare\":3.78},\"mode\":\"reuse\",\"stdout_tail\":\"{\\\"file_mtime\\\": 0, \\\"root_mtime\\\": 0, \\\"root_mode\\\": 493, \\\"file_xattrs\\\": [], \\\"root_xattrs\\\": []}\\n\",\"stderr_tail\":\"\",\"saved_seconds\":0.0},\"isError\":false}}\n",
+            "utc": "2026-10-29T22:09:54.921642+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.28202938600003336,
+            "payload": {
+              "cache_key": "19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c",
+              "execution_ms": 346.497,
+              "exit_code": 0,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 5.426,
+                "environment": 0.014,
+                "event_append": 2.322,
+                "fingerprint_final": 1.211,
+                "fingerprint_initial": 1.526,
+                "lock_acquire": 1.214,
+                "readonly_hit_path": 30.859,
+                "runtime_inspect_initial": 16.419,
+                "snapshot_cleanup": 0.0,
+                "snapshot_prepare": 0.0
+              },
+              "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+              "restored_outputs": [],
+              "saved_ms": 315.637,
+              "saved_seconds": 0.316,
+              "status": "HIT_REUSED",
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 30.86
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\\\",\\n  \\\"execution_ms\\\": 346.497,\\n  \\\"exit_code\\\": 0,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 5.426,\\n    \\\"environment\\\": 0.014,\\n    \\\"event_append\\\": 2.322,\\n    \\\"fingerprint_final\\\": 1.211,\\n    \\\"fingerprint_initial\\\": 1.526,\\n    \\\"lock_acquire\\\": 1.214,\\n    \\\"readonly_hit_path\\\": 30.859,\\n    \\\"runtime_inspect_initial\\\": 16.419,\\n    \\\"snapshot_cleanup\\\": 0.0,\\n    \\\"snapshot_prepare\\\": 0.0\\n  },\\n  \\\"reason\\\": \\\"authenticated whole-file result matched two complete source fingerprints; no execution copy needed\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 315.637,\\n  \\\"saved_seconds\\\": 0.316,\\n  \\\"status\\\": \\\"HIT_REUSED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 30.86\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"HIT_REUSED\",\"exit_code\":0,\"wall_ms\":30.86,\"execution_ms\":346.497,\"saved_ms\":315.637,\"cache_key\":\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\",\"reason\":\"authenticated whole-file result matched two complete source fingerprints; no execution copy needed\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":5.426,\"environment\":0.014,\"event_append\":2.322,\"fingerprint_final\":1.211,\"fingerprint_initial\":1.526,\"lock_acquire\":1.214,\"readonly_hit_path\":30.859,\"runtime_inspect_initial\":16.419,\"snapshot_cleanup\":0.0,\"snapshot_prepare\":0.0},\"mode\":\"reuse\",\"stdout_tail\":\"\",\"stderr_tail\":\"\",\"saved_seconds\":0.316},\"isError\":false}}\n",
+            "utc": "2026-10-29T22:09:55.591133+00:00",
+            "verify": false
+          },
+          {
+            "arm": "zerorun",
+            "disposition": "request_error",
+            "error": "QualificationRequired: source state requires qualification",
+            "outer_seconds": 0.0006465440000056333,
+            "utc": "2026-10-29T22:09:55.873514+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.3031958680000457,
+            "payload": {
+              "cache_key": "19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c",
+              "execution_ms": 346.497,
+              "exit_code": 0,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 5.539,
+                "environment": 0.012,
+                "event_append": 2.115,
+                "fingerprint_final": 1.225,
+                "fingerprint_initial": 1.45,
+                "lock_acquire": 1.294,
+                "readonly_hit_path": 31.81,
+                "runtime_inspect_initial": 17.183,
+                "snapshot_cleanup": 0.0,
+                "snapshot_prepare": 0.0
+              },
+              "reason": "authenticated whole-file result matched two complete source fingerprints; no execution copy needed",
+              "restored_outputs": [],
+              "saved_ms": 314.686,
+              "saved_seconds": 0.315,
+              "status": "HIT_REUSED",
+              "stderr_tail": "",
+              "stdout_tail": "",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 31.811
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\\\",\\n  \\\"execution_ms\\\": 346.497,\\n  \\\"exit_code\\\": 0,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 5.539,\\n    \\\"environment\\\": 0.012,\\n    \\\"event_append\\\": 2.115,\\n    \\\"fingerprint_final\\\": 1.225,\\n    \\\"fingerprint_initial\\\": 1.45,\\n    \\\"lock_acquire\\\": 1.294,\\n    \\\"readonly_hit_path\\\": 31.81,\\n    \\\"runtime_inspect_initial\\\": 17.183,\\n    \\\"snapshot_cleanup\\\": 0.0,\\n    \\\"snapshot_prepare\\\": 0.0\\n  },\\n  \\\"reason\\\": \\\"authenticated whole-file result matched two complete source fingerprints; no execution copy needed\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 314.686,\\n  \\\"saved_seconds\\\": 0.315,\\n  \\\"status\\\": \\\"HIT_REUSED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 31.811\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"HIT_REUSED\",\"exit_code\":0,\"wall_ms\":31.811,\"execution_ms\":346.497,\"saved_ms\":314.686,\"cache_key\":\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\",\"reason\":\"authenticated whole-file result matched two complete source fingerprints; no execution copy needed\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":5.539,\"environment\":0.012,\"event_append\":2.115,\"fingerprint_final\":1.225,\"fingerprint_initial\":1.45,\"lock_acquire\":1.294,\"readonly_hit_path\":31.81,\"runtime_inspect_initial\":17.183,\"snapshot_cleanup\":0.0,\"snapshot_prepare\":0.0},\"mode\":\"reuse\",\"stdout_tail\":\"\",\"stderr_tail\":\"\",\"saved_seconds\":0.315},\"isError\":false}}\n",
+            "utc": "2026-10-29T22:09:55.874340+00:00",
+            "verify": false
+          },
+          {
+            "arm": "zerorun",
+            "disposition": "request_error",
+            "error": "QualificationRequired: source state requires qualification",
+            "outer_seconds": 0.0005910940000148912,
+            "utc": "2026-10-29T22:09:56.177574+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.6576175210000201,
+            "payload": {
+              "cache_key": "19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c",
+              "execution_ms": 346.715,
+              "exit_code": 0,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 8.055,
+                "docker_execution": 347.09,
+                "environment": 0.013,
+                "event_append": 2.069,
+                "fingerprint_final": 1.37,
+                "fingerprint_initial": 1.69,
+                "lock_acquire": 1.241,
+                "runtime_inspect_initial": 32.76,
+                "snapshot_cleanup": 0.453,
+                "snapshot_prepare": 3.945
+              },
+              "reason": "fresh hermetic execution matched cached successful result",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "saved_seconds": 0.0,
+              "status": "VERIFY_MATCH",
+              "stderr_tail": "",
+              "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n",
+              "task": "tests",
+              "verified": true,
+              "wall_ms": 402.128
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\\\",\\n  \\\"execution_ms\\\": 346.715,\\n  \\\"exit_code\\\": 0,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 8.055,\\n    \\\"docker_execution\\\": 347.09,\\n    \\\"environment\\\": 0.013,\\n    \\\"event_append\\\": 2.069,\\n    \\\"fingerprint_final\\\": 1.37,\\n    \\\"fingerprint_initial\\\": 1.69,\\n    \\\"lock_acquire\\\": 1.241,\\n    \\\"runtime_inspect_initial\\\": 32.76,\\n    \\\"snapshot_cleanup\\\": 0.453,\\n    \\\"snapshot_prepare\\\": 3.945\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic execution matched cached successful result\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"VERIFY_MATCH\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": true,\\n  \\\"wall_ms\\\": 402.128\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"VERIFY_MATCH\",\"exit_code\":0,\"wall_ms\":402.128,\"execution_ms\":346.715,\"saved_ms\":0.0,\"cache_key\":\"19ba37f4b4377c56de1d149ec5dc395f239cf52c40985da463d5abbac493b29c\",\"reason\":\"fresh hermetic execution matched cached successful result\",\"restored_outputs\":[],\"verified\":true,\"phase_ms\":{\"cache_lookup\":8.055,\"docker_execution\":347.09,\"environment\":0.013,\"event_append\":2.069,\"fingerprint_final\":1.37,\"fingerprint_initial\":1.69,\"lock_acquire\":1.241,\"runtime_inspect_initial\":32.76,\"snapshot_cleanup\":0.453,\"snapshot_prepare\":3.945},\"mode\":\"reuse\",\"stdout_tail\":\"{\\\"file_mtime\\\": 0, \\\"root_mtime\\\": 0, \\\"root_mode\\\": 493, \\\"file_xattrs\\\": [], \\\"root_xattrs\\\": []}\\n\",\"stderr_tail\":\"\",\"saved_seconds\":0.0},\"isError\":false}}\n",
+            "utc": "2026-10-29T22:09:56.178173+00:00",
+            "verify": true
+          }
+        ]
+      },
+      "name": "change_restoration_root_mode_and_distinct_bypass_semantics",
+      "passed": true,
+      "started_utc": "2026-10-29T22:09:54.001850+00:00"
+    },
+    {
+      "evidence": {
+        "fresh": [
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "fresh",
+              "/tmp/q1q2-matrix-umeex1a_/authority-6/receipt.key"
+            ],
+            "arm": "fresh",
+            "disposition": "completed",
+            "outer_seconds": 0.2670545849999826,
+            "payload": {
+              "container_id": "6e0d3694916c9512c2f285ec7f53226b4b309979b63ff42c43b8c050fe74e43e",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 3,
+                "FinishedAt": "2026-10-29T22:09:57.023039501Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:56.923336784Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.22179092300001457,
+              "exit_code": 3,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 21
+              },
+              "output_truncated": false,
+              "status": "FRESH_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "failed task executed\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"FRESH_EXECUTED\\\", \\\"exit_code\\\": 3, \\\"stdout_tail\\\": \\\"failed task executed\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 21}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 3, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:56.923336784Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:57.023039501Z\\\"}, \\\"container_id\\\": \\\"6e0d3694916c9512c2f285ec7f53226b4b309979b63ff42c43b8c050fe74e43e\\\", \\\"execution_and_cleanup_seconds\\\": 0.22179092300001457}\"}]}}\n",
+            "utc": "2026-10-29T22:09:56.841160+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "fresh",
+              "/tmp/q1q2-matrix-umeex1a_/authority-6/receipt.key"
+            ],
+            "arm": "fresh",
+            "disposition": "completed",
+            "outer_seconds": 0.26408611300001894,
+            "payload": {
+              "container_id": "260e896ecab95dbf2555f4e96b7d871ffef10be798802aaea2214d8f54795120",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 3,
+                "FinishedAt": "2026-10-29T22:09:57.287961808Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:57.189475678Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.22028147599996828,
+              "exit_code": 3,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 21
+              },
+              "output_truncated": false,
+              "status": "FRESH_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "failed task executed\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"FRESH_EXECUTED\\\", \\\"exit_code\\\": 3, \\\"stdout_tail\\\": \\\"failed task executed\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 21}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 3, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:57.189475678Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:57.287961808Z\\\"}, \\\"container_id\\\": \\\"260e896ecab95dbf2555f4e96b7d871ffef10be798802aaea2214d8f54795120\\\", \\\"execution_and_cleanup_seconds\\\": 0.22028147599996828}\"}]}}\n",
+            "utc": "2026-10-29T22:09:57.108225+00:00",
+            "verify": false
+          }
+        ],
+        "receipt": [
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-7/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.29323794200001885,
+            "payload": {
+              "cache_key": "9ce94e81bf22c7939779cfada5d03c781480ae7794efe777daed1cf504348af4",
+              "container_id": "b7a010f9f24c356a70386238c17ceb842f4befe6e149ff0d9c07c633a25bf62c",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 3,
+                "FinishedAt": "2026-10-29T22:09:57.589940563Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:57.486270817Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.22558334199999308,
+              "exit_code": 3,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 21
+              },
+              "output_truncated": false,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "failed task executed\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 3, \\\"stdout_tail\\\": \\\"failed task executed\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 21}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 3, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:57.486270817Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:57.589940563Z\\\"}, \\\"container_id\\\": \\\"b7a010f9f24c356a70386238c17ceb842f4befe6e149ff0d9c07c633a25bf62c\\\", \\\"execution_and_cleanup_seconds\\\": 0.22558334199999308, \\\"cache_key\\\": \\\"9ce94e81bf22c7939779cfada5d03c781480ae7794efe777daed1cf504348af4\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:09:57.378193+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-7/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.28630439599999136,
+            "payload": {
+              "cache_key": "9ce94e81bf22c7939779cfada5d03c781480ae7794efe777daed1cf504348af4",
+              "container_id": "f706704e391c104f016c8cdac258aab1a56537261296e034e0b392519fbf5d6e",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 3,
+                "FinishedAt": "2026-10-29T22:09:57.869184803Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:09:57.771020904Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.2248968540000078,
+              "exit_code": 3,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 21
+              },
+              "output_truncated": false,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": "failed task executed\n"
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 3, \\\"stdout_tail\\\": \\\"failed task executed\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stdout\\\": 21, \\\"stderr\\\": 0}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 3, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:57.771020904Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:57.869184803Z\\\"}, \\\"container_id\\\": \\\"f706704e391c104f016c8cdac258aab1a56537261296e034e0b392519fbf5d6e\\\", \\\"execution_and_cleanup_seconds\\\": 0.2248968540000078, \\\"cache_key\\\": \\\"9ce94e81bf22c7939779cfada5d03c781480ae7794efe777daed1cf504348af4\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:09:57.671443+00:00",
+            "verify": false
+          }
+        ],
+        "zerorun": [
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.610426738000001,
+            "payload": {
+              "cache_key": "cb74574fc552f9a3e538b7dcdf0fef524dbe81510f03cff528c85796fa558077",
+              "execution_ms": 262.784,
+              "exit_code": 3,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 1.277,
+                "docker_execution": 263.249,
+                "environment": 0.012,
+                "event_append": 2.007,
+                "fingerprint_final": 1.332,
+                "fingerprint_initial": 1.627,
+                "lock_acquire": 1.234,
+                "runtime_inspect_initial": 32.907,
+                "snapshot_cleanup": 0.534,
+                "snapshot_prepare": 4.051
+              },
+              "reason": "fresh hermetic task failed; no reusable result was stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "saved_seconds": 0.0,
+              "status": "MISS_FAILED",
+              "stderr_tail": "",
+              "stdout_tail": "failed task executed\n",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 332.632
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"cb74574fc552f9a3e538b7dcdf0fef524dbe81510f03cff528c85796fa558077\\\",\\n  \\\"execution_ms\\\": 262.784,\\n  \\\"exit_code\\\": 3,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 1.277,\\n    \\\"docker_execution\\\": 263.249,\\n    \\\"environment\\\": 0.012,\\n    \\\"event_append\\\": 2.007,\\n    \\\"fingerprint_final\\\": 1.332,\\n    \\\"fingerprint_initial\\\": 1.627,\\n    \\\"lock_acquire\\\": 1.234,\\n    \\\"runtime_inspect_initial\\\": 32.907,\\n    \\\"snapshot_cleanup\\\": 0.534,\\n    \\\"snapshot_prepare\\\": 4.051\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic task failed; no reusable result was stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_FAILED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"failed task executed\\\\n\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 332.632\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_FAILED\",\"exit_code\":3,\"wall_ms\":332.632,\"execution_ms\":262.784,\"saved_ms\":0.0,\"cache_key\":\"cb74574fc552f9a3e538b7dcdf0fef524dbe81510f03cff528c85796fa558077\",\"reason\":\"fresh hermetic task failed; no reusable result was stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":1.277,\"docker_execution\":263.249,\"environment\":0.012,\"event_append\":2.007,\"fingerprint_final\":1.332,\"fingerprint_initial\":1.627,\"lock_acquire\":1.234,\"runtime_inspect_initial\":32.907,\"snapshot_cleanup\":0.534,\"snapshot_prepare\":4.051},\"mode\":\"reuse\",\"stdout_tail\":\"failed task executed\\n\",\"stderr_tail\":\"\",\"saved_seconds\":0.0},\"isError\":true}}\n",
+            "utc": "2026-10-29T22:09:57.970916+00:00",
+            "verify": false
+          },
+          {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.5617507690000139,
+            "payload": {
+              "cache_key": "cb74574fc552f9a3e538b7dcdf0fef524dbe81510f03cff528c85796fa558077",
+              "execution_ms": 250.344,
+              "exit_code": 3,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 0.834,
+                "docker_execution": 250.716,
+                "environment": 0.041,
+                "event_append": 2.255,
+                "fingerprint_final": 1.349,
+                "fingerprint_initial": 1.594,
+                "lock_acquire": 1.254,
+                "runtime_inspect_initial": 17.062,
+                "snapshot_cleanup": 0.459,
+                "snapshot_prepare": 3.644
+              },
+              "reason": "fresh hermetic task failed; no reusable result was stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "saved_seconds": 0.0,
+              "status": "MISS_FAILED",
+              "stderr_tail": "",
+              "stdout_tail": "failed task executed\n",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 302.865
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"cb74574fc552f9a3e538b7dcdf0fef524dbe81510f03cff528c85796fa558077\\\",\\n  \\\"execution_ms\\\": 250.344,\\n  \\\"exit_code\\\": 3,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 0.834,\\n    \\\"docker_execution\\\": 250.716,\\n    \\\"environment\\\": 0.041,\\n    \\\"event_append\\\": 2.255,\\n    \\\"fingerprint_final\\\": 1.349,\\n    \\\"fingerprint_initial\\\": 1.594,\\n    \\\"lock_acquire\\\": 1.254,\\n    \\\"runtime_inspect_initial\\\": 17.062,\\n    \\\"snapshot_cleanup\\\": 0.459,\\n    \\\"snapshot_prepare\\\": 3.644\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic task failed; no reusable result was stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_FAILED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"failed task executed\\\\n\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 302.865\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_FAILED\",\"exit_code\":3,\"wall_ms\":302.865,\"execution_ms\":250.344,\"saved_ms\":0.0,\"cache_key\":\"cb74574fc552f9a3e538b7dcdf0fef524dbe81510f03cff528c85796fa558077\",\"reason\":\"fresh hermetic task failed; no reusable result was stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":0.834,\"docker_execution\":250.716,\"environment\":0.041,\"event_append\":2.255,\"fingerprint_final\":1.349,\"fingerprint_initial\":1.594,\"lock_acquire\":1.254,\"runtime_inspect_initial\":17.062,\"snapshot_cleanup\":0.459,\"snapshot_prepare\":3.644},\"mode\":\"reuse\",\"stdout_tail\":\"failed task executed\\n\",\"stderr_tail\":\"\",\"saved_seconds\":0.0},\"isError\":true}}\n",
+            "utc": "2026-10-29T22:09:58.581361+00:00",
+            "verify": false
+          }
+        ]
+      },
+      "name": "nonzero_outcomes_execute_again_and_never_become_success",
+      "passed": true,
+      "started_utc": "2026-10-29T22:09:56.836748+00:00"
+    },
+    {
+      "evidence": {
+        "first": {
+          "argv": [
+            "/usr/bin/python3",
+            "-B",
+            "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+            "receipt",
+            "/tmp/q1q2-matrix-umeex1a_/authority-9/receipt.key"
+          ],
+          "arm": "receipt",
+          "disposition": "completed",
+          "outer_seconds": 0.40382601200002455,
+          "payload": {
+            "cache_key": "33194b1b8094677b1ef7a3b4f0091524f271ef937d03a3f9215ae3d9e036d92c",
+            "container_id": "12abc63a4ebaeb7303c4507c3555b7a04238952daa68f848ea01c4f3e84279e2",
+            "container_state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "FinishedAt": "2026-10-29T22:09:59.449318966Z",
+              "OOMKilled": false,
+              "Paused": false,
+              "Pid": 0,
+              "Restarting": false,
+              "Running": false,
+              "StartedAt": "2026-10-29T22:09:59.267278225Z",
+              "Status": "exited"
+            },
+            "execution_and_cleanup_seconds": 0.3261238939999771,
+            "exit_code": 0,
+            "historical": false,
+            "output_bytes": {
+              "stderr": 0,
+              "stdout": 91
+            },
+            "output_truncated": false,
+            "status": "MISS_EXECUTED",
+            "stderr_tail": "",
+            "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n"
+          },
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 91}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:59.267278225Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:59.449318966Z\\\"}, \\\"container_id\\\": \\\"12abc63a4ebaeb7303c4507c3555b7a04238952daa68f848ea01c4f3e84279e2\\\", \\\"execution_and_cleanup_seconds\\\": 0.3261238939999771, \\\"cache_key\\\": \\\"33194b1b8094677b1ef7a3b4f0091524f271ef937d03a3f9215ae3d9e036d92c\\\"}\"}]}}\n",
+          "utc": "2026-10-29T22:09:59.150939+00:00",
+          "verify": false
+        },
+        "tampered_receipt_response": {
+          "argv": [
+            "/usr/bin/python3",
+            "-B",
+            "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+            "receipt",
+            "/tmp/q1q2-matrix-umeex1a_/authority-9/receipt.key"
+          ],
+          "arm": "receipt",
+          "disposition": "completed",
+          "outer_seconds": 0.39657443300001205,
+          "payload": {
+            "cache_key": "33194b1b8094677b1ef7a3b4f0091524f271ef937d03a3f9215ae3d9e036d92c",
+            "container_id": "dd8450adc36e94edc6db6bbcde9d1b42e3b1d28a5f831d08e8050635217b33ae",
+            "container_state": {
+              "Dead": false,
+              "Error": "",
+              "ExitCode": 0,
+              "FinishedAt": "2026-10-29T22:09:59.838633373Z",
+              "OOMKilled": false,
+              "Paused": false,
+              "Pid": 0,
+              "Restarting": false,
+              "Running": false,
+              "StartedAt": "2026-10-29T22:09:59.66449485Z",
+              "Status": "exited"
+            },
+            "execution_and_cleanup_seconds": 0.32496232299996564,
+            "exit_code": 0,
+            "historical": false,
+            "output_bytes": {
+              "stderr": 0,
+              "stdout": 91
+            },
+            "output_truncated": false,
+            "status": "MISS_EXECUTED",
+            "stderr_tail": "",
+            "stdout_tail": "{\"file_mtime\": 0, \"root_mtime\": 0, \"root_mode\": 493, \"file_xattrs\": [], \"root_xattrs\": []}\n"
+          },
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"{\\\\\\\"file_mtime\\\\\\\": 0, \\\\\\\"root_mtime\\\\\\\": 0, \\\\\\\"root_mode\\\\\\\": 493, \\\\\\\"file_xattrs\\\\\\\": [], \\\\\\\"root_xattrs\\\\\\\": []}\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 91}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:09:59.66449485Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:09:59.838633373Z\\\"}, \\\"container_id\\\": \\\"dd8450adc36e94edc6db6bbcde9d1b42e3b1d28a5f831d08e8050635217b33ae\\\", \\\"execution_and_cleanup_seconds\\\": 0.32496232299996564, \\\"cache_key\\\": \\\"33194b1b8094677b1ef7a3b4f0091524f271ef937d03a3f9215ae3d9e036d92c\\\"}\"}]}}\n",
+          "utc": "2026-10-29T22:09:59.555211+00:00",
+          "verify": false
+        }
+      },
+      "name": "tampered_receipt_requires_execution",
+      "passed": true,
+      "started_utc": "2026-10-29T22:09:59.144661+00:00"
+    },
+    {
+      "evidence": {
+        "qualification_disposition": "refused: direct/staged outcomes differ",
+        "responses": {
+          "fresh": {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "fresh",
+              "/tmp/q1q2-matrix-umeex1a_/authority-10/receipt.key"
+            ],
+            "arm": "fresh",
+            "disposition": "completed",
+            "outer_seconds": 0.3675261739999769,
+            "payload": {
+              "container_id": "f98dd24eda655a46f1e27ea90fcb5d125d9c4239a3b227ab2ce8c5c682bd3d3d",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 0,
+                "FinishedAt": "2026-10-29T22:10:00.211038053Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:10:00.045515419Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.3235002320000149,
+              "exit_code": 0,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 0,
+                "stdout": 0
+              },
+              "output_truncated": false,
+              "status": "FRESH_EXECUTED",
+              "stderr_tail": "",
+              "stdout_tail": ""
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"FRESH_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 0, \\\"stdout\\\": 0}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:10:00.045515419Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:10:00.211038053Z\\\"}, \\\"container_id\\\": \\\"f98dd24eda655a46f1e27ea90fcb5d125d9c4239a3b227ab2ce8c5c682bd3d3d\\\", \\\"execution_and_cleanup_seconds\\\": 0.3235002320000149}\"}]}}\n",
+            "utc": "2026-10-29T22:09:59.956924+00:00",
+            "verify": false
+          },
+          "receipt": {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+              "receipt",
+              "/tmp/q1q2-matrix-umeex1a_/authority-11/receipt.key"
+            ],
+            "arm": "receipt",
+            "disposition": "completed",
+            "outer_seconds": 0.38683071099995914,
+            "payload": {
+              "cache_key": "da5dd9df784d8a6bf10b5ba58d16fdd28e2caf417b83e126ebc2ae064d992e14",
+              "container_id": "3bd01b43b6a9b325cd2b257080be2c480b5c1ab8a029932447b9b69d9d81a53b",
+              "container_state": {
+                "Dead": false,
+                "Error": "",
+                "ExitCode": 1,
+                "FinishedAt": "2026-10-29T22:10:00.593434232Z",
+                "OOMKilled": false,
+                "Paused": false,
+                "Pid": 0,
+                "Restarting": false,
+                "Running": false,
+                "StartedAt": "2026-10-29T22:10:00.42892752Z",
+                "Status": "exited"
+              },
+              "execution_and_cleanup_seconds": 0.32372051400000146,
+              "exit_code": 1,
+              "historical": false,
+              "output_bytes": {
+                "stderr": 152,
+                "stdout": 0
+              },
+              "output_truncated": false,
+              "status": "MISS_EXECUTED",
+              "stderr_tail": "Traceback (most recent call last):\n  File \"/workspace/check.py\", line 2, in <module>\n    assert Path('input.txt').stat().st_mtime_ns > 0\nAssertionError\n",
+              "stdout_tail": ""
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 1, \\\"stdout_tail\\\": \\\"\\\", \\\"stderr_tail\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/workspace/check.py\\\\\\\", line 2, in <module>\\\\n    assert Path('input.txt').stat().st_mtime_ns > 0\\\\nAssertionError\\\\n\\\", \\\"output_bytes\\\": {\\\"stdout\\\": 0, \\\"stderr\\\": 152}, \\\"output_truncated\\\": false, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 1, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:10:00.42892752Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:10:00.593434232Z\\\"}, \\\"container_id\\\": \\\"3bd01b43b6a9b325cd2b257080be2c480b5c1ab8a029932447b9b69d9d81a53b\\\", \\\"execution_and_cleanup_seconds\\\": 0.32372051400000146, \\\"cache_key\\\": \\\"da5dd9df784d8a6bf10b5ba58d16fdd28e2caf417b83e126ebc2ae064d992e14\\\"}\"}]}}\n",
+            "utc": "2026-10-29T22:10:00.330182+00:00",
+            "verify": false
+          },
+          "zerorun": {
+            "argv": [
+              "/usr/bin/python3",
+              "-B",
+              "-m",
+              "zerorun",
+              "mcp-server"
+            ],
+            "arm": "zerorun",
+            "disposition": "completed",
+            "outer_seconds": 0.6594371129999672,
+            "payload": {
+              "cache_key": "d368b45fc2818cbc8ac5bb96d6acdf91d2fdc2057ac5e57540e70977f579a029",
+              "execution_ms": 347.244,
+              "exit_code": 1,
+              "mode": "reuse",
+              "phase_ms": {
+                "cache_lookup": 0.836,
+                "docker_execution": 347.624,
+                "environment": 0.012,
+                "event_append": 1.818,
+                "fingerprint_final": 1.348,
+                "fingerprint_initial": 1.654,
+                "lock_acquire": 1.255,
+                "runtime_inspect_initial": 16.594,
+                "snapshot_cleanup": 0.479,
+                "snapshot_prepare": 3.798
+              },
+              "reason": "fresh hermetic task failed; no reusable result was stored",
+              "restored_outputs": [],
+              "saved_ms": 0.0,
+              "saved_seconds": 0.0,
+              "status": "MISS_FAILED",
+              "stderr_tail": "Traceback (most recent call last):\n  File \"/workspace/check.py\", line 2, in <module>\n    assert Path('input.txt').stat().st_mtime_ns > 0\nAssertionError\n",
+              "stdout_tail": "",
+              "task": "tests",
+              "verified": false,
+              "wall_ms": 399.895
+            },
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"d368b45fc2818cbc8ac5bb96d6acdf91d2fdc2057ac5e57540e70977f579a029\\\",\\n  \\\"execution_ms\\\": 347.244,\\n  \\\"exit_code\\\": 1,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 0.836,\\n    \\\"docker_execution\\\": 347.624,\\n    \\\"environment\\\": 0.012,\\n    \\\"event_append\\\": 1.818,\\n    \\\"fingerprint_final\\\": 1.348,\\n    \\\"fingerprint_initial\\\": 1.654,\\n    \\\"lock_acquire\\\": 1.255,\\n    \\\"runtime_inspect_initial\\\": 16.594,\\n    \\\"snapshot_cleanup\\\": 0.479,\\n    \\\"snapshot_prepare\\\": 3.798\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic task failed; no reusable result was stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_FAILED\\\",\\n  \\\"stderr_tail\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/workspace/check.py\\\\\\\", line 2, in <module>\\\\n    assert Path('input.txt').stat().st_mtime_ns > 0\\\\nAssertionError\\\\n\\\",\\n  \\\"stdout_tail\\\": \\\"\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 399.895\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_FAILED\",\"exit_code\":1,\"wall_ms\":399.895,\"execution_ms\":347.244,\"saved_ms\":0.0,\"cache_key\":\"d368b45fc2818cbc8ac5bb96d6acdf91d2fdc2057ac5e57540e70977f579a029\",\"reason\":\"fresh hermetic task failed; no reusable result was stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":0.836,\"docker_execution\":347.624,\"environment\":0.012,\"event_append\":1.818,\"fingerprint_final\":1.348,\"fingerprint_initial\":1.654,\"lock_acquire\":1.255,\"runtime_inspect_initial\":16.594,\"snapshot_cleanup\":0.479,\"snapshot_prepare\":3.798},\"mode\":\"reuse\",\"stdout_tail\":\"\",\"stderr_tail\":\"Traceback (most recent call last):\\n  File \\\"/workspace/check.py\\\", line 2, in <module>\\n    assert Path('input.txt').stat().st_mtime_ns > 0\\nAssertionError\\n\",\"saved_seconds\":0.0},\"isError\":true}}\n",
+            "utc": "2026-10-29T22:10:00.729485+00:00",
+            "verify": false
+          }
+        }
+      },
+      "name": "timestamp_sensitive_task_is_a_qualification_counterexample",
+      "passed": true,
+      "started_utc": "2026-10-29T22:09:59.953084+00:00"
+    },
+    {
+      "evidence": {
+        "direct": {
+          "container_id": "63c82d897ebdb12fe93ff6bd5bcedb1384f79e72400ef064d82ae023fcdd1c40",
+          "container_state": {
+            "Dead": false,
+            "Error": "",
+            "ExitCode": 0,
+            "FinishedAt": "2026-10-29T22:10:01.621825645Z",
+            "OOMKilled": false,
+            "Paused": false,
+            "Pid": 0,
+            "Restarting": false,
+            "Running": false,
+            "StartedAt": "2026-10-29T22:10:01.457771838Z",
+            "Status": "exited"
+          },
+          "execution_and_cleanup_seconds": 0.33718634000001657,
+          "exit_code": 0,
+          "historical": false,
+          "output_bytes": {
+            "stderr": 0,
+            "stdout": 0
+          },
+          "output_truncated": false,
+          "status": "FRESH_EXECUTED",
+          "stderr_tail": "",
+          "stdout_tail": ""
+        },
+        "qualification_disposition": "refused: omitted dependency changes outcome",
+        "staged": {
+          "argv": [
+            "/usr/bin/python3",
+            "-B",
+            "-m",
+            "zerorun",
+            "mcp-server"
+          ],
+          "arm": "zerorun",
+          "disposition": "completed",
+          "outer_seconds": 0.6569209909999927,
+          "payload": {
+            "cache_key": "9fddc8d0e575131e6527c3d11fa372957ddaa6f2be5209e177eabdd7a404a904",
+            "execution_ms": 346.606,
+            "exit_code": 1,
+            "mode": "reuse",
+            "phase_ms": {
+              "cache_lookup": 0.83,
+              "docker_execution": 346.933,
+              "environment": 0.012,
+              "event_append": 2.024,
+              "fingerprint_final": 0.972,
+              "fingerprint_initial": 1.121,
+              "lock_acquire": 1.249,
+              "runtime_inspect_initial": 16.752,
+              "snapshot_cleanup": 0.415,
+              "snapshot_prepare": 2.558
+            },
+            "reason": "fresh hermetic task failed; no reusable result was stored",
+            "restored_outputs": [],
+            "saved_ms": 0.0,
+            "saved_seconds": 0.0,
+            "status": "MISS_FAILED",
+            "stderr_tail": "Traceback (most recent call last):\n  File \"/workspace/check.py\", line 2, in <module>\n    assert Path('input.txt').read_text() == 'A'\n  File \"/usr/local/lib/python3.10/pathlib.py\", line 1134, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n  File \"/usr/local/lib/python3.10/pathlib.py\", line 1119, in open\n    return self._accessor.open(self, mode, buffering, encoding, errors,\nFileNotFoundError: [Errno 2] No such file or directory: 'input.txt'\n",
+            "stdout_tail": "",
+            "task": "tests",
+            "verified": false,
+            "wall_ms": 396.394
+          },
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"9fddc8d0e575131e6527c3d11fa372957ddaa6f2be5209e177eabdd7a404a904\\\",\\n  \\\"execution_ms\\\": 346.606,\\n  \\\"exit_code\\\": 1,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 0.83,\\n    \\\"docker_execution\\\": 346.933,\\n    \\\"environment\\\": 0.012,\\n    \\\"event_append\\\": 2.024,\\n    \\\"fingerprint_final\\\": 0.972,\\n    \\\"fingerprint_initial\\\": 1.121,\\n    \\\"lock_acquire\\\": 1.249,\\n    \\\"runtime_inspect_initial\\\": 16.752,\\n    \\\"snapshot_cleanup\\\": 0.415,\\n    \\\"snapshot_prepare\\\": 2.558\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic task failed; no reusable result was stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_FAILED\\\",\\n  \\\"stderr_tail\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/workspace/check.py\\\\\\\", line 2, in <module>\\\\n    assert Path('input.txt').read_text() == 'A'\\\\n  File \\\\\\\"/usr/local/lib/python3.10/pathlib.py\\\\\\\", line 1134, in read_text\\\\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\\\\n  File \\\\\\\"/usr/local/lib/python3.10/pathlib.py\\\\\\\", line 1119, in open\\\\n    return self._accessor.open(self, mode, buffering, encoding, errors,\\\\nFileNotFoundError: [Errno 2] No such file or directory: 'input.txt'\\\\n\\\",\\n  \\\"stdout_tail\\\": \\\"\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 396.394\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_FAILED\",\"exit_code\":1,\"wall_ms\":396.394,\"execution_ms\":346.606,\"saved_ms\":0.0,\"cache_key\":\"9fddc8d0e575131e6527c3d11fa372957ddaa6f2be5209e177eabdd7a404a904\",\"reason\":\"fresh hermetic task failed; no reusable result was stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":0.83,\"docker_execution\":346.933,\"environment\":0.012,\"event_append\":2.024,\"fingerprint_final\":0.972,\"fingerprint_initial\":1.121,\"lock_acquire\":1.249,\"runtime_inspect_initial\":16.752,\"snapshot_cleanup\":0.415,\"snapshot_prepare\":2.558},\"mode\":\"reuse\",\"stdout_tail\":\"\",\"stderr_tail\":\"Traceback (most recent call last):\\n  File \\\"/workspace/check.py\\\", line 2, in <module>\\n    assert Path('input.txt').read_text() == 'A'\\n  File \\\"/usr/local/lib/python3.10/pathlib.py\\\", line 1134, in read_text\\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\\n  File \\\"/usr/local/lib/python3.10/pathlib.py\\\", line 1119, in open\\n    return self._accessor.open(self, mode, buffering, encoding, errors,\\nFileNotFoundError: [Errno 2] No such file or directory: 'input.txt'\\n\",\"saved_seconds\":0.0},\"isError\":true}}\n",
+          "utc": "2026-10-29T22:10:01.748067+00:00",
+          "verify": false
+        }
+      },
+      "name": "omitted_dependency_is_detected_by_full_tree_oracle",
+      "passed": true,
+      "started_utc": "2026-10-29T22:10:01.390379+00:00"
+    },
+    {
+      "evidence": [
+        {
+          "containers_after": [],
+          "containers_before": [],
+          "error": "CalledProcessError(77, ['docker', 'create', '--name', 'q1q2-reference-5f08373a408bc078', '--pull', 'never', '--platform', 'linux/amd64', '--network', 'none', '--read-only', '--cap-drop', 'ALL', '--security-opt', 'no-new-privileges', '--cpus', '2', '--memory', '2g', '--memory-swap', '2g', '--pids-limit', '512', '--tmpfs', '/tmp:rw,nosuid,nodev,size=512m', '--tmpfs', '/workspace/.zerorun:rw,nosuid,nodev,noexec,size=1m', '--tmpfs', '/workspace/.git:rw,nosuid,nodev,noexec,size=1m', '--mount', 'type=bind,src=/tmp/q1q2-matrix-umeex1a_/root-14,dst=/workspace,readonly', '--workdir', '/workspace', '--env', 'LANG=C', '--env', 'LC_ALL=C', '--env', 'PYTHONDONTWRITEBYTECODE=1', '--env', 'PYTHONHASHSEED=0', '--env', 'PYTHONPYCACHEPREFIX=/tmp/zerorun-pycache', '--env', 'TZ=UTC', '127.0.0.1:19559/zerorun-q1q2@sha256:b4ed6d14eff5fa09e890d856be6f3136c7ecc5fff84805490dd1c404ef0a565a', 'python', '-B', 'check.py'])",
+          "mode": "allocated_create_error"
+        },
+        {
+          "containers_after": [],
+          "containers_before": [],
+          "error": "ValueError('container did not finish normally')",
+          "mode": "false_attach_success"
+        },
+        {
+          "containers_after": [],
+          "containers_before": [],
+          "error": "RuntimeError('output drain did not finish')",
+          "mode": "timeout"
+        }
+      ],
+      "name": "uncertain_creation_false_attach_and_timeout_are_cleaned",
+      "passed": true,
+      "started_utc": "2026-10-29T22:10:02.406517+00:00"
+    },
+    {
+      "evidence": {
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+          "receipt",
+          "/tmp/q1q2-matrix-umeex1a_/authority-17/receipt.key"
+        ],
+        "arm": "receipt",
+        "disposition": "completed",
+        "outer_seconds": 0.34735895299996855,
+        "payload": {
+          "cache_key": "217fff7a3f0bd15e6a4f4bca7ef970ee9c3c14a0c4d2b6121fb09ef8b42605ea",
+          "container_id": "b594a6a5af447d0bb4e8dd3dd63cd42cc1aa7351d7ea872b13caccea1a0bc157",
+          "container_state": {
+            "Dead": false,
+            "Error": "",
+            "ExitCode": 0,
+            "FinishedAt": "2026-10-29T22:10:23.333392908Z",
+            "OOMKilled": false,
+            "Paused": false,
+            "Pid": 0,
+            "Restarting": false,
+            "Running": false,
+            "StartedAt": "2026-10-29T22:10:23.220302718Z",
+            "Status": "exited"
+          },
+          "execution_and_cleanup_seconds": 0.27696658899998283,
+          "exit_code": 0,
+          "historical": false,
+          "output_bytes": {
+            "stderr": 2000000,
+            "stdout": 2000000
+          },
+          "output_truncated": true,
+          "status": "MISS_EXECUTED",
+          "stderr_tail": "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+          "stdout_tail": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+        },
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 0, \\\"stdout_tail\\\": \\\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\\\", \\\"stderr_tail\\\": \\\"yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy\\\", \\\"output_bytes\\\": {\\\"stderr\\\": 2000000, \\\"stdout\\\": 2000000}, \\\"output_truncated\\\": true, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 0, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:10:23.220302718Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:10:23.333392908Z\\\"}, \\\"container_id\\\": \\\"b594a6a5af447d0bb4e8dd3dd63cd42cc1aa7351d7ea872b13caccea1a0bc157\\\", \\\"execution_and_cleanup_seconds\\\": 0.27696658899998283, \\\"cache_key\\\": \\\"217fff7a3f0bd15e6a4f4bca7ef970ee9c3c14a0c4d2b6121fb09ef8b42605ea\\\"}\"}]}}\n",
+        "utc": "2026-10-29T22:10:23.105994+00:00",
+        "verify": false
+      },
+      "name": "bounded_streams_preserve_completed_exit",
+      "passed": true,
+      "started_utc": "2026-10-29T22:10:23.099141+00:00"
+    }
+  ],
+  "started_utc": "2026-10-29T22:09:52.532867+00:00"
+}

@@ -1,0 +1,30 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--mount",
+    "type=bind,src=/home/runner/work/_temp/q1q2-main-preflight/runtime/context,dst=/out",
+    "python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a",
+    "sh",
+    "-c",
+    "set -eu; apt-get -o APT::Sandbox::User=root update; apt-get -o APT::Sandbox::User=root --download-only -y install locales; cp /var/cache/apt/archives/*.deb /out/debs/"
+  ],
+  "completed_utc": "2026-10-29T21:50:11.893982+00:00",
+  "error": {
+    "message": "locale-acquisition failed: rm: cannot remove '/var/cache/apt/archives/partial/*.deb': Permission denied\nW: chmod 0700 of directory /var/cache/apt/archives/partial failed - SetupAPTPartialDirectory (1: Operation not permitted)\nW: Problem unlinking the file /var/cache/apt/archives/partial/libc-l10n_2.36-9+deb12u14_all.deb - PrepareFiles (13: Permission denied)\nW: Problem unlinking the file /var/cache/apt/archives/partial/locales_2.36-9+deb12u14_all.deb - PrepareFiles (13: Permission denied)\nE: Failed to fetch http://deb.debian.org/debian/pool/main/g/glibc/libc-l10n_2.36-9%2bdeb12u14_all.deb  Could not open file /var/cache/apt/archives/partial/libc-l10n_2.36-9+deb12u14_all.deb - open (13: Permission denied) [IP: 151.101.162.132 80]\nE: Failed to fetch http://deb.debian.org/debian/pool/main/g/glibc/locales_2.36-9%2bdeb12u14_all.deb  Could not open file /var/cache/apt/archives/partial/locales_2.36-9+deb12u14_all.deb - open (13: Permission denied) [IP: 151.101.162.132 80]\nE: Some files failed to download\n",
+    "type": "ValueError"
+  },
+  "outer_ms": 2072.1130100000096,
+  "returncode": 100,
+  "stderr": "rm: cannot remove '/var/cache/apt/archives/partial/*.deb': Permission denied\nW: chmod 0700 of directory /var/cache/apt/archives/partial failed - SetupAPTPartialDirectory (1: Operation not permitted)\nW: Problem unlinking the file /var/cache/apt/archives/partial/libc-l10n_2.36-9+deb12u14_all.deb - PrepareFiles (13: Permission denied)\nW: Problem unlinking the file /var/cache/apt/archives/partial/locales_2.36-9+deb12u14_all.deb - PrepareFiles (13: Permission denied)\nE: Failed to fetch http://deb.debian.org/debian/pool/main/g/glibc/libc-l10n_2.36-9%2bdeb12u14_all.deb  Could not open file /var/cache/apt/archives/partial/libc-l10n_2.36-9+deb12u14_all.deb - open (13: Permission denied) [IP: 151.101.162.132 80]\nE: Failed to fetch http://deb.debian.org/debian/pool/main/g/glibc/locales_2.36-9%2bdeb12u14_all.deb  Could not open file /var/cache/apt/archives/partial/locales_2.36-9+deb12u14_all.deb - open (13: Permission denied) [IP: 151.101.162.132 80]\nE: Some files failed to download\n",
+  "stderr_truncated": false,
+  "stdout": "Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]\nGet:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]\nGet:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]\nGet:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]\nGet:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]\nGet:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [358 kB]\nFetched 9397 kB in 1s (11.8 MB/s)\nReading package lists...\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  libc-l10n\nThe following NEW packages will be installed:\n  libc-l10n locales\n0 upgraded, 2 newly installed, 0 to remove and 7 not upgraded.\nNeed to get 4583 kB of archives.\nAfter this operation, 20.7 MB of additional disk space will be used.\nErr:1 http://deb.debian.org/debian bookworm/main amd64 libc-l10n all 2.36-9+deb12u14\n  Could not open file /var/cache/apt/archives/partial/libc-l10n_2.36-9+deb12u14_all.deb - open (13: Permission denied) [IP: 151.101.162.132 80]\nErr:2 http://deb.debian.org/debian bookworm/main amd64 locales all 2.36-9+deb12u14\n  Could not open file /var/cache/apt/archives/partial/locales_2.36-9+deb12u14_all.deb - open (13: Permission denied) [IP: 151.101.162.132 80]\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 600
+}

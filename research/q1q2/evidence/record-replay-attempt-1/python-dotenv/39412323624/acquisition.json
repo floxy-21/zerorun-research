@@ -1,0 +1,88 @@
+{
+  "archive_sha256": "850448dedfdbc824d9a005db9db52555fb1855e9b0e835ed2f2dae03d3ad7157",
+  "command": [
+    "python",
+    "-B",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "-p",
+    "q1q2_capture",
+    "tests",
+    "--hypothesis-seed=20261029"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "init",
+        "-q",
+        "/home/runner/work/_temp/q1q2-record-replay/python-dotenv/39412323624/acquired"
+      ],
+      "outer_seconds": 0.003414590000147655,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/runner/work/_temp/q1q2-record-replay/python-dotenv/39412323624/acquired",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/theskumar/python-dotenv.git"
+      ],
+      "outer_seconds": 0.0019324269999287935,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/runner/work/_temp/q1q2-record-replay/python-dotenv/39412323624/acquired",
+        "fetch",
+        "--depth",
+        "1",
+        "origin",
+        "fa4ce9c4c11577eb98af062914df89ef94ade57d"
+      ],
+      "outer_seconds": 0.38012549800009765,
+      "returncode": 0,
+      "stderr": "From https://github.com/theskumar/python-dotenv\n * branch            fa4ce9c4c11577eb98af062914df89ef94ade57d -> FETCH_HEAD\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/home/runner/work/_temp/q1q2-record-replay/python-dotenv/39412323624/acquired",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "outer_seconds": 0.006078795000121318,
+      "returncode": 0,
+      "stderr": "HEAD is now at fa4ce9c Don't rewrite the .env file when unset_key finds no such key\n",
+      "stdout": ""
+    }
+  ],
+  "error": "QualificationRequired: linked or special source: docs/changelog.md",
+  "id": "python-dotenv",
+  "outer_seconds": 0.4140358429999651,
+  "repo": "theskumar/python-dotenv",
+  "sha": "fa4ce9c4c11577eb98af062914df89ef94ade57d",
+  "source_bytes": 192520,
+  "started_utc": "2026-10-29T22:28:26.117972+00:00",
+  "status": "source_failure",
+  "test_workflow": ".github/workflows/test.yml",
+  "workflows": [
+    ".github/workflows/test.yml",
+    ".github/workflows/release.yml"
+  ]
+}

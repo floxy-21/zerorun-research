@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--network=none",
+    "--read-only",
+    "127.0.0.1:19559/zerorun-q1q2:40ab5af6565c46a9aedf2eeb3dd7b579",
+    "python",
+    "-B",
+    "-c",
+    "import json,sys,pytest,pytest_asyncio,q1q2_capture;print(json.dumps({'python':sys.version,'pytest':pytest.__version__,'pytest_asyncio':pytest_asyncio.__version__}))"
+  ],
+  "started_utc": "2026-10-29T22:18:41.634450+00:00"
+}

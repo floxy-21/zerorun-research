@@ -1,0 +1,28 @@
+{
+  "argv": [
+    "docker",
+    "create",
+    "--name",
+    "q1q2-registry-e847b5eeab0544e293f0afbc894e1b53",
+    "--pull=never",
+    "--read-only",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--user",
+    "1001:1001",
+    "--pids-limit",
+    "128",
+    "--memory",
+    "256m",
+    "--tmpfs",
+    "/tmp:rw,nosuid,nodev,size=16m",
+    "--publish",
+    "127.0.0.1:19559:5000",
+    "--mount",
+    "type=bind,src=/home/runner/work/_temp/q1q2-main-session-1/runtime/registry-store,dst=/var/lib/registry",
+    "docker.io/library/registry@sha256:46faa9a1ae6813194b53921a370f2f4f8c5e1aae228a89bceafef5847a6a3278"
+  ],
+  "started_utc": "2026-10-29T22:40:16.948106+00:00"
+}

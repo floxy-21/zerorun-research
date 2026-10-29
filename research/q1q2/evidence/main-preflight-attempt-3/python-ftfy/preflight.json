@@ -1,0 +1,294 @@
+{
+  "equal_nonempty_success": false,
+  "records": {
+    "fresh": {
+      "full_verified": false,
+      "response": {
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+          "fresh",
+          "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/oracle-authority/receipt.key"
+        ],
+        "arm": "fresh",
+        "disposition": "completed",
+        "outer_seconds": 2.2992929719999893,
+        "payload": {
+          "container_id": "e9f65bff00b568c615982cc411dbcea2ccbc36858d1c1794941ce923d61a2795",
+          "container_state": {
+            "Dead": false,
+            "Error": "",
+            "ExitCode": 1,
+            "FinishedAt": "2026-10-29T22:04:16.947790129Z",
+            "OOMKilled": false,
+            "Paused": false,
+            "Pid": 0,
+            "Restarting": false,
+            "Running": false,
+            "StartedAt": "2026-10-29T22:04:14.95472653Z",
+            "Status": "exited"
+          },
+          "execution_and_cleanup_seconds": 2.263317272999984,
+          "exit_code": 1,
+          "historical": false,
+          "output_truncated": true,
+          "status": "FRESH_EXECUTED",
+          "stderr_tail": "",
+          "stdout_tail": "                 # This matches the behavior of os._execvpe().\n                    executable_list = tuple(\n                        os.path.join(os.fsencode(dir), executable)\n                        for dir in os.get_exec_path(env))\n                fds_to_keep = set(pass_fds)\n                fds_to_keep.add(errpipe_write)\n                self.pid = _posixsubprocess.fork_exec(\n                        args, executable_list,\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\n                        cwd, env_list,\n                        p2cread, p2cwrite, c2pread, c2pwrite,\n                        errread, errwrite,\n                        errpipe_read, errpipe_write,\n                        restore_signals, start_new_session,\n                        gid, gids, uid, umask,\n                        preexec_fn)\n                self._child_created = True\n            finally:\n                # be sure the FD is closed no matter what\n                os.close(errpipe_write)\n    \n            self._close_pipe_fds(p2cread, p2cwrite,\n                                 c2pread, c2pwrite,\n                                 errread, errwrite)\n    \n            # Wait for exec to fail or succeed; possibly raising an\n            # exception (limited in size)\n            errpipe_data = bytearray()\n            while True:\n                part = os.read(errpipe_read, 50000)\n                errpipe_data += part\n                if not part or len(errpipe_data) > 50000:\n                    break\n        finally:\n            # be sure the FD is closed no matter what\n            os.close(errpipe_read)\n    \n        if errpipe_data:\n            try:\n                pid, sts = os.waitpid(self.pid, 0)\n                if pid == self.pid:\n                    self._handle_exitstatus(sts)\n                else:\n                    self.returncode = sys.maxsize\n            except ChildProcessError:\n                pass\n    \n            try:\n                exception_name, hex_errno, err_msg = (\n                        errpipe_data.split(b':', 2))\n                # The encoding here should match the encoding\n                # written in by the subprocess implementations\n                # like _posixsubprocess\n                err_msg = err_msg.decode()\n            except ValueError:\n                exception_name = b'SubprocessError'\n                hex_errno = b'0'\n                err_msg = 'Bad exception data from child: {!r}'.format(\n                              bytes(errpipe_data))\n            child_exception_type = getattr(\n                    builtins, exception_name.decode('ascii'),\n                    SubprocessError)\n            if issubclass(child_exception_type, OSError) and hex_errno:\n                errno_num = int(hex_errno, 16)\n                child_exec_never_called = (err_msg == \"noexec\")\n                if child_exec_never_called:\n                    err_msg = \"\"\n                    # The error must be from chdir(cwd).\n                    err_filename = cwd\n                else:\n                    err_filename = orig_executable\n                if errno_num != 0:\n                    err_msg = os.strerror(errno_num)\n>               raise child_exception_type(errno_num, err_msg, err_filename)\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\n\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\n=========================== short test summary info ============================\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\n6 failed, 330 passed, 10 xfailed in 0.68s\n"
+        },
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"FRESH_EXECUTED\\\", \\\"exit_code\\\": 1, \\\"stdout_tail\\\": \\\"                 # This matches the behavior of os._execvpe().\\\\n                    executable_list = tuple(\\\\n                        os.path.join(os.fsencode(dir), executable)\\\\n                        for dir in os.get_exec_path(env))\\\\n                fds_to_keep = set(pass_fds)\\\\n                fds_to_keep.add(errpipe_write)\\\\n                self.pid = _posixsubprocess.fork_exec(\\\\n                        args, executable_list,\\\\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\\\\n                        cwd, env_list,\\\\n                        p2cread, p2cwrite, c2pread, c2pwrite,\\\\n                        errread, errwrite,\\\\n                        errpipe_read, errpipe_write,\\\\n                        restore_signals, start_new_session,\\\\n                        gid, gids, uid, umask,\\\\n                        preexec_fn)\\\\n                self._child_created = True\\\\n            finally:\\\\n                # be sure the FD is closed no matter what\\\\n                os.close(errpipe_write)\\\\n    \\\\n            self._close_pipe_fds(p2cread, p2cwrite,\\\\n                                 c2pread, c2pwrite,\\\\n                                 errread, errwrite)\\\\n    \\\\n            # Wait for exec to fail or succeed; possibly raising an\\\\n            # exception (limited in size)\\\\n            errpipe_data = bytearray()\\\\n            while True:\\\\n                part = os.read(errpipe_read, 50000)\\\\n                errpipe_data += part\\\\n                if not part or len(errpipe_data) > 50000:\\\\n                    break\\\\n        finally:\\\\n            # be sure the FD is closed no matter what\\\\n            os.close(errpipe_read)\\\\n    \\\\n        if errpipe_data:\\\\n            try:\\\\n                pid, sts = os.waitpid(self.pid, 0)\\\\n                if pid == self.pid:\\\\n                    self._handle_exitstatus(sts)\\\\n                else:\\\\n                    self.returncode = sys.maxsize\\\\n            except ChildProcessError:\\\\n                pass\\\\n    \\\\n            try:\\\\n                exception_name, hex_errno, err_msg = (\\\\n                        errpipe_data.split(b':', 2))\\\\n                # The encoding here should match the encoding\\\\n                # written in by the subprocess implementations\\\\n                # like _posixsubprocess\\\\n                err_msg = err_msg.decode()\\\\n            except ValueError:\\\\n                exception_name = b'SubprocessError'\\\\n                hex_errno = b'0'\\\\n                err_msg = 'Bad exception data from child: {!r}'.format(\\\\n                              bytes(errpipe_data))\\\\n            child_exception_type = getattr(\\\\n                    builtins, exception_name.decode('ascii'),\\\\n                    SubprocessError)\\\\n            if issubclass(child_exception_type, OSError) and hex_errno:\\\\n                errno_num = int(hex_errno, 16)\\\\n                child_exec_never_called = (err_msg == \\\\\\\"noexec\\\\\\\")\\\\n                if child_exec_never_called:\\\\n                    err_msg = \\\\\\\"\\\\\\\"\\\\n                    # The error must be from chdir(cwd).\\\\n                    err_filename = cwd\\\\n                else:\\\\n                    err_filename = orig_executable\\\\n                if errno_num != 0:\\\\n                    err_msg = os.strerror(errno_num)\\\\n>               raise child_exception_type(errno_num, err_msg, err_filename)\\\\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\\\\n\\\\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\\\\n=========================== short test summary info ============================\\\\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\\\\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\\\\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\\\\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\\\\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\\\\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\\\\n6 failed, 330 passed, 10 xfailed in 0.68s\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_truncated\\\": true, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 1, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:04:14.95472653Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:04:16.947790129Z\\\"}, \\\"container_id\\\": \\\"e9f65bff00b568c615982cc411dbcea2ccbc36858d1c1794941ce923d61a2795\\\", \\\"execution_and_cleanup_seconds\\\": 2.263317272999984}\"}]}}\n",
+        "utc": "2026-10-29T22:04:14.722397+00:00",
+        "verify": false
+      },
+      "setup": {
+        "arm_setup_seconds": 6.675899999208923e-05,
+        "authority": "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/oracle-authority",
+        "manifest": {
+          "cache_streams": false,
+          "cacheable": true,
+          "closure_reviewed": true,
+          "command": [
+            "python",
+            "-B",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "-p",
+            "q1q2_capture",
+            "tests",
+            "--hypothesis-seed=20261029"
+          ],
+          "env": [],
+          "image": "127.0.0.1:19559/zerorun-q1q2@sha256:d1fbe7548c32600a64b02e52831e6dc5ed639184f05d23ef43eaa9c497507446",
+          "inputs": [
+            ".github",
+            ".gitignore",
+            ".mailmap",
+            ".readthedocs.yaml",
+            "CHANGELOG.md",
+            "LICENSE.txt",
+            "MANIFEST.in",
+            "README.md",
+            "docs",
+            "ftfy",
+            "mypy.ini",
+            "notebook",
+            "notes",
+            "pyproject.toml",
+            "pytest.ini",
+            "scripts",
+            "tests",
+            "tox.ini",
+            "uv.lock"
+          ],
+          "outputs": [],
+          "platform": "linux/amd64",
+          "result_only": true,
+          "unsafe_effects": []
+        },
+        "materialization_seconds": 0.0770269670000232,
+        "root": "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/oracle-root"
+      },
+      "summary": null
+    },
+    "receipt": {
+      "response": {
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "/home/runner/work/zerorun-research/zerorun-research/research/q1q2/reference_service.py",
+          "receipt",
+          "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/receipt-authority/receipt.key"
+        ],
+        "arm": "receipt",
+        "disposition": "completed",
+        "outer_seconds": 2.298248847999986,
+        "payload": {
+          "cache_key": "1541d36011b78602166c0b242904c07a44bd94d2b8a043d955243854981b9789",
+          "container_id": "e3efb987c8dd3125ecff8bbe306320a534cf90d032b947b3a05052414cffb1d2",
+          "container_state": {
+            "Dead": false,
+            "Error": "",
+            "ExitCode": 1,
+            "FinishedAt": "2026-10-29T22:04:19.234328857Z",
+            "OOMKilled": false,
+            "Paused": false,
+            "Pid": 0,
+            "Restarting": false,
+            "Running": false,
+            "StartedAt": "2026-10-29T22:04:17.172959378Z",
+            "Status": "exited"
+          },
+          "execution_and_cleanup_seconds": 2.200628789999996,
+          "exit_code": 1,
+          "historical": false,
+          "output_truncated": true,
+          "status": "MISS_EXECUTED",
+          "stderr_tail": "",
+          "stdout_tail": "                 # This matches the behavior of os._execvpe().\n                    executable_list = tuple(\n                        os.path.join(os.fsencode(dir), executable)\n                        for dir in os.get_exec_path(env))\n                fds_to_keep = set(pass_fds)\n                fds_to_keep.add(errpipe_write)\n                self.pid = _posixsubprocess.fork_exec(\n                        args, executable_list,\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\n                        cwd, env_list,\n                        p2cread, p2cwrite, c2pread, c2pwrite,\n                        errread, errwrite,\n                        errpipe_read, errpipe_write,\n                        restore_signals, start_new_session,\n                        gid, gids, uid, umask,\n                        preexec_fn)\n                self._child_created = True\n            finally:\n                # be sure the FD is closed no matter what\n                os.close(errpipe_write)\n    \n            self._close_pipe_fds(p2cread, p2cwrite,\n                                 c2pread, c2pwrite,\n                                 errread, errwrite)\n    \n            # Wait for exec to fail or succeed; possibly raising an\n            # exception (limited in size)\n            errpipe_data = bytearray()\n            while True:\n                part = os.read(errpipe_read, 50000)\n                errpipe_data += part\n                if not part or len(errpipe_data) > 50000:\n                    break\n        finally:\n            # be sure the FD is closed no matter what\n            os.close(errpipe_read)\n    \n        if errpipe_data:\n            try:\n                pid, sts = os.waitpid(self.pid, 0)\n                if pid == self.pid:\n                    self._handle_exitstatus(sts)\n                else:\n                    self.returncode = sys.maxsize\n            except ChildProcessError:\n                pass\n    \n            try:\n                exception_name, hex_errno, err_msg = (\n                        errpipe_data.split(b':', 2))\n                # The encoding here should match the encoding\n                # written in by the subprocess implementations\n                # like _posixsubprocess\n                err_msg = err_msg.decode()\n            except ValueError:\n                exception_name = b'SubprocessError'\n                hex_errno = b'0'\n                err_msg = 'Bad exception data from child: {!r}'.format(\n                              bytes(errpipe_data))\n            child_exception_type = getattr(\n                    builtins, exception_name.decode('ascii'),\n                    SubprocessError)\n            if issubclass(child_exception_type, OSError) and hex_errno:\n                errno_num = int(hex_errno, 16)\n                child_exec_never_called = (err_msg == \"noexec\")\n                if child_exec_never_called:\n                    err_msg = \"\"\n                    # The error must be from chdir(cwd).\n                    err_filename = cwd\n                else:\n                    err_filename = orig_executable\n                if errno_num != 0:\n                    err_msg = os.strerror(errno_num)\n>               raise child_exception_type(errno_num, err_msg, err_filename)\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\n\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\n=========================== short test summary info ============================\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\n6 failed, 330 passed, 10 xfailed in 0.68s\n"
+        },
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"result\": {\"protocolVersion\": \"2024-11-05\", \"capabilities\": {\"tools\": {}}, \"serverInfo\": {\"name\": \"q1q2-reference\", \"version\": \"1\"}}}\n{\"jsonrpc\": \"2.0\", \"id\": 2, \"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"status\\\": \\\"MISS_EXECUTED\\\", \\\"exit_code\\\": 1, \\\"stdout_tail\\\": \\\"                 # This matches the behavior of os._execvpe().\\\\n                    executable_list = tuple(\\\\n                        os.path.join(os.fsencode(dir), executable)\\\\n                        for dir in os.get_exec_path(env))\\\\n                fds_to_keep = set(pass_fds)\\\\n                fds_to_keep.add(errpipe_write)\\\\n                self.pid = _posixsubprocess.fork_exec(\\\\n                        args, executable_list,\\\\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\\\\n                        cwd, env_list,\\\\n                        p2cread, p2cwrite, c2pread, c2pwrite,\\\\n                        errread, errwrite,\\\\n                        errpipe_read, errpipe_write,\\\\n                        restore_signals, start_new_session,\\\\n                        gid, gids, uid, umask,\\\\n                        preexec_fn)\\\\n                self._child_created = True\\\\n            finally:\\\\n                # be sure the FD is closed no matter what\\\\n                os.close(errpipe_write)\\\\n    \\\\n            self._close_pipe_fds(p2cread, p2cwrite,\\\\n                                 c2pread, c2pwrite,\\\\n                                 errread, errwrite)\\\\n    \\\\n            # Wait for exec to fail or succeed; possibly raising an\\\\n            # exception (limited in size)\\\\n            errpipe_data = bytearray()\\\\n            while True:\\\\n                part = os.read(errpipe_read, 50000)\\\\n                errpipe_data += part\\\\n                if not part or len(errpipe_data) > 50000:\\\\n                    break\\\\n        finally:\\\\n            # be sure the FD is closed no matter what\\\\n            os.close(errpipe_read)\\\\n    \\\\n        if errpipe_data:\\\\n            try:\\\\n                pid, sts = os.waitpid(self.pid, 0)\\\\n                if pid == self.pid:\\\\n                    self._handle_exitstatus(sts)\\\\n                else:\\\\n                    self.returncode = sys.maxsize\\\\n            except ChildProcessError:\\\\n                pass\\\\n    \\\\n            try:\\\\n                exception_name, hex_errno, err_msg = (\\\\n                        errpipe_data.split(b':', 2))\\\\n                # The encoding here should match the encoding\\\\n                # written in by the subprocess implementations\\\\n                # like _posixsubprocess\\\\n                err_msg = err_msg.decode()\\\\n            except ValueError:\\\\n                exception_name = b'SubprocessError'\\\\n                hex_errno = b'0'\\\\n                err_msg = 'Bad exception data from child: {!r}'.format(\\\\n                              bytes(errpipe_data))\\\\n            child_exception_type = getattr(\\\\n                    builtins, exception_name.decode('ascii'),\\\\n                    SubprocessError)\\\\n            if issubclass(child_exception_type, OSError) and hex_errno:\\\\n                errno_num = int(hex_errno, 16)\\\\n                child_exec_never_called = (err_msg == \\\\\\\"noexec\\\\\\\")\\\\n                if child_exec_never_called:\\\\n                    err_msg = \\\\\\\"\\\\\\\"\\\\n                    # The error must be from chdir(cwd).\\\\n                    err_filename = cwd\\\\n                else:\\\\n                    err_filename = orig_executable\\\\n                if errno_num != 0:\\\\n                    err_msg = os.strerror(errno_num)\\\\n>               raise child_exception_type(errno_num, err_msg, err_filename)\\\\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\\\\n\\\\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\\\\n=========================== short test summary info ============================\\\\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\\\\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\\\\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\\\\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\\\\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\\\\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\\\\n6 failed, 330 passed, 10 xfailed in 0.68s\\\\n\\\", \\\"stderr_tail\\\": \\\"\\\", \\\"output_truncated\\\": true, \\\"historical\\\": false, \\\"container_state\\\": {\\\"Status\\\": \\\"exited\\\", \\\"Running\\\": false, \\\"Paused\\\": false, \\\"Restarting\\\": false, \\\"OOMKilled\\\": false, \\\"Dead\\\": false, \\\"Pid\\\": 0, \\\"ExitCode\\\": 1, \\\"Error\\\": \\\"\\\", \\\"StartedAt\\\": \\\"2026-10-29T22:04:17.172959378Z\\\", \\\"FinishedAt\\\": \\\"2026-10-29T22:04:19.234328857Z\\\"}, \\\"container_id\\\": \\\"e3efb987c8dd3125ecff8bbe306320a534cf90d032b947b3a05052414cffb1d2\\\", \\\"execution_and_cleanup_seconds\\\": 2.200628789999996, \\\"cache_key\\\": \\\"1541d36011b78602166c0b242904c07a44bd94d2b8a043d955243854981b9789\\\"}\"}]}}\n",
+        "utc": "2026-10-29T22:04:17.049022+00:00",
+        "verify": false
+      },
+      "setup": {
+        "arm_setup_seconds": 0.0186637850000011,
+        "authority": "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/receipt-authority",
+        "manifest": {
+          "cache_streams": false,
+          "cacheable": true,
+          "closure_reviewed": true,
+          "command": [
+            "python",
+            "-B",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "-p",
+            "q1q2_capture",
+            "tests",
+            "--hypothesis-seed=20261029"
+          ],
+          "env": [],
+          "image": "127.0.0.1:19559/zerorun-q1q2@sha256:d1fbe7548c32600a64b02e52831e6dc5ed639184f05d23ef43eaa9c497507446",
+          "inputs": [
+            ".github",
+            ".gitignore",
+            ".mailmap",
+            ".readthedocs.yaml",
+            "CHANGELOG.md",
+            "LICENSE.txt",
+            "MANIFEST.in",
+            "README.md",
+            "docs",
+            "ftfy",
+            "mypy.ini",
+            "notebook",
+            "notes",
+            "pyproject.toml",
+            "pytest.ini",
+            "scripts",
+            "tests",
+            "tox.ini",
+            "uv.lock"
+          ],
+          "outputs": [],
+          "platform": "linux/amd64",
+          "result_only": true,
+          "unsafe_effects": []
+        },
+        "materialization_seconds": 0.008502154000012752,
+        "root": "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/receipt-root"
+      },
+      "summary": null
+    },
+    "zerorun": {
+      "response": {
+        "argv": [
+          "/usr/bin/python3",
+          "-B",
+          "-m",
+          "zerorun",
+          "mcp-server"
+        ],
+        "arm": "zerorun",
+        "disposition": "completed",
+        "outer_seconds": 2.9673794409999914,
+        "payload": {
+          "cache_key": "bdd426e37686fb6573b18454280159509ee4c2af94c5812a3f50df999462bfba",
+          "execution_ms": 2482.94,
+          "exit_code": 1,
+          "mode": "reuse",
+          "phase_ms": {
+            "cache_lookup": 0.834,
+            "docker_execution": 2483.525,
+            "environment": 0.011,
+            "event_append": 1.848,
+            "fingerprint_final": 26.331,
+            "fingerprint_initial": 31.73,
+            "lock_acquire": 1.361,
+            "runtime_inspect_initial": 16.637,
+            "snapshot_cleanup": 9.248,
+            "snapshot_prepare": 115.333
+          },
+          "reason": "fresh hermetic task failed; no reusable result was stored",
+          "restored_outputs": [],
+          "saved_ms": 0.0,
+          "saved_seconds": 0.0,
+          "status": "MISS_FAILED",
+          "stderr_tail": "",
+          "stdout_tail": "                 # This matches the behavior of os._execvpe().\n                    executable_list = tuple(\n                        os.path.join(os.fsencode(dir), executable)\n                        for dir in os.get_exec_path(env))\n                fds_to_keep = set(pass_fds)\n                fds_to_keep.add(errpipe_write)\n                self.pid = _posixsubprocess.fork_exec(\n                        args, executable_list,\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\n                        cwd, env_list,\n                        p2cread, p2cwrite, c2pread, c2pwrite,\n                        errread, errwrite,\n                        errpipe_read, errpipe_write,\n                        restore_signals, start_new_session,\n                        gid, gids, uid, umask,\n                        preexec_fn)\n                self._child_created = True\n            finally:\n                # be sure the FD is closed no matter what\n                os.close(errpipe_write)\n    \n            self._close_pipe_fds(p2cread, p2cwrite,\n                                 c2pread, c2pwrite,\n                                 errread, errwrite)\n    \n            # Wait for exec to fail or succeed; possibly raising an\n            # exception (limited in size)\n            errpipe_data = bytearray()\n            while True:\n                part = os.read(errpipe_read, 50000)\n                errpipe_data += part\n                if not part or len(errpipe_data) > 50000:\n                    break\n        finally:\n            # be sure the FD is closed no matter what\n            os.close(errpipe_read)\n    \n        if errpipe_data:\n            try:\n                pid, sts = os.waitpid(self.pid, 0)\n                if pid == self.pid:\n                    self._handle_exitstatus(sts)\n                else:\n                    self.returncode = sys.maxsize\n            except ChildProcessError:\n                pass\n    \n            try:\n                exception_name, hex_errno, err_msg = (\n                        errpipe_data.split(b':', 2))\n                # The encoding here should match the encoding\n                # written in by the subprocess implementations\n                # like _posixsubprocess\n                err_msg = err_msg.decode()\n            except ValueError:\n                exception_name = b'SubprocessError'\n                hex_errno = b'0'\n                err_msg = 'Bad exception data from child: {!r}'.format(\n                              bytes(errpipe_data))\n            child_exception_type = getattr(\n                    builtins, exception_name.decode('ascii'),\n                    SubprocessError)\n            if issubclass(child_exception_type, OSError) and hex_errno:\n                errno_num = int(hex_errno, 16)\n                child_exec_never_called = (err_msg == \"noexec\")\n                if child_exec_never_called:\n                    err_msg = \"\"\n                    # The error must be from chdir(cwd).\n                    err_filename = cwd\n                else:\n                    err_filename = orig_executable\n                if errno_num != 0:\n                    err_msg = os.strerror(errno_num)\n>               raise child_exception_type(errno_num, err_msg, err_filename)\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\n\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\n=========================== short test summary info ============================\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\n6 failed, 330 passed, 10 xfailed in 0.65s\n",
+          "task": "tests",
+          "verified": false,
+          "wall_ms": 2736.265
+        },
+        "returncode": 0,
+        "stderr": "",
+        "stdout": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"protocolVersion\":\"2025-11-25\",\"capabilities\":{\"tools\":{\"listChanged\":false}},\"serverInfo\":{\"name\":\"zerorun\",\"version\":\"0.5.3\"},\"instructions\":\"ZeroRun is repository-bound and fail-closed. Execution tools may run tests or create local setup state; honor their approval fields and never treat a candidate, bypass, miss, or uncertainty as reusable.\"}}\n{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"content\":[{\"type\":\"text\",\"text\":\"{\\n  \\\"cache_key\\\": \\\"bdd426e37686fb6573b18454280159509ee4c2af94c5812a3f50df999462bfba\\\",\\n  \\\"execution_ms\\\": 2482.94,\\n  \\\"exit_code\\\": 1,\\n  \\\"mode\\\": \\\"reuse\\\",\\n  \\\"phase_ms\\\": {\\n    \\\"cache_lookup\\\": 0.834,\\n    \\\"docker_execution\\\": 2483.525,\\n    \\\"environment\\\": 0.011,\\n    \\\"event_append\\\": 1.848,\\n    \\\"fingerprint_final\\\": 26.331,\\n    \\\"fingerprint_initial\\\": 31.73,\\n    \\\"lock_acquire\\\": 1.361,\\n    \\\"runtime_inspect_initial\\\": 16.637,\\n    \\\"snapshot_cleanup\\\": 9.248,\\n    \\\"snapshot_prepare\\\": 115.333\\n  },\\n  \\\"reason\\\": \\\"fresh hermetic task failed; no reusable result was stored\\\",\\n  \\\"restored_outputs\\\": [],\\n  \\\"saved_ms\\\": 0.0,\\n  \\\"saved_seconds\\\": 0.0,\\n  \\\"status\\\": \\\"MISS_FAILED\\\",\\n  \\\"stderr_tail\\\": \\\"\\\",\\n  \\\"stdout_tail\\\": \\\"                 # This matches the behavior of os._execvpe().\\\\n                    executable_list = tuple(\\\\n                        os.path.join(os.fsencode(dir), executable)\\\\n                        for dir in os.get_exec_path(env))\\\\n                fds_to_keep = set(pass_fds)\\\\n                fds_to_keep.add(errpipe_write)\\\\n                self.pid = _posixsubprocess.fork_exec(\\\\n                        args, executable_list,\\\\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\\\\n                        cwd, env_list,\\\\n                        p2cread, p2cwrite, c2pread, c2pwrite,\\\\n                        errread, errwrite,\\\\n                        errpipe_read, errpipe_write,\\\\n                        restore_signals, start_new_session,\\\\n                        gid, gids, uid, umask,\\\\n                        preexec_fn)\\\\n                self._child_created = True\\\\n            finally:\\\\n                # be sure the FD is closed no matter what\\\\n                os.close(errpipe_write)\\\\n    \\\\n            self._close_pipe_fds(p2cread, p2cwrite,\\\\n                                 c2pread, c2pwrite,\\\\n                                 errread, errwrite)\\\\n    \\\\n            # Wait for exec to fail or succeed; possibly raising an\\\\n            # exception (limited in size)\\\\n            errpipe_data = bytearray()\\\\n            while True:\\\\n                part = os.read(errpipe_read, 50000)\\\\n                errpipe_data += part\\\\n                if not part or len(errpipe_data) > 50000:\\\\n                    break\\\\n        finally:\\\\n            # be sure the FD is closed no matter what\\\\n            os.close(errpipe_read)\\\\n    \\\\n        if errpipe_data:\\\\n            try:\\\\n                pid, sts = os.waitpid(self.pid, 0)\\\\n                if pid == self.pid:\\\\n                    self._handle_exitstatus(sts)\\\\n                else:\\\\n                    self.returncode = sys.maxsize\\\\n            except ChildProcessError:\\\\n                pass\\\\n    \\\\n            try:\\\\n                exception_name, hex_errno, err_msg = (\\\\n                        errpipe_data.split(b':', 2))\\\\n                # The encoding here should match the encoding\\\\n                # written in by the subprocess implementations\\\\n                # like _posixsubprocess\\\\n                err_msg = err_msg.decode()\\\\n            except ValueError:\\\\n                exception_name = b'SubprocessError'\\\\n                hex_errno = b'0'\\\\n                err_msg = 'Bad exception data from child: {!r}'.format(\\\\n                              bytes(errpipe_data))\\\\n            child_exception_type = getattr(\\\\n                    builtins, exception_name.decode('ascii'),\\\\n                    SubprocessError)\\\\n            if issubclass(child_exception_type, OSError) and hex_errno:\\\\n                errno_num = int(hex_errno, 16)\\\\n                child_exec_never_called = (err_msg == \\\\\\\"noexec\\\\\\\")\\\\n                if child_exec_never_called:\\\\n                    err_msg = \\\\\\\"\\\\\\\"\\\\n                    # The error must be from chdir(cwd).\\\\n                    err_filename = cwd\\\\n                else:\\\\n                    err_filename = orig_executable\\\\n                if errno_num != 0:\\\\n                    err_msg = os.strerror(errno_num)\\\\n>               raise child_exception_type(errno_num, err_msg, err_filename)\\\\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\\\\n\\\\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\\\\n=========================== short test summary info ============================\\\\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\\\\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\\\\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\\\\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\\\\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\\\\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\\\\n6 failed, 330 passed, 10 xfailed in 0.65s\\\\n\\\",\\n  \\\"task\\\": \\\"tests\\\",\\n  \\\"verified\\\": false,\\n  \\\"wall_ms\\\": 2736.265\\n}\"}],\"structuredContent\":{\"task\":\"tests\",\"status\":\"MISS_FAILED\",\"exit_code\":1,\"wall_ms\":2736.265,\"execution_ms\":2482.94,\"saved_ms\":0.0,\"cache_key\":\"bdd426e37686fb6573b18454280159509ee4c2af94c5812a3f50df999462bfba\",\"reason\":\"fresh hermetic task failed; no reusable result was stored\",\"restored_outputs\":[],\"verified\":false,\"phase_ms\":{\"cache_lookup\":0.834,\"docker_execution\":2483.525,\"environment\":0.011,\"event_append\":1.848,\"fingerprint_final\":26.331,\"fingerprint_initial\":31.73,\"lock_acquire\":1.361,\"runtime_inspect_initial\":16.637,\"snapshot_cleanup\":9.248,\"snapshot_prepare\":115.333},\"mode\":\"reuse\",\"stdout_tail\":\"                 # This matches the behavior of os._execvpe().\\n                    executable_list = tuple(\\n                        os.path.join(os.fsencode(dir), executable)\\n                        for dir in os.get_exec_path(env))\\n                fds_to_keep = set(pass_fds)\\n                fds_to_keep.add(errpipe_write)\\n                self.pid = _posixsubprocess.fork_exec(\\n                        args, executable_list,\\n                        close_fds, tuple(sorted(map(int, fds_to_keep))),\\n                        cwd, env_list,\\n                        p2cread, p2cwrite, c2pread, c2pwrite,\\n                        errread, errwrite,\\n                        errpipe_read, errpipe_write,\\n                        restore_signals, start_new_session,\\n                        gid, gids, uid, umask,\\n                        preexec_fn)\\n                self._child_created = True\\n            finally:\\n                # be sure the FD is closed no matter what\\n                os.close(errpipe_write)\\n    \\n            self._close_pipe_fds(p2cread, p2cwrite,\\n                                 c2pread, c2pwrite,\\n                                 errread, errwrite)\\n    \\n            # Wait for exec to fail or succeed; possibly raising an\\n            # exception (limited in size)\\n            errpipe_data = bytearray()\\n            while True:\\n                part = os.read(errpipe_read, 50000)\\n                errpipe_data += part\\n                if not part or len(errpipe_data) > 50000:\\n                    break\\n        finally:\\n            # be sure the FD is closed no matter what\\n            os.close(errpipe_read)\\n    \\n        if errpipe_data:\\n            try:\\n                pid, sts = os.waitpid(self.pid, 0)\\n                if pid == self.pid:\\n                    self._handle_exitstatus(sts)\\n                else:\\n                    self.returncode = sys.maxsize\\n            except ChildProcessError:\\n                pass\\n    \\n            try:\\n                exception_name, hex_errno, err_msg = (\\n                        errpipe_data.split(b':', 2))\\n                # The encoding here should match the encoding\\n                # written in by the subprocess implementations\\n                # like _posixsubprocess\\n                err_msg = err_msg.decode()\\n            except ValueError:\\n                exception_name = b'SubprocessError'\\n                hex_errno = b'0'\\n                err_msg = 'Bad exception data from child: {!r}'.format(\\n                              bytes(errpipe_data))\\n            child_exception_type = getattr(\\n                    builtins, exception_name.decode('ascii'),\\n                    SubprocessError)\\n            if issubclass(child_exception_type, OSError) and hex_errno:\\n                errno_num = int(hex_errno, 16)\\n                child_exec_never_called = (err_msg == \\\"noexec\\\")\\n                if child_exec_never_called:\\n                    err_msg = \\\"\\\"\\n                    # The error must be from chdir(cwd).\\n                    err_filename = cwd\\n                else:\\n                    err_filename = orig_executable\\n                if errno_num != 0:\\n                    err_msg = os.strerror(errno_num)\\n>               raise child_exception_type(errno_num, err_msg, err_filename)\\nE               FileNotFoundError: [Errno 2] No such file or directory: 'ftfy'\\n\\n/usr/local/lib/python3.10/subprocess.py:1863: FileNotFoundError\\n=========================== short test summary info ============================\\nFAILED tests/test_cli.py::test_basic - FileNotFoundError: [Errno 2] No such f...\\nFAILED tests/test_cli.py::test_guess_bytes - FileNotFoundError: [Errno 2] No ...\\nFAILED tests/test_cli.py::test_alternate_encoding - FileNotFoundError: [Errno...\\nFAILED tests/test_cli.py::test_wrong_encoding - FileNotFoundError: [Errno 2] ...\\nFAILED tests/test_cli.py::test_same_file - FileNotFoundError: [Errno 2] No su...\\nFAILED tests/test_cli.py::test_stdin - FileNotFoundError: [Errno 2] No such f...\\n6 failed, 330 passed, 10 xfailed in 0.65s\\n\",\"stderr_tail\":\"\",\"saved_seconds\":0.0},\"isError\":true}}\n",
+        "utc": "2026-10-29T22:04:19.381058+00:00",
+        "verify": false
+      },
+      "setup": {
+        "arm_setup_seconds": 0.025609613999989733,
+        "authority": "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/zerorun-authority",
+        "manifest": {
+          "cache_streams": false,
+          "cacheable": true,
+          "closure_reviewed": true,
+          "command": [
+            "python",
+            "-B",
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            "-p",
+            "q1q2_capture",
+            "tests",
+            "--hypothesis-seed=20261029"
+          ],
+          "env": [],
+          "image": "127.0.0.1:19559/zerorun-q1q2@sha256:d1fbe7548c32600a64b02e52831e6dc5ed639184f05d23ef43eaa9c497507446",
+          "inputs": [
+            ".github",
+            ".gitignore",
+            ".mailmap",
+            ".readthedocs.yaml",
+            "CHANGELOG.md",
+            "LICENSE.txt",
+            "MANIFEST.in",
+            "README.md",
+            "docs",
+            "ftfy",
+            "mypy.ini",
+            "notebook",
+            "notes",
+            "pyproject.toml",
+            "pytest.ini",
+            "scripts",
+            "tests",
+            "tox.ini",
+            "uv.lock"
+          ],
+          "outputs": [],
+          "platform": "linux/amd64",
+          "result_only": true,
+          "unsafe_effects": []
+        },
+        "materialization_seconds": 0.00812725199997999,
+        "root": "/home/runner/work/_temp/q1q2-main-preflight/python-ftfy/zerorun-root"
+      },
+      "summary": null
+    }
+  }
+}

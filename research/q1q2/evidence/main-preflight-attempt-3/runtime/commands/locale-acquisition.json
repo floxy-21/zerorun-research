@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--pull=never",
+    "--cap-drop",
+    "ALL",
+    "--security-opt",
+    "no-new-privileges",
+    "--mount",
+    "type=bind,src=/home/runner/work/_temp/q1q2-main-preflight/runtime/context/debs,dst=/out",
+    "python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a",
+    "sh",
+    "-c",
+    "set -eu; mkdir -p /tmp/q1q2-apt-cache/partial; apt-get -o APT::Sandbox::User=root update; apt-get -o APT::Sandbox::User=root -o Dir::Cache::archives=/tmp/q1q2-apt-cache --download-only -y install locales; cp /tmp/q1q2-apt-cache/*.deb /out/"
+  ],
+  "completed_utc": "2026-10-29T22:03:13.238742+00:00",
+  "error": null,
+  "outer_ms": 2752.6988700000034,
+  "returncode": 0,
+  "stderr": "rm: cannot remove '/var/cache/apt/archives/partial/*.deb': Permission denied\n",
+  "stderr_truncated": false,
+  "stdout": "Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]\nGet:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]\nGet:3 http://deb.debian.org/debian-security bookworm-security InRelease [34.8 kB]\nGet:4 http://deb.debian.org/debian bookworm/main amd64 Packages [8790 kB]\nGet:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [6924 B]\nGet:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [358 kB]\nFetched 9397 kB in 1s (11.4 MB/s)\nReading package lists...\nReading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  libc-l10n\nThe following NEW packages will be installed:\n  libc-l10n locales\n0 upgraded, 2 newly installed, 0 to remove and 7 not upgraded.\nNeed to get 4583 kB of archives.\nAfter this operation, 20.7 MB of additional disk space will be used.\nGet:1 http://deb.debian.org/debian bookworm/main amd64 libc-l10n all 2.36-9+deb12u14 [676 kB]\nGet:2 http://deb.debian.org/debian bookworm/main amd64 locales all 2.36-9+deb12u14 [3906 kB]\nFetched 4583 kB in 0s (135 MB/s)\nDownload complete and in download only mode\n",
+  "stdout_truncated": false,
+  "timeout_seconds": 600
+}
