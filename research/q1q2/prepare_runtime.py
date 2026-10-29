@@ -67,13 +67,17 @@ def prepare(output, *, main=False):
             # Upstream natsort requires en_US; retain all three upstream locales.
             # Download package bytes first, then use an offline image build.
             (context / "debs").mkdir()
+            # Capability-dropped container root cannot bypass the host runner's
+            # directory ownership. Expose only this empty package destination.
+            (context / "debs").chmod(0o777)
             script = ("set -eu; mkdir -p /tmp/q1q2-apt-cache/partial; "
                 "apt-get -o APT::Sandbox::User=root update; "
                 "apt-get -o APT::Sandbox::User=root -o Dir::Cache::archives=/tmp/q1q2-apt-cache --download-only -y install locales; "
-                "cp /tmp/q1q2-apt-cache/*.deb /out/debs/")
+                "cp /tmp/q1q2-apt-cache/*.deb /out/")
             command("locale-acquisition", ["docker", "run", "--rm", "--pull=never", "--cap-drop", "ALL",
-                "--security-opt", "no-new-privileges", "--mount", "type=bind,src=" + str(context) + ",dst=/out",
+                "--security-opt", "no-new-privileges", "--mount", "type=bind,src=" + str(context / "debs") + ",dst=/out",
                 BASE, "sh", "-c", script])
+            (context / "debs").chmod(0o755)
             deb_bytes = sum(p.stat().st_size for p in (context / "debs").glob("*.deb"))
             assert deb_bytes <= 50_000_000, "locale package acquisition exceeds 50 MB bound"
             dockerfile += ("COPY debs/ /opt/q1q2-debs/\n"
