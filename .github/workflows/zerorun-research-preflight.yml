@@ -1,0 +1,37 @@
+name: ZeroRun research environment preflight
+on:
+  push:
+    branches: [research/q1q2-20261029]
+    paths:
+      - .github/workflows/zerorun-research-preflight.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  preflight:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record available runtime
+        run: |
+          python3 --version
+          id
+          uname -a
+          docker version
+          docker info --format '{{json .}}'
+      - name: Install test tools from retained wheelhouse
+        run: |
+          python3 -m venv "$RUNNER_TEMP/zerorun-test-venv"
+          "$RUNNER_TEMP/zerorun-test-venv/bin/python" -m pip install --no-index --find-links research/softwarex/evidence/compatible-image-repair-v2/context/wheelhouse pytest==8.4.2
+      - name: Run existing unit tests
+        env:
+          PYTHONPATH: src
+        run: |
+          "$RUNNER_TEMP/zerorun-test-venv/bin/python" -B -m pytest tests -q -p no:cacheprovider
+      - name: Check image acquisition and non-root container execution
+        run: |
+          docker pull python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a
+          docker run --rm --network none --read-only --cap-drop ALL --security-opt no-new-privileges --user "$(id -u):$(id -g)" python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a python -c 'import platform; print(platform.python_version())'
