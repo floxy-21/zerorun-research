@@ -1,0 +1,9 @@
+# Additive response audit and prospective entry point
+
+The main timing program was frozen at commit `6b4e5ff82dd472f00ef64e452b2c75d40faf25a8` before B2. The comparator review's C4 finding identified a validation defect: an invocation could retain a success-looking decoded payload after a failed post-request source gate. The frozen program checked that payload but did not independently require a completed invocation and zero service-process return code.
+
+Before main result analysis, `audit_responses.py` requires both conditions, the expected status, successful task exit, and coherent container termination when recorded. `audit_evidence.py` additionally checks every retained individual record against the summary, full oracle digest, source archive, scheduled block and frozen execution-file hash. An invalid response is a material execution defect, not an unfavorable timing to drop. No affected request has been found in the first session's 510 responses; the second session remains to be audited. Timing values are never changed by these checks.
+
+The original execution code remains unchanged so its freeze is verifiable. For future executions, `run_checked.py` wraps its invocation boundary, moving any non-completed response payload into a diagnostic `rejected_payload` field before the frozen runner sees it. This is a validation-only amendment; successful execution, timing boundaries, arm order and estimators are unchanged. Raw response stdout and the rejected payload remain in the record. The wrapper itself is included in the future run's recorded source hashes. B3 already required completed disposition and zero service return code before launch.
+
+Historical reproduction uses the original execution commit plus additive audits; prospective reproduction may use the checked entry point. Neither route calls this amendment an external preregistration or a new confirmatory experiment.

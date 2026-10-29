@@ -1,0 +1,43 @@
+name: ZeroRun installation and new-workload reproduction
+on:
+  workflow_dispatch:
+  push:
+    branches: [research/q1q2-20261029]
+    paths: [.github/workflows/zerorun-reproduction-check.yml]
+permissions:
+  contents: read
+jobs:
+  reproduce:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Check clean installation
+        run: python3 -B research/q1q2/check_installation.py --output "$RUNNER_TEMP/q1q2-reproduction/install"
+      - name: Exercise installed MCP server and source scope
+        run: |
+          docker pull python@sha256:68d914ec641a0b69267ce65184d000a2bc3a9ee2590ab702b82250ab2385735a
+          "$RUNNER_TEMP/q1q2-reproduction/install/venv/bin/python" -B research/q1q2/installed_probe.py "$RUNNER_TEMP/q1q2-reproduction/installed-probe.json" --guarded
+      - name: Run new-workload interface on both examples
+        run: python3 -B research/q1q2/run_cases.py --cases research/q1q2/examples/cases.json --output "$RUNNER_TEMP/q1q2-reproduction/examples"
+      - name: Retain explicit evidence paths
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: q1q2-reproduction
+          retention-days: 90
+          path: |
+            ${{ runner.temp }}/q1q2-reproduction/install/installation.json
+            ${{ runner.temp }}/q1q2-reproduction/install/wheels/*
+            ${{ runner.temp }}/q1q2-reproduction/installed-probe.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/summary.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/*/case.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/*/oracle-full-stdout.txt
+            ${{ runner.temp }}/q1q2-reproduction/examples/*/block-*/record.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/*/block-*/*/request-*.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/*/block-*/*/oracle-full-stdout.txt
+            ${{ runner.temp }}/q1q2-reproduction/examples/runtime/completion.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/runtime/commands/*.json
+            ${{ runner.temp }}/q1q2-reproduction/examples/runtime/context/**
