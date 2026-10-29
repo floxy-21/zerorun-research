@@ -38,12 +38,18 @@ def save(path, obj):
 
 def extract_outcomes(response):
     text = response.get("stdout_tail", "")
-    rows = [line.split("Q1Q2_OUTCOMES=", 1)[1] for line in text.splitlines() if "Q1Q2_OUTCOMES=" in line]
+    rows = [line.split("Q1Q2_SUMMARY=", 1)[1] for line in text.splitlines() if "Q1Q2_SUMMARY=" in line]
     if len(rows) != 1:
         return None
     row = json.loads(rows[0])
-    row["collected"] = sorted(row["collected"])
-    row["reports"] = sorted(row["reports"], key=lambda x: (x[0], x[1]))
+    full = [line.split("Q1Q2_OUTCOMES=", 1)[1] for line in text.splitlines() if "Q1Q2_OUTCOMES=" in line]
+    if full:
+        if len(full) != 1 or hashlib.sha256(full[0].encode()).hexdigest() != row["sha256"]:
+            raise ValueError("full oracle output digest differs")
+        payload = json.loads(full[0])
+        if (len(payload["collected"]), len(payload["reports"]), payload["exit_code"]) != (
+                row["collected_count"], row["reports_count"], row["exit_code"]):
+            raise ValueError("oracle counts differ")
     return row
 
 
@@ -194,8 +200,9 @@ def main():
                       "payload": response.get("payload")}), flush=True)
             target_report["preflight"] = preflight
             expected = preflight["fresh"]["outcomes"]
-            valid = bool(expected and expected["collected"] and expected["exit_code"] == 0 and all(
+            valid = bool(expected and expected["collected_count"] and expected["exit_code"] == 0 and all(
                 preflight[arm]["outcomes"] == expected for arm in preflight))
+            valid = valid and "Q1Q2_OUTCOMES=" in preflight["fresh"]["response"].get("payload", {}).get("stdout_tail", "")
             target_report["preflight_equal_nonempty_success"] = valid
             if not valid:
                 target_report["status"] = "preflight_failed"
@@ -211,10 +218,16 @@ def main():
                     for request_id in range(5):
                         row = invoke(root, arm, authority)
                         row["request"] = request_id
+                        payload = row.get("payload", {})
+                        wanted = "FRESH_EXECUTED" if arm == "fresh" else "MISS_EXECUTED" if request_id == 0 else "HIT_REUSED"
+                        row["expected_status"] = wanted
+                        row["correctness_passed"] = payload.get("status") == wanted and payload.get("exit_code") == 0
+                        if wanted != "HIT_REUSED":
+                            row["correctness_passed"] = row["correctness_passed"] and extract_outcomes(payload) == expected
                         calls.append(row)
                         save(folder / f"block-{block_id}-{arm}-request-{request_id}.json", row)
                     block["arms"][arm] = {"setup": setup, "calls": calls}
-                    if any(x.get("payload", {}).get("exit_code") != 0 for x in calls):
+                    if any(not x["correctness_passed"] for x in calls):
                         raise RuntimeError("pilot timed request failed; retain and investigate")
                 save(folder / f"block-{block_id}.json", block)
             target_report["status"] = "completed"

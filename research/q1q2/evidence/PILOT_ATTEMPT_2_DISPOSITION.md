@@ -1,0 +1,7 @@
+# Pilot attempt 2: MCP-tail measurement repair
+
+Run 40957071278, commit d6951db908486ccb79ea2a8f9c0fa6c3ee34b0db, retained all preflight records. Both targets exited successfully in all three arms. Direct fresh and receipt executions produced complete outcome records. Native MCP intentionally returned its documented last 4,000 bytes; the long outcome JSON's prefix was truncated. The preflight could not verify its equality and correctly admitted no timed blocks. This does not establish either a semantic mismatch or equivalence for the native result.
+
+Repair the independent outcome capture to append a compact SHA-256 digest of the canonical sorted node/phase records, along with nonempty collection count, phase-report count and exit status. That record fits in the unmodified native API's tail. The direct full-tree oracle retains the full record; its recomputed digest must match. No released service output limit is enlarged, and all arms receive the same revised capture plugin bound in the new runtime image. This is measurement-instrument repair, not removal of tests or a favorable workload replacement.
+
+Attempt 2's original ZIP SHA-256 is 0f27782b20376ff431965f06b79968f119804d9c3a42c3cfd4a201514d5f128a (artifact 12933722293). It is retained separately in pilot-attempt-2/. Attempt 1's individual outcomes remain unobserved; the second attempt cannot retrospectively fill those missing records.
