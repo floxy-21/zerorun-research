@@ -13,3 +13,11 @@ Every begun stage, exception, refusal and response is retained. The program writ
 Admitting B establishes a scope-enforcement gap only. It does not establish an incorrect test result, violate the original paper's conditional frozen-state claim, or estimate defect prevalence. Performance numbers from this probe are diagnostic and cannot enter the main timing comparison.
 
 Next action: if B is admitted, introduce an explicit source-state qualification gate in the experimental deployment, repeat the same sequence, and test restoration, tampering and source changes. If the live path refuses B, reconcile that result with the component probe before any mechanism claim. Do not treat a passing source-state gate as proof of input completeness or determinism.
+
+## Follow-up amendment after the original live result
+
+Run `40953223057`, source `1d668e3266bd212dade5a745e4a097a213187633`, admitted B: its first request executed successfully and its second reused success. Restored A reused its earlier success and passed fresh verification. Both complete raw JSON and Actions logs are preserved under `evidence/live-qualification-probe.*`.
+
+The follow-up adds a separately identified deployment gate while leaving `src/zerorun` unchanged. The external operator record binds the complete ordinary source inventory, file/directory modes and manifest to the reviewed state. The gate checks immediately before and after an actual MCP request. Unreviewed B is refused by the deployment adapter before calling MCP; this is not relabeled as a native ZeroRun refusal. A restoration remains authorized. The gate assumes a trusted external operator and no adversarial filesystem races; its paired scans do not prove atomicity. It does not prove semantic determinism.
+
+Expected follow-up sequence: missing native authority error, A executed, A reused, B qualification-required twice, restored A reused, restored A fresh verification. The entire raw sequence is written even if the expectation fails. Unit challenges cover same-length/restored-mtime edits, new input files, manifest edits, links, stale qualification, forged records and writable authority. This is an outcome-informed mechanism repair and stays exploratory.

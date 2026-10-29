@@ -1,0 +1,15 @@
+{
+  "schema": "zerorun.q1q2.cohort-rule.v1",
+  "frozen_date": "2026-10-29",
+  "cutoff_utc": "2026-10-29T20:00:00Z",
+  "pilot": ["tkem/cachetools", "pallets/blinker"],
+  "main_candidates": ["jmespath/jmespath.py", "mahmoud/boltons", "pallets/itsdangerous", "rspeer/python-ftfy", "theskumar/python-dotenv", "SethMMorton/natsort"],
+  "selection_basis": "Purposive small Python libraries with public test suites, no known mandatory GPU or external service. No main-cohort outcome, timing or repeat count has been inspected. This is not a representative random sample of Python repositories.",
+  "prior_exposure": "The first 30 cachetools workflow runs were inspected during feasibility. They are exploratory pilot data. Blinker and all main candidates have not been queried for outcomes before this rule.",
+  "source_budget": "At most 500 MB total source acquisition; no repository over 50 MB without revising this pilot plan. Preserve unavailable and oversized cases without favorable replacement.",
+  "api_rule": "Collect the most recent 60 completed public GitHub Actions runs created no later than cutoff for each repository; retain all conclusions. Identify test-executing workflow definitions from source, independent of outcome. For the pilot use at most 20 chronological test requests; main sampling remains frozen before main measurements after pilot feasibility.",
+  "replay_scope": "Replay public test-request source states under a newly pinned common runtime. This is a standardized replay, not reconstruction of original CI machines, secrets, dependency resolution or outcomes. Unavailable revisions and unsupported tasks remain counted.",
+  "identity_requirement": "Repeated SHA or command text alone is not a cache hit. Reconstruct and hash actual input content, command and runtime and obtain the declared source-state qualification before reuse.",
+  "historical_request_policy": "No extra unchanged requests are inserted into the observed-request replay. Controlled repeated handoffs are a separate experiment with separate denominators.",
+  "publication_requirement": "Qualification evidence and elapsed AI-assisted operator time are recorded contemporaneously. Human qualification effort is not inferred. Positive full-workflow benefit may be claimed only for a fully measured deployment scope; remaining human effort is an explicit sensitivity variable."
+}
