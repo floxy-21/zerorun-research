@@ -189,6 +189,10 @@ def main():
                 preflight[arm] = {"setup": setup, "response": response,
                                   "outcomes": extract_outcomes(response.get("payload", {}))}
                 save(folder / ("preflight-" + arm + ".json"), preflight[arm])
+                print(json.dumps({"target": target["id"], "preflight_arm": arm,
+                      "disposition": response["disposition"], "error": response.get("error"),
+                      "payload": response.get("payload")}), flush=True)
+            target_report["preflight"] = preflight
             expected = preflight["fresh"]["outcomes"]
             valid = bool(expected and expected["collected"] and expected["exit_code"] == 0 and all(
                 preflight[arm]["outcomes"] == expected for arm in preflight))
