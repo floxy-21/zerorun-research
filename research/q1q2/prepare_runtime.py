@@ -67,7 +67,10 @@ def prepare(output, *, main=False):
             # Upstream natsort requires en_US; retain all three upstream locales.
             # Download package bytes first, then use an offline image build.
             (context / "debs").mkdir()
-            script = "set -eu; apt-get -o APT::Sandbox::User=root update; apt-get -o APT::Sandbox::User=root --download-only -y install locales; cp /var/cache/apt/archives/*.deb /out/debs/"
+            script = ("set -eu; mkdir -p /tmp/q1q2-apt-cache/partial; "
+                "apt-get -o APT::Sandbox::User=root update; "
+                "apt-get -o APT::Sandbox::User=root -o Dir::Cache::archives=/tmp/q1q2-apt-cache --download-only -y install locales; "
+                "cp /tmp/q1q2-apt-cache/*.deb /out/debs/")
             command("locale-acquisition", ["docker", "run", "--rm", "--pull=never", "--cap-drop", "ALL",
                 "--security-opt", "no-new-privileges", "--mount", "type=bind,src=" + str(context) + ",dst=/out",
                 BASE, "sh", "-c", script])
